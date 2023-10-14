@@ -2,6 +2,12 @@
 $lang = array();
 
 # Global
+$lang['avatar'] = "Avatar";
+$lang['name'] = "Nombre";
+$lang['last_name'] = "Apellidos";
+$lang['primary_phone'] = "Teléfono Principal";
+$lang['secondary_phone'] = "Teléfono Segundario";
+$lang['email'] = "Email";
 $lang['ok'] = "Entendido";
 $lang['error'] = "Error";
 $lang['error_msg'] = "Ha ocurrido un error";
@@ -33,5 +39,19 @@ $lang['top_bar_logout'] = "Salir";
 # Admin Footer
 $lang['footer_contact_support'] = "Soporte";
 $lang['footer_help'] = "Ayuda";
+
+# Customers
+$lang['total_customers'] = "Total de Clientes";
+
+# Servicces
+$lang['total_services'] = "Total de Servicios";
+
+# Profile
+$lang['prof_menu_edit_profile'] = "Editar Perfil";
+$lang['prof_menu_config'] = "Configuración";
+$lang['prof_menu_change_key'] = "Clave de Acceso";
+$lang['prof_compleation'] = "Finalización del perfil";
+$lang['prof_info'] = "Información del Perfil";
+
 
 return $lang;

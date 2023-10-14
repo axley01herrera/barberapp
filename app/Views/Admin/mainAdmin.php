@@ -35,6 +35,18 @@
                 }
             });
         }
+
+        function globalError() {
+            Swal.fire({
+                text: "<?php echo lang('Text.error_msg'); ?>",
+                icon: "error",
+                buttonsStyling: false,
+                confirmButtonText: "<?php echo lang('Text.ok'); ?>",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            });
+        }
     </script>
 </head>
 

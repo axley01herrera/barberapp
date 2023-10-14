@@ -14,3 +14,5 @@ $routes->post('Home/loginAdminProcess', 'Home::loginAdminProcess');
 # Admin 
 $routes->get('Admin/dashboard', 'Admin::dashboard');
 $routes->get('Admin/profile', 'Admin::profile');
+$routes->post('Admin/profileTab', 'Admin::profileTab');
+$routes->post('Admin/uploadAvatarProfile', 'Admin::uploadAvatarProfile');
