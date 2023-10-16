@@ -16,3 +16,5 @@ $routes->get('Admin/dashboard', 'Admin::dashboard');
 $routes->get('Admin/profile', 'Admin::profile');
 $routes->post('Admin/profileTab', 'Admin::profileTab');
 $routes->post('Admin/uploadAvatarProfile', 'Admin::uploadAvatarProfile');
+$routes->post('Admin/removeAvatarProfile', 'Admin::removeAvatarProfile'); 
+$routes->post('Admin/updateProfile', 'Admin::updateProfile');

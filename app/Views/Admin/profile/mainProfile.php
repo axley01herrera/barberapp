@@ -10,114 +10,118 @@
     </div>
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <!--Header Profile-->
             <div class="card mb-5 mb-xl-10">
-                <div class="card-body pt-9 pb-0">
-                    <!--Details-->
-                    <div class="d-flex flex-wrap flex-sm-nowrap">
-                        <!--Pic-->
-                        <div class="me-7 mb-4">
-                            <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
-                                <?php if (empty($profile[0]->avatar)) { ?>
-                                    <img src="<?php echo base_url('public/assets/media/avatars/blank.png'); ?>" alt="image">
-                                <?php } else { ?>
-                                    <img src="data:image/png;base64,<?php echo base64_encode($profile[0]->avatar); ?>" alt="image">
+                <div class="card-body pb-0">
+                    <?php
+                    if (!empty($profile[0]->name)) {
+                        $profilePercent++;
+                        if (!empty($profile[0]->last_name))
+                            $profilePercent++;
+                    ?>
+                        <h5><?php echo $profile[0]->name . ' ' . $profile[0]->last_name; ?></h5>
+                    <?php } ?>
+                    <div class="row">
+                        <!-- Personal Information -->
+                        <div class="col-12 col-lg-6 mt-5">
+                            <div class="row">
+                                <!-- Email -->
+                                <?php
+                                if (!empty($profile[0]->email)) {
+                                    $profilePercent++;
+                                ?>
+                                    <div class="col-12 mt-2">
+                                        <i class="bi bi-envelope-fill text-gray-400 fs-6"></i> <span class="text-gray-400 fs-6 fw-semibold"><?php echo $profile[0]->email; ?></span>
+                                    </div>
+                                <?php } ?>
+                                <!-- Phone1 -->
+                                <?php if (!empty($profile[0]->phone1)) {
+                                    $profilePercent++;
+                                ?>
+                                    <div class="col-12 mt-2">
+                                        <i class="bi bi-telephone-fill text-gray-400 fs-6"></i> <span class="text-gray-400 fs-6 fw-semibold"><?php echo $profile[0]->phone1; ?></span>
+                                    </div>
+                                <?php } ?>
+                                <!-- Phone2 -->
+                                <?php
+                                if (!empty($profile[0]->phone2)) {
+                                    $profilePercent++;
+                                ?>
+                                    <div class="col-12 mt-2">
+                                        <i class="bi bi-telephone-fill text-gray-400 fs-6"></i> <span class="text-gray-400 fs-6 fw-semibold"><?php echo $profile[0]->phone2; ?></span>
+                                    </div>
+                                <?php } ?>
+                                <?php
+                                if (!empty($profile[0]->address1)) {
+                                    $profilePercent++; ?>
+                                    <div class="col-12 mt-2">
+                                        <i class="bi bi-geo-alt-fill"></i> <span class="text-gray-400 fs-6 fw-semibold"><?php echo $profile[0]->address1; ?></span>
+                                        <?php if (!empty($profile[0]->address2)) { ?>
+                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->address2; ?></span>
+                                        <?php } ?>
+                                        <?php if (!empty($profile[0]->city)) {
+                                            $profilePercent++; ?>
+                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->city; ?></span>
+                                        <?php } ?>
+                                        <?php if (!empty($profile[0]->state)) {
+                                            $profilePercent++; ?>
+                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->state; ?></span>
+                                        <?php } ?>
+                                        <?php if (!empty($profile[0]->zip)) {
+                                            $profilePercent++; ?>
+                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->zip; ?></span>
+                                        <?php } ?>
+                                        <?php if (!empty($profile[0]->country)) {
+                                            $profilePercent++; ?>
+                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->country; ?></span>
+                                        <?php } ?>
+                                    </div>
                                 <?php } ?>
                             </div>
+                            <?php
+                            $profilePercent = $profilePercent * 100 / 11;
+                            $profilePercent = number_format($profilePercent, 0, ".", ',');
+                            ?>
+
                         </div>
-                        <!--Info-->
-                        <div class="flex-grow-1">
-                            <!--Title-->
-                            <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                                <!--User-->
-                                <div class="d-flex flex-column">
-                                    <!--Name-->
-                                    <div class="d-flex align-items-center mb-2">
-                                        <span class="text-gray-900 fs-2 fw-bold me-1"><?php echo $profile[0]->name . ' ' . $profile[0]->last_name; ?></span>
-                                    </div>
-                                    <!--Info-->
-                                    <div class="fw-semibold fs-6 mb-4 pe-2 ">
-                                        <div class="row">
-                                            <!--Email-->
-                                            <?php if (!empty($profile[0]->email)) { ?>
-                                                <div class="col-12">
-                                                    <i class="bi bi-envelope-fill text-muted"></i> <span class="text-muted"><?php echo $profile[0]->email; ?></span>
-                                                </div>
-                                            <?php } ?>
-                                            <!--Phone1-->
-                                            <?php if (!empty($profile[0]->phone1)) { ?>
-                                                <div class="col-12">
-                                                    <i class="bi bi-telephone-fill text-muted"></i> <span class="text-muted"><?php echo $profile[0]->phone1; ?></span>
-                                                </div>
-                                            <?php } ?>
-                                            <!--Phone2-->
-                                            <?php if (!empty($profile[0]->phone1)) { ?>
-                                                <div class="col-12">
-                                                    <i class="bi bi-telephone-fill text-muted"></i> <span class="text-muted"><?php echo $profile[0]->phone2; ?></span>
-                                                </div>
-                                            <?php } ?>
+                        <!-- Info-->
+                        <div class="col-12 col-lg-6 mt-5">
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <!--Total Customers-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                        <div class="d-flex">
+                                            <i class="ki-duotone ki-arrow-up fs-3 text-success me-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                            <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="4500" data-kt-countup-prefix="$" data-kt-initialized="1">5</div>
                                         </div>
+                                        <div class="fw-semibold fs-6 text-gray-400"><?php echo lang('Text.total_customers'); ?></div>
                                     </div>
                                 </div>
-                                <!--Actions-->
-                                <div class="d-flex my-4">
-                                    <div class="me-0">
-                                        <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            <i class="ki-solid ki-dots-horizontal fs-2x"></i>
-                                        </button>
-                                        <!--Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3" data-kt-menu="true">
-                                            <!-- Edit Profile-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3"><?php echo lang('Text.prof_menu_edit_profile'); ?></a>
-                                            </div>
-                                            <!-- Config-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3"><?php echo lang('Text.prof_menu_change_key'); ?></a>
-                                            </div>
-                                            <!-- Config-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3"><?php echo lang('Text.prof_menu_config'); ?></a>
-                                            </div>
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <!--Total Services-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                                        <div class="d-flex">
+                                            <i class="ki-duotone ki-arrow-up fs-3 text-success me-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                            <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="4500" data-kt-countup-prefix="$" data-kt-initialized="1">10</div>
                                         </div>
+                                        <div class="fw-semibold fs-6 text-gray-400"><?php echo lang('Text.total_services'); ?></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="d-flex flex-wrap flex-stack">
-                                <div class="d-flex flex-column flex-grow-1 pe-8">
-                                    <div class="d-flex flex-wrap">
-                                        <!--Total Customers-->
-                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <i class="ki-duotone ki-arrow-up fs-3 text-success me-2">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                                <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="4500" data-kt-countup-prefix="$" data-kt-initialized="1">5</div>
-                                            </div>
-                                            <div class="fw-semibold fs-6 text-gray-400"><?php echo lang('Text.total_customers'); ?></div>
+                                <div class="d-flex flex-wrap flex-stack">
+                                    <!-- Progress -->
+                                    <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
+                                        <div class="d-flex justify-content-between w-100 mt-auto mb-2">
+                                            <span class="fw-semibold fs-6 text-gray-400"><?php echo lang('Text.prof_compleation'); ?></span>
+                                            <span class="fw-bold fs-6"><?php echo $profilePercent; ?>%</span>
                                         </div>
-                                        <!--Total Services-->
-                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <div class="d-flex align-items-center">
-                                                <i class="ki-duotone ki-arrow-up fs-3 text-success me-2">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                                <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="4500" data-kt-countup-prefix="$" data-kt-initialized="1">10</div>
-                                            </div>
-                                            <div class="fw-semibold fs-6 text-gray-400"><?php echo lang('Text.total_services'); ?></div>
+                                        <div class="h-5px mx-3 w-100 bg-light mb-3">
+                                            <div class="bg-success rounded h-5px" role="progressbar" style="width: <?php echo $profilePercent; ?>%;" aria-valuenow="<?php echo $profilePercent; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!--Progress-->
-                                <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
-                                    <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                        <span class="fw-semibold fs-6 text-gray-400"><?php echo lang('Text.prof_compleation'); ?></span>
-                                        <span class="fw-bold fs-6">50%</span>
-                                    </div>
-                                    <div class="h-5px mx-3 w-100 bg-light mb-3">
-                                        <div class="bg-success rounded h-5px" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -126,12 +130,12 @@
                 </div>
             </div>
             <!-- Tabs Profile-->
-            <div class="card mb-5 mb-xl-10">
+            <div class="card mb-5 mb-xl-10 mt-10">
                 <div class="card-body pb-0">
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                         <!--Profile Info-->
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile active" data-tab-profile="profile" href="#"><?php echo lang('Text.prof_info'); ?></a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile active" data-tab-profile="profile" href="#"><?php echo lang('Text.prof_menu_edit_profile'); ?></a>
                         </li>
                         <!--Acess Key-->
                         <li class="nav-item">
@@ -150,7 +154,7 @@
 </div>
 
 <script>
-    var tabProfile = "profile";
+    var tab = "<?php echo $tab; ?>";
     getProfileTabContent();
 
     function getProfileTabContent() { // Get Profile Tab Content
@@ -158,15 +162,25 @@
             type: "post",
             url: "<?php echo base_url('Admin/profileTab'); ?>",
             data: {
-                'tab': tabProfile
+                'tab': tab
             },
             dataType: "html",
-            success: function (response) {
+            success: function(response) {
                 $('#profile-tab-content').html(response);
             },
-            error: function () {
+            error: function() {
                 globalError();
             }
         });
     }
+
+    $('.tab-profile').on('click', function(e) {
+        e.preventDefault();
+        $('.tab-profile').each(function() {
+            $(this).removeClass('active');
+        });
+        $(this).addClass('active');
+        tab = $(this).attr('data-tab-profile');
+        getProfileTabContent();
+    });
 </script>

@@ -47,10 +47,21 @@ class Admin extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
             return view('adminLogout');
 
+        $tab = $this->objRequest->getPostGet('tab');
+
+        if (empty($tab))
+            $tab = "profile";
+
         $data = array();
         $data['config'] = $this->config;
         $data['profile'] = $this->objProfileModel->getProfile(1);
         $data['activeProfile'] = "active";
+        $data['tab'] = $tab;
+        if (empty($data['profile'][0]->avatar))
+            $data['profilePercent'] = 0;
+        else
+            $data['profilePercent'] = 1;
+
         $data['page'] = 'Admin/profile/mainProfile';
 
         return view('Admin/mainAdmin', $data);
@@ -64,11 +75,17 @@ class Admin extends BaseController
 
         $tab = $this->objRequest->getPost('tab');
 
-        switch($tab) {
+        switch ($tab) {
             case 'profile':
                 $view = "Admin/profile/tabs/profileInfo";
                 $data = array();
                 $data['profile'] = $this->objProfileModel->getProfile(1);
+                break;
+            case 'key':
+                $view = "Admin/profile/tabs/key";
+                break;
+            case 'config':
+                $view = "Admin/profile/tabs/config";
                 break;
         }
 
@@ -79,6 +96,53 @@ class Admin extends BaseController
 
     public function uploadAvatarProfile()
     {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "session expired";
+        }
+
         return json_encode($this->objMainModel->uploadFile('profile', 1, 'avatar', $_FILES['file']));
+    }
+
+    public function removeAvatarProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "session expired";
+        }
+
+        $data = array();
+        $data['avatar'] = '';
+
+        return json_encode($this->objMainModel->objUpdate('profile', $data, 1));
+    }
+
+    public function updateProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "session expired";
+        }
+
+        $data = array();
+        $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $data['last_name'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $data['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
+        $data['phone1'] = htmlspecialchars(trim($this->objRequest->getPost('phone1')));
+        $data['phone2'] = htmlspecialchars(trim($this->objRequest->getPost('phone2')));
+        $data['address1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
+        $data['address2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
+        $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
+        $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
+        $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
+        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
+
+        return json_encode($this->objMainModel->objUpdate('profile', $data, 1));
     }
 }
