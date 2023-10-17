@@ -29,7 +29,7 @@
         </div>
         <div class="row">
             <div class="col-12 text-end mt-5">
-                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.prof_btn_edit'); ?></button>
+                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
             </div>
         </div>
         <div class="row">
@@ -60,6 +60,7 @@
         $("#btn-update<?php echo $uniqid; ?>").on('click', function() {
             let result = checkRequiredValues();
             if (result === 0) {
+                $("#btn-update<?php echo $uniqid; ?>").attr('disabled', true);
                 $.ajax({
                     type: "post",
                     url: "<?php echo base_url('Admin/updateConfig'); ?>",
@@ -71,20 +72,25 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        if (response.error === 0)
-                            window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
-                        else if (response.error === 1)
+                        if (response.error === 0) {
+                            simpleSuccessAlert("<?php echo lang("Text.prof_config_updated"); ?>");
+                            setTimeout(() => {
+                                window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
+                            }, "2000");
+                        } else if (response.error === 1)
                             globalError();
                         else
                             window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
+
+                        $("#btn-update<?php echo $uniqid; ?>").removeAttr("disabled");
                     },
                     error: function(error) {
                         globalError();
+                        $("#btn-update<?php echo $uniqid; ?>").removeAttr("disabled");
                     }
                 });
             } else
                 simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning')
-
         });
 
         function checkRequiredValues() {

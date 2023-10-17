@@ -1,7 +1,7 @@
 <?php
 $lang = array();
 
-# Global
+# Global Labels
 $lang['company_name'] = "Nombre del Negocio o Compañía";
 $lang['bussines_type'] = "Tipo de Negocio";
 $lang['languaje'] = "Idioma";
@@ -9,9 +9,9 @@ $lang['theme'] = "Tema";
 $lang['theme_light'] = "Claro";
 $lang['theme_dark'] = "Oscuro";
 $lang['avatar'] = "Avatar";
-$lang['current_password'] = "Clave Actual";
-$lang['new_password'] = "Nueva Clave";
-$lang['confirm_password'] = "Confirme la Nueva Clave";
+$lang['current_key'] = "Clave Actual";
+$lang['new_key'] = "Nueva Clave";
+$lang['confirm_key'] = "Confirme la Nueva Clave";
 $lang['name'] = "Nombre";
 $lang['last_name'] = "Apellidos";
 $lang['primary_phone'] = "Teléfono Principal";
@@ -23,6 +23,8 @@ $lang['city'] = "Ciudad";
 $lang['state'] = "Provincia";
 $lang['zip'] = "Código Postal";
 $lang['country'] = "País";
+
+# Global MSG
 $lang['ok'] = "Entendido";
 $lang['error'] = "Error";
 $lang['error_msg'] = "Ha ocurrido un error";
@@ -30,6 +32,10 @@ $lang['session_expired'] = "Su sessión ha expirado";
 $lang['required_values'] = "Hay campos requeridos";
 $lang['password_does_not_match'] = "Las contraseñas no coinciden";
 $lang['invalid_current_password'] = "Clave Actual Incorrecta";
+$lang['invalid_email_format'] = "Rectifique el Formato del Correo Electrónico";
+
+# Global Text Buttons
+$lang['btn_enable_edit'] = "Habilitar Edición";
 $lang['btn_update'] = "Actualizar";
 $lang['btn_cancel'] = "Cancelar";
 
@@ -75,8 +81,9 @@ $lang['prof_info'] = "Información del Perfil";
 $lang['prof_change_avatar'] = "Cambiar Avatar";
 $lang['prof_cancel_avatar'] = "Cancelar Avatar";
 $lang['prof_remove_avatar'] = "Remover avatar";
-$lang['prof_btn_edit'] = "Habilitar Edición";
-
+$lang['prof_data_updated'] = "Datos del Perfil Actualizados";
+$lang['prof_access_key_updated'] = "Clave de Acceso Actualizada";
+$lang['prof_config_updated'] = "Datos de Configuración Actualizados";
 
 
 return $lang;

@@ -47,6 +47,15 @@
                 }
             });
         }
+
+        function simpleSuccessAlert(text) {
+            Swal.fire({
+                text: text,
+                icon: "success",
+                buttonsStyling: false,
+                showConfirmButton: false,
+            });
+        }
     </script>
 </head>
 

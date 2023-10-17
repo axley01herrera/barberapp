@@ -3,21 +3,21 @@
     <div class="col-12 col-lg-4">
         <div class="row">
             <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.current_password'); ?></label>
+                <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?> <span class="text-danger">*</span></label>
                 <input type="password" id="txt-current<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
             </div>
             <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-new<?php echo $uniqid; ?>"><?php echo lang('Text.new_password'); ?></label>
+                <label class="fs-6 fw-semibold" for="txt-new<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?> <span class="text-danger">*</span></label>
                 <input type="password" id="txt-new<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
             </div>
             <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-confirm<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_password'); ?></label>
+                <label class="fs-6 fw-semibold" for="txt-confirm<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?> <span class="text-danger">*</span></label>
                 <input type="password" id="txt-confirm<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
             </div>
         </div>
         <div class="row">
             <div class="col-12 text-end mt-5">
-                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.prof_btn_edit'); ?></button>
+                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
             </div>
         </div>
         <div class="row">
@@ -53,6 +53,7 @@
                 let confirmp = $('#txt-confirm<?php echo $uniqid; ?>').val();
 
                 if (newp == confirmp) {
+                    $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
                     $.ajax({
                         type: "post",
                         url: "<?php echo base_url('Admin/changeAccessKey'); ?>",
@@ -62,9 +63,12 @@
                         },
                         dataType: "json",
                         success: function(response) {
-                            if (response.error === 0)
-                                window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
-                            else if (response.error === 1) {
+                            if (response.error === 0) {
+                                simpleSuccessAlert("<?php echo lang("Text.prof_access_key_updated"); ?>");
+                                setTimeout(() => {
+                                    window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
+                                }, "2000");
+                            } else if (response.error === 1) {
                                 if (response.msg == "invalid current key") {
                                     $('#txt-current<?php echo $uniqid; ?>').addClass('is-invalid');
                                     simpleAlert("<?php echo lang('Text.invalid_current_password'); ?>", 'warning')
@@ -72,9 +76,12 @@
                                     globalError();
                             } else
                                 window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
+
+                            $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
                         },
                         error: function(error) {
                             globalError();
+                            $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
                         }
                     });
                 } else {
@@ -82,7 +89,7 @@
                     simpleAlert("<?php echo lang('Text.password_does_not_match'); ?>", 'warning')
                 }
             } else
-                simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning')
+                simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
         });
 
         function checkRequiredValues() {

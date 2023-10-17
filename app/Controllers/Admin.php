@@ -59,12 +59,34 @@ class Admin extends BaseController
         $data['profile'] = $this->objProfileModel->getProfile(1);
         $data['activeProfile'] = "active";
         $data['tab'] = $tab;
-        if (empty($data['profile'][0]->avatar))
-            $data['profilePercent'] = 0;
-        else
-            $data['profilePercent'] = 1;
-
         $data['page'] = 'Admin/profile/mainProfile';
+
+        $profilePercent  = 0;
+
+        if (!empty($data['config'][0]->company)) // 1
+            $profilePercent++;
+        if (!empty($data['config'][0]->type)) // 2
+            $profilePercent++;
+
+        if (!empty($data['profile'][0]->name)) // 3
+            $profilePercent++;
+
+        if (!empty($data['profile'][0]->last_name)) // 4
+            $profilePercent++;
+
+        if (!empty($data['profile'][0]->email)) // 5
+            $profilePercent++;
+
+        if (!empty($data['profile'][0]->phone1)) // 6
+            $profilePercent++;
+
+        if (!empty($data['profile'][0]->address1)) // 7
+            $profilePercent++;
+
+        if (!empty($data['profile'][0]->avatar)) // 8
+            $profilePercent++;
+
+        $data['profilePercent'] = number_format($profilePercent * 100  / 8, 0,".",',');
 
         return view('Admin/mainAdmin', $data);
     }
@@ -165,7 +187,7 @@ class Admin extends BaseController
 
         $key = htmlspecialchars(trim($this->objRequest->getPost('current')));
 
-        if($this->objConfigModel->login($key)['error'] === 1) {
+        if ($this->objConfigModel->login($key)['error'] === 1) {
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "invalid current key";
