@@ -3,6 +3,9 @@ $lang = array();
 
 # Global
 $lang['avatar'] = "Avatar";
+$lang['current_password'] = "Clave Actual";
+$lang['new_password'] = "Nueva Clave";
+$lang['confirm_password'] = "Confirme la Nueva Clave";
 $lang['name'] = "Nombre";
 $lang['last_name'] = "Apellidos";
 $lang['primary_phone'] = "Teléfono Principal";
@@ -18,6 +21,9 @@ $lang['ok'] = "Entendido";
 $lang['error'] = "Error";
 $lang['error_msg'] = "Ha ocurrido un error";
 $lang['session_expired'] = "Su sessión ha expirado";
+$lang['required_values'] = "Hay campos requeridos";
+$lang['password_does_not_match'] = "Las contraseñas no coinciden";
+$lang['invalid_current_password'] = "Clave Actual Incorrecta";
 $lang['btn_update'] = "Actualizar";
 $lang['btn_cancel'] = "Cancelar";
 
@@ -63,7 +69,7 @@ $lang['prof_info'] = "Información del Perfil";
 $lang['prof_change_avatar'] = "Cambiar Avatar";
 $lang['prof_cancel_avatar'] = "Cancelar Avatar";
 $lang['prof_remove_avatar'] = "Remover avatar";
-$lang['prof_btn_edit'] = "Habilitar Edición del Perfil";
+$lang['prof_btn_edit'] = "Habilitar Edición";
 
 
 

@@ -101,6 +101,7 @@ class Admin extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "session expired";
+            return json_encode($result);
         }
 
         return json_encode($this->objMainModel->uploadFile('profile', 1, 'avatar', $_FILES['file']));
@@ -113,6 +114,7 @@ class Admin extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "session expired";
+            return json_encode($result);
         }
 
         $data = array();
@@ -128,6 +130,7 @@ class Admin extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "session expired";
+            return json_encode($result);
         }
 
         $data = array();
@@ -144,5 +147,30 @@ class Admin extends BaseController
         $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
 
         return json_encode($this->objMainModel->objUpdate('profile', $data, 1));
+    }
+
+    public function changeAccessKey()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "session expired";
+            return json_encode($result);
+        }
+
+        $key = htmlspecialchars(trim($this->objRequest->getPost('current')));
+
+        if($this->objConfigModel->login($key)['error'] === 1) {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "invalid current key";
+            return json_encode($result);
+        }
+
+        $data = array();
+        $data['access_key'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('newp'))), PASSWORD_DEFAULT);
+
+        return json_encode($this->objMainModel->objUpdate('config', $data, 1));
     }
 }
