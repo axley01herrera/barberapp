@@ -62,13 +62,14 @@
                         },
                         dataType: "json",
                         success: function(response) {
-                            if (response.error === 0) {
+                            if (response.error === 0)
                                 window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
-                            } else if (response.error === 1) {
+                            else if (response.error === 1) {
                                 if (response.msg == "invalid current key") {
                                     $('#txt-current<?php echo $uniqid; ?>').addClass('is-invalid');
                                     simpleAlert("<?php echo lang('Text.invalid_current_password'); ?>", 'warning')
-                                }
+                                } else
+                                    globalError();
                             } else
                                 window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
                         },
@@ -101,7 +102,5 @@
         $('.required<?php echo $uniqid; ?>').on('focus', function() {
             $(this).removeClass('is-invalid');
         });
-
-
     });
 </script>

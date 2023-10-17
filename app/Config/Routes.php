@@ -19,3 +19,4 @@ $routes->post('Admin/uploadAvatarProfile', 'Admin::uploadAvatarProfile');
 $routes->post('Admin/removeAvatarProfile', 'Admin::removeAvatarProfile'); 
 $routes->post('Admin/updateProfile', 'Admin::updateProfile');
 $routes->post('Admin/changeAccessKey', 'Admin::changeAccessKey');
+$routes->post('Admin/updateConfig', 'Admin::updateConfig');

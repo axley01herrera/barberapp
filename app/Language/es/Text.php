@@ -2,6 +2,12 @@
 $lang = array();
 
 # Global
+$lang['company_name'] = "Nombre del Negocio o Compañía";
+$lang['bussines_type'] = "Tipo de Negocio";
+$lang['languaje'] = "Idioma";
+$lang['theme'] = "Tema";
+$lang['theme_light'] = "Claro";
+$lang['theme_dark'] = "Oscuro";
 $lang['avatar'] = "Avatar";
 $lang['current_password'] = "Clave Actual";
 $lang['new_password'] = "Nueva Clave";

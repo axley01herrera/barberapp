@@ -41,6 +41,8 @@ class Admin extends BaseController
         return view('Admin/mainAdmin', $data);
     }
 
+    # Section Profile
+
     public function profile()
     {
         # Verify Session 
@@ -86,6 +88,8 @@ class Admin extends BaseController
                 break;
             case 'config':
                 $view = "Admin/profile/tabs/config";
+                $data = array();
+                $data['config'] = $this->config;
                 break;
         }
 
@@ -173,4 +177,25 @@ class Admin extends BaseController
 
         return json_encode($this->objMainModel->objUpdate('config', $data, 1));
     }
+
+    public function updateConfig()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "session expired";
+            return json_encode($result);
+        }
+
+        $data = array();
+        $data['company'] = htmlspecialchars(trim($this->objRequest->getPost('company')));
+        $data['type'] = htmlspecialchars(trim($this->objRequest->getPost('type')));
+        $data['lang'] = htmlspecialchars(trim($this->objRequest->getPost('lang')));
+        $data['theme'] = htmlspecialchars(trim($this->objRequest->getPost('theme')));
+
+        return json_encode($this->objMainModel->objUpdate('config', $data, 1));
+    }
+
+    # End Section Profile
 }

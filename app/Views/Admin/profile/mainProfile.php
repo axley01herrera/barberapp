@@ -30,7 +30,7 @@
                                     $profilePercent++;
                                 ?>
                                     <div class="col-12 mt-2">
-                                        <i class="bi bi-envelope-fill text-gray-400 fs-6"></i> <span class="text-gray-400 fs-6 fw-semibold"><?php echo $profile[0]->email; ?></span>
+                                        <i class="bi bi-envelope-fill fs-6"></i> <span class="fs-6 fw-semibold"><?php echo $profile[0]->email; ?></span>
                                     </div>
                                 <?php } ?>
                                 <!-- Phone1 -->
@@ -38,7 +38,7 @@
                                     $profilePercent++;
                                 ?>
                                     <div class="col-12 mt-2">
-                                        <i class="bi bi-telephone-fill text-gray-400 fs-6"></i> <span class="text-gray-400 fs-6 fw-semibold"><?php echo $profile[0]->phone1; ?></span>
+                                        <i class="bi bi-telephone-fill  fs-6"></i> <span class=" fs-6 fw-semibold"><?php echo $profile[0]->phone1; ?></span>
                                     </div>
                                 <?php } ?>
                                 <!-- Phone2 -->
@@ -47,32 +47,32 @@
                                     $profilePercent++;
                                 ?>
                                     <div class="col-12 mt-2">
-                                        <i class="bi bi-telephone-fill text-gray-400 fs-6"></i> <span class="text-gray-400 fs-6 fw-semibold"><?php echo $profile[0]->phone2; ?></span>
+                                        <i class="bi bi-telephone-fill  fs-6"></i> <span class=" fs-6 fw-semibold"><?php echo $profile[0]->phone2; ?></span>
                                     </div>
                                 <?php } ?>
                                 <?php
                                 if (!empty($profile[0]->address1)) {
                                     $profilePercent++; ?>
                                     <div class="col-12 mt-2">
-                                        <i class="bi bi-geo-alt-fill"></i> <span class="text-gray-400 fs-6 fw-semibold"><?php echo $profile[0]->address1; ?></span>
+                                        <i class="bi bi-geo-alt-fill"></i> <span class=" fs-6 fw-semibold"><?php echo $profile[0]->address1; ?></span>
                                         <?php if (!empty($profile[0]->address2)) { ?>
-                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->address2; ?></span>
+                                            <span class=" fs-6 fw-semibold"><?php echo ', ' . $profile[0]->address2; ?></span>
                                         <?php } ?>
                                         <?php if (!empty($profile[0]->city)) {
                                             $profilePercent++; ?>
-                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->city; ?></span>
+                                            <span class=" fs-6 fw-semibold"><?php echo ', ' . $profile[0]->city; ?></span>
                                         <?php } ?>
                                         <?php if (!empty($profile[0]->state)) {
                                             $profilePercent++; ?>
-                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->state; ?></span>
+                                            <span class=" fs-6 fw-semibold"><?php echo ', ' . $profile[0]->state; ?></span>
                                         <?php } ?>
                                         <?php if (!empty($profile[0]->zip)) {
                                             $profilePercent++; ?>
-                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->zip; ?></span>
+                                            <span class=" fs-6 fw-semibold"><?php echo ', ' . $profile[0]->zip; ?></span>
                                         <?php } ?>
                                         <?php if (!empty($profile[0]->country)) {
                                             $profilePercent++; ?>
-                                            <span class="text-gray-400 fs-6 fw-semibold"><?php echo ', ' . $profile[0]->country; ?></span>
+                                            <span class=" fs-6 fw-semibold"><?php echo ', ' . $profile[0]->country; ?></span>
                                         <?php } ?>
                                     </div>
                                 <?php } ?>
@@ -96,7 +96,7 @@
                                             </i>
                                             <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="4500" data-kt-countup-prefix="$" data-kt-initialized="1">5</div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-400"><?php echo lang('Text.total_customers'); ?></div>
+                                        <div class="fw-semibold fs-6 "><?php echo lang('Text.total_customers'); ?></div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 col-lg-6">
@@ -109,14 +109,14 @@
                                             </i>
                                             <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="4500" data-kt-countup-prefix="$" data-kt-initialized="1">10</div>
                                         </div>
-                                        <div class="fw-semibold fs-6 text-gray-400"><?php echo lang('Text.total_services'); ?></div>
+                                        <div class="fw-semibold fs-6 "><?php echo lang('Text.total_services'); ?></div>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-wrap flex-stack">
                                     <!-- Progress -->
                                     <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
                                         <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                            <span class="fw-semibold fs-6 text-gray-400"><?php echo lang('Text.prof_compleation'); ?></span>
+                                            <span class="fw-semibold fs-6 "><?php echo lang('Text.prof_compleation'); ?></span>
                                             <span class="fw-bold fs-6"><?php echo $profilePercent; ?>%</span>
                                         </div>
                                         <div class="h-5px mx-3 w-100 bg-light mb-3">
@@ -135,15 +135,15 @@
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                         <!--Profile Info-->
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile active" data-tab-profile="profile" href="#"><?php echo lang('Text.prof_menu_edit_profile'); ?></a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if($tab == "profile") echo "active"; ?> " data-tab-profile="profile" href="#"><?php echo lang('Text.prof_menu_edit_profile'); ?></a>
                         </li>
                         <!--Acess Key-->
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile" data-tab-profile="key" href="#"><?php echo lang('Text.prof_menu_change_key'); ?></a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if($tab == "key") echo "active"; ?>" data-tab-profile="key" href="#"><?php echo lang('Text.prof_menu_change_key'); ?></a>
                         </li>
                         <!--Config-->
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile" data-tab-profile="config" href="#"><?php echo lang('Text.prof_menu_config'); ?></a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if($tab == "config") echo "active"; ?>" data-tab-profile="config" href="#"><?php echo lang('Text.prof_menu_config'); ?></a>
                         </li>
                     </ul>
                     <div id="profile-tab-content" class="container mt-10 mb-10"></div>
