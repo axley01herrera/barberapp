@@ -35,6 +35,7 @@ class Admin extends BaseController
 
         $data = array();
         $data['config'] = $this->config;
+        $data['profile'] = $this->objProfileModel->getProfile(1);
         $data['activeDashboard'] = "active";
         $data['page'] = 'Admin/dashboard/mainDashboard';
 

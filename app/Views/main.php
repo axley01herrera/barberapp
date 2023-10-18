@@ -37,12 +37,34 @@
         }
     </script>
 </head>
-<body style="background-color: <?php echo $config[0]->body_color; ?>;">
-    <!-- App Root -->
+<body id="kt_app_body" data-kt-app-layout="dark-header" data-kt-app-header-fixed="true" data-kt-app-toolbar-enabled="true" class="app-default">
+    <script>
+        var themeMode = "<?php echo $config[0]->theme; ?>";    
+        document.documentElement.setAttribute("data-bs-theme", themeMode);
+    </script>
     <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
-        <!-- App Page -->
+        <!--Page-->
         <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
-            <?php echo view($page); ?>
+            <!--Header-->
+            <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+                <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                    <?php echo view($page); ?>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div id="kt_app_footer" class="app-footer">
+                <div class="app-container container-xxl d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
+                    <div class="text-dark order-2 order-md-1">
+                        <span class="text-muted fw-semibold me-1">2023&copy;</span>
+                        <a href="" target="_blank" class="text-gray-800 text-hover-primary"><?php echo DEVELOPER; ?></a>
+                    </div>
+                    <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+                        <li class="menu-item">
+                            <a href="" target="_blank" class="menu-link px-2"><?php echo lang('Text.footer_contact_support'); ?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>

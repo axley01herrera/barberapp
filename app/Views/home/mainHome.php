@@ -9,12 +9,12 @@
                             <img src="assets/media/avatars/300-6.jpg" alt="image">
                         </div>
                         <!--Name-->
-                        <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-3"><?php echo $profile[0]->name.' '.$profile[0]->last_name; ?></a>
+                        <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-3"><?php echo $profile[0]->company_name ; ?></a>
                         <!--begin::Position-->
                         <div class="mb-9">
                             <!--begin::Badge-->
                             <div class="badge badge-lg badge-light-primary d-inline">
-                               <a href="<?php echo base_url('Home/loginAdmin'); ?>"><?php echo $config[0]->type; ?></a>
+                               <a href="<?php echo base_url('Home/loginAdmin'); ?>"><?php echo $profile[0]->company_type; ?></a>
                             </div>
                             <!--begin::Badge-->
                         </div>

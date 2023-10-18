@@ -40,6 +40,7 @@ class Home extends BaseController
         $data = array();
         $data['session'] = $this->request->getGet('session');
         $data['config'] = $this->config;
+        $data['profile'] = $this->objProfileModel->getProfile(1);
         $data['uniqid'] = uniqid();
         $data['page'] = 'loginAdmin/mainLoginAdmin';
         

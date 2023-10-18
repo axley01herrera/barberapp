@@ -19,8 +19,8 @@
             <div class="card mb-5 mb-xl-10">
                 <div class="card-body pb-0">
                     <!-- Name -->
-                    <?php if (!empty($profile[0]->name)) { ?>
-                        <h5><?php echo $profile[0]->name . ' ' . $profile[0]->last_name; ?></h5>
+                    <?php if (!empty($profile[0]->company_name)) { ?>
+                        <h5><?php echo $profile[0]->company_name; ?></h5>
                     <?php } ?>
                     <div class="row">
                         <div class="col-12 col-lg-6 mt-5">
