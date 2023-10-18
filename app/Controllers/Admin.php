@@ -63,30 +63,25 @@ class Admin extends BaseController
 
         $profilePercent  = 0;
 
-        if (!empty($data['config'][0]->company)) // 1
-            $profilePercent++;
-        if (!empty($data['config'][0]->type)) // 2
+        if (!empty($data['profile'][0]->company_name)) // 1
             $profilePercent++;
 
-        if (!empty($data['profile'][0]->name)) // 3
+        if (!empty($data['profile'][0]->company_type)) // 2
             $profilePercent++;
 
-        if (!empty($data['profile'][0]->last_name)) // 4
+        if (!empty($data['profile'][0]->email)) // 3
             $profilePercent++;
 
-        if (!empty($data['profile'][0]->email)) // 5
+        if (!empty($data['profile'][0]->phone1)) // 4
             $profilePercent++;
 
-        if (!empty($data['profile'][0]->phone1)) // 6
+        if (!empty($data['profile'][0]->address1)) // 5
             $profilePercent++;
 
-        if (!empty($data['profile'][0]->address1)) // 7
+        if (!empty($data['profile'][0]->avatar)) // 6
             $profilePercent++;
 
-        if (!empty($data['profile'][0]->avatar)) // 8
-            $profilePercent++;
-
-        $data['profilePercent'] = number_format($profilePercent * 100  / 8, 0,".",',');
+        $data['profilePercent'] = number_format($profilePercent * 100  / 6, 0,".",',');
 
         return view('Admin/mainAdmin', $data);
     }
@@ -160,8 +155,8 @@ class Admin extends BaseController
         }
 
         $data = array();
-        $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
-        $data['last_name'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $data['company_name'] = htmlspecialchars(trim($this->objRequest->getPost('company')));
+        $data['company_type'] = htmlspecialchars(trim($this->objRequest->getPost('type')));
         $data['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
         $data['phone1'] = htmlspecialchars(trim($this->objRequest->getPost('phone1')));
         $data['phone2'] = htmlspecialchars(trim($this->objRequest->getPost('phone2')));
@@ -211,8 +206,6 @@ class Admin extends BaseController
         }
 
         $data = array();
-        $data['company'] = htmlspecialchars(trim($this->objRequest->getPost('company')));
-        $data['type'] = htmlspecialchars(trim($this->objRequest->getPost('type')));
         $data['lang'] = htmlspecialchars(trim($this->objRequest->getPost('lang')));
         $data['theme'] = htmlspecialchars(trim($this->objRequest->getPost('theme')));
 

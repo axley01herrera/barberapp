@@ -2,7 +2,7 @@
 $lang = array();
 
 # Global Labels
-$lang['company_name'] = "Nombre del Negocio o Compañía";
+$lang['company_name'] = "Nombre del Negocio, Compañía o Local";
 $lang['bussines_type'] = "Tipo de Negocio";
 $lang['languaje'] = "Idioma";
 $lang['theme'] = "Tema";

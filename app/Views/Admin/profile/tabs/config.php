@@ -1,45 +1,32 @@
+<!-- Tab Config -->
 <div class="row">
-    <div class="col-12 col-lg-4"></div>
-    <div class="col-12 col-lg-4">
-        <div class="row">
-            <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-company<?php echo $uniqid; ?>"><?php echo lang('Text.company_name'); ?></label>
-                <input type="text" id="txt-company<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $config[0]->company; ?>" disabled />
-            </div>
-            <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-type<?php echo $uniqid; ?>"><?php echo lang('Text.bussines_type'); ?></label>
-                <input type="text" id="txt-type<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $config[0]->type; ?>" disabled />
-            </div>
-            <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-lang<?php echo $uniqid; ?>"><?php echo lang('Text.languaje'); ?></label>
-                <select id="txt-lang<?php echo $uniqid; ?>" class="form-control" disabled>
-                    <option value="" hidden></option>
-                    <option value="es" <?php if ($config[0]->lang == "es") echo "selected"; ?>>Español</option>
-                    <option value="en" <?php if ($config[0]->lang == "en") echo "selected"; ?>>English</option>
-                </select>
-            </div>
-            <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-theme<?php echo $uniqid; ?>"><?php echo lang('Text.theme'); ?></label>
-                <select id="txt-theme<?php echo $uniqid; ?>" class="form-control" disabled>
-                    <option value="" hidden></option>
-                    <option value="light" <?php if ($config[0]->theme == "light") echo "selected"; ?>><?php echo lang('Text.theme_light'); ?></option>
-                    <option value="dark" <?php if ($config[0]->theme == "dark") echo "selected"; ?>><?php echo lang('Text.theme_dark'); ?></option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-end mt-5">
-                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-end mt-5">
-                <button hidden type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
-                <button hidden type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-success"><?php echo lang('Text.btn_update'); ?></button>
-            </div>
-        </div>
+    <div class="col-12 col-lg-4 mt-5">
+        <label class="fs-6 fw-semibold" for="txt-lang<?php echo $uniqid; ?>"><?php echo lang('Text.languaje'); ?></label>
+        <select id="txt-lang<?php echo $uniqid; ?>" class="form-control" disabled>
+            <option value="" hidden></option>
+            <option value="es" <?php if ($config[0]->lang == "es") echo "selected"; ?>>Español</option>
+            <option value="en" <?php if ($config[0]->lang == "en") echo "selected"; ?>>English</option>
+        </select>
     </div>
-    <div class="col-12 col-lg-4"></div>
+    <div class="col-12 col-lg-4 mt-5">
+        <label class="fs-6 fw-semibold" for="txt-theme<?php echo $uniqid; ?>"><?php echo lang('Text.theme'); ?></label>
+        <select id="txt-theme<?php echo $uniqid; ?>" class="form-control" disabled>
+            <option value="" hidden></option>
+            <option value="light" <?php if ($config[0]->theme == "light") echo "selected"; ?>><?php echo lang('Text.theme_light'); ?></option>
+            <option value="dark" <?php if ($config[0]->theme == "dark") echo "selected"; ?>><?php echo lang('Text.theme_dark'); ?></option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-end mt-5">
+        <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-end mt-5">
+        <button hidden type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
+        <button hidden type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-success"><?php echo lang('Text.btn_update'); ?></button>
+    </div>
 </div>
 
 <script>
@@ -65,8 +52,6 @@
                     type: "post",
                     url: "<?php echo base_url('Admin/updateConfig'); ?>",
                     data: {
-                        'company': $('#txt-company<?php echo $uniqid; ?>').val(),
-                        'type': $('#txt-type<?php echo $uniqid; ?>').val(),
                         'lang': $('#txt-lang<?php echo $uniqid; ?>').val(),
                         'theme': $('#txt-theme<?php echo $uniqid; ?>').val()
                     },

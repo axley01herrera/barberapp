@@ -1,33 +1,28 @@
+<!-- Tab Key Access -->
 <div class="row">
-    <div class="col-12 col-lg-4"></div>
-    <div class="col-12 col-lg-4">
-        <div class="row">
-            <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?> <span class="text-danger">*</span></label>
-                <input type="password" id="txt-current<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
-            </div>
-            <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-new<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?> <span class="text-danger">*</span></label>
-                <input type="password" id="txt-new<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
-            </div>
-            <div class="col-12 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-confirm<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?> <span class="text-danger">*</span></label>
-                <input type="password" id="txt-confirm<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-end mt-5">
-                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-end mt-5">
-                <button hidden type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
-                <button hidden type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-success"><?php echo lang('Text.btn_update'); ?></button>
-            </div>
-        </div>
+    <div class="col-12 col-lg-4 mt-5">
+        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?> <span class="text-danger">*</span></label>
+        <input type="password" id="txt-current<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
     </div>
-    <div class="col-12 col-lg-4"></div>
+    <div class="col-12 col-lg-4 mt-5">
+        <label class="fs-6 fw-semibold" for="txt-new<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?> <span class="text-danger">*</span></label>
+        <input type="password" id="txt-new<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
+    </div>
+    <div class="col-12 col-lg-4 mt-5">
+        <label class="fs-6 fw-semibold" for="txt-confirm<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?> <span class="text-danger">*</span></label>
+        <input type="password" id="txt-confirm<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-end mt-5">
+        <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-end mt-5">
+        <button hidden type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
+        <button hidden type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-success"><?php echo lang('Text.btn_update'); ?></button>
+    </div>
 </div>
 
 <script>
