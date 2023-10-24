@@ -16,15 +16,13 @@ class Main_Model extends Model
 
     public function objCreate($table, $data)
     {
-        $query = $this->db->table($table)
+        $this->db->table($table)
             ->insert($data);
 
         $result = array();
-
-        if ($query->resultID == true) {
-
+        if ($this->db->resultID) {
             $result['error'] = 0;
-            $result['id'] = $query->connID->insert_id;
+            $result['id'] = $this->db->connID->insert_id;
         } else
             $result['error'] = 1;
 

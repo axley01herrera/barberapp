@@ -42,6 +42,91 @@ class Admin extends BaseController
         return view('Admin/mainAdmin', $data);
     }
 
+    # Section Dashboard
+    # End Section Dashboard
+
+    # Section TPV
+    # End Section TPV
+
+    # Section Calendar
+    # End Section Calendar
+
+    # Section Services
+
+    public function services()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('adminLogout');
+
+        $data = array();
+        $data['config'] = $this->config;
+        $data['activeServices'] = "active";
+        $data['uniqid'] = uniqid();
+        $data['profile'] = $this->objProfileModel->getProfile(1);
+        $data['page'] = 'Admin/services/mainServices';
+
+        return view('Admin/mainAdmin', $data);
+    }
+
+    public function showModalNewService()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('adminLogout');
+
+        $data = array();
+        $data['action'] = $this->objRequest->getPost('action');
+        $data['uniqid'] = uniqid();
+
+        if ($data['action'] == "create")
+            $data['modalTitle'] = lang("Text.serv_new");
+
+        return view('Admin/services/modalService', $data);
+    }
+
+    public function createService()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "session expired";
+            return json_encode($result);
+        }
+
+        $data = array();
+        $data['title'] = htmlspecialchars(trim($this->objRequest->getPost('title')));
+        $data['price'] = htmlspecialchars(trim($this->objRequest->getPost('price')));
+        $data['description'] = htmlspecialchars(trim($this->objRequest->getPost('description')));
+
+        $checkDuplicate = $this->objMainModel->objcheckDuplicate('service', 'title', $data['title']);
+
+        if (empty($checkDuplicate)) {
+            $result = $this->objMainModel->objCreate('service', $data);
+            return json_encode($result);
+        } else {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "duplicate";
+            return json_encode($result);
+        }
+    }
+
+    public function updateService()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "session expired";
+            return json_encode($result);
+        }
+    }
+
+    # End Section Services
+
+
     # Section Profile
 
     public function profile()
@@ -82,7 +167,7 @@ class Admin extends BaseController
         if (!empty($data['profile'][0]->avatar)) // 6
             $profilePercent++;
 
-        $data['profilePercent'] = number_format($profilePercent * 100  / 6, 0,".",',');
+        $data['profilePercent'] = number_format($profilePercent * 100  / 6, 0, ".", ',');
 
         return view('Admin/mainAdmin', $data);
     }
@@ -214,4 +299,7 @@ class Admin extends BaseController
     }
 
     # End Section Profile
+
+
+
 }

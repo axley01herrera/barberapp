@@ -23,6 +23,9 @@ $lang['city'] = "Ciudad";
 $lang['state'] = "Provincia";
 $lang['zip'] = "Código Postal";
 $lang['country'] = "País";
+$lang['title'] = "Título";
+$lang['price'] = "Precio";
+$lang['description'] = "Descripción";
 
 # Global MSG
 $lang['ok'] = "Entendido";
@@ -38,6 +41,7 @@ $lang['invalid_email_format'] = "Rectifique el Formato del Correo Electrónico";
 $lang['btn_enable_edit'] = "Habilitar Edición";
 $lang['btn_update'] = "Actualizar";
 $lang['btn_cancel'] = "Cancelar";
+$lang['btn_save'] = "Guardar";
 
 # Home
 $lang['home_customers'] = "Clientes";
@@ -69,7 +73,11 @@ $lang['footer_help'] = "Ayuda";
 # Customers
 $lang['total_customers'] = "Total de Clientes";
 
-# Servicces
+# Services
+$lang['serv_new'] = "Nuevo Servicio";
+$lang['serv_edit'] = "Editar Servicio";
+$lang['serv_success_created'] = "Servicio Creado";
+$lang['serv_duplicate'] = "Ya existe el servicio";
 $lang['total_services'] = "Total de Servicios";
 
 # Profile

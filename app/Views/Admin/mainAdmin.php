@@ -102,7 +102,7 @@
                                 <!--Services-->
                                 <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeServices; ?>">
-                                        <span class="menu-title"><?php echo lang('Text.top_bar_services'); ?></span>
+                                        <a href="<?php echo base_url('Admin/services'); ?>"><span class="menu-title"><?php echo lang('Text.top_bar_services'); ?></span></a>
                                     </span>
                                 </div>
                                 <!--Customers-->
@@ -148,6 +148,7 @@
                     </div>
                 </div>
             </div>
+            <div id="app-modal"></div>
             <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                     <?php echo view($page); ?>
