@@ -93,3 +93,11 @@ define('EVENT_PRIORITY_NORMAL', 100);
  */
 define('EVENT_PRIORITY_HIGH', 10);
 define('DEVELOPER', "Company");
+
+define("EMAIL_PROTOCOL","smtp");
+define("EMAIL_SMTP_HOST","ssl://smtp.hostinger.com");
+define("EMAIL_SMTP_USER","dev@axleyherrera.com");
+define("EMAIL_SMTP_PASSWORD","@Axley01herrera");
+define("EMAIL_SMTP_PORT","465");
+define("EMAIL_SMTP_CRYPTO","TLS");
+define("EMAIL_MAIL_TYPE","html"); 

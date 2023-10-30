@@ -70,17 +70,20 @@
 <script>
     $(document).ready(function() {
         $('#btn-new-serv<?php echo $uniqid; ?>').on('click', function() { // Create Service
+            $('#btn-new-serv<?php echo $uniqid; ?>').attr('disabled', true);
             $.ajax({
                 type: "post",
-                url: "<?php echo base_url('Admin/showModalNewService'); ?>",
+                url: "<?php echo base_url('Admin/showModalService'); ?>",
                 data: {
                     'action': "create"
                 },
                 dataType: "html",
                 success: function(response) {
+                    $('#btn-new-serv<?php echo $uniqid; ?>').removeAttr('disabled');
                     $('#app-modal').html(response);
                 },
                 error: function() {
+                    $('#btn-new-serv<?php echo $uniqid; ?>').removeAttr('disabled');
                     globalError();
                 }
             });
@@ -90,7 +93,7 @@
             let id = $(this).attr('data-service-id');
             $.ajax({
                 type: "post",
-                url: "<?php echo base_url('Admin/showModalNewService'); ?>",
+                url: "<?php echo base_url('Admin/showModalService'); ?>",
                 data: {
                     'id': id,
                     'action': "update"

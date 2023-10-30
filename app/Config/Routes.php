@@ -25,6 +25,15 @@ $routes->post('Admin/updateConfig', 'Admin::updateConfig');
 
 # Admin Services
 $routes->get('Admin/services', 'Admin::services');
-$routes->post('Admin/showModalNewService', 'Admin::showModalNewService');
+$routes->post('Admin/showModalService', 'Admin::showModalService');
 $routes->post('Admin/createService', 'Admin::createService');
 $routes->post('Admin/updateService', 'Admin::updateService');
+
+# Admin Customers
+$routes->get('Admin/customers', 'Admin::customers');
+$routes->post('Admin/showModalCustomer', 'Admin::showModalCustomer'); 
+$routes->post('Admin/createCustomer', 'Admin::createCustomer');
+$routes->post('Admin/updateCustomer', 'Admin::updateCustomer');
+
+# Test
+$routes->get('Admin/emailView', 'Admin::emailView');

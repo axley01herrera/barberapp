@@ -13,23 +13,24 @@
                         <input type="text" id="txt-title<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo @$service->title;?>" />
                     </div>
                 </div>
+                <!-- Price -->
                 <div class="row">
                     <div class="col-3 mt-5">
                         <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.price'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-price<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> decimal<?php echo $uniqid; ?>" value="<?php if(!empty($service->price)) echo number_format(@$service->price, 2,".",',');?>" />
                     </div>
                 </div>
+                <!-- Description -->
                 <div class="row">
                     <div class="col-12 mt-5">
                         <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.description'); ?></label>
                         <textarea id="txt-description<?php echo $uniqid; ?>" class="form-control" rows="3"><?php echo @$service->description; ?></textarea>
-
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo lang("Text.btn_cancel"); ?></button>
-                <button id="save-new-serv<?php echo $uniqid; ?>" type="button" class="btn btn-primary"><?php echo lang("Text.btn_save"); ?></button>
+                <button id="save-serv<?php echo $uniqid; ?>" type="button" class="btn btn-primary"><?php echo lang("Text.btn_save"); ?></button>
             </div>
         </div>
     </div>
@@ -44,12 +45,12 @@
             $('#app-modal').html('');
         });
 
-        $('#save-new-serv<?php echo $uniqid; ?>').on('click', function() {
+        $('#save-serv<?php echo $uniqid; ?>').on('click', function() { // Submit
             let result = checkRequiredValues();
             if (result === 0) {
-                $('#save-new-serv<?php echo $uniqid; ?>').attr('disabled', true);
+                $('#save-serv<?php echo $uniqid; ?>').attr('disabled', true);
                 let url = "";
-                let msg = ""
+                let msg = "";
                 if(action == "create") {
                     url = "<?php echo base_url('Admin/createService'); ?>";
                     msg = "<?php echo lang("Text.serv_success_created"); ?>";
@@ -67,7 +68,7 @@
                         'id': "<?php echo @$service->id; ?>"
                     },
                     dataType: "json",
-                    success: function(response) { console.log(response);
+                    success: function(response) {
                         if (response.error === 0) {
                             simpleSuccessAlert(msg);
                             setTimeout(() => {
@@ -80,13 +81,13 @@
                             } else
                                 globalError();
                         } else
-                            //window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
+                            window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
 
-                        $('#save-new-serv<?php echo $uniqid; ?>').removeAttr('disabled');
+                        $('#save-serv<?php echo $uniqid; ?>').removeAttr('disabled');
                     },
                     error: function() {
                         globalError();
-                        $('#save-new-serv<?php echo $uniqid; ?>').removeAttr('disabled');
+                        $('#save-serv<?php echo $uniqid; ?>').removeAttr('disabled');
                     }
                 });
             } else
@@ -112,7 +113,7 @@
             $(this).removeClass('is-invalid');
         });
 
-        $('.decimal<?php echo $uniqid; ?>').on('input', function() { // ONLY NUMBER
+        $('.decimal<?php echo $uniqid; ?>').on('input', function() {
             jQuery(this).val(jQuery(this).val().replace(/[^0-9.]/g, ''));
         });
     });

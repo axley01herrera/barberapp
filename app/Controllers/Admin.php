@@ -14,6 +14,7 @@ class Admin extends BaseController
     protected $objProfileModel;
     protected $objMainModel;
     protected $config;
+    protected $objEmail;
 
     public function __construct()
     {
@@ -24,6 +25,17 @@ class Admin extends BaseController
         $this->objMainModel = new Main_Model;
         $this->config = $this->objConfigModel->getConfig(1);
         $this->objRequest->setLocale($this->config[0]->lang);
+
+        $emailConfig = array();
+        $emailConfig['protocol'] = EMAIL_PROTOCOL;
+        $emailConfig['SMTPHost'] = EMAIL_SMTP_HOST;
+        $emailConfig['SMTPUser'] = EMAIL_SMTP_USER;
+        $emailConfig['SMTPPass'] = EMAIL_SMTP_PASSWORD;
+        $emailConfig['SMTPPort'] = EMAIL_SMTP_PORT;
+        $emailConfig['SMTPCrypto'] = EMAIL_SMTP_CRYPTO;
+        $emailConfig['mailType'] = EMAIL_MAIL_TYPE;
+
+        $this->objEmail = \Config\Services::email($emailConfig);
 
         helper('Site');
     }
@@ -62,16 +74,16 @@ class Admin extends BaseController
 
         $data = array();
         $data['config'] = $this->config;
+        $data['profile'] = $this->objProfileModel->getProfile(1);
         $data['activeServices'] = "active";
         $data['uniqid'] = uniqid();
-        $data['profile'] = $this->objProfileModel->getProfile(1);
         $data['services'] = $this->objMainModel->objData('service');
         $data['page'] = 'Admin/services/mainServices';
 
         return view('Admin/mainAdmin', $data);
     }
 
-    public function showModalNewService()
+    public function showModalService()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
@@ -149,6 +161,77 @@ class Admin extends BaseController
     }
 
     # End Section Services
+
+    # Section Customer
+
+    public function customers()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('adminLogout');
+
+        $data = array();
+        $data['config'] = $this->config;
+        $data['profile'] = $this->objProfileModel->getProfile(1);
+        $data['activeCustomers'] = "active";
+        $data['uniqid'] = uniqid();
+        $data['page'] = 'Admin/customers/mainCustomers';
+
+        return view('Admin/mainAdmin', $data);
+    }
+
+    public function showModalCustomer()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('adminLogout');
+
+        $data = array();
+        $data['config'] = $this->config;
+        $data['action'] = $this->objRequest->getPost('action');
+        $data['uniqid'] = uniqid();
+
+        if ($data['action'] == "create")
+            $data['modalTitle'] = lang("Text.cust_new");
+        else {
+            $data['modalTitle'] = lang("Text.serv_update");
+            $data['service'] = $this->objMainModel->objData('service', 'id', $this->objRequest->getPost('id'))[0];
+        }
+
+        return view('Admin/customers/modalCustomer', $data);
+    }
+
+    public function createCustomer()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "session expired";
+            return json_encode($result);
+        }
+
+        $data = array();
+        $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $data['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
+
+        $checkDuplicate = $this->objMainModel->objcheckDuplicate('customer', 'email', $data['email']);
+
+
+
+        if (empty($checkDuplicate)) {
+            $result = $this->objMainModel->objCreate('customer', $data);
+            return json_encode($result);
+        } else {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "duplicate";
+            return json_encode($result);
+        }
+    }
+
+    # End Section Customer
 
 
     # Section Profile
@@ -302,6 +385,19 @@ class Admin extends BaseController
     }
 
     # End Section Profile
+
+    public function emailView()
+    {
+        $profile = $this->objProfileModel->getProfile(1);
+        $dataEmail = array();
+        $dataEmail['pageTitle'] = $profile[0]->company_name;
+        $dataEmail['person'] = "Axley Herrera";
+        $dataEmail['url'] = base_url('Home');
+        $dataEmail['companyPhone'] = $profile[0]->phone1;
+        $dataEmail['companyEmail'] = $profile[0]->email;
+
+        return view('email/createCustomerByAdmin', $dataEmail);
+    }
 
 
 

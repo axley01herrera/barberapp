@@ -15,6 +15,7 @@ $lang['confirm_key'] = "Confirme la Nueva Clave";
 $lang['name'] = "Nombre";
 $lang['last_name'] = "Apellidos";
 $lang['primary_phone'] = "Teléfono Principal";
+$lang['phone'] = "Teléfono";
 $lang['secondary_phone'] = "Teléfono Segundario";
 $lang['email'] = "Correo Electrónico";
 $lang['address1'] = "Linea 1 de Dirección";
@@ -26,8 +27,8 @@ $lang['country'] = "País";
 $lang['title'] = "Título";
 $lang['price'] = "Precio";
 $lang['description'] = "Descripción";
-$lang['total_services'] = "Total de Servicios";
 $lang['currency'] = "Moneda";
+$lang['contact_info'] = "Información de Contacto";
 
 # Global MSG
 $lang['ok'] = "Entendido";
@@ -74,7 +75,7 @@ $lang['footer_contact_support'] = "Soporte";
 $lang['footer_help'] = "Ayuda";
 
 # Customers
-$lang['total_customers'] = "Total de Clientes";
+$lang['cust_new'] = "Nuevo Cliente";
 
 # Services
 $lang['serv_new'] = "Nuevo Servicio";
@@ -84,7 +85,6 @@ $lang['serv_success_created'] = "Servicio Creado";
 $lang['serv_success_updated'] = "Servicio Actualizado";
 $lang['serv_duplicate'] = "Ya existe el servicio";
 $lang['serv_no_desc'] = "Servicio sin descripción";
-
 
 # Profile
 $lang['prof_menu_edit_profile'] = "Editar Perfil";
@@ -99,5 +99,12 @@ $lang['prof_data_updated'] = "Datos del Perfil Actualizados";
 $lang['prof_access_key_updated'] = "Clave de Acceso Actualizada";
 $lang['prof_config_updated'] = "Datos de Configuración Actualizados";
 
+# Email Create Customer By Admin
+$lang['eccba_hi'] = "Hola";
+$lang['eccba_welcome_company'] = "Bienvenido a";
+$lang['eccba_complete_account'] = "Completa tu cuenta";
+$lang['eccba_complete_account_msg'] = "Hemos creado un registro suyo como cliente utilizando esta dirección de correo electrónico. Es necesario que cree una contraseña para su perfil, para ello haga click en el botón mas abajo y será redirigido a un formulario donde podrá realizar el proceso.";
+$lang['eccba_create_account'] = "Crear Contraseña";
+$lang['eccba_complete_account_info'] = "El enlace que contiene este mensaje es de un solo uso, una vez utilizado si no completa el proceso no podrá volver a acceder al procedimiento. En cierto caso póngase en contacto con nuestro equipo mediante los datos de contacto proporcionados a continuación.";
 
 return $lang;
