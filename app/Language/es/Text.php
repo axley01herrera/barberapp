@@ -103,7 +103,7 @@ $lang['prof_config_updated'] = "Datos de Configuración Actualizados";
 $lang['eccba_hi'] = "Hola";
 $lang['eccba_welcome_company'] = "Bienvenido a";
 $lang['eccba_complete_account'] = "Completa tu cuenta";
-$lang['eccba_complete_account_msg'] = "Hemos creado un registro suyo como cliente utilizando esta dirección de correo electrónico. Es necesario que cree una contraseña para su perfil, para ello haga click en el botón mas abajo y será redirigido a un formulario donde podrá realizar el proceso.";
+$lang['eccba_complete_account_msg'] = "Hemos registrado su cuenta de cliente utilizando la dirección de correo electrónico proporcionada. Ahora, le pedimos que configure una contraseña para su perfil. Para hacerlo, simplemente haga clic en el botón a continuación y será redirigido a un formulario donde podrá completar este proceso.";
 $lang['eccba_create_account'] = "Crear Contraseña";
 $lang['eccba_complete_account_info'] = "El enlace que contiene este mensaje es de un solo uso, una vez utilizado si no completa el proceso no podrá volver a acceder al procedimiento. En cierto caso póngase en contacto con nuestro equipo mediante los datos de contacto proporcionados a continuación.";
 
