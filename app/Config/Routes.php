@@ -27,3 +27,4 @@ $routes->post('Admin/updateConfig', 'Admin::updateConfig');
 $routes->get('Admin/services', 'Admin::services');
 $routes->post('Admin/showModalNewService', 'Admin::showModalNewService');
 $routes->post('Admin/createService', 'Admin::createService');
+$routes->post('Admin/updateService', 'Admin::updateService');

@@ -17,7 +17,6 @@ class Admin extends BaseController
 
     public function __construct()
     {
-        # Clear Session
         $this->objSession = session();
         $this->objRequest = \Config\Services::request();
         $this->objConfigModel = new Config_Model;
@@ -25,6 +24,8 @@ class Admin extends BaseController
         $this->objMainModel = new Main_Model;
         $this->config = $this->objConfigModel->getConfig(1);
         $this->objRequest->setLocale($this->config[0]->lang);
+
+        helper('Site');
     }
 
     public function dashboard()
@@ -64,6 +65,7 @@ class Admin extends BaseController
         $data['activeServices'] = "active";
         $data['uniqid'] = uniqid();
         $data['profile'] = $this->objProfileModel->getProfile(1);
+        $data['services'] = $this->objMainModel->objData('service');
         $data['page'] = 'Admin/services/mainServices';
 
         return view('Admin/mainAdmin', $data);
@@ -76,11 +78,16 @@ class Admin extends BaseController
             return view('adminLogout');
 
         $data = array();
+        $data['config'] = $this->config;
         $data['action'] = $this->objRequest->getPost('action');
         $data['uniqid'] = uniqid();
 
         if ($data['action'] == "create")
             $data['modalTitle'] = lang("Text.serv_new");
+        else {
+            $data['modalTitle'] = lang("Text.serv_update");
+            $data['service'] = $this->objMainModel->objData('service', 'id', $this->objRequest->getPost('id'))[0];
+        }
 
         return view('Admin/services/modalService', $data);
     }
@@ -122,6 +129,23 @@ class Admin extends BaseController
             $result['msg'] = "session expired";
             return json_encode($result);
         }
+
+        $data = array();
+        $data['title'] = htmlspecialchars(trim($this->objRequest->getPost('title')));
+        $data['price'] = htmlspecialchars(trim($this->objRequest->getPost('price')));
+        $data['description'] = htmlspecialchars(trim($this->objRequest->getPost('description')));
+
+        $checkDuplicate = $this->objMainModel->objcheckDuplicate('service', 'title', $data['title'], $this->objRequest->getPost('id'));
+
+        if (empty($checkDuplicate)) {
+            $result = $this->objMainModel->objUpdate('service', $data, $this->objRequest->getPost('id'));
+            return json_encode($result);
+        } else {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "duplicate";
+            return json_encode($result);
+        }
     }
 
     # End Section Services
@@ -146,28 +170,6 @@ class Admin extends BaseController
         $data['activeProfile'] = "active";
         $data['tab'] = $tab;
         $data['page'] = 'Admin/profile/mainProfile';
-
-        $profilePercent  = 0;
-
-        if (!empty($data['profile'][0]->company_name)) // 1
-            $profilePercent++;
-
-        if (!empty($data['profile'][0]->company_type)) // 2
-            $profilePercent++;
-
-        if (!empty($data['profile'][0]->email)) // 3
-            $profilePercent++;
-
-        if (!empty($data['profile'][0]->phone1)) // 4
-            $profilePercent++;
-
-        if (!empty($data['profile'][0]->address1)) // 5
-            $profilePercent++;
-
-        if (!empty($data['profile'][0]->avatar)) // 6
-            $profilePercent++;
-
-        $data['profilePercent'] = number_format($profilePercent * 100  / 6, 0, ".", ',');
 
         return view('Admin/mainAdmin', $data);
     }
@@ -294,6 +296,7 @@ class Admin extends BaseController
         $data = array();
         $data['lang'] = htmlspecialchars(trim($this->objRequest->getPost('lang')));
         $data['theme'] = htmlspecialchars(trim($this->objRequest->getPost('theme')));
+        $data['currency'] = htmlspecialchars(trim($this->objRequest->getPost('currency')));
 
         return json_encode($this->objMainModel->objUpdate('config', $data, 1));
     }

@@ -21,7 +21,7 @@
 <div class="row">
     <div class="col-12 text-end mt-5">
         <button hidden type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
-        <button hidden type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-success"><?php echo lang('Text.btn_update'); ?></button>
+        <button hidden type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_update'); ?></button>
     </div>
 </div>
 

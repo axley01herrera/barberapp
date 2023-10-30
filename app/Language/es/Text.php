@@ -26,6 +26,8 @@ $lang['country'] = "País";
 $lang['title'] = "Título";
 $lang['price'] = "Precio";
 $lang['description'] = "Descripción";
+$lang['total_services'] = "Total de Servicios";
+$lang['currency'] = "Moneda";
 
 # Global MSG
 $lang['ok'] = "Entendido";
@@ -42,6 +44,7 @@ $lang['btn_enable_edit'] = "Habilitar Edición";
 $lang['btn_update'] = "Actualizar";
 $lang['btn_cancel'] = "Cancelar";
 $lang['btn_save'] = "Guardar";
+$lang['btn_edit'] = "Editar";
 
 # Home
 $lang['home_customers'] = "Clientes";
@@ -75,10 +78,13 @@ $lang['total_customers'] = "Total de Clientes";
 
 # Services
 $lang['serv_new'] = "Nuevo Servicio";
+$lang['serv_update'] = "Editando Servicio";
 $lang['serv_edit'] = "Editar Servicio";
 $lang['serv_success_created'] = "Servicio Creado";
+$lang['serv_success_updated'] = "Servicio Actualizado";
 $lang['serv_duplicate'] = "Ya existe el servicio";
-$lang['total_services'] = "Total de Servicios";
+$lang['serv_no_desc'] = "Servicio sin descripción";
+
 
 # Profile
 $lang['prof_menu_edit_profile'] = "Editar Perfil";

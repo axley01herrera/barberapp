@@ -5,7 +5,6 @@
     <title><?php echo $profile[0]->company_name; ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <!-- Assets -->
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
     <link rel="shortcut icon" href="<?php echo base_url('public/assets/media/logos/favicon.ico'); ?>" />
@@ -17,6 +16,7 @@
     <script>
         var hostUrl = "<?php echo base_url('public/assets/'); ?>";
     </script>
+    
     <script src="<?php echo base_url('public/assets/plugins/global/plugins.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/js/scripts.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/js/widgets.bundle.js'); ?>"></script>

@@ -6,22 +6,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <!-- Title -->
                 <div class="row">
                     <div class="col-12">
                         <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.title'); ?> <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-title<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" />
+                        <input type="text" id="txt-title<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo @$service->title;?>" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-3 mt-5">
                         <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.price'); ?> <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-price<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> decimal<?php echo $uniqid; ?>" />
+                        <input type="text" id="txt-price<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> decimal<?php echo $uniqid; ?>" value="<?php if(!empty($service->price)) echo number_format(@$service->price, 2,".",',');?>" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 mt-5">
                         <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.description'); ?></label>
-                        <textarea id="txt-description<?php echo $uniqid; ?>" class="form-control" rows="3"></textarea>
+                        <textarea id="txt-description<?php echo $uniqid; ?>" class="form-control" rows="3"><?php echo @$service->description; ?></textarea>
 
                     </div>
                 </div>
@@ -37,6 +38,7 @@
 
 <script>
     $(document).ready(function() {
+        let action = "<?php echo $action;?>";
         $('#modal').modal('show');
         $('#modal').on('hidden.bs.modal', function(event) {
             $('#app-modal').html('');
@@ -46,18 +48,28 @@
             let result = checkRequiredValues();
             if (result === 0) {
                 $('#save-new-serv<?php echo $uniqid; ?>').attr('disabled', true);
+                let url = "";
+                let msg = ""
+                if(action == "create") {
+                    url = "<?php echo base_url('Admin/createService'); ?>";
+                    msg = "<?php echo lang("Text.serv_success_created"); ?>";
+                } else {
+                    url = "<?php echo base_url('Admin/updateService'); ?>"
+                    msg = "<?php echo lang("Text.serv_success_updated"); ?>";
+                }
                 $.ajax({
                     type: "post",
-                    url: "<?php echo base_url('Admin/createService'); ?>",
+                    url: url,
                     data: {
                         'title': $('#txt-title<?php echo $uniqid; ?>').val(),
                         'price': $('#txt-price<?php echo $uniqid; ?>').val(),
-                        'description': $('#txt-description<?php echo $uniqid; ?>').val()
+                        'description': $('#txt-description<?php echo $uniqid; ?>').val(),
+                        'id': "<?php echo @$service->id; ?>"
                     },
                     dataType: "json",
-                    success: function(response) {
+                    success: function(response) { console.log(response);
                         if (response.error === 0) {
-                            simpleSuccessAlert("<?php echo lang("Text.serv_success_created"); ?>");
+                            simpleSuccessAlert(msg);
                             setTimeout(() => {
                                 window.location.reload();
                             }, "2000");
@@ -68,7 +80,7 @@
                             } else
                                 globalError();
                         } else
-                            window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
+                            //window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
 
                         $('#save-new-serv<?php echo $uniqid; ?>').removeAttr('disabled');
                     },
