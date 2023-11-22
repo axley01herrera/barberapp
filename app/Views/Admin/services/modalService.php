@@ -36,10 +36,10 @@
     </div>
 </div>
 
-
 <script>
     $(document).ready(function() {
         let action = "<?php echo $action;?>";
+
         $('#modal').modal('show');
         $('#modal').on('hidden.bs.modal', function(event) {
             $('#app-modal').html('');
