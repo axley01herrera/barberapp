@@ -216,9 +216,9 @@ class Admin extends BaseController
         $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
         $data['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
 
+        // TODO AXLEY SEND ERMAIL TO CLIENT
+
         $checkDuplicate = $this->objMainModel->objcheckDuplicate('customer', 'email', $data['email']);
-
-
 
         if (empty($checkDuplicate)) {
             $result = $this->objMainModel->objCreate('customer', $data);
@@ -398,7 +398,4 @@ class Admin extends BaseController
 
         return view('email/createCustomerByAdmin', $dataEmail);
     }
-
-
-
 }
