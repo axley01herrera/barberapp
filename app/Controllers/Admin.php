@@ -204,10 +204,10 @@ class Admin extends BaseController
 
             if ($result[$i]->status == 1) {
                 $status = sprintf('<span class="badge badge-light-success">%s</span>', lang("Text.dt_customer_cell_status_active"));
-                $switch = '<label class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack mb-5"> <input data-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"class="form-check-input switch_active_inactive" type="checkbox" id="flexSwitchCheckChecked" checked /></label>';
+                $switch = '<label class="form-check form-switch form-switch-sm form-check-solid flex-stack mb-5 form-check-success"> <input data-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"class="form-check-input switch_active_inactive" type="checkbox" id="flexSwitchCheckChecked" checked /></label>';
             } else {
                 $status = sprintf('<span class="badge badge-light-danger">%s</span>', lang("Text.dt_customer_cell_status_inactive"));
-                $switch = '<label class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack mb-5"> <input data-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"class="form-check-input switch_active_inactive" type="checkbox" id="flexSwitchCheckChecked" /></label>';
+                $switch = '<label class="form-check form-switch form-switch-sm form-check-solid flex-stack mb-5 form-check-danger"> <input data-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"class="form-check-input switch_active_inactive" type="checkbox" id="flexSwitchCheckChecked" /></label>';
             }
 
             $term = '';
@@ -235,7 +235,7 @@ class Admin extends BaseController
             $col['email'] = $result[$i]->email;
             $col['phone'] = $result[$i]->phone;
             $col['switch'] = $switch;
-            $col['status'] = $status;
+            //$col['status'] = $status;
             $col['term'] = $term;
             $col['emailSubscription'] = $emailSubscription;
             $col['action'] = $btn_edit . $btn_delete;

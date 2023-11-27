@@ -37,7 +37,7 @@
                                         <th><?php echo lang('Text.dt_customer_last_name'); ?></th>
                                         <th><?php echo lang('Text.dt_customer_email'); ?></th>
                                         <th><?php echo lang('Text.dt_customer_phone'); ?></th>
-                                        <th></th>
+                                        <!-- <th></th> -->
                                         <th><?php echo lang('Text.dt_customer_status'); ?></th>
                                         <th><?php echo lang('Text.dt_customer_term'); ?></th>
                                         <th><?php echo lang('Text.dt_customer_email_subscription'); ?></th>
@@ -96,11 +96,11 @@
                     orderable: false,
                     searchable: false
                 },
-                {
-                    data: 'status',
-                    orderable: false,
-                    searchable: false
-                },
+                // {
+                //     data: 'status',
+                //     orderable: false,
+                //     searchable: false
+                // },
                 {
                     data: 'term',
                     orderable: false,
