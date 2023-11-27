@@ -18,10 +18,11 @@
                     <input type="password" id="txt-pass<?php echo $uniqid; ?>" class="form-control bg-transparent" />
                 </div>
                 <div class="d-grid mb-10">
-                    <!--Sunmit-->
+                    <!--Submit-->
                     <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary">
                         <span class="indicator-label"><?php echo lang('Text.la_signIn'); ?></span>
                     </button>
+                    <a href="<?php echo base_url('/')?>" class="mt-6 text-center"><i class="bi bi-house text-primary"></i> <?php echo lang('Text.la_goHome'); ?></a>
                 </div>
             </div>
         </div>

@@ -119,7 +119,7 @@ class Admin extends BaseController
         $data['price'] = htmlspecialchars(trim($this->objRequest->getPost('price')));
         $data['description'] = htmlspecialchars(trim($this->objRequest->getPost('description')));
 
-        $checkDuplicate = $this->objMainModel->objcheckDuplicate('service', 'title', $data['title']);
+        $checkDuplicate = $this->objMainModel->objCheckDuplicate('service', 'title', $data['title']);
 
         if (empty($checkDuplicate)) {
             $result = $this->objMainModel->objCreate('service', $data);
@@ -147,7 +147,7 @@ class Admin extends BaseController
         $data['price'] = htmlspecialchars(trim($this->objRequest->getPost('price')));
         $data['description'] = htmlspecialchars(trim($this->objRequest->getPost('description')));
 
-        $checkDuplicate = $this->objMainModel->objcheckDuplicate('service', 'title', $data['title'], $this->objRequest->getPost('id'));
+        $checkDuplicate = $this->objMainModel->objCheckDuplicate('service', 'title', $data['title'], $this->objRequest->getPost('id'));
 
         if (empty($checkDuplicate)) {
             $result = $this->objMainModel->objUpdate('service', $data, $this->objRequest->getPost('id'));
@@ -178,6 +178,108 @@ class Admin extends BaseController
         $data['page'] = 'Admin/customers/mainCustomers';
 
         return view('Admin/mainAdmin', $data);
+    }
+
+    public function processingCustomer()
+    {
+        $dataTableRequest = $_REQUEST;
+
+        $params = array();
+        $params['draw'] = $dataTableRequest['draw'];
+        $params['start'] = $dataTableRequest['start'];
+        $params['length'] = $dataTableRequest['length'];
+        $params['search'] = $dataTableRequest['search']['value'];
+        $params['sortColumn'] = $dataTableRequest['order'][0]['column'];
+        $params['sortDir'] = $dataTableRequest['order'][0]['dir'];
+
+        $row = array();
+        $totalRecords = 0;
+
+        $result = $this->objMainModel->getCustomersProcessingData($params);
+        $totalRows = sizeof($result);
+
+        for ($i = 0; $i < $totalRows; $i++) {
+            $status = '';
+            $switch = '';
+
+            if ($result[$i]->status == 1) {
+                $status = sprintf('<span class="badge badge-light-success">%s</span>', lang("Text.dt_customer_cell_status_active"));
+                $switch = '<label class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack mb-5"> <input data-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"class="form-check-input switch_active_inactive" type="checkbox" id="flexSwitchCheckChecked" checked /></label>';
+            } else {
+                $status = sprintf('<span class="badge badge-light-danger">%s</span>', lang("Text.dt_customer_cell_status_inactive"));
+                $switch = '<label class="form-check form-switch form-switch-sm form-check-custom form-check-solid flex-stack mb-5"> <input data-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"class="form-check-input switch_active_inactive" type="checkbox" id="flexSwitchCheckChecked" /></label>';
+            }
+
+            $term = '';
+
+            if ($result[$i]->term == 1) {
+                $term = sprintf('<span class="badge badge-light-success">%s</span>', lang("Text.dt_customer_cell_term_accepted"));
+            } else {
+                $term = sprintf('<span class="badge badge-light-danger">%s</span>', lang("Text.dt_customer_cell_term_rejected"));
+            }
+
+            $emailSubscription = '';
+
+            if ($result[$i]->emailSubscription == 1) {
+                $emailSubscription = sprintf('<span class="badge badge-light-success">%s</span>', lang("Text.dt_customer_cell_emailSub_subscribed"));
+            } else {
+                $emailSubscription = sprintf('<span class="badge badge-light-danger">%s</span>', lang("Text.dt_customer_cell_emailSub_not_subscribed"));
+            }
+
+            $btn_edit = '<button class="btn btn-sm btn-light btn-active-color-warning btn-edit-employee m-1" data-id="' . $result[$i]->id . '"><span class="bi bi-pencil-fill" title="Editar Cliente"></span></button>';
+            $btn_delete = '<button class="btn btn-sm btn-light btn-active-color-danger btn-delete-employee m-1" data-id="' . $result[$i]->id . '"><span class="bi bi-trash-fill" title="Eliminar Cliente"></span></button>';
+
+            $col = array();
+            $col['name'] = $result[$i]->name;
+            $col['lastName'] = $result[$i]->lastName;
+            $col['email'] = $result[$i]->email;
+            $col['phone'] = $result[$i]->phone;
+            $col['switch'] = $switch;
+            $col['status'] = $status;
+            $col['term'] = $term;
+            $col['emailSubscription'] = $emailSubscription;
+            $col['action'] = $btn_edit . $btn_delete;
+
+            $row[$i] =  $col;
+        }
+
+        if ($totalRows > 0)
+            $totalRecords = $this->objMainModel->getTotalCustomers();
+
+        $data = array();
+        $data['draw'] = $dataTableRequest['draw'];
+        $data['recordsTotal'] = intval($totalRecords);
+        $data['recordsFiltered'] = intval($totalRecords);
+        $data['data'] = $row;
+
+        return json_encode($data);
+    }
+
+    public function changeCustomerStatus()
+    {
+        $response = array();
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "session expired";
+            return json_encode($result);
+        }
+
+        $data = array();
+        $data['status'] = $this->request->getPost('status');
+
+        $result = $this->objMainModel->objUpdate('customer', $data, $this->request->getPost('userID'));
+
+        if ($result['error'] == 0) {
+            $response['error'] = 0;
+            $response['msg'] = 'Success';
+        } else {
+            $response['error'] = 1;
+            $response['msg'] = 'Error';
+        }
+
+        return json_encode($response);
     }
 
     public function showModalCustomer()
@@ -215,14 +317,39 @@ class Admin extends BaseController
         $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
         $data['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
+        $data['status'] = 0;
+        $data['token'] = md5(uniqid());
 
-        // TODO AXLEY SEND ERMAIL TO CLIENT
-
-        $checkDuplicate = $this->objMainModel->objcheckDuplicate('customer', 'email', $data['email']);
+        $checkDuplicate = $this->objMainModel->objCheckDuplicate('customer', 'email', $data['email']);
 
         if (empty($checkDuplicate)) {
-            $result = $this->objMainModel->objCreate('customer', $data);
-            return json_encode($result);
+            $profile = $this->objProfileModel->getProfile(1);
+
+            $emailData = array();
+            $emailData['token'] = $data['token'];
+            $emailData['companyName'] = $profile[0]->company_name;
+
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
+            $this->objEmail->setTo($data['email']);
+            $this->objEmail->setSubject('Complete Your Account');
+            $this->objEmail->setMessage(view('email/completeAccount', $emailData), []);
+            if ($this->objEmail->send(false)) {
+                $response['error'] = 0;
+                $response['msg'] = 'SUCCESS_SEND_EMAIL';
+                $result = $this->objMainModel->objCreate('customer', $data);
+                if ($result['error'] == 0) {
+                    $response['error'] = 0;
+                    $response['msg'] = 'SUCCESS_CREATE_CUSTOMER';
+                } else {
+                    $response['error'] = 1;
+                    $response['msg'] = 'ERROR_CREATE_CUSTOMER';
+                }
+            } else {
+                $response['error'] = 1;
+                $response['msg'] = 'ERROR_SEND_EMAIL';
+            }
+
+            return json_encode($response);
         } else {
             $result = array();
             $result['error'] = 1;

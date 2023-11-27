@@ -65,12 +65,34 @@
                             'id': "<?php echo @$customer->id; ?>"
                         },
                         dataType: "json",
-                        success: function (response) {
-                            
+                        success: function(response) {
+                            switch (response.error) {
+                                case 0:
+                                    if (response.msg == 'SUCCESS_CREATE_CUSTOMER') {
+                                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
+                                        simpleAlert('Cliente Creado', 'success');
+                                        $('input').val('');
+                                    }
+                                    break;
+                                case 1:
+                                    if (response.msg == 'ERROR_SEND_EMAIL') {
+                                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
+                                        simpleAlert('An error has ocurred. Please try again', 'warning');
+                                    } else if (response.msg == 'ERROR_CREATE_CUSTOMER') {
+                                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
+                                        simpleAlert('An error has ocurred. Please try again', 'warning');
+                                    } else if (response.msg == 'duplicate') {
+                                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
+                                        $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
+                                        simpleAlert('Duplicate', 'warning');
+                                    }
+                                    break;
+                            }
                         }
                     });
                 } else
                     simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+
             } else
                 simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
         });

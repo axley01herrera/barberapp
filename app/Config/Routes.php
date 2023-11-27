@@ -34,6 +34,8 @@ $routes->get('Admin/customers', 'Admin::customers');
 $routes->post('Admin/showModalCustomer', 'Admin::showModalCustomer'); 
 $routes->post('Admin/createCustomer', 'Admin::createCustomer');
 $routes->post('Admin/updateCustomer', 'Admin::updateCustomer');
+$routes->post('Admin/processingCustomer', 'Admin::processingCustomer');
+$routes->post('Admin/changeCustomerStatus', 'Admin::changeCustomerStatus');
 
 # Test
 $routes->get('Admin/emailView', 'Admin::emailView');

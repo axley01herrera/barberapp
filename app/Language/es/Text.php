@@ -56,6 +56,7 @@ $lang['home_products'] = "Productos";
 $lang['la_title'] = "Espacio reservado para el administrador";
 $lang['la_subtitle'] = "Introduzca su clave de acceso";
 $lang['la_signIn'] = "Entrar";
+$lang['la_goHome'] = "Ir a Inicio";
 $lang['la_required_password'] = "La clave de acceso es requerida";
 $lang['la_invalid_password'] = "Rectifique su clave de acceso";
 
@@ -76,6 +77,20 @@ $lang['footer_help'] = "Ayuda";
 
 # Customers
 $lang['cust_new'] = "Nuevo Cliente";
+# DataTable Customers
+$lang['dt_customer_name'] = "Nombre";
+$lang['dt_customer_last_name'] = "Apellidos";
+$lang['dt_customer_email'] = "Correo Electrónico";
+$lang['dt_customer_phone'] = "Telefono";
+$lang['dt_customer_status'] = "Estado";
+$lang['dt_customer_term'] = "Términos";
+$lang['dt_customer_email_subscription'] = "Subscripción de Email";
+$lang['dt_customer_cell_status_active'] = "Activo";
+$lang['dt_customer_cell_status_inactive'] = "Inactivo";
+$lang['dt_customer_cell_term_accepted'] = "Aceptados";
+$lang['dt_customer_cell_term_rejected'] = "Rechazados";
+$lang['dt_customer_cell_emailSub_subscribed'] = "Suscrito";
+$lang['dt_customer_cell_emailSub_not_subscribed'] = "No Suscrito";
 
 # Services
 $lang['serv_new'] = "Nuevo Servicio";
@@ -91,7 +106,7 @@ $lang['prof_menu_edit_profile'] = "Editar Perfil";
 $lang['prof_menu_config'] = "Configuración";
 $lang['prof_menu_change_key'] = "Clave de Acceso";
 $lang['prof_compleation'] = "Finalización del perfil";
-$lang['prof_info'] = "Información del Perfil"; 
+$lang['prof_info'] = "Información del Perfil";
 $lang['prof_change_avatar'] = "Cambiar Avatar";
 $lang['prof_cancel_avatar'] = "Cancelar Avatar";
 $lang['prof_remove_avatar'] = "Remover avatar";
