@@ -16,7 +16,7 @@
     <script>
         var hostUrl = "<?php echo base_url('public/assets/'); ?>";
     </script>
-    
+
     <script src="<?php echo base_url('public/assets/plugins/global/plugins.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/js/scripts.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/js/widgets.bundle.js'); ?>"></script>
@@ -61,7 +61,7 @@
 
 <body id="kt_app_body" data-kt-app-layout="dark-header" data-kt-app-header-fixed="true" data-kt-app-toolbar-enabled="true" class="app-default">
     <script>
-        var themeMode = "<?php echo $config[0]->theme; ?>";    
+        var themeMode = "<?php echo $config[0]->theme; ?>";
         document.documentElement.setAttribute("data-bs-theme", themeMode);
     </script>
     <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
@@ -82,53 +82,53 @@
                             <!-- Menu -->
                             <div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
                                 <!-- Dashboard -->
-                                <div class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('Admin/dashboard'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeDashboard; ?>">
-                                        <a href="<?php echo base_url('Admin/dashboard'); ?>"><span class="menu-title"><?php echo lang('Text.top_bar_dashboard'); ?></span></a>
+                                        <span class="menu-title"><?php echo lang('Text.top_bar_dashboard'); ?></span>
                                     </span>
-                                </div>
+                                </a>
                                 <!-- TPV -->
-                                <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="#" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeTPV; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_tpv'); ?></span>
                                     </span>
-                                </div>
+                                </a>
                                 <!-- Calendar -->
-                                <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="#" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeCalendar; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_calendar'); ?></span>
                                     </span>
-                                </div>
+                                </a>
                                 <!-- Services -->
-                                <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('Admin/services'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeServices; ?>">
-                                        <a href="<?php echo base_url('Admin/services'); ?>"><span class="menu-title"><?php echo lang('Text.top_bar_services'); ?></span></a>
+                                        <span class="menu-title"><?php echo lang('Text.top_bar_services'); ?></span>
                                     </span>
-                                </div>
+                                </a>
                                 <!-- Customers -->
-                                <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('Admin/customers'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeCustomers; ?>">
-                                        <a href="<?php echo base_url('Admin/customers'); ?>"><span class="menu-title"><?php echo lang('Text.top_bar_customers'); ?></span></a>
+                                        <span class="menu-title"><?php echo lang('Text.top_bar_customers'); ?></span>
                                     </span>
-                                </div>
+                                </a>
                                 <!-- Report -->
-                                <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="#" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeReport; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_report'); ?></span>
                                     </span>
-                                </div>
+                                </a>
                                 <!-- Schedule -->
-                                <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="#" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeReport; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_schedule'); ?></span>
                                     </span>
-                                </div>
+                                </a>
                                 <!-- Profile -->
-                                <div class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('Admin/profile'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeProfile; ?>">
-                                        <a href="<?php echo base_url('Admin/profile'); ?>"><span class="menu-title"><?php echo lang('Text.top_bar_profile'); ?></span></a>
+                                        <span class="menu-title"><?php echo lang('Text.top_bar_profile'); ?></span>
                                     </span>
-                                </div>
+                                </a>
                             </div>
                         </div>
                         <!-- Navbar -->
