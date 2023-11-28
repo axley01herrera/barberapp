@@ -27,7 +27,7 @@ class Main_Model extends Model
             $result['error'] = 1;
 
         return $result;
-    }
+    } // ok
 
     public function objUpdate($table, $data, $id)
     {
@@ -44,7 +44,7 @@ class Main_Model extends Model
             $result['error'] = 1;
 
         return $result;
-    }
+    } // ok
 
     public function objDelete($table, $id)
     {
@@ -63,7 +63,7 @@ class Main_Model extends Model
         }
 
         return $return;
-    }
+    } // ok
 
     public function objData($table, $field = null, $value = null)
     {
@@ -73,7 +73,7 @@ class Main_Model extends Model
             $query->where($field, $value);
 
         return $query->get()->getResult();
-    }
+    } // ok
 
     public function objCheckDuplicate($table, $field, $value, $id = null)
     {
@@ -84,7 +84,7 @@ class Main_Model extends Model
             $query->whereNotIn('id', [0 => $id]);
 
         return $query->get()->getResult();
-    }
+    } // ok
 
     public function uploadFile($table, $id, $field, $file)
     {
@@ -108,7 +108,7 @@ class Main_Model extends Model
         }
 
         return $result;
-    }
+    } // ok
 
     public function objVerifyCredentials($email, $password)
     {
@@ -140,67 +140,5 @@ class Main_Model extends Model
         }
 
         return $result;
-    }
-
-    public function getCustomersProcessingData($params)
-    {
-        $query = $this->db->table('customer');
-
-        if (!empty($params['search'])) {
-            $query->like('name', $params['search']);
-            $query->orLike('lastName', $params['search']);
-            $query->orLike('email', $params['search']);
-        }
-
-        $query->offset($params['start']);
-        $query->limit($params['length']);
-        $query->orderBy($this->getCustomerProcessingSort($params['sortColumn'], $params['sortDir']));
-
-        return $query->get()->getResult();
-    }
-
-    public function getCustomerProcessingSort($column, $dir)
-    {
-        $sort = '';
-
-        if ($column == 0) {
-            if ($dir == 'asc')
-                $sort = 'name ASC';
-            else
-                $sort = 'name DESC';
-        }
-
-        if ($column == 1) {
-            if ($dir == 'asc')
-                $sort = 'lastName ASC';
-            else
-                $sort = 'lastName DESC';
-        }
-
-        if ($column == 2) {
-            if ($dir == 'asc')
-                $sort = 'email ASC';
-            else
-                $sort = 'email DESC';
-        }
-
-        if ($column == 3) {
-            if ($dir == 'asc')
-                $sort = 'status ASC';
-            else
-                $sort = 'status DESC';
-        }
-
-        return $sort;
-    }
-
-    public function getTotalCustomers()
-    {
-        $query = $this->db->table('customer')
-            ->selectCount('id')
-            ->get()->getResult();
-
-        return $query[0]->id;
-    }
-
+    } // ok
 }

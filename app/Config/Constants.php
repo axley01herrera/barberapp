@@ -93,6 +93,8 @@ define('EVENT_PRIORITY_NORMAL', 100);
  */
 define('EVENT_PRIORITY_HIGH', 10);
 define('DEVELOPER', "Company");
+define('DEVELOPER_URL', "#");
+
 
 define("EMAIL_PROTOCOL","smtp");
 define("EMAIL_SMTP_HOST","ssl://smtp.hostinger.com");

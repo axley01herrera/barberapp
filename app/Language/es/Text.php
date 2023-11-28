@@ -76,21 +76,17 @@ $lang['footer_contact_support'] = "Soporte";
 $lang['footer_help'] = "Ayuda";
 
 # Customers
-$lang['cust_new'] = "Nuevo Cliente";
-# DataTable Customers
+$lang['cust_btn_new'] = "Nuevo Cliente";
+$lang['cust_modal_title_new'] = "Nuevo Cliente";
 $lang['dt_customer_name'] = "Nombre";
 $lang['dt_customer_last_name'] = "Apellidos";
 $lang['dt_customer_email'] = "Correo Electrónico";
-$lang['dt_customer_phone'] = "Telefono";
+$lang['dt_customer_phone'] = "Teléfono";
 $lang['dt_customer_status'] = "Estado";
-$lang['dt_customer_term'] = "Términos";
-$lang['dt_customer_email_subscription'] = "Subscripción de Email";
-$lang['dt_customer_cell_status_active'] = "Activo";
-$lang['dt_customer_cell_status_inactive'] = "Inactivo";
-$lang['dt_customer_cell_term_accepted'] = "Aceptados";
-$lang['dt_customer_cell_term_rejected'] = "Rechazados";
-$lang['dt_customer_cell_emailSub_subscribed'] = "Suscrito";
-$lang['dt_customer_cell_emailSub_not_subscribed'] = "No Suscrito";
+$lang['cust_success_created'] = "Cliente Creado";
+$lang['cust_success_updated'] = "Cliente Actualizado";
+$lang['cust_duplicate'] = "Ya existe el correo electrónico";
+$lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
 
 # Services
 $lang['serv_new'] = "Nuevo Servicio";

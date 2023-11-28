@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title><?php echo @$pageTitle; ?></title>
     <meta charset="utf-8" />
@@ -19,6 +20,7 @@
         }
     </style>
 </head>
+
 <body>
     <div style="font-family:Arial,Helvetica,sans-serif; line-height: 1.5; min-height: 100%; font-weight: normal; font-size: 15px; color: #2F3044; margin:0; padding:0; width:100%;">
         <div style="background-color:#ffffff; padding: 45px 0 34px 0; border-radius: 24px; margin:40px auto; max-width: 600px;">
@@ -68,8 +70,8 @@
                             <p style="color:#181C32; font-size: 16px; font-weight: 600; margin-bottom:9px">
                                 <?php echo lang("Text.contact_info"); ?>
                             </p>
-                            <p style="margin-bottom:2px"><?php echo lang("Text.phone").': '.@$companyPhone; ?></p>
-                            <p style="margin-bottom:2px"><?php echo lang("Text.email").': '.@$companyEmail; ?></p>
+                            <p style="margin-bottom:2px"><?php echo lang("Text.phone") . ': ' . @$companyPhone; ?></p>
+                            <p style="margin-bottom:2px"><?php echo lang("Text.email") . ': ' . @$companyEmail; ?></p>
                         </td>
                     </tr>
                 </tbody>
@@ -77,4 +79,5 @@
         </div>
     </div>
 </body>
+
 </html>

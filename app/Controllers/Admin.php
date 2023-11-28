@@ -4,14 +4,14 @@ namespace App\Controllers;
 
 use App\Models\Config_Model;
 use App\Models\Main_Model;
-use App\Models\Profile_Model;
+use App\Models\Admin_Model;
 
 class Admin extends BaseController
 {
     protected $objSession;
     protected $objRequest;
     protected $objConfigModel;
-    protected $objProfileModel;
+    protected $objAdminModel;
     protected $objMainModel;
     protected $config;
     protected $objEmail;
@@ -21,7 +21,7 @@ class Admin extends BaseController
         $this->objSession = session();
         $this->objRequest = \Config\Services::request();
         $this->objConfigModel = new Config_Model;
-        $this->objProfileModel = new Profile_Model;
+        $this->objAdminModel = new Admin_Model;
         $this->objMainModel = new Main_Model;
         $this->config = $this->objConfigModel->getConfig(1);
         $this->objRequest->setLocale($this->config[0]->lang);
@@ -48,7 +48,7 @@ class Admin extends BaseController
 
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objProfileModel->getProfile(1);
+        $data['profile'] = $this->objAdminModel->getProfile(1);
         $data['activeDashboard'] = "active";
         $data['page'] = 'Admin/dashboard/mainDashboard';
 
@@ -74,7 +74,7 @@ class Admin extends BaseController
 
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objProfileModel->getProfile(1);
+        $data['profile'] = $this->objAdminModel->getProfile(1);
         $data['activeServices'] = "active";
         $data['uniqid'] = uniqid();
         $data['services'] = $this->objMainModel->objData('service');
@@ -171,14 +171,16 @@ class Admin extends BaseController
             return view('adminLogout');
 
         $data = array();
+        # data
         $data['config'] = $this->config;
-        $data['profile'] = $this->objProfileModel->getProfile(1);
+        $data['profile'] = $this->objAdminModel->getProfile(1);
         $data['activeCustomers'] = "active";
         $data['uniqid'] = uniqid();
+        # page
         $data['page'] = 'Admin/customers/mainCustomers';
 
         return view('Admin/mainAdmin', $data);
-    }
+    } // ok
 
     public function processingCustomer()
     {
@@ -195,56 +197,36 @@ class Admin extends BaseController
         $row = array();
         $totalRecords = 0;
 
-        $result = $this->objMainModel->getCustomersProcessingData($params);
+        $result = $this->objAdminModel->getCustomersProcessingData($params);
         $totalRows = sizeof($result);
 
         for ($i = 0; $i < $totalRows; $i++) {
-            $status = '';
-            $switch = '';
 
-            if ($result[$i]->status == 1) {
-                $status = sprintf('<span class="badge badge-light-success">%s</span>', lang("Text.dt_customer_cell_status_active"));
-                $switch = '<label class="form-check form-switch form-switch-sm form-check-solid flex-stack mb-5 form-check-success"> <input data-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"class="form-check-input switch_active_inactive" type="checkbox" id="flexSwitchCheckChecked" checked /></label>';
-            } else {
-                $status = sprintf('<span class="badge badge-light-danger">%s</span>', lang("Text.dt_customer_cell_status_inactive"));
-                $switch = '<label class="form-check form-switch form-switch-sm form-check-solid flex-stack mb-5 form-check-danger"> <input data-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"class="form-check-input switch_active_inactive" type="checkbox" id="flexSwitchCheckChecked" /></label>';
-            }
+            $status = '<i class="bi bi-dash-circle text-danger"></i>';
+            if ($result[$i]->status == 1)
+                $status = '<i class="bi bi-check2-circle text-success"></i>';
 
-            $term = '';
 
-            if ($result[$i]->term == 1) {
-                $term = sprintf('<span class="badge badge-light-success">%s</span>', lang("Text.dt_customer_cell_term_accepted"));
-            } else {
-                $term = sprintf('<span class="badge badge-light-danger">%s</span>', lang("Text.dt_customer_cell_term_rejected"));
-            }
-
-            $emailSubscription = '';
-
-            if ($result[$i]->emailSubscription == 1) {
-                $emailSubscription = sprintf('<span class="badge badge-light-success">%s</span>', lang("Text.dt_customer_cell_emailSub_subscribed"));
-            } else {
-                $emailSubscription = sprintf('<span class="badge badge-light-danger">%s</span>', lang("Text.dt_customer_cell_emailSub_not_subscribed"));
-            }
-
-            $btn_edit = '<button class="btn btn-sm btn-light btn-active-color-warning btn-edit-employee m-1" data-id="' . $result[$i]->id . '"><span class="bi bi-pencil-fill" title="Editar Cliente"></span></button>';
-            $btn_delete = '<button class="btn btn-sm btn-light btn-active-color-danger btn-delete-employee m-1" data-id="' . $result[$i]->id . '"><span class="bi bi-trash-fill" title="Eliminar Cliente"></span></button>';
+            $btn_edit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1" data-id="' . $result[$i]->id . '"><span class="bi bi-pencil-square"></span></button>';
+            $btn_delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1" data-id="' . $result[$i]->id . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
             $col['name'] = $result[$i]->name;
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['phone'] = $result[$i]->phone;
-            $col['switch'] = $switch;
-            //$col['status'] = $status;
-            $col['term'] = $term;
-            $col['emailSubscription'] = $emailSubscription;
+            $col['status'] = $status;
             $col['action'] = $btn_edit . $btn_delete;
 
             $row[$i] =  $col;
         }
 
-        if ($totalRows > 0)
-            $totalRecords = $this->objMainModel->getTotalCustomers();
+        if ($totalRows > 0) {
+            if (empty($params['search']))
+                $totalRecords = $this->objAdminModel->getTotalCustomers();
+            else
+                $totalRecords = $totalRows;
+        }
 
         $data = array();
         $data['draw'] = $dataTableRequest['draw'];
@@ -253,6 +235,30 @@ class Admin extends BaseController
         $data['data'] = $row;
 
         return json_encode($data);
+    } // ok
+
+    public function showModalCustomer()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('adminLogout');
+
+        # params
+        $action = $this->objRequest->getPost('action');
+
+        $data = array();
+        $data['config'] = $this->config;
+        $data['action'] = $action;
+        $data['uniqid'] = uniqid();
+
+        if ($action == "create")
+            $data['modalTitle'] = lang("Text.cust_modal_title_new");
+        else if ($action == "update") {
+            $data['modalTitle'] = lang("Text.serv_update");
+            $data['service'] = $this->objMainModel->objData('service', 'id', $this->objRequest->getPost('id'))[0];
+        }
+
+        return view('Admin/customers/modalCustomer', $data);
     }
 
     public function changeCustomerStatus()
@@ -282,69 +288,49 @@ class Admin extends BaseController
         return json_encode($response);
     }
 
-    public function showModalCustomer()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
-
-        $data = array();
-        $data['config'] = $this->config;
-        $data['action'] = $this->objRequest->getPost('action');
-        $data['uniqid'] = uniqid();
-
-        if ($data['action'] == "create")
-            $data['modalTitle'] = lang("Text.cust_new");
-        else {
-            $data['modalTitle'] = lang("Text.serv_update");
-            $data['service'] = $this->objMainModel->objData('service', 'id', $this->objRequest->getPost('id'))[0];
-        }
-
-        return view('Admin/customers/modalCustomer', $data);
-    }
-
     public function createCustomer()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
             $result = array();
-            $result['error'] = 2;
-            $result['msg'] = "session expired";
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
-        $data = array();
-        $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
-        $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $data['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
-        $data['status'] = 0;
-        $data['token'] = md5(uniqid());
+        # params
+        $name = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $lastName = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $email = htmlspecialchars(trim($this->objRequest->getPost('email')));
 
-        $checkDuplicate = $this->objMainModel->objCheckDuplicate('customer', 'email', $data['email']);
+        $checkDuplicate = $this->objMainModel->objCheckDuplicate('customer', 'email', $email);
 
         if (empty($checkDuplicate)) {
-            $profile = $this->objProfileModel->getProfile(1);
+            $data = array();
+            $data['name'] = $name;
+            $data['lastName'] = $lastName;
+            $data['email'] = $email;
+            $data['token'] = md5(uniqid());
 
-            $emailData = array();
-            $emailData['token'] = $data['token'];
-            $emailData['companyName'] = $profile[0]->company_name;
+            $result = $this->objMainModel->objCreate('customer', $data);
+            $profile = $this->objAdminModel->getProfile(1);
+
+            $dataEmail = array();
+            $dataEmail['pageTitle'] = $profile[0]->company_name;
+            $dataEmail['person'] = $name.' '.$lastName;
+            $dataEmail['url'] = base_url('Home/customerCreatePassword?token=').$data['token'];
+            $dataEmail['companyPhone'] = $profile[0]->phone1;
+            $dataEmail['companyEmail'] = $profile[0]->email;
 
             $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
-            $this->objEmail->setTo($data['email']);
+            $this->objEmail->setTo($email);
             $this->objEmail->setSubject('Complete Your Account');
-            $this->objEmail->setMessage(view('email/completeAccount', $emailData), []);
-            if ($this->objEmail->send(false)) {
+            $this->objEmail->setMessage(view('email/createCustomerByAdmin', $dataEmail), []);
+
+            if ($this->objEmail->send(false)) 
                 $response['error'] = 0;
-                $response['msg'] = 'SUCCESS_SEND_EMAIL';
-                $result = $this->objMainModel->objCreate('customer', $data);
-                if ($result['error'] == 0) {
-                    $response['error'] = 0;
-                    $response['msg'] = 'SUCCESS_CREATE_CUSTOMER';
-                } else {
-                    $response['error'] = 1;
-                    $response['msg'] = 'ERROR_CREATE_CUSTOMER';
-                }
-            } else {
+            else {
                 $response['error'] = 1;
                 $response['msg'] = 'ERROR_SEND_EMAIL';
             }
@@ -353,7 +339,8 @@ class Admin extends BaseController
         } else {
             $result = array();
             $result['error'] = 1;
-            $result['msg'] = "duplicate";
+            $result['msg'] = "ERROR_DUPLICATE_EMAIL";
+
             return json_encode($result);
         }
     }
@@ -376,7 +363,7 @@ class Admin extends BaseController
 
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objProfileModel->getProfile(1);
+        $data['profile'] = $this->objAdminModel->getProfile(1);
         $data['activeProfile'] = "active";
         $data['tab'] = $tab;
         $data['page'] = 'Admin/profile/mainProfile';
@@ -396,7 +383,7 @@ class Admin extends BaseController
             case 'profile':
                 $view = "Admin/profile/tabs/profileInfo";
                 $data = array();
-                $data['profile'] = $this->objProfileModel->getProfile(1);
+                $data['profile'] = $this->objAdminModel->getProfile(1);
                 break;
             case 'key':
                 $view = "Admin/profile/tabs/key";
@@ -515,7 +502,7 @@ class Admin extends BaseController
 
     public function emailView()
     {
-        $profile = $this->objProfileModel->getProfile(1);
+        $profile = $this->objAdminModel->getProfile(1);
         $dataEmail = array();
         $dataEmail['pageTitle'] = $profile[0]->company_name;
         $dataEmail['person'] = "Axley Herrera";

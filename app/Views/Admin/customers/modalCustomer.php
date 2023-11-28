@@ -33,100 +33,105 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        let action = "<?php echo $action; ?>";
-        $('#modal').modal('show');
-        $('#modal').on('hidden.bs.modal', function(event) {
-            $('#app-modal').html('');
-        });
+    var action = "<?php echo $action; ?>";
 
-        $('#save-customer<?php echo $uniqid; ?>').on('click', function() { // Submit
-            let result = checkRequiredValues();
-            if (result === 0) {
-                let resultEmail = checkEmailFormat();
-                if (resultEmail === 0) {
-                    $('#save-customer<?php echo $uniqid; ?>').attr('disabled', true);
-                    let url = "";
-                    let msg = "";
-                    if (action == "create") {
-                        url = "<?php echo base_url('Admin/createCustomer'); ?>";
-                        msg = "<?php echo lang("Text.serv_success_created"); ?>";
-                    } else {
-                        url = "<?php echo base_url('Admin/updateCustomer'); ?>"
-                        msg = "<?php echo lang("Text.serv_success_updated"); ?>";
-                    }
-                    $.ajax({
-                        type: "post",
-                        url: url,
-                        data: {
-                            'name': $('#txt-name<?php echo $uniqid; ?>').val(),
-                            'lastName': $('#txt-last-name<?php echo $uniqid; ?>').val(),
-                            'email': $('#txt-email<?php echo $uniqid; ?>').val(),
-                            'id': "<?php echo @$customer->id; ?>"
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            switch (response.error) {
-                                case 0:
-                                    if (response.msg == 'SUCCESS_CREATE_CUSTOMER') {
-                                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
-                                        simpleAlert('Cliente Creado', 'success');
-                                        $('input').val('');
-                                    }
-                                    break;
-                                case 1:
-                                    if (response.msg == 'ERROR_SEND_EMAIL') {
-                                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
-                                        simpleAlert('An error has ocurred. Please try again', 'warning');
-                                    } else if (response.msg == 'ERROR_CREATE_CUSTOMER') {
-                                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
-                                        simpleAlert('An error has ocurred. Please try again', 'warning');
-                                    } else if (response.msg == 'duplicate') {
-                                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
-                                        $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
-                                        simpleAlert('Duplicate', 'warning');
-                                    }
-                                    break;
+    $('#modal').modal('show');
+    $('#modal').on('hidden.bs.modal', function(event) {
+        $('#app-modal').html('');
+    });
+
+    $('#save-customer<?php echo $uniqid; ?>').on('click', function() { // Submit
+        let result = checkRequiredValues();
+        if (result == 0) {
+            let resultEmail = checkEmailFormat();
+            if (resultEmail == 0) {
+                $('#save-customer<?php echo $uniqid; ?>').attr('disabled', true);
+                let url = "";
+                let msg = "";
+
+                if (action == "create") {
+                    url = "<?php echo base_url('Admin/createCustomer'); ?>";
+                    msg = "<?php echo lang("Text.cust_success_created"); ?>";
+                } else if (action == "update") {
+                    url = "<?php echo base_url('Admin/updateCustomer'); ?>"
+                    msg = "<?php echo lang("Text.cust_success_updated"); ?>";
+                }
+
+                $.ajax({
+                    type: "post",
+                    url: url,
+                    data: {
+                        'name': $('#txt-name<?php echo $uniqid; ?>').val(),
+                        'lastName': $('#txt-last-name<?php echo $uniqid; ?>').val(),
+                        'email': $('#txt-email<?php echo $uniqid; ?>').val(),
+                        'id': "<?php echo @$customer->id; ?>"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.error == 0) {
+                            simpleSuccessAlert(msg);
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, "2000");
+                        } else {
+                            if (response.msg == "SESSION_EXPIRED") {
+                                window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
+                            } else if (response.msg == "ERROR_DUPLICATE_EMAIL") {
+                                simpleAlert("<?php echo lang('Text.cust_duplicate'); ?>", 'warning');
+                                $('#txt-email<?php echo $uniqid; ?>').addClass('is-invalid');
+                            } else if (response.msg == "ERROR_SEND_EMAIL") {
+                                simpleAlert("<?php echo lang('Text.cust_error_send_email'); ?>", 'warning');
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, "2000");
                             }
                         }
-                    });
-                } else
-                    simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
-
+                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
+                    },
+                    error: function(e) {
+                        globalError();
+                        $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
+                    }
+                });
             } else
-                simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+                simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+
+        } else
+            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+    });
+
+    function checkRequiredValues() {
+        let result = 0;
+        let value = "";
+
+        $('.required<?php echo $uniqid; ?>').each(function() {
+            value = $(this).val();
+            if (value == "") {
+                $(this).addClass('is-invalid');
+                result = 1;
+            }
         });
 
-        function checkRequiredValues() {
-            let result = 0;
-            let value = "";
+        return result;
+    }
 
-            $('.required<?php echo $uniqid; ?>').each(function() {
-                value = $(this).val();
-                if (value == "") {
-                    $(this).addClass('is-invalid');
-                    result = 1;
-                }
-            });
-            return result;
-        }
+    function checkEmailFormat() {
+        let inputValue = '';
+        let response = 0;
+        let regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
-        function checkEmailFormat() {
-            let inputValue = '';
-            let response = 0;
-            let regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-            $('.email<?php echo $uniqid; ?>').each(function() {
-                inputValue = $(this).val();
-                if (!regex.test(inputValue)) {
-                    $(this).addClass('is-invalid');
-                    response = 1;
-                }
-            });
-            return response;
-        }
-
-        $('.required<?php echo $uniqid; ?>').on('focus', function() {
-            $(this).removeClass('is-invalid');
+        $('.email<?php echo $uniqid; ?>').each(function() {
+            inputValue = $(this).val();
+            if (!regex.test(inputValue)) {
+                $(this).addClass('is-invalid');
+                response = 1;
+            }
         });
+
+        return response;
+    }
+
+    $('.required<?php echo $uniqid; ?>').on('focus', function() {
+        $(this).removeClass('is-invalid');
     });
 </script>
