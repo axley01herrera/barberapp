@@ -110,7 +110,6 @@ $lang['cust_success_deleted'] = "Cliente Eliminado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
 
-
 # Services
 $lang['serv_new'] = "Nuevo Servicio";
 $lang['serv_update'] = "Editando Servicio";
