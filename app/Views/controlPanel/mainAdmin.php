@@ -30,7 +30,43 @@
     <script src="<?php echo base_url('public/assets/js/custom/widgets.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/plugins/global/plugins.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('assets/plugins/custom/datatables/datatables.bundle.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
+
+    <script>
+        function simpleAlert(text, icon) {
+            Swal.fire({
+                text: text,
+                icon: icon,
+                buttonsStyling: false,
+                confirmButtonText: "<?php echo lang('Text.ok'); ?>",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            });
+        }
+
+        function globalError() {
+            Swal.fire({
+                text: "<?php echo lang('Text.error_msg'); ?>",
+                icon: "error",
+                buttonsStyling: false,
+                confirmButtonText: "<?php echo lang('Text.ok'); ?>",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            });
+        }
+
+        function simpleSuccessAlert(text) {
+            Swal.fire({
+                position: "top-end",
+                text: text,
+                icon: "success",
+                buttonsStyling: false,
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        }
+    </script>
 </head>
 
 <body id="kt_app_body" data-kt-app-layout="dark-header" data-kt-app-header-fixed="true" data-kt-app-toolbar-enabled="true" class="app-default">

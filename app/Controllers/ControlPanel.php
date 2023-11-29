@@ -204,9 +204,9 @@ class ControlPanel extends BaseController
 
         for ($i = 0; $i < $totalRows; $i++) {
 
-            $emailStatus = '<span class="badge small badge-danger"><i class="bi bi-envelope-dash text-dark me-1"></i>' . lang('Text.not_verified') . '</span>';
+            $emailStatus = '<span class="badge small badge-danger"><i class="bi bi-envelope-dash text-dark me-1" title="' . lang('Text.not_verified') . '"></i></span>';
             if ($result[$i]->emailVerified == 1)
-                $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1"></i>' . lang('Text.verified') . '</span>';
+                $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1" title="' . lang('Text.verified') . '"></i></span>';
 
             $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
             $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-customer-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
