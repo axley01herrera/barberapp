@@ -418,7 +418,6 @@ class ControlPanel extends BaseController
     ## End Section Customer
     ####
 
-
     # Section Profile
 
     public function profile()
