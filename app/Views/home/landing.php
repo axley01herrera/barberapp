@@ -18,7 +18,7 @@
     <div id="kt_app_content" class="app-content flex-column-fluid mt-6">
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <a href="<?php echo base_url('Home/loginAdmin'); ?>">Ir a Control Panel</a>
+            <a href="<?php echo base_url('Home/controlPanelAuth'); ?>">Ir a Control Panel</a>
         </div>
     </div>
 </div>

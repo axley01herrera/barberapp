@@ -65,6 +65,7 @@ $lang['btn_save'] = "Guardar";
 $lang['btn_edit'] = "Editar";
 $lang['btn_delete'] = "Eliminar";
 $lang['btn_home'] = "Inicio";
+$lang['btn_signing'] = "Iniciar Sesión";
 
 # Home
 $lang['home_customers'] = "Clientes";
@@ -73,13 +74,11 @@ $lang['home_products'] = "Productos";
 $lang['create_pass'] = 'Crear Contraseña';
 $lang['create_pass_subtitle'] = "Introduzca su contraseña";
 
-# Login Admin
-$lang['la_title'] = "Espacio reservado para el administrador";
-$lang['la_subtitle'] = "Introduzca su clave de acceso";
-$lang['la_signIn'] = "Entrar";
-$lang['la_goHome'] = "Ir a Inicio";
-$lang['la_required_password'] = "La clave de acceso es requerida";
-$lang['la_invalid_password'] = "Rectifique su clave de acceso";
+# Control Panel Authentication
+$lang['cp_auth_title'] = "Espacio Reservado para el Administrador";
+$lang['cp_auth_subtitle'] = "Introduzca su Clave de Acceso";
+$lang['cp_auth_required_password'] = "La clave de acceso es requerida";
+$lang['cp_auth_invalid_password'] = "Rectifique su clave de acceso";
 
 # Admin Top Bar
 $lang['top_bar_dashboard'] = "Tablero";

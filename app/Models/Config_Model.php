@@ -37,7 +37,7 @@ class Config_Model extends Model
             $result = array();
             $result['error'] = 1;
             $result['code'] = "invalid access key";
-            $result['msg'] = lang('Text.la_invalid_password');
+            $result['msg'] = lang('Text.cp_auth_invalid_password');
             return $result;
         }
     }

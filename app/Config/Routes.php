@@ -11,7 +11,7 @@ use CodeIgniter\Router\RouteCollection;
 ####
 
 $routes->get('/', 'Home::index');
-$routes->get('Home/loginAdmin', 'Home::loginAdmin');
+$routes->get('Home/controlPanelAuth', 'Home::controlPanelAuth');
 $routes->post('Home/loginAdminProcess', 'Home::loginAdminProcess');
 $routes->get('Home/customerCreatePassword', 'Home::customerCreatePassword');
 $routes->post('Home/createPassword', 'Home::createPassword');

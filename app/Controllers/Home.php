@@ -38,16 +38,16 @@ class Home extends BaseController
         return view('home/mainHome', $data);
     }
 
-    public function loginAdmin()
+    public function controlPanelAuth()
     {
         $data = array();
         $data['session'] = $this->request->getGet('session');
         $data['config'] = $this->config;
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['uniqid'] = uniqid();
-        $data['page'] = 'loginAdmin/mainLoginAdmin';
+        $data['page'] = 'home/controlPanelAuthentication';
 
-        return view('main', $data);
+        return view('home/mainHome', $data);
     }
 
     public function loginAdminProcess()
@@ -58,7 +58,7 @@ class Home extends BaseController
             $result = array();
             $result['error'] = 1;
             $result['code'] = "empty key";
-            $result['msg'] = lang('Text.la_required_password');
+            $result['msg'] = lang('Text.cp_auth_required_password');
 
             return json_encode($result);
         }
