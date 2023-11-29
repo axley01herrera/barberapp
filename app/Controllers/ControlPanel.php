@@ -220,7 +220,7 @@ class ControlPanel extends BaseController
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
-            $col['name'] = $result[$i]->name;
+            $col['name'] = '<a href="' . base_url('ControlPanel/customerProfile?id=') . $result[$i]->id . '">' . $result[$i]->name . '</a>';
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['phone'] = $result[$i]->phone;
@@ -246,6 +246,26 @@ class ControlPanel extends BaseController
 
         return json_encode($data);
     } // ok
+
+    public function customerProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('adminLogout');
+
+        $data = array();
+        # data
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['config'] = $this->config;
+        $data['activeCustomers'] = "active";
+        $data['uniqid'] = uniqid();
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPostGet('id'));
+
+        # page
+        $data['page'] = 'controlPanel/customers/principalCustomerProfile';
+
+        return view('ControlPanel/mainAdmin', $data);
+    }
 
     public function showModalCustomer()
     {

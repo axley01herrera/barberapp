@@ -44,6 +44,7 @@ $routes->post('ControlPanel/updateCustomer', 'ControlPanel::updateCustomer');
 $routes->post('ControlPanel/processingCustomer', 'ControlPanel::processingCustomer');
 $routes->post('ControlPanel/deleteCustomer', 'ControlPanel::deleteCustomer');
 $routes->post('ControlPanel/changeCustomerStatus', 'ControlPanel::changeCustomerStatus');
+$routes->get('ControlPanel/customerProfile', 'ControlPanel::customerProfile');
 
 # Test
 $routes->get('ControlPanel/emailView', 'ControlPanel::emailView');
