@@ -70,7 +70,7 @@
         $('#btn-new-customer<?php echo $uniqid; ?>').attr('disabled', true);
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('Admin/showModalCustomer'); ?>",
+            url: "<?php echo base_url('ControlPanel/showModalCustomer'); ?>",
             data: {
                 'action': "create"
             },
@@ -97,7 +97,7 @@
         },
         buttons: [],
         ajax: {
-            url: "<?php echo base_url('Admin/processingCustomer'); ?>",
+            url: "<?php echo base_url('ControlPanel/processingCustomer'); ?>",
             type: "POST"
         },
         order: [
@@ -148,7 +148,7 @@
 
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('Admin/changeCustomerStatus'); ?>",
+            url: "<?php echo base_url('ControlPanel/changeCustomerStatus'); ?>",
             data: {
                 'customerID': customerID,
                 'status': status
@@ -176,7 +176,7 @@
 
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('Admin/showModalCustomer'); ?>",
+            url: "<?php echo base_url('ControlPanel/showModalCustomer'); ?>",
             data: {
                 'action': "update",
                 'customerID': customerID
@@ -206,7 +206,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     type: "post",
-                    url: "<?php echo base_url('Admin/deleteCustomer'); ?>",
+                    url: "<?php echo base_url('ControlPanel/deleteCustomer'); ?>",
                     data: {
                         'customerID': customerID
                     },

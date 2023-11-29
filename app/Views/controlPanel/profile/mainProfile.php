@@ -46,7 +46,7 @@
     function getProfileTabContent() { // Get Profile Tab Content
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('Admin/profileTab'); ?>",
+            url: "<?php echo base_url('ControlPanel/profileTab'); ?>",
             data: {
                 'tab': tab
             },
@@ -63,6 +63,6 @@
     $('.tab-profile').on('click', function(e) {
         e.preventDefault();
         tab = $(this).attr('data-tab-profile');
-        window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
+        window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
     });
 </script>

@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Config_Model;
-use App\Models\Admin_Model;
+use App\Models\ControlPanelModel;
 use App\Models\Main_Model;
 
 class Home extends BaseController
@@ -11,7 +11,7 @@ class Home extends BaseController
     protected $objSession;
     protected $objRequest;
     protected $objConfigModel;
-    protected $objAdminModel;
+    protected $objControlPanelModel;
     protected $objMainModel;
     protected $config;
 
@@ -22,7 +22,7 @@ class Home extends BaseController
         $this->objSession->set('user', []);
         $this->objRequest = \Config\Services::request();
         $this->objConfigModel = new Config_Model;
-        $this->objAdminModel = new Admin_Model;
+        $this->objControlPanelModel = new ControlPanelModel;
         $this->objMainModel = new Main_Model;
         $this->config = $this->objConfigModel->getConfig(1);
         $this->objRequest->setLocale($this->config[0]->lang);
@@ -32,7 +32,7 @@ class Home extends BaseController
     {
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objAdminModel->getProfile(1);
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['page'] = 'home/mainHome';
 
         return view('main', $data);
@@ -43,7 +43,7 @@ class Home extends BaseController
         $data = array();
         $data['session'] = $this->request->getGet('session');
         $data['config'] = $this->config;
-        $data['profile'] = $this->objAdminModel->getProfile(1);
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['uniqid'] = uniqid();
         $data['page'] = 'loginAdmin/mainLoginAdmin';
 
@@ -81,27 +81,27 @@ class Home extends BaseController
 
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objAdminModel->getProfile(1);
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
 
         if (empty($token))
-            return view('emptyToken', $data);
+            return view('errorPages/globalError', $data);
 
         $result = $this->objMainModel->objData('customer', 'token', $token);
 
         if (!empty($result)) {
 
-            $dataUpdate = array();
+            /*$dataUpdate = array();
             $dataUpdate['emailVerified'] = 1;
             $dataUpdate['token'] = '';
-            $this->objMainModel->objUpdate('customer', $dataUpdate, $result[0]->id);
+            $this->objMainModel->objUpdate('customer', $dataUpdate, $result[0]->id);*/
 
             $data['uniqid'] = uniqid();
             $data['customerID'] = $result[0]->id;
-            $data['page'] = 'Admin/customers/createPassword';
+            $data['page'] = 'ControlPanel/customers/createPassword';
 
             return view('main', $data);
         } else
-            return view('tokenExpired', $data);
+            return view('errorPages/tokenExpired', $data);
     }
 
     public function createPassword()

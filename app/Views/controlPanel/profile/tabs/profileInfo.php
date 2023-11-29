@@ -120,7 +120,7 @@
             formData.append('file', $("#avatar<?php echo $uniqid; ?>")[0].files[0]);
             $.ajax({
                 type: "post",
-                url: "<?php echo base_url('Admin/uploadAvatarProfile'); ?>",
+                url: "<?php echo base_url('ControlPanel/uploadAvatarProfile'); ?>",
                 data: formData,
                 dataType: "json",
                 cache: false,
@@ -128,7 +128,7 @@
                 processData: false,
                 success: function(response) {
                     if (response.error === 0)
-                        window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
+                        window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
                     else if (response.error === 1)
                         globalError();
                     else
@@ -143,12 +143,12 @@
         imageInput.on("kt.imageinput.cancel", function() { // Remove On Cancel
             $.ajax({
                 type: "post",
-                url: "<?php echo base_url('Admin/removeAvatarProfile'); ?>",
+                url: "<?php echo base_url('ControlPanel/removeAvatarProfile'); ?>",
                 data: "",
                 dataType: "json",
                 success: function(response) {
                     if (response.error === 0)
-                        window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
+                        window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
                     else if (response.error === 1)
                         globalError();
                     else
@@ -163,12 +163,12 @@
         imageInput.on("kt.imageinput.remove", function() { // Remove On Delete
             $.ajax({
                 type: "post",
-                url: "<?php echo base_url('Admin/removeAvatarProfile'); ?>",
+                url: "<?php echo base_url('ControlPanel/removeAvatarProfile'); ?>",
                 data: "",
                 dataType: "json",
                 success: function(response) {
                     if (response.error === 0)
-                        window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
+                        window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
                     else if (response.error === 1)
                         globalError();
                     else
@@ -203,7 +203,7 @@
                     $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
                     $.ajax({
                         type: "post",
-                        url: "<?php echo base_url('Admin/updateProfile'); ?>",
+                        url: "<?php echo base_url('ControlPanel/updateProfile'); ?>",
                         data: {
                             'company': $('#txt-company<?php echo $uniqid; ?>').val(),
                             'type': $('#txt-type<?php echo $uniqid; ?>').val(),
@@ -222,7 +222,7 @@
                             if (response.error === 0) {
                                 simpleSuccessAlert("<?php echo lang("Text.prof_data_updated"); ?>");
                                 setTimeout(() => {
-                                    window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
+                                    window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
                                 }, "2000");
                             } else if (response.error === 1)
                                 globalError();

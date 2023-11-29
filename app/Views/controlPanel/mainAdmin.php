@@ -92,7 +92,7 @@
                             <!-- Menu -->
                             <div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
                                 <!-- Dashboard -->
-                                <a href="<?php echo base_url('Admin/dashboard'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('ControlPanel/dashboard'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeDashboard; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_dashboard'); ?></span>
                                     </span>
@@ -110,13 +110,13 @@
                                     </span>
                                 </a>
                                 <!-- Services -->
-                                <a href="<?php echo base_url('Admin/services'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('ControlPanel/services'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeServices; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_services'); ?></span>
                                     </span>
                                 </a>
                                 <!-- Customers -->
-                                <a href="<?php echo base_url('Admin/customers'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('ControlPanel/customers'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeCustomers; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_customers'); ?></span>
                                     </span>
@@ -134,7 +134,7 @@
                                     </span>
                                 </a>
                                 <!-- Profile -->
-                                <a href="<?php echo base_url('Admin/profile'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('ControlPanel/profile'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeProfile; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_profile'); ?></span>
                                     </span>

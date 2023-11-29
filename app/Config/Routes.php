@@ -14,36 +14,36 @@ $routes->get('Home/customerCreatePassword', 'Home::customerCreatePassword');
 $routes->post('Home/createPassword', 'Home::createPassword');
 
 #### 
-## Admin Routes
+## ControlPanel Routes
 ####
-$routes->get('Admin/dashboard', 'Admin::dashboard');
+$routes->get('ControlPanel/dashboard', 'ControlPanel::dashboard');
 
 # Admin -> Profile
-$routes->get('Admin/profile', 'Admin::profile');
-$routes->post('Admin/profileTab', 'Admin::profileTab');
-$routes->post('Admin/uploadAvatarProfile', 'Admin::uploadAvatarProfile');
-$routes->post('Admin/removeAvatarProfile', 'Admin::removeAvatarProfile');
-$routes->post('Admin/updateProfile', 'Admin::updateProfile');
-$routes->post('Admin/changeAccessKey', 'Admin::changeAccessKey');
-$routes->post('Admin/updateConfig', 'Admin::updateConfig');
+$routes->get('ControlPanel/profile', 'ControlPanel::profile');
+$routes->post('ControlPanel/profileTab', 'ControlPanel::profileTab');
+$routes->post('ControlPanel/uploadAvatarProfile', 'ControlPanel::uploadAvatarProfile');
+$routes->post('ControlPanel/removeAvatarProfile', 'ControlPanel::removeAvatarProfile');
+$routes->post('ControlPanel/updateProfile', 'ControlPanel::updateProfile');
+$routes->post('ControlPanel/changeAccessKey', 'ControlPanel::changeAccessKey');
+$routes->post('ControlPanel/updateConfig', 'ControlPanel::updateConfig');
 
 # Admin -> Services
-$routes->get('Admin/services', 'Admin::services');
-$routes->post('Admin/showModalService', 'Admin::showModalService');
-$routes->post('Admin/createService', 'Admin::createService');
-$routes->post('Admin/updateService', 'Admin::updateService');
+$routes->get('ControlPanel/services', 'ControlPanel::services');
+$routes->post('ControlPanel/showModalService', 'ControlPanel::showModalService');
+$routes->post('ControlPanel/createService', 'ControlPanel::createService');
+$routes->post('ControlPanel/updateService', 'ControlPanel::updateService');
 
 # Admin -> Customers
-$routes->get('Admin/customers', 'Admin::customers');
-$routes->post('Admin/showModalCustomer', 'Admin::showModalCustomer');
-$routes->post('Admin/createCustomer', 'Admin::createCustomer');
-$routes->post('Admin/updateCustomer', 'Admin::updateCustomer');
-$routes->post('Admin/processingCustomer', 'Admin::processingCustomer');
-$routes->post('Admin/deleteCustomer', 'Admin::deleteCustomer');
-$routes->post('Admin/changeCustomerStatus', 'Admin::changeCustomerStatus');
+$routes->get('ControlPanel/customers', 'ControlPanel::customers');
+$routes->post('ControlPanel/showModalCustomer', 'ControlPanel::showModalCustomer');
+$routes->post('ControlPanel/createCustomer', 'ControlPanel::createCustomer');
+$routes->post('ControlPanel/updateCustomer', 'ControlPanel::updateCustomer');
+$routes->post('ControlPanel/processingCustomer', 'ControlPanel::processingCustomer');
+$routes->post('ControlPanel/deleteCustomer', 'ControlPanel::deleteCustomer');
+$routes->post('ControlPanel/changeCustomerStatus', 'ControlPanel::changeCustomerStatus');
 
 # Test
-$routes->get('Admin/emailView', 'Admin::emailView');
+$routes->get('ControlPanel/emailView', 'ControlPanel::emailView');
 
 #### 
 ## End Admin Routes

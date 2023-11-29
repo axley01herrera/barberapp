@@ -49,6 +49,9 @@ $lang['not_revert_this'] = "Esta acción no es reversible";
 $lang['yes_remove'] = "Sí, eliminar";
 $lang['no_cancel'] = "No, cancelar";
 $lang['success_change_status'] = "Estado actualizado";
+$lang['ops'] = "Ups";
+$lang['something_has_not_gone_well'] = "Algo ha salido mal";
+$lang['token_expired'] = "Token expirado";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -57,6 +60,7 @@ $lang['btn_cancel'] = "Cancelar";
 $lang['btn_save'] = "Guardar";
 $lang['btn_edit'] = "Editar";
 $lang['btn_delete'] = "Eliminar";
+$lang['btn_home'] = "Inicio";
 
 # Home
 $lang['home_customers'] = "Clientes";
@@ -114,12 +118,7 @@ $lang['create_pass_customer_alert_successCreatePass'] = "Contraseña creada";
 $lang['create_pass_customer_alert_errorCreatePass'] = "Un error ha ocurrido";
 $lang['create_pass_customer_alert_passwordNotMatch'] = "Las contraseñas no coinciden";
 $lang['create_pass_customer_alert_requiredFields'] = "Campos Requeridos";
-//Token Expired Section
-$lang['token_expired_text'] = 'Tu Token ha expirado.';
-//Empty Token Section
-$lang['empty_token_text'] = 'Tu token está vacío.';
-//Global Tokens button Go Home
-$lang['token_goHome'] = 'Ir a Inicio';
+
 
 # Services
 $lang['serv_new'] = "Nuevo Servicio";

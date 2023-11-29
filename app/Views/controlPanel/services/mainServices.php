@@ -73,7 +73,7 @@
             $('#btn-new-serv<?php echo $uniqid; ?>').attr('disabled', true);
             $.ajax({
                 type: "post",
-                url: "<?php echo base_url('Admin/showModalService'); ?>",
+                url: "<?php echo base_url('ControlPanel/showModalService'); ?>",
                 data: {
                     'action': "create"
                 },
@@ -93,7 +93,7 @@
             let id = $(this).attr('data-service-id');
             $.ajax({
                 type: "post",
-                url: "<?php echo base_url('Admin/showModalService'); ?>",
+                url: "<?php echo base_url('ControlPanel/showModalService'); ?>",
                 data: {
                     'id': id,
                     'action': "update"

@@ -51,10 +51,10 @@
                 let msg = "";
 
                 if (action == "create") {
-                    url = "<?php echo base_url('Admin/createCustomer'); ?>";
+                    url = "<?php echo base_url('ControlPanel/createCustomer'); ?>";
                     msg = "<?php echo lang("Text.cust_success_created"); ?>";
                 } else if (action == "update") {
-                    url = "<?php echo base_url('Admin/updateCustomer'); ?>"
+                    url = "<?php echo base_url('ControlPanel/updateCustomer'); ?>"
                     msg = "<?php echo lang("Text.cust_success_updated"); ?>";
                 }
 

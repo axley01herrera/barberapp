@@ -52,10 +52,10 @@
                 let url = "";
                 let msg = "";
                 if(action == "create") {
-                    url = "<?php echo base_url('Admin/createService'); ?>";
+                    url = "<?php echo base_url('ControlPanel/createService'); ?>";
                     msg = "<?php echo lang("Text.serv_success_created"); ?>";
                 } else {
-                    url = "<?php echo base_url('Admin/updateService'); ?>"
+                    url = "<?php echo base_url('ControlPanel/updateService'); ?>"
                     msg = "<?php echo lang("Text.serv_success_updated"); ?>";
                 }
                 $.ajax({

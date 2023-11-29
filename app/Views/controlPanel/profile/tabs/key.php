@@ -51,7 +51,7 @@
                     $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
                     $.ajax({
                         type: "post",
-                        url: "<?php echo base_url('Admin/changeAccessKey'); ?>",
+                        url: "<?php echo base_url('ControlPanel/changeAccessKey'); ?>",
                         data: {
                             'current': current,
                             'newp': newp
@@ -61,7 +61,7 @@
                             if (response.error === 0) {
                                 simpleSuccessAlert("<?php echo lang("Text.prof_access_key_updated"); ?>");
                                 setTimeout(() => {
-                                    window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
+                                    window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
                                 }, "2000");
                             } else if (response.error === 1) {
                                 if (response.msg == "invalid current key") {

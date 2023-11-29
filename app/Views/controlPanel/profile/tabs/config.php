@@ -61,7 +61,7 @@
                 $("#btn-update<?php echo $uniqid; ?>").attr('disabled', true);
                 $.ajax({
                     type: "post",
-                    url: "<?php echo base_url('Admin/updateConfig'); ?>",
+                    url: "<?php echo base_url('ControlPanel/updateConfig'); ?>",
                     data: {
                         'lang': $('#txt-lang<?php echo $uniqid; ?>').val(),
                         'theme': $('#txt-theme<?php echo $uniqid; ?>').val(),
@@ -72,7 +72,7 @@
                         if (response.error === 0) {
                             simpleSuccessAlert("<?php echo lang("Text.prof_config_updated"); ?>");
                             setTimeout(() => {
-                                window.location.href = "<?php echo base_url('Admin/profile?tab='); ?>" + tab;
+                                window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
                             }, "2000");
                         } else if (response.error === 1)
                             globalError();

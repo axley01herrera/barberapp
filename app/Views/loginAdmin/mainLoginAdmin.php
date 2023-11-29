@@ -46,7 +46,7 @@
                     dataType: "json",
                     success: function(response) {
                         if(response.error === 0) {
-                            window.location.href = "<?php echo base_url('Admin/dashboard'); ?>"
+                            window.location.href = "<?php echo base_url('ControlPanel/dashboard'); ?>"
                         } else {
                             simpleAlert(response.msg, "error");
                             $('#txt-pass<?php echo $uniqid; ?>').addClass('is-invalid');

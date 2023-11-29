@@ -4,15 +4,14 @@ namespace App\Controllers;
 
 use App\Models\Config_Model;
 use App\Models\Main_Model;
-use App\Models\Admin_Model;
-use tidy;
+use App\Models\ControlPanelModel;
 
-class Admin extends BaseController
+class ControlPanel extends BaseController
 {
     protected $objSession;
     protected $objRequest;
     protected $objConfigModel;
-    protected $objAdminModel;
+    protected $objControlPanelModel;
     protected $objMainModel;
     protected $config;
     protected $objEmail;
@@ -22,7 +21,7 @@ class Admin extends BaseController
         $this->objSession = session();
         $this->objRequest = \Config\Services::request();
         $this->objConfigModel = new Config_Model;
-        $this->objAdminModel = new Admin_Model;
+        $this->objControlPanelModel = new ControlPanelModel;
         $this->objMainModel = new Main_Model;
         $this->config = $this->objConfigModel->getConfig(1);
         $this->objRequest->setLocale($this->config[0]->lang);
@@ -49,11 +48,11 @@ class Admin extends BaseController
 
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objAdminModel->getProfile(1);
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['activeDashboard'] = "active";
-        $data['page'] = 'Admin/dashboard/mainDashboard';
+        $data['page'] = 'ControlPanel/dashboard/mainDashboard';
 
-        return view('Admin/mainAdmin', $data);
+        return view('ControlPanel/mainAdmin', $data);
     }
 
     # Section Dashboard
@@ -75,13 +74,13 @@ class Admin extends BaseController
 
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objAdminModel->getProfile(1);
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['activeServices'] = "active";
         $data['uniqid'] = uniqid();
         $data['services'] = $this->objMainModel->objData('service');
-        $data['page'] = 'Admin/services/mainServices';
+        $data['page'] = 'ControlPanel/services/mainServices';
 
-        return view('Admin/mainAdmin', $data);
+        return view('ControlPanel/mainAdmin', $data);
     }
 
     public function showModalService()
@@ -102,7 +101,7 @@ class Admin extends BaseController
             $data['service'] = $this->objMainModel->objData('service', 'id', $this->objRequest->getPost('id'))[0];
         }
 
-        return view('Admin/services/modalService', $data);
+        return view('ControlPanel/services/modalService', $data);
     }
 
     public function createService()
@@ -176,13 +175,13 @@ class Admin extends BaseController
         $data = array();
         # data
         $data['config'] = $this->config;
-        $data['profile'] = $this->objAdminModel->getProfile(1);
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['activeCustomers'] = "active";
         $data['uniqid'] = uniqid();
         # page
-        $data['page'] = 'Admin/customers/mainCustomers';
+        $data['page'] = 'ControlPanel/customers/mainCustomers';
 
-        return view('Admin/mainAdmin', $data);
+        return view('ControlPanel/mainAdmin', $data);
     } // ok
 
     public function processingCustomer()
@@ -200,7 +199,7 @@ class Admin extends BaseController
         $row = array();
         $totalRecords = 0;
 
-        $result = $this->objAdminModel->getCustomersProcessingData($params);
+        $result = $this->objControlPanelModel->getCustomersProcessingData($params);
         $totalRows = sizeof($result);
 
         for ($i = 0; $i < $totalRows; $i++) {
@@ -234,7 +233,7 @@ class Admin extends BaseController
 
         if ($totalRows > 0) {
             if (empty($params['search']))
-                $totalRecords = $this->objAdminModel->getTotalCustomers();
+                $totalRecords = $this->objControlPanelModel->getTotalCustomers();
             else
                 $totalRecords = $totalRows;
         }
@@ -271,7 +270,7 @@ class Admin extends BaseController
             $data['customerID'] = $customerID;
         }
 
-        return view('Admin/customers/modalCustomer', $data);
+        return view('ControlPanel/customers/modalCustomer', $data);
     } // ok
 
     public function createCustomer()
@@ -300,7 +299,7 @@ class Admin extends BaseController
             $data['token'] = md5(uniqid());
 
             $result = $this->objMainModel->objCreate('customer', $data);
-            $profile = $this->objAdminModel->getProfile(1);
+            $profile = $this->objControlPanelModel->getProfile(1);
 
             $dataEmail = array();
             $dataEmail['pageTitle'] = $profile[0]->company_name;
@@ -435,12 +434,12 @@ class Admin extends BaseController
 
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objAdminModel->getProfile(1);
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['activeProfile'] = "active";
         $data['tab'] = $tab;
-        $data['page'] = 'Admin/profile/mainProfile';
+        $data['page'] = 'ControlPanel/profile/mainProfile';
 
-        return view('Admin/mainAdmin', $data);
+        return view('ControlPanel/mainAdmin', $data);
     }
 
     public function profileTab()
@@ -453,15 +452,15 @@ class Admin extends BaseController
 
         switch ($tab) {
             case 'profile':
-                $view = "Admin/profile/tabs/profileInfo";
+                $view = "ControlPanel/profile/tabs/profileInfo";
                 $data = array();
-                $data['profile'] = $this->objAdminModel->getProfile(1);
+                $data['profile'] = $this->objControlPanelModel->getProfile(1);
                 break;
             case 'key':
-                $view = "Admin/profile/tabs/key";
+                $view = "ControlPanel/profile/tabs/key";
                 break;
             case 'config':
-                $view = "Admin/profile/tabs/config";
+                $view = "ControlPanel/profile/tabs/config";
                 $data = array();
                 $data['config'] = $this->config;
                 break;
@@ -574,7 +573,7 @@ class Admin extends BaseController
 
     public function emailView()
     {
-        $profile = $this->objAdminModel->getProfile(1);
+        $profile = $this->objControlPanelModel->getProfile(1);
         $dataEmail = array();
         $dataEmail['pageTitle'] = $profile[0]->company_name;
         $dataEmail['person'] = "Axley Herrera";
