@@ -33,9 +33,9 @@ class Home extends BaseController
         $data = array();
         $data['config'] = $this->config;
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
-        $data['page'] = 'home/mainHome';
+        $data['page'] = 'home/landing';
 
-        return view('main', $data);
+        return view('home/mainHome', $data);
     }
 
     public function loginAdmin()
@@ -77,9 +77,12 @@ class Home extends BaseController
 
     public function customerCreatePassword()
     {
+        # params
         $token = $this->objRequest->getPostGet('token');
 
+        # data
         $data = array();
+        $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
 
@@ -87,28 +90,42 @@ class Home extends BaseController
             return view('errorPages/globalError', $data);
 
         $result = $this->objMainModel->objData('customer', 'token', $token);
-
+        
         if (!empty($result)) {
 
-            /*$dataUpdate = array();
+            $data['customerID'] = $result[0]->id;
+
+            $dataUpdate = array();
             $dataUpdate['emailVerified'] = 1;
             $dataUpdate['token'] = '';
-            $this->objMainModel->objUpdate('customer', $dataUpdate, $result[0]->id);*/
 
-            $data['uniqid'] = uniqid();
-            $data['customerID'] = $result[0]->id;
-            $data['page'] = 'ControlPanel/customers/createPassword';
+            $this->objMainModel->objUpdate('customer', $dataUpdate, $data['customerID']);
 
-            return view('main', $data);
+            # page
+            $data['page'] = 'home/formCreatePassword';
+
+            return view('home/mainHome', $data);
         } else
             return view('errorPages/tokenExpired', $data);
-    }
+    } // ok
 
     public function createPassword()
     {
-        $data = array();
-        $data['password'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('pass'))), PASSWORD_DEFAULT);
+        # params
+        $customerID = $this->objRequest->getPost('customerID');
+        $password = password_hash(htmlspecialchars(trim($this->objRequest->getPost('pass'))), PASSWORD_DEFAULT);
 
-        return json_encode($this->objMainModel->objUpdate('customer', $data, $this->objRequest->getPost('customerID')));
-    }
+        $data = array();
+        $data['password'] = $password;
+        $data['status'] = 1;
+
+        $table = "";
+
+        if (!empty($customerID))
+            $table = 'customer';
+
+        $result = $this->objMainModel->objUpdate($table, $data, $customerID);
+
+        return json_encode($result);
+    } // ok
 }

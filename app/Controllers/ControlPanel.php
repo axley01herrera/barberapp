@@ -50,7 +50,7 @@ class ControlPanel extends BaseController
         $data['config'] = $this->config;
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['activeDashboard'] = "active";
-        $data['page'] = 'ControlPanel/dashboard/mainDashboard';
+        $data['page'] = 'controlPanel/dashboard/mainDashboard';
 
         return view('ControlPanel/mainAdmin', $data);
     }
@@ -78,7 +78,7 @@ class ControlPanel extends BaseController
         $data['activeServices'] = "active";
         $data['uniqid'] = uniqid();
         $data['services'] = $this->objMainModel->objData('service');
-        $data['page'] = 'ControlPanel/services/mainServices';
+        $data['page'] = 'controlPanel/services/mainServices';
 
         return view('ControlPanel/mainAdmin', $data);
     }
@@ -179,7 +179,7 @@ class ControlPanel extends BaseController
         $data['activeCustomers'] = "active";
         $data['uniqid'] = uniqid();
         # page
-        $data['page'] = 'ControlPanel/customers/mainCustomers';
+        $data['page'] = 'controlPanel/customers/mainCustomers';
 
         return view('ControlPanel/mainAdmin', $data);
     } // ok
@@ -437,7 +437,7 @@ class ControlPanel extends BaseController
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['activeProfile'] = "active";
         $data['tab'] = $tab;
-        $data['page'] = 'ControlPanel/profile/mainProfile';
+        $data['page'] = 'controlPanel/profile/mainProfile';
 
         return view('ControlPanel/mainAdmin', $data);
     }

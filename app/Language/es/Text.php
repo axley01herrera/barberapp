@@ -9,6 +9,9 @@ $lang['theme'] = "Tema";
 $lang['theme_light'] = "Claro";
 $lang['theme_dark'] = "Oscuro";
 $lang['avatar'] = "Avatar";
+$lang['password'] = "Contraseña";
+$lang['password_repeat'] = "Repita su Contraseña";
+$lang['password_not_match'] = "Las contraseñas no coinciden";
 $lang['current_key'] = "Clave Actual";
 $lang['new_key'] = "Nueva Clave";
 $lang['confirm_key'] = "Confirme la Nueva Clave";
@@ -52,6 +55,7 @@ $lang['success_change_status'] = "Estado actualizado";
 $lang['ops'] = "Ups";
 $lang['something_has_not_gone_well'] = "Algo ha salido mal";
 $lang['token_expired'] = "Token expirado";
+$lang['success_create_password'] = "Contraseña creada";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -66,6 +70,8 @@ $lang['btn_home'] = "Inicio";
 $lang['home_customers'] = "Clientes";
 $lang['home_services'] = "Servicios";
 $lang['home_products'] = "Productos";
+$lang['create_pass'] = 'Crear Contraseña';
+$lang['create_pass_subtitle'] = "Introduzca su contraseña";
 
 # Login Admin
 $lang['la_title'] = "Espacio reservado para el administrador";
@@ -104,20 +110,6 @@ $lang['cust_success_updated'] = "Cliente Actualizado";
 $lang['cust_success_deleted'] = "Cliente Eliminado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
-
-
-
-
-//Create Password Section
-$lang['create_pass_customer_title'] = 'Bienvenido';
-$lang['create_pass_customer_subtitle'] = "Introduzca su contraseña";
-$lang['create_pass_customer_btn_create'] = "Guardar";
-$lang['create_pass_customer_placeholder_pass'] = "Contraseña";
-$lang['create_pass_customer_placeholder_confirmPass'] = "Repita su contraseña";
-$lang['create_pass_customer_alert_successCreatePass'] = "Contraseña creada";
-$lang['create_pass_customer_alert_errorCreatePass'] = "Un error ha ocurrido";
-$lang['create_pass_customer_alert_passwordNotMatch'] = "Las contraseñas no coinciden";
-$lang['create_pass_customer_alert_requiredFields'] = "Campos Requeridos";
 
 
 # Services

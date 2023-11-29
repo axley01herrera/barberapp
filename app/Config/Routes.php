@@ -6,7 +6,10 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-# Home 
+#### 
+## Home Routes
+####
+
 $routes->get('/', 'Home::index');
 $routes->get('Home/loginAdmin', 'Home::loginAdmin');
 $routes->post('Home/loginAdminProcess', 'Home::loginAdminProcess');
