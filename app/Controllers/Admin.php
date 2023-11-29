@@ -202,13 +202,16 @@ class Admin extends BaseController
 
         for ($i = 0; $i < $totalRows; $i++) {
 
-            $status = '<i class="bi bi-dash-circle text-danger"></i>';
+            $emailStatus = '<span class="badge small badge-danger"><i class="bi bi-envelope-dash text-dark me-1"></i>' . lang('Text.not_verified') . '</span>';
+            if ($result[$i]->emailVerified == 1)
+                $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1"></i>' . lang('Text.verified') . '</span>';
+
+            $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
             if ($result[$i]->status == 1)
-                $status = '<i class="bi bi-check2-circle text-success"></i>';
+                $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
 
-
-            $btn_edit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1" data-id="' . $result[$i]->id . '"><span class="bi bi-pencil-square"></span></button>';
-            $btn_delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1" data-id="' . $result[$i]->id . '"><span class="bi bi-trash-fill"></span></button>';
+            $btn_edit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-customer" data-customer-id="' . $result[$i]->id . '"><span class="bi bi-pencil-square"></span></button>';
+            $btn_delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1" data-customer-id="' . $result[$i]->id . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
             $col['name'] = $result[$i]->name;
@@ -216,6 +219,7 @@ class Admin extends BaseController
             $col['email'] = $result[$i]->email;
             $col['phone'] = $result[$i]->phone;
             $col['status'] = $status;
+            $col['emailVerified'] = $emailStatus;
             $col['action'] = $btn_edit . $btn_delete;
 
             $row[$i] =  $col;
@@ -245,6 +249,7 @@ class Admin extends BaseController
 
         # params
         $action = $this->objRequest->getPost('action');
+        $customerID = $this->objRequest->getPost('customerID');
 
         $data = array();
         $data['config'] = $this->config;
@@ -254,39 +259,13 @@ class Admin extends BaseController
         if ($action == "create")
             $data['modalTitle'] = lang("Text.cust_modal_title_new");
         else if ($action == "update") {
-            $data['modalTitle'] = lang("Text.serv_update");
-            $data['service'] = $this->objMainModel->objData('service', 'id', $this->objRequest->getPost('id'))[0];
+            $data['modalTitle'] = lang("Text.cust_modal_title_update");
+            $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID)[0];
+            $data['customerID'] = $customerID;
         }
 
         return view('Admin/customers/modalCustomer', $data);
-    }
-
-    public function changeCustomerStatus()
-    {
-        $response = array();
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
-            $result = array();
-            $result['error'] = 2;
-            $result['msg'] = "session expired";
-            return json_encode($result);
-        }
-
-        $data = array();
-        $data['status'] = $this->request->getPost('status');
-
-        $result = $this->objMainModel->objUpdate('customer', $data, $this->request->getPost('userID'));
-
-        if ($result['error'] == 0) {
-            $response['error'] = 0;
-            $response['msg'] = 'Success';
-        } else {
-            $response['error'] = 1;
-            $response['msg'] = 'Error';
-        }
-
-        return json_encode($response);
-    }
+    } // ok
 
     public function createCustomer()
     {
@@ -302,7 +281,7 @@ class Admin extends BaseController
         # params
         $name = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $lastName = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $email = htmlspecialchars(trim($this->objRequest->getPost('email')));
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
 
         $checkDuplicate = $this->objMainModel->objCheckDuplicate('customer', 'email', $email);
 
@@ -318,8 +297,8 @@ class Admin extends BaseController
 
             $dataEmail = array();
             $dataEmail['pageTitle'] = $profile[0]->company_name;
-            $dataEmail['person'] = $name.' '.$lastName;
-            $dataEmail['url'] = base_url('Home/customerCreatePassword?token=').$data['token'];
+            $dataEmail['person'] = $name . ' ' . $lastName;
+            $dataEmail['url'] = base_url('Home/customerCreatePassword?token=') . $data['token'];
             $dataEmail['companyPhone'] = $profile[0]->phone1;
             $dataEmail['companyEmail'] = $profile[0]->email;
 
@@ -328,7 +307,7 @@ class Admin extends BaseController
             $this->objEmail->setSubject('Complete Your Account');
             $this->objEmail->setMessage(view('email/createCustomerByAdmin', $dataEmail), []);
 
-            if ($this->objEmail->send(false)) 
+            if ($this->objEmail->send(false))
                 $response['error'] = 0;
             else {
                 $response['error'] = 1;
@@ -343,7 +322,45 @@ class Admin extends BaseController
 
             return json_encode($result);
         }
-    }
+    } // ok
+
+    public function updateCustomer()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $name = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $lastName = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
+        $customerID = htmlspecialchars(trim($this->objRequest->getPost('customerID')));
+
+        $checkDuplicate = $this->objMainModel->objCheckDuplicate('customer', 'email', $email, $customerID);
+
+        if (empty($checkDuplicate)) {
+            $data = array();
+            $data['name'] = $name;
+            $data['lastName'] = $lastName;
+            $data['email'] = $email;
+            $data['token'] = md5(uniqid());
+
+            $result = $this->objMainModel->objUpdate('customer', $data, $customerID);
+
+            return json_encode($result);
+        } else {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "ERROR_DUPLICATE_EMAIL";
+
+            return json_encode($result);
+        }
+    } // ok
 
     # End Section Customer
 

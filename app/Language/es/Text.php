@@ -29,6 +29,10 @@ $lang['price'] = "Precio";
 $lang['description'] = "Descripción";
 $lang['currency'] = "Moneda";
 $lang['contact_info'] = "Información de Contacto";
+$lang['active'] = "Activo";
+$lang['inactive'] = "Inactivo";
+$lang['verified'] = "Verificado";
+$lang['not_verified'] = "No Verificado";
 
 # Global MSG
 $lang['ok'] = "Entendido";
@@ -78,6 +82,7 @@ $lang['footer_help'] = "Ayuda";
 # Customers
 $lang['cust_btn_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_new'] = "Nuevo Cliente";
+$lang['cust_modal_title_update'] = "Actualizando Cliente";
 $lang['dt_customer_name'] = "Nombre";
 $lang['dt_customer_last_name'] = "Apellidos";
 $lang['dt_customer_email'] = "Correo Electrónico";

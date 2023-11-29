@@ -1,4 +1,4 @@
-<div class="d-flex flex-column flex-column-fluid">
+<div id="page" data-page="main-customers" class="d-flex flex-column flex-column-fluid">
     <!-- Page Toolbar -->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
         <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="card-body pb-0">
                     <div class="table-responsive">
-                        <table id="dt-customers" class="table no-footer">
+                        <table id="dt-customers" class="table table-row-bordered no-footer table-hover">
                             <thead>
                                 <tr class="fs-6 fw-bold">
                                     <th class="p-2"><?php echo lang('Text.dt_customer_name'); ?></th>
@@ -37,6 +37,7 @@
                                     <th class="p-2"><?php echo lang('Text.dt_customer_email'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_customer_phone'); ?></th>
                                     <th class="text-center p-2"><?php echo lang('Text.dt_customer_status'); ?></th>
+                                    <th class="text-center p-2"></th>
                                     <th class="text-center p-2"></th>
                                 </tr>
                             </thead>
@@ -81,6 +82,7 @@
         dom: 'RfrtlpiB',
         processing: true,
         serverSide: true,
+        stateSave: true,
         pageLength: 10,
         language: {
             url: dtLang
@@ -115,6 +117,11 @@
                 searchable: false
             },
             {
+                data: 'emailVerified',
+                class: 'dt-vertical-align text-center p-2',
+                searchable: false
+            },
+            {
                 data: 'action',
                 class: 'dt-vertical-align text-center p-2',
                 orderable: false,
@@ -126,4 +133,26 @@
             $('#dt-customers_filter').appendTo('#search-customers');
         }
     }); // ok
+
+    dtCustomers.on('click', '.edit-customer', function() { // Edit
+        let customerID = $(this).attr('data-customer-id');
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('Admin/showModalCustomer')?>",
+            data: {
+                'action': "update",
+                'customerID': customerID
+            },
+            dataType: "html",
+            success: function (response) {
+                $('#app-modal').html(response);
+            },
+            error: function(e) {
+                globalError();
+            }
+        });
+    })
+
+
 </script>

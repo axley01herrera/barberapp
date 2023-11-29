@@ -58,10 +58,12 @@
 
         function simpleSuccessAlert(text) {
             Swal.fire({
+                position: "top-end",
                 text: text,
                 icon: "success",
                 buttonsStyling: false,
                 showConfirmButton: false,
+                timer: 2000,
             });
         }
     </script>

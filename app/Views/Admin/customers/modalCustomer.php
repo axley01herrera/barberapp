@@ -20,7 +20,7 @@
                     <!-- Email -->
                     <div class="col-12 mt-5">
                         <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" value="<?php echo @$customer->email; ?>" />
+                        <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" value="<?php echo @$customer->email; ?>" <?php if ($action == "update") echo "disabled"; ?> />
                     </div>
                 </div>
             </div>
@@ -34,6 +34,7 @@
 
 <script>
     var action = "<?php echo $action; ?>";
+    var callModalFrom = $('#page').attr('data-page');
 
     $('#modal').modal('show');
     $('#modal').on('hidden.bs.modal', function(event) {
@@ -64,15 +65,16 @@
                         'name': $('#txt-name<?php echo $uniqid; ?>').val(),
                         'lastName': $('#txt-last-name<?php echo $uniqid; ?>').val(),
                         'email': $('#txt-email<?php echo $uniqid; ?>').val(),
-                        'id': "<?php echo @$customer->id; ?>"
+                        'customerID': "<?php echo @$customerID; ?>",
                     },
                     dataType: "json",
                     success: function(response) {
                         if (response.error == 0) {
                             simpleSuccessAlert(msg);
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, "2000");
+                            if (callModalFrom == "main-customers") {
+                                dtCustomers.draw();
+                                $('#modal').modal('hide');
+                            }
                         } else {
                             if (response.msg == "SESSION_EXPIRED") {
                                 window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
@@ -81,9 +83,10 @@
                                 $('#txt-email<?php echo $uniqid; ?>').addClass('is-invalid');
                             } else if (response.msg == "ERROR_SEND_EMAIL") {
                                 simpleAlert("<?php echo lang('Text.cust_error_send_email'); ?>", 'warning');
-                                setTimeout(() => {
-                                    window.location.reload();
-                                }, "2000");
+                                if (callModalFrom == "main-customers") {
+                                    dtCustomers.draw();
+                                    $('#modal').modal('hide');
+                                }
                             }
                         }
                         $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
