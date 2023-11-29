@@ -77,4 +77,7 @@
 
         return result;
     }
+    $('.required<?php echo $uniqid; ?>').on('focus', function() {
+        $(this).removeClass('is-invalid');
+    });
 </script>

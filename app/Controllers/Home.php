@@ -89,6 +89,12 @@ class Home extends BaseController
         $result = $this->objMainModel->objData('customer', 'token', $token);
 
         if (!empty($result)) {
+
+            $dataUpdate = array();
+            $dataUpdate['emailVerified'] = 1;
+            $dataUpdate['token'] = '';
+            $this->objMainModel->objUpdate('customer', $dataUpdate, $result[0]->id);
+
             $data['uniqid'] = uniqid();
             $data['customerID'] = $result[0]->id;
             $data['page'] = 'Admin/customers/createPassword';
@@ -102,8 +108,6 @@ class Home extends BaseController
     {
         $data = array();
         $data['password'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('pass'))), PASSWORD_DEFAULT);
-        $data['emailVerified'] = 1;
-        $data['token'] = '';
 
         return json_encode($this->objMainModel->objUpdate('customer', $data, $this->objRequest->getPost('customerID')));
     }
