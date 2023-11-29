@@ -76,8 +76,8 @@ $lang['footer_contact_support'] = "Support";
 $lang['footer_help'] = "Help";
 
 # Customers
-$lang['cust_new'] = "New Client";
-# DataTable Customers
+$lang['cust_btn_new'] = "New Client";
+$lang['cust_modal_title_new'] = "New Client";
 $lang['dt_customer_name'] = "Name";
 $lang['dt_customer_last_name'] = "Last Name";
 $lang['dt_customer_email'] = "Email";
@@ -91,6 +91,22 @@ $lang['dt_customer_cell_term_accepted'] = "Accepted";
 $lang['dt_customer_cell_term_rejected'] = "Rejected";
 $lang['dt_customer_cell_emailSub_subscribed'] = "Subscribed";
 $lang['dt_customer_cell_emailSub_not_subscribed'] = "Not Subscribed";
+//Create Password Section
+$lang['create_pass_customer_title'] = 'Welcome';
+$lang['create_pass_customer_subtitle'] = "Enter your password";
+$lang['create_pass_customer_btn_create'] = "Save";
+$lang['create_pass_customer_placeholder_pass'] = "Password";
+$lang['create_pass_customer_placeholder_confirmPass'] = "Repeat Password";
+$lang['create_pass_customer_alert_successCreatePass'] = "Password created";
+$lang['create_pass_customer_alert_errorCreatePass'] = "An error has ocurred";
+$lang['create_pass_customer_alert_passwordNotMatch'] = "Passwords do not match";
+$lang['create_pass_customer_alert_requiredFields'] = "Required Fields";
+//Token Expired Section
+$lang['token_expired_text'] = 'Your Token has expired.';
+//Empty Token Section
+$lang['empty_token_text'] = 'Your Token has empty.';
+//Global Tokens button Go Home
+$lang['token_goHome'] = 'Go Home';
 
 # Services
 $lang['serv_new'] = "New Service";

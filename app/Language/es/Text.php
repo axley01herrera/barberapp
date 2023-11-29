@@ -87,6 +87,22 @@ $lang['cust_success_created'] = "Cliente Creado";
 $lang['cust_success_updated'] = "Cliente Actualizado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
+//Create Password Section
+$lang['create_pass_customer_title'] = 'Bienvenido';
+$lang['create_pass_customer_subtitle'] = "Introduzca su contraseña";
+$lang['create_pass_customer_btn_create'] = "Guardar";
+$lang['create_pass_customer_placeholder_pass'] = "Contraseña";
+$lang['create_pass_customer_placeholder_confirmPass'] = "Repita su contraseña";
+$lang['create_pass_customer_alert_successCreatePass'] = "Contraseña creada";
+$lang['create_pass_customer_alert_errorCreatePass'] = "Un error ha ocurrido";
+$lang['create_pass_customer_alert_passwordNotMatch'] = "Las contraseñas no coinciden";
+$lang['create_pass_customer_alert_requiredFields'] = "Campos Requeridos";
+//Token Expired Section
+$lang['token_expired_text'] = 'Tu Token ha expirado.';
+//Empty Token Section
+$lang['empty_token_text'] = 'Tu token está vacío.';
+//Global Tokens button Go Home
+$lang['token_goHome'] = 'Ir a Inicio';
 
 # Services
 $lang['serv_new'] = "Nuevo Servicio";
