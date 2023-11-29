@@ -87,7 +87,8 @@
                                     dtCustomers.draw();
                                     $('#modal').modal('hide');
                                 }
-                            }
+                            } else
+                                globalError();
                         }
                         $('#save-customer<?php echo $uniqid; ?>').removeAttr('disabled');
                     },

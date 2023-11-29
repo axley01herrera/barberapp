@@ -28,11 +28,17 @@ class Admin_Model extends Model
         $query = $this->db->table('customer');
 
         if (!empty($params['search'])) {
+            $query->groupStart();
             $query->like('name', $params['search']);
             $query->orLike('lastName', $params['search']);
             $query->orLike('email', $params['search']);
             $query->orLike('phone', $params['search']);
+            $query->groupEnd();
         }
+
+        $query->groupStart();
+        $query->where('deleted', 0);
+        $query->groupEnd();
 
         $query->offset($params['start']);
         $query->limit($params['length']);

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Config_Model;
 use App\Models\Main_Model;
 use App\Models\Admin_Model;
+use tidy;
 
 class Admin extends BaseController
 {
@@ -162,7 +163,9 @@ class Admin extends BaseController
 
     # End Section Services
 
-    # Section Customer
+    #### 
+    ## Section Customer
+    ####
 
     public function customers()
     {
@@ -207,11 +210,15 @@ class Admin extends BaseController
                 $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1"></i>' . lang('Text.verified') . '</span>';
 
             $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
-            if ($result[$i]->status == 1)
-                $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
+            $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-customer-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
 
-            $btn_edit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-customer" data-customer-id="' . $result[$i]->id . '"><span class="bi bi-pencil-square"></span></button>';
-            $btn_delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1" data-customer-id="' . $result[$i]->id . '"><span class="bi bi-trash-fill"></span></button>';
+            if ($result[$i]->status == 1) {
+                $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
+                $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 change-status" data-customer-id="' . $result[$i]->id . '" data-status="0" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
+            }
+
+            $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
+            $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
             $col['name'] = $result[$i]->name;
@@ -220,7 +227,7 @@ class Admin extends BaseController
             $col['phone'] = $result[$i]->phone;
             $col['status'] = $status;
             $col['emailVerified'] = $emailStatus;
-            $col['action'] = $btn_edit . $btn_delete;
+            $col['action'] = $btnChangeStatus . $btnEdit . $btnDelete;
 
             $row[$i] =  $col;
         }
@@ -362,7 +369,55 @@ class Admin extends BaseController
         }
     } // ok
 
-    # End Section Customer
+    public function deleteCustomer()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $customerID = htmlspecialchars(trim($this->objRequest->getPost('customerID')));
+
+        $data = array();
+        $data['status'] = 0;
+        $data['deleted'] = 1;
+
+        $result = $this->objMainModel->objUpdate('customer', $data, $customerID);
+
+        return json_encode($result);
+    } // ok
+
+    public function changeCustomerStatus()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $customerID = htmlspecialchars(trim($this->objRequest->getPost('customerID')));
+        $status = htmlspecialchars(trim($this->objRequest->getPost('status')));
+
+        $data = array();
+        $data['status'] = $status;
+
+        $result = $this->objMainModel->objUpdate('customer', $data, $customerID);
+
+        return json_encode($result);
+    } // ok
+
+    #### 
+    ## End Section Customer
+    ####
 
 
     # Section Profile

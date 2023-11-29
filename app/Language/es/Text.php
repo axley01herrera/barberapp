@@ -33,6 +33,7 @@ $lang['active'] = "Activo";
 $lang['inactive'] = "Inactivo";
 $lang['verified'] = "Verificado";
 $lang['not_verified'] = "No Verificado";
+$lang['change_status'] = "Cambiar Estado";
 
 # Global MSG
 $lang['ok'] = "Entendido";
@@ -41,8 +42,13 @@ $lang['error_msg'] = "Ha ocurrido un error";
 $lang['session_expired'] = "Su sessión ha expirado";
 $lang['required_values'] = "Hay campos requeridos";
 $lang['password_does_not_match'] = "Las contraseñas no coinciden";
-$lang['invalid_current_password'] = "Clave Actual Incorrecta";
-$lang['invalid_email_format'] = "Rectifique el Formato del Correo Electrónico";
+$lang['invalid_current_password'] = "Clave actual incorrecta";
+$lang['invalid_email_format'] = "Rectifique el formato del correo electrónico";
+$lang['are_you_sure'] = "Está seguro de esta acción";
+$lang['not_revert_this'] = "Esta acción no es reversible";
+$lang['yes_remove'] = "Sí, eliminar";
+$lang['no_cancel'] = "No, cancelar";
+$lang['success_change_status'] = "Estado actualizado";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -50,6 +56,7 @@ $lang['btn_update'] = "Actualizar";
 $lang['btn_cancel'] = "Cancelar";
 $lang['btn_save'] = "Guardar";
 $lang['btn_edit'] = "Editar";
+$lang['btn_delete'] = "Eliminar";
 
 # Home
 $lang['home_customers'] = "Clientes";
@@ -90,8 +97,13 @@ $lang['dt_customer_phone'] = "Teléfono";
 $lang['dt_customer_status'] = "Estado";
 $lang['cust_success_created'] = "Cliente Creado";
 $lang['cust_success_updated'] = "Cliente Actualizado";
+$lang['cust_success_deleted'] = "Cliente Eliminado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
+
+
+
+
 //Create Password Section
 $lang['create_pass_customer_title'] = 'Bienvenido';
 $lang['create_pass_customer_subtitle'] = "Introduzca su contraseña";

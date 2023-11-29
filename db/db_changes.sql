@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS `customer` (
   PRIMARY KEY (`id`)
 )
 
+ALTER TABLE `customer` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailSubscription`; 
+
 #### 
   ## End Table customer
 ###
