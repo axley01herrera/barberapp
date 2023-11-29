@@ -160,7 +160,7 @@
                     dtCustomers.draw();
                 } else {
                     if (response.msg == "SESSION_EXPIRED") {
-                        window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
                     } else
                         globalError();
                 }
@@ -217,7 +217,7 @@
                             dtCustomers.draw();
                         } else {
                             if (response.msg == "SESSION_EXPIRED") {
-                                window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
+                                window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
                             } else
                                 globalError();
                         }

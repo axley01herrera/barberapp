@@ -49,7 +49,7 @@
                 $('#btn-login<?php echo $uniqid; ?>').attr('disabled', true);
                 $.ajax({
                     type: "post",
-                    url: "<?php echo base_url('Home/loginAdminProcess'); ?>",
+                    url: "<?php echo base_url('Home/controlPanelAuthProcess'); ?>",
                     data: {
                         'key': key
                     },

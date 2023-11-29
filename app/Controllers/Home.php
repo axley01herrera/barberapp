@@ -48,9 +48,9 @@ class Home extends BaseController
         $data['page'] = 'home/controlPanelAuthentication';
 
         return view('home/mainHome', $data);
-    }
+    } // ok
 
-    public function loginAdminProcess()
+    public function controlPanelAuthProcess()
     {
         $key = htmlspecialchars(trim($this->objRequest->getPost('key')));
 
@@ -73,7 +73,7 @@ class Home extends BaseController
         }
 
         return json_encode($result);
-    }
+    } // ok
 
     public function customerCreatePassword()
     {

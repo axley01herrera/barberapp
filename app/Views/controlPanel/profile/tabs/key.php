@@ -70,7 +70,7 @@
                                 } else
                                     globalError();
                             } else
-                                window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
+                                window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
 
                             $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
                         },

@@ -77,7 +77,7 @@
                             }
                         } else {
                             if (response.msg == "SESSION_EXPIRED") {
-                                window.location.href = "<?php echo base_url('Home/loginAdmin?session=expired'); ?>";
+                                window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
                             } else if (response.msg == "ERROR_DUPLICATE_EMAIL") {
                                 simpleAlert("<?php echo lang('Text.cust_duplicate'); ?>", 'warning');
                                 $('#txt-email<?php echo $uniqid; ?>').addClass('is-invalid');
