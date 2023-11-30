@@ -78,6 +78,8 @@
                 let resultEmail = checkEmailFormat();
                 if (resultEmail == 0) {
                     if ($('#txt-pass<?php echo $uniqid; ?>').val() === $('#txt-confirmPass<?php echo $uniqid; ?>').val()) {
+                        $('#btn-create<?php echo $uniqid; ?>').attr('disabled', true);
+                        $('#btn-create<?php echo $uniqid; ?>').html('<span role="status">Verificando Datos </span><span class="spinner-border spinner-border-sm" aria-hidden="true"></span>')
                         var terms = 0;
                         if ($('#check-terms').hasClass('checked'))
                             terms = 1;
@@ -100,16 +102,20 @@
                             success: function(response) {
                                 if (response.error == 0) {
                                     simpleAlert('Cuenta creada', 'success');
+                                    $('#btn-create<?php echo $uniqid; ?>').html('Correo de Verificación Enviado');
                                     setTimeout(() => {
                                         window.location.href = "<?php echo base_url('/'); ?>";
                                     }, "2000");
                                 } else if (response.error == 1) {
-                                    if (response.msg == 'ERROR_SEND_EMAIL')
+                                    if (response.msg == 'ERROR_SEND_EMAIL') {
                                         simpleAlert('Error al enviar el correo', 'warning');
-
-                                    else if (response.msg == 'DUPLICATE_EMAIL') {
+                                        $('#btn-create<?php echo $uniqid; ?>').removeAttr('disabled');
+                                        $('#btn-create<?php echo $uniqid; ?>').html('Crear cuenta');
+                                    } else if (response.msg == 'DUPLICATE_EMAIL') {
                                         $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
                                         simpleAlert('El email ya está registrado', 'warning');
+                                        $('#btn-create<?php echo $uniqid; ?>').removeAttr('disabled');
+                                        $('#btn-create<?php echo $uniqid; ?>').html('Crear cuenta');
                                     }
                                 }
                             },
@@ -118,7 +124,6 @@
                             }
                         });
                     } else {
-                        $('#txt-pass<?php echo $uniqid; ?>').addClass('required is-invalid');
                         $('#txt-confirmPass<?php echo $uniqid; ?>').addClass('required is-invalid');
                         simpleAlert('Las contraseñas no coinciden', 'warning');
                     }

@@ -49,6 +49,7 @@
             let resultEmail = checkEmailFormat();
             if (result == 0) {
                 if (resultEmail == 0) {
+                    $('#btn-login<?php echo $uniqid; ?>').attr('disabled', true);
                     $.ajax({
                         type: "post",
                         url: "<?php echo base_url('Home/signInCustomerProcess'); ?>",
@@ -64,11 +65,14 @@
                                 if (response.msg == 'EMAIL_NOT_FOUND') {
                                     simpleAlert('Rectifique sus credenciales', 'warning');
                                     $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
-                                } else if (response.msg == 'ACTIVATE_STATUS')
+                                    $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
+                                } else if (response.msg == 'ACTIVATE_STATUS') {
                                     simpleAlert('Su cuenta aún no está activada', 'warning');
-                                else if (response.msg == 'INVALID_PASSWORD') {
+                                    $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
+                                } else if (response.msg == 'INVALID_PASSWORD') {
                                     simpleAlert('Contraseña incorrecta', 'warning');
                                     $('#txt-pass<?php echo $uniqid; ?>').addClass('required is-invalid');
+                                    $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
                                 }
                             }
 

@@ -48,6 +48,8 @@
             let resultEmail = checkEmailFormat();
             if (result == 0) {
                 if (resultEmail == 0) {
+                    $('#btn-save<?php echo $uniqid; ?>').attr('disabled', true);
+                    $('#btn-save<?php echo $uniqid; ?>').html('<span role="status">Verificando Datos </span><span class="spinner-border spinner-border-sm" aria-hidden="true"></span>')
                     $.ajax({
                         type: "post",
                         url: "<?php echo base_url('Home/forgotPasswordProcess'); ?>",
@@ -56,12 +58,15 @@
                         },
                         dataType: "json",
                         success: function(response) {
-                            if (response.error == 0)
+                            if (response.error == 0) {
                                 simpleAlert('Se ha enviado un correo a esta dirección', 'success');
-                            else if (response.error == 1) {
+                                $('#btn-save<?php echo $uniqid; ?>').html('Correo Enviado');
+                            } else if (response.error == 1) {
                                 if (response.msg == 'EMAIL_NOT_FOUND') {
                                     simpleAlert('Rectifique sus credenciales', 'warning');
                                     $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
+                                    $('#btn-save<?php echo $uniqid; ?>').removeAttr('disabled');
+                                    $('#btn-save<?php echo $uniqid; ?>').html('Guardar');
                                 }
                             }
 
