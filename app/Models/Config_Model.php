@@ -41,4 +41,34 @@ class Config_Model extends Model
             return $result;
         }
     }
+
+    public function loginCustomer($email, $password)
+    {
+        $query = $this->db->table('customer')
+            ->where('email', $email);
+
+        $data = $query->get()->getResult();
+        $result = array();
+
+        if (empty($data)) {
+            $result['error'] = 1;
+            $result['msg'] = 'EMAIL_NOT_FOUND';
+            return $result;
+        }
+
+        if (password_verify($password, $data[0]->password)) {
+            if ($data[0]->status == 1) {
+                $result['error'] = 0;
+                $result['data'] = $data[0];
+            } else {
+                $result['error'] = 1;
+                $result['msg'] = 'ACTIVATE_STATUS';
+            }
+        } else {
+            $result['error'] = 1;
+            $result['msg'] = 'INVALID_PASSWORD';
+        }
+
+        return $result;
+    }
 }

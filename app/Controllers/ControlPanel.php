@@ -258,9 +258,7 @@ class ControlPanel extends BaseController
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['config'] = $this->config;
         $data['activeCustomers'] = "active";
-        $data['uniqid'] = uniqid();
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPostGet('id'));
-
         # page
         $data['page'] = 'controlPanel/customers/principalCustomerProfile';
 
