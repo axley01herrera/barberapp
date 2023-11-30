@@ -20,6 +20,10 @@ $routes->post('Home/signInCustomerProcess', 'Home::signInCustomerProcess');
 $routes->get('Home/signUpCustomer', 'Home::signUpCustomer');
 $routes->post('Home/signUpCustomerProcess', 'Home::signUpCustomerProcess');
 $routes->get('Home/confirmSignup', 'Home::confirmSignup');
+$routes->get('Home/forgotPassword', 'Home::forgotPassword');
+$routes->post('Home/forgotPasswordProcess', 'Home::forgotPasswordProcess');
+$routes->get('Home/showFormNewPassword', 'Home::showFormNewPassword');
+$routes->post('Home/updatePassword', 'Home::updatePassword');
 
 #### 
 ## ControlPanel Routes
