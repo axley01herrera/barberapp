@@ -39,6 +39,8 @@ $lang['not_verified'] = "No Verificado";
 $lang['change_status'] = "Cambiar Estado";
 
 # Global MSG
+$lang['thanks'] = "Gracias";
+$lang['success_verified_email'] = "Su cuenta de correo electrónico ha quedado verficada";
 $lang['ok'] = "Entendido";
 $lang['error'] = "Error";
 $lang['error_msg'] = "Ha ocurrido un error";
@@ -66,11 +68,15 @@ $lang['btn_edit'] = "Editar";
 $lang['btn_delete'] = "Eliminar";
 $lang['btn_home'] = "Inicio";
 $lang['btn_signing'] = "Iniciar Sesión";
+$lang['btn_create_account'] = "Crear Cuenta";
 
 # Home
-$lang['home_customers'] = "Clientes";
-$lang['home_services'] = "Servicios";
-$lang['home_products'] = "Productos";
+$lang['form_registration'] = 'Formulario de Registro';
+$lang['registration_subtitle'] = 'Introduzca sus datos';
+$lang['registration_accept_text'] = 'Acepto la';
+$lang['registration_accept_msg'] = 'Debe aceptar la Política de Privacidad';
+$lang['registration_policy_privacy'] = 'Política de Privacidad';
+$lang['registration_success_create_account'] = 'Registro Completado';
 $lang['create_pass'] = 'Crear Contraseña';
 $lang['create_pass_subtitle'] = "Introduzca su contraseña";
 
@@ -139,5 +145,13 @@ $lang['eccba_complete_account'] = "Completa tu cuenta";
 $lang['eccba_complete_account_msg'] = "Hemos registrado su cuenta de cliente utilizando la dirección de correo electrónico proporcionada. Ahora, le pedimos que configure una contraseña para su perfil. Para hacerlo, simplemente haga clic en el botón a continuación y será redirigido a un formulario donde podrá completar este proceso.";
 $lang['eccba_create_account'] = "Crear Contraseña";
 $lang['eccba_complete_account_info'] = "El enlace que contiene este mensaje es de un solo uso, una vez utilizado si no completa el proceso no podrá volver a acceder al procedimiento. En cierto caso póngase en contacto con nuestro equipo mediante los datos de contacto proporcionados a continuación.";
+
+# Email Customer Signup
+$lang['e_signup_hi'] = "Hola";
+$lang['e_signup_welcome_company'] = "Bienvenido a";
+$lang['e_signup_complete_account'] = "Verifica tu cuenta";
+$lang['e_signup_complete_account_msg'] = "Gracias por registrarse, su cuenta de cliente está activa, inicia sesión utilizando la dirección de correo electrónico proporcionada. Ahora, le pedimos que verifique su correo electrónico. Simplemente haga clic en el botón a continuación.";
+$lang['e_signup_create_account'] = "Verificar mi Correo Electrónico";
+$lang['e_signup_complete_account_info'] = "Es de vital importancia que usted verifique su correo electrónico para poder enviarle notificaciones sobre sus reservas, cambios en la política de privacidad entre otras cosas. Dichas notificaciones usted dispone de un apartado en su perfil para poder activarlas y desactivarlas. Gracias";
 
 return $lang;

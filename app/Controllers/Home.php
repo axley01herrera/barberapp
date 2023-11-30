@@ -181,6 +181,7 @@ class Home extends BaseController
     public function signUpCustomer()
     {
         $data = array();
+        # data
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
@@ -188,14 +189,14 @@ class Home extends BaseController
         $data['page'] = 'home/signUpCustomer';
 
         return view('home/mainHome', $data);
-    }
+    } // ok
 
     public function signUpCustomerProcess()
     {
+        # params
         $name = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $lastName = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $email = htmlspecialchars(trim($this->objRequest->getPost('email')));
-        $phone = htmlspecialchars(trim($this->objRequest->getPost('phone')));
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
         $password = password_hash(htmlspecialchars(trim($this->objRequest->getPost('pass'))), PASSWORD_DEFAULT);
         $token = md5(uniqid());
 
@@ -212,47 +213,31 @@ class Home extends BaseController
         $data['lastName'] = $lastName;
         $data['password'] = $password;
         $data['email'] = $email;
-        $data['phone'] = $phone;
-        $data['status'] = 0;
-        $data['emailVerified'] = 0;
-        $data['term'] = $this->objRequest->getPost('terms');
-        $data['emailSubscription'] = $this->objRequest->getPost('emailSubscription');
         $data['token'] = $token;
 
         # Create Customer
         $result = $this->objMainModel->objCreate('customer', $data);
 
-        if ($result['error'] == 0) {
-            $profile = $this->objControlPanelModel->getProfile(1);
-            # Sen Email
-            $dataEmail = array();
-            $dataEmail['pageTitle'] = $profile[0]->company_name;
-            $dataEmail['person'] = $name . ' ' . $lastName;
-            $dataEmail['url'] = base_url('Home/confirmSignup') . '?token=' . $token;
-            $dataEmail['companyPhone'] = $profile[0]->phone1;
-            $dataEmail['companyEmail'] = $profile[0]->email;
+        $profile = $this->objControlPanelModel->getProfile(1);
+        # Sen Email
+        $dataEmail = array();
+        $dataEmail['pageTitle'] = $profile[0]->company_name;
+        $dataEmail['person'] = $name . ' ' . $lastName;
+        $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token;
+        $dataEmail['companyPhone'] = $profile[0]->phone1;
+        $dataEmail['companyEmail'] = $profile[0]->email;
 
-            $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
-            $this->objEmail->setTo($email);
-            $this->objEmail->setSubject($profile[0]->company_name);
-            $this->objEmail->setMessage(view('email/mailSignup', $dataEmail), []);
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
+        $this->objEmail->setTo($email);
+        $this->objEmail->setSubject($profile[0]->company_name);
+        $this->objEmail->setMessage(view('email/mailSignup', $dataEmail), []);
 
-            if ($this->objEmail->send(false)) {
-                $response['error'] = 0;
-                $response['msg'] = 'SUCCESS_SEND_EMAIL';
-            } else {
-                $response['error'] = 1;
-                $response['msg'] = 'ERROR_SEND_EMAIL';
-            }
-        } else {
-            $response['error'] = 1;
-            $response['msg'] = 'ERROR_CREATE_CUSTOMER';
-        }
+        $this->objEmail->send(false);
+            
+        return json_encode($result);
+    } // ok
 
-        return json_encode($response);
-    }
-
-    public function confirmSignup()
+    public function verifiedEmail()
     {
         # params
         $token = $this->objRequest->getPostGet('token');
@@ -266,12 +251,10 @@ class Home extends BaseController
         if (empty($token))
             return view('errorPages/globalError', $data);
 
-
         $result = $this->objMainModel->objData('customer', 'token', $token);
 
         if (!empty($result)) {
             $data = array();
-            $data['status'] = 1;
             $data['emailVerified'] = 1;
             $data['token'] = '';
 
@@ -281,10 +264,11 @@ class Home extends BaseController
             # data
             $data['config'] = $this->config;
             $data['profile'] = $this->objControlPanelModel->getProfile(1);
+
             return view('home/successActivateAccount', $data);
         } else
             return view('errorPages/tokenExpired', $data);
-    }
+    } // ok
 
     public function forgotPassword()
     {
@@ -388,5 +372,18 @@ class Home extends BaseController
         $result = $this->objMainModel->objUpdate('customer', $data, $this->objRequest->getPost('customerID'));
 
         return json_encode($result);
+    }
+
+    public function emailView()
+    {
+        $profile = $this->objControlPanelModel->getProfile(1);
+        $dataEmail = array();
+        $dataEmail['pageTitle'] = $profile[0]->company_name;
+        $dataEmail['person'] = "Axley Herrera";
+        $dataEmail['url'] = base_url('Home');
+        $dataEmail['companyPhone'] = $profile[0]->phone1;
+        $dataEmail['companyEmail'] = $profile[0]->email;
+
+        return view('email/mailSignup', $dataEmail);
     }
 }

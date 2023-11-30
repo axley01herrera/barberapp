@@ -588,16 +588,5 @@ class ControlPanel extends BaseController
 
     # End Section Profile
 
-    public function emailView()
-    {
-        $profile = $this->objControlPanelModel->getProfile(1);
-        $dataEmail = array();
-        $dataEmail['pageTitle'] = $profile[0]->company_name;
-        $dataEmail['person'] = "Axley Herrera";
-        $dataEmail['url'] = base_url('Home');
-        $dataEmail['companyPhone'] = $profile[0]->phone1;
-        $dataEmail['companyEmail'] = $profile[0]->email;
-
-        return view('email/createCustomerByAdmin', $dataEmail);
-    }
+    
 }

@@ -19,7 +19,7 @@ $routes->get('Home/signInCustomer', 'Home::signInCustomer');
 $routes->post('Home/signInCustomerProcess', 'Home::signInCustomerProcess');
 $routes->get('Home/signUpCustomer', 'Home::signUpCustomer');
 $routes->post('Home/signUpCustomerProcess', 'Home::signUpCustomerProcess');
-$routes->get('Home/confirmSignup', 'Home::confirmSignup');
+$routes->get('Home/verifiedEmail', 'Home::verifiedEmail');
 $routes->get('Home/forgotPassword', 'Home::forgotPassword');
 $routes->post('Home/forgotPasswordProcess', 'Home::forgotPasswordProcess');
 $routes->get('Home/showFormNewPassword', 'Home::showFormNewPassword');
@@ -56,7 +56,7 @@ $routes->post('ControlPanel/changeCustomerStatus', 'ControlPanel::changeCustomer
 $routes->get('ControlPanel/customerProfile', 'ControlPanel::customerProfile');
 
 # Test
-$routes->get('ControlPanel/emailView', 'ControlPanel::emailView');
+$routes->get('Home/emailView', 'Home::emailView');
 
 #### 
 ## End Admin Routes

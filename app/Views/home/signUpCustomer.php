@@ -19,41 +19,31 @@
                                     <img alt="Logo" src="<?php // echo base_url('assets/media/logos/logoDark.png'); 
                                                             ?>" class="w-50" />
                                 </span>-->
-                            <h1 class="text-dark fw-bolder mb-3">Crea una Cuenta</h1>
-                            <div class="text-gray-500 fw-semibold fs-6">Introduzca sus datos</div>
+                            <h1 class="text-dark fw-bolder mb-3"><?php echo lang('Text.form_registration') ?></h1>
+                            <div class="text-gray-500 fw-semibold fs-6"><?php echo lang('Text.registration_subtitle'); ?></div>
                         </div>
-                        <!-- Input Access Key -->
-                        <div class="fv-row mb-8">
-                            <div class="row ">
-                                <div class="col-12 col-lg-6 mt-5">
-                                    <input type="text" id="txt-name<?php echo $uniqid; ?>" placeholder="Name" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
-                                </div>
-                                <div class="col-12 col-lg-6 mt-5">
-                                    <input type="text" id="txt-lastName<?php echo $uniqid; ?>" placeholder="Last Name" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
-                                </div>
-                                <div class="col-12 col-lg-6 mt-5">
-                                    <input type="email" id="txt-email<?php echo $uniqid; ?>" placeholder="Email" autocomplete="off" class="form-control bg-transparent email required<?php echo $uniqid; ?>" />
-                                </div>
-                                <div class="col-12 col-lg-6 mt-5">
-                                    <input type="text" id="txt-phone<?php echo $uniqid; ?>" placeholder="Phone" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
-                                </div>
-                                <div class="col-12 mt-5">
-                                    <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="Password" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
-                                </div>
-                                <div class="col-12 mt-5">
-                                    <input type="password" id="txt-confirmPass<?php echo $uniqid; ?>" placeholder="Repeat Password" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
-                                </div>
-                                <div class="col-12 col-lg-5 mt-5">
-                                    <input type="checkbox" id="check-terms" class=""> <span class="text-black-50">Aceptar los Términos.</span>
-                                </div>
-                                <div class="col-12 col-lg-7 mt-5">
-                                    <input type="checkbox" id="check-emailSubscription" class=""> <span class="text-black-50">Recibir correos de promociones.</span>
-                                </div>
+                        <div class="row mb-8">
+                            <div class="col-12 col-lg-6 mb-5">
+                                <input type="text" id="txt-name<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.name'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                            </div>
+                            <div class="col-12 col-lg-6 mb-5">
+                                <input type="text" id="txt-lastName<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.last_name'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                            </div>
+                            <div class="col-12 mb-5">
+                                <input type="email" id="txt-email<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.email'); ?>" autocomplete="off" class="form-control bg-transparent email required<?php echo $uniqid; ?>" />
+                            </div>
+                            <div class="col-12 mb-5">
+                                <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                            </div>
+                            <div class="col-12 mb-5">
+                                <input type="password" id="txt-confirmPass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_repeat'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                            </div>
+                            <div class="col-12">
+                                <input type="checkbox" id="check-terms" data-value="0"> <label for="check-terms" class="text-muted"><?php echo lang('Text.registration_accept_text') ?> <a id="show-modal-policy-privacy" href="#"><?php echo lang('Text.registration_policy_privacy'); ?></a></label>.
                             </div>
                         </div>
-                        <!-- Button Sig In Admin -->
                         <div class="d-grid mb-10">
-                            <button type="button" id="btn-create<?php echo $uniqid; ?>" class="btn btn-primary">Crear cuenta</button>
+                            <button type="button" id="btn-create<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_create_account'); ?></button>
                         </div>
                     </div>
                 </div>
@@ -63,29 +53,27 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        //CHECK TERMS
-        $('#check-terms').on('click', function() {
-            $(this).toggleClass('checked');
-        });
-        //CHECK EMAIL SUBSCRIPTIONS
-        $('#check-emailSubscription').on('click', function() {
-            $(this).toggleClass('checked');
-        });
-        $('#btn-create<?php echo $uniqid; ?>').on('click', function() {
-            let result = checkRequiredValues();
-            if (result == 0) {
-                let resultEmail = checkEmailFormat();
-                if (resultEmail == 0) {
-                    if ($('#txt-pass<?php echo $uniqid; ?>').val() === $('#txt-confirmPass<?php echo $uniqid; ?>').val()) {
+    var terms = 0;
+
+    $('#check-terms').on('click', function() {
+        let value = $(this).attr('data-value');
+
+        if (value == 0)
+            terms = 1;
+        else
+            terms = 0;
+
+        $(this).attr('data-value', terms);
+    });
+
+    $('#btn-create<?php echo $uniqid; ?>').on('click', function() { // Create Customer
+        let result = checkRequiredValues();
+        if (result == 0) {
+            let resultEmail = checkEmailFormat();
+            if (resultEmail == 0) {
+                if ($('#txt-pass<?php echo $uniqid; ?>').val() == $('#txt-confirmPass<?php echo $uniqid; ?>').val()) {
+                    if (terms == 1) {
                         $('#btn-create<?php echo $uniqid; ?>').attr('disabled', true);
-                        $('#btn-create<?php echo $uniqid; ?>').html('<span role="status">Verificando Datos </span><span class="spinner-border spinner-border-sm" aria-hidden="true"></span>')
-                        var terms = 0;
-                        if ($('#check-terms').hasClass('checked'))
-                            terms = 1;
-                        var emailSubscription = 0;
-                        if ($('#check-emailSubscription').hasClass('checked'))
-                            emailSubscription = 1;
                         $.ajax({
                             type: "post",
                             url: "<?php echo base_url('Home/signUpCustomerProcess'); ?>",
@@ -95,45 +83,39 @@
                                 'phone': $('#txt-phone<?php echo $uniqid; ?>').val(),
                                 'email': $('#txt-email<?php echo $uniqid; ?>').val(),
                                 'pass': $('#txt-pass<?php echo $uniqid; ?>').val(),
-                                'terms': terms,
-                                'emailSubscription': emailSubscription
                             },
                             dataType: "json",
                             success: function(response) {
                                 if (response.error == 0) {
-                                    simpleAlert('Cuenta creada', 'success');
-                                    $('#btn-create<?php echo $uniqid; ?>').html('Correo de Verificación Enviado');
+                                    simpleSuccessAlert('<?php echo lang('Text.registration_success_create_account'); ?>');
                                     setTimeout(() => {
                                         window.location.href = "<?php echo base_url('/'); ?>";
                                     }, "2000");
                                 } else if (response.error == 1) {
-                                    if (response.msg == 'ERROR_SEND_EMAIL') {
-                                        simpleAlert('Error al enviar el correo', 'warning');
-                                        $('#btn-create<?php echo $uniqid; ?>').removeAttr('disabled');
-                                        $('#btn-create<?php echo $uniqid; ?>').html('Crear cuenta');
-                                    } else if (response.msg == 'DUPLICATE_EMAIL') {
+                                    if (response.msg == 'DUPLICATE_EMAIL') {
                                         $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
-                                        simpleAlert('El email ya está registrado', 'warning');
-                                        $('#btn-create<?php echo $uniqid; ?>').removeAttr('disabled');
-                                        $('#btn-create<?php echo $uniqid; ?>').html('Crear cuenta');
-                                    }
+                                        simpleAlert('<?php echo lang('Text.cust_duplicate'); ?>', 'warning');
+                                    } else
+                                        globalError();
                                 }
+                                $('#btn-create<?php echo $uniqid; ?>').removeAttr('disabled');
                             },
                             error: function(error) {
                                 globalError();
+                                $('#btn-create<?php echo $uniqid; ?>').removeAttr('disabled');
                             }
                         });
-                    } else {
-                        $('#txt-confirmPass<?php echo $uniqid; ?>').addClass('required is-invalid');
-                        simpleAlert('Las contraseñas no coinciden', 'warning');
-                    }
-                } else
-                    simpleAlert('Email Invalido', 'warning');
+                    } else
+                        simpleAlert('<?php echo lang('Text.registration_accept_msg'); ?>', 'warning');
+                } else {
+                    $('#txt-confirmPass<?php echo $uniqid; ?>').addClass('is-invalid');
+                    simpleAlert('<?php echo lang('Text.password_does_not_match'); ?>', 'warning');
+                }
             } else
-                simpleAlert('Campos Requeridos', 'warning');
-        });
-
-    });
+                simpleAlert('<?php echo lang('Text.invalid_email_format'); ?>', 'warning');
+        } else
+            simpleAlert('<?php echo lang('Text.required_values'); ?>', 'warning');
+    }); // ok
 
     function checkRequiredValues() {
         let result = 0;
