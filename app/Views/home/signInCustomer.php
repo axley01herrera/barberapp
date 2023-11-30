@@ -19,21 +19,24 @@
                                     <img alt="Logo" src="<?php // echo base_url('assets/media/logos/logoDark.png'); 
                                                             ?>" class="w-50" />
                                 </span>-->
-                            <h1 class="text-dark fw-bolder mb-3">Inicia Sesion</h1>
-                            <div class="text-gray-500 fw-semibold fs-6">Introduzca sus credenciales</div>
+                            <h1 class="text-dark fw-bolder mb-3"><?php echo lang('Text.sign_title'); ?></h1>
+                            <div class="text-gray-500 fw-semibold fs-6"><?php echo lang('Text.sign_subtitle'); ?></div>
                         </div>
-                        <!-- Inputs -->
+
                         <div class="fv-row mb-4">
-                            <input type="text" id="txt-email<?php echo $uniqid; ?>" placeholder="Email" autocomplete="off" class="form-control email bg-transparent mb-5 required<?php echo $uniqid; ?>" />
+                            <input type="text" id="txt-email<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.email'); ?>" autocomplete="off" class="form-control email bg-transparent mb-5 required<?php echo $uniqid; ?>" />
                             <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                         </div>
-                        <!-- Link Forgot Password -->
+
                         <div class="d-grid mb-5 text-end">
-                            <a href="<?php echo base_url('Home/forgotPassword'); ?>">Olvide mi contraseña</a>
+                            <a href="<?php echo base_url('Home/forgotPassword'); ?>"><?php echo lang('Text.sign_forgot_pass'); ?></a>
                         </div>
-                        <!-- Button SigIn Customer -->
-                        <div class="d-grid">
-                            <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary">Iniciar Sesion</button>
+
+                        <div class="d-grid mb-10">
+                            <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_signing'); ?></button>
+                        </div>
+                        <div class="d-grid mb-10 text-center">
+                            <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
                         </div>
                     </div>
                 </div>
@@ -59,16 +62,13 @@
                         },
                         dataType: "json",
                         success: function(response) {
-                            if (response.error == 0)
-                                simpleAlert('Seccion Iniciada', 'success');
-                            else if (response.error == 1) {
+                            if (response.error == 0) {
+
+                            } else if (response.error == 1) {
                                 if (response.msg == 'EMAIL_NOT_FOUND') {
-                                    simpleAlert('Rectifique sus credenciales', 'warning');
-                                    $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
-                                    $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
-                                } else if (response.msg == 'ACTIVATE_STATUS') {
-                                    simpleAlert('Su cuenta aún no está activada', 'warning');
-                                    $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
+                                    simpleAlert('<?php echo lang('Text.invalid_credentials')?>', 'warning');
+                                } else if (response.msg == 'USER_INACTIVE') {
+                                    simpleAlert('<?php echo lang('Text.user_inactive_msg'); ?>', 'warning');
                                 } else if (response.msg == 'INVALID_PASSWORD') {
                                     simpleAlert('Contraseña incorrecta', 'warning');
                                     $('#txt-pass<?php echo $uniqid; ?>').addClass('required is-invalid');
@@ -82,9 +82,9 @@
                         }
                     });
                 } else
-                    simpleAlert('Email Invalido', 'warning');
+                    simpleAlert('<?php echo lang('Text.invalid_email_format'); ?>', 'warning');
             } else
-                simpleAlert('Campos Requeridos', 'warning');
+                simpleAlert('<?php echo lang("Text.required_values"); ?>', 'warning');
         });
 
     });

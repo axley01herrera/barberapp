@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\AuthenticationModel;
 use App\Models\Config_Model;
 use App\Models\ControlPanelModel;
 use App\Models\Main_Model;
@@ -12,6 +13,7 @@ class Home extends BaseController
     protected $objRequest;
     protected $objConfigModel;
     protected $objControlPanelModel;
+    protected $objAuthenticationModel;
     protected $objMainModel;
     protected $config;
     protected $objEmail;
@@ -21,13 +23,20 @@ class Home extends BaseController
         # Clear Session
         $this->objSession = session();
         $this->objSession->set('user', []);
-        $this->objRequest = \Config\Services::request();
+
+        # Models
         $this->objConfigModel = new Config_Model;
         $this->objControlPanelModel = new ControlPanelModel;
+        $this->objAuthenticationModel = new AuthenticationModel;
         $this->objMainModel = new Main_Model;
+
+        # Config
         $this->config = $this->objConfigModel->getConfig(1);
+
+        # Set Lang
         $this->objRequest->setLocale($this->config[0]->lang);
 
+        # Email Settings
         $emailConfig = array();
         $emailConfig['protocol'] = EMAIL_PROTOCOL;
         $emailConfig['SMTPHost'] = EMAIL_SMTP_HOST;
@@ -37,6 +46,8 @@ class Home extends BaseController
         $emailConfig['SMTPCrypto'] = EMAIL_SMTP_CRYPTO;
         $emailConfig['mailType'] = EMAIL_MAIL_TYPE;
 
+        # Services
+        $this->objRequest = \Config\Services::request();
         $this->objEmail = \Config\Services::email($emailConfig);
     }
 
@@ -144,6 +155,7 @@ class Home extends BaseController
     public function signInCustomer()
     {
         $data = array();
+        # data
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
@@ -151,31 +163,25 @@ class Home extends BaseController
         $data['page'] = 'home/signInCustomer';
 
         return view('home/mainHome', $data);
-    }
+    } // ok
 
     public function signInCustomerProcess()
     {
-        $email = htmlspecialchars(trim($this->objRequest->getPost('email')));
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
         $password = htmlspecialchars(trim($this->objRequest->getPost('pass')));
 
-        $result = $this->objConfigModel->loginCustomer($email, $password);
+        $result = $this->objAuthenticationModel->loginCustomer($email, $password);
 
-        if ($result['error'] == 1)
-            return json_encode($result);
-
-        # CREATE SESSION
-        $session = array();
-        $session['id'] = $result['data']->id;
-        $session['user'] = $result['data']->name . ' ' . $result['data']->lastName;
-        $session['email'] = $result['data']->email;
-        $session['role'] = 'customer';
-
-        $this->objSession->set('user', $session);
-
-        $response = array();
-        $response['error'] = 0;
-
-        return json_encode($response);
+        if ($result['error'] == 0) {
+            # Create Session
+            $session = array();
+            $session['customerID'] = $result['data']->id;
+            $session['role'] = 'customer';
+    
+            $this->objSession->set('user', $session);
+        }
+           
+        return json_encode($result);
     }
 
     public function signUpCustomer()

@@ -37,6 +37,8 @@ $lang['inactive'] = "Inactivo";
 $lang['verified'] = "Verificado";
 $lang['not_verified'] = "No Verificado";
 $lang['change_status'] = "Cambiar Estado";
+$lang['create_pass'] = 'Crear Contraseña';
+$lang['create_pass_subtitle'] = "Introduzca su contraseña";
 
 # Global MSG
 $lang['thanks'] = "Gracias";
@@ -58,6 +60,8 @@ $lang['ops'] = "Ups";
 $lang['something_has_not_gone_well'] = "Algo ha salido mal";
 $lang['token_expired'] = "Token expirado";
 $lang['success_create_password'] = "Contraseña creada";
+$lang['invalid_credentials'] = 'Rectifique sus Credenciales';
+$lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -66,19 +70,28 @@ $lang['btn_cancel'] = "Cancelar";
 $lang['btn_save'] = "Guardar";
 $lang['btn_edit'] = "Editar";
 $lang['btn_delete'] = "Eliminar";
-$lang['btn_home'] = "Inicio";
+$lang['btn_home'] = "Ir al Inicio";
 $lang['btn_signing'] = "Iniciar Sesión";
 $lang['btn_create_account'] = "Crear Cuenta";
 
-# Home
+#### 
+## Home
+####
+
+// Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
 $lang['registration_subtitle'] = 'Introduzca sus datos';
 $lang['registration_accept_text'] = 'Acepto la';
 $lang['registration_accept_msg'] = 'Debe aceptar la Política de Privacidad';
 $lang['registration_policy_privacy'] = 'Política de Privacidad';
 $lang['registration_success_create_account'] = 'Registro Completado';
-$lang['create_pass'] = 'Crear Contraseña';
-$lang['create_pass_subtitle'] = "Introduzca su contraseña";
+
+// Home -> Signin
+$lang['sign_title'] = 'Inicio de Sesión';
+$lang['sign_subtitle'] = 'Introdusca sus Credenciales';
+$lang['sign_forgot_pass'] = 'Olvidé mi Contraseña';
+
+
 
 # Control Panel Authentication
 $lang['cp_auth_title'] = "Espacio Reservado para el Administrador";
