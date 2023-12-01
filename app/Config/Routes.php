@@ -30,14 +30,11 @@ $routes->post('Home/updatePassword', 'Home::updatePassword');
 ####
 $routes->get('ControlPanel/dashboard', 'ControlPanel::dashboard');
 
-# Admin -> Profile
-$routes->get('ControlPanel/profile', 'ControlPanel::profile');
-$routes->post('ControlPanel/profileTab', 'ControlPanel::profileTab');
-$routes->post('ControlPanel/uploadAvatarProfile', 'ControlPanel::uploadAvatarProfile');
-$routes->post('ControlPanel/removeAvatarProfile', 'ControlPanel::removeAvatarProfile');
-$routes->post('ControlPanel/updateProfile', 'ControlPanel::updateProfile');
-$routes->post('ControlPanel/changeAccessKey', 'ControlPanel::changeAccessKey');
-$routes->post('ControlPanel/updateConfig', 'ControlPanel::updateConfig');
+# Admin -> TPV
+$routes->get('ControlPanel/tpv', 'ControlPanel::tpv');
+
+# Admin -> Calendar
+$routes->get('ControlPanel/calendar', 'ControlPanel::calendar');
 
 # Admin -> Services
 $routes->get('ControlPanel/services', 'ControlPanel::services');
@@ -54,6 +51,24 @@ $routes->post('ControlPanel/processingCustomer', 'ControlPanel::processingCustom
 $routes->post('ControlPanel/deleteCustomer', 'ControlPanel::deleteCustomer');
 $routes->post('ControlPanel/changeCustomerStatus', 'ControlPanel::changeCustomerStatus');
 $routes->get('ControlPanel/customerProfile', 'ControlPanel::customerProfile');
+
+# Admin -> Employees
+$routes->get('ControlPanel/employees', 'ControlPanel::employees');
+
+# Admin -> Reports
+$routes->get('ControlPanel/reports', 'ControlPanel::reports');
+
+# Admin -> Schedules
+$routes->get('ControlPanel/schedules', 'ControlPanel::schedules');
+
+# Admin -> Profile
+$routes->get('ControlPanel/profile', 'ControlPanel::profile');
+$routes->post('ControlPanel/profileTab', 'ControlPanel::profileTab');
+$routes->post('ControlPanel/uploadAvatarProfile', 'ControlPanel::uploadAvatarProfile');
+$routes->post('ControlPanel/removeAvatarProfile', 'ControlPanel::removeAvatarProfile');
+$routes->post('ControlPanel/updateProfile', 'ControlPanel::updateProfile');
+$routes->post('ControlPanel/changeAccessKey', 'ControlPanel::changeAccessKey');
+$routes->post('ControlPanel/updateConfig', 'ControlPanel::updateConfig');
 
 # Test
 $routes->get('Home/emailView', 'Home::emailView');

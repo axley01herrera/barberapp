@@ -33,9 +33,6 @@ class Home extends BaseController
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
 
-        # Set Lang
-        $this->objRequest->setLocale($this->config[0]->lang);
-
         # Email Settings
         $emailConfig = array();
         $emailConfig['protocol'] = EMAIL_PROTOCOL;
@@ -49,6 +46,9 @@ class Home extends BaseController
         # Services
         $this->objRequest = \Config\Services::request();
         $this->objEmail = \Config\Services::email($emailConfig);
+
+        # Set Lang
+        $this->objRequest->setLocale($this->config[0]->lang);
     }
 
     public function index()
@@ -177,10 +177,10 @@ class Home extends BaseController
             $session = array();
             $session['customerID'] = $result['data']->id;
             $session['role'] = 'customer';
-    
+
             $this->objSession->set('user', $session);
         }
-           
+
         return json_encode($result);
     }
 
@@ -239,7 +239,7 @@ class Home extends BaseController
         $this->objEmail->setMessage(view('email/mailSignup', $dataEmail), []);
 
         $this->objEmail->send(false);
-            
+
         return json_encode($result);
     } // ok
 

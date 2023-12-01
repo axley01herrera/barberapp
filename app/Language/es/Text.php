@@ -92,7 +92,6 @@ $lang['sign_subtitle'] = 'Introdusca sus Credenciales';
 $lang['sign_forgot_pass'] = 'Olvidé mi Contraseña';
 
 
-
 # Control Panel Authentication
 $lang['cp_auth_title'] = "Espacio Reservado para el Administrador";
 $lang['cp_auth_subtitle'] = "Introduzca su Clave de Acceso";
@@ -105,6 +104,7 @@ $lang['top_bar_tpv'] = "TPV";
 $lang['top_bar_calendar'] = "Calendario";
 $lang['top_bar_services'] = "Servicios";
 $lang['top_bar_customers'] = "Clientes";
+$lang['top_bar_employees'] = "Empleados";
 $lang['top_bar_report'] = "Reportes";
 $lang['top_bar_schedule'] = "Horarios";
 $lang['top_bar_profile'] = "Perfil";

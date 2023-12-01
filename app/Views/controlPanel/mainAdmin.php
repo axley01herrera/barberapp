@@ -98,13 +98,13 @@
                                     </span>
                                 </a>
                                 <!-- TPV -->
-                                <a href="#" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('ControlPanel/tpv'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeTPV; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_tpv'); ?></span>
                                     </span>
                                 </a>
                                 <!-- Calendar -->
-                                <a href="#" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <a href="<?php echo base_url('ControlPanel/calendar'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeCalendar; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_calendar'); ?></span>
                                     </span>
@@ -121,15 +121,21 @@
                                         <span class="menu-title"><?php echo lang('Text.top_bar_customers'); ?></span>
                                     </span>
                                 </a>
+                                <!-- Employees -->
+                                <a href="<?php echo base_url('ControlPanel/employees'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                    <span class="menu-link <?php echo @$activeEmployees; ?>">
+                                        <span class="menu-title"><?php echo lang('Text.top_bar_employees'); ?></span>
+                                    </span>
+                                </a>
                                 <!-- Report -->
-                                <a href="#" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <span class="menu-link <?php echo @$activeReport; ?>">
+                                <a href="<?php echo base_url('ControlPanel/reports'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                    <span class="menu-link <?php echo @$activeReports; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_report'); ?></span>
                                     </span>
                                 </a>
                                 <!-- Schedule -->
-                                <a href="#" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <span class="menu-link <?php echo @$activeReport; ?>">
+                                <a href="<?php echo base_url('ControlPanel/schedules'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                    <span class="menu-link <?php echo @$activeSchedules; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_schedule'); ?></span>
                                     </span>
                                 </a>
