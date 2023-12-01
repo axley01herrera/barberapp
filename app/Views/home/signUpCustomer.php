@@ -39,7 +39,7 @@
                                 <input type="password" id="txt-confirmPass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_repeat'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                             </div>
                             <div class="col-12">
-                                <input type="checkbox" id="check-terms" data-value="0"> <label for="check-terms" class="text-muted"><?php echo lang('Text.registration_accept_text') ?> <a id="show-modal-policy-privacy" href="#"><?php echo lang('Text.registration_policy_privacy'); ?></a></label>.
+                                <input type="checkbox" id="check-terms" data-value="0"> <label for="check-terms" class="text-muted"><?php echo lang('Text.registration_accept_text') ?> <span id="show-modal-policy-privacy" class="text-primary cursor-pointer" data-bs-toggle="modal" data-bs-target="#policyPrivacyModal"><?php echo lang('Text.registration_policy_privacy'); ?></span></label>.
                             </div>
                         </div>
                         <div class="d-grid mb-10">
@@ -51,6 +51,25 @@
         </div>
     </div>
 </div>
+
+<!-- POLICY PRIVACY MODAL -->
+<div class="modal fade" id="policyPrivacyModal" tabindex="-1" aria-labelledby="policyPrivacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="policyPrivacyModalLabel">Policy Privacy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END POLICY PRIVACY MODAL -->
 
 <script>
     var terms = 0;
