@@ -19,20 +19,20 @@
                                     <img alt="Logo" src="<?php // echo base_url('assets/media/logos/logoDark.png'); 
                                                             ?>" class="w-50" />
                                 </span>-->
-                            <h1 class="text-dark fw-bolder mb-3">Olvidaste tu contraseña?</h1>
-                            <div class="text-gray-500 fw-semibold fs-6">Introduce tu email para poder recuperarla</div>
+                            <h1 class="text-dark fw-bolder mb-3"><?php echo lang('Text.recover_title'); ?></h1>
+                            <div class="text-gray-500 fw-semibold fs-6"><?php echo lang('Text.recover_subtitle'); ?></div>
                         </div>
-                        <!-- Input Password -->
+
                         <div class="fv-row mb-4">
                             <input type="text" id="txt-email<?php echo $uniqid; ?>" placeholder="Email" autocomplete="off" class="form-control email bg-transparent mb-5 required<?php echo $uniqid; ?>" />
                         </div>
-                        <!-- Button Save -->
-                        <div class="d-grid">
-                            <button type="button" id="btn-save<?php echo $uniqid; ?>" class="btn btn-primary">Guardar</button>
+
+                        <div class="d-grid mb-10">
+                            <button type="button" id="btn-send<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_send_recover_pass_email'); ?></button>
                         </div>
-                        <!-- Link Sign In Customer -->
-                        <div class="d-grid mt-5 text-center">
-                            <a href="<?php echo base_url('Home/signInCustomer'); ?>">Regresar a Iniciar Sesión</a>
+
+                        <div class="d-grid mb-10 text-center">
+                            <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
                         </div>
                     </div>
                 </div>
@@ -42,46 +42,47 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $('#btn-save<?php echo $uniqid; ?>').on('click', function() {
-            let result = checkRequiredValues();
+    $('#btn-send<?php echo $uniqid; ?>').on('click', function() {
+        let result = checkRequiredValues();
+        if (result == 0) {
             let resultEmail = checkEmailFormat();
-            if (result == 0) {
-                if (resultEmail == 0) {
-                    $('#btn-save<?php echo $uniqid; ?>').attr('disabled', true);
-                    $('#btn-save<?php echo $uniqid; ?>').html('<span role="status">Verificando Datos </span><span class="spinner-border spinner-border-sm" aria-hidden="true"></span>')
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url('Home/forgotPasswordProcess'); ?>",
-                        data: {
-                            'email': $('#txt-email<?php echo $uniqid; ?>').val(),
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.error == 0) {
-                                simpleAlert('Se ha enviado un correo a esta dirección', 'success');
-                                $('#btn-save<?php echo $uniqid; ?>').html('Correo Enviado');
-                            } else if (response.error == 1) {
-                                if (response.msg == 'EMAIL_NOT_FOUND') {
-                                    simpleAlert('Rectifique sus credenciales', 'warning');
-                                    $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
-                                    $('#btn-save<?php echo $uniqid; ?>').removeAttr('disabled');
-                                    $('#btn-save<?php echo $uniqid; ?>').html('Guardar');
-                                }
+            if (resultEmail == 0) {
+                $('#btn-send<?php echo $uniqid; ?>').attr('disabled', true);
+                $.ajax({
+                    type: "post",
+                    url: "<?php echo base_url('Home/sendForgotPasswordEmail'); ?>",
+                    data: {
+                        'email': $('#txt-email<?php echo $uniqid; ?>').val(),
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.error == 0) {
+                            simpleSuccessAlert('<?php echo lang('Text.recover_success_send_email'); ?>');
+                            setTimeout(() => {
+                                window.location.href = "<?php echo base_url('/'); ?>";
+                            }, "2000");
+                        } else if (response.error == 1) {
+                            if (response.msg == 'EMAIL_NOT_FOUND') {
+                                simpleAlert('<?php echo lang('Text.recover_email_not_found'); ?>', 'warning');
+                                $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
+                                $('#btn-send<?php echo $uniqid; ?>').removeAttr('disabled');
+                            } else {
+                                globalError();
+                                $('#btn-send<?php echo $uniqid; ?>').removeAttr('disabled');
                             }
-
-                        },
-                        error: function(error) {
-                            globalError();
                         }
-                    });
-                } else
-                    simpleAlert('Email Invalido', 'warning');
-            } else
-                simpleAlert('Campos Requeridos', 'warning');
-        });
 
-    });
+                    },
+                    error: function(error) {
+                        globalError();
+                        $('#btn-send<?php echo $uniqid; ?>').removeAttr('disabled');
+                    }
+                });
+            } else
+                simpleAlert('<?php echo lang('Text.invalid_email_format'); ?>', 'warning');
+        } else
+            simpleAlert('<?php echo lang("Text.required_values"); ?>', 'warning');
+    }); // ok
 
     function checkRequiredValues() {
         let result = 0;

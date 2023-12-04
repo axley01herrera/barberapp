@@ -22,9 +22,7 @@ $routes->post('Home/policyPrivacyModal', 'Home::policyPrivacyModal');
 $routes->post('Home/signUpCustomerProcess', 'Home::signUpCustomerProcess');
 $routes->get('Home/verifiedEmail', 'Home::verifiedEmail');
 $routes->get('Home/forgotPassword', 'Home::forgotPassword');
-$routes->post('Home/forgotPasswordProcess', 'Home::forgotPasswordProcess');
-$routes->get('Home/showFormNewPassword', 'Home::showFormNewPassword');
-$routes->post('Home/updatePassword', 'Home::updatePassword');
+$routes->post('Home/sendForgotPasswordEmail', 'Home::sendForgotPasswordEmail');
 
 #### 
 ## ControlPanel Routes

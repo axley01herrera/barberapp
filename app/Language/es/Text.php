@@ -74,6 +74,7 @@ $lang['btn_delete'] = "Eliminar";
 $lang['btn_home'] = "Ir al Inicio";
 $lang['btn_signing'] = "Iniciar Sesión";
 $lang['btn_create_account'] = "Crear Cuenta";
+$lang['btn_send_recover_pass_email'] = "Enviar Correo de Recuperación";
 
 #### 
 ## Home
@@ -92,6 +93,11 @@ $lang['sign_title'] = 'Inicio de Sesión';
 $lang['sign_subtitle'] = 'Introdusca sus Credenciales';
 $lang['sign_forgot_pass'] = 'Olvidé mi Contraseña';
 
+// Home -> Recover Password
+$lang['recover_title'] = 'Recupera tu Contraseña';
+$lang['recover_subtitle'] = 'Introdusca su Correo Electrónico';
+$lang['recover_success_send_email'] = 'Correo Electrónico de Recuperación Enviado';
+$lang['recover_email_not_found'] = 'Correo Electrónico no Registrado';
 
 # Control Panel Authentication
 $lang['cp_auth_title'] = "Espacio Reservado para el Administrador";
@@ -167,5 +173,13 @@ $lang['e_signup_complete_account'] = "Verifica tu cuenta";
 $lang['e_signup_complete_account_msg'] = "Gracias por registrarse, su cuenta de cliente está activa, inicia sesión utilizando la dirección de correo electrónico proporcionada. Ahora, le pedimos que verifique su correo electrónico. Simplemente haga clic en el botón a continuación.";
 $lang['e_signup_create_account'] = "Verificar mi Correo Electrónico";
 $lang['e_signup_complete_account_info'] = "Es de vital importancia que usted verifique su correo electrónico para poder enviarle notificaciones sobre sus reservas, cambios en la política de privacidad entre otras cosas. Dichas notificaciones usted dispone de un apartado en su perfil para poder activarlas y desactivarlas. Gracias";
+
+# Email Recover Password
+$lang['e_rp_hi'] = "Hola";
+$lang['e_rp_welcome_company'] = "De";
+$lang['e_rp_complete_account'] = "Recupera tu Contrasea";
+$lang['e_rp_complete_account_msg'] = "Si está recibiendo este mensaje es porque ha soliciado restablecer su contraseña de acceso. Para ello simplemente haga click en el botón a continuación y será redirigido a un formulario para introducir su nueva contraseña.";
+$lang['e_rp_create_account'] = "Crear Contraseña";
+$lang['e_rp_complete_account_info'] = "Si no ha sido usted quien ha solicitado restablecer su contraseña no se alarme, aún no se ha realizado ningún cambio en su perfil. Simplemente ignore este mensaje. Gracias";
 
 return $lang;

@@ -298,96 +298,61 @@ class Home extends BaseController
         return view('home/mainHome', $data);
     } // ok
 
-    public function forgotPasswordProcess()
+    public function sendForgotPasswordEmail()
     {
-        $data = array();
-        #data
-        $data['uniqid'] = uniqid();
-        $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        # params
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
 
-        $email = htmlspecialchars(trim($this->objRequest->getPost('email')));
-
-        # Verify if email exist
         $result = $this->objMainModel->objData('customer', 'email', $email);
 
         if (empty($result)) {
             $response = array();
             $response['error'] = 1;
             $response['msg'] = 'EMAIL_NOT_FOUND';
+
             return json_encode($response);
         }
 
+        $data = array();
+        #data
         $data = array();
         $data['token'] = md5(uniqid());
 
         # Update Customer
         $this->objMainModel->objUpdate('customer', $data, $result[0]->id);
 
+        $data['uniqid'] = uniqid();
+        $data['config'] = $this->config;
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+
+        # profile info
         $profile = $this->objControlPanelModel->getProfile(1);
-        # Send Email
+
+        # Sen Email
         $dataEmail = array();
         $dataEmail['pageTitle'] = $profile[0]->company_name;
         $dataEmail['person'] = $result[0]->name . ' ' . $result[0]->lastName;
-        $dataEmail['url'] = base_url('Home/showFormNewPassword') . '?token=' . $data['token'];
+        $dataEmail['url'] = base_url('Home/customerCreatePassword') . '?token=' . $data['token'];
         $dataEmail['companyPhone'] = $profile[0]->phone1;
         $dataEmail['companyEmail'] = $profile[0]->email;
 
         $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
         $this->objEmail->setTo($email);
         $this->objEmail->setSubject($profile[0]->company_name);
-        $this->objEmail->setMessage(view('email/recoveryPassword', $dataEmail), []);
+        $this->objEmail->setMessage(view('email/recoverPassword', $dataEmail), []);
 
         if ($this->objEmail->send(false)) {
+            $response = array();
             $response['error'] = 0;
             $response['msg'] = 'SUCCESS_SEND_EMAIL';
         } else {
+            $response = array();
             $response['error'] = 1;
             $response['msg'] = 'ERROR_SEND_EMAIL';
         }
 
-
         return json_encode($response);
-    }
-
-    public function showFormNewPassword()
-    {
-        # params
-        $token = $this->objRequest->getPostGet('token');
-
-        # data
-        $data = array();
-        $data['uniqid'] = uniqid();
-        $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
-
-        if (empty($token))
-            return view('errorPages/globalError', $data);
-
-        $result = $this->objMainModel->objData('customer', 'token', $token);
-
-        if (!empty($result)) {
-            $data['RecoveryPassword_customerID'] = $result[0]->id;
-            $data['uniqid'] = uniqid();
-            $data['profile'] = $this->objControlPanelModel->getProfile(1);
-            # page
-            $data['page'] = 'home/formCreatePassword';
-
-            return view('home/mainHome', $data);
-        } else
-            return view('errorPages/tokenExpired', $data);
-    }
-
-    public function updatePassword()
-    {
-        $data = array();
-        $data['password'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
-        $data['token'] = '';
-
-        $result = $this->objMainModel->objUpdate('customer', $data, $this->objRequest->getPost('customerID'));
-
-        return json_encode($result);
-    }
+    } // ok
 
     public function emailView()
     {
@@ -399,6 +364,6 @@ class Home extends BaseController
         $dataEmail['companyPhone'] = $profile[0]->phone1;
         $dataEmail['companyEmail'] = $profile[0]->email;
 
-        return view('email/mailSignup', $dataEmail);
+        return view('email/recoverPassword', $dataEmail);
     }
 }

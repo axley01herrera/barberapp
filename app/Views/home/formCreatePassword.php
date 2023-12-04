@@ -29,11 +29,7 @@
                         </div>
                         <!-- Button Create Pass -->
                         <div class="d-grid mb-10">
-                            <?php if (@$RecoveryPassword_customerID) : ?>
-                                <button type="button" id="btn-updatePass<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_save'); ?></button>
-                            <?php else : ?>
-                                <button type="button" id="btn-createPass<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_save'); ?></button>
-                            <?php endif; ?>
+                            <button type="button" id="btn-createPass<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_save'); ?></button>
                         </div>
                     </div>
                 </div>
@@ -43,73 +39,37 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        //BTN CREATE PASS
-        $('#btn-createPass<?php echo $uniqid; ?>').on('click', function() {
-            let result = checkRequiredValues();
-            if (result == 0) {
-                if ($('#txt-pass<?php echo $uniqid; ?>').val() == $('#txt-confirmPass<?php echo $uniqid; ?>').val()) {
-                    $('#btn-createPass<?php echo $uniqid; ?>').attr('disabled', true);
-                    $.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url('Home/createPassword') ?>",
-                        data: {
-                            'customerID': "<?php echo @$customerID; ?>",
-                            'password': $('#txt-pass<?php echo $uniqid; ?>').val()
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.error == 0) {
-                                simpleSuccessAlert('<?php echo lang('Text.success_create_password'); ?>');
-                                setTimeout(() => {
-                                    window.location.href = "<?php echo base_url('/') ?>";
-                                }, "2000");
-                            } else {
-                                simpleAlert('<?php echo lang('Text.create_pass_customer_alert_errorCreatePass'); ?>', 'success');
-                                $('#btn-createPass<?php echo $uniqid; ?>').removeAttr('disabled');
-                            }
+    $('#btn-createPass<?php echo $uniqid; ?>').on('click', function() {
+        let result = checkRequiredValues();
+        if (result == 0) {
+            if ($('#txt-pass<?php echo $uniqid; ?>').val() == $('#txt-confirmPass<?php echo $uniqid; ?>').val()) {
+                $('#btn-createPass<?php echo $uniqid; ?>').attr('disabled', true);
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('Home/createPassword') ?>",
+                    data: {
+                        'customerID': "<?php echo @$customerID; ?>",
+                        'password': $('#txt-pass<?php echo $uniqid; ?>').val()
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.error == 0) {
+                            simpleSuccessAlert('<?php echo lang('Text.success_create_password'); ?>');
+                            setTimeout(() => {
+                                window.location.href = "<?php echo base_url('/') ?>";
+                            }, "2000");
+                        } else {
+                            simpleAlert('<?php echo lang('Text.create_pass_customer_alert_errorCreatePass'); ?>', 'success');
+                            $('#btn-createPass<?php echo $uniqid; ?>').removeAttr('disabled');
                         }
-                    });
-                } else {
-                    simpleAlert('<?php echo lang('Text.password_not_match'); ?>', 'warning');
-                    $('#txt-confirmPass<?php echo $uniqid; ?>').addClass('required<?php echo $uniqid; ?> is-invalid');
-                }
-            } else
-                simpleAlert('<?php echo lang('Text.required_values'); ?>', 'warning');
-        });
-        //BTN UPDATE PASS
-        $('#btn-updatePass<?php echo $uniqid; ?>').on('click', function() {
-            let result = checkRequiredValues();
-            if (result == 0) {
-                if ($('#txt-pass<?php echo $uniqid; ?>').val() == $('#txt-confirmPass<?php echo $uniqid; ?>').val()) {
-                    $('#btn-updatePass<?php echo $uniqid; ?>').attr('disabled', true);
-                    $.ajax({
-                        type: "POST",
-                        url: "<?php echo base_url('Home/updatePassword') ?>",
-                        data: {
-                            'customerID': "<?php echo @$RecoveryPassword_customerID; ?>",
-                            'password': $('#txt-pass<?php echo $uniqid; ?>').val()
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.error == 0) {
-                                simpleSuccessAlert('Su contraseña ha sido actualizada');
-                                setTimeout(() => {
-                                    window.location.href = "<?php echo base_url('Home/signInCustomer') ?>";
-                                }, "2000");
-                            } else {
-                                simpleAlert('<?php echo lang('Text.create_pass_customer_alert_errorCreatePass'); ?>', 'success');
-                                $('#btn-updatePass<?php echo $uniqid; ?>').removeAttr('disabled');
-                            }
-                        }
-                    });
-                } else {
-                    simpleAlert('<?php echo lang('Text.password_not_match'); ?>', 'warning');
-                    $('#txt-confirmPass<?php echo $uniqid; ?>').addClass('required<?php echo $uniqid; ?> is-invalid');
-                }
-            } else
-                simpleAlert('<?php echo lang('Text.required_values'); ?>', 'warning');
-        });
+                    }
+                });
+            } else {
+                simpleAlert('<?php echo lang('Text.password_not_match'); ?>', 'warning');
+                $('#txt-confirmPass<?php echo $uniqid; ?>').addClass('required<?php echo $uniqid; ?> is-invalid');
+            }
+        } else
+            simpleAlert('<?php echo lang('Text.required_values'); ?>', 'warning');
     });
 
     function checkRequiredValues() {
