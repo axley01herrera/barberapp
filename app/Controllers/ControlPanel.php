@@ -48,6 +48,9 @@ class ControlPanel extends BaseController
         # Set Lang
         $this->objRequest->setLocale($this->config[0]->lang);
 
+        # Set TimeZone
+        date_default_timezone_set($this->config[0]->timezone);
+
         # Load Helpers
         helper('Site');
     }
@@ -944,7 +947,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
-            
+
             return json_encode($result);
         }
 

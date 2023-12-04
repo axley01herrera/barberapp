@@ -48,6 +48,9 @@ class Customer extends BaseController
 
         # Set Lang
         $this->objRequest->setLocale($this->config[0]->lang);
+
+        # Set TimeZone
+        date_default_timezone_set($this->config[0]->timezone);
     }
 
     public function index()

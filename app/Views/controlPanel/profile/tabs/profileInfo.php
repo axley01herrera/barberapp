@@ -97,12 +97,12 @@
     <div class="col-12 mt-5">
         <!-- Facebook -->
         <label class="fs-6 fw-semibold" for="txt-facebook<?php echo $uniqid; ?>"><?php echo lang('Text.facebook_link'); ?> <span class="text-danger"></span></label>
-        <input type="text" id="txt-facebook<?php echo $uniqid; ?>" class="form-control" value="" disabled />
+        <input type="text" id="txt-facebook<?php echo $uniqid; ?>" class="form-control" value="<?php echo $profile[0]->facebook; ?>" disabled />
     </div>
     <div class="col-12 mt-5">
         <!-- Instagram -->
         <label class="fs-6 fw-semibold" for="txt-instagram<?php echo $uniqid; ?>"><?php echo lang('Text.instagram_link'); ?> <span class="text-danger"></span></label>
-        <input type="text" id="txt-instagram<?php echo $uniqid; ?>" class="form-control" value="" disabled />
+        <input type="text" id="txt-instagram<?php echo $uniqid; ?>" class="form-control" value="<?php echo $profile[0]->instagram; ?>" disabled />
     </div>
 </div>
 <div class="row">
