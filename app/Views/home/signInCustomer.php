@@ -46,48 +46,48 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $('#btn-login<?php echo $uniqid; ?>').on('click', function() {
-            let result = checkRequiredValues();
+    $('#btn-login<?php echo $uniqid; ?>').on('click', function() {
+        let result = checkRequiredValues();
+        if (result == 0) {
             let resultEmail = checkEmailFormat();
-            if (result == 0) {
-                if (resultEmail == 0) {
-                    $('#btn-login<?php echo $uniqid; ?>').attr('disabled', true);
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url('Home/signInCustomerProcess'); ?>",
-                        data: {
-                            'email': $('#txt-email<?php echo $uniqid; ?>').val(),
-                            'pass': $('#txt-pass<?php echo $uniqid; ?>').val()
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.error == 0) {
+            if (resultEmail == 0) {
+                $('#btn-login<?php echo $uniqid; ?>').attr('disabled', true);
+                $.ajax({
+                    type: "post",
+                    url: "<?php echo base_url('Home/signInCustomerProcess'); ?>",
+                    data: {
+                        'email': $('#txt-email<?php echo $uniqid; ?>').val(),
+                        'pass': $('#txt-pass<?php echo $uniqid; ?>').val()
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.error == 0) { // TODO
 
-                            } else if (response.error == 1) {
-                                if (response.msg == 'EMAIL_NOT_FOUND') {
-                                    simpleAlert('<?php echo lang('Text.invalid_credentials')?>', 'warning');
-                                } else if (response.msg == 'USER_INACTIVE') {
-                                    simpleAlert('<?php echo lang('Text.user_inactive_msg'); ?>', 'warning');
-                                } else if (response.msg == 'INVALID_PASSWORD') {
-                                    simpleAlert('Contraseña incorrecta', 'warning');
-                                    $('#txt-pass<?php echo $uniqid; ?>').addClass('required is-invalid');
-                                    $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
-                                }
+                        } else if (response.error == 1) {
+                            if (response.msg == 'EMAIL_NOT_FOUND') {
+                                simpleAlert('<?php echo lang('Text.invalid_credentials') ?>', 'warning');
+                            } else if (response.msg == 'USER_INACTIVE') {
+                                simpleAlert('<?php echo lang('Text.user_inactive_msg'); ?>', 'warning');
+                            } else if (response.msg == 'INVALID_PASSWORD') {
+                                simpleAlert('<?php echo lang('Text.invalid_password'); ?>', 'warning');
+                                $('#txt-pass<?php echo $uniqid; ?>').addClass('is-invalid');
+                                $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
+                            } else {
+                                globalError();
+                                $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
                             }
-
-                        },
-                        error: function(error) {
-                            globalError();
                         }
-                    });
-                } else
-                    simpleAlert('<?php echo lang('Text.invalid_email_format'); ?>', 'warning');
+                    },
+                    error: function(error) {
+                        globalError();
+                        $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
+                    }
+                });
             } else
-                simpleAlert('<?php echo lang("Text.required_values"); ?>', 'warning');
-        });
-
-    });
+                simpleAlert('<?php echo lang('Text.invalid_email_format'); ?>', 'warning');
+        } else
+            simpleAlert('<?php echo lang("Text.required_values"); ?>', 'warning');
+    }); // ok
 
     function checkRequiredValues() {
         let result = 0;

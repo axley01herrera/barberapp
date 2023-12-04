@@ -62,6 +62,7 @@ $lang['token_expired'] = "Token expirado";
 $lang['success_create_password'] = "Contraseña creada";
 $lang['invalid_credentials'] = 'Rectifique sus Credenciales';
 $lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
+$lang['invalid_password'] = "Contraseña Incorrecta";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";

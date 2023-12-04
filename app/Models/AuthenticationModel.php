@@ -18,7 +18,7 @@ class AuthenticationModel extends Model
     {
         $query = $this->db->table('customer')
             ->where('email', $email)
-            ->where('delete', 0);
+            ->where('deleted', 0);
 
         $data = $query->get()->getResult();
         $result = array();

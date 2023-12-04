@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
 )
 
 ALTER TABLE `customer` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailSubscription`; 
+ALTER TABLE `customer` ADD `lastSession` DATE NULL AFTER `emailSubscription`; 
 
 #### 
   ## End Table customer

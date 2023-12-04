@@ -173,6 +173,10 @@ class Home extends BaseController
         $result = $this->objAuthenticationModel->loginCustomer($email, $password);
 
         if ($result['error'] == 0) {
+            $data = array();
+            $data['lastSession'] = date('Y-m-d');
+            $this->objMainModel->objUpdate('customer', $data, $result['data']->id);
+
             # Create Session
             $session = array();
             $session['customerID'] = $result['data']->id;
@@ -182,7 +186,7 @@ class Home extends BaseController
         }
 
         return json_encode($result);
-    }
+    } // ok
 
     public function signUpCustomer()
     {
@@ -287,7 +291,7 @@ class Home extends BaseController
         $data['page'] = 'home/forgotPassword';
 
         return view('home/mainHome', $data);
-    }
+    } // ok
 
     public function forgotPasswordProcess()
     {
