@@ -201,6 +201,11 @@ class Home extends BaseController
         return view('home/mainHome', $data);
     } // ok
 
+    public function policyPrivacyModal()
+    {
+        return view('home/policyPrivacyModal');
+    }
+
     public function signUpCustomerProcess()
     {
         # params

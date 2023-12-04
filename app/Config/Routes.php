@@ -18,6 +18,7 @@ $routes->post('Home/createPassword', 'Home::createPassword');
 $routes->get('Home/signInCustomer', 'Home::signInCustomer');
 $routes->post('Home/signInCustomerProcess', 'Home::signInCustomerProcess');
 $routes->get('Home/signUpCustomer', 'Home::signUpCustomer');
+$routes->post('Home/policyPrivacyModal', 'Home::policyPrivacyModal');
 $routes->post('Home/signUpCustomerProcess', 'Home::signUpCustomerProcess');
 $routes->get('Home/verifiedEmail', 'Home::verifiedEmail');
 $routes->get('Home/forgotPassword', 'Home::forgotPassword');
