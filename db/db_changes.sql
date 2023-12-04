@@ -46,6 +46,23 @@ ALTER TABLE `customer` ADD `lastSession` DATE NULL AFTER `emailSubscription`;
   ## End Table customer
 ###
 
+#### 
+  ## Table employee
+###
+
+DROP TABLE IF EXISTS `employee`;
+CREATE TABLE IF NOT EXISTS `employee` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `lastName` varchar(90) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `email` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `status` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+);
+
+#### 
+  ## End Table employee
+###
 
 #### 
   ## Table profile

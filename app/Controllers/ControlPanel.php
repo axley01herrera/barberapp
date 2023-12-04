@@ -43,6 +43,7 @@ class ControlPanel extends BaseController
     ####
     # Section Dashboard
     ####
+
     public function dashboard()
     {
         # Verify Session 
@@ -57,6 +58,7 @@ class ControlPanel extends BaseController
 
         return view('ControlPanel/mainAdmin', $data);
     }
+
     ####
     # End Section Dashboard
     ####
@@ -64,6 +66,7 @@ class ControlPanel extends BaseController
     ####
     # Section TPV
     ####
+
     public function tpv()
     {
         # Verify Session 
@@ -77,10 +80,11 @@ class ControlPanel extends BaseController
         $data['activeTPV'] = "active";
         $data['uniqid'] = uniqid();
         # page
-        $data['page'] = 'controlPanel/tpv/main';
+        $data['page'] = 'controlPanel/tpv/mainTPV';
 
         return view('ControlPanel/mainAdmin', $data);
     }
+
     ####
     # End Section TPV
     ####
@@ -88,6 +92,7 @@ class ControlPanel extends BaseController
     ####
     # Section Calendar
     ####
+
     public function calendar()
     {
         # Verify Session 
@@ -101,10 +106,11 @@ class ControlPanel extends BaseController
         $data['activeCalendar'] = "active";
         $data['uniqid'] = uniqid();
         # page
-        $data['page'] = 'controlPanel/calendar/main';
+        $data['page'] = 'controlPanel/calendar/mainCalendar';
 
         return view('ControlPanel/mainAdmin', $data);
     }
+
     ####
     # End Section Calendar
     ####
@@ -112,6 +118,7 @@ class ControlPanel extends BaseController
     ####
     # Section Services
     ####
+
     public function services()
     {
         # Verify Session 
@@ -205,6 +212,7 @@ class ControlPanel extends BaseController
             return json_encode($result);
         }
     }
+
     ####
     # End Section Services
     ####
@@ -486,6 +494,7 @@ class ControlPanel extends BaseController
     ####
     # Section Employees
     ####
+
     public function employees()
     {
         # Verify Session 
@@ -499,7 +508,7 @@ class ControlPanel extends BaseController
         $data['activeEmployees'] = "active";
         $data['uniqid'] = uniqid();
         # page
-        $data['page'] = 'controlPanel/employees/main';
+        $data['page'] = 'controlPanel/employees/mainEmployees';
 
         return view('ControlPanel/mainAdmin', $data);
     }
@@ -511,6 +520,7 @@ class ControlPanel extends BaseController
     ####
     # Section Reports
     ####
+
     public function reports()
     {
         # Verify Session 
@@ -524,7 +534,7 @@ class ControlPanel extends BaseController
         $data['activeReports'] = "active";
         $data['uniqid'] = uniqid();
         # page
-        $data['page'] = 'controlPanel/reports/main';
+        $data['page'] = 'controlPanel/reports/mainReports';
 
         return view('ControlPanel/mainAdmin', $data);
     }
@@ -536,6 +546,7 @@ class ControlPanel extends BaseController
     ####
     # Section Schedules
     ####
+
     public function schedules()
     {
         # Verify Session 
@@ -549,7 +560,7 @@ class ControlPanel extends BaseController
         $data['activeSchedules'] = "active";
         $data['uniqid'] = uniqid();
         # page
-        $data['page'] = 'controlPanel/schedules/main';
+        $data['page'] = 'controlPanel/schedules/mainSchedules';
 
         return view('ControlPanel/mainAdmin', $data);
     }
