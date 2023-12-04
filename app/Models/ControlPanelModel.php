@@ -112,9 +112,9 @@ class ControlPanelModel extends Model
             $query->groupEnd();
         }
 
-        // $query->groupStart();
-        // $query->where('deleted', 0);
-        // $query->groupEnd();
+        $query->groupStart();
+        $query->where('deleted', 0);
+        $query->groupEnd();
 
         $query->offset($params['start']);
         $query->limit($params['length']);

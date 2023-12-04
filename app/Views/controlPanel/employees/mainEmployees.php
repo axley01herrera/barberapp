@@ -45,7 +45,6 @@
                                     <th class="p-2"><?php echo lang('Text.dt_employee_email'); ?></th>
                                     <th class="text-center p-2"><?php echo lang('Text.dt_employee_status'); ?></th>
                                     <th class="text-center p-2"></th>
-                                    <th class="text-center p-2"></th>
                                 </tr>
                             </thead>
                         </table>

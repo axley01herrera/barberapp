@@ -14,6 +14,7 @@ $routes->get('/', 'Home::index');
 $routes->get('Home/controlPanelAuth', 'Home::controlPanelAuth');
 $routes->post('Home/controlPanelAuthProcess', 'Home::controlPanelAuthProcess');
 $routes->get('Home/customerCreatePassword', 'Home::customerCreatePassword');
+$routes->get('Home/employeeCreatePassword', 'Home::employeeCreatePassword');
 $routes->post('Home/createPassword', 'Home::createPassword');
 $routes->get('Home/signInCustomer', 'Home::signInCustomer');
 $routes->post('Home/signInCustomerProcess', 'Home::signInCustomerProcess');

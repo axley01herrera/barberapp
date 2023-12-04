@@ -641,26 +641,26 @@ class ControlPanel extends BaseController
             $data['token'] = md5(uniqid());
 
             $result = $this->objMainModel->objCreate('employee', $data);
-            // $profile = $this->objControlPanelModel->getProfile(1);
+            $profile = $this->objControlPanelModel->getProfile(1);
 
-            // $dataEmail = array();
-            // $dataEmail['pageTitle'] = $profile[0]->company_name;
-            // $dataEmail['person'] = $name . ' ' . $lastName;
-            // $dataEmail['url'] = base_url('Home/employeeCreatePassword?token=') . $data['token'];
-            // $dataEmail['companyPhone'] = $profile[0]->phone1;
-            // $dataEmail['companyEmail'] = $profile[0]->email;
+            $dataEmail = array();
+            $dataEmail['pageTitle'] = $profile[0]->company_name;
+            $dataEmail['person'] = $name . ' ' . $lastName;
+            $dataEmail['url'] = base_url('Home/employeeCreatePassword?token=') . $data['token'];
+            $dataEmail['companyPhone'] = $profile[0]->phone1;
+            $dataEmail['companyEmail'] = $profile[0]->email;
 
-            // $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
-            // $this->objEmail->setTo($email);
-            // $this->objEmail->setSubject('Complete Your Account');
-            // $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
+            $this->objEmail->setTo($email);
+            $this->objEmail->setSubject('Complete Your Account');
+            $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
 
-            // if ($this->objEmail->send(false))
-            //     $response['error'] = 0;
-            // else {
-            //     $response['error'] = 1;
-            //     $response['msg'] = 'ERROR_SEND_EMAIL';
-            // }
+            if ($this->objEmail->send(false))
+                $response['error'] = 0;
+            else {
+                $response['error'] = 1;
+                $response['msg'] = 'ERROR_SEND_EMAIL';
+            }
 
             return json_encode($result);
         } else {
@@ -724,7 +724,11 @@ class ControlPanel extends BaseController
         # params
         $employeeID = htmlspecialchars(trim($this->objRequest->getPost('employeeID')));
 
-        $result = $this->objMainModel->objDelete('employee', $employeeID);
+        $data = array();
+        $data['status'] = 0;
+        $data['deleted'] = 1;
+
+        $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
 
         return json_encode($result);
     }

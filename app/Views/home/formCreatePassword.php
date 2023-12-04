@@ -48,6 +48,7 @@
                     type: "POST",
                     url: "<?php echo base_url('Home/createPassword') ?>",
                     data: {
+                        'employeeID': "<?php echo @$employeeID; ?>",
                         'customerID': "<?php echo @$customerID; ?>",
                         'password': $('#txt-pass<?php echo $uniqid; ?>').val()
                     },

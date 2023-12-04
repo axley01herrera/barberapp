@@ -132,6 +132,40 @@ class Home extends BaseController
             return view('errorPages/tokenExpired', $data);
     } // ok
 
+    public function employeeCreatePassword()
+    {
+        # params
+        $token = $this->objRequest->getPostGet('token');
+
+        # data
+        $data = array();
+        $data['uniqid'] = uniqid();
+        $data['config'] = $this->config;
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+
+        if (empty($token))
+            return view('errorPages/globalError', $data);
+
+        $result = $this->objMainModel->objData('employee', 'token', $token);
+
+        if (!empty($result)) {
+
+            $data['employeeID'] = $result[0]->id;
+
+            $dataUpdate = array();
+            $dataUpdate['emailVerified'] = 1;
+            $dataUpdate['token'] = '';
+
+            $this->objMainModel->objUpdate('employee', $dataUpdate, $data['employeeID']);
+
+            # page
+            $data['page'] = 'home/formCreatePassword';
+
+            return view('home/mainHome', $data);
+        } else
+            return view('errorPages/tokenExpired', $data);
+    }
+
     public function createPassword()
     {
         # params
@@ -151,7 +185,7 @@ class Home extends BaseController
             $table = 'customer';
             $id = $customerID;
         }
-        
+
         if (!empty($employeeID)) {
             $table = 'employee';
             $id = $employeeID;
