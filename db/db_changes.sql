@@ -60,6 +60,10 @@ CREATE TABLE IF NOT EXISTS `employee` (
   PRIMARY KEY (`id`)
 );
 
+ALTER TABLE `employee` ADD `token` VARCHAR(999) NULL AFTER `status`; 
+ALTER TABLE `employee` ADD `emailVerified` INT NOT NULL DEFAULT '0' AFTER `token`; 
+ALTER TABLE `employee` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailVerified`; 
+
 #### 
   ## End Table employee
 ###

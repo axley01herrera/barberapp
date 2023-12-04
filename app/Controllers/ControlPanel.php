@@ -505,6 +505,7 @@ class ControlPanel extends BaseController
         # data
         $data['config'] = $this->config;
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        # menu
         $data['activeEmployees'] = "active";
         $data['uniqid'] = uniqid();
         # page

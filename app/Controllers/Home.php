@@ -136,6 +136,8 @@ class Home extends BaseController
     {
         # params
         $customerID = $this->objRequest->getPost('customerID');
+        $employeeID = $this->objRequest->getPost('employeeID');
+
         $password = password_hash(htmlspecialchars(trim($this->objRequest->getPost('pass'))), PASSWORD_DEFAULT);
 
         $data = array();
@@ -143,11 +145,19 @@ class Home extends BaseController
         $data['status'] = 1;
 
         $table = "";
+        $id = "";
 
-        if (!empty($customerID))
+        if (!empty($customerID)) {
             $table = 'customer';
+            $id = $customerID;
+        }
+        
+        if (!empty($employeeID)) {
+            $table = 'employee';
+            $id = $employeeID;
+        }
 
-        $result = $this->objMainModel->objUpdate($table, $data, $customerID);
+        $result = $this->objMainModel->objUpdate($table, $data, $id);
 
         return json_encode($result);
     } // ok
