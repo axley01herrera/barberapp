@@ -513,6 +513,243 @@ class ControlPanel extends BaseController
         return view('ControlPanel/mainAdmin', $data);
     }
 
+    public function processingEmployee()
+    {
+        $dataTableRequest = $_REQUEST;
+
+        $params = array();
+        $params['draw'] = $dataTableRequest['draw'];
+        $params['start'] = $dataTableRequest['start'];
+        $params['length'] = $dataTableRequest['length'];
+        $params['search'] = $dataTableRequest['search']['value'];
+        $params['sortColumn'] = $dataTableRequest['order'][0]['column'];
+        $params['sortDir'] = $dataTableRequest['order'][0]['dir'];
+
+        $row = array();
+        $totalRecords = 0;
+
+        $result = $this->objControlPanelModel->getEmployeesProcessingData($params);
+        $totalRows = sizeof($result);
+
+        for ($i = 0; $i < $totalRows; $i++) {
+
+            $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
+            $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-employee-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
+
+            if ($result[$i]->status == 1) {
+                $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
+                $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 change-status" data-employee-id="' . $result[$i]->id . '" data-status="0" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
+            }
+
+            $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
+            $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
+
+            $col = array();
+            $col['name'] = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '">' . $result[$i]->name . '</a>';
+            $col['lastName'] = $result[$i]->lastName;
+            $col['email'] = $result[$i]->email;
+            $col['status'] = $status;
+            $col['action'] = $btnChangeStatus . $btnEdit . $btnDelete;
+
+            $row[$i] =  $col;
+        }
+
+        if ($totalRows > 0) {
+            if (empty($params['search']))
+                $totalRecords = $this->objControlPanelModel->getTotalEmployees();
+            else
+                $totalRecords = $totalRows;
+        }
+
+        $data = array();
+        $data['draw'] = $dataTableRequest['draw'];
+        $data['recordsTotal'] = intval($totalRecords);
+        $data['recordsFiltered'] = intval($totalRecords);
+        $data['data'] = $row;
+
+        return json_encode($data);
+    }
+
+    public function employeeProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('adminLogout');
+
+        $data = array();
+        # data
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['config'] = $this->config;
+        $data['activeCustomers'] = "active";
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPostGet('id'));
+        # page
+        $data['page'] = 'controlPanel/customers/principalCustomerProfile';
+
+        return view('ControlPanel/mainAdmin', $data);
+    }
+
+    public function showModalEmployee()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('adminLogout');
+
+        # params
+        $action = $this->objRequest->getPost('action');
+        $employeeID = $this->objRequest->getPost('employeeID');
+
+        $data = array();
+        $data['config'] = $this->config;
+        $data['action'] = $action;
+        $data['uniqid'] = uniqid();
+
+        if ($action == "create")
+            $data['modalTitle'] = lang("Text.emp_modal_title_new");
+        else if ($action == "update") {
+            $data['modalTitle'] = lang("Text.emp_modal_title_update");
+            $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID)[0];
+            $data['employeeID'] = $employeeID;
+        }
+
+        return view('ControlPanel/employees/modalEmployee', $data);
+    }
+
+    public function createEmployee()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $name = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $lastName = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
+
+        $checkDuplicate = $this->objMainModel->objCheckDuplicate('employee', 'email', $email);
+
+        if (empty($checkDuplicate)) {
+            $data = array();
+            $data['name'] = $name;
+            $data['lastName'] = $lastName;
+            $data['email'] = $email;
+            $data['token'] = md5(uniqid());
+
+            $result = $this->objMainModel->objCreate('employee', $data);
+            // $profile = $this->objControlPanelModel->getProfile(1);
+
+            // $dataEmail = array();
+            // $dataEmail['pageTitle'] = $profile[0]->company_name;
+            // $dataEmail['person'] = $name . ' ' . $lastName;
+            // $dataEmail['url'] = base_url('Home/employeeCreatePassword?token=') . $data['token'];
+            // $dataEmail['companyPhone'] = $profile[0]->phone1;
+            // $dataEmail['companyEmail'] = $profile[0]->email;
+
+            // $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
+            // $this->objEmail->setTo($email);
+            // $this->objEmail->setSubject('Complete Your Account');
+            // $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
+
+            // if ($this->objEmail->send(false))
+            //     $response['error'] = 0;
+            // else {
+            //     $response['error'] = 1;
+            //     $response['msg'] = 'ERROR_SEND_EMAIL';
+            // }
+
+            return json_encode($result);
+        } else {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "ERROR_DUPLICATE_EMAIL";
+
+            return json_encode($result);
+        }
+    }
+
+    public function updateEmployee()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $name = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $lastName = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
+        $employeeID = htmlspecialchars(trim($this->objRequest->getPost('employeeID')));
+
+        $checkDuplicate = $this->objMainModel->objCheckDuplicate('employee', 'email', $email, $employeeID);
+
+        if (empty($checkDuplicate)) {
+            $data = array();
+            $data['name'] = $name;
+            $data['lastName'] = $lastName;
+            $data['email'] = $email;
+            $data['token'] = md5(uniqid());
+
+            $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
+
+            return json_encode($result);
+        } else {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "ERROR_DUPLICATE_EMAIL";
+
+            return json_encode($result);
+        }
+    }
+
+    public function deleteEmployee()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $employeeID = htmlspecialchars(trim($this->objRequest->getPost('employeeID')));
+
+        $result = $this->objMainModel->objDelete('employee', $employeeID);
+
+        return json_encode($result);
+    }
+
+    public function changeEmployeeStatus()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $employeeID = htmlspecialchars(trim($this->objRequest->getPost('employeeID')));
+
+        $data = array();
+        $data['status'] = htmlspecialchars(trim($this->objRequest->getPost('status')));
+
+        $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
+
+        return json_encode($result);
+    }
+
     #### 
     ## End Section Employees
     ####

@@ -53,6 +53,13 @@ $routes->get('ControlPanel/customerProfile', 'ControlPanel::customerProfile');
 
 # Admin -> Employees
 $routes->get('ControlPanel/employees', 'ControlPanel::employees');
+$routes->post('ControlPanel/showModalEmployee', 'ControlPanel::showModalEmployee');
+$routes->post('ControlPanel/createEmployee', 'ControlPanel::createEmployee');
+$routes->post('ControlPanel/updateEmployee', 'ControlPanel::updateEmployee');
+$routes->post('ControlPanel/processingEmployee', 'ControlPanel::processingEmployee');
+$routes->post('ControlPanel/deleteEmployee', 'ControlPanel::deleteEmployee');
+$routes->post('ControlPanel/changeEmployeeStatus', 'ControlPanel::changeEmployeeStatus');
+$routes->get('ControlPanel/employeeProfile', 'ControlPanel::employeeProfile');
 
 # Admin -> Reports
 $routes->get('ControlPanel/reports', 'ControlPanel::reports');

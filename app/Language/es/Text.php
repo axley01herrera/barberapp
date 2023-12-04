@@ -136,6 +136,21 @@ $lang['cust_success_deleted'] = "Cliente Eliminado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
 
+# Employees
+$lang['emp_btn_new'] = "Nuevo Empleado";
+$lang['emp_modal_title_new'] = "Nuevo Empleado";
+$lang['emp_modal_title_update'] = "Actualizando Empleado";
+$lang['dt_employee_name'] = "Nombre";
+$lang['dt_employee_last_name'] = "Apellidos";
+$lang['dt_employee_email'] = "Correo Electrónico";
+$lang['dt_employee_phone'] = "Teléfono";
+$lang['dt_employee_status'] = "Estado";
+$lang['emp_success_created'] = "Empleado Creado";
+$lang['emp_success_updated'] = "Empleado Actualizado";
+$lang['emp_success_deleted'] = "Empleado Eliminado";
+$lang['emp_duplicate'] = "Ya existe el correo electrónico";
+$lang['emp_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al Empleado";
+
 # Services
 $lang['serv_new'] = "Nuevo Servicio";
 $lang['serv_update'] = "Editando Servicio";
