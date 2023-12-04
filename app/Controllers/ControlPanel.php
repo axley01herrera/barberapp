@@ -14,18 +14,24 @@ class ControlPanel extends BaseController
     protected $objControlPanelModel;
     protected $objMainModel;
     protected $config;
+    protected $profile;
     protected $objEmail;
 
     public function __construct()
     {
+        # Session
         $this->objSession = session();
-        $this->objRequest = \Config\Services::request();
+
+        # Models
         $this->objConfigModel = new ConfigModel;
         $this->objControlPanelModel = new ControlPanelModel;
         $this->objMainModel = new MainModel;
-        $this->config = $this->objConfigModel->getConfig(1);
-        $this->objRequest->setLocale($this->config[0]->lang);
 
+        # Config
+        $this->config = $this->objConfigModel->getConfig(1);
+        $this->profile = $this->objControlPanelModel->getProfile(1);
+
+        # Email Settings
         $emailConfig = array();
         $emailConfig['protocol'] = EMAIL_PROTOCOL;
         $emailConfig['SMTPHost'] = EMAIL_SMTP_HOST;
@@ -35,20 +41,26 @@ class ControlPanel extends BaseController
         $emailConfig['SMTPCrypto'] = EMAIL_SMTP_CRYPTO;
         $emailConfig['mailType'] = EMAIL_MAIL_TYPE;
 
+        # Services
+        $this->objRequest = \Config\Services::request();
         $this->objEmail = \Config\Services::email($emailConfig);
 
+        # Set Lang
+        $this->objRequest->setLocale($this->config[0]->lang);
+
+        # Load Helpers
         helper('Site');
     }
 
-    ####
+    ##############################
     # Section Dashboard
-    ####
+    ##############################
 
     public function dashboard()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         $data['config'] = $this->config;
@@ -56,22 +68,18 @@ class ControlPanel extends BaseController
         $data['activeDashboard'] = "active";
         $data['page'] = 'controlPanel/dashboard/mainDashboard';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
-    ####
-    # End Section Dashboard
-    ####
-
-    ####
+    ##############################
     # Section TPV
-    ####
+    ##############################
 
     public function tpv()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         # data
@@ -82,22 +90,18 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/tpv/mainTPV';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
-    ####
-    # End Section TPV
-    ####
-
-    ####
+    ##############################
     # Section Calendar
-    ####
+    ##############################
 
     public function calendar()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         # data
@@ -108,22 +112,18 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/calendar/mainCalendar';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
-    ####
-    # End Section Calendar
-    ####
-
-    ####
+    ##############################
     # Section Services
-    ####
+    ##############################
 
     public function services()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         $data['config'] = $this->config;
@@ -133,14 +133,14 @@ class ControlPanel extends BaseController
         $data['services'] = $this->objMainModel->objData('service');
         $data['page'] = 'controlPanel/services/mainServices';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
     public function showModalService()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         $data['config'] = $this->config;
@@ -213,19 +213,19 @@ class ControlPanel extends BaseController
         }
     }
 
-    ####
+    ##############################
     # End Section Services
-    ####
+    ##############################
 
-    #### 
+    ##############################
     ## Section Customer
-    ####
+    ##############################
 
     public function customers()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         # data
@@ -236,7 +236,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/customers/mainCustomers';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     } // ok
 
     public function processingCustomer()
@@ -306,7 +306,7 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         # data
@@ -317,14 +317,14 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/customers/principalCustomerProfile';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
     public function showModalCustomer()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         # params
         $action = $this->objRequest->getPost('action');
@@ -487,19 +487,15 @@ class ControlPanel extends BaseController
         return json_encode($result);
     } // ok
 
-    #### 
-    ## End Section Customer
-    ####
-
-    ####
+    ##############################
     # Section Employees
-    ####
+    ##############################
 
     public function employees()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         # data
@@ -511,7 +507,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/employees/mainEmployees';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
     public function processingEmployee()
@@ -575,7 +571,7 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         # data
@@ -586,14 +582,14 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/employees/principalEmployeeProfile';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
     public function showModalEmployee()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         # params
         $action = $this->objRequest->getPost('action');
@@ -755,19 +751,15 @@ class ControlPanel extends BaseController
         return json_encode($result);
     }
 
-    #### 
-    ## End Section Employees
-    ####
-
-    ####
+    ##############################
     # Section Reports
-    ####
+    ##############################
 
     public function reports()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         # data
@@ -778,22 +770,18 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/reports/mainReports';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
-    #### 
-    ## End Section Reports
-    ####
-
-    ####
+    ##############################
     # Section Schedules
-    ####
+    ##############################
 
     public function schedules()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $data = array();
         # data
@@ -804,42 +792,44 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/schedules/mainSchedules';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
-    #### 
-    ## End Section Schedules
-    ####
-
-    ####
+    ##############################
     # Section Profile
-    ####
+    ##############################
+
     public function profile()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
+        # params
         $tab = $this->objRequest->getPostGet('tab');
 
         if (empty($tab))
             $tab = "profile";
 
         $data = array();
-        $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        # menu
         $data['activeProfile'] = "active";
+        # tab
         $data['tab'] = $tab;
+        # config
+        $data['config'] = $this->config;
+        $data['profile'] = $this->profile;
+        # page
         $data['page'] = 'controlPanel/profile/mainProfile';
 
-        return view('ControlPanel/mainAdmin', $data);
+        return view('ControlPanel/mainCpanel', $data);
     }
 
     public function profileTab()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('adminLogout');
+            return view('contolPanelLogout');
 
         $tab = $this->objRequest->getPost('tab');
 
@@ -961,8 +951,4 @@ class ControlPanel extends BaseController
 
         return json_encode($this->objMainModel->objUpdate('config', $data, 1));
     }
-    ####
-    # End Section Profile
-    ####
-
 }

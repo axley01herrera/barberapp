@@ -20,7 +20,7 @@ class Customer extends BaseController
 
     public function __construct()
     {
-        # Clear Session
+        # Session
         $this->objSession = session();
 
         # Models
