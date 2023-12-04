@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS `config` (
   PRIMARY KEY (`id`)
 );
 
+ALTER TABLE `config` ADD `timezone` VARCHAR(500) NOT NULL DEFAULT 'Atlantic/Canary' AFTER `currency`; 
+
 INSERT INTO `config` (`id`, `access_key`, `lang`, `theme`, `currency`) VALUES
 (1, '$2y$10$6joTL.Ifjy.UNj4pCgviqe8w0xBtE.yYs7yIxVMtk0BpUuaKSKGTO', 'es', 'light', '€');
 
