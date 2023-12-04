@@ -43,13 +43,16 @@
                             <div class="col-12 mb-5">
                                 <input type="password" id="txt-confirmPass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_repeat'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                             </div>
-                            
+
                             <div class="col-12">
                                 <input type="checkbox" id="check-terms" data-value="0"> <label for="check-terms" class="text-muted"><?php echo lang('Text.registration_accept_text') ?> <a href="#" id="show-modal-policy-privacy"><?php echo lang('Text.registration_policy_privacy'); ?></a></label>.
                             </div>
                         </div>
                         <div class="d-grid mb-10">
                             <button type="button" id="btn-create<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_create_account'); ?></button>
+                        </div>
+                        <div class="d-grid mb-10 text-center">
+                            <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
                         </div>
                     </div>
                 </div>

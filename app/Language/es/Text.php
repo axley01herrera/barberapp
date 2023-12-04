@@ -82,7 +82,7 @@ $lang['btn_send_recover_pass_email'] = "Enviar Correo de Recuperación";
 
 // Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
-$lang['registration_subtitle'] = 'Introduzca sus datos';
+$lang['registration_subtitle'] = 'Introduzca sus Datos';
 $lang['registration_accept_text'] = 'Acepto la';
 $lang['registration_accept_msg'] = 'Debe aceptar la Política de Privacidad';
 $lang['registration_policy_privacy'] = 'Política de Privacidad';
