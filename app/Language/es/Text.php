@@ -21,6 +21,7 @@ $lang['primary_phone'] = "Teléfono Principal";
 $lang['phone'] = "Teléfono";
 $lang['secondary_phone'] = "Teléfono Segundario";
 $lang['email'] = "Correo Electrónico";
+$lang['address'] = "Dirección";
 $lang['address1'] = "Linea 1 de Dirección";
 $lang['address2'] = "Linea 2 de Dirección";
 $lang['city'] = "Ciudad";

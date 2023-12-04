@@ -60,6 +60,7 @@ class Customer extends BaseController
         $data = array();
         $data['config'] = $this->config;
         $data['profile'] = $this->profile;
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
         # data
         $data['page'] = 'customer/index';
 

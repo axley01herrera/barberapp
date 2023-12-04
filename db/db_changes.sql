@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
 
 ALTER TABLE `customer` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailSubscription`; 
 ALTER TABLE `customer` ADD `lastSession` DATE NULL AFTER `emailSubscription`; 
+ALTER TABLE `customer` ADD `gender` VARCHAR(1) NULL AFTER `lastName`; 
 
 #### 
   ## End Table customer
@@ -120,4 +121,25 @@ INSERT INTO `service` (`id`, `title`, `price`, `description`) VALUES
   ## End Table service
 ###
 
+#### 
+  ## Table address
+###
+
+DROP TABLE IF EXISTS `address`;
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `customerID` int DEFAULT NULL,
+  `employeeID` int DEFAULT NULL,
+  `line1` varchar(500) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `line2` varchar(500) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `city` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `state` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `zip` int NOT NULL,
+  `country` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+)
+
+#### 
+  ## End Table address
+###
 
