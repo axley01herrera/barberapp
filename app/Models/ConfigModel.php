@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Config_Model extends Model
+class ConfigModel extends Model
 {
     protected $db;
 
@@ -40,5 +40,5 @@ class Config_Model extends Model
             $result['msg'] = lang('Text.cp_auth_invalid_password');
             return $result;
         }
-    }
+    } // ok
 }

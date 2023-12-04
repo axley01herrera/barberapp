@@ -6,9 +6,9 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-#### 
+############################## 
 ## Home Routes
-####
+##############################
 
 $routes->get('/', 'Home::index');
 $routes->get('Home/controlPanelAuth', 'Home::controlPanelAuth');
@@ -24,25 +24,27 @@ $routes->post('Home/signUpCustomerProcess', 'Home::signUpCustomerProcess');
 $routes->get('Home/verifiedEmail', 'Home::verifiedEmail');
 $routes->get('Home/forgotPassword', 'Home::forgotPassword');
 $routes->post('Home/sendForgotPasswordEmail', 'Home::sendForgotPasswordEmail');
+$routes->get('Home/emailView', 'Home::emailView');
 
-#### 
+############################## 
 ## ControlPanel Routes
-####
+##############################
+
 $routes->get('ControlPanel/dashboard', 'ControlPanel::dashboard');
 
-# Admin -> TPV
+# ControlPanel -> TPV
 $routes->get('ControlPanel/tpv', 'ControlPanel::tpv');
 
-# Admin -> Calendar
+# ControlPanel -> Calendar
 $routes->get('ControlPanel/calendar', 'ControlPanel::calendar');
 
-# Admin -> Services
+# ControlPanel -> Services
 $routes->get('ControlPanel/services', 'ControlPanel::services');
 $routes->post('ControlPanel/showModalService', 'ControlPanel::showModalService');
 $routes->post('ControlPanel/createService', 'ControlPanel::createService');
 $routes->post('ControlPanel/updateService', 'ControlPanel::updateService');
 
-# Admin -> Customers
+# ControlPanel -> Customers
 $routes->get('ControlPanel/customers', 'ControlPanel::customers');
 $routes->post('ControlPanel/showModalCustomer', 'ControlPanel::showModalCustomer');
 $routes->post('ControlPanel/createCustomer', 'ControlPanel::createCustomer');
@@ -52,7 +54,7 @@ $routes->post('ControlPanel/deleteCustomer', 'ControlPanel::deleteCustomer');
 $routes->post('ControlPanel/changeCustomerStatus', 'ControlPanel::changeCustomerStatus');
 $routes->get('ControlPanel/customerProfile', 'ControlPanel::customerProfile');
 
-# Admin -> Employees
+# ControlPanel -> Employees
 $routes->get('ControlPanel/employees', 'ControlPanel::employees');
 $routes->post('ControlPanel/showModalEmployee', 'ControlPanel::showModalEmployee');
 $routes->post('ControlPanel/createEmployee', 'ControlPanel::createEmployee');
@@ -62,13 +64,13 @@ $routes->post('ControlPanel/deleteEmployee', 'ControlPanel::deleteEmployee');
 $routes->post('ControlPanel/changeEmployeeStatus', 'ControlPanel::changeEmployeeStatus');
 $routes->get('ControlPanel/employeeProfile', 'ControlPanel::employeeProfile');
 
-# Admin -> Reports
+# ControlPanel -> Reports
 $routes->get('ControlPanel/reports', 'ControlPanel::reports');
 
-# Admin -> Schedules
+# ControlPanel -> Schedules
 $routes->get('ControlPanel/schedules', 'ControlPanel::schedules');
 
-# Admin -> Profile
+# ControlPanel -> Profile
 $routes->get('ControlPanel/profile', 'ControlPanel::profile');
 $routes->post('ControlPanel/profileTab', 'ControlPanel::profileTab');
 $routes->post('ControlPanel/uploadAvatarProfile', 'ControlPanel::uploadAvatarProfile');
@@ -77,9 +79,10 @@ $routes->post('ControlPanel/updateProfile', 'ControlPanel::updateProfile');
 $routes->post('ControlPanel/changeAccessKey', 'ControlPanel::changeAccessKey');
 $routes->post('ControlPanel/updateConfig', 'ControlPanel::updateConfig');
 
-# Test
-$routes->get('Home/emailView', 'Home::emailView');
+############################## 
+## Customer Routes
+##############################
 
-#### 
-## End Admin Routes
-####
+$routes->get('Customer/index', 'Customer::index');
+
+

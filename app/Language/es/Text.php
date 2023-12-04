@@ -192,9 +192,9 @@ $lang['e_signup_complete_account_info'] = "Es de vital importancia que usted ver
 # Email Recover Password
 $lang['e_rp_hi'] = "Hola";
 $lang['e_rp_welcome_company'] = "De";
-$lang['e_rp_complete_account'] = "Recupera tu Contrasea";
-$lang['e_rp_complete_account_msg'] = "Si está recibiendo este mensaje es porque ha soliciado restablecer su contraseña de acceso. Para ello simplemente haga click en el botón a continuación y será redirigido a un formulario para introducir su nueva contraseña.";
+$lang['e_rp_complete_account'] = "Recupera tu Contraseña";
+$lang['e_rp_complete_account_msg'] = "Si está recibiendo este mensaje, es porque ha solicitado restablecer su contraseña de acceso. Para ello, simplemente haga clic en el botón a continuación y será redirigido a un formulario para introducir su nueva contraseña.";
 $lang['e_rp_create_account'] = "Crear Contraseña";
-$lang['e_rp_complete_account_info'] = "Si no ha sido usted quien ha solicitado restablecer su contraseña no se alarme, aún no se ha realizado ningún cambio en su perfil. Simplemente ignore este mensaje. Gracias";
+$lang['e_rp_complete_account_info'] = "Si usted no ha solicitado restablecer su contraseña, le pedimos que no se alarme; hasta el momento no se ha realizado ningún cambio en su perfil. Por favor, simplemente ignore este mensaje. Gracias.";
 
 return $lang;

@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\Config_Model;
-use App\Models\Main_Model;
+use App\Models\ConfigModel;
+use App\Models\MainModel;
 use App\Models\ControlPanelModel;
 
 class ControlPanel extends BaseController
@@ -20,9 +20,9 @@ class ControlPanel extends BaseController
     {
         $this->objSession = session();
         $this->objRequest = \Config\Services::request();
-        $this->objConfigModel = new Config_Model;
+        $this->objConfigModel = new ConfigModel;
         $this->objControlPanelModel = new ControlPanelModel;
-        $this->objMainModel = new Main_Model;
+        $this->objMainModel = new MainModel;
         $this->config = $this->objConfigModel->getConfig(1);
         $this->objRequest->setLocale($this->config[0]->lang);
 

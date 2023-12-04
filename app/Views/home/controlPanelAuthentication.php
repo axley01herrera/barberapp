@@ -32,7 +32,7 @@
                             <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_signing'); ?></button>
                         </div>
                         <div class="d-grid mb-10 text-center">
-                            <a href="<?php echo base_url('/');?>" class="link-primary"><?php echo lang("Text.btn_home")?></a>
+                            <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
                         </div>
                     </div>
                 </div>
@@ -42,50 +42,48 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $('#btn-login<?php echo $uniqid; ?>').on('click', function() { // Submit
-            let key = $('#txt-pass<?php echo $uniqid; ?>').val();
-            if (key === "") {
-                $('#txt-pass<?php echo $uniqid; ?>').addClass('is-invalid');
-                simpleAlert("<?php echo lang('Text.cp_auth_required_password'); ?>", "warning");
-            } else {
-                $('#btn-login<?php echo $uniqid; ?>').attr('disabled', true);
-                $.ajax({
-                    type: "post",
-                    url: "<?php echo base_url('Home/controlPanelAuthProcess'); ?>",
-                    data: {
-                        'key': key
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.error === 0) {
-                            window.location.href = "<?php echo base_url('ControlPanel/dashboard'); ?>"
-                        } else {
-                            simpleAlert(response.msg, "error");
-                            $('#txt-pass<?php echo $uniqid; ?>').addClass('is-invalid');
-                            $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
-                        }
-                    },
-                    error: function(error) {
-                        simpleAlert("<?php echo lang('Text.error_msg'); ?>", "error");
+    $('#btn-login<?php echo $uniqid; ?>').on('click', function() { // Submit
+        let key = $('#txt-pass<?php echo $uniqid; ?>').val();
+        if (key === "") {
+            $('#txt-pass<?php echo $uniqid; ?>').addClass('is-invalid');
+            simpleAlert("<?php echo lang('Text.cp_auth_required_password'); ?>", "warning");
+        } else {
+            $('#btn-login<?php echo $uniqid; ?>').attr('disabled', true);
+            $.ajax({
+                type: "post",
+                url: "<?php echo base_url('Home/controlPanelAuthProcess'); ?>",
+                data: {
+                    'key': key
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.error === 0) {
+                        window.location.href = "<?php echo base_url('ControlPanel/dashboard'); ?>"
+                    } else {
+                        simpleAlert(response.msg, "error");
+                        $('#txt-pass<?php echo $uniqid; ?>').addClass('is-invalid');
                         $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
                     }
-                });
-            }
-        });
-
-        $('#txt-pass<?php echo $uniqid; ?>').on('input', function() {
-            let value = $(this).val();
-            if (value === "")
-                $(this).addClass('is-invalid');
-            else
-                $(this).removeClass('is-invalid');
-        });
-
-        let session = "<?php echo $session; ?>";
-
-        if (session == "expired") {
-            simpleAlert("<?php echo lang('Text.session_expired'); ?>", "error");
+                },
+                error: function(error) {
+                    simpleAlert("<?php echo lang('Text.error_msg'); ?>", "error");
+                    $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
+                }
+            });
         }
     });
+
+    $('#txt-pass<?php echo $uniqid; ?>').on('input', function() {
+        let value = $(this).val();
+        if (value === "")
+            $(this).addClass('is-invalid');
+        else
+            $(this).removeClass('is-invalid');
+    });
+
+    var session = "<?php echo $session; ?>";
+
+    if (session == "expired") {
+        simpleAlert("<?php echo lang('Text.session_expired'); ?>", "error");
+    }
 </script>

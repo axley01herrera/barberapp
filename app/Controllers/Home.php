@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\AuthenticationModel;
-use App\Models\Config_Model;
+use App\Models\ConfigModel;
 use App\Models\ControlPanelModel;
-use App\Models\Main_Model;
+use App\Models\MainModel;
 
 class Home extends BaseController
 {
@@ -16,6 +16,7 @@ class Home extends BaseController
     protected $objAuthenticationModel;
     protected $objMainModel;
     protected $config;
+    protected $profile;
     protected $objEmail;
 
     public function __construct()
@@ -25,13 +26,14 @@ class Home extends BaseController
         $this->objSession->set('user', []);
 
         # Models
-        $this->objConfigModel = new Config_Model;
+        $this->objConfigModel = new ConfigModel;
         $this->objControlPanelModel = new ControlPanelModel;
         $this->objAuthenticationModel = new AuthenticationModel;
-        $this->objMainModel = new Main_Model;
+        $this->objMainModel = new MainModel;
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
+        $this->profile = $this->objControlPanelModel->getProfile(1);
 
         # Email Settings
         $emailConfig = array();
@@ -55,7 +57,7 @@ class Home extends BaseController
     {
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['page'] = 'home/landing';
 
         return view('home/mainHome', $data);
@@ -63,10 +65,14 @@ class Home extends BaseController
 
     public function controlPanelAuth()
     {
+        # params
+        $session = $this->request->getGet('session');
+
         $data = array();
-        $data['session'] = $this->request->getGet('session');
+        # data
+        $data['session'] = $session;
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['uniqid'] = uniqid();
         $data['page'] = 'home/controlPanelAuthentication';
 
@@ -88,7 +94,7 @@ class Home extends BaseController
 
         $result = $this->objConfigModel->login($key);
 
-        if ($result['error'] === 0) {
+        if ($result['error'] == 0) {
             # Create Session
             $session = array();
             $session['role'] = 'admin';
@@ -107,7 +113,7 @@ class Home extends BaseController
         $data = array();
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
 
         if (empty($token))
             return view('errorPages/globalError', $data);
@@ -141,7 +147,7 @@ class Home extends BaseController
         $data = array();
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
 
         if (empty($token))
             return view('errorPages/globalError', $data);
@@ -172,7 +178,7 @@ class Home extends BaseController
         $customerID = $this->objRequest->getPost('customerID');
         $employeeID = $this->objRequest->getPost('employeeID');
 
-        $password = password_hash(htmlspecialchars(trim($this->objRequest->getPost('pass'))), PASSWORD_DEFAULT);
+        $password = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
 
         $data = array();
         $data['password'] = $password;
@@ -198,12 +204,16 @@ class Home extends BaseController
 
     public function signInCustomer()
     {
+        # params
+        $session = $this->request->getGet('session');
+
         $data = array();
         # data
         $data['uniqid'] = uniqid();
+        $data['session'] = $session;
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
-        #page
+        $data['profile'] = $this->profile;
+        # page
         $data['page'] = 'home/signInCustomer';
 
         return view('home/mainHome', $data);
@@ -238,7 +248,7 @@ class Home extends BaseController
         # data
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         #page
         $data['page'] = 'home/signUpCustomer';
 
@@ -277,18 +287,18 @@ class Home extends BaseController
         # Create Customer
         $result = $this->objMainModel->objCreate('customer', $data);
 
-        $profile = $this->objControlPanelModel->getProfile(1);
+        
         # Sen Email
         $dataEmail = array();
-        $dataEmail['pageTitle'] = $profile[0]->company_name;
+        $dataEmail['pageTitle'] = $this->profile[0]->company_name;
         $dataEmail['person'] = $name . ' ' . $lastName;
         $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token;
-        $dataEmail['companyPhone'] = $profile[0]->phone1;
-        $dataEmail['companyEmail'] = $profile[0]->email;
+        $dataEmail['companyPhone'] = $this->profile[0]->phone1;
+        $dataEmail['companyEmail'] = $this->profile[0]->email;
 
-        $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
         $this->objEmail->setTo($email);
-        $this->objEmail->setSubject($profile[0]->company_name);
+        $this->objEmail->setSubject($this->profile[0]->company_name);
         $this->objEmail->setMessage(view('email/mailSignup', $dataEmail), []);
 
         $this->objEmail->send(false);
@@ -305,7 +315,7 @@ class Home extends BaseController
         # data
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
 
         if (empty($token))
             return view('errorPages/globalError', $data);
@@ -313,16 +323,12 @@ class Home extends BaseController
         $result = $this->objMainModel->objData('customer', 'token', $token);
 
         if (!empty($result)) {
-            $data = array();
-            $data['emailVerified'] = 1;
-            $data['token'] = '';
+            $dataUpdate = array();
+            $dataUpdate['emailVerified'] = 1;
+            $dataUpdate['token'] = '';
 
             # Update Customer 
-            $this->objMainModel->objUpdate('customer', $data, $result[0]->id);
-
-            # data
-            $data['config'] = $this->config;
-            $data['profile'] = $this->objControlPanelModel->getProfile(1);
+            $this->objMainModel->objUpdate('customer', $dataUpdate, $result[0]->id);
 
             return view('home/successActivateAccount', $data);
         } else
@@ -335,7 +341,7 @@ class Home extends BaseController
         #data
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         #page
         $data['page'] = 'home/forgotPassword';
 
@@ -367,22 +373,19 @@ class Home extends BaseController
 
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
-
-        # profile info
-        $profile = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
 
         # Sen Email
         $dataEmail = array();
-        $dataEmail['pageTitle'] = $profile[0]->company_name;
+        $dataEmail['pageTitle'] = $this->profile[0]->company_name;
         $dataEmail['person'] = $result[0]->name . ' ' . $result[0]->lastName;
         $dataEmail['url'] = base_url('Home/customerCreatePassword') . '?token=' . $data['token'];
-        $dataEmail['companyPhone'] = $profile[0]->phone1;
-        $dataEmail['companyEmail'] = $profile[0]->email;
+        $dataEmail['companyPhone'] = $this->profile[0]->phone1;
+        $dataEmail['companyEmail'] = $this->profile[0]->email;
 
-        $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
         $this->objEmail->setTo($email);
-        $this->objEmail->setSubject($profile[0]->company_name);
+        $this->objEmail->setSubject($this->profile[0]->company_name);
         $this->objEmail->setMessage(view('email/recoverPassword', $dataEmail), []);
 
         if ($this->objEmail->send(false)) {

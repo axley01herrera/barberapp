@@ -35,7 +35,7 @@
                         <div class="d-grid mb-10">
                             <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_signing'); ?></button>
                         </div>
-                        
+
                         <div class="d-grid mb-10 text-center">
                             <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
                         </div>
@@ -62,8 +62,8 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        if (response.error == 0) { // TODO
-
+                        if (response.error == 0) {
+                            window.location.href = "<?php echo base_url('Customer/index'); ?>";
                         } else if (response.error == 1) {
                             if (response.msg == 'EMAIL_NOT_FOUND') {
                                 simpleAlert('<?php echo lang('Text.invalid_credentials') ?>', 'warning');
@@ -119,5 +119,11 @@
             }
         });
         return response;
+    }
+
+    var session = "<?php echo $session; ?>";
+
+    if (session == "expired") {
+        simpleAlert("<?php echo lang('Text.session_expired'); ?>", "error");
     }
 </script>

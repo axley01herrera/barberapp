@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Main_Model extends Model
+class MainModel extends Model
 {
     protected $db;
 
