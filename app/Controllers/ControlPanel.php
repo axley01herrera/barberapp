@@ -581,10 +581,10 @@ class ControlPanel extends BaseController
         # data
         $data['profile'] = $this->objControlPanelModel->getProfile(1);
         $data['config'] = $this->config;
-        $data['activeCustomers'] = "active";
-        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPostGet('id'));
+        $data['activeEmployees'] = "active";
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPostGet('id'));
         # page
-        $data['page'] = 'controlPanel/customers/principalCustomerProfile';
+        $data['page'] = 'controlPanel/employees/principalEmployeeProfile';
 
         return view('ControlPanel/mainAdmin', $data);
     }

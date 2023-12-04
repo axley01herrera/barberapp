@@ -96,7 +96,7 @@
                                         <!--begin::Options-->
                                         <label class="form-check form-check-sm form-check-custom form-check-solid">
                                             <input class="form-check-input" type="checkbox" value="2" checked="checked">
-                                            <span class="form-check-label">Customer</span>
+                                            <span class="form-check-label">Employee</span>
                                         </label>
                                         <!--end::Options-->
                                     </div>
@@ -160,12 +160,12 @@
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Name-->
-                                    <p class="fs-3 text-gray-800 fw-bold mb-3"><?php echo $customer[0]->name . ' ' . $customer[0]->lastName; ?></p>
+                                    <p class="fs-3 text-gray-800 fw-bold mb-3"><?php echo $employee[0]->name . ' ' . $employee[0]->lastName; ?></p>
                                     <!--end::Name-->
                                     <!--begin::Position-->
                                     <div class="mb-9">
                                         <!--begin::Badge-->
-                                        <div class="badge badge-lg badge-light-primary d-inline">Cliente</div>
+                                        <div class="badge badge-lg badge-light-primary d-inline">Employee</div>
                                         <!--begin::Badge-->
                                     </div>
                                     <!--end::Position-->
@@ -230,7 +230,7 @@
                                             <i class="ki-duotone ki-down fs-3"></i>
                                         </span>
                                     </div>
-                                    <span data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-original-title="Edit customer details" data-kt-initialized="1">
+                                    <span data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-original-title="Edit employee details" data-kt-initialized="1">
                                         <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_details">Edit</a>
                                     </span>
                                 </div>
@@ -246,7 +246,7 @@
                                         <!--begin::Details item-->
                                         <div class="fw-bold mt-5">Email</div>
                                         <div class="text-gray-600">
-                                            <a href="#" class="text-gray-600 text-hover-primary"><?php echo $customer[0]->email ; ?></a>
+                                            <a href="#" class="text-gray-600 text-hover-primary"><?php echo $employee[0]->email ; ?></a>
                                         </div>
                                         <!--begin::Details item-->
                                         <!--begin::Details item-->
@@ -495,7 +495,7 @@
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-5">
-                                        <a href="#" class="menu-link text-danger px-5">Delete customer</a>
+                                        <a href="#" class="menu-link text-danger px-5">Delete employee</a>
                                     </div>
                                     <!--end::Menu item-->
                                 </div>
@@ -2373,7 +2373,7 @@
                                                     <!--begin::Label-->
                                                     <label class="form-check-label" for="kt_modal_update_email_notification_3">
                                                         <div class="fw-bold">Disputes</div>
-                                                        <div class="text-gray-600">Receive a notification if a payment is disputed by a customer and for dispute resolutions.</div>
+                                                        <div class="text-gray-600">Receive a notification if a payment is disputed by a employee and for dispute resolutions.</div>
                                                     </label>
                                                     <!--end::Label-->
                                                 </div>
@@ -2427,7 +2427,7 @@
                                                     <!--begin::Label-->
                                                     <label class="form-check-label" for="kt_modal_update_email_notification_6">
                                                         <div class="fw-bold">Invoice Mispayments</div>
-                                                        <div class="text-gray-600">Receive a notification if a customer sends an incorrect amount to pay their invoice.</div>
+                                                        <div class="text-gray-600">Receive a notification if a employee sends an incorrect amount to pay their invoice.</div>
                                                     </label>
                                                     <!--end::Label-->
                                                 </div>
@@ -2599,7 +2599,7 @@
                                                         <td class="min-w-70px">
                                                             <div class="badge badge-light-warning">404 WRN</div>
                                                         </td>
-                                                        <td>POST /v1/customer/c_64b7761820e5f/not_found</td>
+                                                        <td>POST /v1/employee/c_64b7761820e5f/not_found</td>
                                                         <td class="pe-0 text-end min-w-200px">22 Sep 2023, 11:30 am</td>
                                                     </tr>
                                                     <tr>
@@ -2664,7 +2664,7 @@
                                     <!--begin::Card body-->
                                     <div class="card-body py-0">
                                         <!--begin::Table-->
-                                        <table class="table align-middle table-row-dashed fs-6 text-gray-600 fw-semibold gy-5" id="kt_table_customers_events">
+                                        <table class="table align-middle table-row-dashed fs-6 text-gray-600 fw-semibold gy-5" id="kt_table_employees_events">
                                             <tbody>
                                                 <tr>
                                                     <td class="min-w-400px">Invoice
