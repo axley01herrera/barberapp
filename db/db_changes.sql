@@ -91,6 +91,9 @@ CREATE TABLE IF NOT EXISTS `profile` (
   PRIMARY KEY (`id`)
 );
 
+ALTER TABLE `profile` ADD `facebook` VARCHAR(500) NULL AFTER `country`; 
+ALTER TABLE `profile` ADD `instagram` VARCHAR(500) NULL AFTER `facebook`; 
+
 INSERT INTO `profile` (`id`, `avatar`, `company_name`, `company_type`, `email`, `phone1`, `phone2`, `address1`, `address2`, `city`, `state`, `zip`, `country`) VALUES
 (1, '', 'Demo', 'Barbería', 'axley01herrera@gmail.com', '(+34) 62 72 77 258', '', 'Calle Nepal', '# 16', 'Playa Blanca', 'Las Palmas', 35580, 'España');
 

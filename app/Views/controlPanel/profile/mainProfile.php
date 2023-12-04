@@ -19,15 +19,15 @@
             <div class="card mb-5 mb-xl-10 mt-5">
                 <div class="card-body pb-0">
                     <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
-                        <!--Profile Info-->
+                        <!-- Profile Info -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "profile") echo "active"; ?> " data-tab-profile="profile" href="#"><?php echo lang('Text.prof_menu_edit_profile'); ?></a>
                         </li>
-                        <!--Acess Key-->
+                        <!-- Acess Key -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "key") echo "active"; ?>" data-tab-profile="key" href="#"><?php echo lang('Text.prof_menu_change_key'); ?></a>
                         </li>
-                        <!--Config-->
+                        <!-- Config -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "config") echo "active"; ?>" data-tab-profile="config" href="#"><?php echo lang('Text.prof_menu_config'); ?></a>
                         </li>

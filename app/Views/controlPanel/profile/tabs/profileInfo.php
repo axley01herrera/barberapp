@@ -1,4 +1,3 @@
-<!-- Tab Edit Profile -->
 <div class="row">
     <div class="col-12 mt-5">
         <style>
@@ -11,33 +10,34 @@
             }
         </style>
 
-        <!--Image Input-->
+        <!-- Image Input -->
         <div id="kt_image_input_profile<?php echo $uniqid; ?>" class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(<?php echo base_url('public/assets/media/svg/avatars/blank.svg'); ?>)">
-            <!--Image Preview-->
+            <!-- Image Preview -->
             <?php if (empty($profile[0]->avatar)) { ?>
                 <div class="image-input-wrapper w-125px h-125px" style="background-image: url(<?php echo base_url('public/assets/media/svg/avatars/blank.svg'); ?>)"></div>
             <?php } else { ?>
                 <div class="image-input-wrapper w-125px h-125px" style="background-image: url(data:image/png;base64,<?php echo base64_encode($profile[0]->avatar); ?>)"></div>
             <?php } ?>
-            <!--Edit Button-->
+            <!-- Edit Button -->
             <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.prof_change_avatar'); ?>">
                 <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
-                <!--Inputs-->
+                <!-- Inputs -->
                 <input id="avatar<?php echo $uniqid; ?>" type="file" name="avatar" accept=".png, .jpg, .jpeg" />
                 <input type="hidden" name="avatar_remove" />
 
             </label>
-            <!--Cancel button-->
+            <!-- Cancel button -->
             <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.prof_cancel_avatar'); ?>">
                 <i class="ki-outline ki-cross fs-3"></i>
             </span>
-            <!--Remove button-->
+            <!-- Remove button -->
             <?php if (!empty($profile[0]->avatar)) { ?>
                 <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.prof_remove_avatar'); ?>">
                     <i class="ki-outline ki-cross fs-3"></i>
                 </span>
             <?php } ?>
         </div>
+        <div class="fs-6 fw-semibold">Logo</div>
     </div>
     <!-- Company Name-->
     <div class="col-12 col-lg-6 mt-5">
@@ -93,6 +93,16 @@
         <!-- Country -->
         <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?> <span class="text-danger">*</span></label>
         <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->country; ?>" disabled />
+    </div>
+    <div class="col-12 mt-5">
+        <!-- Facebook -->
+        <label class="fs-6 fw-semibold" for="txt-facebook<?php echo $uniqid; ?>"><?php echo lang('Text.facebook_link'); ?> <span class="text-danger"></span></label>
+        <input type="text" id="txt-facebook<?php echo $uniqid; ?>" class="form-control" value="" disabled />
+    </div>
+    <div class="col-12 mt-5">
+        <!-- Instagram -->
+        <label class="fs-6 fw-semibold" for="txt-instagram<?php echo $uniqid; ?>"><?php echo lang('Text.instagram_link'); ?> <span class="text-danger"></span></label>
+        <input type="text" id="txt-instagram<?php echo $uniqid; ?>" class="form-control" value="" disabled />
     </div>
 </div>
 <div class="row">
@@ -215,16 +225,18 @@
                             'city': $('#txt-city<?php echo $uniqid; ?>').val(),
                             'state': $('#txt-state<?php echo $uniqid; ?>').val(),
                             'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
-                            'country': $('#txt-country<?php echo $uniqid; ?>').val()
+                            'country': $('#txt-country<?php echo $uniqid; ?>').val(),
+                            'facebook': $('#txt-facebook<?php echo $uniqid; ?>').val(),
+                            'instagram': $('#txt-instagram<?php echo $uniqid; ?>').val(),
                         },
                         dataType: "json",
                         success: function(response) {
-                            if (response.error === 0) {
+                            if (response.error == 0) {
                                 simpleSuccessAlert("<?php echo lang("Text.prof_data_updated"); ?>");
                                 setTimeout(() => {
                                     window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
                                 }, "2000");
-                            } else if (response.error === 1)
+                            } else if (response.error == 1)
                                 globalError();
                             else
                                 window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";

@@ -823,7 +823,7 @@ class ControlPanel extends BaseController
         $data['page'] = 'controlPanel/profile/mainProfile';
 
         return view('ControlPanel/mainCpanel', $data);
-    }
+    } // ok
 
     public function profileTab()
     {
@@ -852,7 +852,7 @@ class ControlPanel extends BaseController
         $data['uniqid'] = uniqid();
 
         return view($view, $data);
-    }
+    } // ok
 
     public function uploadAvatarProfile()
     {
@@ -860,12 +860,12 @@ class ControlPanel extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
             $result = array();
             $result['error'] = 2;
-            $result['msg'] = "session expired";
+            $result['msg'] = "SESSION_EXPIRED";
             return json_encode($result);
         }
 
         return json_encode($this->objMainModel->uploadFile('profile', 1, 'avatar', $_FILES['file']));
-    }
+    } // ok
 
     public function removeAvatarProfile()
     {
@@ -873,7 +873,7 @@ class ControlPanel extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
             $result = array();
             $result['error'] = 2;
-            $result['msg'] = "session expired";
+            $result['msg'] = "SESSION_EXPIRED";
             return json_encode($result);
         }
 
@@ -881,7 +881,7 @@ class ControlPanel extends BaseController
         $data['avatar'] = '';
 
         return json_encode($this->objMainModel->objUpdate('profile', $data, 1));
-    }
+    } // ok
 
     public function updateProfile()
     {
@@ -889,7 +889,8 @@ class ControlPanel extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
             $result = array();
             $result['error'] = 2;
-            $result['msg'] = "session expired";
+            $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -905,9 +906,11 @@ class ControlPanel extends BaseController
         $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
         $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
         $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
+        $data['facebook'] = htmlspecialchars(trim($this->objRequest->getPost('facebook')));
+        $data['instagram'] = htmlspecialchars(trim($this->objRequest->getPost('instagram')));
 
         return json_encode($this->objMainModel->objUpdate('profile', $data, 1));
-    }
+    } // ok
 
     public function changeAccessKey()
     {
@@ -932,7 +935,7 @@ class ControlPanel extends BaseController
         $data['access_key'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('newp'))), PASSWORD_DEFAULT);
 
         return json_encode($this->objMainModel->objUpdate('config', $data, 1));
-    }
+    } // ok
 
     public function updateConfig()
     {
@@ -940,7 +943,8 @@ class ControlPanel extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
             $result = array();
             $result['error'] = 2;
-            $result['msg'] = "session expired";
+            $result['msg'] = "SESSION_EXPIRED";
+            
             return json_encode($result);
         }
 
@@ -950,5 +954,5 @@ class ControlPanel extends BaseController
         $data['currency'] = htmlspecialchars(trim($this->objRequest->getPost('currency')));
 
         return json_encode($this->objMainModel->objUpdate('config', $data, 1));
-    }
+    } // ok
 }

@@ -40,6 +40,8 @@ $lang['not_verified'] = "No Verificado";
 $lang['change_status'] = "Cambiar Estado";
 $lang['create_pass'] = 'Crear Contraseña';
 $lang['create_pass_subtitle'] = "Introduzca su contraseña";
+$lang['facebook_link'] = "Enlace de Facebook";
+$lang['instagram_link'] = "Enlace de Instagram";
 
 # Global MSG
 $lang['thanks'] = "Gracias";
@@ -106,7 +108,7 @@ $lang['cp_auth_subtitle'] = "Introduzca su Clave de Acceso";
 $lang['cp_auth_required_password'] = "La clave de acceso es requerida";
 $lang['cp_auth_invalid_password'] = "Rectifique su clave de acceso";
 
-# Admin Top Bar
+# Control Panel Top Bar
 $lang['top_bar_dashboard'] = "Tablero";
 $lang['top_bar_tpv'] = "TPV";
 $lang['top_bar_calendar'] = "Calendario";
@@ -118,11 +120,11 @@ $lang['top_bar_schedule'] = "Horarios";
 $lang['top_bar_profile'] = "Perfil";
 $lang['top_bar_logout'] = "Salir";
 
-# Admin Footer
+# Control Panel Footer
 $lang['footer_contact_support'] = "Soporte";
 $lang['footer_help'] = "Ayuda";
 
-# Customers
+# Control Panel Customers
 $lang['cust_btn_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_update'] = "Actualizando Cliente";
@@ -137,7 +139,7 @@ $lang['cust_success_deleted'] = "Cliente Eliminado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
 
-# Employees
+# Control Panel Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";
 $lang['emp_modal_title_new'] = "Nuevo Empleado";
 $lang['emp_modal_title_update'] = "Actualizando Empleado";
@@ -152,7 +154,7 @@ $lang['emp_success_deleted'] = "Empleado Eliminado";
 $lang['emp_duplicate'] = "Ya existe el correo electrónico";
 $lang['emp_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al Empleado";
 
-# Services
+# Control Panel Services
 $lang['serv_new'] = "Nuevo Servicio";
 $lang['serv_update'] = "Editando Servicio";
 $lang['serv_edit'] = "Editar Servicio";
@@ -161,7 +163,7 @@ $lang['serv_success_updated'] = "Servicio Actualizado";
 $lang['serv_duplicate'] = "Ya existe el servicio";
 $lang['serv_no_desc'] = "Servicio sin descripción";
 
-# Profile
+# Control Panel Profile
 $lang['prof_menu_edit_profile'] = "Editar Perfil";
 $lang['prof_menu_config'] = "Configuración";
 $lang['prof_menu_change_key'] = "Clave de Acceso";
