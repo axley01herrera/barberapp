@@ -23,21 +23,27 @@
                             <div class="text-gray-500 fw-semibold fs-6"><?php echo lang('Text.registration_subtitle'); ?></div>
                         </div>
                         <div class="row mb-8">
+
                             <div class="col-12 col-lg-6 mb-5">
                                 <input type="text" id="txt-name<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.name'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                             </div>
+
                             <div class="col-12 col-lg-6 mb-5">
                                 <input type="text" id="txt-lastName<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.last_name'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                             </div>
+
                             <div class="col-12 mb-5">
                                 <input type="email" id="txt-email<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.email'); ?>" autocomplete="off" class="form-control bg-transparent email required<?php echo $uniqid; ?>" />
                             </div>
+
                             <div class="col-12 mb-5">
                                 <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                             </div>
+
                             <div class="col-12 mb-5">
                                 <input type="password" id="txt-confirmPass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_repeat'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                             </div>
+                            
                             <div class="col-12">
                                 <input type="checkbox" id="check-terms" data-value="0"> <label for="check-terms" class="text-muted"><?php echo lang('Text.registration_accept_text') ?> <a href="#" id="show-modal-policy-privacy"><?php echo lang('Text.registration_policy_privacy'); ?></a></label>.
                             </div>

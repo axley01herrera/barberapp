@@ -204,7 +204,7 @@ class Home extends BaseController
     public function policyPrivacyModal()
     {
         return view('home/policyPrivacyModal');
-    }
+    } // ok
 
     public function signUpCustomerProcess()
     {

@@ -35,6 +35,7 @@
                         <div class="d-grid mb-10">
                             <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_signing'); ?></button>
                         </div>
+                        
                         <div class="d-grid mb-10 text-center">
                             <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
                         </div>
