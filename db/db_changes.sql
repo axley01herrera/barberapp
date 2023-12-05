@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
 ALTER TABLE `customer` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailSubscription`; 
 ALTER TABLE `customer` ADD `lastSession` DATE NULL AFTER `emailSubscription`; 
 ALTER TABLE `customer` ADD `gender` VARCHAR(1) NULL AFTER `lastName`; 
+ALTER TABLE `customer` ADD `avatar` longblob NOT NULL AFTER `id`; 
 
 #### 
   ## End Table customer

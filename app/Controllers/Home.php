@@ -53,7 +53,7 @@ class Home extends BaseController
         $this->objRequest->setLocale($this->config[0]->lang);
 
         # Set TimeZone
-        date_default_timezone_set($this->config[0]->timezone);
+        //date_default_timezone_set($this->config[0]->timezone);
     }
 
     public function index()
@@ -241,9 +241,34 @@ class Home extends BaseController
 
             $this->objSession->set('user', $session);
         }
+        $response = array();
+        $response['error'] = $result['error'];
+        $response['msg'] = @$result['msg'];
 
-        return json_encode($result);
-    } // ok
+        return json_encode($response);
+    }
+
+    // public function signInCustomerProcess()
+    // {
+    //     $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
+    //     $password = htmlspecialchars(trim($this->objRequest->getPost('pass')));
+
+    //     $result = $this->objAuthenticationModel->loginCustomer($email, $password);
+
+    //     if ($result['error'] == 0) {
+    //         $data = array();
+    //         $data['lastSession'] = date('Y-m-d');
+    //         $this->objMainModel->objUpdate('customer', $data, $result['data']->id);
+
+    //         # Create Session
+    //         $session = array();
+    //         $session['customerID'] = $result['data']->id;
+    //         $session['role'] = 'customer';
+
+    //         $this->objSession->set('user', $session);
+    //     }
+    //     return json_encode($result);
+    // } // ok
 
     public function signUpCustomer()
     {
@@ -290,7 +315,7 @@ class Home extends BaseController
         # Create Customer
         $result = $this->objMainModel->objCreate('customer', $data);
 
-        
+
         # Sen Email
         $dataEmail = array();
         $dataEmail['pageTitle'] = $this->profile[0]->company_name;

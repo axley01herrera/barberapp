@@ -148,7 +148,7 @@
                         <!--end:::Tab item-->
                         <!--begin:::Tab item-->
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_user_view_overview_events_and_logs_tab" aria-selected="false" tabindex="-1" role="tab">Events &amp; Logs</a>
+                            <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_user_view_overview_profile_tab" aria-selected="false" tabindex="-1" role="tab">Profile</a>
                         </li>
                         <!--end:::Tab item-->
                         <!--begin:::Tab item-->
@@ -2240,253 +2240,105 @@
                         </div>
                         <!--end:::Tab pane-->
                         <!--begin:::Tab pane-->
-                        <div class="tab-pane fade" id="kt_user_view_overview_events_and_logs_tab" role="tabpanel">
-                            <!--begin::Card-->
+                        <div class="tab-pane fade" id="kt_user_view_overview_profile_tab" role="tabpanel">
                             <div class="card pt-4 mb-6 mb-xl-9">
-                                <!--begin::Card header-->
-                                <div class="card-header border-0">
-                                    <!--begin::Card title-->
-                                    <div class="card-title">
-                                        <h2>Login Sessions</h2>
-                                    </div>
-                                    <!--end::Card title-->
-                                    <!--begin::Card toolbar-->
-                                    <div class="card-toolbar">
-                                        <!--begin::Filter-->
-                                        <button type="button" class="btn btn-sm btn-flex btn-light-primary" id="kt_modal_sign_out_sesions">
-                                            <i class="ki-duotone ki-entrance-right fs-3">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>Sign out all sessions</button>
-                                        <!--end::Filter-->
-                                    </div>
-                                    <!--end::Card toolbar-->
-                                </div>
-                                <!--end::Card header-->
-                                <!--begin::Card body-->
                                 <div class="card-body pt-0 pb-5">
-                                    <!--begin::Table wrapper-->
-                                    <div class="table-responsive">
-                                        <!--begin::Table-->
-                                        <table class="table align-middle table-row-dashed gy-5" id="kt_table_users_login_session">
-                                            <thead class="border-bottom border-gray-200 fs-7 fw-bold">
-                                                <tr class="text-start text-muted text-uppercase gs-0">
-                                                    <th class="min-w-100px">Location</th>
-                                                    <th>Device</th>
-                                                    <th>IP Address</th>
-                                                    <th class="min-w-125px">Time</th>
-                                                    <th class="min-w-70px">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="fs-6 fw-semibold text-gray-600">
-                                                <tr>
-                                                    <td>Australia</td>
-                                                    <td>Chome - Windows</td>
-                                                    <td>207.10.42.265</td>
-                                                    <td>23 seconds ago</td>
-                                                    <td>Current session</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Australia</td>
-                                                    <td>Safari - iOS</td>
-                                                    <td>207.27.36.377</td>
-                                                    <td>3 days ago</td>
-                                                    <td>
-                                                        <a href="#" data-kt-users-sign-out="single_user">Sign out</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Australia</td>
-                                                    <td>Chrome - Windows</td>
-                                                    <td>207.23.23.166</td>
-                                                    <td>last week</td>
-                                                    <td>Expired</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <!--end::Table-->
+                                    <div id="profile-tab-content" class="container mt-10 mb-10"><!-- DEBUG-VIEW START 1 APPPATH\Views\controlPanel\profile\tabs\profileInfo.php -->
+                                        <div class="row">
+                                            <div class="col-12 mt-5">
+                                                <style>
+                                                    .image-input-placeholder {
+                                                        background-image: url('svg/avatars/blank.svg');
+                                                    }
+
+                                                    [data-bs-theme="dark"] .image-input-placeholder {
+                                                        background-image: url('svg/avatars/blank-dark.svg');
+                                                    }
+                                                </style>
+
+                                                <!-- Image Input -->
+                                                <div id="kt_image_input_profile656e8bfe8a4d4" class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(http://barberapp/public/assets/media/svg/avatars/blank.svg)">
+                                                    <!-- Image Preview -->
+                                                    <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://barberapp/public/assets/media/svg/avatars/blank.svg)"></div>
+                                                    <!-- Edit Button -->
+                                                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cambiar Avatar">
+                                                        <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
+                                                        <!-- Inputs -->
+                                                        <input id="avatar656e8bfe8a4d4" type="file" name="avatar" accept=".png, .jpg, .jpeg" >
+                                                        <input type="hidden" name="avatar_remove">
+
+                                                    </label>
+                                                    <!-- Cancel button -->
+                                                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancelar Avatar">
+                                                        <i class="ki-outline ki-cross fs-3"></i>
+                                                    </span>
+                                                    <!-- Remove button -->
+                                                </div>
+                                                <div class="fs-6 fw-semibold">Logo</div>
+                                            </div>
+                                            <!-- Name-->
+                                            <div class="col-12 col-lg-6 mt-5">
+                                                <label class="fs-6 fw-semibold" for="txt-name656e8bfe8a4d4">Nombre <span class="text-danger">*</span></label>
+                                                <input type="text" id="txt-name656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" value="<?php echo $customer[0]->name; ?>" disabled="">
+                                            </div>
+                                            <!-- last Name -->
+                                            <div class="col-12 col-lg-6 mt-5">
+                                                <label class="fs-6 fw-semibold" for="txt-lastName656e8bfe8a4d4">Apellidos <span class="text-danger">*</span></label>
+                                                <input type="text" id="txt-lastName656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" value="<?php echo $customer[0]->lastName; ?>" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-6 mt-5">
+                                                <!-- Email -->
+                                                <label class="fs-6 fw-semibold" for="txt-email656e8bfe8a4d4">Correo Electrónico <span class="text-danger">*</span></label>
+                                                <input type="text" id="txt-email656e8bfe8a4d4" class="form-control required656e8bfe8a4d4 email656e8bfe8a4d4" maxlength="150" value="<?php echo $customer[0]->email; ?>" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-6 mt-5">
+                                                <!-- Phone -->
+                                                <label class="fs-6 fw-semibold" for="txt-phone656e8bfe8a4d4">Teléfono <span class="text-danger">*</span></label>
+                                                <input type="text" id="txt-phone656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="45" value="<?php echo $customer[0]->phone; ?>" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-6 mt-5">
+                                                <!-- Line 1 -->
+                                                <label class="fs-6 fw-semibold" for="txt-address1656e8bfe8a4d4">Linea 1 de Dirección <span class="text-danger">*</span></label>
+                                                <input type="text" id="txt-address1656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="150" value="<?php echo @$address[0]->line1; ?>" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-6 mt-5">
+                                                <!-- Line 2 -->
+                                                <label class="fs-6 fw-semibold" for="txt-address2656e8bfe8a4d4">Linea 2 de Dirección</label>
+                                                <input type="text" id="txt-address2656e8bfe8a4d4" class="form-control" maxlength="150" value="<?php echo @$address[0]->line2; ?>" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-3 mt-5">
+                                                <!-- City -->
+                                                <label class="fs-6 fw-semibold" for="txt-city656e8bfe8a4d4">Ciudad <span class="text-danger">*</span></label>
+                                                <input type="text" id="txt-city656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="45" value="<?php echo @$address[0]->city; ?>" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-3 mt-5">
+                                                <!-- State -->
+                                                <label class="fs-6 fw-semibold" for="txt-state656e8bfe8a4d4">Provincia <span class="text-danger">*</span></label>
+                                                <input type="text" id="txt-state656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="45" value="<?php echo @$address[0]->state; ?>" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-3 mt-5">
+                                                <!-- Zip -->
+                                                <label class="fs-6 fw-semibold" for="txt-zip656e8bfe8a4d4">Código Postal <span class="text-danger">*</span></label>
+                                                <input type="text" id="txt-zip656e8bfe8a4d4" class="form-control required656e8bfe8a4d4 number656e8bfe8a4d4" maxlength="5" value="<?php echo @$address[0]->zip; ?>" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-3 mt-5">
+                                                <!-- Country -->
+                                                <label class="fs-6 fw-semibold" for="txt-country656e8bfe8a4d4">País <span class="text-danger">*</span></label>
+                                                <input type="text" id="txt-country656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="45" value="<?php echo @$address[0]->country; ?>" disabled="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 text-end mt-5">
+                                                <button type="button" id="btn-656e8bfe8a4d4" class="btn btn-primary">Habilitar Edición</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 text-end mt-5">
+                                                <button hidden="" type="button" id="btn-cancel656e8bfe8a4d4" class="btn btn-secondary">Cancelar</button>
+                                                <button hidden="" type="button" id="btn-update656e8bfe8a4d4" class="btn btn-primary">Actualizar</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!--end::Table wrapper-->
-                                </div>
-                                <!--end::Card body-->
-                            </div>
-                            <!--end::Card-->
-                            <!--begin::Card-->
-                            <div class="card pt-4 mb-6 mb-xl-9">
-                                <!--begin::Card header-->
-                                <div class="card-header border-0">
-                                    <!--begin::Card title-->
-                                    <div class="card-title">
-                                        <h2>Logs</h2>
-                                    </div>
-                                    <!--end::Card title-->
-                                    <!--begin::Card toolbar-->
-                                    <div class="card-toolbar">
-                                        <!--begin::Button-->
-                                        <button type="button" class="btn btn-sm btn-light-primary">
-                                            <i class="ki-duotone ki-cloud-download fs-3">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>Download Report</button>
-                                        <!--end::Button-->
-                                    </div>
-                                    <!--end::Card toolbar-->
-                                </div>
-                                <!--end::Card header-->
-                                <!--begin::Card body-->
-                                <div class="card-body py-0">
-                                    <!--begin::Table wrapper-->
-                                    <div class="table-responsive">
-                                        <!--begin::Table-->
-                                        <table class="table align-middle table-row-dashed fw-semibold text-gray-600 fs-6 gy-5" id="kt_table_users_logs">
-                                            <tbody>
-                                                <tr>
-                                                    <td class="min-w-70px">
-                                                        <div class="badge badge-light-warning">404 WRN</div>
-                                                    </td>
-                                                    <td>POST /v1/customer/c_64b7761820e5f/not_found</td>
-                                                    <td class="pe-0 text-end min-w-200px">22 Sep 2023, 11:30 am</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="min-w-70px">
-                                                        <div class="badge badge-light-success">200 OK</div>
-                                                    </td>
-                                                    <td>POST /v1/invoices/in_5673_2940/payment</td>
-                                                    <td class="pe-0 text-end min-w-200px">24 Jun 2023, 10:30 am</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="min-w-70px">
-                                                        <div class="badge badge-light-success">200 OK</div>
-                                                    </td>
-                                                    <td>POST /v1/invoices/in_5409_9871/payment</td>
-                                                    <td class="pe-0 text-end min-w-200px">10 Mar 2023, 11:30 am</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="min-w-70px">
-                                                        <div class="badge badge-light-danger">500 ERR</div>
-                                                    </td>
-                                                    <td>POST /v1/invoice/in_7911_2229/invalid</td>
-                                                    <td class="pe-0 text-end min-w-200px">05 May 2023, 5:30 pm</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="min-w-70px">
-                                                        <div class="badge badge-light-danger">500 ERR</div>
-                                                    </td>
-                                                    <td>POST /v1/invoice/in_7911_2229/invalid</td>
-                                                    <td class="pe-0 text-end min-w-200px">20 Jun 2023, 5:30 pm</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <!--end::Table-->
-                                    </div>
-                                    <!--end::Table wrapper-->
-                                </div>
-                                <!--end::Card body-->
-                            </div>
-                            <!--end::Card-->
-                            <!--begin::Card-->
-                            <div class="card pt-4 mb-6 mb-xl-9">
-                                <!--begin::Card header-->
-                                <div class="card-header border-0">
-                                    <!--begin::Card title-->
-                                    <div class="card-title">
-                                        <h2>Events</h2>
-                                    </div>
-                                    <!--end::Card title-->
-                                    <!--begin::Card toolbar-->
-                                    <div class="card-toolbar">
-                                        <!--begin::Button-->
-                                        <button type="button" class="btn btn-sm btn-light-primary">
-                                            <i class="ki-duotone ki-cloud-download fs-3">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>Download Report</button>
-                                        <!--end::Button-->
-                                    </div>
-                                    <!--end::Card toolbar-->
-                                </div>
-                                <!--end::Card header-->
-                                <!--begin::Card body-->
-                                <div class="card-body py-0">
-                                    <!--begin::Table-->
-                                    <table class="table align-middle table-row-dashed fs-6 text-gray-600 fw-semibold gy-5" id="kt_table_customers_events">
-                                        <tbody>
-                                            <tr>
-                                                <td class="min-w-400px">Invoice
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary me-1">#KIO-45656</a>status has changed from
-                                                    <span class="badge badge-light-succees me-1">In Transit</span>to
-                                                    <span class="badge badge-light-success">Approved</span>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">20 Jun 2023, 8:43 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="min-w-400px">
-                                                    <a href="#" class="text-gray-600 text-hover-primary me-1">Sean Bean</a>has made payment to
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary">#XRS-45670</a>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">05 May 2023, 5:30 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="min-w-400px">
-                                                    <a href="#" class="text-gray-600 text-hover-primary me-1">Emma Smith</a>has made payment to
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary">#XRS-45670</a>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">19 Aug 2023, 10:10 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="min-w-400px">
-                                                    <a href="#" class="text-gray-600 text-hover-primary me-1">Melody Macy</a>has made payment to
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary">#XRS-45670</a>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">25 Oct 2023, 2:40 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="min-w-400px">Invoice
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary me-1">#SEP-45656</a>status has changed from
-                                                    <span class="badge badge-light-warning me-1">Pending</span>to
-                                                    <span class="badge badge-light-info">In Progress</span>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">05 May 2023, 10:30 am</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="min-w-400px">Invoice
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary me-1">#DER-45645</a>status has changed from
-                                                    <span class="badge badge-light-info me-1">In Progress</span>to
-                                                    <span class="badge badge-light-primary">In Transit</span>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">10 Nov 2023, 9:23 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="min-w-400px">
-                                                    <a href="#" class="text-gray-600 text-hover-primary me-1">Melody Macy</a>has made payment to
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary">#XRS-45670</a>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">10 Nov 2023, 8:43 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="min-w-400px">Invoice
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary me-1">#KIO-45656</a>status has changed from
-                                                    <span class="badge badge-light-succees me-1">In Transit</span>to
-                                                    <span class="badge badge-light-success">Approved</span>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">15 Apr 2023, 6:43 am</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="min-w-400px">
-                                                    <a href="#" class="text-gray-600 text-hover-primary me-1">Sean Bean</a>has made payment to
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary">#XRS-45670</a>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">19 Aug 2023, 5:30 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="min-w-400px">Invoice
-                                                    <a href="#" class="fw-bold text-gray-900 text-hover-primary me-1">#LOP-45640</a>has been
-                                                    <span class="badge badge-light-danger">Declined</span>
-                                                </td>
-                                                <td class="pe-0 text-gray-600 text-end min-w-200px">20 Jun 2023, 2:40 pm</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -2496,3 +2348,181 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function() {
+
+        // Avatar Procedure
+        let avatarProfile = new KTImageInput.createInstances();
+        let imageInputElement = document.querySelector("#kt_image_input_profile656e8bfe8a4d4");
+        let imageInput = KTImageInput.getInstance(imageInputElement);
+
+        imageInput.on("kt.imageinput.change", function() { // Upload On Change
+            let formData = new FormData();
+            formData.append('file', $("#avatar656e8bfe8a4d4")[0].files[0]);
+            $.ajax({
+                type: "post",
+                url: "<?php echo base_url('Customer/uploadAvatarProfile'); ?>",
+                data: formData,
+                dataType: "json",
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response.error === 0)
+                        window.location.reload();
+                    else if (response.error === 1)
+                        globalError();
+                    else
+                        window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
+                },
+                error: function(error) {
+                    globalError();
+                }
+            });
+        });
+
+        imageInput.on("kt.imageinput.cancel", function() { // Remove On Cancel
+            $.ajax({
+                type: "post",
+                url: "<?php echo base_url('Customer/removeAvatarProfile'); ?>",
+                data: "",
+                dataType: "json",
+                success: function(response) {
+                    if (response.error === 0)
+                        window.location.reload();
+                    else if (response.error === 1)
+                        globalError();
+                    else
+                        window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
+                },
+                error: function(error) {
+                    globalError();
+                }
+            });
+        });
+
+        imageInput.on("kt.imageinput.remove", function() { // Remove On Delete
+            $.ajax({
+                type: "post",
+                url: "<?php echo base_url('Customer/removeAvatarProfile'); ?>",
+                data: "",
+                dataType: "json",
+                success: function(response) {
+                    if (response.error === 0)
+                        window.location.reload();
+                    else if (response.error === 1)
+                        globalError();
+                    else
+                        window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
+                },
+                error: function(error) {
+                    globalError();
+                }
+            });
+        });
+
+        // End Avatar Procedure
+
+        $('#btn-656e8bfe8a4d4').on('click', function() { // Enable Edit
+            $('.form-control').each(function() {
+                $(this).removeAttr('disabled');
+            });
+            $(this).attr('hidden', true);
+            $('#btn-cancel656e8bfe8a4d4').removeAttr('hidden');
+            $('#btn-update656e8bfe8a4d4').removeAttr('hidden');
+        });
+
+        $('#btn-cancel656e8bfe8a4d4').on('click', function() { // Cancel Edit
+            $('.form-control').each(function() {
+                $(this).attr('disabled', true);
+            });
+            $('#btn-656e8bfe8a4d4').removeAttr('hidden');
+            $('#btn-cancel656e8bfe8a4d4').attr('hidden', true);
+            $('#btn-update656e8bfe8a4d4').attr('hidden', true);
+        });
+
+        $('#btn-update656e8bfe8a4d4').on('click', function() {
+            let result = checkRequiredValues();
+            if (result === 0) {
+                let resultEmail = checkEmailFormat();
+                if (resultEmail === 0) {
+                    $('#btn-update656e8bfe8a4d4').attr('disabled', true);
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url('Customer/updateProfile'); ?>",
+                        data: {
+                            'name': $('#txt-name656e8bfe8a4d4').val(),
+                            'lastName': $('#txt-lastName656e8bfe8a4d4').val(),
+                            'email': $('#txt-email656e8bfe8a4d4').val(),
+                            'phone': $('#txt-phone656e8bfe8a4d4').val(),
+                            'address1': $('#txt-address1656e8bfe8a4d4').val(),
+                            'address2': $('#txt-address2656e8bfe8a4d4').val(),
+                            'city': $('#txt-city656e8bfe8a4d4').val(),
+                            'state': $('#txt-state656e8bfe8a4d4').val(),
+                            'zip': $('#txt-zip656e8bfe8a4d4').val(),
+                            'country': $('#txt-country656e8bfe8a4d4').val(),
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.error == 0) {
+                                simpleSuccessAlert("Datos del Perfil Actualizados");
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, "2000");
+                            } else if (response.error == 1)
+                                globalError();
+                            else
+                                window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
+
+                            $('#btn-update656e8bfe8a4d4').removeAttr('disabled');
+                        },
+                        error: function(error) {
+                            globalError();
+                            $('#btn-update656e8bfe8a4d4').removeAttr('disabled');
+                        }
+                    });
+                } else
+                    simpleAlert("Rectifique el formato del correo electrónico", 'warning');
+            } else
+                simpleAlert("Hay campos requeridos", 'warning');
+        });
+
+        $('.number656e8bfe8a4d4').on('input', function() { // ONLY NUMBER
+            jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
+        });
+
+        function checkRequiredValues() {
+            let result = 0;
+            let value = "";
+
+            $('.required656e8bfe8a4d4').each(function() {
+                value = $(this).val();
+                if (value == "") {
+                    $(this).addClass('is-invalid');
+                    result = 1;
+                }
+            });
+            return result;
+        }
+
+        function checkEmailFormat() {
+            let inputValue = '';
+            let response = 0;
+            let regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+            $('.email656e8bfe8a4d4').each(function() {
+                inputValue = $(this).val();
+                if (!regex.test(inputValue)) {
+                    $(this).addClass('is-invalid');
+                    response = 1;
+                }
+            });
+            return response;
+        }
+
+        $('.required656e8bfe8a4d4').on('focus', function() {
+            $(this).removeClass('is-invalid');
+        });
+    });
+</script>

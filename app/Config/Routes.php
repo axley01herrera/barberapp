@@ -84,5 +84,6 @@ $routes->post('ControlPanel/updateConfig', 'ControlPanel::updateConfig');
 ##############################
 
 $routes->get('Customer/index', 'Customer::index');
-
-
+$routes->post('Customer/updateProfile', 'Customer::updateProfile');
+$routes->post('Customer/uploadAvatarProfile', 'Customer::uploadAvatarProfile');
+$routes->post('Customer/removeAvatarProfile', 'Customer::removeAvatarProfile');

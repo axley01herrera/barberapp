@@ -3,6 +3,8 @@
     <div class="symbol symbol-100px symbol-circle mb-7">
         <?php if (empty($customer[0]->avatar)) { ?>
             <img src="<?php echo base_url('public/assets/media/avatars/blank.png'); ?>" alt="Avatar">
+        <?php } else { ?>
+            <img src="<?php echo json_decode($customer[0]->avatar); ?>" alt="Avatar">
         <?php } ?>
     </div>
     <!-- Name -->
@@ -20,9 +22,9 @@
             <span class="text-gray-600"><?php echo $customer[0]->phone; ?></span>
         </div>
         <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
-        <div class="text-gray-600">101 Collin Street,
-            <br>Melbourne 3000 VIC
-            <br>Australia
+        <div class="text-gray-600"><?php echo @$address[0]->line1; ?>, <?php echo @$address[0]->line2; ?>
+            <br><?php echo @$address[0]->city; ?>, <?php echo @$address[0]->state; ?>
+            <br><?php echo @$address[0]->country; ?>
         </div>
     </div>
 </div>
