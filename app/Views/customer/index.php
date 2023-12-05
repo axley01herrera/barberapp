@@ -2274,7 +2274,7 @@
                                                     </span>
                                                     <!-- Remove button -->
                                                 </div>
-                                                <div class="fs-6 fw-semibold">Logo</div>
+                                                <div class="fs-6 fw-semibold">Avatar</div>
                                             </div>
                                             <!-- Name-->
                                             <div class="col-12 col-lg-6 mt-5">
