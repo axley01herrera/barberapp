@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
 ALTER TABLE `employee` ADD `token` VARCHAR(999) NULL AFTER `status`; 
 ALTER TABLE `employee` ADD `emailVerified` INT NOT NULL DEFAULT '0' AFTER `token`; 
 ALTER TABLE `employee` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailVerified`; 
+ALTER TABLE `employee` CHANGE `email` `email` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL; 
 
 #### 
   ## End Table employee
