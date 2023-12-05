@@ -91,6 +91,7 @@ class Customer extends BaseController
 
         $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataInfo, $this->objSession->get('user')['customerID']);
         if ($resultUpdateCustomer['error'] == 0) {
+
             $dataAddress = array();
             $dataAddress['line1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
             $dataAddress['line2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
