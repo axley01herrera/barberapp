@@ -2264,7 +2264,7 @@
                                                     <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cambiar Avatar">
                                                         <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
                                                         <!-- Inputs -->
-                                                        <input id="avatar656e8bfe8a4d4" type="file" name="avatar" accept=".png, .jpg, .jpeg" >
+                                                        <input id="avatar656e8bfe8a4d4" type="file" name="avatar" accept=".png, .jpg, .jpeg">
                                                         <input type="hidden" name="avatar_remove">
 
                                                     </label>
@@ -2325,6 +2325,16 @@
                                                 <!-- Country -->
                                                 <label class="fs-6 fw-semibold" for="txt-country656e8bfe8a4d4">País <span class="text-danger">*</span></label>
                                                 <input type="text" id="txt-country656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="45" value="<?php echo @$address[0]->country; ?>" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-6 mt-5">
+                                                <!-- Password -->
+                                                <label class="fs-6 fw-semibold" for="txt-zip656e8bfe8a4d4">Contraseña</label>
+                                                <input type="password" id="txt-password656e8bfe8a4d4" class="form-control" maxlength="5" disabled="">
+                                            </div>
+                                            <div class="col-12 col-lg-6 mt-5">
+                                                <!-- Confirm Password -->
+                                                <label class="fs-6 fw-semibold" for="txt-country656e8bfe8a4d4">Confirma su contraseña</label>
+                                                <input type="password" id="txt-confirmPassword656e8bfe8a4d4" class="form-control" maxlength="45" disabled="">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -2448,41 +2458,47 @@
             if (result === 0) {
                 let resultEmail = checkEmailFormat();
                 if (resultEmail === 0) {
-                    $('#btn-update656e8bfe8a4d4').attr('disabled', true);
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url('Customer/updateProfile'); ?>",
-                        data: {
-                            'name': $('#txt-name656e8bfe8a4d4').val(),
-                            'lastName': $('#txt-lastName656e8bfe8a4d4').val(),
-                            'email': $('#txt-email656e8bfe8a4d4').val(),
-                            'phone': $('#txt-phone656e8bfe8a4d4').val(),
-                            'address1': $('#txt-address1656e8bfe8a4d4').val(),
-                            'address2': $('#txt-address2656e8bfe8a4d4').val(),
-                            'city': $('#txt-city656e8bfe8a4d4').val(),
-                            'state': $('#txt-state656e8bfe8a4d4').val(),
-                            'zip': $('#txt-zip656e8bfe8a4d4').val(),
-                            'country': $('#txt-country656e8bfe8a4d4').val(),
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.error == 0) {
-                                simpleSuccessAlert("Datos del Perfil Actualizados");
-                                setTimeout(() => {
-                                    window.location.reload();
-                                }, "2000");
-                            } else if (response.error == 1)
-                                globalError();
-                            else
-                                window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
+                    if ($('#txt-password656e8bfe8a4d4').val() === $('#txt-confirmPassword656e8bfe8a4d4').val()) {
+                        $('#btn-update656e8bfe8a4d4').attr('disabled', true);
+                        $.ajax({
+                            type: "post",
+                            url: "<?php echo base_url('Customer/updateProfile'); ?>",
+                            data: {
+                                'name': $('#txt-name656e8bfe8a4d4').val(),
+                                'lastName': $('#txt-lastName656e8bfe8a4d4').val(),
+                                'email': $('#txt-email656e8bfe8a4d4').val(),
+                                'phone': $('#txt-phone656e8bfe8a4d4').val(),
+                                'address1': $('#txt-address1656e8bfe8a4d4').val(),
+                                'address2': $('#txt-address2656e8bfe8a4d4').val(),
+                                'city': $('#txt-city656e8bfe8a4d4').val(),
+                                'state': $('#txt-state656e8bfe8a4d4').val(),
+                                'zip': $('#txt-zip656e8bfe8a4d4').val(),
+                                'country': $('#txt-country656e8bfe8a4d4').val(),
+                                'password': $('#txt-password656e8bfe8a4d4').val()
+                            },
+                            dataType: "json",
+                            success: function(response) {
+                                if (response.error == 0) {
+                                    simpleSuccessAlert("Datos del Perfil Actualizados");
+                                    setTimeout(() => {
+                                        window.location.reload();
+                                    }, "2000");
+                                } else if (response.error == 1)
+                                    globalError();
+                                else
+                                    window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
 
-                            $('#btn-update656e8bfe8a4d4').removeAttr('disabled');
-                        },
-                        error: function(error) {
-                            globalError();
-                            $('#btn-update656e8bfe8a4d4').removeAttr('disabled');
-                        }
-                    });
+                                $('#btn-update656e8bfe8a4d4').removeAttr('disabled');
+                            },
+                            error: function(error) {
+                                globalError();
+                                $('#btn-update656e8bfe8a4d4').removeAttr('disabled');
+                            }
+                        });
+                    } else {
+                        simpleAlert("Las contraseñas no coinciden", 'warning');
+                        $('#txt-confirmPassword656e8bfe8a4d4').addClass('required is-invalid');
+                    }
                 } else
                     simpleAlert("Rectifique el formato del correo electrónico", 'warning');
             } else
