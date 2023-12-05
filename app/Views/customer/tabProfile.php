@@ -15,14 +15,14 @@
                         </style>
 
                         <!-- Image Input -->
-                        <div id="kt_image_input_profile656e8bfe8a4d4" class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(http://barberapp/public/assets/media/svg/avatars/blank.svg)">
+                        <div id="kt_image_input_profile<?php echo $uniqid; ?>" class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(http://barberapp/public/assets/media/svg/avatars/blank.svg)">
                             <!-- Image Preview -->
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(http://barberapp/public/assets/media/svg/avatars/blank.svg)"></div>
+                            <div class="image-input-wrapper w-125px h-125px" <?php if (empty($customer[0]->avatar)) echo 'style="background-image: url(http://barberapp/public/assets/media/svg/avatars/blank.svg)"'; ?>><img src="data:image/png;base64,<?php echo base64_encode($customer[0]->avatar); ?>" class="image-input-wrapper w-120px h-120px" alt="Avatar"></div>
                             <!-- Edit Button -->
                             <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cambiar Avatar">
                                 <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
                                 <!-- Inputs -->
-                                <input id="avatar656e8bfe8a4d4" type="file" name="avatar" accept=".png, .jpg, .jpeg">
+                                <input id="avatar<?php echo $uniqid; ?>" type="file" name="avatar" accept=".png, .jpg, .jpeg">
                                 <input type="hidden" name="avatar_remove">
 
                             </label>
@@ -36,74 +36,74 @@
                     </div>
                     <!-- Name-->
                     <div class="col-12 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-name656e8bfe8a4d4">Nombre <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-name656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" value="<?php echo $customer[0]->name; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>">Nombre <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-name<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->name; ?>" disabled="">
                     </div>
                     <!-- last Name -->
                     <div class="col-12 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-lastName656e8bfe8a4d4">Apellidos <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-lastName656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" value="<?php echo $customer[0]->lastName; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-lastName<?php echo $uniqid; ?>">Apellidos <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-lastName<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->lastName; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Email -->
-                        <label class="fs-6 fw-semibold" for="txt-email656e8bfe8a4d4">Correo Electrónico <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-email656e8bfe8a4d4" class="form-control required656e8bfe8a4d4 email656e8bfe8a4d4" maxlength="150" value="<?php echo $customer[0]->email; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>">Correo Electrónico <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $customer[0]->email; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Phone -->
-                        <label class="fs-6 fw-semibold" for="txt-phone656e8bfe8a4d4">Teléfono <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-phone656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="45" value="<?php echo $customer[0]->phone; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-phone<?php echo $uniqid; ?>">Teléfono <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-phone<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $customer[0]->phone; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Line 1 -->
-                        <label class="fs-6 fw-semibold" for="txt-address1656e8bfe8a4d4">Linea 1 de Dirección <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-address1656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="150" value="<?php echo @$address[0]->line1; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-address1<?php echo $uniqid; ?>">Linea 1 de Dirección <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-address1<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="150" value="<?php echo @$address[0]->line1; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Line 2 -->
-                        <label class="fs-6 fw-semibold" for="txt-address2656e8bfe8a4d4">Linea 2 de Dirección</label>
-                        <input type="text" id="txt-address2656e8bfe8a4d4" class="form-control" maxlength="150" value="<?php echo @$address[0]->line2; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-address2<?php echo $uniqid; ?>">Linea 2 de Dirección</label>
+                        <input type="text" id="txt-address2<?php echo $uniqid; ?>" class="form-control" maxlength="150" value="<?php echo @$address[0]->line2; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-3 mt-5">
                         <!-- City -->
-                        <label class="fs-6 fw-semibold" for="txt-city656e8bfe8a4d4">Ciudad <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-city656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="45" value="<?php echo @$address[0]->city; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-city<?php echo $uniqid; ?>">Ciudad <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-city<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->city; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-3 mt-5">
                         <!-- State -->
-                        <label class="fs-6 fw-semibold" for="txt-state656e8bfe8a4d4">Provincia <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-state656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="45" value="<?php echo @$address[0]->state; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-state<?php echo $uniqid; ?>">Provincia <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-state<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->state; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-3 mt-5">
                         <!-- Zip -->
-                        <label class="fs-6 fw-semibold" for="txt-zip656e8bfe8a4d4">Código Postal <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-zip656e8bfe8a4d4" class="form-control required656e8bfe8a4d4 number656e8bfe8a4d4" maxlength="5" value="<?php echo @$address[0]->zip; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>">Código Postal <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> number<?php echo $uniqid; ?>" maxlength="5" value="<?php echo @$address[0]->zip; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-3 mt-5">
                         <!-- Country -->
-                        <label class="fs-6 fw-semibold" for="txt-country656e8bfe8a4d4">País <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-country656e8bfe8a4d4" class="form-control required656e8bfe8a4d4" maxlength="45" value="<?php echo @$address[0]->country; ?>" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>">País <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->country; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Password -->
-                        <label class="fs-6 fw-semibold" for="txt-zip656e8bfe8a4d4">Contraseña</label>
-                        <input type="password" id="txt-password656e8bfe8a4d4" class="form-control" maxlength="5" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>">Contraseña</label>
+                        <input type="password" id="txt-password<?php echo $uniqid; ?>" class="form-control" maxlength="5" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Confirm Password -->
-                        <label class="fs-6 fw-semibold" for="txt-country656e8bfe8a4d4">Confirma su contraseña</label>
-                        <input type="password" id="txt-confirmPassword656e8bfe8a4d4" class="form-control" maxlength="45" disabled="">
+                        <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>">Confirma su contraseña</label>
+                        <input type="password" id="txt-confirmPassword<?php echo $uniqid; ?>" class="form-control" maxlength="45" disabled="">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 text-end mt-5">
-                        <button type="button" id="btn-656e8bfe8a4d4" class="btn btn-primary">Habilitar Edición</button>
+                        <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary">Habilitar Edición</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 text-end mt-5">
-                        <button hidden="" type="button" id="btn-cancel656e8bfe8a4d4" class="btn btn-secondary">Cancelar</button>
-                        <button hidden="" type="button" id="btn-update656e8bfe8a4d4" class="btn btn-primary">Actualizar</button>
+                        <button hidden="" type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary">Cancelar</button>
+                        <button hidden="" type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-primary">Actualizar</button>
                     </div>
                 </div>
             </div>
@@ -114,12 +114,12 @@
 <script>
     // Avatar Procedure
     let avatarProfile = new KTImageInput.createInstances();
-    let imageInputElement = document.querySelector("#kt_image_input_profile656e8bfe8a4d4");
+    let imageInputElement = document.querySelector("#kt_image_input_profile<?php echo $uniqid; ?>");
     let imageInput = KTImageInput.getInstance(imageInputElement);
 
     imageInput.on("kt.imageinput.change", function() { // Upload On Change
         let formData = new FormData();
-        formData.append('file', $("#avatar656e8bfe8a4d4")[0].files[0]);
+        formData.append('file', $("#avatar<?php echo $uniqid; ?>")[0].files[0]);
         $.ajax({
             type: "post",
             url: "<?php echo base_url('Customer/uploadAvatarProfile'); ?>",
@@ -130,11 +130,11 @@
             processData: false,
             success: function(response) {
                 if (response.error === 0)
-                    window.location.reload();
+                    window.location.href = "<?php echo base_url('Customer/profile?tab='); ?>" + tab;
                 else if (response.error === 1)
                     globalError();
                 else
-                    window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
+                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
             },
             error: function(error) {
                 globalError();
@@ -150,11 +150,11 @@
             dataType: "json",
             success: function(response) {
                 if (response.error === 0)
-                    window.location.reload();
+                    window.location.href = "<?php echo base_url('Customer/profile?tab='); ?>" + tab;
                 else if (response.error === 1)
                     globalError();
                 else
-                    window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
+                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
             },
             error: function(error) {
                 globalError();
@@ -170,11 +170,11 @@
             dataType: "json",
             success: function(response) {
                 if (response.error === 0)
-                    window.location.reload();
+                    window.location.href = "<?php echo base_url('Customer/profile?tab='); ?>" + tab;
                 else if (response.error === 1)
                     globalError();
                 else
-                    window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
+                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
             },
             error: function(error) {
                 globalError();
@@ -184,77 +184,66 @@
 
     // End Avatar Procedure
 
-    $('#btn-656e8bfe8a4d4').on('click', function() { // Enable Edit
+    $('#btn-<?php echo $uniqid; ?>').on('click', function() { // Enable Edit
         $('.form-control').each(function() {
             $(this).removeAttr('disabled');
         });
         $(this).attr('hidden', true);
-        $('#btn-cancel656e8bfe8a4d4').removeAttr('hidden');
-        $('#btn-update656e8bfe8a4d4').removeAttr('hidden');
+        $('#btn-cancel<?php echo $uniqid; ?>').removeAttr('hidden');
+        $('#btn-update<?php echo $uniqid; ?>').removeAttr('hidden');
     });
 
-    $('#btn-cancel656e8bfe8a4d4').on('click', function() { // Cancel Edit
-        $('.form-control').each(function() {
-            $(this).attr('disabled', true);
-        });
-        $('#btn-656e8bfe8a4d4').removeAttr('hidden');
-        $('#btn-cancel656e8bfe8a4d4').attr('hidden', true);
-        $('#btn-update656e8bfe8a4d4').attr('hidden', true);
+    $('#btn-cancel<?php echo $uniqid; ?>').on('click', function() { // Cancel Edit
+        getProfileTabContent();
     });
 
-    $('#btn-update656e8bfe8a4d4').on('click', function() {
+    $('#btn-update<?php echo $uniqid; ?>').on('click', function() {
         let result = checkRequiredValues();
         if (result === 0) {
             let resultEmail = checkEmailFormat();
             if (resultEmail === 0) {
-                if ($('#txt-password656e8bfe8a4d4').val() === $('#txt-confirmPassword656e8bfe8a4d4').val()) {
-                    $('#btn-update656e8bfe8a4d4').attr('disabled', true);
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url('Customer/updateProfile'); ?>",
-                        data: {
-                            'name': $('#txt-name656e8bfe8a4d4').val(),
-                            'lastName': $('#txt-lastName656e8bfe8a4d4').val(),
-                            'email': $('#txt-email656e8bfe8a4d4').val(),
-                            'phone': $('#txt-phone656e8bfe8a4d4').val(),
-                            'address1': $('#txt-address1656e8bfe8a4d4').val(),
-                            'address2': $('#txt-address2656e8bfe8a4d4').val(),
-                            'city': $('#txt-city656e8bfe8a4d4').val(),
-                            'state': $('#txt-state656e8bfe8a4d4').val(),
-                            'zip': $('#txt-zip656e8bfe8a4d4').val(),
-                            'country': $('#txt-country656e8bfe8a4d4').val(),
-                            'password': $('#txt-password656e8bfe8a4d4').val()
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.error == 0) {
-                                simpleSuccessAlert("Datos del Perfil Actualizados");
-                                setTimeout(() => {
-                                    window.location.reload();
-                                }, "2000");
-                            } else if (response.error == 1)
-                                globalError();
-                            else
-                                window.location.href = "http://barberapp/Home/signInCustomer?session=expired";
-
-                            $('#btn-update656e8bfe8a4d4').removeAttr('disabled');
-                        },
-                        error: function(error) {
+                $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
+                $.ajax({
+                    type: "post",
+                    url: "<?php echo base_url('Customer/updateProfile'); ?>",
+                    data: {
+                        'name': $('#txt-name<?php echo $uniqid; ?>').val(),
+                        'lastName': $('#txt-lastName<?php echo $uniqid; ?>').val(),
+                        'email': $('#txt-email<?php echo $uniqid; ?>').val(),
+                        'phone': $('#txt-phone<?php echo $uniqid; ?>').val(),
+                        'address1': $('#txt-address1<?php echo $uniqid; ?>').val(),
+                        'address2': $('#txt-address2<?php echo $uniqid; ?>').val(),
+                        'city': $('#txt-city<?php echo $uniqid; ?>').val(),
+                        'state': $('#txt-state<?php echo $uniqid; ?>').val(),
+                        'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
+                        'country': $('#txt-country<?php echo $uniqid; ?>').val(),
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.error == 0) {
+                            simpleSuccessAlert("<?php echo lang("Text.prof_data_updated"); ?>");
+                            setTimeout(() => {
+                                window.location.href = "<?php echo base_url('Customer/profile?tab='); ?>" + tab;
+                            }, "2000");
+                        } else if (response.error == 1)
                             globalError();
-                            $('#btn-update656e8bfe8a4d4').removeAttr('disabled');
-                        }
-                    });
-                } else {
-                    simpleAlert("Las contraseñas no coinciden", 'warning');
-                    $('#txt-confirmPassword656e8bfe8a4d4').addClass('required is-invalid');
-                }
+                        else
+                            window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+
+                        $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
+                    },
+                    error: function(error) {
+                        globalError();
+                        $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
+                    }
+                });
             } else
-                simpleAlert("Rectifique el formato del correo electrónico", 'warning');
+                simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
         } else
-            simpleAlert("Hay campos requeridos", 'warning');
+            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
     });
 
-    $('.number656e8bfe8a4d4').on('input', function() { // ONLY NUMBER
+    $('.number<?php echo $uniqid; ?>').on('input', function() { // ONLY NUMBER
         jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
     });
 
@@ -262,7 +251,7 @@
         let result = 0;
         let value = "";
 
-        $('.required656e8bfe8a4d4').each(function() {
+        $('.required<?php echo $uniqid; ?>').each(function() {
             value = $(this).val();
             if (value == "") {
                 $(this).addClass('is-invalid');
@@ -276,7 +265,7 @@
         let inputValue = '';
         let response = 0;
         let regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-        $('.email656e8bfe8a4d4').each(function() {
+        $('.email<?php echo $uniqid; ?>').each(function() {
             inputValue = $(this).val();
             if (!regex.test(inputValue)) {
                 $(this).addClass('is-invalid');
@@ -286,7 +275,7 @@
         return response;
     }
 
-    $('.required656e8bfe8a4d4').on('focus', function() {
+    $('.required<?php echo $uniqid; ?>').on('focus', function() {
         $(this).removeClass('is-invalid');
     });
 </script>

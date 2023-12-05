@@ -2240,7 +2240,7 @@
                         </div>
                         <!--end:::Tab pane-->
                         <!-- Tab Profile -->
-                        <?php echo view(''); ?>
+                        <?php echo view('customer/tabProfile'); ?>
                     </div>
                 </div>
             </div>
