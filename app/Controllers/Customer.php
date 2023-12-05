@@ -132,12 +132,48 @@ class Customer extends BaseController
             return json_encode($result);
         }
 
+        $token = md5(uniqid());
+
         $dataInfo = array();
         $dataInfo['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
         if (!empty(htmlspecialchars(trim($this->objRequest->getPost('password')))))
             $dataInfo['password'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
+        if ($this->objSession->get('user')['email'] !== $dataInfo['email']) {
+            $dataInfo['token'] = $token;
+            $dataInfo['status'] = 0;
+            $dataInfo['emailVerified'] = 0;
+        }
 
-        return json_encode($this->objMainModel->objUpdate('customer', $dataInfo, $this->objSession->get('user')['customerID']));
+        $customer = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+
+        $response = array();
+        if ($this->objSession->get('user')['email'] !== $dataInfo['email']) {
+            $dataEmail = array();
+            $dataEmail['pageTitle'] = $this->profile[0]->company_name;
+            $dataEmail['person'] = $customer[0]->name . ' ' . $customer[0]->lastName;
+            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&action=reactivate';
+            $dataEmail['action'] = "reactivate";
+            $dataEmail['companyPhone'] = $this->profile[0]->phone1;
+            $dataEmail['companyEmail'] = $this->profile[0]->email;
+
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
+            $this->objEmail->setTo($dataInfo['email']);
+            $this->objEmail->setSubject($this->profile[0]->company_name);
+            $this->objEmail->setMessage(view('email/mailSignup', $dataEmail), []);
+
+            if ($this->objEmail->send(false)) {
+                $this->objMainModel->objUpdate('customer', $dataInfo, $this->objSession->get('user')['customerID']);
+                $response['error'] = 0;
+                $response['msg'] = 'SENT_EMAIL';
+            } else {
+                $response['error'] = 1;
+                $response['msg'] = 'ERROR_SEND_EMAIL';
+            }
+        } else
+            $response['error'] = 0;
+
+
+        return json_encode($response);
     }
 
     public function updateProfile()

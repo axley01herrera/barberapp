@@ -44,14 +44,18 @@
                                             <?php echo lang("Text.e_signup_complete_account"); ?>
                                         </span>
                                         <p style="color:#5E6278; font-size: 13px; font-weight: 500; padding-top:3px; margin:0;font-family:Arial,Helvetica,sans-serif">
-                                            <?php echo lang("Text.e_signup_complete_account_msg"); ?>
+                                            <?php if (@$action == 'reactivate') { ?>
+                                                <?php echo lang("Text.e_signup_reactivate_account_msg"); ?>
+                                            <?php } else { ?>
+                                                <?php echo lang("Text.e_signup_complete_account_msg"); ?>
+                                            <?php } ?>
                                         </p>
                                     </div>
                                 </div>
                                 <div align="center" style="margin-top: 10px; margin-bottom: 10px;">
                                     <div>
-                                        <a href="<?php echo @$url; ?>" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">
-                                            <?php echo lang("Text.e_signup_create_account"); ?>
+                                        <a href="<?php echo @$url; ?>" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;"> 
+                                        <?php echo lang("Text.e_signup_create_account"); ?>
                                         </a>
                                     </div>
                                 </div>

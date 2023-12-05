@@ -22,8 +22,8 @@
             <span class="text-gray-600"><?php echo $customer[0]->phone; ?></span>
         </div>
         <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
-        <div class="text-gray-600"><?php echo @$address[0]->line1; ?>, <?php echo @$address[0]->line2; ?>
-            <br><?php echo @$address[0]->city; ?>, <?php echo @$address[0]->state; ?>
+        <div class="text-gray-600"><?php echo @$address[0]->line1; ?><?php if (@$address[0]->line2) echo ", " . '' . $address[0]->line2; ?>
+            <br><?php echo @$address[0]->city; ?><?php if (@$address[0]->state) echo ", " . '' .  $address[0]->state; ?>
             <br><?php echo @$address[0]->country; ?>
         </div>
     </div>

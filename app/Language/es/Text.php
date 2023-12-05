@@ -140,6 +140,8 @@ $lang['cust_success_created'] = "Cliente Creado";
 $lang['cust_success_updated'] = "Cliente Actualizado";
 $lang['cust_success_deleted'] = "Cliente Eliminado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
+$lang['cust_success_reactivate_email'] = "Verifique su email nuevamente para iniciar sesion";
+$lang['cust_error_reactivate_email'] = "Ha ocurrido un error, intente actualizar nuevamente";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
 
 # Control Panel Employees
@@ -192,6 +194,7 @@ $lang['e_signup_hi'] = "Hola";
 $lang['e_signup_welcome_company'] = "Bienvenido a";
 $lang['e_signup_complete_account'] = "Verifica tu cuenta";
 $lang['e_signup_complete_account_msg'] = "Gracias por registrarse, su cuenta de cliente está activa, inicia sesión utilizando la dirección de correo electrónico proporcionada. Ahora, le pedimos que verifique su correo electrónico. Simplemente haga clic en el botón a continuación.";
+$lang['e_signup_reactivate_account_msg'] = "Bienvenido nuevamente, su cuenta de cliente está inactiva debido a que usted a actualizado su dirección de correo electronico en nuestro sitio. Para estar seguros de que este correo le pertenece, le pedimos que verifique su correo electrónico. Simplemente haga clic en el botón a continuación.";
 $lang['e_signup_create_account'] = "Verificar mi Correo Electrónico";
 $lang['e_signup_complete_account_info'] = "Es de vital importancia que usted verifique su correo electrónico para poder enviarle notificaciones sobre sus reservas, cambios en la política de privacidad entre otras cosas. Dichas notificaciones usted dispone de un apartado en su perfil para poder activarlas y desactivarlas. Gracias";
 
