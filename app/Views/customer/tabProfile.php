@@ -36,62 +36,62 @@
                     </div>
                     <!-- Name-->
                     <div class="col-12 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>">Nombre <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.name'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-name<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->name; ?>" disabled="">
                     </div>
                     <!-- last Name -->
                     <div class="col-12 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-lastName<?php echo $uniqid; ?>">Apellidos <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-lastName<?php echo $uniqid; ?>"><?php echo lang('Text.last_name'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-lastName<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->lastName; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Email -->
-                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>">Correo Electrónico <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $customer[0]->email; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Phone -->
-                        <label class="fs-6 fw-semibold" for="txt-phone<?php echo $uniqid; ?>">Teléfono <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-phone<?php echo $uniqid; ?>"><?php echo lang('Text.phone'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-phone<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $customer[0]->phone; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Line 1 -->
-                        <label class="fs-6 fw-semibold" for="txt-address1<?php echo $uniqid; ?>">Linea 1 de Dirección <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-address1<?php echo $uniqid; ?>"><?php echo lang('Text.address1'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-address1<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="150" value="<?php echo @$address[0]->line1; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Line 2 -->
-                        <label class="fs-6 fw-semibold" for="txt-address2<?php echo $uniqid; ?>">Linea 2 de Dirección</label>
+                        <label class="fs-6 fw-semibold" for="txt-address2<?php echo $uniqid; ?>"><?php echo lang('Text.address2'); ?></label>
                         <input type="text" id="txt-address2<?php echo $uniqid; ?>" class="form-control" maxlength="150" value="<?php echo @$address[0]->line2; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-3 mt-5">
                         <!-- City -->
-                        <label class="fs-6 fw-semibold" for="txt-city<?php echo $uniqid; ?>">Ciudad <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-city<?php echo $uniqid; ?>"><?php echo lang('Text.city'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-city<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->city; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-3 mt-5">
                         <!-- State -->
-                        <label class="fs-6 fw-semibold" for="txt-state<?php echo $uniqid; ?>">Provincia <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-state<?php echo $uniqid; ?>"><?php echo lang('Text.state'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-state<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->state; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-3 mt-5">
                         <!-- Zip -->
-                        <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>">Código Postal <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>"><?php echo lang('Text.zip'); ?><span class="text-danger">*</span></label>
                         <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> number<?php echo $uniqid; ?>" maxlength="5" value="<?php echo @$address[0]->zip; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-3 mt-5">
                         <!-- Country -->
-                        <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>">País <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->country; ?>" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Password -->
-                        <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>">Contraseña</label>
+                        <label class="fs-6 fw-semibold" for="txt-password<?php echo $uniqid; ?>"><?php echo lang('Text.password'); ?></label>
                         <input type="password" id="txt-password<?php echo $uniqid; ?>" class="form-control" maxlength="5" disabled="">
                     </div>
                     <div class="col-12 col-lg-6 mt-5">
                         <!-- Confirm Password -->
-                        <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>">Confirma su contraseña</label>
+                        <label class="fs-6 fw-semibold" for="txt-confirmPassword<?php echo $uniqid; ?>"><?php echo lang('Text.password_repeat'); ?></label>
                         <input type="password" id="txt-confirmPassword<?php echo $uniqid; ?>" class="form-control" maxlength="45" disabled="">
                     </div>
                 </div>
@@ -130,11 +130,11 @@
             processData: false,
             success: function(response) {
                 if (response.error === 0)
-                    window.location.href = "<?php echo base_url('Customer/profile?tab='); ?>" + tab;
+                    window.location.reload();
                 else if (response.error === 1)
                     globalError();
                 else
-                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    window.location.href = "<?php echo base_url('Home/signInCustomer?session=expired'); ?>";
             },
             error: function(error) {
                 globalError();
@@ -150,11 +150,11 @@
             dataType: "json",
             success: function(response) {
                 if (response.error === 0)
-                    window.location.href = "<?php echo base_url('Customer/profile?tab='); ?>" + tab;
+                    window.location.href = "<?php echo base_url('Customer/index?tab='); ?>" + tab;
                 else if (response.error === 1)
                     globalError();
                 else
-                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    window.location.href = "<?php echo base_url('Home/signInCustomer?session=expired'); ?>";
             },
             error: function(error) {
                 globalError();
@@ -170,11 +170,11 @@
             dataType: "json",
             success: function(response) {
                 if (response.error === 0)
-                    window.location.href = "<?php echo base_url('Customer/profile?tab='); ?>" + tab;
+                    window.location.href = "<?php echo base_url('Customer/index?tab='); ?>" + tab;
                 else if (response.error === 1)
                     globalError();
                 else
-                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    window.location.href = "<?php echo base_url('Home/signInCustomer?session=expired'); ?>";
             },
             error: function(error) {
                 globalError();
@@ -202,41 +202,46 @@
         if (result === 0) {
             let resultEmail = checkEmailFormat();
             if (resultEmail === 0) {
-                $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
-                $.ajax({
-                    type: "post",
-                    url: "<?php echo base_url('Customer/updateProfile'); ?>",
-                    data: {
-                        'name': $('#txt-name<?php echo $uniqid; ?>').val(),
-                        'lastName': $('#txt-lastName<?php echo $uniqid; ?>').val(),
-                        'email': $('#txt-email<?php echo $uniqid; ?>').val(),
-                        'phone': $('#txt-phone<?php echo $uniqid; ?>').val(),
-                        'address1': $('#txt-address1<?php echo $uniqid; ?>').val(),
-                        'address2': $('#txt-address2<?php echo $uniqid; ?>').val(),
-                        'city': $('#txt-city<?php echo $uniqid; ?>').val(),
-                        'state': $('#txt-state<?php echo $uniqid; ?>').val(),
-                        'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
-                        'country': $('#txt-country<?php echo $uniqid; ?>').val(),
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.error == 0) {
-                            simpleSuccessAlert("<?php echo lang("Text.prof_data_updated"); ?>");
-                            setTimeout(() => {
-                                window.location.href = "<?php echo base_url('Customer/profile?tab='); ?>" + tab;
-                            }, "2000");
-                        } else if (response.error == 1)
-                            globalError();
-                        else
-                            window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                if ($('#txt-password<?php echo $uniqid; ?>').val() === $('#txt-confirmPassword<?php echo $uniqid; ?>').val()) {
+                    $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url('Customer/updateProfile'); ?>",
+                        data: {
+                            'name': $('#txt-name<?php echo $uniqid; ?>').val(),
+                            'lastName': $('#txt-lastName<?php echo $uniqid; ?>').val(),
+                            'email': $('#txt-email<?php echo $uniqid; ?>').val(),
+                            'phone': $('#txt-phone<?php echo $uniqid; ?>').val(),
+                            'address1': $('#txt-address1<?php echo $uniqid; ?>').val(),
+                            'address2': $('#txt-address2<?php echo $uniqid; ?>').val(),
+                            'city': $('#txt-city<?php echo $uniqid; ?>').val(),
+                            'state': $('#txt-state<?php echo $uniqid; ?>').val(),
+                            'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
+                            'country': $('#txt-country<?php echo $uniqid; ?>').val(),
+                            'password': $('#txt-password<?php echo $uniqid; ?>').val(),
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.error == 0) {
+                                simpleSuccessAlert("<?php echo lang("Text.prof_data_updated"); ?>");
+                                setTimeout(() => {
+                                    window.location.href = "<?php echo base_url('Customer/index?tab='); ?>" + tab;
+                                }, "2000");
+                            } else if (response.error == 1)
+                                globalError();
+                            else
+                                window.location.href = "<?php echo base_url('Home/signInCustomer?session=expired'); ?>";
 
-                        $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
-                    },
-                    error: function(error) {
-                        globalError();
-                        $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
-                    }
-                });
+                            $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
+                        },
+                        error: function(error) {
+                            globalError();
+                            $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
+                        }
+                    });
+                } else {
+                    simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+                }
             } else
                 simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
         } else

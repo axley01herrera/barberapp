@@ -59,9 +59,16 @@ class Customer extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
             return view('customerLogout');
 
+        # params
+        $tab = $this->objRequest->getPostGet('tab');
+        if (empty($tab))
+            $tab = "overview";
+
         # data
         $data = array();
-        $data['uniqid'] = md5(uniqid());;
+        $data['uniqid'] = uniqid();
+        # tab
+        $data['tab'] = $tab;
         $data['config'] = $this->config;
         $data['profile'] = $this->profile;
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
@@ -71,6 +78,36 @@ class Customer extends BaseController
         $data['page'] = 'customer/index';
 
         return view('customer/mainCustomer', $data);
+    }
+
+    public function customerTabContent()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
+            return view('customerLogout');
+
+        $tab = $this->objRequest->getPost('tab');
+        $data = array();
+        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['config'] = $this->config;
+
+        switch ($tab) {
+            case 'overview':
+                $view = "customer/tabOverview";
+                break;
+            case 'security':
+                $view = "customer/tabSecurity";
+                break;
+            case 'profile':
+                $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+                $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
+                $view = "customer/tabProfile";
+                break;
+        }
+
+        $data['uniqid'] = uniqid();
+
+        return view($view, $data);
     }
 
     public function updateProfile()
