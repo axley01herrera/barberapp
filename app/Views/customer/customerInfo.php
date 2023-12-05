@@ -4,7 +4,7 @@
         <?php if (empty($customer[0]->avatar)) { ?>
             <img src="<?php echo base_url('public/assets/media/avatars/blank.png'); ?>" alt="Avatar">
         <?php } else { ?>
-            <img src="<?php echo json_decode($customer[0]->avatar); ?>" alt="Avatar">
+            <img src="data:image/png;base64,<?php echo base64_encode($customer[0]->avatar); ?>" alt="Avatar">
         <?php } ?>
     </div>
     <!-- Name -->
