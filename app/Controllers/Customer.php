@@ -104,9 +104,11 @@ class Customer extends BaseController
                 # page
                 $view = "customer/tabContent/tabOverview";
                 break;
-            case 'security':
+            case 'tab-account':
+                $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+                $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
                 # page
-                $view = "customer/tabContent/tabSecurity";
+                $view = "customer/tabContent/tabAccount";
                 break;
             case 'tab-profile':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
@@ -117,6 +119,25 @@ class Customer extends BaseController
         }
 
         return view($view, $data);
+    }
+
+    public function updateAccount()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        $dataInfo = array();
+        $dataInfo['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
+        if (!empty(htmlspecialchars(trim($this->objRequest->getPost('password')))))
+            $dataInfo['password'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
+
+        return json_encode($this->objMainModel->objUpdate('customer', $dataInfo, $this->objSession->get('user')['customerID']));
     }
 
     public function updateProfile()
@@ -133,10 +154,7 @@ class Customer extends BaseController
         $dataInfo = array();
         $dataInfo['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $dataInfo['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $dataInfo['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
         $dataInfo['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
-        if (!empty(htmlspecialchars(trim($this->objRequest->getPost('password')))))
-            $dataInfo['password'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
 
         $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataInfo, $this->objSession->get('user')['customerID']);
         if ($resultUpdateCustomer['error'] == 0) {

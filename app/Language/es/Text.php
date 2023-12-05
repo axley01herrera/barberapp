@@ -42,6 +42,9 @@ $lang['create_pass'] = 'Crear Contraseña';
 $lang['create_pass_subtitle'] = "Introduzca su contraseña";
 $lang['facebook_link'] = "Enlace de Facebook";
 $lang['instagram_link'] = "Enlace de Instagram";
+$lang['profile'] = "Perfil";
+$lang['account'] = "Cuenta";
+$lang['overview'] = "General";
 
 # Global MSG
 $lang['thanks'] = "Gracias";

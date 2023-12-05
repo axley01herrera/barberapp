@@ -139,17 +139,17 @@
 
                         <!-- Tab item -->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-overview" class="nav-link text-active-primary pb-4 tab-profile active" data-bs-toggle="tab" href="#" aria-selected="true" role="tab">Overview</a>
+                            <a id="tab-overview" class="nav-link text-active-primary pb-4 tab-profile active" data-bs-toggle="tab" href="#" aria-selected="true" role="tab"><?php echo lang('Text.overview'); ?></a>
                         </li>
 
                         <!-- Tab item -->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-security" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab">Security</a>
+                            <a id="tab-account" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.account'); ?></a>
                         </li>
-                        
+
                         <!-- Tab Profile-->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-profile" class="nav-link text-active-primary pb-4 tab-profile"data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab">Profile</a>
+                            <a id="tab-profile" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.profile'); ?></a>
                         </li>
 
                     </ul>
@@ -182,10 +182,10 @@
         });
     }
 
-    $('.tab-profile').on('click', function(e) { 
+    $('.tab-profile').on('click', function(e) {
         e.preventDefault();
 
-        $('.tab-profile').each(function () {
+        $('.tab-profile').each(function() {
             $(this).removeClass('active');
         });
 

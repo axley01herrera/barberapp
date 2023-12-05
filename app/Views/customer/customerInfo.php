@@ -2,9 +2,9 @@
     <!-- Avatar -->
     <div class="symbol symbol-100px symbol-circle mb-7">
         <?php if (empty($customer[0]->avatar)) { ?>
-            <img src="<?php echo base_url('public/assets/media/avatars/blank.png'); ?>" alt="Avatar">
+            <img src="<?php echo base_url('public/assets/media/avatars/blank.png'); ?>" class="border border-1 border-secondary" alt="Avatar">
         <?php } else { ?>
-            <img src="data:image/png;base64,<?php echo base64_encode($customer[0]->avatar); ?>" alt="Avatar">
+            <img src="data:image/png;base64,<?php echo base64_encode($customer[0]->avatar); ?>" class="border border-1 border-secondary" alt="Avatar">
         <?php } ?>
     </div>
     <!-- Name -->
