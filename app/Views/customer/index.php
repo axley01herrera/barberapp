@@ -9,8 +9,7 @@
                     <!-- Card -->
                     <div class="card mb-5 mb-xl-8">
                         <!-- Card body -->
-                        <div class="card-body">
-                            <!-- Customer Info-->
+                        <div id="customer-info" class="card-body">
                             <?php echo view('customer/customerInfo'); ?>
                         </div>
                         <!--end::Card body-->
@@ -132,120 +131,30 @@
                     <!--end::Connected Accounts-->
                 </div>
                 <!--end::Sidebar-->
-                <!--begin::Content-->
+
+                <!-- Tabs -->
                 <div class="flex-lg-row-fluid ms-lg-15">
-                    <!--begin:::Tabs-->
+                    <!-- Tabs Header -->
                     <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8" role="tablist">
-                        <!--begin:::Tab item-->
+
+                        <!-- Tab item -->
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link text-active-primary pb-4 tab-profile <?php if ($tab == "overview") echo "active"; ?>" data-tab-profile="overview" data-bs-toggle="tab" href="#" aria-selected="true" role="tab">Overview</a>
+                            <a id="tab-overview" class="nav-link text-active-primary pb-4 tab-profile active" data-bs-toggle="tab" href="#" aria-selected="true" role="tab">Overview</a>
                         </li>
-                        <!--end:::Tab item-->
-                        <!--begin:::Tab item-->
+
+                        <!-- Tab item -->
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link text-active-primary pb-4 tab-profile <?php if ($tab == "security") echo "active"; ?>" data-tab-profile="security" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab">Security</a>
+                            <a id="tab-security" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab">Security</a>
                         </li>
-                        <!--end:::Tab item-->
-                        <!--begin:::Tab item-->
+                        
+                        <!-- Tab Profile-->
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link text-active-primary pb-4 tab-profile <?php if ($tab == "profile") echo "active"; ?>" data-tab-profile="profile" data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab">Profile</a>
+                            <a id="tab-profile" class="nav-link text-active-primary pb-4 tab-profile"data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab">Profile</a>
                         </li>
-                        <!--end:::Tab item-->
-                        <!--begin:::Tab item-->
-                        <li class="nav-item ms-auto">
-                            <!--begin::Action menu-->
-                            <a href="#" class="btn btn-primary ps-7" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">Actions
-                                <i class="ki-duotone ki-down fs-2 me-0"></i></a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold py-4 w-250px fs-6" data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <div class="menu-content text-muted pb-2 px-5 fs-7 text-uppercase">Payments</div>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link px-5">Create invoice</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link flex-stack px-5">Create payments
-                                        <span class="ms-2" data-bs-toggle="tooltip" aria-label="Specify a target name for future usage and reference" data-bs-original-title="Specify a target name for future usage and reference" data-kt-initialized="1">
-                                            <i class="ki-duotone ki-information fs-7">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                                <span class="path3"></span>
-                                            </i>
-                                        </span></a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
-                                    <a href="#" class="menu-link px-5">
-                                        <span class="menu-title">Subscription</span>
-                                        <span class="menu-arrow"></span>
-                                    </a>
-                                    <!--begin::Menu sub-->
-                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-5">Apps</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-5">Billing</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-5">Statements</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content px-3">
-                                                <label class="form-check form-switch form-check-custom form-check-solid">
-                                                    <input class="form-check-input w-30px h-20px" type="checkbox" value="" name="notifications" checked="checked" id="kt_user_menu_notifications">
-                                                    <span class="form-check-label text-muted fs-6" for="kt_user_menu_notifications">Notifications</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <!--end::Menu item-->
-                                    </div>
-                                    <!--end::Menu sub-->
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu separator-->
-                                <div class="separator my-3"></div>
-                                <!--end::Menu separator-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <div class="menu-content text-muted pb-2 px-5 fs-7 text-uppercase">Account</div>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link px-5">Reports</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5 my-1">
-                                    <a href="#" class="menu-link px-5">Account Settings</a>
-                                </div>
-                                <!--end::Menu item-->
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-5">
-                                    <a href="#" class="menu-link text-danger px-5">Delete customer</a>
-                                </div>
-                            </div>
-                        </li>
+
                     </ul>
-                    <div id="myTabContent"></div>
+                    <!-- Tab Content -->
+                    <div id="tabContent"></div>
                 </div>
             </div>
         </div>
@@ -253,11 +162,10 @@
 </div>
 
 <script>
-    var tab = "<?php echo $tab; ?>";
-    console.log('tab ' , tab);
-    getCustomerTabContent();
+    var tab = "tab-overview";
+    customerTabContent();
 
-    function getCustomerTabContent() { // Get Tab Content
+    function customerTabContent() {
         $.ajax({
             type: "post",
             url: "<?php echo base_url('Customer/customerTabContent'); ?>",
@@ -266,7 +174,7 @@
             },
             dataType: "html",
             success: function(response) {
-                $('#myTabContent').html(response);
+                $('#tabContent').html(response);
             },
             error: function() {
                 globalError();
@@ -274,9 +182,31 @@
         });
     }
 
-    $('.tab-profile').on('click', function(e) {
+    $('.tab-profile').on('click', function(e) { 
         e.preventDefault();
-        tab = $(this).attr('data-tab-profile');
-        window.location.href = "<?php echo base_url('Customer/index?tab='); ?>" + tab;
+
+        $('.tab-profile').each(function () {
+            $(this).removeClass('active');
+        });
+
+        tab = $(this).attr('id');
+
+        $(this).addClass('active');
+
+        customerTabContent();
     });
+
+    function reloadCustomerInfo() {
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('Customer/reloadCustomerInfo'); ?>",
+            dataType: "html",
+            success: function(response) {
+                $('#customer-info').html(response);
+            },
+            error: function() {
+                globalError();
+            }
+        });
+    }
 </script>

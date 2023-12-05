@@ -50,7 +50,7 @@ class Customer extends BaseController
         $this->objRequest->setLocale($this->config[0]->lang);
 
         # Set TimeZone
-        //date_default_timezone_set($this->config[0]->timezone);
+        date_default_timezone_set($this->config[0]->timezone);
     }
 
     public function index()
@@ -59,25 +59,27 @@ class Customer extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
             return view('customerLogout');
 
-        # params
-        $tab = $this->objRequest->getPostGet('tab');
-        if (empty($tab))
-            $tab = "overview";
-
         # data
         $data = array();
         $data['uniqid'] = uniqid();
-        # tab
-        $data['tab'] = $tab;
         $data['config'] = $this->config;
         $data['profile'] = $this->profile;
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
         $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
-
-        # data
+        # page
         $data['page'] = 'customer/index';
 
         return view('customer/mainCustomer', $data);
+    }
+
+    public function reloadCustomerInfo()
+    {
+        # data
+        $data = array();
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+        $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
+
+        return view('customer/customerInfo', $data);
     }
 
     public function customerTabContent()
@@ -86,26 +88,33 @@ class Customer extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
             return view('customerLogout');
 
+        # params
         $tab = $this->objRequest->getPost('tab');
+
         $data = array();
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        # data
         $data['config'] = $this->config;
+        $data['profile'] = $this->profile;
+        $data['uniqid'] = uniqid();
+
+        $view = "";
 
         switch ($tab) {
-            case 'overview':
-                $view = "customer/tabOverview";
+            case 'tab-overview':
+                # page
+                $view = "customer/tabContent/tabOverview";
                 break;
             case 'security':
-                $view = "customer/tabSecurity";
+                # page
+                $view = "customer/tabContent/tabSecurity";
                 break;
-            case 'profile':
+            case 'tab-profile':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
                 $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
-                $view = "customer/tabProfile";
+                # page
+                $view = "customer/tabContent/tabProfile";
                 break;
         }
-
-        $data['uniqid'] = uniqid();
 
         return view($view, $data);
     }

@@ -45,6 +45,7 @@ ALTER TABLE `customer` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailSubscr
 ALTER TABLE `customer` ADD `lastSession` DATE NULL AFTER `emailSubscription`; 
 ALTER TABLE `customer` ADD `gender` VARCHAR(1) NULL AFTER `lastName`; 
 ALTER TABLE `customer` ADD `avatar` longblob NOT NULL AFTER `id`; 
+ALTER TABLE `customer` CHANGE `phone` `phone` VARCHAR(20) NULL DEFAULT NULL; 
 
 #### 
   ## End Table customer
