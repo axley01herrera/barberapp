@@ -862,7 +862,7 @@ class ControlPanel extends BaseController
                 break;
             case 'tab-services':
                 # page
-                $data['services'] = $this->objMainModel->objData('service');
+                $data['services'] = $this->objControlPanelModel->getActiveServices();
                 $data['employeeServices'] = $this->objMainModel->objData('employee_service', 'employeeID', $employeeID);
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabService";
                 break;

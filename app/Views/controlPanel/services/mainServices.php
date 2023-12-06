@@ -82,7 +82,7 @@
                 globalError();
             }
         });
-    });
+    }); // ok
 
     var dtService = $('#dt-service').DataTable({ // Data Table
         dom: 'RfrtlpiB',
@@ -183,5 +183,5 @@
                 globalError();
             }
         });
-    })
+    }); // ok
 </script>

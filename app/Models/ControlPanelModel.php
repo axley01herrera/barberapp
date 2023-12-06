@@ -223,7 +223,7 @@ class ControlPanelModel extends Model
 
         return $query[0]->id;
     } // ok
-    # End Employee DT
+    # End Service DT
 
     public function removeEmployeeService($employeeID, $serviceID)
     {
@@ -241,5 +241,13 @@ class ControlPanelModel extends Model
         }
 
         return $return;
+    } // ok
+
+    public function getActiveServices()
+    {
+        $query = $this->db->table('service')
+        ->where('status', 1);
+        $data = $query->get()->getResult();
+        return $data;
     } // ok
 }
