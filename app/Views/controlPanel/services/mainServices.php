@@ -1,4 +1,4 @@
-<div class="d-flex flex-column flex-column-fluid">
+<div id="page" data-page="main-service" class="d-flex flex-column flex-column-fluid">
     <!-- Page Toolbar -->
     <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
         <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
@@ -41,7 +41,7 @@
                                 <tr class="fs-6 fw-bold">
                                     <th class="p-2"><?php echo lang('Text.dt_serv_title'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_serv_price'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_serv_time'); ?></th>
+                                    <th class="text-center p-2"><?php echo lang('Text.dt_serv_time'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_serv_dec'); ?></th>
                                     <th class="text-center p-2"><?php echo lang('Text.dt_serv_status'); ?></th>
                                     <th class="text-center p-2"></th>
@@ -95,7 +95,7 @@
         },
         buttons: [],
         ajax: {
-            url: "<?php echo base_url('ControlPanel/processingCustomer'); ?>",
+            url: "<?php echo base_url('ControlPanel/processingService'); ?>",
             type: "POST"
         },
         order: [
@@ -111,12 +111,13 @@
             },
             {
                 data: 'time',
-                class: 'dt-vertical-align p-2'
+                class: 'dt-vertical-align text-center p-2'
             },
             {
                 data: 'desc',
                 class: 'dt-vertical-align p-2',
-                
+                orderable: false,
+                searchable: false
             },
             {
                 data: 'status',
@@ -136,8 +137,7 @@
         }
     }); // ok
 
-
-    $('.edit-service').on('click', function() { // Edit Service
+    dtService.on('click', '.edit-service', function() { // Edit Service
         let id = $(this).attr('data-service-id');
         $.ajax({
             type: "post",

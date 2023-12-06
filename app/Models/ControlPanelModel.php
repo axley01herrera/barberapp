@@ -160,6 +160,71 @@ class ControlPanelModel extends Model
     } // ok
     # End Employee DT
 
+    # Service DT
+    public function getserviceProcessingData($params)
+    {
+        $query = $this->db->table('service');
+
+        if (!empty($params['search'])) {
+            $query->groupStart();
+            $query->like('title', $params['search']);
+            $query->orLike('price', $params['search']);
+            $query->orLike('time', $params['search']);
+            $query->groupEnd();
+        }
+
+        $query->offset($params['start']);
+        $query->limit($params['length']);
+        $query->orderBy($this->getServiceProcessingSort($params['sortColumn'], $params['sortDir']));
+
+        return $query->get()->getResult();
+    } // ok
+
+    public function getServiceProcessingSort($column, $dir)
+    {
+        $sort = '';
+
+        if ($column == 0) {
+            if ($dir == 'asc')
+                $sort = 'title ASC';
+            else
+                $sort = 'title DESC';
+        }
+
+        if ($column == 1) {
+            if ($dir == 'asc')
+                $sort = 'price ASC';
+            else
+                $sort = 'price DESC';
+        }
+
+        if ($column == 2) {
+            if ($dir == 'asc')
+                $sort = 'time ASC';
+            else
+                $sort = 'time DESC';
+        }
+
+        if ($column == 4) {
+            if ($dir == 'asc')
+                $sort = 'status ASC';
+            else
+                $sort = 'status DESC';
+        }
+
+        return $sort;
+    } // ok
+
+    public function getTotalService()
+    {
+        $query = $this->db->table('employee')
+            ->selectCount('id')
+            ->get()->getResult();
+
+        return $query[0]->id;
+    } // ok
+    # End Employee DT
+
     public function removeEmployeeService($employeeID, $serviceID)
     {
         $query = $this->db->table('employee_service')

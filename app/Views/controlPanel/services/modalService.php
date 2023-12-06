@@ -43,6 +43,7 @@
 
 <script>
     var action = "<?php echo $action; ?>";
+    var callModalFrom = $('#page').attr('data-page');
 
     $('#modal').modal('show');
     $('#modal').on('hidden.bs.modal', function(event) {
@@ -76,9 +77,10 @@
                 success: function(response) {
                     if (response.error === 0) {
                         simpleSuccessAlert(msg);
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, "2000");
+                        if (callModalFrom == "main-service") {
+                            dtService.draw();
+                            $('#modal').modal('hide');
+                        }
                     } else if (response.error === 1) {
                         if (response.msg == "ERROR_DUPLICATE") {
                             simpleAlert("<?php echo lang('Text.serv_duplicate'); ?>", 'warning');
@@ -97,7 +99,7 @@
             });
         } else
             simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
-    });
+    }); // ok
 
     function checkRequiredValues() {
         let result = 0;
