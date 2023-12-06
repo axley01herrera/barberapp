@@ -77,6 +77,7 @@
                                 globalError();
                                 $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
                             }
+                            $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
                         }
                     },
                     error: function(error) {

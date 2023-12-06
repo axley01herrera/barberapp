@@ -120,15 +120,16 @@ CREATE TABLE IF NOT EXISTS `service` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `price` float NOT NULL,
+  `time` int NOT NULL,
+  `status` int NOT NULL DEFAULT '1',
   `description` varchar(999) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-)
+);
 
-INSERT INTO `service` (`id`, `title`, `price`, `description`) VALUES
-(1, 'Básico', 10, 'Corte de caballero clásico.'),
-(2, 'Difuminado', 12, 'Corte de caballero con difuminado del cabello.'),
-(3, 'Barba', 5, 'Perfilado de barba al gusto.'),
-(4, 'Cejas', 2, 'Perfilado de cejas.');
+INSERT INTO `service` (`id`, `title`, `price`, `time`, `status`, `description`) VALUES
+(1, 'Corte Caballero', 10, 15, 1, 'Corte de caballero clásico.'),
+(2, 'Corte Cabllero Difuminado', 12, 30, 1, 'Corte con difuminado del cabello.'),
+(3, 'Corte Caballero Especial', 50, 60, 1, 'Corte de calidad con dibujo o forma específica que desee el cliente.');
 
 #### 
   ## End Table service
