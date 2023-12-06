@@ -10,14 +10,19 @@
                 <div class="row">
                     <div class="col-12">
                         <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.title'); ?> <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-title<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo @$service->title;?>" />
+                        <input type="text" id="txt-title<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo @$service->title; ?>" />
                     </div>
                 </div>
-                <!-- Price -->
                 <div class="row">
-                    <div class="col-3 mt-5">
+                    <!-- Price -->
+                    <div class="col-12 col-md-6 col-lg-g mt-5">
                         <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.price'); ?> <span class="text-danger">*</span></label>
-                        <input type="text" id="txt-price<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> decimal<?php echo $uniqid; ?>" value="<?php if(!empty($service->price)) echo number_format(@$service->price, 2,".",',');?>" />
+                        <input type="text" id="txt-price<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> decimal<?php echo $uniqid; ?>" value="<?php if (!empty($service->price)) echo $service->price; ?>" />
+                    </div>
+                    <!-- Price -->
+                    <div class="col-12 col-md-6 col-lg-g mt-5">
+                        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.time_minutes'); ?> <span class="text-danger">*</span></label>
+                        <input type="text" id="txt-time<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> decimal<?php echo $uniqid; ?>" value="<?php if (!empty($service->time)) echo $service->time; ?>" />
                     </div>
                 </div>
                 <!-- Description -->
@@ -37,84 +42,82 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        let action = "<?php echo $action;?>";
+    var action = "<?php echo $action; ?>";
 
-        $('#modal').modal('show');
-        $('#modal').on('hidden.bs.modal', function(event) {
-            $('#app-modal').html('');
-        });
+    $('#modal').modal('show');
+    $('#modal').on('hidden.bs.modal', function(event) {
+        $('#app-modal').html('');
+    });
 
-        $('#save-serv<?php echo $uniqid; ?>').on('click', function() { // Submit
-            let result = checkRequiredValues();
-            if (result === 0) {
-                $('#save-serv<?php echo $uniqid; ?>').attr('disabled', true);
-                let url = "";
-                let msg = "";
-                if(action == "create") {
-                    url = "<?php echo base_url('ControlPanel/createService'); ?>";
-                    msg = "<?php echo lang("Text.serv_success_created"); ?>";
-                } else {
-                    url = "<?php echo base_url('ControlPanel/updateService'); ?>"
-                    msg = "<?php echo lang("Text.serv_success_updated"); ?>";
-                }
-                $.ajax({
-                    type: "post",
-                    url: url,
-                    data: {
-                        'title': $('#txt-title<?php echo $uniqid; ?>').val(),
-                        'price': $('#txt-price<?php echo $uniqid; ?>').val(),
-                        'description': $('#txt-description<?php echo $uniqid; ?>').val(),
-                        'id': "<?php echo @$service->id; ?>"
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.error === 0) {
-                            simpleSuccessAlert(msg);
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, "2000");
-                        } else if (response.error === 1) {
-                            if (response.msg == "duplicate") {
-                                simpleAlert("<?php echo lang('Text.serv_duplicate'); ?>", 'warning');
-                                $('#txt-title<?php echo $uniqid; ?>').addClass('is-invalid');
-                            } else
-                                globalError();
+    $('#save-serv<?php echo $uniqid; ?>').on('click', function() { // Submit
+        let result = checkRequiredValues();
+        if (result === 0) {
+            $('#save-serv<?php echo $uniqid; ?>').attr('disabled', true);
+            let url = "";
+            let msg = "";
+            if (action == "create") {
+                url = "<?php echo base_url('ControlPanel/createService'); ?>";
+                msg = "<?php echo lang("Text.serv_success_created"); ?>";
+            } else {
+                url = "<?php echo base_url('ControlPanel/updateService'); ?>"
+                msg = "<?php echo lang("Text.serv_success_updated"); ?>";
+            }
+            $.ajax({
+                type: "post",
+                url: url,
+                data: {
+                    'title': $('#txt-title<?php echo $uniqid; ?>').val(),
+                    'price': $('#txt-price<?php echo $uniqid; ?>').val(),
+                    'time': $('#txt-time<?php echo $uniqid; ?>').val(),
+                    'description': $('#txt-description<?php echo $uniqid; ?>').val(),
+                    'id': "<?php echo @$service->id; ?>"
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.error === 0) {
+                        simpleSuccessAlert(msg);
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, "2000");
+                    } else if (response.error === 1) {
+                        if (response.msg == "ERROR_DUPLICATE") {
+                            simpleAlert("<?php echo lang('Text.serv_duplicate'); ?>", 'warning');
+                            $('#txt-title<?php echo $uniqid; ?>').addClass('is-invalid');
                         } else
-                            window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                            globalError();
+                    } else
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
 
-                        $('#save-serv<?php echo $uniqid; ?>').removeAttr('disabled');
-                    },
-                    error: function() {
-                        globalError();
-                        $('#save-serv<?php echo $uniqid; ?>').removeAttr('disabled');
-                    }
-                });
-            } else
-                simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
-
-        });
-
-        function checkRequiredValues() {
-            let result = 0;
-            let value = "";
-
-            $('.required<?php echo $uniqid; ?>').each(function() {
-                value = $(this).val();
-                if (value == "") {
-                    $(this).addClass('is-invalid');
-                    result = 1;
+                    $('#save-serv<?php echo $uniqid; ?>').removeAttr('disabled');
+                },
+                error: function() {
+                    globalError();
+                    $('#save-serv<?php echo $uniqid; ?>').removeAttr('disabled');
                 }
             });
-            return result;
-        }
+        } else
+            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+    });
 
-        $('.required<?php echo $uniqid; ?>').on('focus', function() {
-            $(this).removeClass('is-invalid');
-        });
+    function checkRequiredValues() {
+        let result = 0;
+        let value = "";
 
-        $('.decimal<?php echo $uniqid; ?>').on('input', function() {
-            jQuery(this).val(jQuery(this).val().replace(/[^0-9.]/g, ''));
+        $('.required<?php echo $uniqid; ?>').each(function() {
+            value = $(this).val();
+            if (value == "") {
+                $(this).addClass('is-invalid');
+                result = 1;
+            }
         });
+        return result;
+    }
+
+    $('.required<?php echo $uniqid; ?>').on('focus', function() {
+        $(this).removeClass('is-invalid');
+    });
+
+    $('.decimal<?php echo $uniqid; ?>').on('input', function() {
+        jQuery(this).val(jQuery(this).val().replace(/[^0-9.]/g, ''));
     });
 </script>

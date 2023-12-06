@@ -31,6 +31,7 @@ $lang['zip'] = "Código Postal";
 $lang['country'] = "País";
 $lang['title'] = "Título";
 $lang['price'] = "Precio";
+$lang['time_minutes'] = "Tiempo (minutos)";
 $lang['description'] = "Descripción";
 $lang['currency'] = "Moneda";
 $lang['contact_info'] = "Información de Contacto";

@@ -133,7 +133,6 @@ class ControlPanel extends BaseController
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
         $data['profile'] = $this->profile;
-        $data['services'] = $this->objMainModel->objData('service');
         # menu
         $data['activeServices'] = "active";
         # page
@@ -172,21 +171,24 @@ class ControlPanel extends BaseController
             $result['msg'] = "session expired";
             return json_encode($result);
         }
-
-        $data = array();
-        $data['title'] = htmlspecialchars(trim($this->objRequest->getPost('title')));
-        $data['price'] = htmlspecialchars(trim($this->objRequest->getPost('price')));
-        $data['description'] = htmlspecialchars(trim($this->objRequest->getPost('description')));
-
-        $checkDuplicate = $this->objMainModel->objCheckDuplicate('service', 'title', $data['title']);
-
+        # params
+        $title = htmlspecialchars(trim($this->objRequest->getPost('title')));
+        $price = htmlspecialchars(trim($this->objRequest->getPost('price')));
+        $time = htmlspecialchars(trim($this->objRequest->getPost('time')));
+        $description = htmlspecialchars(trim($this->objRequest->getPost('description')));
+        $checkDuplicate = $this->objMainModel->objCheckDuplicate('service', 'title', $title);
         if (empty($checkDuplicate)) {
+            $data = array();
+            $data['title'] = $title;
+            $data['price'] = $price;
+            $data['time'] = $time;
+            $data['description'] = $description;
             $result = $this->objMainModel->objCreate('service', $data);
             return json_encode($result);
         } else {
             $result = array();
             $result['error'] = 1;
-            $result['msg'] = "duplicate";
+            $result['msg'] = "ERROR_DUPLICATE";
             return json_encode($result);
         }
     } // ok
