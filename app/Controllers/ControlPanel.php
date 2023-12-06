@@ -139,6 +139,68 @@ class ControlPanel extends BaseController
         $data['page'] = 'controlPanel/services/mainServices';
 
         return view('ControlPanel/mainCpanel', $data);
+    }
+
+    public function processingService()
+    {
+        $dataTableRequest = $_REQUEST;
+
+        $params = array();
+        $params['draw'] = $dataTableRequest['draw'];
+        $params['start'] = $dataTableRequest['start'];
+        $params['length'] = $dataTableRequest['length'];
+        $params['search'] = $dataTableRequest['search']['value'];
+        $params['sortColumn'] = $dataTableRequest['order'][0]['column'];
+        $params['sortDir'] = $dataTableRequest['order'][0]['dir'];
+
+        $row = array();
+        $totalRecords = 0;
+
+        $result = $this->objControlPanelModel->getServiceProcessingData($params);
+        $totalRows = sizeof($result);
+
+        for ($i = 0; $i < $totalRows; $i++) {
+
+            $emailStatus = '<span class="badge small badge-danger"><i class="bi bi-envelope-dash text-dark me-1" title="' . lang('Text.not_verified') . '"></i></span>';
+            if ($result[$i]->emailVerified == 1)
+                $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1" title="' . lang('Text.verified') . '"></i></span>';
+
+            $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
+            $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-customer-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
+
+            if ($result[$i]->status == 1) {
+                $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
+                $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 change-status" data-customer-id="' . $result[$i]->id . '" data-status="0" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
+            }
+
+            $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
+            $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
+
+            $col = array();
+            $col['name'] = '<a href="' . base_url('ControlPanel/customerProfile?id=') . $result[$i]->id . '">' . $result[$i]->name . '</a>';
+            $col['lastName'] = $result[$i]->lastName;
+            $col['email'] = $result[$i]->email;
+            $col['status'] = $status;
+            $col['emailVerified'] = $emailStatus;
+            $col['action'] = $btnChangeStatus . $btnEdit . $btnDelete;
+
+            $row[$i] =  $col;
+        }
+
+        if ($totalRows > 0) {
+            if (empty($params['search']))
+                $totalRecords = $this->objControlPanelModel->getTotalCustomers();
+            else
+                $totalRecords = $totalRows;
+        }
+
+        $data = array();
+        $data['draw'] = $dataTableRequest['draw'];
+        $data['recordsTotal'] = intval($totalRecords);
+        $data['recordsFiltered'] = intval($totalRecords);
+        $data['data'] = $row;
+
+        return json_encode($data);
     } // ok
 
     public function showModalService()

@@ -192,6 +192,11 @@ $lang['serv_success_created'] = "Servicio Creado";
 $lang['serv_success_updated'] = "Servicio Actualizado";
 $lang['serv_duplicate'] = "Ya existe el servicio";
 $lang['serv_no_desc'] = "Servicio sin descripción";
+$lang['dt_serv_title'] = "Título";
+$lang['dt_serv_price'] = "Price";
+$lang['dt_serv_time'] = "Tiempo (minutos)";
+$lang['dt_serv_status'] = "Estado";
+$lang['dt_serv_dec'] = "Descripción";
 
 # Control Panel Profile
 $lang['prof_menu_edit_profile'] = "Editar Perfil";

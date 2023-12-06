@@ -17,12 +17,53 @@
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
-
+            <!-- Card -->
+            <div class="card mb-5 mb-xl-10 mt-5">
+                <!-- Card Header -->
+                <div class="card-header border-0">
+                    <!-- Card Title -->
+                    <div class="card-title">
+                        <div class="d-flex align-items-center position-relative ">
+                            <h5></h5>
+                        </div>
+                    </div>
+                    <!-- Card Toolbar -->
+                    <div class="card-toolbar">
+                        <div id="search-service"></div>
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body pb-0">
+                    <!-- Data Table -->
+                    <div class="table-responsive">
+                        <table id="dt-service" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                            <thead>
+                                <tr class="fs-6 fw-bold">
+                                    <th class="p-2"><?php echo lang('Text.dt_serv_title'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.dt_serv_price'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.dt_serv_time'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.dt_serv_dec'); ?></th>
+                                    <th class="text-center p-2"><?php echo lang('Text.dt_serv_status'); ?></th>
+                                    <th class="text-center p-2"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
+    var lang = "<?php echo $config[0]->lang; ?>";
+    var dtLang = "";
+
+    if (lang == "es")
+        dtLang = "<?php echo base_url('assets/js/dataTable/es.json'); ?>";
+    else if (lang == "en")
+        dtLang = "<?php echo base_url('assets/js/dataTable/en.json'); ?>";
+
     $('#btn-new-serv<?php echo $uniqid; ?>').on('click', function() { // Create Service
         $('#btn-new-serv<?php echo $uniqid; ?>').attr('disabled', true);
         $.ajax({
@@ -43,10 +84,57 @@
         });
     });
 
-
-
-
-
+    var dtService = $('#dt-service').DataTable({ // Data Table
+        dom: 'RfrtlpiB',
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        pageLength: 10,
+        language: {
+            url: dtLang
+        },
+        buttons: [],
+        ajax: {
+            url: "<?php echo base_url('ControlPanel/processingCustomer'); ?>",
+            type: "POST"
+        },
+        order: [
+            [0, 'asc']
+        ],
+        columns: [{
+                data: 'title',
+                class: 'dt-vertical-align p-2'
+            },
+            {
+                data: 'price',
+                class: 'dt-vertical-align p-2'
+            },
+            {
+                data: 'time',
+                class: 'dt-vertical-align p-2'
+            },
+            {
+                data: 'desc',
+                class: 'dt-vertical-align p-2',
+                
+            },
+            {
+                data: 'status',
+                class: 'dt-vertical-align text-center p-2',
+                searchable: false
+            },
+            {
+                data: 'action',
+                class: 'dt-vertical-align text-center p-2',
+                orderable: false,
+                searchable: false
+            },
+        ],
+        initComplete: function(settings, json) {
+            $('#search-service').html('');
+            $('#dt-service_filter').appendTo('#search-service');
+        }
+    }); // ok
 
 
     $('.edit-service').on('click', function() { // Edit Service
