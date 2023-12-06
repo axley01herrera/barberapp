@@ -191,6 +191,7 @@ class Customer extends BaseController
         $dataInfo['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $dataInfo['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
         $dataInfo['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
+        $dataInfo['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
 
         $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataInfo, $this->objSession->get('user')['customerID']);
         if ($resultUpdateCustomer['error'] == 0) {

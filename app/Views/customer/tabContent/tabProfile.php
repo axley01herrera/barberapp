@@ -39,19 +39,35 @@
                     <div class="fs-6 fw-semibold">Avatar</div>
                 </div>
                 <!-- Name-->
-                <div class="col-12 col-lg-4 mt-5">
+                <div class="col-12 col-lg-3 mt-5">
                     <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.name'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-name<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->name; ?>" disabled="">
                 </div>
                 <!-- last Name -->
-                <div class="col-12 col-lg-4 mt-5">
+                <div class="col-12 col-lg-3 mt-5">
                     <label class="fs-6 fw-semibold" for="txt-lastName<?php echo $uniqid; ?>"><?php echo lang('Text.last_name'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-lastName<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->lastName; ?>" disabled="">
                 </div>
-                <div class="col-12 col-lg-4 mt-5">
+                <div class="col-12 col-lg-3 mt-5">
                     <!-- Phone -->
                     <label class="fs-6 fw-semibold" for="txt-phone<?php echo $uniqid; ?>"><?php echo lang('Text.phone'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-phone<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $customer[0]->phone; ?>" disabled="">
+                </div>
+                <div class="col-12 col-lg-3 mt-5">
+                    <!-- Gender -->
+                    <label class="fs-6 fw-semibold" for="txt-gender<?php echo $uniqid; ?>"><?php echo lang('Text.gender'); ?> <span class="text-danger">*</span></label>
+                    <select id="txt-gender<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled="">
+                        <option value="" hidden>Selecciona tu Género</option>
+                        <option value="m" <?php if ($customer[0]->gender == 'm') {
+                                                echo 'selected hidden';
+                                            } ?>>Hombre</option>
+                        <option value="f" <?php if ($customer[0]->gender == 'f') {
+                                                echo 'selected hidden';
+                                            } ?>>Mujer</option>
+                        <option value="o" <?php if ($customer[0]->gender == 'o') {
+                                                echo 'selected hidden';
+                                            } ?>>Otro</option>
+                    </select>
                 </div>
                 <div class="col-12 col-lg-6 mt-5">
                     <!-- Line 1 -->
@@ -201,6 +217,7 @@
                         'name': $('#txt-name<?php echo $uniqid; ?>').val(),
                         'lastName': $('#txt-lastName<?php echo $uniqid; ?>').val(),
                         'phone': $('#txt-phone<?php echo $uniqid; ?>').val(),
+                        'gender': $('#txt-gender<?php echo $uniqid; ?>').val(),
                         'address1': $('#txt-address1<?php echo $uniqid; ?>').val(),
                         'address2': $('#txt-address2<?php echo $uniqid; ?>').val(),
                         'city': $('#txt-city<?php echo $uniqid; ?>').val(),

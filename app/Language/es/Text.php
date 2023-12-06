@@ -17,6 +17,7 @@ $lang['new_key'] = "Nueva Clave";
 $lang['confirm_key'] = "Confirme la Nueva Clave";
 $lang['name'] = "Nombre";
 $lang['last_name'] = "Apellidos";
+$lang['gender'] = "Género";
 $lang['primary_phone'] = "Teléfono Principal";
 $lang['phone'] = "Teléfono";
 $lang['secondary_phone'] = "Teléfono Segundario";
