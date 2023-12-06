@@ -7,15 +7,20 @@
                     <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $customer[0]->email; ?>" disabled="">
                 </div>
-                <div class="col-12 col-lg-6 mt-5">
-                    <!-- Password -->
-                    <label class="fs-6 fw-semibold" for="txt-password<?php echo $uniqid; ?>"><?php echo lang('Text.password'); ?></label>
-                    <input type="password" id="txt-password<?php echo $uniqid; ?>" class="form-control" maxlength="5" disabled="">
+                <div class="col-12 mt-5">
+                    <!-- Current Password -->
+                    <label class="fs-6 fw-semibold" for="txt-password<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?></label>
+                    <input type="password" id="txt-password<?php echo $uniqid; ?>" class="form-control password focus" disabled="">
                 </div>
                 <div class="col-12 col-lg-6 mt-5">
-                    <!-- Confirm Password -->
-                    <label class="fs-6 fw-semibold" for="txt-confirmPassword<?php echo $uniqid; ?>"><?php echo lang('Text.password_repeat'); ?></label>
-                    <input type="password" id="txt-confirmPassword<?php echo $uniqid; ?>" class="form-control" maxlength="45" disabled="">
+                    <!-- New Password -->
+                    <label class="fs-6 fw-semibold" for="txt-newPassword<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?></label>
+                    <input type="password" id="txt-newPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="">
+                </div>
+                <div class="col-12 col-lg-6 mt-5">
+                    <!-- Confirm New Password -->
+                    <label class="fs-6 fw-semibold" for="txt-confirmNewPassword<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?></label>
+                    <input type="password" id="txt-confirmNewPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="">
                 </div>
             </div>
             <div class="row">
@@ -48,18 +53,25 @@
     });
 
     $('#btn-update<?php echo $uniqid; ?>').on('click', function() {
+        $('.password').each(function() {
+            if ($(this).val() != '') {
+                $(this).addClass('required<?php echo $uniqid; ?>');
+            }
+        });
+
         let result = checkRequiredValues();
         if (result === 0) {
             let resultEmail = checkEmailFormat();
             if (resultEmail === 0) {
-                if ($('#txt-password<?php echo $uniqid; ?>').val() === $('#txt-confirmPassword<?php echo $uniqid; ?>').val()) {
+                if ($('#txt-newPassword<?php echo $uniqid; ?>').val() === $('#txt-confirmNewPassword<?php echo $uniqid; ?>').val()) {
                     $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
                     $.ajax({
                         type: "post",
                         url: "<?php echo base_url('Customer/updateAccount'); ?>",
                         data: {
                             'email': $('#txt-email<?php echo $uniqid; ?>').val(),
-                            'password': $('#txt-password<?php echo $uniqid; ?>').val(),
+                            'password': $('#txt-newPassword<?php echo $uniqid; ?>').val(),
+                            'currentPassword': $('#txt-password<?php echo $uniqid; ?>').val(),
                         },
                         dataType: "json",
                         success: function(response) {
@@ -74,10 +86,14 @@
                                 }
                             } else if (response.error == 1) {
                                 $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
-                                if (response.msg == 'ERROR_SEND_EMAIL')
+                                if (response.msg == "invalid current key") {
+                                    $('#txt-password<?php echo $uniqid; ?>').addClass('is-invalid');
+                                    simpleAlert("<?php echo lang('Text.invalid_current_password'); ?>", 'warning')
+                                } else if (response.msg == 'ERROR_SEND_EMAIL')
                                     simpleAlert("<?php echo lang("Text.cust_error_reactivate_email"); ?>", 'warning');
                                 else
                                     globalError();
+
                             } else
                                 window.location.href = "<?php echo base_url('Home/signInCustomer?session=expired'); ?>";
 
@@ -90,7 +106,7 @@
                     });
                 } else {
                     simpleAlert("<?php echo lang('Text.password_does_not_match'); ?>", 'warning');
-                    $('#txt-confirmPassword<?php echo $uniqid; ?>').addClass('is-invalid');
+                    $('#txt-confirmNewPassword<?php echo $uniqid; ?>').addClass('is-invalid');
                 }
             } else
                 simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
@@ -128,5 +144,13 @@
 
     $('.required<?php echo $uniqid; ?>').on('focus', function() {
         $(this).removeClass('is-invalid');
+    });
+
+    $('.focus').on('input change', function() {
+        let value = $(this).val();
+        if (value == '')
+            $(this).addClass('is-invalid');
+        else
+            $(this).removeClass('is-invalid');
     });
 </script>

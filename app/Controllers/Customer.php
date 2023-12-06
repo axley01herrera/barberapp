@@ -134,6 +134,17 @@ class Customer extends BaseController
 
         $token = md5(uniqid());
 
+        $password = htmlspecialchars(trim($this->objRequest->getPost('currentPassword')));
+
+        if (!empty($password)) {
+            if ($this->objConfigModel->login($password)['error'] === 1) {
+                $result = array();
+                $result['error'] = 1;
+                $result['msg'] = "invalid current key";
+                return json_encode($result);
+            }
+        }
+
         $dataAccount = array();
         $dataAccount['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
         if (!empty(htmlspecialchars(trim($this->objRequest->getPost('password')))))
