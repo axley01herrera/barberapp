@@ -82,7 +82,7 @@
                 globalError();
             }
         });
-    });
+    }); // ok
 
     var dtService = $('#dt-service').DataTable({ // Data Table
         dom: 'RfrtlpiB',
@@ -154,5 +154,34 @@
                 globalError();
             }
         });
-    });
+    }); // ok
+
+    dtService.on('click', '.change-status', function() {
+        let serviceID = $(this).attr('data-service-id');
+        let status = $(this).attr('data-status');
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/changeServiceStatus'); ?>",
+            data: {
+                'serviceID': serviceID,
+                'status': status
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.error == 0) {
+                    simpleSuccessAlert('<?php echo lang('Text.success_change_status'); ?>');
+                    dtService.draw();
+                } else {
+                    if (response.msg == "SESSION_EXPIRED") {
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    } else
+                        globalError();
+                }
+            },
+            error: function(e) {
+                globalError();
+            }
+        });
+    }); // ok
 </script>

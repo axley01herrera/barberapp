@@ -35,6 +35,7 @@ $lang['price'] = "Precio";
 $lang['time_minutes'] = "Tiempo (minutos)";
 $lang['description'] = "Descripción";
 $lang['currency'] = "Moneda";
+$lang['timezone'] = "Zona Horaria";
 $lang['contact_info'] = "Información de Contacto";
 $lang['active'] = "Activo";
 $lang['inactive'] = "Inactivo";

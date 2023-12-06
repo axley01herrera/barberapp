@@ -164,7 +164,7 @@
                 globalError();
             }
         });
-    })
+    }) // ok
 
     dtCustomers.on('click', '.edit-customer', function() { // Edit
         let customerID = $(this).attr('data-customer-id');
