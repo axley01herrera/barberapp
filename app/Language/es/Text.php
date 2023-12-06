@@ -23,6 +23,7 @@ $lang['phone'] = "Teléfono";
 $lang['dob'] = "Fecha de Nacimiento";
 $lang['secondary_phone'] = "Teléfono Segundario";
 $lang['email'] = "Correo Electrónico";
+$lang['email_notification'] = "Recibir Notificaciones por Email";
 $lang['address'] = "Dirección";
 $lang['address1'] = "Linea 1 de Dirección";
 $lang['address2'] = "Linea 2 de Dirección";

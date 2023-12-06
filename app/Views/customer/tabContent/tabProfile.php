@@ -43,21 +43,21 @@
                     <div class="fs-6 fw-semibold">Avatar</div>
                 </div>
                 <!-- Name-->
-                <div class="col-12 col-lg-2 mt-5">
+                <div class="col-12 col-lg-6 mt-5">
                     <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.name'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-name<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->name; ?>" disabled="">
                 </div>
                 <!-- last Name -->
-                <div class="col-12 col-lg-2 mt-5">
+                <div class="col-12 col-lg-6 mt-5">
                     <label class="fs-6 fw-semibold" for="txt-lastName<?php echo $uniqid; ?>"><?php echo lang('Text.last_name'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-lastName<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->lastName; ?>" disabled="">
                 </div>
-                <div class="col-12 col-lg-3 mt-5">
+                <div class="col-12 col-lg-4 mt-5">
                     <!-- Phone -->
                     <label class="fs-6 fw-semibold" for="txt-phone<?php echo $uniqid; ?>"><?php echo lang('Text.phone'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-phone<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $customer[0]->phone; ?>" disabled="">
                 </div>
-                <div class="col-12 col-lg-2 mt-5">
+                <div class="col-12 col-lg-4 mt-5">
                     <!-- Gender -->
                     <label class="fs-6 fw-semibold" for="txt-gender<?php echo $uniqid; ?>"><?php echo lang('Text.gender'); ?> <span class="text-danger">*</span></label>
                     <select id="txt-gender<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled="">
@@ -73,10 +73,10 @@
                                             } ?>>Otro</option>
                     </select>
                 </div>
-                <div class="col-12 col-lg-3 mt-5">
+                <div class="col-12 col-lg-4 mt-5">
                     <!-- Date of birth -->
                     <label class="fs-6 fw-semibold" for="sel-dob<?php echo $uniqid; ?>"><?php echo lang('Text.dob'); ?> <span class="text-danger">*</span></label>
-                    <input id="sel-dob<?php echo $uniqid; ?>" class="flatpickr form-control required<?php echo $uniqid; ?>" value="<?php if(!empty($customer[0]->dob)) echo date($dateLabel, strtotime($customer[0]->dob)); ?>" disabled="" />
+                    <input id="sel-dob<?php echo $uniqid; ?>" class="flatpickr form-control required<?php echo $uniqid; ?>" value="<?php if (!empty($customer[0]->dob)) echo date($dateLabel, strtotime($customer[0]->dob)); ?>" disabled="" />
                 </div>
                 <div class="col-12 col-lg-6 mt-5">
                     <!-- Line 1 -->
@@ -108,6 +108,14 @@
                     <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->country; ?>" disabled="">
                 </div>
+                <div class="col-12 mt-5">
+                    <!-- Email Notification -->
+                    <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.email_notification'); ?></label>
+                    <div class="form-check form-switch form-check-custom form-check-solid mt-2">
+                        <input type="checkbox" id="en-checkbox" class="form-check-input form-control h-30px w-50px" disabled="" <?php if ($customer[0]->emailNotification == 1) echo 'checked=""'; ?> data-checked="<?php echo $customer[0]->emailNotification; ?>">
+                        <label class="form-check-label"></label>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-12 text-end mt-5">
@@ -124,8 +132,6 @@
     </div>
 </div>
 
-<?php var_dump($dateLabel); ?>
-
 <script>
     var lang = "<?php echo $config[0]->lang; ?>";
     var dateLabel = "";
@@ -137,6 +143,13 @@
 
     $(".flatpickr").flatpickr({
         dateFormat: dateLabel
+    });
+
+    $('#en-checkbox').on('click', function() {
+        if ($(this).attr('data-checked') == 1)
+            $(this).attr('data-checked', 0);
+        else
+            $(this).attr('data-checked', 1);
     });
 
     // Avatar Procedure
@@ -248,6 +261,7 @@
                         'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
                         'country': $('#txt-country<?php echo $uniqid; ?>').val(),
                         'dob': $('#sel-dob<?php echo $uniqid; ?>').val(),
+                        'status': $('#en-checkbox').attr('data-checked')
                     },
                     dataType: "json",
                     success: function(response) {

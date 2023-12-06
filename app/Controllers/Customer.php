@@ -99,7 +99,7 @@ class Customer extends BaseController
 
         if ($this->config[0]->lang == 'es')
             $data['dateLabel'] = "d-m-Y";
-        else if ($this->config[0]->lang == 'en') 
+        else if ($this->config[0]->lang == 'en')
             $data['dateLabel'] = "m-d-Y";
 
         $view = "";
@@ -208,6 +208,7 @@ class Customer extends BaseController
         $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
         $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
         $dataProfile['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
+        $dataProfile['emailNotification'] = htmlspecialchars(trim($this->objRequest->getPost('status')));
 
         $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataProfile, $this->objSession->get('user')['customerID']);
         if ($resultUpdateCustomer['error'] == 0) {
