@@ -1051,10 +1051,10 @@ class ControlPanel extends BaseController
 
         $key = htmlspecialchars(trim($this->objRequest->getPost('current')));
 
-        if ($this->objConfigModel->login($key)['error'] === 1) {
+        if ($this->objConfigModel->login($key)['error'] == 1) {
             $result = array();
             $result['error'] = 1;
-            $result['msg'] = "invalid current key";
+            $result['msg'] = "INVALID_CURRENT_KEY";
             return json_encode($result);
         }
 

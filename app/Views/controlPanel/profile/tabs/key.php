@@ -64,7 +64,7 @@
                                     window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
                                 }, "2000");
                             } else if (response.error === 1) {
-                                if (response.msg == "invalid current key") {
+                                if (response.msg == "INVALID_CURRENT_KEY") {
                                     $('#txt-current<?php echo $uniqid; ?>').addClass('is-invalid');
                                     simpleAlert("<?php echo lang('Text.invalid_current_password'); ?>", 'warning')
                                 } else

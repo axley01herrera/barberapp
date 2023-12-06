@@ -132,58 +132,59 @@ class Customer extends BaseController
             return json_encode($result);
         }
 
-        $token = md5(uniqid());
+        # params
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
+        $currentPassword = htmlspecialchars(trim($this->objRequest->getPost('currentPassword')));
+        $newPassword = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
 
-        $password = htmlspecialchars(trim($this->objRequest->getPost('currentPassword')));
-
-        if (!empty($password)) {
-            if ($this->objConfigModel->login($password)['error'] === 1) {
+        if (!empty($currentPassword)) {
+            if ($this->objConfigModel->login($currentPassword)['error'] == 1) {
                 $result = array();
                 $result['error'] = 1;
-                $result['msg'] = "invalid current key";
+                $result['msg'] = "INVALID_CURRENT_KEY";
                 return json_encode($result);
             }
         }
 
         $dataAccount = array();
-        $dataAccount['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
-        if (!empty(htmlspecialchars(trim($this->objRequest->getPost('password')))))
-            $dataAccount['password'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
+        if (!empty($newPassword))
+            $dataAccount['password'] = $newPassword;
 
+        if ($this->objSession->get('user')['email'] !== $email) {
+            $dataAccount['email'] = $email;
+            $dataAccount['token'] = md5(uniqid());
+            $dataAccount['emailVerified'] = 0;
+        }
+
+        if (empty($dataAccount)) {
+            $response = array();
+            $response['error'] = 0;
+            return json_encode($response);
+        }
+
+        $this->objMainModel->objUpdate('customer', $dataAccount, $this->objSession->get('user')['customerID']);
         $customer = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
 
-        $response = array();
-        if ($this->objSession->get('user')['email'] !== $dataAccount['email']) {
-            $dataAccount['token'] = $token;
-            $dataAccount['emailVerified'] = 0;
-
+        if (!empty($dataAccount['email'])) {
             $dataEmail = array();
             $dataEmail['pageTitle'] = $this->profile[0]->company_name;
             $dataEmail['person'] = $customer[0]->name . ' ' . $customer[0]->lastName;
-            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&action=reactivate';
-            $dataEmail['action'] = "reactivate";
+            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'];
             $dataEmail['companyPhone'] = $this->profile[0]->phone1;
             $dataEmail['companyEmail'] = $this->profile[0]->email;
 
             $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
             $this->objEmail->setTo($dataAccount['email']);
             $this->objEmail->setSubject($this->profile[0]->company_name);
-            $this->objEmail->setMessage(view('email/mailSignup', $dataEmail), []);
+            $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
 
-            if ($this->objEmail->send(false)) {
-                $this->objMainModel->objUpdate('customer', $dataAccount, $this->objSession->get('user')['customerID']);
-                $response['error'] = 0;
-                $response['msg'] = 'SENT_EMAIL';
-            } else {
-                $response['error'] = 1;
-                $response['msg'] = 'ERROR_SEND_EMAIL';
-            }
-        } else
-            $response['error'] = 0;
-
+            $this->objEmail->send(false);
+        }
+        $response = array();
+        $response['error'] = 0;
 
         return json_encode($response);
-    }
+    } //ok
 
     public function updateProfile()
     {

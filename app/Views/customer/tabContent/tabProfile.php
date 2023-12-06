@@ -16,7 +16,11 @@
                     <!-- Image Input -->
                     <div id="kt_image_input_profile<?php echo $uniqid; ?>" class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(http://barberapp/public/assets/media/svg/avatars/blank.svg)">
                         <!-- Image Preview -->
-                        <div class="image-input-wrapper w-125px h-125px" <?php if (empty($customer[0]->avatar)) echo 'style="background-image: url(http://barberapp/public/assets/media/svg/avatars/blank.svg)"'; ?>><img src="data:image/png;base64,<?php echo base64_encode($customer[0]->avatar); ?>" class="image-input-wrapper w-120px h-120px"></div>
+                        <?php if (empty($customer[0]->avatar)) { ?>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(<?php echo base_url('public/assets/media/svg/avatars/blank.svg'); ?>)"></div>
+                        <?php } else { ?>
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url(data:image/png;base64,<?php echo base64_encode($customer[0]->avatar); ?>)"></div>
+                        <?php } ?>
                         <!-- Edit Button -->
                         <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cambiar Avatar">
                             <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>

@@ -92,7 +92,7 @@
                                 }
                             } else if (response.error == 1) {
                                 $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
-                                if (response.msg == "invalid current key") {
+                                if (response.msg == "INVALID_CURRENT_KEY") {
                                     $('#txt-password<?php echo $uniqid; ?>').addClass('is-invalid');
                                     simpleAlert("<?php echo lang('Text.invalid_current_password'); ?>", 'warning')
                                 } else if (response.msg == 'ERROR_SEND_EMAIL')
