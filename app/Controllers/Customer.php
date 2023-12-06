@@ -134,20 +134,19 @@ class Customer extends BaseController
 
         $token = md5(uniqid());
 
-        $dataInfo = array();
-        $dataInfo['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
+        $dataAccount = array();
+        $dataAccount['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
         if (!empty(htmlspecialchars(trim($this->objRequest->getPost('password')))))
-            $dataInfo['password'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
-        if ($this->objSession->get('user')['email'] !== $dataInfo['email']) {
-            $dataInfo['token'] = $token;
-            $dataInfo['status'] = 0;
-            $dataInfo['emailVerified'] = 0;
-        }
+            $dataAccount['password'] = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
 
         $customer = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
 
         $response = array();
-        if ($this->objSession->get('user')['email'] !== $dataInfo['email']) {
+        if ($this->objSession->get('user')['email'] !== $dataAccount['email']) {
+            $dataAccount['token'] = $token;
+            $dataAccount['status'] = 0;
+            $dataAccount['emailVerified'] = 0;
+
             $dataEmail = array();
             $dataEmail['pageTitle'] = $this->profile[0]->company_name;
             $dataEmail['person'] = $customer[0]->name . ' ' . $customer[0]->lastName;
@@ -157,12 +156,12 @@ class Customer extends BaseController
             $dataEmail['companyEmail'] = $this->profile[0]->email;
 
             $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
-            $this->objEmail->setTo($dataInfo['email']);
+            $this->objEmail->setTo($dataAccount['email']);
             $this->objEmail->setSubject($this->profile[0]->company_name);
             $this->objEmail->setMessage(view('email/mailSignup', $dataEmail), []);
 
             if ($this->objEmail->send(false)) {
-                $this->objMainModel->objUpdate('customer', $dataInfo, $this->objSession->get('user')['customerID']);
+                $this->objMainModel->objUpdate('customer', $dataAccount, $this->objSession->get('user')['customerID']);
                 $response['error'] = 0;
                 $response['msg'] = 'SENT_EMAIL';
             } else {
@@ -187,13 +186,13 @@ class Customer extends BaseController
             return json_encode($result);
         }
 
-        $dataInfo = array();
-        $dataInfo['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
-        $dataInfo['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $dataInfo['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
-        $dataInfo['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
+        $dataProfile = array();
+        $dataProfile['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $dataProfile['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
+        $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
 
-        $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataInfo, $this->objSession->get('user')['customerID']);
+        $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataProfile, $this->objSession->get('user')['customerID']);
         if ($resultUpdateCustomer['error'] == 0) {
 
             $dataAddress = array();
