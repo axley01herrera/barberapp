@@ -102,7 +102,7 @@
 
         } else
             simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
-    });
+    }); // ok
 
     function checkRequiredValues() {
         let result = 0;

@@ -30,7 +30,7 @@
                         <td align="center" valign="center" style="text-align:center; padding-bottom: 10px">
                             <div style="text-align:center; margin:0 15px 34px 15px">
                                 <div style="font-size: 14px; font-weight: 500; margin-bottom: 27px; font-family:Arial,Helvetica,sans-serif;">
-                                    <p style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700"><?php echo lang("Text.eccba_hi") . ' ' . @$person . ', ' . lang("Text.eccba_welcome_company") . ' ' . @$pageTitle; ?></p>
+                                    <p style="margin-bottom:9px; color:#181C32; font-size: 22px; font-weight:700"><?php echo lang("Text.eceba_hi") . ' ' . @$person . ', ' . lang("Text.eceba_welcome_company") . ' ' . @$pageTitle; ?></p>
                                 </div>
                             </div>
                         </td>
@@ -41,24 +41,24 @@
                                 <div style="display:flex">
                                     <div>
                                         <span style="color:#181C32; font-size: 14px; font-weight: 600;font-family:Arial,Helvetica,sans-serif">
-                                            <?php echo lang("Text.eccba_complete_account"); ?>
+                                            <?php echo lang("Text.eceba_complete_account"); ?>
                                         </span>
                                         <p style="color:#5E6278; font-size: 13px; font-weight: 500; padding-top:3px; margin:0;font-family:Arial,Helvetica,sans-serif">
-                                            <?php echo lang("Text.eccba_complete_account_msg"); ?>
+                                            <?php echo lang("Text.eceba_complete_account_msg"); ?>
                                         </p>
                                     </div>
                                 </div>
                                 <div align="center" style="margin-top: 10px; margin-bottom: 10px;">
                                     <div>
                                         <a href="<?php echo @$url; ?>" target="_blank" style="background-color:#50cd89; border-radius:6px;display:inline-block; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500;">
-                                            <?php echo lang("Text.eccba_create_account"); ?>
+                                            <?php echo lang("Text.eceba_create_account"); ?>
                                         </a>
                                     </div>
                                 </div>
                                 <div style="display:flex">
                                     <div>
                                         <p style="color:#5E6278; font-size: 13px; font-weight: 500; padding-top:3px; margin:0;font-family:Arial,Helvetica,sans-serif">
-                                            <?php echo lang("Text.eccba_complete_account_info"); ?>
+                                            <?php echo lang("Text.eceba_complete_account_info"); ?>
                                         </p>
                                     </div>
                                 </div>

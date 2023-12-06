@@ -32,7 +32,6 @@ class ControlPanelModel extends Model
             $query->like('name', $params['search']);
             $query->orLike('lastName', $params['search']);
             $query->orLike('email', $params['search']);
-            $query->orLike('phone', $params['search']);
             $query->groupEnd();
         }
 
@@ -73,13 +72,6 @@ class ControlPanelModel extends Model
         }
 
         if ($column == 3) {
-            if ($dir == 'asc')
-                $sort = 'phone ASC';
-            else
-                $sort = 'phone DESC';
-        }
-
-        if ($column == 4) {
             if ($dir == 'asc')
                 $sort = 'status ASC';
             else

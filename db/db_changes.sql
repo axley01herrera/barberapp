@@ -44,8 +44,10 @@ CREATE TABLE IF NOT EXISTS `customer` (
 ALTER TABLE `customer` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailSubscription`; 
 ALTER TABLE `customer` ADD `lastSession` DATE NULL AFTER `emailSubscription`; 
 ALTER TABLE `customer` ADD `gender` VARCHAR(1) NULL AFTER `lastName`; 
-ALTER TABLE `customer` ADD `avatar` longblob NOT NULL AFTER `id`; 
+ALTER TABLE `customer` ADD `avatar` longblob NULL AFTER `id`; 
 ALTER TABLE `customer` CHANGE `phone` `phone` VARCHAR(20) NULL DEFAULT NULL; 
+ALTER TABLE `customer` ADD `emailNotification` INT NOT NULL DEFAULT '1' AFTER `emailSubscription`; 
+ALTER TABLE `customer` ADD `dob` DATE NULL AFTER `gender`; 
 
 #### 
   ## End Table customer

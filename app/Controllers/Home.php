@@ -158,7 +158,6 @@ class Home extends BaseController
         $result = $this->objMainModel->objData('employee', 'token', $token);
 
         if (!empty($result)) {
-
             $data['employeeID'] = $result[0]->id;
 
             $dataUpdate = array();
@@ -173,7 +172,7 @@ class Home extends BaseController
             return view('home/mainHome', $data);
         } else
             return view('errorPages/tokenExpired', $data);
-    }
+    } // ok
 
     public function createPassword()
     {
@@ -247,29 +246,7 @@ class Home extends BaseController
         $response['msg'] = @$result['msg'];
 
         return json_encode($response);
-    }
-
-    // public function signInCustomerProcess()
-    // {
-    //     $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
-    //     $password = htmlspecialchars(trim($this->objRequest->getPost('pass')));
-
-    //     $result = $this->objAuthenticationModel->loginCustomer($email, $password);
-
-    //     if ($result['error'] == 0) {
-    //         $data = array();
-    //         $data['lastSession'] = date('Y-m-d');
-    //         $this->objMainModel->objUpdate('customer', $data, $result['data']->id);
-
-    //         # Create Session
-    //         $session = array();
-    //         $session['customerID'] = $result['data']->id;
-    //         $session['role'] = 'customer';
-
-    //         $this->objSession->set('user', $session);
-    //     }
-    //     return json_encode($result);
-    // } // ok
+    } // ok
 
     public function signUpCustomer()
     {

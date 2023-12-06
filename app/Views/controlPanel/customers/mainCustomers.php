@@ -37,13 +37,12 @@
                 <div class="card-body pb-0">
                     <!-- Data Table -->
                     <div class="table-responsive">
-                        <table id="dt-customers" class="table table-row-bordered no-footer table-hover">
+                        <table id="dt-customers" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
                             <thead>
                                 <tr class="fs-6 fw-bold">
                                     <th class="p-2"><?php echo lang('Text.dt_customer_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_customer_last_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_customer_email'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_customer_phone'); ?></th>
                                     <th class="text-center p-2"><?php echo lang('Text.dt_customer_status'); ?></th>
                                     <th class="text-center p-2"></th>
                                     <th class="text-center p-2"></th>
@@ -113,10 +112,6 @@
             },
             {
                 data: 'email',
-                class: 'dt-vertical-align p-2'
-            },
-            {
-                data: 'phone',
                 class: 'dt-vertical-align p-2'
             },
             {

@@ -63,11 +63,11 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['activeDashboard'] = "active";
         $data['page'] = 'controlPanel/dashboard/mainDashboard';
 
@@ -82,12 +82,12 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         # data
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['activeTPV'] = "active";
         $data['uniqid'] = uniqid();
         # page
@@ -104,12 +104,12 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         # data
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['activeCalendar'] = "active";
         $data['uniqid'] = uniqid();
         # page
@@ -126,11 +126,11 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['activeServices'] = "active";
         $data['uniqid'] = uniqid();
         $data['services'] = $this->objMainModel->objData('service');
@@ -143,7 +143,7 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         $data['config'] = $this->config;
@@ -228,12 +228,12 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         # data
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['activeCustomers'] = "active";
         $data['uniqid'] = uniqid();
         # page
@@ -281,7 +281,6 @@ class ControlPanel extends BaseController
             $col['name'] = '<a href="' . base_url('ControlPanel/customerProfile?id=') . $result[$i]->id . '">' . $result[$i]->name . '</a>';
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
-            $col['phone'] = $result[$i]->phone;
             $col['status'] = $status;
             $col['emailVerified'] = $emailStatus;
             $col['action'] = $btnChangeStatus . $btnEdit . $btnDelete;
@@ -309,11 +308,11 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         # data
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['config'] = $this->config;
         $data['activeCustomers'] = "active";
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPostGet('id'));
@@ -327,7 +326,7 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         # params
         $action = $this->objRequest->getPost('action');
@@ -498,12 +497,12 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         # data
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         # menu
         $data['activeEmployees'] = "active";
         $data['uniqid'] = uniqid();
@@ -511,7 +510,7 @@ class ControlPanel extends BaseController
         $data['page'] = 'controlPanel/employees/mainEmployees';
 
         return view('ControlPanel/mainCpanel', $data);
-    }
+    } // ok
 
     public function processingEmployee()
     {
@@ -533,6 +532,11 @@ class ControlPanel extends BaseController
 
         for ($i = 0; $i < $totalRows; $i++) {
 
+            $emailStatus = '<span class="badge small badge-danger"><i class="bi bi-envelope-dash text-dark me-1" title="' . lang('Text.not_verified') . '"></i></span>';
+            if ($result[$i]->emailVerified == 1)
+                $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1" title="' . lang('Text.verified') . '"></i></span>';
+
+
             $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
             $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-employee-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
 
@@ -549,6 +553,7 @@ class ControlPanel extends BaseController
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
+            $col['emailVerified'] = $emailStatus;
             $col['action'] = $btnChangeStatus . $btnEdit . $btnDelete;
 
             $row[$i] =  $col;
@@ -568,17 +573,17 @@ class ControlPanel extends BaseController
         $data['data'] = $row;
 
         return json_encode($data);
-    }
+    } // ok
 
     public function employeeProfile()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         # data
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['config'] = $this->config;
         $data['activeEmployees'] = "active";
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPostGet('id'));
@@ -592,7 +597,7 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         # params
         $action = $this->objRequest->getPost('action');
@@ -612,7 +617,7 @@ class ControlPanel extends BaseController
         }
 
         return view('ControlPanel/employees/modalEmployee', $data);
-    }
+    } // ok
 
     public function createEmployee()
     {
@@ -640,16 +645,15 @@ class ControlPanel extends BaseController
             $data['token'] = md5(uniqid());
 
             $result = $this->objMainModel->objCreate('employee', $data);
-            $profile = $this->objControlPanelModel->getProfile(1);
 
             $dataEmail = array();
-            $dataEmail['pageTitle'] = $profile[0]->company_name;
+            $dataEmail['pageTitle'] = $this->profile[0]->company_name;
             $dataEmail['person'] = $name . ' ' . $lastName;
             $dataEmail['url'] = base_url('Home/employeeCreatePassword?token=') . $data['token'];
-            $dataEmail['companyPhone'] = $profile[0]->phone1;
-            $dataEmail['companyEmail'] = $profile[0]->email;
+            $dataEmail['companyPhone'] = $this->profile[0]->phone1;
+            $dataEmail['companyEmail'] = $this->profile[0]->email;
 
-            $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
             $this->objEmail->setTo($email);
             $this->objEmail->setSubject('Complete Your Account');
             $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
@@ -669,7 +673,7 @@ class ControlPanel extends BaseController
 
             return json_encode($result);
         }
-    }
+    } // ok
 
     public function updateEmployee()
     {
@@ -707,7 +711,7 @@ class ControlPanel extends BaseController
 
             return json_encode($result);
         }
-    }
+    } // ok
 
     public function deleteEmployee()
     {
@@ -730,7 +734,7 @@ class ControlPanel extends BaseController
         $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
 
         return json_encode($result);
-    }
+    } // ok
 
     public function changeEmployeeStatus()
     {
@@ -752,7 +756,7 @@ class ControlPanel extends BaseController
         $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
 
         return json_encode($result);
-    }
+    } // ok
 
     ##############################
     # Section Reports
@@ -762,12 +766,12 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         # data
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['activeReports'] = "active";
         $data['uniqid'] = uniqid();
         # page
@@ -784,12 +788,12 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $data = array();
         # data
         $data['config'] = $this->config;
-        $data['profile'] = $this->objControlPanelModel->getProfile(1);
+        $data['profile'] = $this->profile;
         $data['activeSchedules'] = "active";
         $data['uniqid'] = uniqid();
         # page
@@ -806,7 +810,7 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         # params
         $tab = $this->objRequest->getPostGet('tab');
@@ -832,7 +836,7 @@ class ControlPanel extends BaseController
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('contolPanelLogout');
+            return view('controlPanelLogout');
 
         $tab = $this->objRequest->getPost('tab');
 
@@ -840,7 +844,7 @@ class ControlPanel extends BaseController
             case 'profile':
                 $view = "ControlPanel/profile/tabs/profileInfo";
                 $data = array();
-                $data['profile'] = $this->objControlPanelModel->getProfile(1);
+                $data['profile'] = $this->profile;
                 break;
             case 'key':
                 $view = "ControlPanel/profile/tabs/key";

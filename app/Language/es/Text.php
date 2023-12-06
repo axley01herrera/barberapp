@@ -145,7 +145,7 @@ $lang['cust_success_reactivate_email'] = "Verifique su email nuevamente para ini
 $lang['cust_error_reactivate_email'] = "Ha ocurrido un error, intente actualizar nuevamente";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
 
-# Control Panel Employees
+# Control Panel -> Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";
 $lang['emp_modal_title_new'] = "Nuevo Empleado";
 $lang['emp_modal_title_update'] = "Actualizando Empleado";
@@ -189,6 +189,16 @@ $lang['eccba_complete_account'] = "Completa tu cuenta";
 $lang['eccba_complete_account_msg'] = "Hemos registrado su cuenta de cliente utilizando la dirección de correo electrónico proporcionada. Ahora, le pedimos que configure una contraseña para su perfil. Para hacerlo, simplemente haga clic en el botón a continuación y será redirigido a un formulario donde podrá completar este proceso.";
 $lang['eccba_create_account'] = "Crear Contraseña";
 $lang['eccba_complete_account_info'] = "El enlace que contiene este mensaje es de un solo uso, una vez utilizado si no completa el proceso no podrá volver a acceder al procedimiento. En cierto caso póngase en contacto con nuestro equipo mediante los datos de contacto proporcionados a continuación.";
+
+
+# Email Create Employee By Admin
+$lang['eceba_hi'] = "Hola";
+$lang['eceba_welcome_company'] = "Bienvenido a";
+$lang['eceba_complete_account'] = "Completa tu cuenta";
+$lang['eceba_complete_account_msg'] = "Hemos registrado su cuenta de empleado utilizando la dirección de correo electrónico proporcionada. Ahora, le pedimos que configure una contraseña para su perfil. Para hacerlo, simplemente haga clic en el botón a continuación y será redirigido a un formulario donde podrá completar este proceso.";
+$lang['eceba_create_account'] = "Crear Contraseña";
+$lang['eceba_complete_account_info'] = "El enlace que contiene este mensaje es de un solo uso, una vez utilizado si no completa el proceso no podrá volver a acceder al procedimiento. En cierto caso póngase en contacto con nuestro equipo mediante los datos de contacto proporcionados a continuación.";
+
 
 # Email Customer Signup
 $lang['e_signup_hi'] = "Hola";
