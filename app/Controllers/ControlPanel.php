@@ -784,10 +784,13 @@ class ControlPanel extends BaseController
                 $data['employeeServices'] = $this->objMainModel->objData('employee_service', 'employeeID', $employeeID);
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabService";
                 break;
+            case 'tab-schedule':
+                $view = "controlPanel/employees/employeeProfile/tabContent/tabSchedule";
+                break;
         }
 
         return view($view, $data);
-    } // ok
+    }
 
     public function employeeService()
     {

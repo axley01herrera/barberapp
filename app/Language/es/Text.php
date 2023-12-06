@@ -46,6 +46,24 @@ $lang['instagram_link'] = "Enlace de Instagram";
 $lang['profile'] = "Perfil";
 $lang['account'] = "Cuenta";
 $lang['overview'] = "General";
+$lang['monday'] = "Lunes";
+$lang['tuesday'] = "Martes";
+$lang['wednesday'] = "Miércoles";
+$lang['thursday'] = "Jueves";
+$lang['friday'] = "Viernes";
+$lang['saturday'] = "Sábado";
+$lang['sunday'] = "Domingo";
+$lang['first_time'] = "Primer Turno";
+$lang['second_time'] = "Segundo Turno";
+$lang['date_start'] = 'Hora de Inicio';
+$lang['date_end'] = 'Hora de Finalización';
+$lang['save_monday'] = 'Guardar Horario del Lunes';
+$lang['save_tuesday'] = 'Guardar Horario del Martes';
+$lang['save_wednesday'] = 'Guardar Horario del Miércoles';
+$lang['save_thursday'] = 'Guardar Horario del Jueves';
+$lang['save_friday'] = 'Guardar Horario del Viernes';
+$lang['save_saturday'] = 'Guardar Horario del Sábado';
+$lang['save_sunday'] = 'Guardar Horario del Domingo';
 
 # Global MSG
 $lang['thanks'] = "Gracias";
@@ -162,6 +180,8 @@ $lang['emp_error_send_email'] = "No hemos podido enviar el correo electrónico d
 $lang['emp_profile_title'] = "Perfil del Empleado";
 $lang['emp_sercice_title'] = "Servicios del Empleado";
 $lang['emp_sercice_subtitle'] = 'Active o Desactive Servicios al Empleado';
+$lang['emp_schedule_title'] = "Horario del Empleado";
+$lang['emp_schedule_subtitle'] = 'Configure el Horario del Empleado';
 
 # Control Panel Services
 $lang['serv_new'] = "Nuevo Servicio";

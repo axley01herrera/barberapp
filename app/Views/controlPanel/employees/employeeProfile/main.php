@@ -43,6 +43,11 @@
                             <a id="tab-services" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.top_bar_services'); ?></a>
                         </li>
 
+                        <!-- Tab Horario -->
+                        <li class="nav-item" role="presentation">
+                            <a id="tab-schedule" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.top_bar_schedule'); ?></a>
+                        </li>
+
                         <!-- Tab item -->
                         <li class="nav-item" role="presentation">
                             <a id="tab-account" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.account'); ?></a>
