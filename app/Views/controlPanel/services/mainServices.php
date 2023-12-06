@@ -8,61 +8,54 @@
                     <?php echo lang('Text.top_bar_services'); ?>
                 </h1>
             </div>
-            <div class="d-flex align-items-center gap-2 gap-lg-3"></div>
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <button id="btn-new-serv<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang("Text.serv_new"); ?></button>
+            </div>
         </div>
     </div>
     <!-- Page Content -->
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <div class="row">
-                <div class="col-12 text-end">
-                    <button id="btn-new-serv<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang("Text.serv_new"); ?></button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <?php foreach ($services as $service) { ?>
-                        <div class="card shadow-sm mt-5">
-                            <div class="card-header">
-                                <!-- Service Title -->
-                                <h3 class="card-title"><?php echo $service->title; ?></h3>
-                                <div class="card-toolbar">
-                                    <!-- Btn Edit -->
-                                    <button type="button" class="btn btn-sm btn-light edit-service" data-service-id="<?php echo $service->id; ?>">
-                                        <?php echo lang("Text.btn_edit"); ?>
-                                    </button>
+            <?php foreach ($services as $service) { ?>
+                <div class="card shadow-sm mt-5">
+                    <div class="card-header">
+                        <!-- Service Title -->
+                        <h3 class="card-title"><?php echo $service->title; ?></h3>
+                        <div class="card-toolbar">
+                            <!-- Btn Edit -->
+                            <button type="button" class="btn btn-sm btn-light edit-service" data-service-id="<?php echo $service->id; ?>">
+                                <?php echo lang("Text.btn_edit"); ?>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Service Description -->
+                    <div class="card-body">
+                        <?php if (!empty($service->description)) { ?>
+                            <div class="alert bg-light-primary d-flex align-items-center p-5">
+                                <div class="d-flex flex-column">
+                                    <h4 class="mb-1 text-dark"><?php echo lang("Text.description"); ?></h4>
+                                    <span><?php echo $service->description; ?></span>
                                 </div>
                             </div>
-                            <!-- Service Description -->
-                            <div class="card-body">
-                                <?php if (!empty($service->description)) { ?>
-                                    <div class="alert bg-light-primary d-flex align-items-center p-5">
-                                        <div class="d-flex flex-column">
-                                            <h4 class="mb-1 text-dark"><?php echo lang("Text.description"); ?></h4>
-                                            <span><?php echo $service->description; ?></span>
-                                        </div>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="alert bg-light-danger d-flex align-items-center p-5">
-                                        <div class="d-flex flex-column">
-                                            <h4 class="mb-1 text-dark"><?php echo lang("Text.description"); ?></h4>
-                                            <span><?php echo lang("Text.serv_no_desc"); ?></span>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                                <div class="row">
-                                    <div class="col-12 text-end mt-5">
-                                        <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">
-                                            <?php echo getMoneyFormat($config[0]->currency, $service->price); ?>
-                                        </span>
-                                    </div>
+                        <?php } else { ?>
+                            <div class="alert bg-light-danger d-flex align-items-center p-5">
+                                <div class="d-flex flex-column">
+                                    <h4 class="mb-1 text-dark"><?php echo lang("Text.description"); ?></h4>
+                                    <span><?php echo lang("Text.serv_no_desc"); ?></span>
                                 </div>
+                            </div>
+                        <?php } ?>
+                        <div class="row">
+                            <div class="col-12 text-end mt-5">
+                                <span class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">
+                                    <?php echo getMoneyFormat($config[0]->currency, $service->price); ?>
+                                </span>
                             </div>
                         </div>
-                    <?php } ?>
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

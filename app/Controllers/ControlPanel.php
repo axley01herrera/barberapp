@@ -129,15 +129,18 @@ class ControlPanel extends BaseController
             return view('controlPanelLogout');
 
         $data = array();
+        # data
+        $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
         $data['profile'] = $this->profile;
-        $data['activeServices'] = "active";
-        $data['uniqid'] = uniqid();
         $data['services'] = $this->objMainModel->objData('service');
+        # menu
+        $data['activeServices'] = "active";
+        # page
         $data['page'] = 'controlPanel/services/mainServices';
 
         return view('ControlPanel/mainCpanel', $data);
-    }
+    } // ok
 
     public function showModalService()
     {
@@ -158,7 +161,7 @@ class ControlPanel extends BaseController
         }
 
         return view('ControlPanel/services/modalService', $data);
-    }
+    } // ok
 
     public function createService()
     {
@@ -186,7 +189,7 @@ class ControlPanel extends BaseController
             $result['msg'] = "duplicate";
             return json_encode($result);
         }
-    }
+    } // ok
 
     public function updateService()
     {
@@ -214,11 +217,7 @@ class ControlPanel extends BaseController
             $result['msg'] = "duplicate";
             return json_encode($result);
         }
-    }
-
-    ##############################
-    # End Section Services
-    ##############################
+    } // ok
 
     ##############################
     ## Section Customer
@@ -575,24 +574,6 @@ class ControlPanel extends BaseController
         return json_encode($data);
     } // ok
 
-    public function employeeProfile()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('controlPanelLogout');
-
-        $data = array();
-        # data
-        $data['profile'] = $this->profile;
-        $data['config'] = $this->config;
-        $data['activeEmployees'] = "active";
-        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPostGet('id'));
-        # page
-        $data['page'] = 'controlPanel/employees/principalEmployeeProfile';
-
-        return view('ControlPanel/mainCpanel', $data);
-    }
-
     public function showModalEmployee()
     {
         # Verify Session 
@@ -743,7 +724,6 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "SESSION_EXPIRED";
-
             return json_encode($result);
         }
 
@@ -756,6 +736,84 @@ class ControlPanel extends BaseController
         $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
 
         return json_encode($result);
+    } // ok
+
+    public function employeeProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
+
+        $data = array();
+        # data
+        $data['profile'] = $this->profile;
+        $data['config'] = $this->config;
+        $data['activeEmployees'] = "active";
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPostGet('id'));
+        # page
+        $data['page'] = 'controlPanel/employees/employeeProfile/main';
+
+        return view('ControlPanel/mainCpanel', $data);
+    } // ok
+
+    public function employeeProfileTabContent()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
+
+        # params
+        $employeeID = $this->objRequest->getPost('employeeID');
+        $tab = $this->objRequest->getPost('tab');
+
+        $view = "";
+
+        $data = array();
+        # data
+        $data['employeeID'] = $employeeID;
+        $data['config'] = $this->config;
+
+        switch ($tab) {
+            case 'tab-overview':
+                # page
+                $view = "controlPanel/employees/employeeProfile/tabContent/tabOverview";
+                break;
+            case 'tab-services':
+                # page
+                $data['services'] = $this->objMainModel->objData('service');
+                $data['employeeServices'] = $this->objMainModel->objData('employee_service', 'employeeID', $employeeID);
+                $view = "controlPanel/employees/employeeProfile/tabContent/tabService";
+                break;
+        }
+
+        return view($view, $data);
+    } // ok
+
+    public function employeeService()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        # params
+        $checked = $this->objRequest->getPost('checked');
+        $serviceID = $this->objRequest->getPost('serviceID');
+        $employeeID = $this->objRequest->getPost('employeeID');
+
+        if ($checked == 0) { // Add Service To Employee
+            $data = array();
+            $data['serviceID'] = $serviceID;
+            $data['employeeID'] = $employeeID;
+            $result = $this->objMainModel->objCreate('employee_service', $data);
+            return json_encode($result);
+        } else if ($checked == 1) { // Remove Service To Employee
+            $result = $this->objControlPanelModel->removeEmployeeService($employeeID, $serviceID);
+            return json_encode($result);
+        }
     } // ok
 
     ##############################

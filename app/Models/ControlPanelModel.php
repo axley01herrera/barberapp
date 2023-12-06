@@ -20,7 +20,7 @@ class ControlPanelModel extends Model
             ->where('id', $id);
 
         return $query->get()->getResult();
-    }
+    } // ok
 
     # Customer DT
     public function getCustomersProcessingData($params)
@@ -44,7 +44,7 @@ class ControlPanelModel extends Model
         $query->orderBy($this->getCustomerProcessingSort($params['sortColumn'], $params['sortDir']));
 
         return $query->get()->getResult();
-    }
+    } // ok
 
     public function getCustomerProcessingSort($column, $dir)
     {
@@ -79,7 +79,7 @@ class ControlPanelModel extends Model
         }
 
         return $sort;
-    }
+    } // ok
 
     public function getTotalCustomers()
     {
@@ -88,7 +88,7 @@ class ControlPanelModel extends Model
             ->get()->getResult();
 
         return $query[0]->id;
-    }
+    } // ok
     # End Customer DT
 
     # Employee DT
@@ -113,7 +113,7 @@ class ControlPanelModel extends Model
         $query->orderBy($this->getEmployeeProcessingSort($params['sortColumn'], $params['sortDir']));
 
         return $query->get()->getResult();
-    }
+    } // ok
 
     public function getEmployeeProcessingSort($column, $dir)
     {
@@ -148,7 +148,7 @@ class ControlPanelModel extends Model
         }
 
         return $sort;
-    }
+    } // ok
 
     public function getTotalEmployees()
     {
@@ -157,6 +157,24 @@ class ControlPanelModel extends Model
             ->get()->getResult();
 
         return $query[0]->id;
-    }
+    } // ok
     # End Employee DT
+
+    public function removeEmployeeService($employeeID, $serviceID)
+    {
+        $query = $this->db->table('employee_service')
+        ->where('employeeID', $employeeID)
+        ->where('serviceID', $serviceID)
+        ->delete();
+
+        if ($query == true) {
+            $return['error'] = 0;
+            $return['msg'] = 'success';
+        } else {
+            $return['error'] = 1;
+            $return['msg'] = 'error on delete record';
+        }
+
+        return $return;
+    } // ok
 }

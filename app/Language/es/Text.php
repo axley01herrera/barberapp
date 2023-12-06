@@ -159,6 +159,9 @@ $lang['emp_success_updated'] = "Empleado Actualizado";
 $lang['emp_success_deleted'] = "Empleado Eliminado";
 $lang['emp_duplicate'] = "Ya existe el correo electrónico";
 $lang['emp_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al Empleado";
+$lang['emp_profile_title'] = "Perfil del Empleado";
+$lang['emp_sercice_title'] = "Servicios del Empleado";
+$lang['emp_sercice_subtitle'] = 'Seleccione los servicios que ofrece el empleado';
 
 # Control Panel Services
 $lang['serv_new'] = "Nuevo Servicio";

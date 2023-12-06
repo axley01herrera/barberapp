@@ -71,6 +71,9 @@ ALTER TABLE `employee` ADD `token` VARCHAR(999) NULL AFTER `status`;
 ALTER TABLE `employee` ADD `emailVerified` INT NOT NULL DEFAULT '0' AFTER `token`; 
 ALTER TABLE `employee` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailVerified`; 
 ALTER TABLE `employee` CHANGE `email` `email` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL; 
+ALTER TABLE `employee` ADD `avatar` LONGBLOB NULL AFTER `id`; 
+ALTER TABLE `employee` ADD `gender` INT NULL AFTER `lastName`; 
+ALTER TABLE `employee` ADD `dob` DATE NULL AFTER `lastName`; 
 
 #### 
   ## End Table employee
@@ -151,5 +154,21 @@ CREATE TABLE IF NOT EXISTS `address` (
 
 #### 
   ## End Table address
+###
+
+#### 
+  ## Table employee_service
+###
+
+DROP TABLE IF EXISTS `employee_service`;
+CREATE TABLE IF NOT EXISTS `employee_service` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `employeeID` int NOT NULL,
+  `serviceID` int NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+#### 
+  ## Table employee_service
 ###
 
