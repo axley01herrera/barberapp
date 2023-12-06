@@ -202,10 +202,10 @@ class Customer extends BaseController
         $dataProfile['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
         $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
         $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
+        $dataProfile['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
 
         $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataProfile, $this->objSession->get('user')['customerID']);
         if ($resultUpdateCustomer['error'] == 0) {
-
             $dataAddress = array();
             $dataAddress['line1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
             $dataAddress['line2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));

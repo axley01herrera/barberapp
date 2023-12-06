@@ -20,6 +20,7 @@ $lang['last_name'] = "Apellidos";
 $lang['gender'] = "Género";
 $lang['primary_phone'] = "Teléfono Principal";
 $lang['phone'] = "Teléfono";
+$lang['dob'] = "Fecha de Nacimiento";
 $lang['secondary_phone'] = "Teléfono Segundario";
 $lang['email'] = "Correo Electrónico";
 $lang['address'] = "Dirección";

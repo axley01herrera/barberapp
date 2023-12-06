@@ -43,12 +43,12 @@
                     <div class="fs-6 fw-semibold">Avatar</div>
                 </div>
                 <!-- Name-->
-                <div class="col-12 col-lg-3 mt-5">
+                <div class="col-12 col-lg-2 mt-5">
                     <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.name'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-name<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->name; ?>" disabled="">
                 </div>
                 <!-- last Name -->
-                <div class="col-12 col-lg-3 mt-5">
+                <div class="col-12 col-lg-2 mt-5">
                     <label class="fs-6 fw-semibold" for="txt-lastName<?php echo $uniqid; ?>"><?php echo lang('Text.last_name'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-lastName<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $customer[0]->lastName; ?>" disabled="">
                 </div>
@@ -57,7 +57,7 @@
                     <label class="fs-6 fw-semibold" for="txt-phone<?php echo $uniqid; ?>"><?php echo lang('Text.phone'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-phone<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $customer[0]->phone; ?>" disabled="">
                 </div>
-                <div class="col-12 col-lg-3 mt-5">
+                <div class="col-12 col-lg-2 mt-5">
                     <!-- Gender -->
                     <label class="fs-6 fw-semibold" for="txt-gender<?php echo $uniqid; ?>"><?php echo lang('Text.gender'); ?> <span class="text-danger">*</span></label>
                     <select id="txt-gender<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled="">
@@ -72,6 +72,11 @@
                                                 echo 'selected hidden';
                                             } ?>>Otro</option>
                     </select>
+                </div>
+                <div class="col-12 col-lg-3 mt-5">
+                    <!-- Date of birth -->
+                    <label class="fs-6 fw-semibold" for="sel-dob<?php echo $uniqid; ?>"><?php echo lang('Text.dob'); ?> <span class="text-danger">*</span></label>
+                    <input id="sel-dob<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo date('m/d/Y',strtotime($customer[0]->dob)); ?>" disabled="" />
                 </div>
                 <div class="col-12 col-lg-6 mt-5">
                     <!-- Line 1 -->
@@ -120,6 +125,13 @@
 </div>
 
 <script>
+    $("#sel-dob<?php echo $uniqid; ?>").flatpickr({
+        onReady: function() {
+            this.jumpToDate("2025-01")
+        },
+        disable: ["2025-01-10", "22025-01-11", "2025-01-12", "2025-01-13", "2025-01-14", "2025-01-15", "2025-01-16", "2025-01-17"],
+        dateFormat: "d/m/Y",
+    });
     // Avatar Procedure
     var avatarProfile = new KTImageInput.createInstances();
     var imageInputElement = document.querySelector("#kt_image_input_profile<?php echo $uniqid; ?>");
@@ -228,6 +240,7 @@
                         'state': $('#txt-state<?php echo $uniqid; ?>').val(),
                         'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
                         'country': $('#txt-country<?php echo $uniqid; ?>').val(),
+                        'dob': $('#sel-dob<?php echo $uniqid; ?>').val(),
                     },
                     dataType: "json",
                     success: function(response) {
