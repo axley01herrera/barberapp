@@ -13,33 +13,6 @@
                             <?php echo view('customer/customerInfo'); ?>
                         </div>
                     </div>
-                    <!-- Contact Us -->
-                    <div class="card mb-5 mb-xl-8">
-                        <div class="card-header border-0">
-                            <div class="card-title">
-                                <h3 class="fw-bold m-0">Siguenos</h3>
-                            </div>
-                        </div>
-                        <div class="card-body pt-2">
-                            <div class="justify-content-between row">
-                                <div class="col-4">
-                                    <a href="#" class="mx-4">
-                                        <i class="bi bi-facebook text-primary" style="font-size: 30px;"></i>
-                                    </a>
-                                </div>
-                                <div class="col-4">
-                                    <a href="#" class="mx-4">
-                                        <i class="bi bi-instagram text-danger" style="font-size: 30px;"></i>
-                                    </a>
-                                </div>
-                                <div class="col-4">
-                                    <a href="#" class="mx-4">
-                                        <i class="bi bi-twitter" style="color: #38cffd;font-size: 30px;"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Tabs -->
