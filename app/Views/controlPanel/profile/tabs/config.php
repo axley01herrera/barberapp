@@ -1,7 +1,7 @@
 <!-- Tab Config -->
 <div class="row">
     <!-- Languaje -->
-    <div class="col-12 col-lg-4 mt-5">
+    <div class="col-12 col-lg-3 mt-5">
         <label class="fs-6 fw-semibold" for="txt-lang<?php echo $uniqid; ?>"><?php echo lang('Text.languaje'); ?> <span class="text-danger">*</span></label>
         <select id="txt-lang<?php echo $uniqid; ?>" class="form-control" disabled>
             <option value="" hidden></option>
@@ -10,7 +10,7 @@
         </select>
     </div>
     <!-- Teme -->
-    <div class="col-12 col-lg-4 mt-5">
+    <div class="col-12 col-lg-3 mt-5">
         <label class="fs-6 fw-semibold" for="txt-theme<?php echo $uniqid; ?>"><?php echo lang('Text.theme'); ?> <span class="text-danger">*</span></label>
         <select id="txt-theme<?php echo $uniqid; ?>" class="form-control" disabled>
             <option value="" hidden></option>
@@ -19,13 +19,18 @@
         </select>
     </div>
     <!-- Currency -->
-    <div class="col-12 col-lg-4 mt-5">
+    <div class="col-12 col-lg-3 mt-5">
         <label class="fs-6 fw-semibold" for="txt-currency<?php echo $uniqid; ?>"><?php echo lang('Text.currency'); ?> <span class="text-danger">*</span></label>
         <select id="txt-currency<?php echo $uniqid; ?>" class="form-control" disabled>
             <option value="" hidden></option>
             <option value="$" <?php if ($config[0]->currency == "$") echo "selected"; ?>>$</option>
             <option value="€" <?php if ($config[0]->currency == "€") echo "selected"; ?>>€</option>
         </select>
+    </div>
+    <!-- Timezone -->
+    <div class="col-12 col-lg-3 mt-5">
+        <label class="fs-6 fw-semibold" for="txt-timezone<?php echo $uniqid; ?>"><?php echo lang('Text.timezone'); ?> <span class="text-danger">*</span></label>
+        <input type="text" id="txt-timezone<?php echo $uniqid; ?>" class="form-control" disabled value="<?php echo $config[0]->timezone; ?>" />
     </div>
 </div>
 <div class="row">
@@ -65,7 +70,8 @@
                     data: {
                         'lang': $('#txt-lang<?php echo $uniqid; ?>').val(),
                         'theme': $('#txt-theme<?php echo $uniqid; ?>').val(),
-                        'currency': $('#txt-currency<?php echo $uniqid; ?>').val()
+                        'currency': $('#txt-currency<?php echo $uniqid; ?>').val(),
+                        'timezone': $('#txt-timezone<?php echo $uniqid; ?>').val(),
                     },
                     dataType: "json",
                     success: function(response) {

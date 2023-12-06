@@ -1102,6 +1102,7 @@ class ControlPanel extends BaseController
         $data['lang'] = htmlspecialchars(trim($this->objRequest->getPost('lang')));
         $data['theme'] = htmlspecialchars(trim($this->objRequest->getPost('theme')));
         $data['currency'] = htmlspecialchars(trim($this->objRequest->getPost('currency')));
+        $data['timezone'] = htmlspecialchars(trim($this->objRequest->getPost('timezone')));
 
         return json_encode($this->objMainModel->objUpdate('config', $data, 1));
     } // ok
