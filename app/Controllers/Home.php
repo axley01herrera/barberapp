@@ -316,7 +316,6 @@ class Home extends BaseController
     {
         # params
         $token = $this->objRequest->getPostGet('token');
-        $action = $this->objRequest->getPostGet('action');
 
         $data = array();
         # data
@@ -333,9 +332,6 @@ class Home extends BaseController
             $dataUpdate = array();
             $dataUpdate['emailVerified'] = 1;
             $dataUpdate['token'] = '';
-
-            if ($action == 'reactivate')
-                $dataUpdate['status'] = 1;
 
             # Update Customer 
             $this->objMainModel->objUpdate('customer', $dataUpdate, $result[0]->id);

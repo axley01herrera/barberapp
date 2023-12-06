@@ -13,7 +13,10 @@
 </div>
 <div id="kt_user_view_details" class="collapse show">
     <div class="pb-5 fs-6">
-        <div class="fw-bold mt-5"><?php echo lang('Text.email'); ?></div>
+        <div class="fw-bold mt-5"><?php echo lang('Text.email'); ?> <i <?php $notCheck = lang('Text.email_not_check');
+                                                                        $check = lang('Text.email_check');
+                                                                        if ($customer[0]->emailVerified == 0) echo "class='bi bi-envelope-exclamation-fill text-danger' title='$notCheck'";
+                                                                        else echo "class='bi bi-envelope-check-fill text-success' title='$check'"; ?>></i></div>
         <div class="text-gray-600">
             <span class="text-gray-600"><?php echo $customer[0]->email; ?></span>
         </div>

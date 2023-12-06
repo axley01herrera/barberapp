@@ -91,7 +91,7 @@
                 </div>
                 <div class="col-12 col-lg-3 mt-5">
                     <!-- Zip -->
-                    <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>"><?php echo lang('Text.zip'); ?><span class="text-danger">*</span></label>
+                    <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>"><?php echo lang('Text.zip'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> number<?php echo $uniqid; ?>" maxlength="5" value="<?php echo @$address[0]->zip; ?>" disabled="">
                 </div>
                 <div class="col-12 col-lg-3 mt-5">

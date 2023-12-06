@@ -144,7 +144,6 @@ class Customer extends BaseController
         $response = array();
         if ($this->objSession->get('user')['email'] !== $dataAccount['email']) {
             $dataAccount['token'] = $token;
-            $dataAccount['status'] = 0;
             $dataAccount['emailVerified'] = 0;
 
             $dataEmail = array();

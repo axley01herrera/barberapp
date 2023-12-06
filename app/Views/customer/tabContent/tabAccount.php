@@ -69,9 +69,8 @@
                                 customerTabContent();
                                 if (response.msg == 'SENT_EMAIL') {
                                     simpleSuccessAlert("<?php echo lang("Text.cust_success_reactivate_email"); ?>");
-                                    setTimeout(() => {
-                                        window.location.href = "<?php echo base_url('Home/signInCustomer'); ?>";
-                                    }, "3000");
+                                    reloadCustomerInfo();
+                                    customerTabContent();
                                 }
                             } else if (response.error == 1) {
                                 $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
