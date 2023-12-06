@@ -97,6 +97,11 @@ class Customer extends BaseController
         $data['profile'] = $this->profile;
         $data['uniqid'] = uniqid();
 
+        if ($this->config[0]->lang == 'es')
+            $data['dateLabel'] = "d-m-Y";
+        else if ($this->config[0]->lang == 'en') 
+            $data['dateLabel'] = "m-d-Y";
+
         $view = "";
 
         switch ($tab) {

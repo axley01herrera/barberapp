@@ -76,7 +76,7 @@
                 <div class="col-12 col-lg-3 mt-5">
                     <!-- Date of birth -->
                     <label class="fs-6 fw-semibold" for="sel-dob<?php echo $uniqid; ?>"><?php echo lang('Text.dob'); ?> <span class="text-danger">*</span></label>
-                    <input id="sel-dob<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo date('m/d/Y',strtotime($customer[0]->dob)); ?>" disabled="" />
+                    <input id="sel-dob<?php echo $uniqid; ?>" class="flatpickr form-control required<?php echo $uniqid; ?>" value="<?php if(!empty($customer[0]->dob)) echo date($dateLabel, strtotime($customer[0]->dob)); ?>" disabled="" />
                 </div>
                 <div class="col-12 col-lg-6 mt-5">
                     <!-- Line 1 -->
@@ -124,14 +124,21 @@
     </div>
 </div>
 
+<?php var_dump($dateLabel); ?>
+
 <script>
-    $("#sel-dob<?php echo $uniqid; ?>").flatpickr({
-        onReady: function() {
-            this.jumpToDate("2025-01")
-        },
-        disable: ["2025-01-10", "22025-01-11", "2025-01-12", "2025-01-13", "2025-01-14", "2025-01-15", "2025-01-16", "2025-01-17"],
-        dateFormat: "d/m/Y",
+    var lang = "<?php echo $config[0]->lang; ?>";
+    var dateLabel = "";
+
+    if (lang == 'es')
+        dateLabel = "d-m-Y";
+    else if (lang == 'en')
+        dateLabel = "m-d-Y";
+
+    $(".flatpickr").flatpickr({
+        dateFormat: dateLabel
     });
+
     // Avatar Procedure
     var avatarProfile = new KTImageInput.createInstances();
     var imageInputElement = document.querySelector("#kt_image_input_profile<?php echo $uniqid; ?>");
