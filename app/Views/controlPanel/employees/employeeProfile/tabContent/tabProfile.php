@@ -52,26 +52,26 @@
                     <label class="fs-6 fw-semibold" for="txt-lastName<?php echo $uniqid; ?>"><?php echo lang('Text.last_name'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-lastName<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $employee[0]->lastName; ?>" disabled="">
                 </div>
-                <!-- Gender -->
-                <div class="col-12 col-lg-4 mt-5">
-                    <label class="fs-6 fw-semibold" for="txt-gender<?php echo $uniqid; ?>"><?php echo lang('Text.gender'); ?> <span class="text-danger">*</span></label>
-                    <select id="txt-gender<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled="">
-                        <option value="" hidden>Selecciona tu Género</option>
-                        <option value="m" <?php if ($employee[0]->gender == 'm') {
-                                                echo 'selected hidden';
-                                            } ?>>Hombre</option>
-                        <option value="f" <?php if ($employee[0]->gender == 'f') {
-                                                echo 'selected hidden';
-                                            } ?>>Mujer</option>
-                        <option value="o" <?php if ($employee[0]->gender == 'o') {
-                                                echo 'selected hidden';
-                                            } ?>>Otro</option>
-                    </select>
-                </div>
                 <!-- Phone -->
                 <div class="col-12 col-lg-4 mt-5">
                     <label class="fs-6 fw-semibold" for="txt-phone<?php echo $uniqid; ?>"><?php echo lang('Text.phone'); ?> <span class="text-danger">*</span></label>
                     <input type="text" id="txt-phone<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $employee[0]->phone; ?>" disabled="">
+                </div>
+                <!-- Gender -->
+                <div class="col-12 col-lg-4 mt-5">
+                    <label class="fs-6 fw-semibold" for="txt-gender<?php echo $uniqid; ?>"><?php echo lang('Text.gender'); ?> <span class="text-danger">*</span></label>
+                    <select id="txt-gender<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled="">
+                        <option value="" hidden><?php echo lang('Text.select_gender'); ?></option>
+                        <option value="m" <?php if ($employee[0]->gender == 'm') {
+                                                echo 'selected hidden';
+                                            } ?>><?php echo lang('Text.male'); ?></option>
+                        <option value="f" <?php if ($employee[0]->gender == 'f') {
+                                                echo 'selected hidden';
+                                            } ?>><?php echo lang('Text.female'); ?></option>
+                        <option value="o" <?php if ($employee[0]->gender == 'o') {
+                                                echo 'selected hidden';
+                                            } ?>><?php echo lang('Text.other'); ?></option>
+                    </select>
                 </div>
                 <div class="col-12 col-lg-4 mt-5">
                     <!-- Date of birth -->

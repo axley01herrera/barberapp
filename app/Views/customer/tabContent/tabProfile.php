@@ -61,16 +61,16 @@
                     <!-- Gender -->
                     <label class="fs-6 fw-semibold" for="txt-gender<?php echo $uniqid; ?>"><?php echo lang('Text.gender'); ?> <span class="text-danger">*</span></label>
                     <select id="txt-gender<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled="">
-                        <option value="" hidden>Selecciona tu Género</option>
+                        <option value="" hidden><?php echo lang('Text.select_gender');?></option>
                         <option value="m" <?php if ($customer[0]->gender == 'm') {
                                                 echo 'selected hidden';
-                                            } ?>>Hombre</option>
+                                            } ?>><?php echo lang('Text.male');?></option>
                         <option value="f" <?php if ($customer[0]->gender == 'f') {
                                                 echo 'selected hidden';
-                                            } ?>>Mujer</option>
+                                            } ?>><?php echo lang('Text.female');?></option>
                         <option value="o" <?php if ($customer[0]->gender == 'o') {
                                                 echo 'selected hidden';
-                                            } ?>>Otro</option>
+                                            } ?>><?php echo lang('Text.other');?></option>
                     </select>
                 </div>
                 <div class="col-12 col-lg-4 mt-5">
