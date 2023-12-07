@@ -19,8 +19,8 @@ $lang['name'] = "Nombre";
 $lang['last_name'] = "Apellidos";
 $lang['gender'] = "Género";
 $lang['select_gender'] = "Seleccione su género";
-$lang['male'] = "Hombre";
-$lang['female'] = "Mujer";
+$lang['male'] = "Masculino";
+$lang['female'] = "Femenino";
 $lang['other'] = "Otro";
 $lang['primary_phone'] = "Teléfono Principal";
 $lang['phone'] = "Teléfono";
@@ -191,6 +191,10 @@ $lang['emp_sercice_title'] = "Servicios del Empleado";
 $lang['emp_sercice_subtitle'] = 'Active o Desactive Servicios al Empleado';
 $lang['emp_schedule_title'] = "Horario del Empleado";
 $lang['emp_schedule_subtitle'] = 'Configure el Horario del Empleado';
+$lang['emp_account_title'] = 'Cuenta del Empleado';
+$lang['emp_account_subtitle'] = 'Administración de Cuenta del Empleado';
+$lang['emp_profile_title'] = 'Perfile del Empleado';
+$lang['emp_profile_subtitle'] = 'Administración del Perfil del Empleado';
 
 # Control Panel Services
 $lang['serv_new'] = "Nuevo Servicio";
@@ -227,7 +231,6 @@ $lang['eccba_complete_account_msg'] = "Hemos registrado su cuenta de cliente uti
 $lang['eccba_create_account'] = "Crear Contraseña";
 $lang['eccba_complete_account_info'] = "El enlace que contiene este mensaje es de un solo uso, una vez utilizado si no completa el proceso no podrá volver a acceder al procedimiento. En cierto caso póngase en contacto con nuestro equipo mediante los datos de contacto proporcionados a continuación.";
 
-
 # Email Create Employee By Admin
 $lang['eceba_hi'] = "Hola";
 $lang['eceba_welcome_company'] = "Bienvenido a";
@@ -235,7 +238,6 @@ $lang['eceba_complete_account'] = "Completa tu cuenta";
 $lang['eceba_complete_account_msg'] = "Hemos registrado su cuenta de empleado utilizando la dirección de correo electrónico proporcionada. Ahora, le pedimos que configure una contraseña para su perfil. Para hacerlo, simplemente haga clic en el botón a continuación y será redirigido a un formulario donde podrá completar este proceso.";
 $lang['eceba_create_account'] = "Crear Contraseña";
 $lang['eceba_complete_account_info'] = "El enlace que contiene este mensaje es de un solo uso, una vez utilizado si no completa el proceso no podrá volver a acceder al procedimiento. En cierto caso póngase en contacto con nuestro equipo mediante los datos de contacto proporcionados a continuación.";
-
 
 # Email Customer Signup
 $lang['e_signup_hi'] = "Hola";
@@ -253,5 +255,13 @@ $lang['e_rp_complete_account'] = "Recupera tu Contraseña";
 $lang['e_rp_complete_account_msg'] = "Si está recibiendo este mensaje, es porque ha solicitado restablecer su contraseña de acceso. Para ello, simplemente haga clic en el botón a continuación y será redirigido a un formulario para introducir su nueva contraseña.";
 $lang['e_rp_create_account'] = "Crear Contraseña";
 $lang['e_rp_complete_account_info'] = "Si usted no ha solicitado restablecer su contraseña, le pedimos que no se alarme; hasta el momento no se ha realizado ningún cambio en su perfil. Por favor, simplemente ignore este mensaje. Gracias.";
+
+# Email Re Verified
+$lang['e_rv_hi'] = "Hola";
+$lang['e_rv_welcome_company'] = "Bienvenido a";
+$lang['e_rv_complete_account'] = "Verifica tu cuenta de correo electrónico";
+$lang['e_rv_complete_account_msg'] = "Si estás recibiendo este mensaje, es importante que verifiques tu correo electrónico. Te pedimos que hagas clic en el botón que se encuentra a continuación para completar el proceso de verificación.";
+$lang['e_rv_create_account'] = "Verificar mi Correo Electrónico";
+$lang['e_rv_complete_account_info'] = "La verificación de su correo electrónico es fundamental para enviarle notificaciones importantes, actualizaciones sobre la política de privacidad y otros avisos relevantes. En su perfil, tiene la opción de activar o desactivar estas notificaciones según su preferencia. Agradecemos su colaboración.";
 
 return $lang;

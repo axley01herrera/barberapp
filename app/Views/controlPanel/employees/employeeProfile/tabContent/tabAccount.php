@@ -1,38 +1,47 @@
-<div class="card pt-4 mb-6 mb-xl-9">
-    <div class="card-body pt-0 pb-5">
-        <div id="profile-tab-content" class="container mt-10 mb-10">
-            <div class="row">
-                <div class="col-12 mt-5">
-                    <!-- Email -->
-                    <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
-                    <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $employee[0]->email; ?>" disabled="">
-                </div>
-                <div class="col-12 col-lg-4 mt-5">
-                    <!-- Current Password -->
-                    <label class="fs-6 fw-semibold" for="txt-password<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?></label>
-                    <input type="password" id="txt-password<?php echo $uniqid; ?>" class="form-control password focus" disabled="">
-                </div>
-                <div class="col-12 col-lg-4 mt-5">
-                    <!-- New Password -->
-                    <label class="fs-6 fw-semibold" for="txt-newPassword<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?></label>
-                    <input type="password" id="txt-newPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="">
-                </div>
-                <div class="col-12 col-lg-4 mt-5">
-                    <!-- Confirm New Password -->
-                    <label class="fs-6 fw-semibold" for="txt-confirmNewPassword<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?></label>
-                    <input type="password" id="txt-confirmNewPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="">
-                </div>
+<div class="card card-flush mb-6 mb-xl-9">
+    <!-- Card header -->
+    <div class="card-header mt-6">
+        <!-- Card title -->
+        <div class="card-title flex-column">
+            <h2 class="mb-1"><?php echo lang('Text.emp_account_title'); ?></h2>
+            <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.emp_account_subtitle'); ?></div>
+        </div>
+        <!-- Card toolbar -->
+        <div class="card-toolbar">
+        </div>
+    </div>
+    <div class="card-body p-9 pt-4">
+        <div class="row">
+            <div class="col-12">
+                <!-- Email -->
+                <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
+                <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $employee[0]->email; ?>" disabled="">
             </div>
-            <div class="row">
-                <div class="col-12 text-end mt-5">
-                    <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
-                </div>
+            <div class="col-12 col-lg-4 mt-5">
+                <!-- Current Password -->
+                <label class="fs-6 fw-semibold" for="txt-password<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?></label>
+                <input type="password" id="txt-password<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
             </div>
-            <div class="row">
-                <div class="col-12 text-end mt-5">
-                    <button hidden="" type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
-                    <button hidden="" type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_update'); ?></button>
-                </div>
+            <div class="col-12 col-lg-4 mt-5">
+                <!-- New Password -->
+                <label class="fs-6 fw-semibold" for="txt-newPassword<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?></label>
+                <input type="password" id="txt-newPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
+            </div>
+            <div class="col-12 col-lg-4 mt-5">
+                <!-- Confirm New Password -->
+                <label class="fs-6 fw-semibold" for="txt-confirmNewPassword<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?></label>
+                <input type="password" id="txt-confirmNewPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-end mt-5">
+                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-end mt-5">
+                <button hidden="" type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
+                <button hidden="" type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_update'); ?></button>
             </div>
         </div>
     </div>

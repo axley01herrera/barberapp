@@ -628,7 +628,7 @@ class ControlPanel extends BaseController
             }
 
             $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
-            $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
+            //$btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
@@ -637,8 +637,8 @@ class ControlPanel extends BaseController
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
             $col['emailVerified'] = $emailStatus;
-            $col['action'] = $btnProfile . $btnChangeStatus . $btnEdit . $btnDelete;
-
+            //$col['action'] = $btnProfile . $btnChangeStatus . $btnEdit . $btnDelete;
+            $col['action'] =  $btnChangeStatus . $btnProfile . $btnDelete;
             $row[$i] =  $col;
         }
 
@@ -895,14 +895,16 @@ class ControlPanel extends BaseController
 
     public function reloadEmployeeInfo()
     {
+        # params
         $employeeID = $this->objRequest->getPost('employeeID');
         # data
         $data = array();
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
         $data['address'] = $this->objMainModel->objData('address', 'employeeID', $employeeID);
-
-        return view('controlPanel/employees/employeeProfile/employeeInfo', $data);
-    }
+        # page
+        $page = 'controlPanel/employees/employeeProfile/employeeInfo';
+        return view($page, $data);
+    } // ok
 
     public function updateEmployeeAccount()
     {
@@ -938,8 +940,8 @@ class ControlPanel extends BaseController
 
         if ($employee[0]->email !== $email) {
             $dataAccount['email'] = $email;
-            // $dataAccount['token'] = md5(uniqid());
-            // $dataAccount['emailVerified'] = 0;
+            $dataAccount['token'] = md5(uniqid());
+            $dataAccount['emailVerified'] = 0;
         }
 
         if (empty($dataAccount)) {
@@ -950,27 +952,27 @@ class ControlPanel extends BaseController
 
         $this->objMainModel->objUpdate('employee', $dataAccount, $employeeID);
 
+        if (!empty($dataAccount['email'])) {
+            $dataEmail = array();
+            $dataEmail['pageTitle'] = $this->profile[0]->company_name;
+            $dataEmail['person'] = $employee[0]->name . ' ' . $employee[0]->lastName;
+            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'].'&type=employee';
+            $dataEmail['companyPhone'] = $this->profile[0]->phone1;
+            $dataEmail['companyEmail'] = $this->profile[0]->email;
 
-        // if (!empty($dataAccount['email'])) {
-        //     $dataEmail = array();
-        //     $dataEmail['pageTitle'] = $this->profile[0]->company_name;
-        //     $dataEmail['person'] = $employee[0]->name . ' ' . $employee[0]->lastName;
-        //     $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'];
-        //     $dataEmail['companyPhone'] = $this->profile[0]->phone1;
-        //     $dataEmail['companyEmail'] = $this->profile[0]->email;
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
+            $this->objEmail->setTo($dataAccount['email']);
+            $this->objEmail->setSubject($this->profile[0]->company_name);
+            $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
 
-        //     $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
-        //     $this->objEmail->setTo($dataAccount['email']);
-        //     $this->objEmail->setSubject($this->profile[0]->company_name);
-        //     $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
+            $this->objEmail->send(false);
+        }
 
-        //     $this->objEmail->send(false);
-        // }
         $response = array();
         $response['error'] = 0;
 
         return json_encode($response);
-    }
+    } // ok
 
     public function updateEmployeeProfile()
     {
@@ -982,11 +984,12 @@ class ControlPanel extends BaseController
 
             return json_encode($result);
         }
+
         # employeeID
         $employeeID = $this->objRequest->getPost('employeeID');
 
         $dataProfile = array();
-        # profile params
+        # Profile
         $dataProfile['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $dataProfile['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
         $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
@@ -995,8 +998,9 @@ class ControlPanel extends BaseController
 
         $resultUpdateCustomer = $this->objMainModel->objUpdate('employee', $dataProfile, $employeeID);
         if ($resultUpdateCustomer['error'] == 0) {
+
             $dataAddress = array();
-            # address params
+            # Address
             $dataAddress['line1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
             $dataAddress['line2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
             $dataAddress['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
@@ -1005,6 +1009,7 @@ class ControlPanel extends BaseController
             $dataAddress['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
 
             $updateAddress = $this->objMainModel->objData('address', 'employeeID', $employeeID);
+
             if (!empty($updateAddress))
                 $this->objMainModel->objUpdate('address', $dataAddress, $updateAddress[0]->id);
             else {
@@ -1017,7 +1022,7 @@ class ControlPanel extends BaseController
             $result['msg'] = 'ERROR_ON_UPDATE_CUSTOMER';
         }
         return json_encode($result);
-    }
+    } // ok
 
     public function uploadEmployeeAvatarProfile()
     {
@@ -1030,7 +1035,7 @@ class ControlPanel extends BaseController
         }
 
         return json_encode($this->objMainModel->uploadFile('employee', $this->objRequest->getPost('employeeID'), 'avatar', $_FILES['file']));
-    }
+    } // ok
 
     public function removeEmployeeAvatarProfile()
     {
@@ -1046,7 +1051,7 @@ class ControlPanel extends BaseController
         $data['avatar'] = '';
 
         return json_encode($this->objMainModel->objUpdate('employee', $data, $this->objRequest->getPost('employeeID')));
-    }
+    } // ok
 
     public function employeeService()
     {

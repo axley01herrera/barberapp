@@ -174,7 +174,7 @@ class Customer extends BaseController
             $dataEmail = array();
             $dataEmail['pageTitle'] = $this->profile[0]->company_name;
             $dataEmail['person'] = $customer[0]->name . ' ' . $customer[0]->lastName;
-            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'];
+            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'].'&type=customer';
             $dataEmail['companyPhone'] = $this->profile[0]->phone1;
             $dataEmail['companyEmail'] = $this->profile[0]->email;
 

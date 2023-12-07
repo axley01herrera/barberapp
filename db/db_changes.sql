@@ -72,9 +72,9 @@ ALTER TABLE `employee` ADD `emailVerified` INT NOT NULL DEFAULT '0' AFTER `token
 ALTER TABLE `employee` ADD `deleted` INT NOT NULL DEFAULT '0' AFTER `emailVerified`; 
 ALTER TABLE `employee` CHANGE `email` `email` VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL; 
 ALTER TABLE `employee` ADD `avatar` LONGBLOB NULL AFTER `id`; 
-ALTER TABLE `employee` ADD `gender` INT NULL AFTER `lastName`; 
+ALTER TABLE `employee` CHANGE `gender` `gender` VARCHAR(1) NULL;  
 ALTER TABLE `employee` ADD `dob` DATE NULL AFTER `lastName`; 
-ALTER TABLE `employee` CHANGE `gender` `gender` VARCHAR(11) NULL DEFAULT NULL; 
+ALTER TABLE `employee` ADD `phone` VARCHAR(20) NULL AFTER `email`; 
 
 #### 
   ## End Table employee

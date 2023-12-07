@@ -298,7 +298,7 @@ class Home extends BaseController
         $dataEmail = array();
         $dataEmail['pageTitle'] = $this->profile[0]->company_name;
         $dataEmail['person'] = $name . ' ' . $lastName;
-        $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token;
+        $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&type=customer';
         $dataEmail['companyPhone'] = $this->profile[0]->phone1;
         $dataEmail['companyEmail'] = $this->profile[0]->email;
 
@@ -316,6 +316,13 @@ class Home extends BaseController
     {
         # params
         $token = $this->objRequest->getPostGet('token');
+        $type = $this->objRequest->getPostGet('type');
+        $table = "";
+
+        if ($type == "customer")
+            $table = $type;
+        if ($type == "employee")
+            $table = $type;
 
         $data = array();
         # data
@@ -325,8 +332,10 @@ class Home extends BaseController
 
         if (empty($token))
             return view('errorPages/globalError', $data);
+        if (empty($table))
+            return view('errorPages/globalError', $data);
 
-        $result = $this->objMainModel->objData('customer', 'token', $token);
+        $result = $this->objMainModel->objData($table, 'token', $token);
 
         if (!empty($result)) {
             $dataUpdate = array();
@@ -334,7 +343,7 @@ class Home extends BaseController
             $dataUpdate['token'] = '';
 
             # Update Customer 
-            $this->objMainModel->objUpdate('customer', $dataUpdate, $result[0]->id);
+            $this->objMainModel->objUpdate($table, $dataUpdate, $result[0]->id);
 
             return view('home/successActivateAccount', $data);
         } else
