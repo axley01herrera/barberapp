@@ -67,6 +67,8 @@
                         } else if (response.error == 1) {
                             if (response.msg == 'EMAIL_NOT_FOUND') {
                                 simpleAlert('<?php echo lang('Text.invalid_credentials') ?>', 'warning');
+                                $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
+                                $('#txt-pass<?php echo $uniqid; ?>').addClass('required is-invalid');
                             } else if (response.msg == 'USER_INACTIVE') {
                                 simpleAlert('<?php echo lang('Text.user_inactive_msg'); ?>', 'warning');
                             } else if (response.msg == 'INVALID_PASSWORD') {
