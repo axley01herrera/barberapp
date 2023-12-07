@@ -877,6 +877,11 @@ class ControlPanel extends BaseController
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabService";
                 break;
             case 'tab-schedule':
+                $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+                if(empty($data['employeeBussinesDay'])) {
+                    $this->objMainModel->objCreate('employee_bussines_day', ['employeeID' => $employeeID]);
+                    $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+                }
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabSchedule";
                 break;
             case 'tab-account':
@@ -1083,6 +1088,28 @@ class ControlPanel extends BaseController
             return json_encode($result);
         }
     } // ok
+
+    public function updateBussinessDay()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+        # params
+        $field = $this->objRequest->getPost('field');
+        $value = $this->objRequest->getPost('value');
+        $employeeBussinesDayID = $this->objRequest->getPost('employeeBussinesDayID');
+
+        $data = array();
+        $data[$field] = $value;
+
+        $result = $this->objMainModel->objUpdate('employee_bussines_day', $data, $employeeBussinesDayID);
+
+        return json_encode($result);
+    }
 
     ##############################
     # Section Reports

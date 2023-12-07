@@ -74,6 +74,7 @@ $routes->post('ControlPanel/updateEmployeeProfile', 'ControlPanel::updateEmploye
 $routes->post('ControlPanel/reloadEmployeeInfo', 'ControlPanel::reloadEmployeeInfo');
 $routes->post('ControlPanel/removeEmployeeAvatarProfile', 'ControlPanel::removeEmployeeAvatarProfile');
 $routes->post('ControlPanel/uploadEmployeeAvatarProfile', 'ControlPanel::uploadEmployeeAvatarProfile');
+$routes->post('ControlPanel/updateBussinessDay', 'ControlPanel::updateBussinessDay');
 
 # ControlPanel -> Reports
 $routes->get('ControlPanel/reports', 'ControlPanel::reports');

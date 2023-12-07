@@ -8,6 +8,11 @@
         </div>
         <!-- Card toolbar -->
         <div class="card-toolbar">
+            <!-- Status Employee-->
+            <div class="form-check form-switch form-check-custom form-check-solid mt-2">
+                <input type="checkbox" id="cb-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.change_status'); ?>" disabled="" <?php if ($employee[0]->status == 1) echo 'checked=""'; ?> data-status="<?php echo $employee[0]->status; ?>">
+                <label class="fs-6 fw-semibold"></label>
+            </div>
         </div>
     </div>
     <div class="card-body p-9 pt-4">
@@ -31,14 +36,6 @@
                 <!-- Confirm New Password -->
                 <label class="fs-6 fw-semibold" for="txt-confirmNewPassword<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?></label>
                 <input type="password" id="txt-confirmNewPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
-            </div>
-            <div class="col-12 mt-5">
-                <!-- Status Employee-->
-                <label class="fs-6 fw-semibold" for="cb-status<?php echo $uniqid; ?>"><?php echo lang('Text.btn_active_inactive_employee'); ?></label>
-                <div class="form-check form-switch form-check-custom form-check-solid mt-2">
-                    <input type="checkbox" id="cb-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" disabled="" <?php if ($employee[0]->status == 1) echo 'checked=""'; ?> data-status="<?php echo $employee[0]->status; ?>">
-                    <label class="form-check-label"></label>
-                </div>
             </div>
         </div>
         <div class="row">

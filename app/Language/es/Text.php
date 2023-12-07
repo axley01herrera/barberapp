@@ -65,13 +65,6 @@ $lang['first_time'] = "Primer Turno";
 $lang['second_time'] = "Segundo Turno";
 $lang['date_start'] = 'Hora de Inicio';
 $lang['date_end'] = 'Hora de Finalización';
-$lang['save_monday'] = 'Guardar Horario del Lunes';
-$lang['save_tuesday'] = 'Guardar Horario del Martes';
-$lang['save_wednesday'] = 'Guardar Horario del Miércoles';
-$lang['save_thursday'] = 'Guardar Horario del Jueves';
-$lang['save_friday'] = 'Guardar Horario del Viernes';
-$lang['save_saturday'] = 'Guardar Horario del Sábado';
-$lang['save_sunday'] = 'Guardar Horario del Domingo';
 
 # Global MSG
 $lang['thanks'] = "Gracias";
@@ -111,7 +104,7 @@ $lang['btn_home'] = "Ir al Inicio";
 $lang['btn_signing'] = "Iniciar Sesión";
 $lang['btn_create_account'] = "Crear Cuenta";
 $lang['btn_send_recover_pass_email'] = "Enviar Correo de Recuperación";
-$lang['btn_active_inactive_employee'] = "Activar o Desactivar al empleado";
+$lang['btn_create_time'] = "Crear Turno";
 
 #### 
 ## Home
@@ -189,13 +182,13 @@ $lang['emp_duplicate'] = "Ya existe el correo electrónico";
 $lang['emp_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al Empleado";
 $lang['emp_profile_title'] = "Perfil del Empleado";
 $lang['emp_sercice_title'] = "Servicios del Empleado";
-$lang['emp_sercice_subtitle'] = 'Active o Desactive Servicios al Empleado';
+$lang['emp_sercice_subtitle'] = 'Selecciones los servicios que realiza el empleado.';
 $lang['emp_schedule_title'] = "Horario del Empleado";
-$lang['emp_schedule_subtitle'] = 'Configure el Horario del Empleado';
+$lang['emp_schedule_subtitle'] = 'Configure los días laborables y cree turnos para el empleado.';
 $lang['emp_account_title'] = 'Cuenta del Empleado';
-$lang['emp_account_subtitle'] = 'Administración de Cuenta del Empleado';
-$lang['emp_profile_title'] = 'Perfile del Empleado';
-$lang['emp_profile_subtitle'] = 'Administración del Perfil del Empleado';
+$lang['emp_account_subtitle'] = 'Administración de cuenta del empleado.';
+$lang['emp_profile_title'] = 'Perfil del Empleado';
+$lang['emp_profile_subtitle'] = 'Administración del perfil del empleado.';
 $lang['emp_label_switch_bussiness_day'] = 'No Laborable / Laborable';
 $lang['emp_label_switch_time_day'] = 'Inactivo / Activo';
 
