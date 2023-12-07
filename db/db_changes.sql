@@ -75,6 +75,7 @@ ALTER TABLE `employee` ADD `avatar` LONGBLOB NULL AFTER `id`;
 ALTER TABLE `employee` CHANGE `gender` `gender` VARCHAR(1) NULL;  
 ALTER TABLE `employee` ADD `dob` DATE NULL AFTER `lastName`; 
 ALTER TABLE `employee` ADD `phone` VARCHAR(20) NULL AFTER `email`; 
+ALTER TABLE `employee` ADD `lastSession` DATE NULL AFTER `emailVerified`; 
 
 #### 
   ## End Table employee

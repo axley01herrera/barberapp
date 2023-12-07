@@ -17,7 +17,9 @@ $routes->get('Home/customerCreatePassword', 'Home::customerCreatePassword');
 $routes->get('Home/employeeCreatePassword', 'Home::employeeCreatePassword');
 $routes->post('Home/createPassword', 'Home::createPassword');
 $routes->get('Home/signInCustomer', 'Home::signInCustomer');
+$routes->get('Home/signInEmployee', 'Home::signInEmployee');
 $routes->post('Home/signInCustomerProcess', 'Home::signInCustomerProcess');
+$routes->post('Home/signInEmployeeProcess', 'Home::signInEmployeeProcess');
 $routes->get('Home/signUpCustomer', 'Home::signUpCustomer');
 $routes->post('Home/policyPrivacyModal', 'Home::policyPrivacyModal');
 $routes->post('Home/signUpCustomerProcess', 'Home::signUpCustomerProcess');
@@ -99,3 +101,10 @@ $routes->post('Customer/updateProfile', 'Customer::updateProfile');
 $routes->post('Customer/uploadAvatarProfile', 'Customer::uploadAvatarProfile');
 $routes->post('Customer/removeAvatarProfile', 'Customer::removeAvatarProfile');
 $routes->post('Customer/reloadCustomerInfo', 'Customer::reloadCustomerInfo');
+
+
+############################## 
+## Employee Routes
+##############################
+
+$routes->get('Employee/index', 'Employee::index');

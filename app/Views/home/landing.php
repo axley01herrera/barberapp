@@ -18,9 +18,13 @@
     <div id="kt_app_content" class="app-content flex-column-fluid mt-6">
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <a href="<?php echo base_url('Home/controlPanelAuth'); ?>">Ir a Control Panel</a> <br>
-            <a href="<?php echo base_url('Home/signInCustomer'); ?>">Ir a Iniciar Sesión del Customer</a><br>
-            <a href="<?php echo base_url('Home/signUpCustomer'); ?>">Ir a Crear Cuenta del Customer</a>
+            <p>Control</p>
+            <a href="<?php echo base_url('Home/controlPanelAuth'); ?>">Ir a Control Panel</a><hr>
+            <p>Customer</p>
+            <a href="<?php echo base_url('Home/signInCustomer'); ?>">Iniciar Sesión</a> <span> | </span>
+            <a href="<?php echo base_url('Home/signUpCustomer'); ?>">Crear Cuenta</a><hr>
+            <p>Empleados</p>
+            <a href="<?php echo base_url('Home/signInEmployee'); ?>">Iniciar Sesión</a><br>
         </div>
     </div>
 </div>

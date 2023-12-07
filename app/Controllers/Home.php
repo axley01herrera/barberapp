@@ -248,6 +248,50 @@ class Home extends BaseController
         return json_encode($response);
     } // ok
 
+    public function signInEmployee()
+    {
+        # params
+        $session = $this->request->getGet('session');
+
+        $data = array();
+        # data
+        $data['uniqid'] = uniqid();
+        $data['session'] = $session;
+        $data['config'] = $this->config;
+        $data['profile'] = $this->profile;
+        # page
+        $data['page'] = 'home/signInEmployee';
+
+        return view('home/mainHome', $data);
+    }
+
+    public function signInEmployeeProcess()
+    {
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
+        $password = htmlspecialchars(trim($this->objRequest->getPost('pass')));
+
+        $result = $this->objAuthenticationModel->loginEmployee($email, $password);
+
+        if ($result['error'] == 0) {
+            $data = array();
+            $data['lastSession'] = date('Y-m-d');
+            $this->objMainModel->objUpdate('employee', $data, $result['data']->id);
+
+            # Create Session
+            $session = array();
+            $session['employeeID'] = $result['data']->id;
+            $session['role'] = 'employee';
+            $session['email'] = $result['data']->email;
+
+            $this->objSession->set('user', $session);
+        }
+        $response = array();
+        $response['error'] = $result['error'];
+        $response['msg'] = @$result['msg'];
+
+        return json_encode($response);
+    }
+
     public function signUpCustomer()
     {
         $data = array();
