@@ -926,7 +926,7 @@ class ControlPanel extends BaseController
 
         $employee = $this->objMainModel->objData('employee', 'id', $employeeID);
 
-        if ($employee[0]->status != $status) //UPDATE STATUS
+        if ($employee[0]->status != $status) // UPDATE STATUS
             $this->objMainModel->objUpdate('employee', array('status' => $status), $employeeID);
 
         if (!empty($currentPassword)) {
