@@ -91,7 +91,7 @@
                 simpleAlert('<?php echo lang('Text.invalid_email_format'); ?>', 'warning');
         } else
             simpleAlert('<?php echo lang("Text.required_values"); ?>', 'warning');
-    }); // ok
+    });
 
     function checkRequiredValues() {
         let result = 0;
