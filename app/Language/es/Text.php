@@ -195,6 +195,8 @@ $lang['emp_account_title'] = 'Cuenta del Empleado';
 $lang['emp_account_subtitle'] = 'Administración de Cuenta del Empleado';
 $lang['emp_profile_title'] = 'Perfile del Empleado';
 $lang['emp_profile_subtitle'] = 'Administración del Perfil del Empleado';
+$lang['emp_label_switch_bussiness_day'] = 'No Laborable / Laborable';
+$lang['emp_label_switch_time_day'] = 'Inactivo / Activo';
 
 # Control Panel Services
 $lang['serv_new'] = "Nuevo Servicio";

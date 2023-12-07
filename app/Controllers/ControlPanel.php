@@ -956,7 +956,7 @@ class ControlPanel extends BaseController
             $dataEmail = array();
             $dataEmail['pageTitle'] = $this->profile[0]->company_name;
             $dataEmail['person'] = $employee[0]->name . ' ' . $employee[0]->lastName;
-            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'].'&type=employee';
+            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'] . '&type=employee';
             $dataEmail['companyPhone'] = $this->profile[0]->phone1;
             $dataEmail['companyEmail'] = $this->profile[0]->email;
 
