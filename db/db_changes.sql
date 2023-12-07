@@ -74,6 +74,7 @@ ALTER TABLE `employee` CHANGE `email` `email` VARCHAR(100) CHARACTER SET utf8mb4
 ALTER TABLE `employee` ADD `avatar` LONGBLOB NULL AFTER `id`; 
 ALTER TABLE `employee` ADD `gender` INT NULL AFTER `lastName`; 
 ALTER TABLE `employee` ADD `dob` DATE NULL AFTER `lastName`; 
+ALTER TABLE `employee` CHANGE `gender` `gender` VARCHAR(11) NULL DEFAULT NULL; 
 
 #### 
   ## End Table employee

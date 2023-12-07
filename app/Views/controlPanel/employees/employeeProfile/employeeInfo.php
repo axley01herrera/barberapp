@@ -18,7 +18,7 @@
         </div>
         <div class="fw-bold mt-5"><?php echo lang('Text.phone'); ?></div>
         <div class="text-gray-600">
-            <span class="text-gray-600"><?php echo @$employee[0]->phone; ?></span>
+            <span class="text-gray-600"><?php echo $employee[0]->phone; ?></span>
         </div>
         <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
         <div class="text-gray-600"><?php echo @$address[0]->line1; ?><?php if (@$address[0]->line2) echo ", " . '' . $address[0]->line2; ?>

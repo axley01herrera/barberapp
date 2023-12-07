@@ -101,6 +101,7 @@ $lang['btn_update'] = "Actualizar";
 $lang['btn_cancel'] = "Cancelar";
 $lang['btn_save'] = "Guardar";
 $lang['btn_edit'] = "Editar";
+$lang['btn_profile'] = "Perfil";
 $lang['btn_delete'] = "Eliminar";
 $lang['btn_home'] = "Ir al Inicio";
 $lang['btn_signing'] = "Iniciar Sesión";

@@ -67,6 +67,10 @@ $routes->post('ControlPanel/deleteEmployee', 'ControlPanel::deleteEmployee');
 $routes->post('ControlPanel/changeEmployeeStatus', 'ControlPanel::changeEmployeeStatus');
 $routes->post('ControlPanel/employeeProfileTabContent', 'ControlPanel::employeeProfileTabContent');
 $routes->post('ControlPanel/employeeService', 'ControlPanel::employeeService');
+$routes->post('ControlPanel/updateEmployeeProfile', 'ControlPanel::updateEmployeeProfile');
+$routes->post('ControlPanel/reloadEmployeeInfo', 'ControlPanel::reloadEmployeeInfo');
+$routes->post('ControlPanel/removeEmployeeAvatarProfile', 'ControlPanel::removeEmployeeAvatarProfile');
+$routes->post('ControlPanel/uploadEmployeeAvatarProfile', 'ControlPanel::uploadEmployeeAvatarProfile');
 
 # ControlPanel -> Reports
 $routes->get('ControlPanel/reports', 'ControlPanel::reports');

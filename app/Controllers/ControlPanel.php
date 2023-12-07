@@ -355,16 +355,17 @@ class ControlPanel extends BaseController
                 $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 change-status" data-customer-id="' . $result[$i]->id . '" data-status="0" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
             }
 
+            $btnProfile = '<a href="' . base_url('ControlPanel/customerProfile?id=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
-            $col['name'] = '<a href="' . base_url('ControlPanel/customerProfile?id=') . $result[$i]->id . '">' . $result[$i]->name . '</a>';
+            $col['name'] = $result[$i]->name;
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
             $col['emailVerified'] = $emailStatus;
-            $col['action'] = $btnChangeStatus . $btnEdit . $btnDelete;
+            $col['action'] = $btnProfile . $btnChangeStatus . $btnEdit . $btnDelete;
 
             $row[$i] =  $col;
         }
@@ -626,16 +627,17 @@ class ControlPanel extends BaseController
                 $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 change-status" data-employee-id="' . $result[$i]->id . '" data-status="0" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
             }
 
+            $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
-            $col['name'] = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '">' . $result[$i]->name . '</a>';
+            $col['name'] = $result[$i]->name;
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
             $col['emailVerified'] = $emailStatus;
-            $col['action'] = $btnChangeStatus . $btnEdit . $btnDelete;
+            $col['action'] = $btnProfile . $btnChangeStatus . $btnEdit . $btnDelete;
 
             $row[$i] =  $col;
         }
@@ -832,6 +834,7 @@ class ControlPanel extends BaseController
         $data['config'] = $this->config;
         $data['activeEmployees'] = "active";
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPostGet('id'));
+        $data['address'] = $this->objMainModel->objData('address', 'employeeID', $this->objRequest->getPostGet('id'));
         # page
         $data['page'] = 'controlPanel/employees/employeeProfile/main';
 
@@ -854,6 +857,13 @@ class ControlPanel extends BaseController
         # data
         $data['employeeID'] = $employeeID;
         $data['config'] = $this->config;
+        $data['uniqid'] = uniqid();
+
+        if ($this->config[0]->lang == 'es')
+            $data['dateLabel'] = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $data['dateLabel'] = "m-d-Y";
+
 
         switch ($tab) {
             case 'tab-overview':
@@ -869,9 +879,107 @@ class ControlPanel extends BaseController
             case 'tab-schedule':
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabSchedule";
                 break;
+            case 'tab-account':
+                $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
+                $view = "controlPanel/employees/employeeProfile/tabContent/tabAccount";
+                break;
+            case 'tab-profile':
+                $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
+                $data['address'] = $this->objMainModel->objData('address', 'employeeID', $employeeID);
+                $view = "controlPanel/employees/employeeProfile/tabContent/tabProfile";
+                break;
         }
 
         return view($view, $data);
+    }
+
+    public function reloadEmployeeInfo()
+    {
+        $employeeID = $this->objRequest->getPost('employeeID');
+        # data
+        $data = array();
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
+        $data['address'] = $this->objMainModel->objData('address', 'employeeID', $employeeID);
+
+        return view('controlPanel/employees/employeeProfile/employeeInfo', $data);
+    }
+
+    public function updateEmployeeProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+        # employee id
+        $employeeID = $this->objRequest->getPost('employeeID');
+
+        $dataProfile = array();
+        # profile params
+        $dataProfile['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $dataProfile['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
+        $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
+        $dataProfile['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
+
+        //var_dump($dataProfile);exit();
+
+        $resultUpdateCustomer = $this->objMainModel->objUpdate('employee', $dataProfile, $employeeID);
+        if ($resultUpdateCustomer['error'] == 0) {
+            $dataAddress = array();
+            # address params
+            $dataAddress['line1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
+            $dataAddress['line2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
+            $dataAddress['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
+            $dataAddress['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
+            $dataAddress['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
+            $dataAddress['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
+
+            $updateAddress = $this->objMainModel->objData('address', 'employeeID', $employeeID);
+            if (!empty($updateAddress))
+                $this->objMainModel->objUpdate('address', $dataAddress, $updateAddress[0]->id);
+            else {
+                $dataAddress['employeeID'] = $employeeID;
+                $this->objMainModel->objCreate('address', $dataAddress);
+            }
+            $result['error'] = 0;
+        } else {
+            $result['error'] = 1;
+            $result['msg'] = 'ERROR_ON_UPDATE_CUSTOMER';
+        }
+        return json_encode($result);
+    }
+
+    public function uploadEmployeeAvatarProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        return json_encode($this->objMainModel->uploadFile('employee', $this->objRequest->getPost('employeeID'), 'avatar', $_FILES['file']));
+    }
+
+    public function removeEmployeeAvatarProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        $data = array();
+        $data['avatar'] = '';
+
+        return json_encode($this->objMainModel->objUpdate('employee', $data, $this->objRequest->getPost('employeeID')));
     }
 
     public function employeeService()

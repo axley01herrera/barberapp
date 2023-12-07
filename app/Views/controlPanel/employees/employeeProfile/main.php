@@ -90,6 +90,23 @@
         });
     }
 
+    function reloadEmployeeInfo() {
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/reloadEmployeeInfo'); ?>",
+            data: {
+                'employeeID': employeeID
+            },
+            dataType: "html",
+            success: function(response) {
+                $('#employee-info').html(response);
+            },
+            error: function() {
+                globalError();
+            }
+        });
+    }
+
     $('.tab-profile').on('click', function(e) {
         e.preventDefault();
 
