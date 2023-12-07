@@ -49,7 +49,7 @@
     });
 
     $('#btn-cancel<?php echo $uniqid; ?>').on('click', function() { // Cancel Edit
-        customerTabContent();
+        employeeProfileTabContent();
     });
 
     $('#btn-update<?php echo $uniqid; ?>').on('click', function() {
@@ -73,8 +73,9 @@
                     $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
                     $.ajax({
                         type: "post",
-                        url: "<?php echo base_url('Customer/updateAccount'); ?>",
+                        url: "<?php echo base_url('ControlPanel/updateEmployeeAccount'); ?>",
                         data: {
+                            'employeeID': <?php echo $employeeID; ?>,
                             'email': $('#txt-email<?php echo $uniqid; ?>').val(),
                             'password': $('#txt-newPassword<?php echo $uniqid; ?>').val(),
                             'currentPassword': $('#txt-password<?php echo $uniqid; ?>').val(),
@@ -83,25 +84,18 @@
                         success: function(response) {
                             if (response.error == 0) {
                                 simpleSuccessAlert("<?php echo lang("Text.prof_data_updated"); ?>");
-                                reloadCustomerInfo();
-                                customerTabContent();
-                                if (response.msg == 'SENT_EMAIL') {
-                                    simpleSuccessAlert("<?php echo lang("Text.cust_success_reactivate_email"); ?>");
-                                    reloadCustomerInfo();
-                                    customerTabContent();
-                                }
+                                reloadEmployeeInfo();
+                                employeeProfileTabContent();
                             } else if (response.error == 1) {
                                 $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
                                 if (response.msg == "INVALID_CURRENT_KEY") {
                                     $('#txt-password<?php echo $uniqid; ?>').addClass('is-invalid');
-                                    simpleAlert("<?php echo lang('Text.invalid_current_password'); ?>", 'warning')
-                                } else if (response.msg == 'ERROR_SEND_EMAIL')
-                                    simpleAlert("<?php echo lang("Text.cust_error_reactivate_email"); ?>", 'warning');
-                                else
+                                    simpleAlert("<?php echo lang('Text.invalid_current_password'); ?>", 'warning');
+                                } else
                                     globalError();
 
                             } else
-                                window.location.href = "<?php echo base_url('Home/signInCustomer?session=expired'); ?>";
+                                window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
 
                             $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
                         },

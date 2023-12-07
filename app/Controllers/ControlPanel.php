@@ -904,6 +904,74 @@ class ControlPanel extends BaseController
         return view('controlPanel/employees/employeeProfile/employeeInfo', $data);
     }
 
+    public function updateEmployeeAccount()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
+        $currentPassword = htmlspecialchars(trim($this->objRequest->getPost('currentPassword')));
+        $newPassword = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
+        $employeeID = $this->objRequest->getPost('employeeID');
+
+        $employee = $this->objMainModel->objData('employee', 'id', $employeeID);
+
+        if (!empty($currentPassword)) {
+            if ($this->objConfigModel->login($currentPassword)['error'] == 1) {
+                $result = array();
+                $result['error'] = 1;
+                $result['msg'] = "INVALID_CURRENT_KEY";
+                return json_encode($result);
+            }
+        }
+
+        $dataAccount = array();
+        if (!empty($newPassword))
+            $dataAccount['password'] = $newPassword;
+
+        if ($employee[0]->email !== $email) {
+            $dataAccount['email'] = $email;
+            // $dataAccount['token'] = md5(uniqid());
+            // $dataAccount['emailVerified'] = 0;
+        }
+
+        if (empty($dataAccount)) {
+            $response = array();
+            $response['error'] = 0;
+            return json_encode($response);
+        }
+
+        $this->objMainModel->objUpdate('employee', $dataAccount, $employeeID);
+
+
+        // if (!empty($dataAccount['email'])) {
+        //     $dataEmail = array();
+        //     $dataEmail['pageTitle'] = $this->profile[0]->company_name;
+        //     $dataEmail['person'] = $employee[0]->name . ' ' . $employee[0]->lastName;
+        //     $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'];
+        //     $dataEmail['companyPhone'] = $this->profile[0]->phone1;
+        //     $dataEmail['companyEmail'] = $this->profile[0]->email;
+
+        //     $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
+        //     $this->objEmail->setTo($dataAccount['email']);
+        //     $this->objEmail->setSubject($this->profile[0]->company_name);
+        //     $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
+
+        //     $this->objEmail->send(false);
+        // }
+        $response = array();
+        $response['error'] = 0;
+
+        return json_encode($response);
+    }
+
     public function updateEmployeeProfile()
     {
         # Verify Session 

@@ -166,8 +166,6 @@ $lang['cust_success_created'] = "Cliente Creado";
 $lang['cust_success_updated'] = "Cliente Actualizado";
 $lang['cust_success_deleted'] = "Cliente Eliminado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
-$lang['cust_success_reactivate_email'] = "Se ha enviado un correo de verificación a su nueva dirección de correo";
-$lang['cust_error_reactivate_email'] = "Ha ocurrido un error, intente actualizar nuevamente";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
 
 # Control Panel -> Employees
