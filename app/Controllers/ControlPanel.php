@@ -920,9 +920,11 @@ class ControlPanel extends BaseController
         # params
         $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
         $currentPassword = htmlspecialchars(trim($this->objRequest->getPost('currentPassword')));
+        $status = htmlspecialchars(trim($this->objRequest->getPost('status')));
         $newPassword = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
         $employeeID = $this->objRequest->getPost('employeeID');
 
+        $this->objMainModel->objUpdate('employee', array('status' => $status), $employeeID);
         $employee = $this->objMainModel->objData('employee', 'id', $employeeID);
 
         if (!empty($currentPassword)) {

@@ -111,6 +111,7 @@ $lang['btn_home'] = "Ir al Inicio";
 $lang['btn_signing'] = "Iniciar Sesión";
 $lang['btn_create_account'] = "Crear Cuenta";
 $lang['btn_send_recover_pass_email'] = "Enviar Correo de Recuperación";
+$lang['btn_active_inactive_employee'] = "Activar o Desactivar al empleado";
 
 #### 
 ## Home

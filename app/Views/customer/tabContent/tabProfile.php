@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-12 mt-5">
                     <!-- Email Notification -->
-                    <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.email_notification'); ?></label>
+                    <label class="fs-6 fw-semibold" for="en-checkbox"><?php echo lang('Text.email_notification'); ?></label>
                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                         <input type="checkbox" id="en-checkbox" class="form-check-input form-control h-30px w-50px" disabled="" <?php if ($customer[0]->emailNotification == 1) echo 'checked=""'; ?> data-checked="<?php echo $customer[0]->emailNotification; ?>">
                         <label class="form-check-label"></label>

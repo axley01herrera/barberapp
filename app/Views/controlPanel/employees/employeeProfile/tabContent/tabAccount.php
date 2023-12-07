@@ -32,6 +32,14 @@
                 <label class="fs-6 fw-semibold" for="txt-confirmNewPassword<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?></label>
                 <input type="password" id="txt-confirmNewPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
             </div>
+            <div class="col-12 mt-5">
+                <!-- Status Employee-->
+                <label class="fs-6 fw-semibold" for="cb-status<?php echo $uniqid; ?>"><?php echo lang('Text.btn_active_inactive_employee'); ?></label>
+                <div class="form-check form-switch form-check-custom form-check-solid mt-2">
+                    <input type="checkbox" id="cb-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" disabled="" <?php if ($employee[0]->status == 1) echo 'checked=""'; ?> data-status="<?php echo $employee[0]->status; ?>">
+                    <label class="form-check-label"></label>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-12 text-end mt-5">
@@ -61,6 +69,13 @@
         employeeProfileTabContent();
     });
 
+    $('#cb-status<?php echo $uniqid; ?>').on('click', function() {
+        if ($(this).attr('data-status') == 1)
+            $(this).attr('data-status', 0);
+        else
+            $(this).attr('data-status', 1);
+    });
+
     $('#btn-update<?php echo $uniqid; ?>').on('click', function() {
         let flag = 0;
         $('.password').each(function() {
@@ -88,6 +103,7 @@
                             'email': $('#txt-email<?php echo $uniqid; ?>').val(),
                             'password': $('#txt-newPassword<?php echo $uniqid; ?>').val(),
                             'currentPassword': $('#txt-password<?php echo $uniqid; ?>').val(),
+                            'status': $('#cb-status<?php echo $uniqid; ?>').attr('data-status')
                         },
                         dataType: "json",
                         success: function(response) {
