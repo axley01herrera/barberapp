@@ -982,7 +982,7 @@ class ControlPanel extends BaseController
 
             return json_encode($result);
         }
-        # employee id
+        # employeeID
         $employeeID = $this->objRequest->getPost('employeeID');
 
         $dataProfile = array();
@@ -992,8 +992,6 @@ class ControlPanel extends BaseController
         $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
         $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
         $dataProfile['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
-
-        //var_dump($dataProfile);exit();
 
         $resultUpdateCustomer = $this->objMainModel->objUpdate('employee', $dataProfile, $employeeID);
         if ($resultUpdateCustomer['error'] == 0) {
