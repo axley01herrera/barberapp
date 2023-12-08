@@ -78,6 +78,7 @@ $routes->post('ControlPanel/updateBussinessDay', 'ControlPanel::updateBussinessD
 $routes->post('ControlPanel/modalTime', 'ControlPanel::modalTime');
 $routes->post('ControlPanel/createTime', 'ControlPanel::createTime');
 $routes->post('ControlPanel/updateTime', 'ControlPanel::updateTime');
+$routes->post('ControlPanel/deleteTime', 'ControlPanel::deleteTime');
 
 # ControlPanel -> Reports
 $routes->get('ControlPanel/reports', 'ControlPanel::reports');

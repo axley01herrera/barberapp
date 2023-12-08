@@ -1002,6 +1002,19 @@ class ControlPanel extends BaseController
         return json_encode($result);
     }
 
+    public function deleteTime()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        return json_encode($this->objMainModel->objDelete('employee_shift_day', array('id' => $this->objRequest->getPost('timeID'))));
+    }
+
     public function reloadEmployeeInfo()
     {
         # params

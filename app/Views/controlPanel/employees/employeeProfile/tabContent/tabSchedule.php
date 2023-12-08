@@ -101,6 +101,47 @@
                                     </div>
                                 </div>
                             </div>
+                            <section class="mt-10">
+                                <div class="table-responsive">
+                                    <table class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                                        <tr class="fs-6 fw-bold">
+                                            <th class="p-2"><?php echo lang('Text.start_time'); ?></th>
+                                            <th class="p-2"><?php echo lang('Text.end_time'); ?></th>
+                                            <th class="p-2 text-center"></th>
+                                        </tr>
+                                        <tbody>
+                                            <?php foreach ($employeeTimes as $time) { ?>
+                                                <?php if ($time->day == "tuesday") { ?>
+                                                    <?php $flagTuesday = 1; ?>
+                                                    <tr>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->tuesday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-pencil-square"></span>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->tuesday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-trash-fill"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                            <?php if (empty($flagTuesday)) { ?>
+                                                <tr>
+                                                    <td colspan="3" class="dt-vertical-align p-2">
+                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                            <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -124,6 +165,47 @@
                                     </div>
                                 </div>
                             </div>
+                            <section class="mt-10">
+                                <div class="table-responsive">
+                                    <table class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                                        <tr class="fs-6 fw-bold">
+                                            <th class="p-2"><?php echo lang('Text.start_time'); ?></th>
+                                            <th class="p-2"><?php echo lang('Text.end_time'); ?></th>
+                                            <th class="p-2 text-center"></th>
+                                        </tr>
+                                        <tbody>
+                                            <?php foreach ($employeeTimes as $time) { ?>
+                                                <?php if ($time->day == "wednesday") { ?>
+                                                    <?php $flagWednesday = 1; ?>
+                                                    <tr>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->wednesday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-pencil-square"></span>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->wednesday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-trash-fill"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                            <?php if (empty($flagWednesday)) { ?>
+                                                <tr>
+                                                    <td colspan="3" class="dt-vertical-align p-2">
+                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                            <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -147,6 +229,47 @@
                                     </div>
                                 </div>
                             </div>
+                            <section class="mt-10">
+                                <div class="table-responsive">
+                                    <table class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                                        <tr class="fs-6 fw-bold">
+                                            <th class="p-2"><?php echo lang('Text.start_time'); ?></th>
+                                            <th class="p-2"><?php echo lang('Text.end_time'); ?></th>
+                                            <th class="p-2 text-center"></th>
+                                        </tr>
+                                        <tbody>
+                                            <?php foreach ($employeeTimes as $time) { ?>
+                                                <?php if ($time->day == "thursday") { ?>
+                                                    <?php $flagThursday = 1; ?>
+                                                    <tr>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->thursday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-pencil-square"></span>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->thursday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-trash-fill"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                            <?php if (empty($flagThursday)) { ?>
+                                                <tr>
+                                                    <td colspan="3" class="dt-vertical-align p-2">
+                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                            <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -170,6 +293,47 @@
                                     </div>
                                 </div>
                             </div>
+                            <section class="mt-10">
+                                <div class="table-responsive">
+                                    <table class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                                        <tr class="fs-6 fw-bold">
+                                            <th class="p-2"><?php echo lang('Text.start_time'); ?></th>
+                                            <th class="p-2"><?php echo lang('Text.end_time'); ?></th>
+                                            <th class="p-2 text-center"></th>
+                                        </tr>
+                                        <tbody>
+                                            <?php foreach ($employeeTimes as $time) { ?>
+                                                <?php if ($time->day == "friday") { ?>
+                                                    <?php $flagFriday = 1; ?>
+                                                    <tr>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->friday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-pencil-square"></span>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->friday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-trash-fill"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                            <?php if (empty($flagFriday)) { ?>
+                                                <tr>
+                                                    <td colspan="3" class="dt-vertical-align p-2">
+                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                            <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -193,6 +357,47 @@
                                     </div>
                                 </div>
                             </div>
+                            <section class="mt-10">
+                                <div class="table-responsive">
+                                    <table class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                                        <tr class="fs-6 fw-bold">
+                                            <th class="p-2"><?php echo lang('Text.start_time'); ?></th>
+                                            <th class="p-2"><?php echo lang('Text.end_time'); ?></th>
+                                            <th class="p-2 text-center"></th>
+                                        </tr>
+                                        <tbody>
+                                            <?php foreach ($employeeTimes as $time) { ?>
+                                                <?php if ($time->day == "saturday") { ?>
+                                                    <?php $flagSaturday = 1; ?>
+                                                    <tr>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->saturday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-pencil-square"></span>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->saturday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-trash-fill"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                            <?php if (empty($flagSaturday)) { ?>
+                                                <tr>
+                                                    <td colspan="3" class="dt-vertical-align p-2">
+                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                            <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -216,6 +421,47 @@
                                     </div>
                                 </div>
                             </div>
+                            <section class="mt-10">
+                                <div class="table-responsive">
+                                    <table class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                                        <tr class="fs-6 fw-bold">
+                                            <th class="p-2"><?php echo lang('Text.start_time'); ?></th>
+                                            <th class="p-2"><?php echo lang('Text.end_time'); ?></th>
+                                            <th class="p-2 text-center"></th>
+                                        </tr>
+                                        <tbody>
+                                            <?php foreach ($employeeTimes as $time) { ?>
+                                                <?php if ($time->day == "sunday") { ?>
+                                                    <?php $flagSunday = 1; ?>
+                                                    <tr>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->sunday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-pencil-square"></span>
+                                                            </button>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->sunday == 0) echo "disabled"; ?>>
+                                                                <span class="bi bi-trash-fill"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                            <?php if (empty($flagSunday)) { ?>
+                                                <tr>
+                                                    <td colspan="3" class="dt-vertical-align p-2">
+                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                            <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -293,5 +539,39 @@
                 globalError();
             }
         });
+    });
+
+    $('.delete-time').on('click', function() { // Delete Time
+        Swal.fire({
+            title: "<?php echo lang('Text.are_you_sure'); ?>",
+            text: "<?php echo lang('Text.not_revert_this'); ?>",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '<?php echo lang('Text.yes_remove'); ?>',
+            cancelButtonText: '<?php echo lang('Text.no_cancel'); ?>'
+        }).then((result) => {
+            if (result.isConfirmed)
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('ControlPanel/deleteTime'); ?>",
+                    data: {
+                        'timeID': $(this).attr('data-time-id'),
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.error == 0) {
+                            simpleSuccessAlert('<?php echo lang('Text.emp_success_deleted_time'); ?>');
+                            employeeProfileTabContent();
+                        } else
+                            globalError();
+                    },
+                    error: function(error) {
+                        globalError();
+                    }
+                });
+        })
+
     });
 </script>

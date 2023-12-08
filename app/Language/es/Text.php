@@ -93,7 +93,7 @@ $lang['invalid_credentials'] = 'Rectifique sus Credenciales';
 $lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
 $lang['invalid_password'] = "Contraseña Incorrecta";
 $lang['email_not_check'] = "No Verificado";
-$lang['email_check'] = "Verificado";
+$lang['email_check'] = "Verificado"; 
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -200,6 +200,7 @@ $lang['emp_modal_title_edit_time'] = 'Editar Turno';
 $lang['no_times_alert'] = 'El empleado no tiene turnos creados para este día de la semana.';
 $lang['emp_success_created_time'] = 'Turno creado';
 $lang['emp_success_updated_time'] = 'Turno actualizado';
+$lang['emp_success_deleted_time'] = 'Turno Eliminado';
 
 
 # Control Panel Services
