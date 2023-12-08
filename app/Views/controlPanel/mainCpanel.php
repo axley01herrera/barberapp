@@ -136,7 +136,7 @@
                                 <!-- Schedule -->
                                 <a href="<?php echo base_url('ControlPanel/schedules'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeSchedules; ?>">
-                                        <span class="menu-title"><?php echo lang('Text.top_bar_schedule'); ?></span>
+                                        <span class="menu-title"><?php echo lang('Text.top_bar_times'); ?></span>
                                     </span>
                                 </a>
                                 <!-- Profile -->

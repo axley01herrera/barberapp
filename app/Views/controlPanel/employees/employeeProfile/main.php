@@ -45,7 +45,7 @@
 
                         <!-- Tab Horario -->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-schedule" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.top_bar_schedule'); ?></a>
+                            <a id="tab-schedule" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.top_bar_times'); ?></a>
                         </li>
 
                         <!-- Tab item -->

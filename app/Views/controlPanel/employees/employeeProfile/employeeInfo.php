@@ -9,6 +9,11 @@
     </div>
     <!-- Name -->
     <p class="fs-3 text-gray-800 fw-bold mb-3"><?php echo $employee[0]->name . ' ' . $employee[0]->lastName; ?></p>
+    <?php if ($employee[0]->status == 1) { ?>
+        <span class="badge badge-light-success"><?php echo lang('Text.active'); ?></span>
+    <?php } else { ?>
+        <span class="badge badge-light-danger"><?php echo lang('Text.inactive'); ?></span>
+    <?php } ?>
 </div>
 <div id="kt_user_view_details" class="collapse show">
     <div class="pb-5 fs-6">
@@ -21,9 +26,14 @@
             <span class="text-gray-600"><?php echo $employee[0]->phone; ?></span>
         </div>
         <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
-        <div class="text-gray-600"><?php echo @$address[0]->line1; ?><?php if (@$address[0]->line2) echo ", " . '' . $address[0]->line2; ?>
-            <br><?php echo @$address[0]->city; ?><?php if (@$address[0]->state) echo ", " . '' .  $address[0]->state; ?>
-            <br><?php echo @$address[0]->country; ?>
+        <div class="text-gray-600">
+            <?php echo @$address[0]->line1; ?>
+            <?php if (@$address[0]->line2) echo ", ". $address[0]->line2; ?>
+            <br>
+            <?php echo @$address[0]->city; ?>
+            <?php if (@$address[0]->state) echo ", ".  $address[0]->state; ?>
+            <br>
+            <?php echo @$address[0]->zip; ?> <?php echo @$address[0]->country; ?>
         </div>
     </div>
 </div>
