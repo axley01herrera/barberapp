@@ -94,7 +94,6 @@ $lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más informació
 $lang['invalid_password'] = "Contraseña Incorrecta";
 $lang['email_not_check'] = "No Verificado";
 $lang['email_check'] = "Verificado";
-$lang['turn_created'] = "Turno Creado";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -195,6 +194,13 @@ $lang['emp_profile_title'] = 'Perfil del Empleado';
 $lang['emp_profile_subtitle'] = 'Administración del perfil del empleado.';
 $lang['emp_label_switch_bussiness_day'] = 'No Laborable / Laborable';
 $lang['emp_label_switch_time_day'] = 'Inactivo / Activo';
+$lang['emp_times'] = 'Turnos';
+$lang['emp_modal_title_create_time'] = 'Nuevo Turno';
+$lang['emp_modal_title_edit_time'] = 'Editar Turno';
+$lang['no_times_alert'] = 'El empleado no tiene turnos creados para este día de la semana.';
+$lang['emp_success_created_time'] = 'Turno creado';
+$lang['emp_success_updated_time'] = 'Turno actualizado';
+
 
 # Control Panel Services
 $lang['serv_new'] = "Nuevo Servicio";

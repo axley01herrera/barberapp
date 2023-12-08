@@ -38,6 +38,47 @@
                                 </div>
                             </div>
                         </div>
+                        <section class="mt-10">
+                            <div class="table-responsive">
+                                <table class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                                    <tr class="fs-6 fw-bold">
+                                        <th class="p-2"><?php echo lang('Text.start_time'); ?></th>
+                                        <th class="p-2"><?php echo lang('Text.end_time'); ?></th>
+                                        <th class="p-2 text-center"></th>
+                                    </tr>
+                                    <tbody>
+                                        <?php foreach ($employeeTimes as $time) { ?>
+                                            <?php if ($time->day == "monday") { ?>
+                                                <?php $flagMonday = 1; ?>
+                                                <tr>
+                                                    <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
+                                                    <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->monday == 0) echo "disabled"; ?>>
+                                                            <span class="bi bi-pencil-square"></span>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->monday == 0) echo "disabled"; ?>>
+                                                            <span class="bi bi-trash-fill"></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        <?php } ?>
+                                        <?php if (empty($flagMonday)) { ?>
+                                            <tr>
+                                                <td colspan="3" class="dt-vertical-align p-2">
+                                                    <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                        <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                            <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -184,7 +225,7 @@
 </div>
 
 <script>
-    $('.cbx-bussines-day').on('click', function() {
+    $('.cbx-bussines-day').on('click', function() { // Change Bussiness Day Status
         let field = $(this).attr('id');
         let value = $(this).attr('data-value');
         let newValue = "";
@@ -214,14 +255,35 @@
             }
         });
 
-    });
+    }); // ok
 
-    $('#btn-createTime<?php echo $uniqid; ?>').on('click', function() {
+    $('#btn-createTime<?php echo $uniqid; ?>').on('click', function() { // Create Time
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('ControlPanel/createTime'); ?>",
+            url: "<?php echo base_url('ControlPanel/modalTime'); ?>",
             data: {
-                'employeeID': "<?php echo $employeeID; ?>"
+                'employeeID': "<?php echo $employeeID; ?>",
+                'action': 'create'
+            },
+            dataType: "html",
+            success: function(response) {
+                $('#app-modal').html(response);
+            },
+            error: function(error) {
+                globalError();
+            }
+        });
+    }); // ok
+
+    $('.edit-time').on('click', function() { // Update Time
+        let timeID = $(this).attr('data-time-id');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('ControlPanel/modalTime'); ?>",
+            data: {
+                'timeID': timeID,
+                'action': 'update',
+                'employeeID': "<?php echo $employeeID; ?>",
             },
             dataType: "html",
             success: function(response) {

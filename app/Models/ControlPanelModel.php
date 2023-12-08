@@ -119,21 +119,21 @@ class ControlPanelModel extends Model
     {
         $sort = '';
 
-        if ($column == 0) {
+        if ($column == 1) {
             if ($dir == 'asc')
                 $sort = 'name ASC';
             else
                 $sort = 'name DESC';
         }
 
-        if ($column == 1) {
+        if ($column == 2) {
             if ($dir == 'asc')
                 $sort = 'lastName ASC';
             else
                 $sort = 'lastName DESC';
         }
 
-        if ($column == 2) {
+        if ($column == 3) {
             if ($dir == 'asc')
                 $sort = 'email ASC';
             else

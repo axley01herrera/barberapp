@@ -40,7 +40,7 @@
                         <table id="dt-employees" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
                             <thead>
                                 <tr class="fs-6 fw-bold">
-                                    <th class="p-2"><?php echo lang('Text.avatar'); ?></th>
+                                    <th class="p-2"></th>
                                     <th class="p-2"><?php echo lang('Text.dt_employee_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_employee_last_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_employee_email'); ?></th>

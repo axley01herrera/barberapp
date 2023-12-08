@@ -618,13 +618,16 @@ class ControlPanel extends BaseController
 
         for ($i = 0; $i < $totalRows; $i++) {
 
+            $avatar = '<div class="symbol symbol-50px symbol-circle"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
             $emailStatus = '<span class="badge small badge-danger"><i class="bi bi-envelope-dash text-dark me-1" title="' . lang('Text.not_verified') . '"></i></span>';
-            if ($result[$i]->emailVerified == 1)
-                $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1" title="' . lang('Text.verified') . '"></i></span>';
-
-
             $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
             $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-employee-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
+
+            if (!empty($result[$i]->avatar))
+                $avatar = '<div class="symbol symbol-50px symbol-circle"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
+
+            if ($result[$i]->emailVerified == 1)
+                $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1" title="' . lang('Text.verified') . '"></i></span>';
 
             if ($result[$i]->status == 1) {
                 $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
@@ -636,10 +639,7 @@ class ControlPanel extends BaseController
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
-            if (empty($result[$i]->avatar))
-                $col['avatar'] =  '<div class="symbol symbol-50px symbol-circle"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
-            else
-                $col['avatar'] = '<div class="symbol symbol-50px symbol-circle"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
+            $col['avatar'] = $avatar;
             $col['name'] = $result[$i]->name;
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
@@ -872,7 +872,6 @@ class ControlPanel extends BaseController
         else if ($this->config[0]->lang == 'en')
             $data['dateLabel'] = "m-d-Y";
 
-
         switch ($tab) {
             case 'tab-overview':
                 # page
@@ -890,6 +889,7 @@ class ControlPanel extends BaseController
                     $this->objMainModel->objCreate('employee_bussines_day', ['employeeID' => $employeeID]);
                     $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
                 }
+                $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabSchedule";
                 break;
             case 'tab-account':
@@ -906,49 +906,100 @@ class ControlPanel extends BaseController
         return view($view, $data);
     }
 
-    public function createTime()
+    public function modalTime()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
             return view('controlPanelLogout');
 
+        # params
+        $action = $this->objRequest->getPost('action');
+        $employeeID = $this->objRequest->getPost('employeeID');
+        $timeID = $this->objRequest->getPost('timeID');
+
         $data = array();
         # data
-        $data['employeeID'] = $this->objRequest->getPost('employeeID');
-        $data['days'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $data['employeeID']);
-        $data['modalTitle'] = lang('Text.btn_create_time');
+        $data['action'] = $action;
+        $data['employeeID'] = $employeeID;
+        $data['timeID'] = $timeID;
         $data['uniqid'] = uniqid();
+        $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $data['employeeID']);
 
-        return view('ControlPanel/employees/employeeProfile/modalCreateTime', $data);
-    }
+        if ($action == 'create')
+            $data['modalTitle'] = lang('Text.emp_modal_title_create_time');
+        else if ($action == 'update') {
+            $data['modalTitle'] = lang('Text.emp_modal_title_edit_time');
+            $data['time'] = $this->objMainModel->objData('employee_shift_day', 'id', $timeID);
+        }
+        # page
+        $page = 'controlPanel/employees/employeeProfile/modalTime';
 
-    public function createTimeProcess()
+        return view($page, $data);
+    } // ok
+
+    public function createTime()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
-
             return json_encode($result);
         }
 
         # params
+        $employeeID = $this->objRequest->getPost('employeeID');
+        $day = $this->objRequest->getPost('day');
+        $startPost = $this->objRequest->getPost('startTime');
+        $endPost = $this->objRequest->getPost('endTime');
+
+        # Set time sql format
+        $tiempoUnixS = strtotime($startPost);
+        $tiempoUnixE = strtotime($endPost);
+        $timeSqlS = date('H:i:s', $tiempoUnixS);
+        $timeSqlE = date('H:i:s', $tiempoUnixE);
+
         $data = array();
-        $data['employeeID'] = $this->objRequest->getPost('employeeID');
-        $data['day'] = $this->objRequest->getPost('day');
-        $data['start'] = $this->objRequest->getPost('startTime');
-        $data['end'] = $this->objRequest->getPost('endTime');
+        $data['employeeID'] = $employeeID;
+        $data['day'] = $day;
+        $data['start'] = $timeSqlS;
+        $data['end'] = $timeSqlE;
 
-        $resultUpdateTurn = $this->objMainModel->objData('employee_shift_day', 'employeeID', $data['employeeID'], 'day', $data['day']);
+        $result = $this->objMainModel->objCreate('employee_shift_day', $data);
 
-        $response = array();
-        if (empty($resultUpdateTurn))
-            $response = $this->objMainModel->objCreate('employee_shift_day', $data);
-        else
-            $response = $this->objMainModel->objUpdate('employee_shift_day', $data, $resultUpdateTurn[0]->id);
-        
-        return json_encode($response);
+        return json_encode($result);
+    }
+
+    public function updateTime()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        # params
+        $day = $this->objRequest->getPost('day');
+        $startPost = $this->objRequest->getPost('startTime');
+        $endPost = $this->objRequest->getPost('endTime');
+        $timeID = $this->objRequest->getPost('timeID');
+
+        # Set time sql format
+        $tiempoUnixS = strtotime($startPost);
+        $tiempoUnixE = strtotime($endPost);
+        $timeSqlS = date('H:i:s', $tiempoUnixS);
+        $timeSqlE = date('H:i:s', $tiempoUnixE);
+
+        $data = array();
+        $data['day'] = $day;
+        $data['start'] = $timeSqlS;
+        $data['end'] = $timeSqlE;
+
+        $result = $this->objMainModel->objUpdate('employee_shift_day', $data, $timeID);
+
+        return json_encode($result);
     }
 
     public function reloadEmployeeInfo()

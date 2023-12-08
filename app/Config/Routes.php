@@ -75,14 +75,15 @@ $routes->post('ControlPanel/reloadEmployeeInfo', 'ControlPanel::reloadEmployeeIn
 $routes->post('ControlPanel/removeEmployeeAvatarProfile', 'ControlPanel::removeEmployeeAvatarProfile');
 $routes->post('ControlPanel/uploadEmployeeAvatarProfile', 'ControlPanel::uploadEmployeeAvatarProfile');
 $routes->post('ControlPanel/updateBussinessDay', 'ControlPanel::updateBussinessDay');
+$routes->post('ControlPanel/modalTime', 'ControlPanel::modalTime');
+$routes->post('ControlPanel/createTime', 'ControlPanel::createTime');
+$routes->post('ControlPanel/updateTime', 'ControlPanel::updateTime');
 
 # ControlPanel -> Reports
 $routes->get('ControlPanel/reports', 'ControlPanel::reports');
 
 # ControlPanel -> Schedules
 $routes->get('ControlPanel/schedules', 'ControlPanel::schedules');
-$routes->post('ControlPanel/createTime', 'ControlPanel::createTime');
-$routes->post('ControlPanel/createTimeProcess', 'ControlPanel::createTimeProcess');
 
 # ControlPanel -> Profile
 $routes->get('ControlPanel/profile', 'ControlPanel::profile');
