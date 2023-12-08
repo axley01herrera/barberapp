@@ -40,6 +40,7 @@
                         <table id="dt-employees" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
                             <thead>
                                 <tr class="fs-6 fw-bold">
+                                    <th class="p-2"><?php echo lang('Text.avatar'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_employee_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_employee_last_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_employee_email'); ?></th>
@@ -100,9 +101,15 @@
             type: "POST"
         },
         order: [
-            [0, 'asc']
+            [1, 'asc']
         ],
         columns: [{
+                data: 'avatar',
+                class: 'dt-vertical-align p-2',
+                searchable: false,
+                orderable: false
+            }, 
+            {
                 data: 'name',
                 class: 'dt-vertical-align p-2'
             },

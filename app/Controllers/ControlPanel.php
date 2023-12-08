@@ -360,6 +360,10 @@ class ControlPanel extends BaseController
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
+            if (empty($result[$i]->avatar))
+                $col['avatar'] =  '<div class="symbol symbol-50px symbol-circle"><img src="' . base_url("public/assets/media/avatars/blank.png") . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
+            else
+                $col['avatar'] = '<div class="symbol symbol-50px symbol-circle"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
             $col['name'] = $result[$i]->name;
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
@@ -632,6 +636,10 @@ class ControlPanel extends BaseController
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
+            if (empty($result[$i]->avatar))
+                $col['avatar'] =  '<div class="symbol symbol-50px symbol-circle"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
+            else
+                $col['avatar'] = '<div class="symbol symbol-50px symbol-circle"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
             $col['name'] = $result[$i]->name;
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
@@ -878,7 +886,7 @@ class ControlPanel extends BaseController
                 break;
             case 'tab-schedule':
                 $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
-                if(empty($data['employeeBussinesDay'])) {
+                if (empty($data['employeeBussinesDay'])) {
                     $this->objMainModel->objCreate('employee_bussines_day', ['employeeID' => $employeeID]);
                     $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
                 }
