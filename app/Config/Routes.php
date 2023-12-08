@@ -81,6 +81,8 @@ $routes->get('ControlPanel/reports', 'ControlPanel::reports');
 
 # ControlPanel -> Schedules
 $routes->get('ControlPanel/schedules', 'ControlPanel::schedules');
+$routes->post('ControlPanel/createTime', 'ControlPanel::createTime');
+$routes->post('ControlPanel/createTimeProcess', 'ControlPanel::createTimeProcess');
 
 # ControlPanel -> Profile
 $routes->get('ControlPanel/profile', 'ControlPanel::profile');

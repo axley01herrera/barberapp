@@ -906,6 +906,51 @@ class ControlPanel extends BaseController
         return view($view, $data);
     }
 
+    public function createTime()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
+
+        $data = array();
+        # data
+        $data['employeeID'] = $this->objRequest->getPost('employeeID');
+        $data['days'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $data['employeeID']);
+        $data['modalTitle'] = lang('Text.btn_create_time');
+        $data['uniqid'] = uniqid();
+
+        return view('ControlPanel/employees/employeeProfile/modalCreateTime', $data);
+    }
+
+    public function createTimeProcess()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $data = array();
+        $data['employeeID'] = $this->objRequest->getPost('employeeID');
+        $data['day'] = $this->objRequest->getPost('day');
+        $data['start'] = $this->objRequest->getPost('startTime');
+        $data['end'] = $this->objRequest->getPost('endTime');
+
+        $resultUpdateTurn = $this->objMainModel->objData('employee_shift_day', 'employeeID', $data['employeeID'], 'day', $data['day']);
+
+        $response = array();
+        if (empty($resultUpdateTurn))
+            $response = $this->objMainModel->objCreate('employee_shift_day', $data);
+        else
+            $response = $this->objMainModel->objUpdate('employee_shift_day', $data, $resultUpdateTurn[0]->id);
+        
+        return json_encode($response);
+    }
+
     public function reloadEmployeeInfo()
     {
         # params

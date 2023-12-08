@@ -8,7 +8,7 @@
         </div>
         <!-- Card toolbar -->
         <div class="card-toolbar">
-            <button type="button" class="btn btn-sm btn-flex btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_payment">
+            <button type="button" id="btn-createTime<?php echo $uniqid; ?>" class="btn btn-sm btn-flex btn-light-primary">
                 <i class="ki-duotone ki-plus-square fs-3">
                     <span class="path1"></span>
                     <span class="path2"></span>
@@ -214,5 +214,22 @@
             }
         });
 
+    });
+
+    $('#btn-createTime<?php echo $uniqid; ?>').on('click', function() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('ControlPanel/createTime'); ?>",
+            data: {
+                'employeeID': "<?php echo $employeeID; ?>"
+            },
+            dataType: "html",
+            success: function(response) {
+                $('#app-modal').html(response);
+            },
+            error: function(error) {
+                globalError();
+            }
+        });
     });
 </script>

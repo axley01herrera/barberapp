@@ -65,12 +65,14 @@ class MainModel extends Model
         return $return;
     } // ok
 
-    public function objData($table, $field = null, $value = null)
+    public function objData($table, $field = null, $value = null, $field2 = null, $value2 = null)
     {
         $query = $this->db->table($table);
 
         if (!empty($field))
             $query->where($field, $value);
+        if (!empty($field2))
+            $query->where($field2, $value2);
 
         return $query->get()->getResult();
     } // ok

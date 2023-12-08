@@ -65,6 +65,9 @@ $lang['first_time'] = "Primer Turno";
 $lang['second_time'] = "Segundo Turno";
 $lang['date_start'] = 'Hora de Inicio';
 $lang['date_end'] = 'Hora de Finalización';
+$lang['day'] = "Día Laboral";
+$lang['start_time'] = "Inicio de Jornada";
+$lang['end_time'] = "Fin de la Jornada";
 
 # Global MSG
 $lang['thanks'] = "Gracias";
@@ -91,6 +94,7 @@ $lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más informació
 $lang['invalid_password'] = "Contraseña Incorrecta";
 $lang['email_not_check'] = "No Verificado";
 $lang['email_check'] = "Verificado";
+$lang['turn_created'] = "Turno Creado";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
