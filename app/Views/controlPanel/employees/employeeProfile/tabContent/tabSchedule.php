@@ -50,7 +50,7 @@
                                         <?php foreach ($employeeTimes as $time) { ?>
                                             <?php if ($time->day == "monday") { ?>
                                                 <?php $flagMonday = 1; ?>
-                                                <tr>
+                                                <tr id="row<?php echo $time->id; ?>">
                                                     <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                     <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                     <td class="text-center">
@@ -113,7 +113,7 @@
                                             <?php foreach ($employeeTimes as $time) { ?>
                                                 <?php if ($time->day == "tuesday") { ?>
                                                     <?php $flagTuesday = 1; ?>
-                                                    <tr>
+                                                    <tr id="row<?php echo $time->id; ?>">
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
@@ -177,7 +177,7 @@
                                             <?php foreach ($employeeTimes as $time) { ?>
                                                 <?php if ($time->day == "wednesday") { ?>
                                                     <?php $flagWednesday = 1; ?>
-                                                    <tr>
+                                                    <tr id="row<?php echo $time->id; ?>">
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
@@ -241,7 +241,7 @@
                                             <?php foreach ($employeeTimes as $time) { ?>
                                                 <?php if ($time->day == "thursday") { ?>
                                                     <?php $flagThursday = 1; ?>
-                                                    <tr>
+                                                    <tr id="row<?php echo $time->id; ?>">
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
@@ -305,7 +305,7 @@
                                             <?php foreach ($employeeTimes as $time) { ?>
                                                 <?php if ($time->day == "friday") { ?>
                                                     <?php $flagFriday = 1; ?>
-                                                    <tr>
+                                                    <tr id="row<?php echo $time->id; ?>">
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
@@ -369,7 +369,7 @@
                                             <?php foreach ($employeeTimes as $time) { ?>
                                                 <?php if ($time->day == "saturday") { ?>
                                                     <?php $flagSaturday = 1; ?>
-                                                    <tr>
+                                                    <tr id="row<?php echo $time->id; ?>">
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
@@ -433,7 +433,7 @@
                                             <?php foreach ($employeeTimes as $time) { ?>
                                                 <?php if ($time->day == "sunday") { ?>
                                                     <?php $flagSunday = 1; ?>
-                                                    <tr>
+                                                    <tr id="row<?php echo $time->id; ?>">
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
@@ -542,6 +542,7 @@
     });
 
     $('.delete-time').on('click', function() { // Delete Time
+        let timeID = $(this).attr('data-time-id');
         Swal.fire({
             title: "<?php echo lang('Text.are_you_sure'); ?>",
             text: "<?php echo lang('Text.not_revert_this'); ?>",
@@ -557,13 +558,13 @@
                     type: "POST",
                     url: "<?php echo base_url('ControlPanel/deleteTime'); ?>",
                     data: {
-                        'timeID': $(this).attr('data-time-id'),
+                        'timeID': timeID,
                     },
                     dataType: "json",
                     success: function(response) {
                         if (response.error == 0) {
                             simpleSuccessAlert('<?php echo lang('Text.emp_success_deleted_time'); ?>');
-                            employeeProfileTabContent();
+                            $('#row' + timeID).remove();
                         } else
                             globalError();
                     },

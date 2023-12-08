@@ -108,7 +108,7 @@
                 class: 'dt-vertical-align p-2',
                 searchable: false,
                 orderable: false
-            }, 
+            },
             {
                 data: 'name',
                 class: 'dt-vertical-align p-2'
@@ -146,14 +146,17 @@
 
     dtEmployees.on('click', '.change-status', function() {
         let employeeID = $(this).attr('data-employee-id');
-        let status = $(this).attr('data-status');
+        if ($(this).attr('data-status') == 1)
+            $(this).attr('data-status', 0);
+        else
+            $(this).attr('data-status', 1);
 
         $.ajax({
             type: "post",
             url: "<?php echo base_url('ControlPanel/changeEmployeeStatus'); ?>",
             data: {
                 'employeeID': employeeID,
-                'status': status
+                'status': $(this).attr('data-status')
             },
             dataType: "json",
             success: function(response) {

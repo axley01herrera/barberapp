@@ -146,14 +146,17 @@
 
     dtCustomers.on('click', '.change-status', function() {
         let customerID = $(this).attr('data-customer-id');
-        let status = $(this).attr('data-status');
+        if ($(this).attr('data-status') == 1)
+            $(this).attr('data-status', 0);
+        else
+            $(this).attr('data-status', 1);
 
         $.ajax({
             type: "post",
             url: "<?php echo base_url('ControlPanel/changeCustomerStatus'); ?>",
             data: {
                 'customerID': customerID,
-                'status': status
+                'status': $(this).attr('data-status')
             },
             dataType: "json",
             success: function(response) {

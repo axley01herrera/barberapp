@@ -347,13 +347,11 @@ class ControlPanel extends BaseController
             if ($result[$i]->emailVerified == 1)
                 $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1" title="' . lang('Text.verified') . '"></i></span>';
 
-            $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
-            $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-customer-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
+            $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
-            if ($result[$i]->status == 1) {
-                $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
-                $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 change-status" data-customer-id="' . $result[$i]->id . '" data-status="0" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
-            }
+            if ($result[$i]->status == 1)
+                $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+
 
             $btnProfile = '<a href="' . base_url('ControlPanel/customerProfile?id=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
@@ -369,7 +367,7 @@ class ControlPanel extends BaseController
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
             $col['emailVerified'] = $emailStatus;
-            $col['action'] = $btnProfile . $btnChangeStatus . $btnEdit . $btnDelete;
+            $col['action'] = $btnProfile . $btnEdit . $btnDelete;
 
             $row[$i] =  $col;
         }
@@ -620,8 +618,7 @@ class ControlPanel extends BaseController
 
             $avatar = '<div class="symbol symbol-50px symbol-circle"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
             $emailStatus = '<span class="badge small badge-danger"><i class="bi bi-envelope-dash text-dark me-1" title="' . lang('Text.not_verified') . '"></i></span>';
-            $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
-            $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-employee-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
+            $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if (!empty($result[$i]->avatar))
                 $avatar = '<div class="symbol symbol-50px symbol-circle"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
@@ -629,10 +626,8 @@ class ControlPanel extends BaseController
             if ($result[$i]->emailVerified == 1)
                 $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1" title="' . lang('Text.verified') . '"></i></span>';
 
-            if ($result[$i]->status == 1) {
-                $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
-                $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 change-status" data-employee-id="' . $result[$i]->id . '" data-status="0" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
-            }
+            if ($result[$i]->status == 1)
+                $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             //$btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
@@ -646,7 +641,7 @@ class ControlPanel extends BaseController
             $col['status'] = $status;
             $col['emailVerified'] = $emailStatus;
             //$col['action'] = $btnProfile . $btnChangeStatus . $btnEdit . $btnDelete;
-            $col['action'] =  $btnChangeStatus . $btnProfile . $btnDelete;
+            $col['action'] =  $btnProfile . $btnDelete;
             $row[$i] =  $col;
         }
 
