@@ -110,11 +110,7 @@ $lang['btn_create_account'] = "Crear Cuenta";
 $lang['btn_send_recover_pass_email'] = "Enviar Correo de Recuperación";
 $lang['btn_create_time'] = "Crear Turno";
 
-#### 
-## Home
-####
-
-// Home -> Registration
+# Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
 $lang['registration_subtitle'] = 'Introduzca sus Datos';
 $lang['registration_accept_text'] = 'Acepto la';
@@ -122,12 +118,12 @@ $lang['registration_accept_msg'] = 'Debe aceptar la Política de Privacidad';
 $lang['registration_policy_privacy'] = 'Política de Privacidad';
 $lang['registration_success_create_account'] = 'Registro Completado';
 
-// Home -> Signin
+# Home -> Signin
 $lang['sign_title'] = 'Inicio de Sesión';
 $lang['sign_subtitle'] = 'Introdusca sus Credenciales';
 $lang['sign_forgot_pass'] = 'Olvidé mi Contraseña';
 
-// Home -> Recover Password
+# Home -> Recover Password
 $lang['recover_title'] = 'Recupera tu Contraseña';
 $lang['recover_subtitle'] = 'Introdusca su Correo Electrónico';
 $lang['recover_success_send_email'] = 'Correo Electrónico de Recuperación Enviado';
@@ -151,24 +147,20 @@ $lang['top_bar_times'] = "Turnos";
 $lang['top_bar_profile'] = "Perfil";
 $lang['top_bar_logout'] = "Salir";
 
-# Control Panel Footer
-$lang['footer_contact_support'] = "Soporte";
-$lang['footer_help'] = "Ayuda";
-
 # Control Panel Customers
 $lang['cust_btn_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_update'] = "Actualizando Cliente";
-$lang['dt_customer_name'] = "Nombre";
-$lang['dt_customer_last_name'] = "Apellidos";
-$lang['dt_customer_email'] = "Correo Electrónico";
-$lang['dt_customer_phone'] = "Teléfono";
-$lang['dt_customer_status'] = "Estado";
 $lang['cust_success_created'] = "Cliente Creado";
 $lang['cust_success_updated'] = "Cliente Actualizado";
 $lang['cust_success_deleted'] = "Cliente Eliminado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
+$lang['dt_customer_name'] = "Nombre";
+$lang['dt_customer_last_name'] = "Apellidos";
+$lang['dt_customer_email'] = "Correo Electrónico";
+$lang['dt_customer_phone'] = "Teléfono";
+$lang['dt_customer_status'] = "Estado";
 
 # Control Panel -> Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";
@@ -228,17 +220,21 @@ $lang['dt_serv_time_label'] = "Tiempo estimado de duración";
 $lang['dt_serv_minutes_label'] = "Minutos";
 
 # Control Panel Profile
-$lang['prof_menu_edit_profile'] = "Editar Perfil";
-$lang['prof_menu_config'] = "Configuración";
-$lang['prof_menu_change_key'] = "Clave de Acceso";
-$lang['prof_compleation'] = "Finalización del perfil";
-$lang['prof_info'] = "Información del Perfil";
-$lang['prof_change_avatar'] = "Cambiar Avatar";
-$lang['prof_cancel_avatar'] = "Cancelar Avatar";
-$lang['prof_remove_avatar'] = "Remover avatar";
-$lang['prof_data_updated'] = "Datos del Perfil Actualizados";
-$lang['prof_access_key_updated'] = "Clave de Acceso Actualizada";
-$lang['prof_config_updated'] = "Datos de Configuración Actualizados";
+$lang['cp_profile_menu_bussiness_data'] = "Datos del Negocio";
+$lang['cp_profile_bussiness_data_title'] = "Información General";
+$lang['cp_profile_bussiness_data_subtitle'] = "Datos del Negocio.";
+$lang['cp_profile_menu_change_key'] = "Clave de Acceso";
+$lang['cp_profile_change_key_title'] = "Acceso al Panel de Control";
+$lang['cp_profile_change_key_subtitle'] = "Configuración de la Clave de Acceso.";
+$lang['cp_profile_menu_config'] = "Configuración";
+$lang['cp_profile_config_title'] = "Configuración";
+$lang['cp_profile_config_subtitle'] = "Ajustes del Sistema.";
+$lang['cp_profile_change_avatar'] = "Cambiar Avatar";
+$lang['cp_profile_cancel_avatar'] = "Cancelar Avatar";
+$lang['cp_profile_remove_avatar'] = "Remover avatar";
+$lang['cp_profile_data_updated'] = "Datos del Perfil Actualizados";
+$lang['cp_profile_access_key_updated'] = "Clave de Acceso Actualizada";
+$lang['cp_profile_config_updated'] = "Datos de Configuración Actualizados";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";

@@ -15,26 +15,22 @@
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <!-- Card Tabs Profile -->
-            <div class="card mb-5 mb-xl-10 mt-5">
-                <div class="card-body pb-0">
-                    <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
-                        <!-- Profile Info -->
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "profile") echo "active"; ?> " data-tab-profile="profile" href="#"><?php echo lang('Text.prof_menu_edit_profile'); ?></a>
-                        </li>
-                        <!-- Acess Key -->
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "key") echo "active"; ?>" data-tab-profile="key" href="#"><?php echo lang('Text.prof_menu_change_key'); ?></a>
-                        </li>
-                        <!-- Config -->
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "config") echo "active"; ?>" data-tab-profile="config" href="#"><?php echo lang('Text.prof_menu_config'); ?></a>
-                        </li>
-                    </ul>
-                    <div id="profile-tab-content" class="container mt-10 mb-10"></div>
-                </div>
-            </div>
+            <!-- Tabs Header -->
+            <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8" role="tablist">
+                <!-- Profile Info -->
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "profile") echo "active"; ?> " data-tab-profile="profile" href="#"><?php echo lang('Text.cp_profile_menu_bussiness_data'); ?></a>
+                </li>
+                <!-- Acess Key -->
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "key") echo "active"; ?>" data-tab-profile="key" href="#"><?php echo lang('Text.cp_profile_menu_change_key'); ?></a>
+                </li>
+                <!-- Config -->
+                <li class="nav-item">
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "config") echo "active"; ?>" data-tab-profile="config" href="#"><?php echo lang('Text.cp_profile_menu_config'); ?></a>
+                </li>
+            </ul>
+            <div id="profile-tab-content" class="container mt-10 mb-10"></div>
         </div>
     </div>
 </div>

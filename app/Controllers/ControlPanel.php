@@ -359,9 +359,9 @@ class ControlPanel extends BaseController
 
             $col = array();
             if (empty($result[$i]->avatar))
-                $col['avatar'] =  '<div class="symbol symbol-50px symbol-circle"><img src="' . base_url("public/assets/media/avatars/blank.png") . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
+                $col['avatar'] =  '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . base_url("public/assets/media/avatars/blank.png") . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
             else
-                $col['avatar'] = '<div class="symbol symbol-50px symbol-circle"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
+                $col['avatar'] = '<div class="symbol symbol-30px symbol-circle me-3"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
             $col['name'] = $result[$i]->name;
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
@@ -616,11 +616,11 @@ class ControlPanel extends BaseController
 
         for ($i = 0; $i < $totalRows; $i++) {
 
-            $avatar = '<div class="symbol symbol-50px symbol-circle"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
+            $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
             $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if (!empty($result[$i]->avatar))
-                $avatar = '<div class="symbol symbol-50px symbol-circle"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
+                $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
 
             if ($result[$i]->status == 1)
                 $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';

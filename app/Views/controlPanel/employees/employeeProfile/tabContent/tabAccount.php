@@ -105,7 +105,7 @@
                         dataType: "json",
                         success: function(response) {
                             if (response.error == 0) {
-                                simpleSuccessAlert("<?php echo lang("Text.prof_data_updated"); ?>");
+                                simpleSuccessAlert("<?php echo lang("Text.cp_profile_data_updated"); ?>");
                                 reloadEmployeeInfo();
                                 employeeProfileTabContent();
                             } else if (response.error == 1) {

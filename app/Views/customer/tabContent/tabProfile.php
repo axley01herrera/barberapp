@@ -35,7 +35,7 @@
                         </span>
                         <!-- Remove button -->
                         <?php if (!empty($customer[0]->avatar)) { ?>
-                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.prof_remove_avatar'); ?>">
+                            <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cp_profile_remove_avatar'); ?>">
                                 <i class="ki-outline ki-cross fs-3"></i>
                             </span>
                         <?php } ?>
@@ -266,7 +266,7 @@
                     dataType: "json",
                     success: function(response) {
                         if (response.error == 0) {
-                            simpleSuccessAlert("<?php echo lang("Text.prof_data_updated"); ?>");
+                            simpleSuccessAlert("<?php echo lang("Text.cp_profile_data_updated"); ?>");
                             reloadCustomerInfo();
                             customerTabContent();
                         } else if (response.error == 1)
