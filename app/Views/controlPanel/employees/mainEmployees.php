@@ -46,7 +46,6 @@
                                     <th class="p-2"><?php echo lang('Text.dt_employee_email'); ?></th>
                                     <th class="text-center p-2"><?php echo lang('Text.dt_employee_status'); ?></th>
                                     <th class="text-center p-2"></th>
-                                    <th class="text-center p-2"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -123,11 +122,6 @@
             },
             {
                 data: 'status',
-                class: 'dt-vertical-align text-center p-2',
-                searchable: false
-            },
-            {
-                data: 'emailVerified',
                 class: 'dt-vertical-align text-center p-2',
                 searchable: false
             },

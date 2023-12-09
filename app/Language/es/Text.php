@@ -68,6 +68,7 @@ $lang['date_end'] = 'Hora de Finalización';
 $lang['day'] = "Día Laboral";
 $lang['start_time'] = "Inicio de Jornada";
 $lang['end_time'] = "Fin de la Jornada";
+$lang['important'] = "Importante";
 
 # Global MSG
 $lang['thanks'] = "Gracias";
@@ -193,7 +194,7 @@ $lang['emp_overview_subtitle'] = 'Perspectiva Completa.';
 $lang['emp_account_title'] = 'Cuenta del Empleado';
 $lang['emp_account_subtitle'] = 'Administración de Cuenta.';
 $lang['emp_profile_title'] = 'Perfil del Empleado';
-$lang['emp_profile_subtitle'] = 'Administración del Perfil.';
+$lang['emp_profile_subtitle'] = 'Datos del Perfil.';
 $lang['emp_label_switch_bussiness_day'] = 'No Laborable / Laborable';
 $lang['emp_label_switch_time_day'] = 'Inactivo / Activo';
 $lang['emp_times'] = 'Turnos';
@@ -206,6 +207,9 @@ $lang['emp_success_deleted_time'] = 'Turno Eliminado';
 $lang['emp_asigned_services'] = 'Servicios Asignados';
 $lang['emp_verified_email'] = 'Correo Electrónico Verificado';
 $lang['emp_unverified_email'] = 'Correo Electrónico No Verificado';
+$lang['emp_no_active_bussiness_days_msg'] = 'El empleado no tiene días laborables activos.';
+$lang['emp_no_shift_days_msg'] = 'El empleado no tiene turnos de trabajos disponibles.';
+$lang['emp_incomplete_profile_msg'] = 'Complete su Perfil.';
 
 # Control Panel Services
 $lang['serv_new'] = "Nuevo Servicio";
