@@ -869,13 +869,17 @@ class ControlPanel extends BaseController
 
         switch ($tab) {
             case 'tab-overview':
+                $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
+                $data['employeeServices'] = $this->objMainModel->objData('employee_service', 'employeeID', $employeeID);
+                $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+                $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
                 # page
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabOverview";
                 break;
             case 'tab-services':
-                # page
                 $data['services'] = $this->objControlPanelModel->getActiveServices();
                 $data['employeeServices'] = $this->objMainModel->objData('employee_service', 'employeeID', $employeeID);
+                # page
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabService";
                 break;
             case 'tab-schedule':

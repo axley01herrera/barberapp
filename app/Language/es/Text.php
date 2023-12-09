@@ -184,10 +184,12 @@ $lang['emp_success_deleted'] = "Empleado Eliminado";
 $lang['emp_duplicate'] = "Ya existe el correo electrónico";
 $lang['emp_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al Empleado";
 $lang['emp_profile_title'] = "Perfil del Empleado";
-$lang['emp_sercice_title'] = "Servicios del Empleado";
+$lang['emp_service_title'] = "Servicios del Empleado";
 $lang['emp_sercice_subtitle'] = 'Designe los servicios a realizar.';
 $lang['emp_time_title'] = "Turnos del Empleado";
 $lang['emp_schedule_subtitle'] = 'Configure los días laborables y cree turnos de trabajo.';
+$lang['emp_overview_title'] = 'Visión General';
+$lang['emp_overview_subtitle'] = 'Perspectiva Completa.';
 $lang['emp_account_title'] = 'Cuenta del Empleado';
 $lang['emp_account_subtitle'] = 'Administración de Cuenta.';
 $lang['emp_profile_title'] = 'Perfil del Empleado';
@@ -201,7 +203,9 @@ $lang['no_times_alert'] = 'El empleado no tiene turnos creados para este día de
 $lang['emp_success_created_time'] = 'Turno creado';
 $lang['emp_success_updated_time'] = 'Turno actualizado';
 $lang['emp_success_deleted_time'] = 'Turno Eliminado';
-
+$lang['emp_asigned_services'] = 'Servicios Asignados';
+$lang['emp_verified_email'] = 'Correo Electrónico Verificado';
+$lang['emp_unverified_email'] = 'Correo Electrónico No Verificado';
 
 # Control Panel Services
 $lang['serv_new'] = "Nuevo Servicio";
