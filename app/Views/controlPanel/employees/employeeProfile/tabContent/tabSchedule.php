@@ -18,9 +18,7 @@
     </div>
     <!-- Card body -->
     <div class="card-body p-9 pt-4">
-
         <div class="accordion" id="kt_accordion_1">
-
             <!-- Monday -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="kt_accordion_1_header_1">
@@ -54,10 +52,10 @@
                                                     <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                     <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                     <td class="text-center">
-                                                        <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->monday == 0) echo "disabled"; ?>>
+                                                        <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time monday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->monday == 0) echo "disabled"; ?>>
                                                             <span class="bi bi-pencil-square"></span>
                                                         </button>
-                                                        <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->monday == 0) echo "disabled"; ?>>
+                                                        <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time monday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->monday == 0) echo "disabled"; ?>>
                                                             <span class="bi bi-trash-fill"></span>
                                                         </button>
                                                     </td>
@@ -82,7 +80,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Tuesday -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="kt_accordion_1_header_2">
@@ -117,10 +114,10 @@
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
-                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->tuesday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time tuesday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->tuesday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
                                                             </button>
-                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->tuesday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time tuesday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->tuesday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-trash-fill"></span>
                                                             </button>
                                                         </td>
@@ -146,7 +143,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Wednesday -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="kt_accordion_1_header_3">
@@ -181,10 +177,10 @@
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
-                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->wednesday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time wednesday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->wednesday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
                                                             </button>
-                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->wednesday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time wednesday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->wednesday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-trash-fill"></span>
                                                             </button>
                                                         </td>
@@ -210,7 +206,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Thursday -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="kt_accordion_1_header_4">
@@ -245,10 +240,10 @@
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
-                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->thursday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time thursday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->thursday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
                                                             </button>
-                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->thursday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time thursday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->thursday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-trash-fill"></span>
                                                             </button>
                                                         </td>
@@ -274,7 +269,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Friday -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="kt_accordion_1_header_5">
@@ -309,10 +303,10 @@
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
-                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->friday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time friday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->friday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
                                                             </button>
-                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->friday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time friday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->friday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-trash-fill"></span>
                                                             </button>
                                                         </td>
@@ -338,7 +332,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Saturday -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="kt_accordion_1_header_6">
@@ -373,10 +366,10 @@
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
-                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->saturday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time saturday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->saturday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
                                                             </button>
-                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->saturday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time saturday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->saturday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-trash-fill"></span>
                                                             </button>
                                                         </td>
@@ -402,7 +395,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Sunday -->
             <div class="accordion-item">
                 <h2 class="accordion-header" id="kt_accordion_1_header_7">
@@ -437,10 +429,10 @@
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
                                                         <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
-                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->sunday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time sunday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->sunday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
                                                             </button>
-                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->sunday == 0) echo "disabled"; ?>>
+                                                            <button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-time sunday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_delete'); ?>" <?php if ($employeeBussinesDay[0]->sunday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-trash-fill"></span>
                                                             </button>
                                                         </td>
@@ -476,10 +468,17 @@
         let value = $(this).attr('data-value');
         let newValue = "";
 
-        if (value == 0)
+        if (value == 0) 
             newValue = 1;
         else
             newValue = 0;
+
+        $('.' + field).each(function () {
+            if(newValue == 1)
+                $(this).removeAttr('disabled');
+            else 
+                $(this).attr('disabled', true);
+        })
 
         $(this).attr('data-value', newValue);
 
@@ -573,6 +572,5 @@
                     }
                 });
         })
-
     });
 </script>
