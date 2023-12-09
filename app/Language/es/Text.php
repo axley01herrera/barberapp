@@ -224,6 +224,8 @@ $lang['dt_serv_price'] = "Price";
 $lang['dt_serv_time'] = "Tiempo (minutos)";
 $lang['dt_serv_status'] = "Estado";
 $lang['dt_serv_dec'] = "Descripción";
+$lang['dt_serv_time_label'] = "Tiempo estimado de duración";
+$lang['dt_serv_minutes_label'] = "Minutos";
 
 # Control Panel Profile
 $lang['prof_menu_edit_profile'] = "Editar Perfil";

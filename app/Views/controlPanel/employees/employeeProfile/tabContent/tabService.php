@@ -18,28 +18,21 @@
                 <h3 class="card-title"><?php echo $service->title; ?></h3>
                 <div class="card-toolbar">
                     <div class="form-check form-switch form-check-custom form-check-solid me-10">
-                        <input type="checkbox" class="form-check-input h-30px w-50px" <?php if(in_array($service->id, array_column($employeeServices, 'serviceID'))) echo 'checked'; ?> data-checked="<?php if(in_array($service->id, array_column($employeeServices, 'serviceID'))) echo '1'; else echo '0'; ?>" data-service-id="<?php echo $service->id; ?>" />
+                        <input type="checkbox" class="form-check-input h-30px w-50px" <?php if (in_array($service->id, array_column($employeeServices, 'serviceID'))) echo 'checked'; ?> data-checked="<?php if (in_array($service->id, array_column($employeeServices, 'serviceID'))) echo '1';
+                                                                                                                                                                                                        else echo '0'; ?>" data-service-id="<?php echo $service->id; ?>" />
                         <label class="form-check-label"></label>
                     </div>
                 </div>
             </div>
             <!-- Service Description -->
             <div class="card-body">
-                <?php if (!empty($service->description)) { ?>
-                    <div class="alert bg-light-primary d-flex align-items-center p-5">
-                        <div class="d-flex flex-column">
-                            <h4 class="mb-1 text-dark"><?php echo lang("Text.description"); ?></h4>
-                            <span><?php echo $service->description; ?></span>
-                        </div>
+                <div class="alert bg-light-primary d-flex align-items-center p-5">
+                    <div class="d-flex flex-column">
+                        <h4 class="mb-1 text-dark"><?php echo lang("Text.description"); ?></h4>
+                        <span><?php echo $service->description; ?></span>
+                        <span><?php echo lang('Text.dt_serv_time_label'); ?> <?php echo $service->time; ?> <?php echo lang('Text.dt_serv_minutes_label'); ?></span> 
                     </div>
-                <?php } else { ?>
-                    <div class="alert bg-light-danger d-flex align-items-center p-5">
-                        <div class="d-flex flex-column">
-                            <h4 class="mb-1 text-dark"><?php echo lang("Text.description"); ?></h4>
-                            <span><?php echo lang("Text.serv_no_desc"); ?></span>
-                        </div>
-                    </div>
-                <?php } ?>
+                </div>
             </div>
         <?php } ?>
     </div>
