@@ -12,3 +12,5 @@ CREATE TABLE IF NOT EXISTS `company_social_network` (
 ALTER TABLE `profile`
   DROP `facebook`,
   DROP `instagram`;
+
+ALTER TABLE `service` ADD ` ` INT NOT NULL DEFAULT '1' AFTER `status`; 

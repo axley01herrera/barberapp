@@ -8,11 +8,7 @@
         </div>
         <!-- Card toolbar -->
         <div class="card-toolbar">
-            <!-- Status Employee-->
-            <div class="form-check form-switch form-check-custom form-check-solid mt-2">
-                <input type="checkbox" id="cb-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.change_status'); ?>" disabled="" <?php if ($employee[0]->status == 1) echo 'checked=""'; ?> data-status="<?php echo $employee[0]->status; ?>">
-                <label class="fs-6 fw-semibold"></label>
-            </div>
+            <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_edit'); ?></button>
         </div>
     </div>
     <div class="card-body p-9 pt-4">
@@ -39,8 +35,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 text-end mt-5">
-                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
+            <div class="col-12 mt-5">
+                <!-- Status Employee-->
+                <div class="form-check form-switch form-check-custom form-check-solid mt-2">
+                    <input type="checkbox" id="cb-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.change_status'); ?>" disabled="" <?php if ($employee[0]->status == 1) echo 'checked=""'; ?> data-status="<?php echo $employee[0]->status; ?>">
+                    <label class="fs-6 fw-semibold ms-5"> <?php echo lang('Text.active_inactive'); ?></label>
+                </div>
             </div>
         </div>
         <div class="row">

@@ -8,12 +8,9 @@
         </div>
         <!-- Card toolbar -->
         <div class="card-toolbar">
-            <button type="button" id="btn-createTime<?php echo $uniqid; ?>" class="btn btn-sm btn-flex btn-light-primary">
-                <i class="ki-duotone ki-plus-square fs-3">
-                    <span class="path1"></span>
-                    <span class="path2"></span>
-                    <span class="path3"></span>
-                </i><?php echo lang('Text.btn_create_time'); ?></button>
+            <button type="button" id="btn-createTime<?php echo $uniqid; ?>" class="btn btn-primary">
+                <?php echo lang('Text.btn_create_time'); ?>
+            </button>
         </div>
     </div>
     <!-- Card body -->
@@ -468,15 +465,15 @@
         let value = $(this).attr('data-value');
         let newValue = "";
 
-        if (value == 0) 
+        if (value == 0)
             newValue = 1;
         else
             newValue = 0;
 
-        $('.' + field).each(function () {
-            if(newValue == 1)
+        $('.' + field).each(function() {
+            if (newValue == 1)
                 $(this).removeAttr('disabled');
-            else 
+            else
                 $(this).attr('disabled', true);
         })
 

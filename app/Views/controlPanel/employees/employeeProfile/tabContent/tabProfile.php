@@ -8,6 +8,7 @@
         </div>
         <!-- Card toolbar -->
         <div class="card-toolbar">
+            <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_edit'); ?></button>
         </div>
     </div>
     <div class="card-body p-9 pt-4">
@@ -116,11 +117,6 @@
                 <!-- Country -->
                 <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->country; ?>" disabled="">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-end mt-5">
-                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
             </div>
         </div>
         <div class="row">

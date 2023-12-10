@@ -97,6 +97,7 @@ $lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más informació
 $lang['invalid_password'] = "Contraseña Incorrecta";
 $lang['email_not_check'] = "No Verificado";
 $lang['email_check'] = "Verificado"; 
+$lang['active_inactive'] = "Desactivar / Activar"; 
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
