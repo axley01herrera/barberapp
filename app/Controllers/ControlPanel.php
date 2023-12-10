@@ -1230,7 +1230,7 @@ class ControlPanel extends BaseController
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
         # page
-        $data['page'] = 'controlPanel/profile/mainProfile';
+        $data['page'] = 'controlPanel/companyProfile/mainCompanyProfile';
 
         return view('ControlPanel/mainCpanel', $data);
     } // ok
@@ -1245,15 +1245,15 @@ class ControlPanel extends BaseController
 
         switch ($tab) {
             case 'profile':
-                $view = "ControlPanel/profile/tabs/profileInfo";
+                $view = "controlPanel/companyProfile/tabs/profileInfo";
                 $data = array();
                 $data['profile'] = $this->companyProfile;
                 break;
             case 'key':
-                $view = "ControlPanel/profile/tabs/key";
+                $view = "controlPanel/companyProfile/tabs/key";
                 break;
             case 'config':
-                $view = "ControlPanel/profile/tabs/config";
+                $view = "controlPanel/companyProfile/tabs/config";
                 $data = array();
                 $data['config'] = $this->config;
                 break;

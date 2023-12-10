@@ -75,7 +75,7 @@ $routes->post('ControlPanel/createTime', 'ControlPanel::createTime');
 $routes->post('ControlPanel/updateTime', 'ControlPanel::updateTime');
 $routes->post('ControlPanel/deleteTime', 'ControlPanel::deleteTime');
 
-# ControlPanel -> Profile
+# ControlPanel -> Company Profile
 $routes->get('ControlPanel/profile', 'ControlPanel::profile');
 $routes->post('ControlPanel/profileTab', 'ControlPanel::profileTab');
 $routes->post('ControlPanel/uploadAvatarProfile', 'ControlPanel::uploadAvatarProfile');
