@@ -16,15 +16,15 @@
         <div class="row">
             <div class="col-12 col-lg-4 mt-5">
                 <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?> <span class="text-danger">*</span></label>
-                <input type="password" id="txt-current<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
+                <input type="password" id="txt-current<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled placeholder="**********" />
             </div>
             <div class="col-12 col-lg-4 mt-5">
                 <label class="fs-6 fw-semibold" for="txt-new<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?> <span class="text-danger">*</span></label>
-                <input type="password" id="txt-new<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
+                <input type="password" id="txt-new<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled disabled placeholder="**********" />
             </div>
             <div class="col-12 col-lg-4 mt-5">
                 <label class="fs-6 fw-semibold" for="txt-confirm<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?> <span class="text-danger">*</span></label>
-                <input type="password" id="txt-confirm<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled />
+                <input type="password" id="txt-confirm<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled disabled placeholder="**********" />
             </div>
         </div>
         <div class="row">

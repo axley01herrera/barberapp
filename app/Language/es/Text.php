@@ -224,19 +224,19 @@ $lang['dt_serv_time_label'] = "Tiempo estimado de duración";
 $lang['dt_serv_minutes_label'] = "Minutos";
 
 # Control Panel Profile
-$lang['cp_profile_menu_bussiness_data'] = "Datos del Negocio";
-$lang['cp_profile_bussiness_data_title'] = "Información General";
+$lang['cp_profile_menu_bussiness_data'] = "Descripción";
+$lang['cp_profile_bussiness_data_title'] = "Descripción General";
 $lang['cp_profile_bussiness_data_subtitle'] = "Información del Negocio.";
-$lang['cp_profile_menu_change_key'] = "Clave de Acceso";
+$lang['cp_profile_menu_change_key'] = "Clave";
 $lang['cp_profile_change_key_title'] = "Acceso al Panel de Control";
-$lang['cp_profile_change_key_subtitle'] = "Configuración de la Clave de Acceso.";
+$lang['cp_profile_change_key_subtitle'] = "Clave de Acceso.";
 $lang['cp_profile_menu_config'] = "Configuración";
-$lang['cp_profile_config_title'] = "Configuración";
-$lang['cp_profile_config_subtitle'] = "Ajustes del Sistema.";
+$lang['cp_profile_config_title'] = "Ajustes del Sistema";
+$lang['cp_profile_config_subtitle'] = "Preferencias y Personalización.";
 $lang['cp_profile_change_avatar'] = "Cambiar Avatar";
 $lang['cp_profile_cancel_avatar'] = "Cancelar Avatar";
 $lang['cp_profile_remove_avatar'] = "Remover avatar";
-$lang['cp_profile_data_updated'] = "Datos del Perfil Actualizados";
+$lang['cp_profile_data_updated'] = "Descripción del Negocio Actualizada";
 $lang['cp_profile_access_key_updated'] = "Clave de Acceso Actualizada";
 $lang['cp_profile_config_updated'] = "Datos de Configuración Actualizados";
 
