@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title><?php echo $profile[0]->companyName; ?></title>
+    <title><?php echo $companyProfile[0]->companyName; ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Assets CSS -->
@@ -22,7 +22,6 @@
     <script src="<?php echo base_url('public/assets/js/widgets.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/js/custom/widgets.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/plugins/global/plugins.bundle.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/plugins/custom/datatables/datatables.bundle.js'); ?>"></script>
 
     <script>
         function simpleAlert(text, icon) {

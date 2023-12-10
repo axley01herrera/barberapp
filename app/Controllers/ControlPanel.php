@@ -29,7 +29,7 @@ class ControlPanel extends BaseController
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
-        $this->profile = $this->objControlPanelModel->getProfile(1);
+        $this->profile = $this->objControlPanelModel->getCompanyProfile(1);
 
         # Email Settings
         $emailConfig = array();
@@ -458,7 +458,7 @@ class ControlPanel extends BaseController
             $data['token'] = md5(uniqid());
 
             $result = $this->objMainModel->objCreate('customer', $data);
-            $profile = $this->objControlPanelModel->getProfile(1);
+            $profile = $this->objControlPanelModel->getCompanyProfile(1);
 
             $dataEmail = array();
             $dataEmail['pageTitle'] = $profile[0]->companyName;
@@ -1377,7 +1377,7 @@ class ControlPanel extends BaseController
         $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
         $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
         $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
-        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
+        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country'))); 
 
         return json_encode($this->objMainModel->objUpdate('profile', $data, 1));
     } // ok

@@ -30,7 +30,7 @@ class Customer extends BaseController
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
-        $this->profile = $this->objControlPanelModel->getProfile(1);
+        $this->profile = $this->objControlPanelModel->getCompanyProfile(1);
 
         # Email Settings
         $emailConfig = array();

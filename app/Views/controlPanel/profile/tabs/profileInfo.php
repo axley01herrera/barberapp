@@ -224,7 +224,7 @@
                     data: {
                         'company': $('#txt-company<?php echo $uniqid; ?>').val(),
                         'type': $('#txt-type<?php echo $uniqid; ?>').val(),
-                        'companyID': $('txt-company-id<?php echo $uniqid; ?>').val(),
+                        'companyID': $('#txt-company-id<?php echo $uniqid; ?>').val(),
                         'email': $('#txt-email<?php echo $uniqid; ?>').val(),
                         'phone1': $('#txt-phone1<?php echo $uniqid; ?>').val(),
                         'phone2': $('#txt-phone2<?php echo $uniqid; ?>').val(),

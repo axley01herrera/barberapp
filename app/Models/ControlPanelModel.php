@@ -14,9 +14,9 @@ class ControlPanelModel extends Model
         $this->db = \Config\Database::connect();
     }
 
-    public function getProfile($id)
+    public function getCompanyProfile($id)
     {
-        $query = $this->db->table('profile')
+        $query = $this->db->table('company_profile')
             ->where('id', $id);
 
         return $query->get()->getResult();

@@ -14,3 +14,4 @@ ALTER TABLE `profile`
   DROP `instagram`;
 
 ALTER TABLE `service` ADD ` ` INT NOT NULL DEFAULT '1' AFTER `status`; 
+RENAME TABLE `barber_dev`.`profile` TO `barber_dev`.`company_profile`; 

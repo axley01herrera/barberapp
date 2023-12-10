@@ -16,7 +16,7 @@ class Home extends BaseController
     protected $objAuthenticationModel;
     protected $objMainModel;
     protected $config;
-    protected $profile;
+    protected $companyProfile;
     protected $objEmail;
 
     public function __construct()
@@ -33,7 +33,7 @@ class Home extends BaseController
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
-        $this->profile = $this->objControlPanelModel->getProfile(1);
+        $this->companyProfile = $this->objControlPanelModel->getCompanyProfile(1);
 
         # Email Settings
         $emailConfig = array();
@@ -59,8 +59,10 @@ class Home extends BaseController
     public function index()
     {
         $data = array();
+        # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->companyProfile;
+        # page
         $data['page'] = 'home/landing';
 
         return view('home/mainHome', $data);
@@ -72,11 +74,13 @@ class Home extends BaseController
         $session = $this->request->getGet('session');
 
         $data = array();
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
         # data
         $data['session'] = $session;
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
         $data['uniqid'] = uniqid();
+        # page
         $data['page'] = 'home/controlPanelAuthentication';
 
         return view('home/mainHome', $data);
@@ -112,11 +116,12 @@ class Home extends BaseController
         # params
         $token = $this->objRequest->getPostGet('token');
 
-        # data
         $data = array();
-        $data['uniqid'] = uniqid();
+        # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->companyProfile;
+        # data
+        $data['uniqid'] = uniqid();
 
         if (empty($token))
             return view('errorPages/globalError', $data);
@@ -148,9 +153,11 @@ class Home extends BaseController
 
         # data
         $data = array();
-        $data['uniqid'] = uniqid();
+        # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->companyProfile;
+        # data
+        $data['uniqid'] = uniqid();
 
         if (empty($token))
             return view('errorPages/globalError', $data);
@@ -210,11 +217,12 @@ class Home extends BaseController
         $session = $this->request->getGet('session');
 
         $data = array();
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
         # data
         $data['uniqid'] = uniqid();
         $data['session'] = $session;
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
         # page
         $data['page'] = 'home/signInCustomer';
 
@@ -241,6 +249,7 @@ class Home extends BaseController
 
             $this->objSession->set('user', $session);
         }
+
         $response = array();
         $response['error'] = $result['error'];
         $response['msg'] = @$result['msg'];
@@ -254,11 +263,12 @@ class Home extends BaseController
         $session = $this->request->getGet('session');
 
         $data = array();
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
         # data
         $data['uniqid'] = uniqid();
         $data['session'] = $session;
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
         # page
         $data['page'] = 'home/signInEmployee';
 
@@ -295,10 +305,11 @@ class Home extends BaseController
     public function signUpCustomer()
     {
         $data = array();
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
         # data
         $data['uniqid'] = uniqid();
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
         #page
         $data['page'] = 'home/signUpCustomer';
 
@@ -340,15 +351,15 @@ class Home extends BaseController
 
         # Sen Email
         $dataEmail = array();
-        $dataEmail['pageTitle'] = $this->profile[0]->companyName;
+        $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
         $dataEmail['person'] = $name . ' ' . $lastName;
         $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&type=customer';
-        $dataEmail['companyPhone'] = $this->profile[0]->phone1;
-        $dataEmail['companyEmail'] = $this->profile[0]->email;
+        $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
+        $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
 
-        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
         $this->objEmail->setTo($email);
-        $this->objEmail->setSubject($this->profile[0]->companyName);
+        $this->objEmail->setSubject($this->companyProfile[0]->companyName);
         $this->objEmail->setMessage(view('email/mailSignup', $dataEmail), []);
 
         $this->objEmail->send(false);
@@ -369,10 +380,11 @@ class Home extends BaseController
             $table = $type;
 
         $data = array();
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
         # data
         $data['uniqid'] = uniqid();
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
 
         if (empty($token))
             return view('errorPages/globalError', $data);
@@ -397,11 +409,12 @@ class Home extends BaseController
     public function forgotPassword()
     {
         $data = array();
-        #data
-        $data['uniqid'] = uniqid();
+        # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
-        #page
+        $data['companyProfile'] = $this->companyProfile;
+        # data
+        $data['uniqid'] = uniqid();
+        # page
         $data['page'] = 'home/forgotPassword';
 
         return view('home/mainHome', $data);
@@ -431,20 +444,21 @@ class Home extends BaseController
         $this->objMainModel->objUpdate('customer', $data, $result[0]->id);
 
         $data['uniqid'] = uniqid();
+        # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->companyProfile;
 
         # Sen Email
         $dataEmail = array();
-        $dataEmail['pageTitle'] = $this->profile[0]->companyName;
+        $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
         $dataEmail['person'] = $result[0]->name . ' ' . $result[0]->lastName;
         $dataEmail['url'] = base_url('Home/customerCreatePassword') . '?token=' . $data['token'];
-        $dataEmail['companyPhone'] = $this->profile[0]->phone1;
-        $dataEmail['companyEmail'] = $this->profile[0]->email;
+        $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
+        $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
 
-        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
         $this->objEmail->setTo($email);
-        $this->objEmail->setSubject($this->profile[0]->companyName);
+        $this->objEmail->setSubject($this->companyProfile[0]->companyName);
         $this->objEmail->setMessage(view('email/recoverPassword', $dataEmail), []);
 
         if ($this->objEmail->send(false)) {
@@ -462,13 +476,13 @@ class Home extends BaseController
 
     public function emailView()
     {
-        $profile = $this->objControlPanelModel->getProfile(1);
+        $companyProfile = $this->companyProfile;
         $dataEmail = array();
-        $dataEmail['pageTitle'] = $profile[0]->companyName;
+        $dataEmail['pageTitle'] = $companyProfile[0]->companyName;
         $dataEmail['person'] = "Axley Herrera";
         $dataEmail['url'] = base_url('Home');
-        $dataEmail['companyPhone'] = $profile[0]->phone1;
-        $dataEmail['companyEmail'] = $profile[0]->email;
+        $dataEmail['companyPhone'] = $companyProfile[0]->phone1;
+        $dataEmail['companyEmail'] = $companyProfile[0]->email;
 
         return view('email/recoverPassword', $dataEmail);
     }
