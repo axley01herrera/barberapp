@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title><?php echo $profile[0]->companyName; ?></title>
+    <title><?php echo $companyProfile[0]->companyName; ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Assets CSS -->
@@ -97,18 +97,6 @@
                                         <span class="menu-title"><?php echo lang('Text.top_bar_dashboard'); ?></span>
                                     </span>
                                 </a>
-                                <!-- TPV -->
-                                <a href="<?php echo base_url('ControlPanel/tpv'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <span class="menu-link <?php echo @$activeTPV; ?>">
-                                        <span class="menu-title"><?php echo lang('Text.top_bar_tpv'); ?></span>
-                                    </span>
-                                </a>
-                                <!-- Calendar -->
-                                <a href="<?php echo base_url('ControlPanel/calendar'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <span class="menu-link <?php echo @$activeCalendar; ?>">
-                                        <span class="menu-title"><?php echo lang('Text.top_bar_calendar'); ?></span>
-                                    </span>
-                                </a>
                                 <!-- Services -->
                                 <a href="<?php echo base_url('ControlPanel/services'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeServices; ?>">
@@ -125,18 +113,6 @@
                                 <a href="<?php echo base_url('ControlPanel/employees'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                     <span class="menu-link <?php echo @$activeEmployees; ?>">
                                         <span class="menu-title"><?php echo lang('Text.top_bar_employees'); ?></span>
-                                    </span>
-                                </a>
-                                <!-- Report -->
-                                <a href="<?php echo base_url('ControlPanel/reports'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <span class="menu-link <?php echo @$activeReports; ?>">
-                                        <span class="menu-title"><?php echo lang('Text.top_bar_report'); ?></span>
-                                    </span>
-                                </a>
-                                <!-- Schedule -->
-                                <a href="<?php echo base_url('ControlPanel/schedules'); ?>" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                                    <span class="menu-link <?php echo @$activeSchedules; ?>">
-                                        <span class="menu-title"><?php echo lang('Text.top_bar_times'); ?></span>
                                     </span>
                                 </a>
                                 <!-- Profile -->

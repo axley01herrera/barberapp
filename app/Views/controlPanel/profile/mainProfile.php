@@ -23,43 +23,43 @@
                             <div class="d-flex flex-center flex-column py-5">
                                 <!-- Avatar -->
                                 <div class="symbol symbol-100px symbol-circle mb-7">
-                                    <?php if (empty($profile[0]->avatar)) { ?>
+                                    <?php if (empty($companyProfile[0]->avatar)) { ?>
                                         <img src="<?php echo base_url('public/assets/media/avatars/logoBlank.png'); ?>" class="border border-1 border-secondary" alt="Avatar">
                                     <?php } else { ?>
-                                        <img src="data:image/png;base64,<?php echo base64_encode($profile[0]->avatar); ?>" class="border border-1 border-secondary" alt="Avatar">
+                                        <img src="data:image/png;base64,<?php echo base64_encode($companyProfile[0]->avatar); ?>" class="border border-1 border-secondary" alt="Avatar">
                                     <?php } ?>
                                 </div>
                                 <!-- Name -->
-                                <p class="fs-3 text-gray-800 fw-bold mb-3"><?php echo $profile[0]->companyName; ?></p>
-                                <span class="badge badge-light-primary"><?php echo $profile[0]->companyType; ?></span>
+                                <p class="fs-3 text-gray-800 fw-bold mb-3"><?php echo $companyProfile[0]->companyName; ?></p>
+                                <span class="badge badge-light-primary"><?php echo $companyProfile[0]->companyType; ?></span>
                             </div>
                             <div id="kt_user_view_details" class="collapse show">
                                 <div class="pb-5 fs-6">
                                     <div class="fw-bold mt-5"><?php echo lang('Text.email'); ?></div>
                                     <div class="text-gray-600">
-                                        <span class="text-gray-600"><?php echo $profile[0]->email; ?></span>
+                                        <span class="text-gray-600"><?php echo $companyProfile[0]->email; ?></span>
                                     </div>
                                     <!-- Phone-->
-                                    <?php if (!empty($profile[0]->phone1)) { ?>
+                                    <?php if (!empty($companyProfile[0]->phone1)) { ?>
                                         <div class="fw-bold mt-5"><?php echo lang('Text.phone'); ?></div>
                                         <div class="text-gray-600">
                                             <span class="text-gray-600">
-                                                <?php echo $profile[0]->phone1; ?>
+                                                <?php echo $companyProfile[0]->phone1; ?>
                                             </span>
                                         </div>
                                         <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
                                         <div class="text-gray-600">
-                                            <?php echo @$profile[0]->address1; ?>
-                                            <?php if (@$profile[0]->address2) echo ", " . $profile[0]->address2; ?>
+                                            <?php echo @$companyProfile[0]->address1; ?>
+                                            <?php if (@$companyProfile[0]->address2) echo ", " . $companyProfile[0]->address2; ?>
                                             <br>
-                                            <?php echo @$profile[0]->city; ?>
-                                            <?php if (@$profile[0]->state) echo ", " .  $profile[0]->state; ?>
+                                            <?php echo @$companyProfile[0]->city; ?>
+                                            <?php if (@$companyProfile[0]->state) echo ", " .  $companyProfile[0]->state; ?>
                                             <br>
-                                            <?php echo @$profile[0]->zip; ?> <?php echo @$profile[0]->country; ?>
+                                            <?php echo @$companyProfile[0]->zip; ?> <?php echo @$companyProfile[0]->country; ?>
                                         </div>
                                     <?php } ?>
 
-                                    <?php if (empty($profile[0]->phone1)) { ?>
+                                    <?php if (empty($companyProfile[0]->phone1)) { ?>
                                         <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-5 mt-10">
                                             <i class="ki-duotone ki-notification-bing fs-2hx text-danger me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                             <div class="d-flex flex-column pe-0 pe-sm-10">

@@ -14,7 +14,7 @@ class ControlPanel extends BaseController
     protected $objControlPanelModel;
     protected $objMainModel;
     protected $config;
-    protected $profile;
+    protected $companyProfile;
     protected $objEmail;
 
     public function __construct()
@@ -29,7 +29,7 @@ class ControlPanel extends BaseController
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
-        $this->profile = $this->objControlPanelModel->getCompanyProfile(1);
+        $this->companyProfile = $this->objControlPanelModel->getCompanyProfile(1);
 
         # Email Settings
         $emailConfig = array();
@@ -66,54 +66,13 @@ class ControlPanel extends BaseController
             return view('controlPanelLogout');
 
         $data = array();
+        # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->companyProfile;
+        # menu
         $data['activeDashboard'] = "active";
+        # page
         $data['page'] = 'controlPanel/dashboard/mainDashboard';
-
-        return view('ControlPanel/mainCpanel', $data);
-    }
-
-    ##############################
-    # Section TPV
-    ##############################
-
-    public function tpv()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('controlPanelLogout');
-
-        $data = array();
-        # data
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
-        $data['activeTPV'] = "active";
-        $data['uniqid'] = uniqid();
-        # page
-        $data['page'] = 'controlPanel/tpv/mainTPV';
-
-        return view('ControlPanel/mainCpanel', $data);
-    }
-
-    ##############################
-    # Section Calendar
-    ##############################
-
-    public function calendar()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('controlPanelLogout');
-
-        $data = array();
-        # data
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
-        $data['activeCalendar'] = "active";
-        $data['uniqid'] = uniqid();
-        # page
-        $data['page'] = 'controlPanel/calendar/mainCalendar';
 
         return view('ControlPanel/mainCpanel', $data);
     }
@@ -129,12 +88,13 @@ class ControlPanel extends BaseController
             return view('controlPanelLogout');
 
         $data = array();
-        # data
-        $data['uniqid'] = uniqid();
+        # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->companyProfile;
         # menu
         $data['activeServices'] = "active";
+        # data
+        $data['uniqid'] = uniqid();
         # page
         $data['page'] = 'controlPanel/services/mainServices';
 
@@ -205,7 +165,9 @@ class ControlPanel extends BaseController
             return view('controlPanelLogout');
 
         $data = array();
+        # config
         $data['config'] = $this->config;
+        # data
         $data['action'] = $this->objRequest->getPost('action');
         $data['uniqid'] = uniqid();
 
@@ -216,7 +178,10 @@ class ControlPanel extends BaseController
             $data['service'] = $this->objMainModel->objData('service', 'id', $this->objRequest->getPost('id'))[0];
         }
 
-        return view('ControlPanel/services/modalService', $data);
+        # page
+        $view = 'ControlPanel/services/modalService';
+
+        return view($view, $data);
     } // ok
 
     public function createService()
@@ -228,24 +193,28 @@ class ControlPanel extends BaseController
             $result['msg'] = "session expired";
             return json_encode($result);
         }
+
         # params
         $title = htmlspecialchars(trim($this->objRequest->getPost('title')));
         $price = htmlspecialchars(trim($this->objRequest->getPost('price')));
         $time = htmlspecialchars(trim($this->objRequest->getPost('time')));
         $description = htmlspecialchars(trim($this->objRequest->getPost('description')));
         $checkDuplicate = $this->objMainModel->objCheckDuplicate('service', 'title', $title);
+
         if (empty($checkDuplicate)) {
             $data = array();
             $data['title'] = $title;
             $data['price'] = $price;
             $data['time'] = $time;
             $data['description'] = $description;
+
             $result = $this->objMainModel->objCreate('service', $data);
             return json_encode($result);
         } else {
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "ERROR_DUPLICATE";
+
             return json_encode($result);
         }
     } // ok
@@ -260,20 +229,27 @@ class ControlPanel extends BaseController
             return json_encode($result);
         }
 
-        $data = array();
-        $data['title'] = htmlspecialchars(trim($this->objRequest->getPost('title')));
-        $data['price'] = htmlspecialchars(trim($this->objRequest->getPost('price')));
-        $data['description'] = htmlspecialchars(trim($this->objRequest->getPost('description')));
+        # params
+        $serviceID = $this->objRequest->getPost('id');
+        $title = htmlspecialchars(trim($this->objRequest->getPost('title')));
+        $price = htmlspecialchars(trim($this->objRequest->getPost('price')));
+        $description = htmlspecialchars(trim($this->objRequest->getPost('description')));
 
-        $checkDuplicate = $this->objMainModel->objCheckDuplicate('service', 'title', $data['title'], $this->objRequest->getPost('id'));
+        $checkDuplicate = $this->objMainModel->objCheckDuplicate('service', 'title', $title, $serviceID);
 
         if (empty($checkDuplicate)) {
+            $data = array();
+            $data['title'] = $title;
+            $data['price'] = $price;
+            $data['description'] = $description;
+
             $result = $this->objMainModel->objUpdate('service', $data, $this->objRequest->getPost('id'));
             return json_encode($result);
         } else {
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "duplicate";
+
             return json_encode($result);
         }
     } // ok
@@ -312,10 +288,12 @@ class ControlPanel extends BaseController
             return view('controlPanelLogout');
 
         $data = array();
-        # data
+        # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->companyProfile;
+        # menu
         $data['activeCustomers'] = "active";
+        # data
         $data['uniqid'] = uniqid();
         # page
         $data['page'] = 'controlPanel/customers/mainCustomers';
@@ -395,10 +373,12 @@ class ControlPanel extends BaseController
             return view('controlPanelLogout');
 
         $data = array();
-        # data
-        $data['profile'] = $this->profile;
+        # config
         $data['config'] = $this->config;
+        $data['customerProfile'] = $this->customerProfile();
+        # menu
         $data['activeCustomers'] = "active";
+        # data
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPostGet('id'));
         # page
         $data['page'] = 'controlPanel/customers/principalCustomerProfile';
@@ -458,16 +438,15 @@ class ControlPanel extends BaseController
             $data['token'] = md5(uniqid());
 
             $result = $this->objMainModel->objCreate('customer', $data);
-            $profile = $this->objControlPanelModel->getCompanyProfile(1);
 
             $dataEmail = array();
-            $dataEmail['pageTitle'] = $profile[0]->companyName;
+            $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
             $dataEmail['person'] = $name . ' ' . $lastName;
             $dataEmail['url'] = base_url('Home/customerCreatePassword?token=') . $data['token'];
-            $dataEmail['companyPhone'] = $profile[0]->phone1;
-            $dataEmail['companyEmail'] = $profile[0]->email;
+            $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
+            $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
 
-            $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->companyName);
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
             $this->objEmail->setTo($email);
             $this->objEmail->setSubject('Complete Your Account');
             $this->objEmail->setMessage(view('email/createCustomerByAdmin', $dataEmail), []);
@@ -584,11 +563,12 @@ class ControlPanel extends BaseController
             return view('controlPanelLogout');
 
         $data = array();
-        # data
+        # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->companyProfile;
         # menu
         $data['activeEmployees'] = "active";
+        # data
         $data['uniqid'] = uniqid();
         # page
         $data['page'] = 'controlPanel/employees/mainEmployees';
@@ -665,7 +645,9 @@ class ControlPanel extends BaseController
         $employeeID = $this->objRequest->getPost('employeeID');
 
         $data = array();
+        # config
         $data['config'] = $this->config;
+        # data
         $data['action'] = $action;
         $data['uniqid'] = uniqid();
 
@@ -708,13 +690,13 @@ class ControlPanel extends BaseController
             $result = $this->objMainModel->objCreate('employee', $data);
 
             $dataEmail = array();
-            $dataEmail['pageTitle'] = $this->profile[0]->companyName;
+            $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
             $dataEmail['person'] = $name . ' ' . $lastName;
             $dataEmail['url'] = base_url('Home/employeeCreatePassword?token=') . $data['token'];
-            $dataEmail['companyPhone'] = $this->profile[0]->phone1;
-            $dataEmail['companyEmail'] = $this->profile[0]->email;
+            $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
+            $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
 
-            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
             $this->objEmail->setTo($email);
             $this->objEmail->setSubject('Complete Your Account');
             $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
@@ -763,7 +745,6 @@ class ControlPanel extends BaseController
             $data['token'] = md5(uniqid());
 
             $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
-
             return json_encode($result);
         } else {
             $result = array();
@@ -825,10 +806,12 @@ class ControlPanel extends BaseController
             return view('controlPanelLogout');
 
         $data = array();
-        # data
-        $data['profile'] = $this->profile;
+        # config
+        $data['companyProfile'] = $this->companyProfile;
         $data['config'] = $this->config;
+        # menu
         $data['activeEmployees'] = "active";
+        # data
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPostGet('id'));
         $data['address'] = $this->objMainModel->objData('address', 'employeeID', $this->objRequest->getPostGet('id'));
         # page
@@ -850,9 +833,10 @@ class ControlPanel extends BaseController
         $view = "";
 
         $data = array();
+        # config
+        $data['config'] = $this->config;
         # data
         $data['employeeID'] = $employeeID;
-        $data['config'] = $this->config;
         $data['uniqid'] = uniqid();
 
         if ($this->config[0]->lang == 'es')
@@ -910,8 +894,9 @@ class ControlPanel extends BaseController
         $timeID = $this->objRequest->getPost('timeID');
 
         $data = array();
-        # data
+        # config
         $data['action'] = $action;
+        # data
         $data['employeeID'] = $employeeID;
         $data['timeID'] = $timeID;
         $data['uniqid'] = uniqid();
@@ -960,7 +945,7 @@ class ControlPanel extends BaseController
         $result = $this->objMainModel->objCreate('employee_shift_day', $data);
 
         return json_encode($result);
-    }
+    } // ok
 
     public function updateTime()
     {
@@ -992,7 +977,7 @@ class ControlPanel extends BaseController
         $result = $this->objMainModel->objUpdate('employee_shift_day', $data, $timeID);
 
         return json_encode($result);
-    }
+    } // ok
 
     public function deleteTime()
     {
@@ -1005,7 +990,7 @@ class ControlPanel extends BaseController
         }
 
         return json_encode($this->objMainModel->objDelete('employee_shift_day', array('id' => $this->objRequest->getPost('timeID'))));
-    }
+    } // ok
 
     public function reloadEmployeeInfo()
     {
@@ -1072,15 +1057,15 @@ class ControlPanel extends BaseController
 
         if (!empty($dataAccount['email'])) {
             $dataEmail = array();
-            $dataEmail['pageTitle'] = $this->profile[0]->companyName;
+            $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
             $dataEmail['person'] = $employee[0]->name . ' ' . $employee[0]->lastName;
             $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'] . '&type=employee';
-            $dataEmail['companyPhone'] = $this->profile[0]->phone1;
-            $dataEmail['companyEmail'] = $this->profile[0]->email;
+            $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
+            $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
 
-            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
             $this->objEmail->setTo($dataAccount['email']);
-            $this->objEmail->setSubject($this->profile[0]->companyName);
+            $this->objEmail->setSubject($this->companyProfile[0]->companyName);
             $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
 
             $this->objEmail->send(false);
@@ -1221,50 +1206,6 @@ class ControlPanel extends BaseController
     }
 
     ##############################
-    # Section Reports
-    ##############################
-
-    public function reports()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('controlPanelLogout');
-
-        $data = array();
-        # data
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
-        $data['activeReports'] = "active";
-        $data['uniqid'] = uniqid();
-        # page
-        $data['page'] = 'controlPanel/reports/mainReports';
-
-        return view('ControlPanel/mainCpanel', $data);
-    }
-
-    ##############################
-    # Section Schedules
-    ##############################
-
-    public function schedules()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('controlPanelLogout');
-
-        $data = array();
-        # data
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
-        $data['activeSchedules'] = "active";
-        $data['uniqid'] = uniqid();
-        # page
-        $data['page'] = 'controlPanel/schedules/mainSchedules';
-
-        return view('ControlPanel/mainCpanel', $data);
-    }
-
-    ##############################
     # Section Profile
     ##############################
 
@@ -1287,7 +1228,7 @@ class ControlPanel extends BaseController
         $data['tab'] = $tab;
         # config
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->companyProfile;
         # page
         $data['page'] = 'controlPanel/profile/mainProfile';
 
@@ -1306,7 +1247,7 @@ class ControlPanel extends BaseController
             case 'profile':
                 $view = "ControlPanel/profile/tabs/profileInfo";
                 $data = array();
-                $data['profile'] = $this->profile;
+                $data['profile'] = $this->companyProfile;
                 break;
             case 'key':
                 $view = "ControlPanel/profile/tabs/key";
@@ -1333,7 +1274,7 @@ class ControlPanel extends BaseController
             return json_encode($result);
         }
 
-        return json_encode($this->objMainModel->uploadFile('profile', 1, 'avatar', $_FILES['file']));
+        return json_encode($this->objMainModel->uploadFile('company_profile', 1, 'avatar', $_FILES['file']));
     } // ok
 
     public function removeAvatarProfile()
@@ -1349,7 +1290,7 @@ class ControlPanel extends BaseController
         $data = array();
         $data['avatar'] = '';
 
-        return json_encode($this->objMainModel->objUpdate('profile', $data, 1));
+        return json_encode($this->objMainModel->objUpdate('company_profile', $data, 1));
     } // ok
 
     public function updateProfile()
@@ -1377,9 +1318,9 @@ class ControlPanel extends BaseController
         $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
         $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
         $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
-        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country'))); 
+        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
 
-        return json_encode($this->objMainModel->objUpdate('profile', $data, 1));
+        return json_encode($this->objMainModel->objUpdate('company_profile', $data, 1));
     } // ok
 
     public function changeAccessKey()
@@ -1426,4 +1367,27 @@ class ControlPanel extends BaseController
 
         return json_encode($this->objMainModel->objUpdate('config', $data, 1));
     } // ok
+
+    ##############################
+    # Template Copy To Create a New Section
+    ##############################
+
+    public function tempate()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
+
+        $data = array();
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
+        # menu
+        $data['activeTemplate'] = "active";
+        $data['uniqid'] = uniqid();
+        # page
+        $data['page'] = 'controlPanel/template/mainTemplate';
+
+        return view('ControlPanel/mainCpanel', $data);
+    }
 }

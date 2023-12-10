@@ -32,13 +32,8 @@ $routes->get('Home/emailView', 'Home::emailView');
 ## ControlPanel Routes
 ##############################
 
+# ControlPanel -> Dashboard
 $routes->get('ControlPanel/dashboard', 'ControlPanel::dashboard');
-
-# ControlPanel -> TPV
-$routes->get('ControlPanel/tpv', 'ControlPanel::tpv');
-
-# ControlPanel -> Calendar
-$routes->get('ControlPanel/calendar', 'ControlPanel::calendar');
 
 # ControlPanel -> Services
 $routes->get('ControlPanel/services', 'ControlPanel::services');
@@ -79,12 +74,6 @@ $routes->post('ControlPanel/modalTime', 'ControlPanel::modalTime');
 $routes->post('ControlPanel/createTime', 'ControlPanel::createTime');
 $routes->post('ControlPanel/updateTime', 'ControlPanel::updateTime');
 $routes->post('ControlPanel/deleteTime', 'ControlPanel::deleteTime');
-
-# ControlPanel -> Reports
-$routes->get('ControlPanel/reports', 'ControlPanel::reports');
-
-# ControlPanel -> Schedules
-$routes->get('ControlPanel/schedules', 'ControlPanel::schedules');
 
 # ControlPanel -> Profile
 $routes->get('ControlPanel/profile', 'ControlPanel::profile');
