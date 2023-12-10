@@ -39,14 +39,32 @@
                                     <div class="text-gray-600">
                                         <span class="text-gray-600"><?php echo $companyProfile[0]->email; ?></span>
                                     </div>
-                                    <!-- Phone-->
+                                    <!-- Priary Phone-->
                                     <?php if (!empty($companyProfile[0]->phone1)) { ?>
-                                        <div class="fw-bold mt-5"><?php echo lang('Text.phone'); ?></div>
+                                        <div class="fw-bold mt-5"><?php echo lang('Text.primary_phone'); ?></div>
                                         <div class="text-gray-600">
                                             <span class="text-gray-600">
                                                 <?php echo $companyProfile[0]->phone1; ?>
                                             </span>
                                         </div>
+                                        <!-- Secondary Phone -->
+                                        <?php if (!empty($companyProfile[0]->phone2)) { ?>
+                                            <div class="fw-bold mt-5"><?php echo lang('Text.secondary_phone'); ?></div>
+                                            <div class="text-gray-600">
+                                                <span class="text-gray-600">
+                                                    <?php echo $companyProfile[0]->phone2; ?>
+                                                </span>
+                                            </div>
+                                        <?php } ?>
+                                        <!-- Phone Ext -->
+                                        <?php if (!empty($companyProfile[0]->phoneExt)) { ?>
+                                            <div class="fw-bold mt-5"><?php echo lang('Text.phone_ext'); ?></div>
+                                            <div class="text-gray-600">
+                                                <span class="text-gray-600">
+                                                    <?php echo $companyProfile[0]->phoneExt; ?>
+                                                </span>
+                                            </div>
+                                        <?php } ?>
                                         <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
                                         <div class="text-gray-600">
                                             <?php echo @$companyProfile[0]->address1; ?>
@@ -57,6 +75,15 @@
                                             <br>
                                             <?php echo @$companyProfile[0]->zip; ?> <?php echo @$companyProfile[0]->country; ?>
                                         </div>
+                                        <?php if (!empty($companyProfile[0]->companyID)) { ?>
+                                            <div class="fw-bold mt-5"><?php echo lang('Text.tax_identifier'); ?></div>
+                                            <div class="text-gray-600">
+                                                <span class="text-gray-600">
+                                                    <?php echo $companyProfile[0]->companyID; ?>
+                                                </span>
+                                            </div>
+                                        <?php } ?>
+                                        
                                     <?php } ?>
 
                                     <?php if (empty($companyProfile[0]->phone1)) { ?>
@@ -84,7 +111,7 @@
                                 <i class="ki-duotone ki-design-1 fs-2tx text-primary me-4"></i>
                                 <div class="d-flex flex-stack flex-grow-1">
                                     <div class="fw-semibold">
-                                        <div class="fs-6 text-gray-700"><?php echo lang('Text.social_network_msg');?></div>
+                                        <div class="fs-6 text-gray-700"><?php echo lang('Text.social_network_msg'); ?></div>
                                     </div>
                                 </div>
                             </div>
