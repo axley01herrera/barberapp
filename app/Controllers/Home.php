@@ -340,15 +340,15 @@ class Home extends BaseController
 
         # Sen Email
         $dataEmail = array();
-        $dataEmail['pageTitle'] = $this->profile[0]->company_name;
+        $dataEmail['pageTitle'] = $this->profile[0]->companyName;
         $dataEmail['person'] = $name . ' ' . $lastName;
         $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&type=customer';
         $dataEmail['companyPhone'] = $this->profile[0]->phone1;
         $dataEmail['companyEmail'] = $this->profile[0]->email;
 
-        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
         $this->objEmail->setTo($email);
-        $this->objEmail->setSubject($this->profile[0]->company_name);
+        $this->objEmail->setSubject($this->profile[0]->companyName);
         $this->objEmail->setMessage(view('email/mailSignup', $dataEmail), []);
 
         $this->objEmail->send(false);
@@ -436,15 +436,15 @@ class Home extends BaseController
 
         # Sen Email
         $dataEmail = array();
-        $dataEmail['pageTitle'] = $this->profile[0]->company_name;
+        $dataEmail['pageTitle'] = $this->profile[0]->companyName;
         $dataEmail['person'] = $result[0]->name . ' ' . $result[0]->lastName;
         $dataEmail['url'] = base_url('Home/customerCreatePassword') . '?token=' . $data['token'];
         $dataEmail['companyPhone'] = $this->profile[0]->phone1;
         $dataEmail['companyEmail'] = $this->profile[0]->email;
 
-        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
         $this->objEmail->setTo($email);
-        $this->objEmail->setSubject($this->profile[0]->company_name);
+        $this->objEmail->setSubject($this->profile[0]->companyName);
         $this->objEmail->setMessage(view('email/recoverPassword', $dataEmail), []);
 
         if ($this->objEmail->send(false)) {
@@ -464,7 +464,7 @@ class Home extends BaseController
     {
         $profile = $this->objControlPanelModel->getProfile(1);
         $dataEmail = array();
-        $dataEmail['pageTitle'] = $profile[0]->company_name;
+        $dataEmail['pageTitle'] = $profile[0]->companyName;
         $dataEmail['person'] = "Axley Herrera";
         $dataEmail['url'] = base_url('Home');
         $dataEmail['companyPhone'] = $profile[0]->phone1;

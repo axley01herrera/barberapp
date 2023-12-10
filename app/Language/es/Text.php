@@ -4,6 +4,7 @@ $lang = array();
 # Global Labels
 $lang['company_name'] = "Nombre del Negocio, Compañía o Local";
 $lang['bussines_type'] = "Tipo de Negocio";
+$lang['tax_identifier'] = "Identificador Fiscal";
 $lang['languaje'] = "Idioma";
 $lang['theme'] = "Tema";
 $lang['theme_light'] = "Claro";
@@ -222,7 +223,7 @@ $lang['dt_serv_minutes_label'] = "Minutos";
 # Control Panel Profile
 $lang['cp_profile_menu_bussiness_data'] = "Datos del Negocio";
 $lang['cp_profile_bussiness_data_title'] = "Información General";
-$lang['cp_profile_bussiness_data_subtitle'] = "Datos del Negocio.";
+$lang['cp_profile_bussiness_data_subtitle'] = "Información del Negocio.";
 $lang['cp_profile_menu_change_key'] = "Clave de Acceso";
 $lang['cp_profile_change_key_title'] = "Acceso al Panel de Control";
 $lang['cp_profile_change_key_subtitle'] = "Configuración de la Clave de Acceso.";

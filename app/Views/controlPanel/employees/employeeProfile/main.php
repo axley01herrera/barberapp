@@ -17,47 +17,38 @@
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
             <div class="d-flex flex-column flex-lg-row">
-                <!-- Sidebar -->
+                <!-- Employee Info -->
                 <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
-                    <!-- Card -->
                     <div class="card mb-5 mb-xl-8">
-                        <!-- Card body -->
                         <div id="employee-info" class="card-body">
                             <?php echo view('controlPanel/employees/employeeProfile/employeeInfo'); ?>
                         </div>
                     </div>
                 </div>
-
                 <!-- Tabs -->
                 <div class="flex-lg-row-fluid ms-lg-15">
                     <!-- Tabs Header -->
                     <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8" role="tablist">
-
                         <!-- Tab item -->
                         <li class="nav-item" role="presentation">
                             <a id="tab-overview" class="nav-link text-active-primary pb-4 tab-profile active" data-bs-toggle="tab" href="#" aria-selected="true" role="tab"><?php echo lang('Text.overview'); ?></a>
                         </li>
-
                         <!-- Tab Services -->
                         <li class="nav-item" role="presentation">
                             <a id="tab-services" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.top_bar_services'); ?></a>
                         </li>
-
                         <!-- Tab Horario -->
                         <li class="nav-item" role="presentation">
                             <a id="tab-schedule" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.top_bar_times'); ?></a>
                         </li>
-
                         <!-- Tab item -->
                         <li class="nav-item" role="presentation">
                             <a id="tab-account" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.account'); ?></a>
                         </li>
-
                         <!-- Tab Profile-->
                         <li class="nav-item" role="presentation">
                             <a id="tab-profile" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.profile'); ?></a>
                         </li>
-
                     </ul>
                     <!-- Tab Content -->
                     <div id="tabContent"></div>

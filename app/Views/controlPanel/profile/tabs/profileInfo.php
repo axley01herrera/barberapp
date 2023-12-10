@@ -15,19 +15,18 @@
             <div class="col-12 mt-5">
                 <style>
                     .image-input-placeholder {
-                        background-image: url('svg/avatars/blank.svg');
+                        background-image: url('<?php echo base_url('public/assets/media/avatars/logoBlank.png'); ?>');
                     }
 
                     [data-bs-theme="dark"] .image-input-placeholder {
-                        background-image: url('svg/avatars/blank-dark.svg');
+                        background-image: url('<?php echo base_url('public/assets/media/avatars/logoBlank.png'); ?>');
                     }
                 </style>
-
                 <!-- Image Input -->
-                <div id="kt_image_input_profile<?php echo $uniqid; ?>" class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(<?php echo base_url('public/assets/media/svg/avatars/blank.svg'); ?>)">
+                <div id="kt_image_input_profile<?php echo $uniqid; ?>" class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(<?php echo base_url('public/assets/media/avatars/logoBlank.png'); ?>)">
                     <!-- Image Preview -->
                     <?php if (empty($profile[0]->avatar)) { ?>
-                        <div class="image-input-wrapper w-125px h-125px" style="background-image: url(<?php echo base_url('public/assets/media/svg/avatars/blank.svg'); ?>)"></div>
+                        <div class="image-input-wrapper w-125px h-125px" style="background-image: url(<?php echo base_url('public/assets/media/avatars/logoBlank.png'); ?>)"></div>
                     <?php } else { ?>
                         <div class="image-input-wrapper w-125px h-125px" style="background-image: url(data:image/png;base64,<?php echo base64_encode($profile[0]->avatar); ?>)"></div>
                     <?php } ?>
@@ -37,7 +36,6 @@
                         <!-- Inputs -->
                         <input id="avatar<?php echo $uniqid; ?>" type="file" name="avatar" accept=".png, .jpg, .jpeg" />
                         <input type="hidden" name="avatar_remove" />
-
                     </label>
                     <!-- Cancel button -->
                     <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cp_profile_cancel_avatar'); ?>">
@@ -50,17 +48,21 @@
                         </span>
                     <?php } ?>
                 </div>
-                <div class="fs-6 fw-semibold">Logo</div>
             </div>
             <!-- Company Name-->
             <div class="col-12 col-lg-6 mt-5">
                 <label class="fs-6 fw-semibold" for="txt-company<?php echo $uniqid; ?>"><?php echo lang('Text.company_name'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-company<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $profile[0]->company_name; ?>" disabled />
+                <input type="text" id="txt-company<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $profile[0]->companyName; ?>" disabled />
             </div>
             <!-- Company Type -->
             <div class="col-12 col-lg-6 mt-5">
                 <label class="fs-6 fw-semibold" for="txt-type<?php echo $uniqid; ?>"><?php echo lang('Text.bussines_type'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-type<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $profile[0]->company_type; ?>" disabled />
+            </div>
+            <!-- Company Type -->
+            <div class="col-12 col-lg-6 mt-5">
+                <label class="fs-6 fw-semibold" for="txt-type<?php echo $uniqid; ?>"><?php echo lang('Text.bussines_type'); ?> <span class="text-danger">*</span></label>
+                <input type="text" id="txt-type<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $profile[0]->companyID; ?>" disabled />
             </div>
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Email -->

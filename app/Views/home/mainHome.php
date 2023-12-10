@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title><?php echo $profile[0]->company_name; ?></title>
+    <title><?php echo $profile[0]->companyName; ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Assets CSS -->

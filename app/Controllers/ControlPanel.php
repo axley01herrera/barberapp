@@ -461,13 +461,13 @@ class ControlPanel extends BaseController
             $profile = $this->objControlPanelModel->getProfile(1);
 
             $dataEmail = array();
-            $dataEmail['pageTitle'] = $profile[0]->company_name;
+            $dataEmail['pageTitle'] = $profile[0]->companyName;
             $dataEmail['person'] = $name . ' ' . $lastName;
             $dataEmail['url'] = base_url('Home/customerCreatePassword?token=') . $data['token'];
             $dataEmail['companyPhone'] = $profile[0]->phone1;
             $dataEmail['companyEmail'] = $profile[0]->email;
 
-            $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->company_name);
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $profile[0]->companyName);
             $this->objEmail->setTo($email);
             $this->objEmail->setSubject('Complete Your Account');
             $this->objEmail->setMessage(view('email/createCustomerByAdmin', $dataEmail), []);
@@ -708,13 +708,13 @@ class ControlPanel extends BaseController
             $result = $this->objMainModel->objCreate('employee', $data);
 
             $dataEmail = array();
-            $dataEmail['pageTitle'] = $this->profile[0]->company_name;
+            $dataEmail['pageTitle'] = $this->profile[0]->companyName;
             $dataEmail['person'] = $name . ' ' . $lastName;
             $dataEmail['url'] = base_url('Home/employeeCreatePassword?token=') . $data['token'];
             $dataEmail['companyPhone'] = $this->profile[0]->phone1;
             $dataEmail['companyEmail'] = $this->profile[0]->email;
 
-            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
             $this->objEmail->setTo($email);
             $this->objEmail->setSubject('Complete Your Account');
             $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
@@ -1072,15 +1072,15 @@ class ControlPanel extends BaseController
 
         if (!empty($dataAccount['email'])) {
             $dataEmail = array();
-            $dataEmail['pageTitle'] = $this->profile[0]->company_name;
+            $dataEmail['pageTitle'] = $this->profile[0]->companyName;
             $dataEmail['person'] = $employee[0]->name . ' ' . $employee[0]->lastName;
             $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'] . '&type=employee';
             $dataEmail['companyPhone'] = $this->profile[0]->phone1;
             $dataEmail['companyEmail'] = $this->profile[0]->email;
 
-            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
             $this->objEmail->setTo($dataAccount['email']);
-            $this->objEmail->setSubject($this->profile[0]->company_name);
+            $this->objEmail->setSubject($this->profile[0]->companyName);
             $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
 
             $this->objEmail->send(false);
@@ -1364,7 +1364,7 @@ class ControlPanel extends BaseController
         }
 
         $data = array();
-        $data['company_name'] = htmlspecialchars(trim($this->objRequest->getPost('company')));
+        $data['companyName'] = htmlspecialchars(trim($this->objRequest->getPost('company')));
         $data['company_type'] = htmlspecialchars(trim($this->objRequest->getPost('type')));
         $data['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
         $data['phone1'] = htmlspecialchars(trim($this->objRequest->getPost('phone1')));

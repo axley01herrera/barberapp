@@ -172,15 +172,15 @@ class Customer extends BaseController
 
         if (!empty($dataAccount['email'])) {
             $dataEmail = array();
-            $dataEmail['pageTitle'] = $this->profile[0]->company_name;
+            $dataEmail['pageTitle'] = $this->profile[0]->companyName;
             $dataEmail['person'] = $customer[0]->name . ' ' . $customer[0]->lastName;
             $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'].'&type=customer';
             $dataEmail['companyPhone'] = $this->profile[0]->phone1;
             $dataEmail['companyEmail'] = $this->profile[0]->email;
 
-            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->company_name);
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
             $this->objEmail->setTo($dataAccount['email']);
-            $this->objEmail->setSubject($this->profile[0]->company_name);
+            $this->objEmail->setSubject($this->profile[0]->companyName);
             $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
 
             $this->objEmail->send(false);
