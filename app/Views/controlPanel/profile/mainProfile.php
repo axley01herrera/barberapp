@@ -16,8 +16,8 @@
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
             <div class="d-flex flex-column flex-lg-row">
-                <!-- Company Info -->
                 <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
+                    <!-- Company Info -->
                     <div class="card mb-5 mb-xl-8">
                         <div id="company-info" class="card-body">
                             <div class="d-flex flex-center flex-column py-5">
@@ -31,7 +31,7 @@
                                 </div>
                                 <!-- Name -->
                                 <p class="fs-3 text-gray-800 fw-bold mb-3"><?php echo $profile[0]->companyName; ?></p>
-                                <span class="badge badge-light-success"><?php echo $profile[0]->companyType; ?></span>
+                                <span class="badge badge-light-primary"><?php echo $profile[0]->companyType; ?></span>
                             </div>
                             <div id="kt_user_view_details" class="collapse show">
                                 <div class="pb-5 fs-6">
@@ -70,6 +70,45 @@
                                     <?php } ?>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- Social Network -->
+                    <div class="card mb-5 mb-xl-8">
+                        <div class="card-header border-0">
+                            <div class="card-title">
+                                <h3 class="fw-bold m-0"><?php echo lang('Text.social_network'); ?></h3>
+                            </div>
+                        </div>
+                        <div class="card-body pt-2">
+                            <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
+                                <i class="ki-duotone ki-design-1 fs-2tx text-primary me-4"></i>
+                                <div class="d-flex flex-stack flex-grow-1">
+                                    <div class="fw-semibold">
+                                        <div class="fs-6 text-gray-700"><?php echo lang('Text.social_network_msg');?></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-2">
+                                <div class="d-flex flex-stack">
+                                    <div class="d-flex">
+                                        <img src="<?php echo base_url('public/assets/media/svg/brand-logos/google-icon.svg'); ?>" class="w-30px me-6" alt="">
+                                        <div class="d-flex flex-column">
+                                            <a href="#" class="fs-5 text-dark text-hover-primary fw-bold">Google</a>
+                                            <div class="fs-6 fw-semibold text-muted">Plan properly your workflow</div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <label class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" name="google" type="checkbox" value="1" id="kt_modal_connected_accounts_google" checked="checked">
+                                            <span class="form-check-label fw-semibold text-muted" for="kt_modal_connected_accounts_google"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="separator separator-dashed my-5"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer border-0 d-flex justify-content-center pt-0">
+                            <button class="btn btn-sm btn-primary"><?php echo lang('Text.btn_add'); ?></button>
                         </div>
                     </div>
                 </div>

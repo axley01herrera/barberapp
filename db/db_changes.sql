@@ -1,22 +1,14 @@
-DROP TABLE IF EXISTS `employee_bussines_day`;
-CREATE TABLE IF NOT EXISTS `employee_bussines_day` (
+ALTER TABLE `profile` CHANGE `company_name` `companyName` VARCHAR(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL; 
+ALTER TABLE `profile` CHANGE `company_type` `companyType` VARCHAR(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL; 
+
+DROP TABLE IF EXISTS `company_social_network`;
+CREATE TABLE IF NOT EXISTS `company_social_network` (
   `id` int NOT NULL,
-  `employeeID` int NOT NULL,
-  `monday` int NOT NULL DEFAULT '1',
-  `tuesday` int NOT NULL DEFAULT '1',
-  `wednesday` int NOT NULL DEFAULT '1',
-  `thursday` int NOT NULL DEFAULT '1',
-  `friday` int NOT NULL DEFAULT '1',
-  `saturday` int NOT NULL DEFAULT '1',
-  `sunday` int NOT NULL DEFAULT '1'
+  `type` varchar(90) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `url` varchar(999) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `status` int NOT NULL DEFAULT '1'
 );
 
-DROP TABLE IF EXISTS `employee_shift_day`;
-CREATE TABLE IF NOT EXISTS `employee_shift_day` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `employeeID` int NOT NULL,
-  `day` varchar(45) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `start` time NOT NULL,
-  `end` time NOT NULL,
-  PRIMARY KEY (`id`)
-)
+ALTER TABLE `profile`
+  DROP `facebook`,
+  DROP `instagram`;

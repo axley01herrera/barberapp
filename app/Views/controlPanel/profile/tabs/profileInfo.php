@@ -7,7 +7,9 @@
             <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.cp_profile_bussiness_data_subtitle'); ?></div>
         </div>
         <!-- Card toolbar -->
-        <div class="card-toolbar"></div>
+        <div class="card-toolbar">
+            <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_edit'); ?></button>
+        </div>
     </div>
     <!-- Card body -->
     <div class="card-body p-9 pt-4">
@@ -57,27 +59,32 @@
             <!-- Company Type -->
             <div class="col-12 col-lg-6 mt-5">
                 <label class="fs-6 fw-semibold" for="txt-type<?php echo $uniqid; ?>"><?php echo lang('Text.bussines_type'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-type<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $profile[0]->company_type; ?>" disabled />
+                <input type="text" id="txt-type<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $profile[0]->companyType; ?>" disabled />
             </div>
-            <!-- Company Type -->
+            <!-- Company ID -->
             <div class="col-12 col-lg-6 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-type<?php echo $uniqid; ?>"><?php echo lang('Text.bussines_type'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-type<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $profile[0]->companyID; ?>" disabled />
+                <label class="fs-6 fw-semibold" for="txt-company-id<?php echo $uniqid; ?>"><?php echo lang('Text.tax_identifier'); ?> <span class="text-danger"></span></label>
+                <input type="text" id="txt-company-id<?php echo $uniqid; ?>" class="form-control" value="<?php echo $profile[0]->companyID; ?>" disabled />
             </div>
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Email -->
                 <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $profile[0]->email; ?>" disabled />
             </div>
-            <div class="col-12 col-lg-3 mt-5">
+            <div class="col-12 col-lg-4 mt-5">
                 <!-- Primary Phone -->
                 <label class="fs-6 fw-semibold" for="txt-phone1<?php echo $uniqid; ?>"><?php echo lang('Text.primary_phone'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-phone1<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->phone1; ?>" disabled />
             </div>
-            <div class="col-12 col-lg-3 mt-5">
+            <div class="col-12 col-lg-4 mt-5">
                 <!-- Secondary Phone -->
                 <label class="fs-6 fw-semibold" for="txt-phone2<?php echo $uniqid; ?>"><?php echo lang('Text.secondary_phone'); ?></label>
                 <input type="text" id="txt-phone2<?php echo $uniqid; ?>" class="form-control" maxlength="45" value="<?php echo $profile[0]->phone2; ?>" disabled />
+            </div>
+            <div class="col-12 col-lg-4 mt-5">
+                <!-- Phone Ext -->
+                <label class="fs-6 fw-semibold" for="txt-ext<?php echo $uniqid; ?>"><?php echo lang('Text.phone_ext'); ?></label>
+                <input type="text" id="txt-ext<?php echo $uniqid; ?>" class="form-control" maxlength="45" value="<?php echo $profile[0]->phoneExt; ?>" disabled />
             </div>
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Line 1 -->
@@ -109,21 +116,6 @@
                 <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->country; ?>" disabled />
             </div>
-            <div class="col-12 mt-5">
-                <!-- Facebook -->
-                <label class="fs-6 fw-semibold" for="txt-facebook<?php echo $uniqid; ?>"><?php echo lang('Text.facebook_link'); ?> <span class="text-danger"></span></label>
-                <input type="text" id="txt-facebook<?php echo $uniqid; ?>" class="form-control" value="<?php echo $profile[0]->facebook; ?>" disabled />
-            </div>
-            <div class="col-12 mt-5">
-                <!-- Instagram -->
-                <label class="fs-6 fw-semibold" for="txt-instagram<?php echo $uniqid; ?>"><?php echo lang('Text.instagram_link'); ?> <span class="text-danger"></span></label>
-                <input type="text" id="txt-instagram<?php echo $uniqid; ?>" class="form-control" value="<?php echo $profile[0]->instagram; ?>" disabled />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-end mt-5">
-                <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_enable_edit'); ?></button>
-            </div>
         </div>
         <div class="row">
             <div class="col-12 text-end mt-5">
@@ -133,177 +125,175 @@
         </div>
     </div>
 </div>
+
+<!-- Avatar Procedure -->
 <script>
-    $(document).ready(function() {
+    var avatarProfile = new KTImageInput.createInstances();
+    var imageInputElement = document.querySelector("#kt_image_input_profile<?php echo $uniqid; ?>");
+    var imageInput = KTImageInput.getInstance(imageInputElement);
 
-        // Avatar Procedure
-        let avatarProfile = new KTImageInput.createInstances();
-        let imageInputElement = document.querySelector("#kt_image_input_profile<?php echo $uniqid; ?>");
-        let imageInput = KTImageInput.getInstance(imageInputElement);
-
-        imageInput.on("kt.imageinput.change", function() { // Upload On Change
-            let formData = new FormData();
-            formData.append('file', $("#avatar<?php echo $uniqid; ?>")[0].files[0]);
-            $.ajax({
-                type: "post",
-                url: "<?php echo base_url('ControlPanel/uploadAvatarProfile'); ?>",
-                data: formData,
-                dataType: "json",
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    if (response.error === 0)
-                        window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
-                    else if (response.error === 1)
-                        globalError();
-                    else
-                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                },
-                error: function(error) {
+    imageInput.on("kt.imageinput.change", function() { // Upload On Change
+        let formData = new FormData();
+        formData.append('file', $("#avatar<?php echo $uniqid; ?>")[0].files[0]);
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/uploadAvatarProfile'); ?>",
+            data: formData,
+            dataType: "json",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                if (response.error === 0)
+                    window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
+                else if (response.error === 1)
                     globalError();
-                }
-            });
+                else
+                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+            },
+            error: function(error) {
+                globalError();
+            }
         });
+    });
 
-        imageInput.on("kt.imageinput.cancel", function() { // Remove On Cancel
-            $.ajax({
-                type: "post",
-                url: "<?php echo base_url('ControlPanel/removeAvatarProfile'); ?>",
-                data: "",
-                dataType: "json",
-                success: function(response) {
-                    if (response.error === 0)
-                        window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
-                    else if (response.error === 1)
-                        globalError();
-                    else
-                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                },
-                error: function(error) {
+    imageInput.on("kt.imageinput.cancel", function() { // Remove On Cancel
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/removeAvatarProfile'); ?>",
+            data: "",
+            dataType: "json",
+            success: function(response) {
+                if (response.error === 0)
+                    window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
+                else if (response.error === 1)
                     globalError();
-                }
-            });
+                else
+                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+            },
+            error: function(error) {
+                globalError();
+            }
         });
+    });
 
-        imageInput.on("kt.imageinput.remove", function() { // Remove On Delete
-            $.ajax({
-                type: "post",
-                url: "<?php echo base_url('ControlPanel/removeAvatarProfile'); ?>",
-                data: "",
-                dataType: "json",
-                success: function(response) {
-                    if (response.error === 0)
-                        window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
-                    else if (response.error === 1)
-                        globalError();
-                    else
-                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                },
-                error: function(error) {
+    imageInput.on("kt.imageinput.remove", function() { // Remove On Delete
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/removeAvatarProfile'); ?>",
+            data: "",
+            dataType: "json",
+            success: function(response) {
+                if (response.error === 0)
+                    window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
+                else if (response.error === 1)
                     globalError();
-                }
-            });
+                else
+                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+            },
+            error: function(error) {
+                globalError();
+            }
         });
+    });
+</script>
 
-        // End Avatar Procedure
-
-        $('#btn-<?php echo $uniqid; ?>').on('click', function() { // Enable Edit
-            $('.form-control').each(function() {
-                $(this).removeAttr('disabled');
-            });
-            $(this).attr('hidden', true);
-            $('#btn-cancel<?php echo $uniqid; ?>').removeAttr('hidden');
-            $('#btn-update<?php echo $uniqid; ?>').removeAttr('hidden');
+<script>
+    $('#btn-<?php echo $uniqid; ?>').on('click', function() { // Enable Edit
+        $('.form-control').each(function() {
+            $(this).removeAttr('disabled');
         });
+        $(this).attr('hidden', true);
+        $('#btn-cancel<?php echo $uniqid; ?>').removeAttr('hidden');
+        $('#btn-update<?php echo $uniqid; ?>').removeAttr('hidden');
+    });
 
-        $('#btn-cancel<?php echo $uniqid; ?>').on('click', function() { // Cancel Edit
-            getProfileTabContent();
-        });
+    $('#btn-cancel<?php echo $uniqid; ?>').on('click', function() { // Cancel Edit
+        getProfileTabContent();
+    });
 
-        $('#btn-update<?php echo $uniqid; ?>').on('click', function() {
-            let result = checkRequiredValues();
-            if (result === 0) {
-                let resultEmail = checkEmailFormat();
-                if (resultEmail === 0) {
-                    $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
-                    $.ajax({
-                        type: "post",
-                        url: "<?php echo base_url('ControlPanel/updateProfile'); ?>",
-                        data: {
-                            'company': $('#txt-company<?php echo $uniqid; ?>').val(),
-                            'type': $('#txt-type<?php echo $uniqid; ?>').val(),
-                            'email': $('#txt-email<?php echo $uniqid; ?>').val(),
-                            'phone1': $('#txt-phone1<?php echo $uniqid; ?>').val(),
-                            'phone2': $('#txt-phone2<?php echo $uniqid; ?>').val(),
-                            'address1': $('#txt-address1<?php echo $uniqid; ?>').val(),
-                            'address2': $('#txt-address2<?php echo $uniqid; ?>').val(),
-                            'city': $('#txt-city<?php echo $uniqid; ?>').val(),
-                            'state': $('#txt-state<?php echo $uniqid; ?>').val(),
-                            'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
-                            'country': $('#txt-country<?php echo $uniqid; ?>').val(),
-                            'facebook': $('#txt-facebook<?php echo $uniqid; ?>').val(),
-                            'instagram': $('#txt-instagram<?php echo $uniqid; ?>').val(),
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.error == 0) {
-                                simpleSuccessAlert("<?php echo lang("Text.cp_profile_data_updated"); ?>");
-                                setTimeout(() => {
-                                    window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
-                                }, "2000");
-                            } else if (response.error == 1)
-                                globalError();
-                            else
-                                window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-
-                            $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
-                        },
-                        error: function(error) {
+    $('#btn-update<?php echo $uniqid; ?>').on('click', function() { // Submit
+        let result = checkRequiredValues();
+        if (result === 0) {
+            let resultEmail = checkEmailFormat();
+            if (resultEmail === 0) {
+                $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
+                $.ajax({
+                    type: "post",
+                    url: "<?php echo base_url('ControlPanel/updateProfile'); ?>",
+                    data: {
+                        'company': $('#txt-company<?php echo $uniqid; ?>').val(),
+                        'type': $('#txt-type<?php echo $uniqid; ?>').val(),
+                        'companyID': $('txt-company-id<?php echo $uniqid; ?>').val(),
+                        'email': $('#txt-email<?php echo $uniqid; ?>').val(),
+                        'phone1': $('#txt-phone1<?php echo $uniqid; ?>').val(),
+                        'phone2': $('#txt-phone2<?php echo $uniqid; ?>').val(),
+                        'ext': $('#txt-ext<?php echo $uniqid; ?>').val(),
+                        'address1': $('#txt-address1<?php echo $uniqid; ?>').val(),
+                        'address2': $('#txt-address2<?php echo $uniqid; ?>').val(),
+                        'city': $('#txt-city<?php echo $uniqid; ?>').val(),
+                        'state': $('#txt-state<?php echo $uniqid; ?>').val(),
+                        'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
+                        'country': $('#txt-country<?php echo $uniqid; ?>').val()
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.error == 0) {
+                            simpleSuccessAlert("<?php echo lang("Text.cp_profile_data_updated"); ?>");
+                            setTimeout(() => {
+                                window.location.href = "<?php echo base_url('ControlPanel/profile?tab='); ?>" + tab;
+                            }, "2000");
+                        } else if (response.error == 1)
                             globalError();
-                            $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
-                        }
-                    });
-                } else
-                    simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+                        else
+                            window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+
+                        $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
+                    },
+                    error: function(error) {
+                        globalError();
+                        $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
+                    }
+                });
             } else
-                simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+                simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+        } else
+            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+    });
+
+    $('.number<?php echo $uniqid; ?>').on('input', function() { // ONLY NUMBER
+        jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
+    });
+
+    function checkRequiredValues() {
+        let result = 0;
+        let value = "";
+
+        $('.required<?php echo $uniqid; ?>').each(function() {
+            value = $(this).val();
+            if (value == "") {
+                $(this).addClass('is-invalid');
+                result = 1;
+            }
         });
+        return result;
+    }
 
-        $('.number<?php echo $uniqid; ?>').on('input', function() { // ONLY NUMBER
-            jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
+    function checkEmailFormat() {
+        let inputValue = '';
+        let response = 0;
+        let regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+        $('.email<?php echo $uniqid; ?>').each(function() {
+            inputValue = $(this).val();
+            if (!regex.test(inputValue)) {
+                $(this).addClass('is-invalid');
+                response = 1;
+            }
         });
+        return response;
+    }
 
-        function checkRequiredValues() {
-            let result = 0;
-            let value = "";
-
-            $('.required<?php echo $uniqid; ?>').each(function() {
-                value = $(this).val();
-                if (value == "") {
-                    $(this).addClass('is-invalid');
-                    result = 1;
-                }
-            });
-            return result;
-        }
-
-        function checkEmailFormat() {
-            let inputValue = '';
-            let response = 0;
-            let regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-            $('.email<?php echo $uniqid; ?>').each(function() {
-                inputValue = $(this).val();
-                if (!regex.test(inputValue)) {
-                    $(this).addClass('is-invalid');
-                    response = 1;
-                }
-            });
-            return response;
-        }
-
-        $('.required<?php echo $uniqid; ?>').on('focus', function() {
-            $(this).removeClass('is-invalid');
-        });
+    $('.required<?php echo $uniqid; ?>').on('focus', function() {
+        $(this).removeClass('is-invalid');
     });
 </script>

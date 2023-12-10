@@ -2,7 +2,7 @@
 $lang = array();
 
 # Global Labels
-$lang['company_name'] = "Nombre del Negocio, Compañía o Local";
+$lang['company_name'] = "Nombre del Negocio";
 $lang['bussines_type'] = "Tipo de Negocio";
 $lang['tax_identifier'] = "Identificador Fiscal";
 $lang['languaje'] = "Idioma";
@@ -27,6 +27,7 @@ $lang['primary_phone'] = "Teléfono Principal";
 $lang['phone'] = "Teléfono";
 $lang['dob'] = "Fecha de Nacimiento";
 $lang['secondary_phone'] = "Teléfono Segundario";
+$lang['phone_ext'] = "Ext";
 $lang['email'] = "Correo Electrónico";
 $lang['email_notification'] = "Recibir Notificaciones por Email";
 $lang['address'] = "Dirección";
@@ -70,8 +71,8 @@ $lang['day'] = "Día Laboral";
 $lang['start_time'] = "Inicio de Jornada";
 $lang['end_time'] = "Fin de la Jornada";
 $lang['important'] = "Importante";
-
-# Global MSG
+$lang['social_network'] = "Redes Sociales";
+$lang['social_network_msg'] = 'Conectar con tus redes sociales es una excelente forma de mejorar la interacción con los clientes.';
 $lang['thanks'] = "Gracias";
 $lang['success_verified_email'] = "Su cuenta de correo electrónico ha quedado verficada";
 $lang['ok'] = "Entendido";
@@ -110,6 +111,7 @@ $lang['btn_signing'] = "Iniciar Sesión";
 $lang['btn_create_account'] = "Crear Cuenta";
 $lang['btn_send_recover_pass_email'] = "Enviar Correo de Recuperación";
 $lang['btn_create_time'] = "Crear Turno";
+$lang['btn_add'] = "Agregar";
 
 # Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';

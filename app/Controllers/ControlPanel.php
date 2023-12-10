@@ -1364,19 +1364,20 @@ class ControlPanel extends BaseController
         }
 
         $data = array();
+        # params
         $data['companyName'] = htmlspecialchars(trim($this->objRequest->getPost('company')));
-        $data['company_type'] = htmlspecialchars(trim($this->objRequest->getPost('type')));
+        $data['companyType'] = htmlspecialchars(trim($this->objRequest->getPost('type')));
+        $data['companyID'] = htmlspecialchars(trim($this->objRequest->getPost('companyID')));
         $data['email'] = htmlspecialchars(trim($this->objRequest->getPost('email')));
         $data['phone1'] = htmlspecialchars(trim($this->objRequest->getPost('phone1')));
         $data['phone2'] = htmlspecialchars(trim($this->objRequest->getPost('phone2')));
+        $data['phoneExt'] = htmlspecialchars(trim($this->objRequest->getPost('ext')));
         $data['address1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
         $data['address2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
         $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
         $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
         $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
         $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
-        $data['facebook'] = htmlspecialchars(trim($this->objRequest->getPost('facebook')));
-        $data['instagram'] = htmlspecialchars(trim($this->objRequest->getPost('instagram')));
 
         return json_encode($this->objMainModel->objUpdate('profile', $data, 1));
     } // ok
