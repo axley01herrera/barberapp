@@ -83,14 +83,13 @@
                                                 </span>
                                             </div>
                                         <?php } ?>
-                                        
                                     <?php } ?>
-
+                                    <!-- Alert Incomplete Profile -->
                                     <?php if (empty($companyProfile[0]->phone1)) { ?>
-                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-5 mt-10">
-                                            <i class="ki-duotone ki-notification-bing fs-2hx text-danger me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10 mt-10">
+                                            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                             <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                <h4 class="fw-semibold"><?php echo lang('Text.important'); ?></h4>
+                                                <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                                                 <span><?php echo lang('Text.emp_incomplete_profile_msg'); ?></span>
                                             </div>
                                         </div>
@@ -107,12 +106,11 @@
                             </div>
                         </div>
                         <div class="card-body pt-2">
-                            <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
-                                <i class="ki-duotone ki-design-1 fs-2tx text-primary me-4"></i>
-                                <div class="d-flex flex-stack flex-grow-1">
-                                    <div class="fw-semibold">
-                                        <div class="fs-6 text-gray-700"><?php echo lang('Text.social_network_msg'); ?></div>
-                                    </div>
+                            <div class="alert alert-dismissible bg-light-primary border border-primary border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10 mt-10">
+                                <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                <div class="d-flex flex-column pe-0 pe-sm-10">
+                                    <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
+                                    <span><?php echo lang('Text.social_network_msg'); ?></span>
                                 </div>
                             </div>
                             <div class="py-2">

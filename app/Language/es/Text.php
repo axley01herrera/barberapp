@@ -2,6 +2,7 @@
 $lang = array();
 
 # Global Labels
+$lang['system_info'] = "Información del Sistema";
 $lang['company_name'] = "Nombre del Negocio";
 $lang['bussines_type'] = "Tipo de Negocio";
 $lang['tax_identifier'] = "Identificador Fiscal";
@@ -239,6 +240,7 @@ $lang['cp_profile_remove_avatar'] = "Remover avatar";
 $lang['cp_profile_data_updated'] = "Descripción del Negocio Actualizada";
 $lang['cp_profile_access_key_updated'] = "Clave de Acceso Actualizada";
 $lang['cp_profile_config_updated'] = "Datos de Configuración Actualizados";
+$lang['cp_profile_public_info_msg'] = "La información proporcionada en este formulario será compartida con todos tus clientes y empleados en otras partes del sistema. Por ende, se considera de carácter público.";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";

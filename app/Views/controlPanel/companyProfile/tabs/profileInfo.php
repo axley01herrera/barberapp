@@ -117,6 +117,14 @@
                 <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->country; ?>" disabled />
             </div>
         </div>
+        <!-- Aert Public Info -->
+        <div class="alert alert-dismissible bg-light-primary border border-primary border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10 mt-10">
+            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+            <div class="d-flex flex-column pe-0 pe-sm-10">
+                <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
+                <span><?php echo lang('Text.cp_profile_public_info_msg'); ?></span>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12 text-end mt-5">
                 <button hidden type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
