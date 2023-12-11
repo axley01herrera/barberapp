@@ -127,8 +127,9 @@
                                                 <img src="<?php echo base_url('public/assets/media/svg/brand-logos/linkedin-1.svg'); ?>" class="w-30px me-6" alt="logo">
                                             <?php } ?>
                                             <div class="d-flex flex-column">
-                                                <a href="<?php echo $sn->url; ?>" class="fs-5 text-dark text-hover-primary fw-bold"><?php echo $sn->type; ?></a>
-                                                <div class="fs-6 fw-semibold text-muted">Plan properly your workflow</div>
+                                                <a href="<?php echo $sn->url; ?>" class="fs-5 text-dark text-hover-primary fw-bold" target="_blank"><?php echo $sn->type; ?></a>
+                                                <p class="cursor-pointer social-action fs-9" data-action="edit" data-socialNetwork-id="<?php echo $sn->id; ?>"><?php echo $sn->url; ?></p>
+                                                <div class="fs-6 fw-semibold text-muted" hidden>Plan properly your workflow</div>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-end">
@@ -137,7 +138,6 @@
                                                                                                                                                                                                                                                                         else echo "data-status='1'"; ?>>
                                                 <span class="form-check-label fw-semibold text-muted" for="kt_modal_connected_accounts_google"></span>
                                             </label>
-                                            <span class="cursor-pointer social-action m-2" data-action="edit" data-socialNetwork-id="<?php echo $sn->id; ?>"><i class="bi bi-pencil-square fs-5 text-warning"></i></span>
                                             <span class="cursor-pointer social-action m-2" data-action="delete" data-socialNetwork-id="<?php echo $sn->id; ?>"><i class="bi bi-x-octagon-fill fs-5 text-danger"></i></span>
                                         </div>
                                     </div>
