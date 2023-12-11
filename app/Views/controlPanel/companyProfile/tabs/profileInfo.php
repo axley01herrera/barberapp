@@ -117,7 +117,7 @@
                 <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->country; ?>" disabled />
             </div>
         </div>
-        <!-- Aert Public Info -->
+        <!-- Alert Public Info -->
         <div class="alert alert-dismissible bg-light-primary border border-primary border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10 mt-10">
             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
             <div class="d-flex flex-column pe-0 pe-sm-10">
