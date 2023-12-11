@@ -33,19 +33,19 @@
                         <div class="image-input-wrapper w-125px h-125px" style="background-image: url(data:image/png;base64,<?php echo base64_encode($profile[0]->avatar); ?>)"></div>
                     <?php } ?>
                     <!-- Edit Button -->
-                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cp_profile_change_avatar'); ?>">
+                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.change_avatar'); ?>">
                         <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
                         <!-- Inputs -->
                         <input id="avatar<?php echo $uniqid; ?>" type="file" name="avatar" accept=".png, .jpg, .jpeg" />
                         <input type="hidden" name="avatar_remove" />
                     </label>
                     <!-- Cancel button -->
-                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cp_profile_cancel_avatar'); ?>">
+                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cancel_avatar'); ?>">
                         <i class="ki-outline ki-cross fs-3"></i>
                     </span>
                     <!-- Remove button -->
                     <?php if (!empty($profile[0]->avatar)) { ?>
-                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cp_profile_remove_avatar'); ?>">
+                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.remove_avatar'); ?>">
                             <i class="ki-outline ki-cross fs-3"></i>
                         </span>
                     <?php } ?>

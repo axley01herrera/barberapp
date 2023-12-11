@@ -250,4 +250,14 @@ class ControlPanelModel extends Model
         $data = $query->get()->getResult();
         return $data;
     } // ok
+
+    public function getActiveEmployees()
+    {
+        $query = $this->db->table('employee')
+        ->where('status', 1);
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    } // ok
 }

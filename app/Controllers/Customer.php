@@ -80,7 +80,7 @@ class Customer extends BaseController
         $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
 
         return view('customer/customerInfo', $data);
-    }
+    } // ok
 
     public function customerTabContent()
     {
@@ -105,9 +105,9 @@ class Customer extends BaseController
         $view = "";
 
         switch ($tab) {
-            case 'tab-overview':
+            case 'tab-appointents':
                 # page
-                $view = "customer/tabContent/tabOverview";
+                $view = "customer/tabContent/tabAppointents";
                 break;
             case 'tab-account':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
@@ -124,7 +124,7 @@ class Customer extends BaseController
         }
 
         return view($view, $data);
-    }
+    } // ok
 
     public function updateAccount()
     {
@@ -189,7 +189,7 @@ class Customer extends BaseController
         $response['error'] = 0;
 
         return json_encode($response);
-    } //ok
+    } // ok
 
     public function updateProfile()
     {
@@ -233,7 +233,7 @@ class Customer extends BaseController
             $result['msg'] = 'ERROR_ON_UPDATE_CUSTOMER';
         }
         return json_encode($result);
-    }
+    } // ok
 
     public function uploadAvatarProfile()
     {
@@ -246,7 +246,7 @@ class Customer extends BaseController
         }
 
         return json_encode($this->objMainModel->uploadFile('customer', $this->objSession->get('user')['customerID'], 'avatar', $_FILES['file']));
-    }
+    } // ok
 
     public function removeAvatarProfile()
     {
@@ -262,5 +262,17 @@ class Customer extends BaseController
         $data['avatar'] = '';
 
         return json_encode($this->objMainModel->objUpdate('customer', $data, $this->objSession->get('user')['customerID']));
+    } // ok
+
+    public function createAppointment()
+    {
+        $data = array();
+        # data
+        $data['employees'] = $this->objControlPanelModel->getActiveEmployees();
+
+        # page
+        $view = 'customer/createAppointment';
+
+        return view($view, $data);
     }
 }

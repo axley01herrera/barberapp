@@ -101,6 +101,10 @@ $lang['invalid_password'] = "Contraseña Incorrecta";
 $lang['email_not_check'] = "No Verificado";
 $lang['email_check'] = "Verificado"; 
 $lang['active_inactive'] = "Desactivar / Activar"; 
+$lang['change_avatar'] = "Cambiar";
+$lang['cancel_avatar'] = "Cancelar";
+$lang['remove_avatar'] = "Remover";
+$lang['appointents'] = 'Citas';
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -116,6 +120,7 @@ $lang['btn_create_account'] = "Crear Cuenta";
 $lang['btn_send_recover_pass_email'] = "Enviar Correo de Recuperación";
 $lang['btn_create_time'] = "Crear Turno";
 $lang['btn_add'] = "Agregar";
+$lang['btn_create_appointment'] = "Crear Cita";
 
 # Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
@@ -168,6 +173,16 @@ $lang['dt_customer_last_name'] = "Apellidos";
 $lang['dt_customer_email'] = "Correo Electrónico";
 $lang['dt_customer_phone'] = "Teléfono";
 $lang['dt_customer_status'] = "Estado";
+$lang['cust_profile_title'] = "Perfil del Cliente";
+$lang['cust_profile_subtitle'] = 'Datos del Perfil.';
+$lang['cust_profile_success_updated'] = "Perfil Actualizado";
+$lang['cust_account_title'] = 'Cuenta del Cliente';
+$lang['cust_account_subtitle'] = 'Administración de Cuenta.';
+$lang['cust_account_success_updated'] = "Cuenta Actualizada";
+$lang['cust_appointment_title'] = 'Citas del Cliente';
+$lang['cust_appointment_subtitle'] = 'Administración de Citas.';
+$lang['cust_new_appointment'] = 'Nueva Cita';
+$lang['cust_new_appointment_subtitle'] = 'Crea tu Cita';
 
 # Control Panel -> Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";
@@ -237,9 +252,6 @@ $lang['cp_profile_change_key_subtitle'] = "Clave de Acceso.";
 $lang['cp_profile_menu_config'] = "Configuración";
 $lang['cp_profile_config_title'] = "Ajustes del Sistema";
 $lang['cp_profile_config_subtitle'] = "Preferencias y Personalización.";
-$lang['cp_profile_change_avatar'] = "Cambiar Avatar";
-$lang['cp_profile_cancel_avatar'] = "Cancelar Avatar";
-$lang['cp_profile_remove_avatar'] = "Remover avatar";
 $lang['cp_profile_data_updated'] = "Descripción del Negocio Actualizada";
 $lang['cp_profile_access_key_updated'] = "Clave de Acceso Actualizada";
 $lang['cp_profile_config_updated'] = "Datos de Configuración Actualizados";
