@@ -44,6 +44,7 @@
                                     <th class="text-center p-2"><?php echo lang('Text.dt_serv_time'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_serv_dec'); ?></th>
                                     <th class="text-center p-2"><?php echo lang('Text.dt_serv_status'); ?></th>
+                                    <th class="text-center p-2"><?php echo lang('Text.dt_serv_visibility'); ?></th>
                                     <th class="text-center p-2"></th>
                                 </tr>
                             </thead>
@@ -125,6 +126,11 @@
                 searchable: false
             },
             {
+                data: 'visibility',
+                class: 'dt-vertical-align text-center p-2',
+                searchable: false
+            },
+            {
                 data: 'action',
                 class: 'dt-vertical-align text-center p-2',
                 orderable: false,
@@ -184,4 +190,33 @@
             }
         });
     }); // ok
+
+    dtService.on('click', '.change-visibility', function() {
+        let serviceID = $(this).attr('data-service-id');
+        let visibility = $(this).attr('data-visibility');
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/changeServiceVisibility'); ?>",
+            data: {
+                'serviceID': serviceID,
+                'visibility': visibility
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.error == 0) {
+                    simpleSuccessAlert('<?php echo lang('Text.success_change_visibility'); ?>');
+                    dtService.draw();
+                } else {
+                    if (response.msg == "SESSION_EXPIRED") {
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    } else
+                        globalError();
+                }
+            },
+            error: function(e) {
+                globalError();
+            }
+        });
+    });
 </script>

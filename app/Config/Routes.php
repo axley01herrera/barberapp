@@ -41,7 +41,8 @@ $routes->post('ControlPanel/processingService', 'ControlPanel::processingService
 $routes->post('ControlPanel/showModalService', 'ControlPanel::showModalService');
 $routes->post('ControlPanel/createService', 'ControlPanel::createService');
 $routes->post('ControlPanel/updateService', 'ControlPanel::updateService');
-$routes->post('ControlPanel/changeServiceStatus', 'ControlPanel::changeServiceStatus');
+$routes->post('ControlPanel/changeServiceStatus', 'ControlPanel::changeServiceStatus'); 
+$routes->post('ControlPanel/changeServiceVisibility', 'ControlPanel::changeServiceVisibility');
 
 # ControlPanel -> Customers
 $routes->get('ControlPanel/customers', 'ControlPanel::customers');

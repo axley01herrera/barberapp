@@ -122,12 +122,16 @@ class ControlPanel extends BaseController
         for ($i = 0; $i < $totalRows; $i++) {
 
             $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
+            $btnChangeVisibility = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-visibility" title="' . lang('Text.change_visibility') . '" data-service-id="' . $result[$i]->id . '" data-visibility="1"></div>';
             $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-service-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
 
             if ($result[$i]->status == 1) {
                 $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
                 $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 change-status" data-service-id="' . $result[$i]->id . '" data-status="0" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
             }
+
+            if ($result[$i]->visibility == 1)
+                $btnChangeVisibility = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-visibility" title="' . lang('Text.change_visibility') . '"checked="" data-service-id="' . $result[$i]->id . '" data-visibility="0"></div>';
 
             $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-service" data-service-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
 
@@ -137,6 +141,7 @@ class ControlPanel extends BaseController
             $col['time'] = $result[$i]->time;
             $col['desc'] = $result[$i]->description;
             $col['status'] = $status;
+            $col['visibility'] = $btnChangeVisibility;
             $col['action'] = $btnChangeStatus . $btnEdit;
 
             $row[$i] =  $col;
@@ -276,6 +281,29 @@ class ControlPanel extends BaseController
 
         return json_encode($result);
     } // ok
+
+    public function changeServiceVisibility()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $serviceID = htmlspecialchars(trim($this->objRequest->getPost('serviceID')));
+        $visibility = htmlspecialchars(trim($this->objRequest->getPost('visibility')));
+
+        $data = array();
+        $data['visibility'] = $visibility;
+
+        $result = $this->objMainModel->objUpdate('service', $data, $serviceID);
+
+        return json_encode($result);
+    }
 
     ##############################
     ## Section Customer
