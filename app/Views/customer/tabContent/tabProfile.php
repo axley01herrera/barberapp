@@ -33,7 +33,7 @@
                         <div class="image-input-wrapper w-125px h-125px" style="background-image: url(data:image/png;base64,<?php echo base64_encode($customer[0]->avatar); ?>)"></div>
                     <?php } ?>
                     <!-- Edit Button -->
-                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cambiar Avatar">
+                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.change_avatar')?>">
                         <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
                         <!-- Inputs -->
                         <input id="avatar<?php echo $uniqid; ?>" type="file" name="avatar" accept=".png, .jpg, .jpeg">
