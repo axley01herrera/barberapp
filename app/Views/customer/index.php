@@ -22,7 +22,7 @@
 
                         <!-- Tab item -->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-appointents" class="nav-link text-active-primary pb-4 tab-profile active" data-bs-toggle="tab" href="#" aria-selected="true" role="tab"><?php echo lang('Text.appointents'); ?></a>
+                            <a id="tab-appointments" class="nav-link text-active-primary pb-4 tab-profile active" data-bs-toggle="tab" href="#" aria-selected="true" role="tab"><?php echo lang('Text.appointments'); ?></a>
                         </li>
 
                         <!-- Tab item -->
@@ -45,7 +45,7 @@
 </div>
 
 <script>
-    var tab = "tab-appointents";
+    var tab = "tab-appointments";
     customerTabContent();
 
     function customerTabContent() {

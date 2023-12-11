@@ -12,7 +12,7 @@
     </div>
     <div class="card-body p-9 pt-4">
         <div class="row">
-            <?php var_dump($employees); ?>
+            <?php var_dump($services); ?>
         </div>
     </div>
 </div>

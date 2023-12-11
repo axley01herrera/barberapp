@@ -228,9 +228,9 @@ class ControlPanelModel extends Model
     public function removeEmployeeService($employeeID, $serviceID)
     {
         $query = $this->db->table('employee_service')
-        ->where('employeeID', $employeeID)
-        ->where('serviceID', $serviceID)
-        ->delete();
+            ->where('employeeID', $employeeID)
+            ->where('serviceID', $serviceID)
+            ->delete();
 
         if ($query == true) {
             $return['error'] = 0;
@@ -246,15 +246,28 @@ class ControlPanelModel extends Model
     public function getActiveServices()
     {
         $query = $this->db->table('service')
-        ->where('status', 1);
+            ->where('status', 1);
+
         $data = $query->get()->getResult();
+
         return $data;
     } // ok
+
+    public function getActiveAndPublicServices()
+    {
+        $query = $this->db->table('service')
+            ->where('status', 1)
+            ->where('visibility', 1);
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    }
 
     public function getActiveEmployees()
     {
         $query = $this->db->table('employee')
-        ->where('status', 1);
+            ->where('status', 1);
 
         $data = $query->get()->getResult();
 
