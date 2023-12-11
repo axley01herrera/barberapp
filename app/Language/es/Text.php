@@ -73,7 +73,10 @@ $lang['day'] = "Día Laboral";
 $lang['start_time'] = "Inicio de Jornada";
 $lang['end_time'] = "Fin de la Jornada";
 $lang['important'] = "Importante";
-$lang['social_network'] = "Redes Sociales";
+$lang['social_network'] = "Red Social";
+$lang['url'] = "URL";
+$lang['social_networks'] = "Redes Sociales";
+$lang['add_social_network'] = "Agregue sus Redes Sociales";
 $lang['social_network_msg'] = 'Conectar con tus redes sociales es una excelente forma de mejorar la interacción con los clientes.';
 $lang['thanks'] = "Gracias";
 $lang['success_verified_email'] = "Su cuenta de correo electrónico ha quedado verficada";
@@ -85,6 +88,7 @@ $lang['required_values'] = "Hay campos requeridos";
 $lang['password_does_not_match'] = "Las contraseñas no coinciden";
 $lang['invalid_current_password'] = "Clave actual incorrecta";
 $lang['invalid_email_format'] = "Rectifique el formato del correo electrónico";
+$lang['invalid_url_format'] = "La url es incorrecta";
 $lang['are_you_sure'] = "Está seguro de esta acción";
 $lang['not_revert_this'] = "Esta acción no es reversible";
 $lang['yes_remove'] = "Sí, eliminar";
@@ -99,8 +103,15 @@ $lang['invalid_credentials'] = 'Rectifique sus Credenciales';
 $lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
 $lang['invalid_password'] = "Contraseña Incorrecta";
 $lang['email_not_check'] = "No Verificado";
-$lang['email_check'] = "Verificado"; 
-$lang['active_inactive'] = "Desactivar / Activar"; 
+$lang['email_check'] = "Verificado";
+$lang['active_inactive'] = "Desactivar / Activar";
+$lang['editing'] = "Editando";
+
+#Social Networks
+$lang['facebook'] = "Facebook";
+$lang['google'] = "Google";
+$lang['twitter'] = "Twitter";
+$lang['linkedIn'] = "LinkedIn";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -244,6 +255,8 @@ $lang['cp_profile_data_updated'] = "Descripción del Negocio Actualizada";
 $lang['cp_profile_access_key_updated'] = "Clave de Acceso Actualizada";
 $lang['cp_profile_config_updated'] = "Datos de Configuración Actualizados";
 $lang['cp_profile_public_info_msg'] = "La información proporcionada en este formulario será compartida con todos tus clientes y empleados en otras partes del sistema. Por ende, se considera de carácter público.";
+$lang['cp_profile_social_network_success_created'] = "Red Social Añadida";
+$lang['cp_profile_social_network_success_updated'] = "Red Social Actualizada";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";
