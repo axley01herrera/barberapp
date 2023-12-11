@@ -43,8 +43,6 @@ $routes->post('ControlPanel/createService', 'ControlPanel::createService');
 $routes->post('ControlPanel/updateService', 'ControlPanel::updateService');
 $routes->post('ControlPanel/changeServiceStatus', 'ControlPanel::changeServiceStatus');
 $routes->post('ControlPanel/changeServiceVisibility', 'ControlPanel::changeServiceVisibility');
-$routes->post('ControlPanel/addSocialNetwork', 'ControlPanel::addSocialNetwork');
-$routes->post('ControlPanel/addSocialNetworkProcess', 'ControlPanel::addSocialNetworkProcess');
 
 # ControlPanel -> Customers
 $routes->get('ControlPanel/customers', 'ControlPanel::customers');
@@ -86,6 +84,9 @@ $routes->post('ControlPanel/removeAvatarProfile', 'ControlPanel::removeAvatarPro
 $routes->post('ControlPanel/updateProfile', 'ControlPanel::updateProfile');
 $routes->post('ControlPanel/changeAccessKey', 'ControlPanel::changeAccessKey');
 $routes->post('ControlPanel/updateConfig', 'ControlPanel::updateConfig');
+$routes->post('ControlPanel/addSocialNetwork', 'ControlPanel::addSocialNetwork');
+$routes->post('ControlPanel/addSocialNetworkProcess', 'ControlPanel::addSocialNetworkProcess');
+$routes->post('ControlPanel/getSocialNetworks', 'ControlPanel::getSocialNetworks');
 
 ############################## 
 ## Customer Routes

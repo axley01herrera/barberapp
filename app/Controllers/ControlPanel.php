@@ -121,14 +121,12 @@ class ControlPanel extends BaseController
 
         for ($i = 0; $i < $totalRows; $i++) {
 
-            $status = '<span class="badge small badge-danger">' . lang('Text.inactive') . '</span>';
+            $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-service-id="' . $result[$i]->id . '" data-status="1"></div>';
             $btnChangeVisibility = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-visibility" title="' . lang('Text.change_visibility') . '" data-service-id="' . $result[$i]->id . '" data-visibility="1"></div>';
-            $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-success m-1 change-status" data-service-id="' . $result[$i]->id . '" data-status="1" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
 
-            if ($result[$i]->status == 1) {
-                $status = '<span class="badge small badge-success">' . lang('Text.active') . '</span>';
-                $btnChangeStatus = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 change-status" data-service-id="' . $result[$i]->id . '" data-status="0" title="' . lang('Text.change_status') . '"><span class="bi bi-arrow-clockwise"></span></button>';
-            }
+            if ($result[$i]->status == 1)
+                $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-service-id="' . $result[$i]->id . '" data-status="0"></div>';
+
 
             if ($result[$i]->visibility == 1)
                 $btnChangeVisibility = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-visibility" title="' . lang('Text.change_visibility') . '"checked="" data-service-id="' . $result[$i]->id . '" data-visibility="0"></div>';
@@ -142,7 +140,7 @@ class ControlPanel extends BaseController
             $col['desc'] = $result[$i]->description;
             $col['status'] = $status;
             $col['visibility'] = $btnChangeVisibility;
-            $col['action'] = $btnChangeStatus . $btnEdit;
+            $col['action'] = $btnEdit;
 
             $row[$i] =  $col;
         }
@@ -348,11 +346,6 @@ class ControlPanel extends BaseController
         $totalRows = sizeof($result);
 
         for ($i = 0; $i < $totalRows; $i++) {
-
-            $emailStatus = '<span class="badge small badge-danger"><i class="bi bi-envelope-dash text-dark me-1" title="' . lang('Text.not_verified') . '"></i></span>';
-            if ($result[$i]->emailVerified == 1)
-                $emailStatus = '<span class="badge small badge-success"><i class="bi bi-envelope-check text-dark me-1" title="' . lang('Text.verified') . '"></i></span>';
-
             $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if ($result[$i]->status == 1)
@@ -372,7 +365,6 @@ class ControlPanel extends BaseController
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
-            $col['emailVerified'] = $emailStatus;
             $col['action'] = $btnProfile . $btnEdit . $btnDelete;
 
             $row[$i] =  $col;
@@ -1444,10 +1436,19 @@ class ControlPanel extends BaseController
             $response = $this->objMainModel->objUpdate('company_social_network', $data, $id);
         elseif ($this->objRequest->getPost('action') == 'changeStatus') #Change Status
             $response = $this->objMainModel->objUpdate('company_social_network', array('status' => $status), $id);
-        elseif ($this->objRequest->getPost('action') == 'delete') # Delete
-            $response = $this->objMainModel->objDelete('company_social_network', $id);
 
         return json_encode($response);
+    }
+
+    public function getSocialNetworks()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
+
+        $data['socialNetworks'] = $this->objMainModel->objData('company_social_network');
+
+        return view('controlPanel/companyProfile/socialNetworks', $data);
     }
 
     ##############################

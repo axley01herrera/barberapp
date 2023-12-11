@@ -63,6 +63,7 @@
                         if (response.error == 0) {
                             simpleSuccessAlert("<?php echo lang('Text.cp_profile_social_network_success_created'); ?>");
                             $('.form-control').val('');
+                            getSocialNetworks();
                         } else {
                             if (response.msg == "SESSION_EXPIRED") {
                                 window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
@@ -104,9 +105,7 @@
                         if (response.error == 0) {
                             simpleSuccessAlert("<?php echo lang('Text.cp_profile_social_network_success_updated'); ?>");
                             $('#modal').modal('hide');
-                            setTimeout(() => {
-                                window.location.reload();
-                            }, "2000");
+                            getSocialNetworks();
                         } else {
                             if (response.msg == "SESSION_EXPIRED") {
                                 window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
