@@ -105,9 +105,9 @@ class Customer extends BaseController
         $view = "";
 
         switch ($tab) {
-            case 'tab-appointents':
+            case 'tab-appointments':
                 # page
-                $view = "customer/tabContent/tabAppointents";
+                $view = "customer/tabContent/tabappointments";
                 break;
             case 'tab-account':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
@@ -268,6 +268,7 @@ class Customer extends BaseController
     {
         $data = array();
         # data
+        $data['services'] = $this->objControlPanelModel->getActiveAndPublicServices();
         $data['employees'] = $this->objControlPanelModel->getActiveEmployees();
 
         # page

@@ -10,7 +10,6 @@ $lang['languaje'] = "Idioma";
 $lang['theme'] = "Tema";
 $lang['theme_light'] = "Claro";
 $lang['theme_dark'] = "Oscuro";
-$lang['avatar'] = "Avatar";
 $lang['password'] = "Contraseña";
 $lang['password_repeat'] = "Repita su Contraseña";
 $lang['password_not_match'] = "Las contraseñas no coinciden";
@@ -106,6 +105,7 @@ $lang['email_not_check'] = "No Verificado";
 $lang['email_check'] = "Verificado";
 $lang['active_inactive'] = "Desactivar / Activar";
 $lang['editing'] = "Editando";
+$lang['appointments'] = "Citas";
 
 #Social Networks
 $lang['facebook'] = "Facebook";

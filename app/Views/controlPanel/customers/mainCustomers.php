@@ -40,7 +40,7 @@
                         <table id="dt-customers" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
                             <thead>
                                 <tr class="fs-6 fw-bold">
-                                    <th class="p-2"><?php echo lang('Text.avatar'); ?></th>
+                                    <th class="p-2"></th>
                                     <th class="p-2"><?php echo lang('Text.dt_customer_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_customer_last_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_customer_email'); ?></th>
