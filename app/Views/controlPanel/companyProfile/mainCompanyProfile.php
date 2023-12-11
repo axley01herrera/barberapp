@@ -128,7 +128,7 @@
                                             <?php } ?>
                                             <div class="d-flex flex-column">
                                                 <a href="<?php echo $sn->url; ?>" class="fs-5 text-dark text-hover-primary fw-bold" target="_blank"><?php echo $sn->type; ?></a>
-                                                <p class="cursor-pointer social-action fs-9" data-action="edit" data-socialNetwork-id="<?php echo $sn->id; ?>"><?php echo $sn->url; ?></p>
+                                                <p class="cursor-pointer social-action fs-9" data-action="edit" data-socialNetwork-id="<?php echo $sn->id; ?>" title="<?php echo lang('Text.edit'); ?>"><?php echo $sn->url; ?></p>
                                                 <div class="fs-6 fw-semibold text-muted" hidden>Plan properly your workflow</div>
                                             </div>
                                         </div>
@@ -243,7 +243,6 @@
                         data: {
                             'id': $(this).attr('data-socialNetwork-id'),
                             'action': $(this).attr('data-action'),
-                            'status': $(this).attr('data-status'),
                         },
                         dataType: datatype,
                         success: function(response) {

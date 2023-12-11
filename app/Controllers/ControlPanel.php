@@ -1428,7 +1428,7 @@ class ControlPanel extends BaseController
         #params
         $socialNetwork = $this->objRequest->getPost('name');
         $url = $this->objRequest->getPost('url');
-        #Case Delete and Update
+        #Case Delete, Update and Change Status
         $id = $this->objRequest->getPost('id');
         #Case Change Status
         $status = $this->objRequest->getPost('status');
@@ -1438,13 +1438,13 @@ class ControlPanel extends BaseController
         $data['type'] = $socialNetwork;
         $data['url'] = $url;
 
-        if ($this->objRequest->getPost('action') == 'create')
+        if ($this->objRequest->getPost('action') == 'create') #Create
             $response = $this->objMainModel->objCreate('company_social_network', $data);
-        elseif ($this->objRequest->getPost('action') == 'update')
+        elseif ($this->objRequest->getPost('action') == 'update') #Update
             $response = $this->objMainModel->objUpdate('company_social_network', $data, $id);
-        elseif ($this->objRequest->getPost('action') == 'changeStatus')
+        elseif ($this->objRequest->getPost('action') == 'changeStatus') #Change Status
             $response = $this->objMainModel->objUpdate('company_social_network', array('status' => $status), $id);
-        elseif ($this->objRequest->getPost('action') == 'delete')
+        elseif ($this->objRequest->getPost('action') == 'delete') # Delete
             $response = $this->objMainModel->objDelete('company_social_network', $id);
 
         return json_encode($response);

@@ -106,6 +106,7 @@ $lang['email_not_check'] = "No Verificado";
 $lang['email_check'] = "Verificado";
 $lang['active_inactive'] = "Desactivar / Activar";
 $lang['editing'] = "Editando";
+$lang['edit'] = "Editar";
 
 #Social Networks
 $lang['facebook'] = "Facebook";
