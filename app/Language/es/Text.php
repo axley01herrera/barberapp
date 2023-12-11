@@ -106,6 +106,9 @@ $lang['email_check'] = "Verificado";
 $lang['active_inactive'] = "Desactivar / Activar";
 $lang['editing'] = "Editando";
 $lang['appointments'] = "Citas";
+$lang['remove_avatar'] = "Remover";
+$lang['change_avatar'] = 'Cambiar';
+
 
 #Social Networks
 $lang['facebook'] = "Facebook";
