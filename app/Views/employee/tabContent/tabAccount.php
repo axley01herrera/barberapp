@@ -35,15 +35,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 mt-5">
-                <!-- Status Employee-->
-                <div class="form-check form-switch form-check-custom form-check-solid mt-2">
-                    <input type="checkbox" id="cb-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.change_status'); ?>" disabled="" <?php if ($employee[0]->status == 1) echo 'checked=""'; ?> data-status="<?php echo $employee[0]->status; ?>">
-                    <label class="fs-6 fw-semibold ms-5"> <?php echo lang('Text.active_inactive'); ?></label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-12 text-end mt-5">
                 <button hidden="" type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
                 <button hidden="" type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_update'); ?></button>
@@ -64,13 +55,6 @@
 
     $('#btn-cancel<?php echo $uniqid; ?>').on('click', function() { // Cancel Edit
         employeeProfileTabContent();
-    });
-
-    $('#cb-status<?php echo $uniqid; ?>').on('click', function() {
-        if ($(this).attr('data-status') == 1)
-            $(this).attr('data-status', 0);
-        else
-            $(this).attr('data-status', 1);
     });
 
     $('#btn-update<?php echo $uniqid; ?>').on('click', function() {
@@ -94,13 +78,11 @@
                     $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
                     $.ajax({
                         type: "post",
-                        url: "<?php echo base_url('ControlPanel/updateEmployeeAccount'); ?>",
+                        url: "<?php echo base_url('Employee/updateEmployeeAccount'); ?>",
                         data: {
-                            'employeeID': <?php echo $employeeID; ?>,
                             'email': $('#txt-email<?php echo $uniqid; ?>').val(),
                             'password': $('#txt-newPassword<?php echo $uniqid; ?>').val(),
                             'currentPassword': $('#txt-password<?php echo $uniqid; ?>').val(),
-                            'status': $('#cb-status<?php echo $uniqid; ?>').attr('data-status')
                         },
                         dataType: "json",
                         success: function(response) {
@@ -117,7 +99,7 @@
                                     globalError();
 
                             } else
-                                window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                                window.location.href = "<?php echo base_url('Home/signInEmployee?session=expired'); ?>";
 
                             $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
                         },

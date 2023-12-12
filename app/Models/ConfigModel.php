@@ -17,7 +17,7 @@ class ConfigModel extends Model
     public function getConfig($id)
     {
         $query = $this->db->table('config')
-        ->where('id', $id);
+            ->where('id', $id);
 
         return $query->get()->getResult();
     }
@@ -25,7 +25,7 @@ class ConfigModel extends Model
     public function login($key)
     {
         $query = $this->db->table('config')
-        ->where('id', 1);
+            ->where('id', 1);
 
         $data = $query->get()->getResult();
 
@@ -41,4 +41,24 @@ class ConfigModel extends Model
             return $result;
         }
     } // ok
+
+    public function loginEmployee($password, $id)
+    {
+        $query = $this->db->table('employee')
+            ->where('id', $id);
+
+        $data = $query->get()->getResult();
+
+        if (password_verify($password, $data[0]->password)) {
+            $result = array();
+            $result['error'] = 0;
+            return $result;
+        } else {
+            $result = array();
+            $result['error'] = 1;
+            $result['code'] = "invalid access key";
+            $result['msg'] = lang('Text.cp_auth_invalid_password');
+            return $result;
+        }
+    }
 }

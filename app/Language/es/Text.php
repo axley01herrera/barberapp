@@ -108,8 +108,9 @@ $lang['editing'] = "Editando";
 $lang['edit'] = "Editar";
 $lang['appointments'] = "Citas";
 $lang['remove_avatar'] = "Remover";
-$lang['change_avatar'] = 'Cambiar';
-
+$lang['change_avatar'] = 'Cambiar'; 
+$lang['profile_data_updated'] = 'Perfil Actualizado';
+$lang['account_data_updated'] = 'Cuenta Actualizada';
 
 #Social Networks
 $lang['facebook'] = "Facebook";
@@ -143,12 +144,12 @@ $lang['registration_success_create_account'] = 'Registro Completado';
 
 # Home -> Signin
 $lang['sign_title'] = 'Inicio de Sesión';
-$lang['sign_subtitle'] = 'Introdusca sus Credenciales';
+$lang['sign_subtitle'] = 'Introduzca sus Credenciales';
 $lang['sign_forgot_pass'] = 'Olvidé mi Contraseña';
 
 # Home -> Recover Password
 $lang['recover_title'] = 'Recupera tu Contraseña';
-$lang['recover_subtitle'] = 'Introdusca su Correo Electrónico';
+$lang['recover_subtitle'] = 'Introduzca su Correo Electrónico';
 $lang['recover_success_send_email'] = 'Correo Electrónico de Recuperación Enviado';
 $lang['recover_email_not_found'] = 'Correo Electrónico no Registrado';
 

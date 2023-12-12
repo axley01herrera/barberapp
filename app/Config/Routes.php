@@ -106,3 +106,18 @@ $routes->post('Customer/createAppointment', 'Customer::createAppointment');
 ##############################
 
 $routes->get('Employee/index', 'Employee::index');
+$routes->get('Employee/employeeProfile', 'Employee::employeeProfile');
+$routes->post('Employee/showModalEmployee', 'Employee::showModalEmployee');
+$routes->post('Employee/changeEmployeeStatus', 'Employee::changeEmployeeStatus');
+$routes->post('Employee/employeeProfileTabContent', 'Employee::employeeProfileTabContent');
+$routes->post('Employee/employeeService', 'Employee::employeeService');
+$routes->post('Employee/updateEmployeeAccount', 'Employee::updateEmployeeAccount');
+$routes->post('Employee/updateEmployeeProfile', 'Employee::updateEmployeeProfile');
+$routes->post('Employee/reloadEmployeeInfo', 'Employee::reloadEmployeeInfo');
+$routes->post('Employee/removeEmployeeAvatarProfile', 'Employee::removeEmployeeAvatarProfile');
+$routes->post('Employee/uploadEmployeeAvatarProfile', 'Employee::uploadEmployeeAvatarProfile');
+$routes->post('Employee/updateBussinessDay', 'Employee::updateBussinessDay');
+$routes->post('Employee/modalTime', 'Employee::modalTime');
+$routes->post('Employee/createTime', 'Employee::createTime');
+$routes->post('Employee/updateTime', 'Employee::updateTime');
+$routes->post('Employee/deleteTime', 'Employee::deleteTime');

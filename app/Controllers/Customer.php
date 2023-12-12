@@ -152,7 +152,7 @@ class Customer extends BaseController
         }
 
         $dataAccount = array();
-        if (!empty($newPassword))
+        if (!empty($this->objRequest->getPost('password')))
             $dataAccount['password'] = $newPassword;
 
         if ($this->objSession->get('user')['email'] !== $email) {
@@ -174,7 +174,7 @@ class Customer extends BaseController
             $dataEmail = array();
             $dataEmail['pageTitle'] = $this->profile[0]->companyName;
             $dataEmail['person'] = $customer[0]->name . ' ' . $customer[0]->lastName;
-            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'].'&type=customer';
+            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'] . '&type=customer';
             $dataEmail['companyPhone'] = $this->profile[0]->phone1;
             $dataEmail['companyEmail'] = $this->profile[0]->email;
 

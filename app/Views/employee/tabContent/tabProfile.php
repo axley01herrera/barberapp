@@ -131,7 +131,6 @@
 <script>
     var lang = "<?php echo $config[0]->lang; ?>";
     var dateLabel = "";
-    var employeeID = "<?php echo $employeeID; ?>";
 
     if (lang == 'es')
         dateLabel = "d-m-Y";
@@ -150,10 +149,9 @@
     imageInput.on("kt.imageinput.change", function() { // Upload On Change
         let formData = new FormData();
         formData.append('file', $("#avatar<?php echo $uniqid; ?>")[0].files[0]);
-        formData.append('employeeID', employeeID);
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('ControlPanel/uploadEmployeeAvatarProfile'); ?>",
+            url: "<?php echo base_url('Employee/uploadEmployeeAvatarProfile'); ?>",
             data: formData,
             dataType: "json",
             cache: false,
@@ -177,10 +175,7 @@
     imageInput.on("kt.imageinput.cancel", function() { // Remove On Cancel
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('ControlPanel/removeEmployeeAvatarProfile'); ?>",
-            data: {
-                'employeeID': employeeID
-            },
+            url: "<?php echo base_url('Employee/removeEmployeeAvatarProfile'); ?>",
             dataType: "json",
             success: function(response) {
                 if (response.error === 0) {
@@ -189,7 +184,7 @@
                 } else if (response.error === 1)
                     globalError();
                 else
-                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    window.location.href = "<?php echo base_url('Home/signInEmployee?session=expired'); ?>";
             },
             error: function(error) {
                 globalError();
@@ -200,10 +195,7 @@
     imageInput.on("kt.imageinput.remove", function() { // Remove On Delete
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('ControlPanel/removeEmployeeAvatarProfile'); ?>",
-            data: {
-                'employeeID': employeeID
-            },
+            url: "<?php echo base_url('Employee/removeEmployeeAvatarProfile'); ?>",
             dataType: "json",
             success: function(response) {
                 if (response.error === 0) {
@@ -212,7 +204,7 @@
                 } else if (response.error === 1)
                     globalError();
                 else
-                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    window.location.href = "<?php echo base_url('Home/signInEmployee?session=expired'); ?>";
             },
             error: function(error) {
                 globalError();
@@ -241,9 +233,8 @@
             $('#btn-update<?php echo $uniqid; ?>').attr('disabled', true);
             $.ajax({
                 type: "post",
-                url: "<?php echo base_url('ControlPanel/updateEmployeeProfile'); ?>",
+                url: "<?php echo base_url('Employee/updateEmployeeProfile'); ?>",
                 data: {
-                    'employeeID': employeeID,
                     'name': $('#txt-name<?php echo $uniqid; ?>').val(),
                     'lastName': $('#txt-lastName<?php echo $uniqid; ?>').val(),
                     'phone': $('#txt-phone<?php echo $uniqid; ?>').val(),
@@ -265,7 +256,7 @@
                     } else if (response.error == 1)
                         globalError();
                     else
-                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                        window.location.href = "<?php echo base_url('Home/signInEmployee?session=expired'); ?>";
 
                     $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
                 },

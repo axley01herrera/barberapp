@@ -1058,7 +1058,7 @@ class ControlPanel extends BaseController
         }
 
         $dataAccount = array();
-        if (!empty($newPassword))
+        if (!empty($this->objRequest->getPost('password')))
             $dataAccount['password'] = $newPassword;
 
         if ($employee[0]->email !== $email) {

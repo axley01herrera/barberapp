@@ -73,7 +73,7 @@
             <div id="app-modal"></div>
             <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
-             
+                    <?php echo view($page); ?>
                 </div>
             </div>
             <!-- Footer -->
