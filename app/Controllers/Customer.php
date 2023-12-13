@@ -51,6 +51,9 @@ class Customer extends BaseController
 
         # Set TimeZone
         date_default_timezone_set($this->config[0]->timezone);
+
+        # Load Helpers
+        helper('Site');
     }
 
     public function index()
@@ -266,13 +269,37 @@ class Customer extends BaseController
 
     public function createAppointment()
     {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
+            return view('customerLogout');
+
         $data = array();
         # data
         $data['services'] = $this->objControlPanelModel->getActiveAndPublicServices();
         $data['employees'] = $this->objControlPanelModel->getActiveEmployees();
-
+        $data['uniqid'] = uniqid();
+        # config
+        $data['config'] = $this->config;
         # page
-        $view = 'customer/createAppointment';
+        $view = 'customer/createAppointment/mainCreateAppointment';
+
+        return view($view, $data);
+    }
+
+    public function employeesByServices()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
+            return view('customerLogout');
+
+        # params
+        $services = $this->objRequest->getPost('services');
+
+        $data = array();
+        # data
+        $data['employees'] = $this->objControlPanelModel->getEmployeesByServices($services);
+        # page
+        $view = 'customer/createAppointment/employees';
 
         return view($view, $data);
     }

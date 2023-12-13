@@ -111,8 +111,6 @@ $lang['remove_avatar'] = "Remover";
 $lang['change_avatar'] = 'Cambiar'; 
 $lang['profile_data_updated'] = 'Perfil Actualizado';
 $lang['account_data_updated'] = 'Cuenta Actualizada';
-
-#Social Networks
 $lang['facebook'] = "Facebook";
 $lang['google'] = "Google";
 $lang['twitter'] = "Twitter";
@@ -133,6 +131,8 @@ $lang['btn_send_recover_pass_email'] = "Enviar Correo de Recuperación";
 $lang['btn_create_time'] = "Crear Turno";
 $lang['btn_add'] = "Agregar";
 $lang['btn_create_appointment'] = "Crear Cita";
+$lang['btn_next'] = "Siguiente";
+$lang['btn_back'] = "Atrás";
 
 # Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
@@ -171,7 +171,7 @@ $lang['top_bar_times'] = "Turnos";
 $lang['top_bar_profile'] = "Perfil";
 $lang['top_bar_logout'] = "Salir";
 
-# Control Panel Customers
+# Customers
 $lang['cust_btn_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_update'] = "Actualizando Cliente";
@@ -195,8 +195,15 @@ $lang['cust_appointment_title'] = 'Citas del Cliente';
 $lang['cust_appointment_subtitle'] = 'Administración de Citas.';
 $lang['cust_new_appointment'] = 'Nueva Cita';
 $lang['cust_new_appointment_subtitle'] = 'Crea tu Cita';
+$lang['cust_new_appointment_step1'] = 'Paso 1';
+$lang['cust_new_appointment_step1_sub'] = 'Selecciona uno o más servicios';
+$lang['cust_new_appointment_step2'] = 'Paso 2';
+$lang['cust_new_appointment_step2_sub'] = 'Selecciona una fecha';
+$lang['cust_new_appointment_invalid_date'] = 'No se pueden reservar citas en la fecha seleccionada';
+$lang['cust_new_appointment_step3'] = 'Paso 3';
+$lang['cust_new_appointment_step3_sub'] = 'Selecciona un empleado para ver su disponibilidad';
 
-# Control Panel -> Employees
+# Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";
 $lang['emp_modal_title_new'] = "Nuevo Empleado";
 $lang['emp_modal_title_update'] = "Actualizando Empleado";

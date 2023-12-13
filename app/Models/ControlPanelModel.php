@@ -262,7 +262,7 @@ class ControlPanelModel extends Model
         $data = $query->get()->getResult();
 
         return $data;
-    }
+    } // ok
 
     public function getActiveEmployees()
     {
@@ -273,4 +273,24 @@ class ControlPanelModel extends Model
 
         return $data;
     } // ok
+
+    public function getEmployeesByServices($services)
+    {
+        $data = array();
+
+        if (!empty($services)) {
+            $query = $this->db->table('employee_service es');
+            $query->select('
+            e.id AS employeeID,
+            ');
+            $query->whereIn('serviceID', $services);
+            $query->join('employee e', 'e.id = es.employeeID');
+            $query->join('service s', 's.id = es.serviceID');
+            $query->groupBy('e.id');
+
+            $data = $query->get()->getResult();
+        }
+
+        return $data;
+    }
 }

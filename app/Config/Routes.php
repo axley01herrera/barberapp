@@ -100,6 +100,7 @@ $routes->post('Customer/uploadAvatarProfile', 'Customer::uploadAvatarProfile');
 $routes->post('Customer/removeAvatarProfile', 'Customer::removeAvatarProfile');
 $routes->post('Customer/reloadCustomerInfo', 'Customer::reloadCustomerInfo');
 $routes->post('Customer/createAppointment', 'Customer::createAppointment');
+$routes->post('Customer/employeesByServices', 'Customer::employeesByServices');
 
 ############################## 
 ## Employee Routes
