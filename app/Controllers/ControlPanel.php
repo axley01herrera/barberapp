@@ -101,65 +101,20 @@ class ControlPanel extends BaseController
         return view('ControlPanel/mainCpanel', $data);
     } // ok
 
-    public function processingService()
+    public function getServices()
     {
-        $dataTableRequest = $_REQUEST;
-
-        $params = array();
-        $params['draw'] = $dataTableRequest['draw'];
-        $params['start'] = $dataTableRequest['start'];
-        $params['length'] = $dataTableRequest['length'];
-        $params['search'] = $dataTableRequest['search']['value'];
-        $params['sortColumn'] = $dataTableRequest['order'][0]['column'];
-        $params['sortDir'] = $dataTableRequest['order'][0]['dir'];
-
-        $row = array();
-        $totalRecords = 0;
-
-        $result = $this->objControlPanelModel->getServiceProcessingData($params);
-        $totalRows = sizeof($result);
-
-        for ($i = 0; $i < $totalRows; $i++) {
-
-            $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-service-id="' . $result[$i]->id . '" data-status="1"></div>';
-            $btnChangeVisibility = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-visibility" title="' . lang('Text.change_visibility') . '" data-service-id="' . $result[$i]->id . '" data-visibility="1"></div>';
-
-            if ($result[$i]->status == 1)
-                $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-service-id="' . $result[$i]->id . '" data-status="0"></div>';
-
-
-            if ($result[$i]->visibility == 1)
-                $btnChangeVisibility = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-visibility" title="' . lang('Text.change_visibility') . '"checked="" data-service-id="' . $result[$i]->id . '" data-visibility="0"></div>';
-
-            $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-service" data-service-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
-
-            $col = array();
-            $col['title'] = $result[$i]->title;
-            $col['price'] = getMoneyFormat($this->config[0]->currency, $result[$i]->price);
-            $col['time'] = $result[$i]->time;
-            $col['desc'] = $result[$i]->description;
-            $col['status'] = $status;
-            $col['visibility'] = $btnChangeVisibility;
-            $col['action'] = $btnEdit;
-
-            $row[$i] =  $col;
-        }
-
-        if ($totalRows > 0) {
-            if (empty($params['search']))
-                $totalRecords = $this->objControlPanelModel->getTotalService();
-            else
-                $totalRecords = $totalRows;
-        }
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
 
         $data = array();
-        $data['draw'] = $dataTableRequest['draw'];
-        $data['recordsTotal'] = intval($totalRecords);
-        $data['recordsFiltered'] = intval($totalRecords);
-        $data['data'] = $row;
+        # config
+        $data['config'] = $this->config;
+        # data
+        $data['services'] = $this->objMainModel->objData('service');
 
-        return json_encode($data);
-    } // ok
+        return view('controlPanel/services/services', $data);
+    }
 
     public function showModalService()
     {

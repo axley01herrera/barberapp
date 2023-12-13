@@ -78,7 +78,7 @@
                     if (response.error === 0) {
                         simpleSuccessAlert(msg);
                         if (callModalFrom == "main-service") {
-                            dtService.draw();
+                            getServices();
                             $('#modal').modal('hide');
                         }
                     } else if (response.error === 1) {

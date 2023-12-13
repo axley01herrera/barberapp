@@ -15,44 +15,7 @@
     </div>
     <!-- Page Content -->
     <div id="kt_app_content" class="app-content flex-column-fluid">
-        <!-- Page Container -->
-        <div id="kt_app_content_container" class="app-container container-xxl">
-            <!-- Card -->
-            <div class="card mb-5 mb-xl-10 mt-5">
-                <!-- Card Header -->
-                <div class="card-header border-0">
-                    <!-- Card Title -->
-                    <div class="card-title">
-                        <div class="d-flex align-items-center position-relative ">
-                            <h5></h5>
-                        </div>
-                    </div>
-                    <!-- Card Toolbar -->
-                    <div class="card-toolbar">
-                        <div id="search-service"></div>
-                    </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body pb-0">
-                    <!-- Data Table -->
-                    <div class="table-responsive">
-                        <table id="dt-service" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
-                            <thead>
-                                <tr class="fs-6 fw-bold">
-                                    <th class="p-2"><?php echo lang('Text.dt_serv_title'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_serv_price'); ?></th>
-                                    <th class="text-center p-2"><?php echo lang('Text.dt_serv_time'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_serv_dec'); ?></th>
-                                    <th class="text-center p-2"><?php echo lang('Text.dt_serv_status'); ?></th>
-                                    <th class="text-center p-2"><?php echo lang('Text.dt_serv_visibility'); ?></th>
-                                    <th class="text-center p-2"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="services"></div>
     </div>
 </div>
 
@@ -64,6 +27,22 @@
         dtLang = "<?php echo base_url('assets/js/dataTable/es.json'); ?>";
     else if (lang == "en")
         dtLang = "<?php echo base_url('assets/js/dataTable/en.json'); ?>";
+
+    getServices();
+
+    function getServices() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('ControlPanel/getServices'); ?>",
+            dataType: "html",
+            success: function(response) {
+                $('#services').html(response);
+            },
+            error: function(error) {
+                globalError();
+            }
+        });
+    };
 
     $('#btn-new-serv<?php echo $uniqid; ?>').on('click', function() { // Create Service
         $('#btn-new-serv<?php echo $uniqid; ?>').attr('disabled', true);
@@ -84,139 +63,4 @@
             }
         });
     }); // ok
-
-    var dtService = $('#dt-service').DataTable({ // Data Table
-        dom: 'RfrtlpiB',
-        processing: true,
-        serverSide: true,
-        stateSave: true,
-        pageLength: 10,
-        language: {
-            url: dtLang
-        },
-        buttons: [],
-        ajax: {
-            url: "<?php echo base_url('ControlPanel/processingService'); ?>",
-            type: "POST"
-        },
-        order: [
-            [0, 'asc']
-        ],
-        columns: [{
-                data: 'title',
-                class: 'dt-vertical-align p-2'
-            },
-            {
-                data: 'price',
-                class: 'dt-vertical-align p-2'
-            },
-            {
-                data: 'time',
-                class: 'dt-vertical-align text-center p-2'
-            },
-            {
-                data: 'desc',
-                class: 'dt-vertical-align p-2',
-                orderable: false,
-                searchable: false
-            },
-            {
-                data: 'status',
-                class: 'dt-vertical-align text-center p-2',
-                searchable: false
-            },
-            {
-                data: 'visibility',
-                class: 'dt-vertical-align text-center p-2',
-                searchable: false
-            },
-            {
-                data: 'action',
-                class: 'dt-vertical-align text-center p-2',
-                orderable: false,
-                searchable: false
-            },
-        ],
-        initComplete: function(settings, json) {
-            $('#search-service').html('');
-            $('#dt-service_filter').appendTo('#search-service');
-        }
-    }); // ok
-
-    dtService.on('click', '.edit-service', function() { // Edit Service
-        let id = $(this).attr('data-service-id');
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url('ControlPanel/showModalService'); ?>",
-            data: {
-                'id': id,
-                'action': "update"
-            },
-            dataType: "html",
-            success: function(response) {
-                $('#app-modal').html(response);
-            },
-            error: function() {
-                globalError();
-            }
-        });
-    }); // ok
-
-    dtService.on('click', '.change-status', function() {
-        let serviceID = $(this).attr('data-service-id');
-        let status = $(this).attr('data-status');
-
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url('ControlPanel/changeServiceStatus'); ?>",
-            data: {
-                'serviceID': serviceID,
-                'status': status
-            },
-            dataType: "json",
-            success: function(response) {
-                if (response.error == 0) {
-                    simpleSuccessAlert('<?php echo lang('Text.success_change_status'); ?>');
-                    dtService.draw();
-                } else {
-                    if (response.msg == "SESSION_EXPIRED") {
-                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                    } else
-                        globalError();
-                }
-            },
-            error: function(e) {
-                globalError();
-            }
-        });
-    }); // ok
-
-    dtService.on('click', '.change-visibility', function() {
-        let serviceID = $(this).attr('data-service-id');
-        let visibility = $(this).attr('data-visibility');
-
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url('ControlPanel/changeServiceVisibility'); ?>",
-            data: {
-                'serviceID': serviceID,
-                'visibility': visibility
-            },
-            dataType: "json",
-            success: function(response) {
-                if (response.error == 0) {
-                    simpleSuccessAlert('<?php echo lang('Text.success_change_visibility'); ?>');
-                    dtService.draw();
-                } else {
-                    if (response.msg == "SESSION_EXPIRED") {
-                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                    } else
-                        globalError();
-                }
-            },
-            error: function(e) {
-                globalError();
-            }
-        });
-    });
 </script>
