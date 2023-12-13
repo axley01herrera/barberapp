@@ -236,6 +236,7 @@ class ControlPanel extends BaseController
         $serviceID = $this->objRequest->getPost('id');
         $title = htmlspecialchars(trim($this->objRequest->getPost('title')));
         $price = htmlspecialchars(trim($this->objRequest->getPost('price')));
+        $time = htmlspecialchars(trim($this->objRequest->getPost('time')));
         $description = htmlspecialchars(trim($this->objRequest->getPost('description')));
 
         $checkDuplicate = $this->objMainModel->objCheckDuplicate('service', 'title', $title, $serviceID);
@@ -244,9 +245,10 @@ class ControlPanel extends BaseController
             $data = array();
             $data['title'] = $title;
             $data['price'] = $price;
+            $data['time'] = $time;
             $data['description'] = $description;
 
-            $result = $this->objMainModel->objUpdate('service', $data, $this->objRequest->getPost('id'));
+            $result = $this->objMainModel->objUpdate('service', $data, $serviceID);
             return json_encode($result);
         } else {
             $result = array();
