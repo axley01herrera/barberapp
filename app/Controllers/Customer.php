@@ -66,7 +66,7 @@ class Customer extends BaseController
         $data = array();
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
+        $data['companyProfile'] = $this->profile;
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
         $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
         # page

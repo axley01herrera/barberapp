@@ -64,7 +64,7 @@ class Employee extends BaseController
         $data = array();
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
-        $data['profile'] = $this->companyProfile;
+        $data['companyProfile'] = $this->companyProfile;
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
         $data['address'] = $this->objMainModel->objData('address', 'employeeID', $this->objSession->get('user')['employeeID']);
         # page
