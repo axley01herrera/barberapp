@@ -273,10 +273,24 @@ class Customer extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
             return view('customerLogout');
 
+        if ($this->config[0]->lang == 'es')
+            $dateLabel = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $dateLabel = "m-d-Y";
+
+        $currentDate = date('Y-m-d');
+        $dateTime = new \DateTime($currentDate);
+        $dateTime->modify('+2 months');
+        $maxDate = $dateTime->format('Y-m-d');
+
         $data = array();
         # data
         $data['services'] = $this->objControlPanelModel->getActiveAndPublicServices();
         $data['employees'] = $this->objControlPanelModel->getActiveEmployees();
+        $data['dateLabel'] = $dateLabel;
+        $data['currentDate'] = $currentDate;
+        $data['minDate'] = $currentDate;
+        $data['maxDate'] = $maxDate;
         $data['uniqid'] = uniqid();
         # config
         $data['config'] = $this->config;

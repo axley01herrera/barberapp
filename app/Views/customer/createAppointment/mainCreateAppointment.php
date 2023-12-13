@@ -1,6 +1,3 @@
-<link href="<?php echo base_url('public/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css'); ?>" rel="stylesheet" type="text/css" />
-<script src="<?php echo base_url('public/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js'); ?>"></script>
-
 <div class="card card-flush mb-6 mb-xl-9">
     <!-- Card header -->
     <div class="card-header mt-6">
@@ -63,7 +60,17 @@
                     </div>
                 </div>
             </div>
-            <div id="calendar<?php echo $uniqid; ?>"></div>
+            <div class="row">
+                <div class="col-12 mb-5 text-center">
+                    <div id="employee<?php echo $uniqid; ?>" class="text-center"></div>
+                </div>
+                <div class="col-12 col-lg-6 mb-5">
+                    <input id="sel-date<?php echo $uniqid; ?>" class="flatpickr form-control required<?php echo $uniqid; ?>" value="<?php echo date($dateLabel, strtotime($currentDate)); ?>" hidden />
+                </div>
+                <div class="col-12 col-lg-6 mb-5">
+                    <?php echo lang('Text.cust_new_appointment_available_shifts'); ?>
+                </div>
+            </div>
         </div>
 
         <!-- Step 3 -->
@@ -81,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div id="employee<?php echo $uniqid; ?>"></div>
+
         </div>
 
         <!-- Buttons -->
@@ -119,6 +126,9 @@
     var step = 1;
     var services = [];
     var date = "<?php echo date('Y-m-d'); ?>"
+    var lang = "<?php echo $config[0]->lang; ?>";
+    var dateLabel = "";
+    var locale = "";
 
     $('#next<?php echo $uniqid; ?>').on('click', function() { // Next
         if (services.length > 0) {
@@ -173,49 +183,10 @@
             $('#step-3<?php echo $uniqid; ?>').attr('hidden', true);
             $('#step-2<?php echo $uniqid; ?>').removeAttr('hidden');
             $('#back<?php echo $uniqid; ?>').removeAttr('hidden');
-            renderCalendar();
         } else if (step == 3) {
             $('#step-2<?php echo $uniqid; ?>').attr('hidden', true);
             $('#step-3<?php echo $uniqid; ?>').removeAttr('hidden');
         }
-    }
-</script>
-
-<!-- Calendar -->
-<script>
-    function renderCalendar() {
-        let calendarEl = document.getElementById('calendar<?php echo $uniqid; ?>');
-        let calendar = new FullCalendar.Calendar(calendarEl, {
-            locale: '<?php echo $config[0]->lang; ?>',
-            headerToolbar: {
-                left: 'next,today',
-                center: 'title',
-                right: ''
-            },
-            titleFormat: {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            },
-            initialView: 'dayGridMonth',
-            initialDate: '<?php echo date('Y-m-d'); ?>',
-            navLinks: false,
-            editable: false,
-            droppable: false,
-            selectable: true,
-            nowIndicator: true,
-            dayMaxEvents: true,
-            dateClick: function(info) {
-                let currentDate = new Date(moment().format("YYYY-MM-DD")).getTime();
-                let selectedDate = new Date(info.dateStr).getTime();
-                if (selectedDate >= currentDate) {
-                    
-                } else
-                    simpleAlert('<?php echo lang('Text.cust_new_appointment_invalid_date'); ?>', 'warning')
-            },
-        });
-
-        calendar.render();
     }
 </script>
 
@@ -229,12 +200,44 @@
                 'services': services,
             },
             dataType: "html",
-            success: function (response) {
+            success: function(response) {
                 $('#employee<?php echo $uniqid; ?>').html(response);
             },
-            error: function (error) {
+            error: function(error) {
                 globalError();
             }
         });
     }
+</script>
+
+<!-- Flat Picker -->
+<script>
+    if (lang == 'es') {
+        dateLabel = "d-m-Y";
+        locale = {
+            weekdays: {
+                shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            },
+            months: {
+                shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+                longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            },
+        }
+    } else if (lang == 'en')
+        dateLabel = "m-d-Y";
+
+    $(".flatpickr").flatpickr({
+        locale: locale,
+        dateFormat: dateLabel,
+        inline: true,
+        showMonths: 1,
+        minDate: "<?php echo date($dateLabel, strtotime($minDate)); ?>",
+        maxDate: "<?php echo date($dateLabel, strtotime($maxDate)); ?>",
+    });
+
+    $('#sel-date<?php echo $uniqid; ?>').on('change input', function() {
+        date = $(this).val();
+        console.log(date);
+    });
 </script>

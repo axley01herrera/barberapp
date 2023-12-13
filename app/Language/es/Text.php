@@ -26,6 +26,7 @@ $lang['other'] = "Otro";
 $lang['primary_phone'] = "Teléfono Principal";
 $lang['phone'] = "Teléfono";
 $lang['dob'] = "Fecha de Nacimiento";
+$lang['date'] = "Fecha";
 $lang['secondary_phone'] = "Teléfono Segundario";
 $lang['phone_ext'] = "Extensión";
 $lang['email'] = "Correo Electrónico";
@@ -198,10 +199,11 @@ $lang['cust_new_appointment_subtitle'] = 'Crea tu Cita';
 $lang['cust_new_appointment_step1'] = 'Paso 1';
 $lang['cust_new_appointment_step1_sub'] = 'Selecciona uno o más servicios';
 $lang['cust_new_appointment_step2'] = 'Paso 2';
-$lang['cust_new_appointment_step2_sub'] = 'Selecciona una fecha';
+$lang['cust_new_appointment_step2_sub'] = 'Seleccione un empleado y una fecha en el calendario para ver los turnos disponibles';
 $lang['cust_new_appointment_invalid_date'] = 'No se pueden reservar citas en la fecha seleccionada';
 $lang['cust_new_appointment_step3'] = 'Paso 3';
 $lang['cust_new_appointment_step3_sub'] = 'Selecciona un empleado para ver su disponibilidad';
+$lang['cust_new_appointment_available_shifts'] = 'Turnos Disponibles';
 
 # Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";

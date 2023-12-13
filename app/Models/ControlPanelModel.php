@@ -282,6 +282,9 @@ class ControlPanelModel extends Model
             $query = $this->db->table('employee_service es');
             $query->select('
             e.id AS employeeID,
+            e.avatar AS avatar,
+            e.name AS name,
+            e.lastName AS lastName
             ');
             $query->whereIn('serviceID', $services);
             $query->join('employee e', 'e.id = es.employeeID');
