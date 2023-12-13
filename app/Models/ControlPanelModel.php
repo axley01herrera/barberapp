@@ -216,16 +216,27 @@ class ControlPanelModel extends Model
         if (!empty($services)) {
             $query = $this->db->table('employee_service es');
             $query->select('
-            e.id AS employeeID,
+                e.id AS employeeID,
+                e.avatar AS avatar,
+                e.name AS name,
+                e.lastName AS lastName
             ');
             $query->whereIn('serviceID', $services);
             $query->join('employee e', 'e.id = es.employeeID');
             $query->join('service s', 's.id = es.serviceID');
-            $query->groupBy('e.id');
+
+            $subquery = $this->db->table('employee_service es2');
+            $subquery->select('es2.employeeID')
+                ->whereIn('es2.serviceID', $services)
+                ->groupBy('es2.employeeID')
+                ->having('COUNT(DISTINCT es2.serviceID)', count($services), false);
+
+            $query->whereIn('es.employeeID', $subquery);
+            $query->groupBy('es.employeeID');
 
             $data = $query->get()->getResult();
         }
 
         return $data;
-    }
+    } // ok
 }

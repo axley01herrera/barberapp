@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?php echo $profile[0]->companyName; ?></title>
+    <title><?php echo $companyProfile[0]->companyName; ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Assets CSS -->
