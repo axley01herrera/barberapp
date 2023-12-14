@@ -62,6 +62,7 @@
 
 <script>
     var containers = document.querySelectorAll(".draggable-zone");
+    var countServices = "<?php echo $countServices; ?>";
 
     var swappable = new Sortable.default(containers, {
         draggable: ".draggable",
@@ -71,19 +72,17 @@
             constrainDimensions: true
         }
     });
+    
+    $(".draggable-handle").draggable({
+        stop: function(event, ui) {
+            $('.serviceCard').each(function() {
+                let serviceID = $(this).attr('data-service-id');
+                let newOrder = $(this).prevAll().length + 1;
+                $(this).attr('data-order', newOrder);
 
-    var countServices = "<?php echo $countServices; ?>";
-    if (countServices > 1) {
-        var observer = new MutationObserver(function(mutations) { //Change Services Positions 
-            setTimeout(function() {
-                $('.serviceCard').each(function() {
-                    let serviceID = $(this).attr('data-service-id');
-                    let newOrder = $(this).prevAll().length + 1;
-                    $(this).attr('data-order', newOrder);
-
-                    if ($(this).attr('data-order-old') !== newOrder) {
-                        $(this).attr('data-order-old', newOrder);
-
+                if ($(this).attr('data-order-old') !== newOrder) {
+                    $(this).attr('data-order-old', newOrder);
+                    if (countServices > 1) {
                         $.ajax({
                             type: 'POST',
                             url: '<?php echo base_url('ControlPanel/updateServicesOrder') ?>',
@@ -99,16 +98,10 @@
                             }
                         });
                     }
-                });
-            }, 1000);
-        });
-        var config = {
-            childList: true,
-            subtree: true
-        };
-
-        observer.observe(document.getElementById('servicesContainer'), config);
-    }
+                }
+            });
+        }
+    });
 
     $('.edit-service').on('click', function() { // Edit Service
         let id = $(this).attr('data-service-id');
