@@ -109,7 +109,7 @@ $lang['editing'] = "Editando";
 $lang['edit'] = "Editar";
 $lang['appointments'] = "Citas";
 $lang['remove_avatar'] = "Remover";
-$lang['change_avatar'] = 'Cambiar'; 
+$lang['change_avatar'] = 'Cambiar';
 $lang['profile_data_updated'] = 'Perfil Actualizado';
 $lang['account_data_updated'] = 'Cuenta Actualizada';
 $lang['facebook'] = "Facebook";
@@ -118,8 +118,8 @@ $lang['twitter'] = "Twitter";
 $lang['linkedIn'] = "LinkedIn";
 $lang['status'] = "Estado";
 $lang['visibility'] = "Público";
-$lang['duration_of'] = "Duración de";
-$lang['minutes'] = "Minutos";
+$lang['not_services'] = "No hay Servicios";
+$lang['not_services_msg'] = "Para crear un servicio presione en el botón";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";

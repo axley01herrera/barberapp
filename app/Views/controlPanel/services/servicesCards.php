@@ -1,5 +1,6 @@
 <div id="servicesContainer" class="container g-10 draggable-zone" tabindex="0">
     <?php
+    $countServices = count($services);
     usort($services, function ($a, $b) {
         return $a->ordering <=> $b->ordering;
     });
@@ -17,8 +18,13 @@
                 </div>
                 <div class="card-body">
                     <h2><?php echo getMoneyFormat($config[0]->currency, $s->price); ?></h2>
-                    <h6><?php echo lang('Text.duration_of'); ?> <?php echo $s->time; ?> <?php echo lang('Text.minutes'); ?></h6>
-                    <p><?php echo $s->description; ?></p>
+                    <div class="alert bg-light-primary d-flex align-items-center p-5">
+                        <div class="d-flex flex-column">
+                            <h4 class="mb-1 text-dark"><?php echo lang("Text.description"); ?></h4>
+                            <span><?php echo $s->description; ?></span>
+                            <span><?php echo lang('Text.dt_serv_time_label'); ?> <?php echo $s->time; ?> <?php echo lang('Text.dt_serv_minutes_label'); ?></span>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-2 col-lg-1 m-2">
                             <label class="mb-2"><?php echo lang('Text.status'); ?></label>
@@ -40,6 +46,18 @@
             </div>
         </div>
     <?php } ?>
+    <?php if ($countServices < 1) { ?>
+        <div class="alert alert-dismissible bg-light-warning d-flex flex-center flex-column py-10 px-10 px-lg-20 mb-10" style="margin-top: 10%;">
+            <i class="ki-duotone ki-information-5 fs-5tx text-warning mb-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+            <div class="text-center">
+                <h1 class="fw-bold mb-5"><?php echo lang("Text.not_services"); ?></h1>
+                <div class="separator separator-dashed border-danger opacity-25 mb-5"></div>
+                <div class="mb-9 text-gray-900">
+                    <?php echo lang("Text.not_services_msg"); ?> <button type="button" class="btn btn-sm btn-primary shadow"><?php echo lang("Text.serv_new"); ?></button>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 </div>
 
 <script>
@@ -53,45 +71,44 @@
             constrainDimensions: true
         }
     });
-    var target = document.querySelectorAll('.serviceCard');
 
-    var observer = new MutationObserver(function(mutations) {
-        // Set a timeout to allow all DOM changes to be processed
-        setTimeout(function() {
-            $('.serviceCard').each(function() {
-                let serviceID = $(this).attr('data-service-id');
-                let newOrder = $(this).prevAll().length + 1; // Actualizar el atributo data-order
-                $(this).attr('data-order', newOrder);
+    var countServices = "<?php echo $countServices; ?>";
+    if (countServices > 1) {
+        var observer = new MutationObserver(function(mutations) { //Change Services Positions 
+            setTimeout(function() {
+                $('.serviceCard').each(function() {
+                    let serviceID = $(this).attr('data-service-id');
+                    let newOrder = $(this).prevAll().length + 1;
+                    $(this).attr('data-order', newOrder);
 
-                // Verify if the data-order attribute has changed
-                if ($(this).attr('data-order-old') !== newOrder) {
-                    $(this).attr('data-order-old', newOrder);
+                    if ($(this).attr('data-order-old') !== newOrder) {
+                        $(this).attr('data-order-old', newOrder);
 
-                    $.ajax({
-                        type: 'POST',
-                        url: '<?php echo base_url('ControlPanel/updateServicesOrder') ?>',
-                        data: {
-                            serviceID: serviceID,
-                            newOrder: newOrder
-                        },
-                        success: function(response) {
+                        $.ajax({
+                            type: 'POST',
+                            url: '<?php echo base_url('ControlPanel/updateServicesOrder') ?>',
+                            data: {
+                                serviceID: serviceID,
+                                newOrder: newOrder
+                            },
+                            success: function(response) {
 
-                        },
-                        error: function(error) {
-                            globalError();
-                        }
-                    });
-                }
-            });
-        }, 1000);
-    });
+                            },
+                            error: function(error) {
+                                globalError();
+                            }
+                        });
+                    }
+                });
+            }, 1000);
+        });
+        var config = {
+            childList: true,
+            subtree: true
+        };
 
-    var config = {
-        childList: true,
-        subtree: true
-    };
-
-    observer.observe(document.getElementById('servicesContainer'), config);
+        observer.observe(document.getElementById('servicesContainer'), config);
+    }
 
     $('.edit-service').on('click', function() { // Edit Service
         let id = $(this).attr('data-service-id');
