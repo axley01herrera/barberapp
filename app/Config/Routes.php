@@ -38,6 +38,7 @@ $routes->get('ControlPanel/dashboard', 'ControlPanel::dashboard');
 # ControlPanel -> Services
 $routes->get('ControlPanel/services', 'ControlPanel::services');
 $routes->post('ControlPanel/getServices', 'ControlPanel::getServices');
+$routes->post('ControlPanel/updateServicesOrder', 'ControlPanel::updateServicesOrder');
 $routes->post('ControlPanel/showModalService', 'ControlPanel::showModalService');
 $routes->post('ControlPanel/createService', 'ControlPanel::createService');
 $routes->post('ControlPanel/updateService', 'ControlPanel::updateService');

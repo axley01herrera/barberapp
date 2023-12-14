@@ -116,6 +116,15 @@ class ControlPanel extends BaseController
         return view('controlPanel/services/servicesCards', $data);
     }
 
+    public function updateServicesOrder()
+    {
+        $id = $this->objRequest->getPost('serviceID');
+        $data = array();
+        $data['ordering'] = $this->objRequest->getPost('newOrder');
+
+        return json_encode($this->objMainModel->objUpdate('service', $data, $id));
+    }
+
     public function showModalService()
     {
         # Verify Session 

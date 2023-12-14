@@ -4,7 +4,7 @@
         return $a->ordering <=> $b->ordering;
     });
     foreach ($services as $s) { ?>
-        <div id="serviceCard" class="col draggable mt-4" tabindex="0" data-order="<?php echo $s->ordering; ?>">
+        <div class="col draggable serviceCard mt-4" tabindex="0" data-service-id="<?php echo $s->id; ?>" data-order="<?php echo $s->ordering; ?>">
             <div class="card card-bordered">
                 <div class="card-header">
                     <div class="card-title">
@@ -53,6 +53,43 @@
             constrainDimensions: true
         }
     });
+    var target = document.querySelectorAll('.serviceCard');
+
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                $(target).each(function() {
+                    let serviceID = $(this).attr('data-service-id');
+                    let newOrder = $(this).prevAll().length + 1; // Contar el número de elementos hermanos previos al elemento que se ha movido
+
+                    // Actualizar el atributo data-order
+                    $(this).attr('data-order', newOrder);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?php echo base_url('ControlPanel/updateServicesOrder') ?>',
+                        data: {
+                            serviceID: serviceID,
+                            newOrder: newOrder
+                        },
+                        success: function(response) {
+
+                        },
+                        error: function(error) {
+
+                        }
+                    });
+                });
+            }
+        });
+    });
+
+    var config = {
+        childList: true,
+        subtree: true
+    };
+
+    observer.observe(document.body, config);
 
     $('.edit-service').on('click', function() { // Edit Service
         let id = $(this).attr('data-service-id');

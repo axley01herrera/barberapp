@@ -31,7 +31,7 @@
     <script src="<?php echo base_url('public/assets/plugins/global/plugins.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('assets/plugins/custom/datatables/datatables.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('assets/plugins/custom/draggable/draggable.bundle.js'); ?>"></script>
-
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 
     <script>
