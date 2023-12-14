@@ -176,7 +176,10 @@ class ControlPanel extends BaseController
             $data['description'] = $description;
 
             $result = $this->objMainModel->objCreate('service', $data);
-            return json_encode($result);
+            if (!empty($result['id']))
+                return json_encode($this->objMainModel->objUpdate('service', array('ordering' => $result['id']), $result['id']));
+            else
+                return json_encode($result);
         } else {
             $result = array();
             $result['error'] = 1;
@@ -184,7 +187,7 @@ class ControlPanel extends BaseController
 
             return json_encode($result);
         }
-    } // ok
+    }
 
     public function updateService()
     {

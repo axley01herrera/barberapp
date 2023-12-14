@@ -78,7 +78,7 @@
 
                         },
                         error: function(error) {
-
+                            globalError();
                         }
                     });
                 }
