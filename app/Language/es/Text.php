@@ -268,8 +268,8 @@ $lang['dt_serv_time_label'] = "Tiempo estimado de duración";
 $lang['dt_serv_minutes_label'] = "Minutos";
 $lang['serv_success_order'] = "Orden de los servicios actualizados";
 $lang['serv_order_msg'] = "Ordena tus servicios";
-$lang['serv_order_msg_sub1'] = "Mueve las tarjetas desde la ezquina superior derecha y ubícalas en las posicione deseadas, luego haz click en botón";
-$lang['serv_order_msg_sub2'] = "para guardar el orden deseado";
+$lang['serv_order_msg_sub1'] = "Mueve las tarjetas desde la ezquina superior derecha y arrastra para organizarlas según tus preferencias, luego haz click en botón";
+$lang['serv_order_msg_sub2'] = "para guardar";
 
 # Control Panel Profile
 $lang['cp_profile_menu_bussiness_data'] = "Descripción";
