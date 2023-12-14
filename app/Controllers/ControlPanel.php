@@ -113,7 +113,7 @@ class ControlPanel extends BaseController
         # data
         $data['services'] = $this->objMainModel->objData('service');
 
-        return view('controlPanel/services/services', $data);
+        return view('controlPanel/services/servicesCards', $data);
     }
 
     public function showModalService()

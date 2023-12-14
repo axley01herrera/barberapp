@@ -116,6 +116,10 @@ $lang['facebook'] = "Facebook";
 $lang['google'] = "Google";
 $lang['twitter'] = "Twitter";
 $lang['linkedIn'] = "LinkedIn";
+$lang['status'] = "Estado";
+$lang['visibility'] = "Público";
+$lang['duration_of'] = "Duración de";
+$lang['minutes'] = "Minutos";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
