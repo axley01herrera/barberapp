@@ -72,17 +72,18 @@
             constrainDimensions: true
         }
     });
-    
-    $(".draggable-handle").draggable({
-        stop: function(event, ui) {
-            $('.serviceCard').each(function() {
-                let serviceID = $(this).attr('data-service-id');
-                let newOrder = $(this).prevAll().length + 1;
-                $(this).attr('data-order', newOrder);
 
-                if ($(this).attr('data-order-old') !== newOrder) {
-                    $(this).attr('data-order-old', newOrder);
-                    if (countServices > 1) {
+    if (countServices > 1) {
+        $(".draggable-handle").draggable({
+            stop: function(event, ui) {
+                $('.serviceCard').each(function() {
+                    let serviceID = $(this).attr('data-service-id');
+                    let newOrder = $(this).prevAll().length + 1;
+                    $(this).attr('data-order', newOrder);
+
+                    if ($(this).attr('data-order') !== newOrder) {
+                        $(this).attr('data-order', newOrder);
+
                         $.ajax({
                             type: 'POST',
                             url: '<?php echo base_url('ControlPanel/updateServicesOrder') ?>',
@@ -98,10 +99,10 @@
                             }
                         });
                     }
-                }
-            });
-        }
-    });
+                });
+            }
+        });
+    }
 
     $('.edit-service').on('click', function() { // Edit Service
         let id = $(this).attr('data-service-id');
