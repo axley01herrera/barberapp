@@ -1,4 +1,4 @@
-<div class="container g-10 draggable-zone" tabindex="0">
+<div id="servicesContainer" class="container g-10 draggable-zone" tabindex="0">
     <?php
     usort($services, function ($a, $b) {
         return $a->ordering <=> $b->ordering;
@@ -56,14 +56,16 @@
     var target = document.querySelectorAll('.serviceCard');
 
     var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'childList') {
-                $(target).each(function() {
-                    let serviceID = $(this).attr('data-service-id');
-                    let newOrder = $(this).prevAll().length + 1; // Contar el número de elementos hermanos previos al elemento que se ha movido
+        // Set a timeout to allow all DOM changes to be processed
+        setTimeout(function() {
+            $('.serviceCard').each(function() {
+                let serviceID = $(this).attr('data-service-id');
+                let newOrder = $(this).prevAll().length + 1; // Actualizar el atributo data-order
+                $(this).attr('data-order', newOrder);
 
-                    // Actualizar el atributo data-order
-                    $(this).attr('data-order', newOrder);
+                // Verify if the data-order attribute has changed
+                if ($(this).attr('data-order-old') !== newOrder) {
+                    $(this).attr('data-order-old', newOrder);
 
                     $.ajax({
                         type: 'POST',
@@ -79,9 +81,9 @@
 
                         }
                     });
-                });
-            }
-        });
+                }
+            });
+        }, 1000);
     });
 
     var config = {
@@ -89,7 +91,7 @@
         subtree: true
     };
 
-    observer.observe(document.body, config);
+    observer.observe(document.getElementById('servicesContainer'), config);
 
     $('.edit-service').on('click', function() { // Edit Service
         let id = $(this).attr('data-service-id');
