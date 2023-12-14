@@ -239,4 +239,14 @@ class ControlPanelModel extends Model
 
         return $data;
     } // ok
+
+    public function getServices()
+    {
+        $query = $this->db->table('service')
+        ->orderBy('ordering');
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    } // ok
 }

@@ -78,8 +78,9 @@
                     if (response.error === 0) {
                         simpleSuccessAlert(msg);
                         if (callModalFrom == "main-service") {
-                            getServices();
-                            $('#modal').modal('hide');
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, "2000");
                         }
                     } else if (response.error === 1) {
                         if (response.msg == "ERROR_DUPLICATE") {

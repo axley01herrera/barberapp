@@ -119,7 +119,6 @@ $lang['linkedIn'] = "LinkedIn";
 $lang['status'] = "Estado";
 $lang['visibility'] = "Público";
 $lang['not_services'] = "No hay Servicios";
-$lang['not_services_msg'] = "Para crear un servicio presione en el botón";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -138,6 +137,7 @@ $lang['btn_add'] = "Agregar";
 $lang['btn_create_appointment'] = "Crear Cita";
 $lang['btn_next'] = "Siguiente";
 $lang['btn_back'] = "Atrás";
+$lang['btn_save_ordering'] = "Guardar Orden";
 
 # Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
@@ -250,7 +250,7 @@ $lang['emp_no_active_bussiness_days_msg'] = 'El empleado no tiene días laborabl
 $lang['emp_no_shift_days_msg'] = 'El empleado no tiene turnos de trabajos disponibles.';
 $lang['emp_incomplete_profile_msg'] = 'Complete su Perfil.';
 
-# Control Panel Services
+# Services
 $lang['serv_new'] = "Nuevo Servicio";
 $lang['serv_update'] = "Editando Servicio";
 $lang['serv_edit'] = "Editar Servicio";
@@ -266,6 +266,10 @@ $lang['dt_serv_visibility'] = "Público";
 $lang['dt_serv_dec'] = "Descripción";
 $lang['dt_serv_time_label'] = "Tiempo estimado de duración";
 $lang['dt_serv_minutes_label'] = "Minutos";
+$lang['serv_success_order'] = "Orden de los servicios actualizados";
+$lang['serv_order_msg'] = "Ordena tus servicios";
+$lang['serv_order_msg_sub1'] = "Mueve las tarjetas desde la ezquina superior derecha y ubícalas en las posicione deseadas, luego haz click en botón";
+$lang['serv_order_msg_sub2'] = "para guardar el orden deseado";
 
 # Control Panel Profile
 $lang['cp_profile_menu_bussiness_data'] = "Descripción";

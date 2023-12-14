@@ -95,35 +95,30 @@ class ControlPanel extends BaseController
         $data['activeServices'] = "active";
         # data
         $data['uniqid'] = uniqid();
+        $data['services'] = $this->objControlPanelModel->getServices();
         # page
         $data['page'] = 'controlPanel/services/mainServices';
 
         return view('ControlPanel/mainCpanel', $data);
     } // ok
 
-    public function getServices()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
-            return view('controlPanelLogout');
-
-        $data = array();
-        # config
-        $data['config'] = $this->config;
-        # data
-        $data['services'] = $this->objMainModel->objData('service');
-
-        return view('controlPanel/services/servicesCards', $data);
-    }
-
     public function updateServicesOrder()
     {
-        $id = $this->objRequest->getPost('serviceID');
-        $data = array();
-        $data['ordering'] = $this->objRequest->getPost('newOrder');
+        # params
+        $ids = $this->objRequest->getPost('servicesIds');
 
-        return json_encode($this->objMainModel->objUpdate('service', $data, $id));
-    }
+        $i = 1;
+        foreach ($ids as $id) {
+            $data = array();
+            $data['ordering'] = $i;
+            $this->objMainModel->objUpdate('service', $data, $id);
+            $i++;
+        }
+        
+        $result['error'] = 0;
+
+        return json_encode($result);
+    } // ok
 
     public function showModalService()
     {
@@ -176,10 +171,9 @@ class ControlPanel extends BaseController
             $data['description'] = $description;
 
             $result = $this->objMainModel->objCreate('service', $data);
-            if (!empty($result['id']))
-                return json_encode($this->objMainModel->objUpdate('service', array('ordering' => $result['id']), $result['id']));
-            else
-                return json_encode($result);
+            $this->objMainModel->objUpdate('service', array('ordering' => $result['id']), $result['id']);
+          
+            return json_encode($result);
         } else {
             $result = array();
             $result['error'] = 1;
@@ -187,7 +181,7 @@ class ControlPanel extends BaseController
 
             return json_encode($result);
         }
-    }
+    } // ok
 
     public function updateService()
     {
