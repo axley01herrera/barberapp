@@ -84,8 +84,8 @@ $routes->post('ControlPanel/removeAvatarProfile', 'ControlPanel::removeAvatarPro
 $routes->post('ControlPanel/updateProfile', 'ControlPanel::updateProfile');
 $routes->post('ControlPanel/changeAccessKey', 'ControlPanel::changeAccessKey');
 $routes->post('ControlPanel/updateConfig', 'ControlPanel::updateConfig');
+$routes->post('ControlPanel/modalSocialNetwork', 'ControlPanel::modalSocialNetwork');
 $routes->post('ControlPanel/addSocialNetwork', 'ControlPanel::addSocialNetwork');
-$routes->post('ControlPanel/addSocialNetworkProcess', 'ControlPanel::addSocialNetworkProcess');
 $routes->post('ControlPanel/getSocialNetworks', 'ControlPanel::getSocialNetworks');
 
 ############################## 

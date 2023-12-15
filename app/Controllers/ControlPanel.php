@@ -1352,25 +1352,35 @@ class ControlPanel extends BaseController
         return json_encode($this->objMainModel->objUpdate('config', $data, 1));
     } // ok
 
-    public function addSocialNetwork()
+    public function modalSocialNetwork()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
             return view('controlPanelLogout');
 
+        # params
+        $action = $this->objRequest->getPost('action');
+
         $data = array();
         #data
+        $data['action'] = $action;
         $data['uniqid'] = uniqid();
-        if (!empty($this->objRequest->getPost('action') == 'edit')) {
+
+        if($action == "create") {
+            $data['modalTitle'] = lang('Text.add_social_network');
+        }
+        if (!empty($action == 'edit')) {
             $data['socialNetwork'] = $this->objMainModel->objData('company_social_network', 'id', $this->objRequest->getPost('id'));
             $data['modalTitle'] = lang('Text.editing') . ' ' . $data['socialNetwork'][0]->type;
         } else
-            $data['modalTitle'] = lang('Text.add_social_network');
+        
+        # page
+        $view = 'controlPanel/companyProfile/modalSocialNetwork';
 
-        return view('controlPanel/companyProfile/modal/addSocialNetwork', $data);
+        return view($view, $data);
     }
 
-    public function addSocialNetworkProcess()
+    public function addSocialNetwork()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
@@ -1380,27 +1390,17 @@ class ControlPanel extends BaseController
             return json_encode($result);
         }
 
-        #params
-        $socialNetwork = $this->objRequest->getPost('name');
-        $url = $this->objRequest->getPost('url');
-        #Case Delete, Update and Change Status
-        $id = $this->objRequest->getPost('id');
-        #Case Change Status
-        $status = $this->objRequest->getPost('status');
-
+        # params
+        $socialNetwork = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $url = htmlspecialchars(trim($this->objRequest->getPost('url')));
+        
         $data = array();
-        #data
         $data['type'] = $socialNetwork;
         $data['url'] = $url;
 
-        if ($this->objRequest->getPost('action') == 'create') #Create
-            $response = $this->objMainModel->objCreate('company_social_network', $data);
-        elseif ($this->objRequest->getPost('action') == 'update') #Update
-            $response = $this->objMainModel->objUpdate('company_social_network', $data, $id);
-        elseif ($this->objRequest->getPost('action') == 'changeStatus') #Change Status
-            $response = $this->objMainModel->objUpdate('company_social_network', array('status' => $status), $id);
-
-        return json_encode($response);
+        $result = $this->objMainModel->objCreate('company_social_network', $data);
+       
+        return json_encode($result);
     }
 
     public function getSocialNetworks()
@@ -1409,10 +1409,15 @@ class ControlPanel extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
             return view('controlPanelLogout');
 
+        # data
+        $data = array();
+        $data['uniqid'] = uniqid();
         $data['socialNetworks'] = $this->objMainModel->objData('company_social_network');
+        # page
+        $view = 'controlPanel/companyProfile/mainSocialNetworks';
 
-        return view('controlPanel/companyProfile/socialNetworks', $data);
-    }
+        return view($view, $data);
+    } // ok
 
     ##############################
     # Template Copy To Create a New Section

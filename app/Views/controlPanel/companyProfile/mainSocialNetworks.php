@@ -16,26 +16,16 @@
             <div class="py-2">
                 <div class="d-flex flex-stack">
                     <div class="d-flex">
-                        <?php if ($sn->type == 'Google') { ?>
-                            <img src="<?php echo base_url('public/assets/media/svg/brand-logos/google-icon.svg'); ?>" class="w-30px me-6" alt="logo">
-                        <?php } elseif ($sn->type == 'Facebook') { ?>
-                            <img src="<?php echo base_url('public/assets/media/svg/brand-logos/facebook-3.svg'); ?>" class="w-30px me-6" alt="logo">
-                        <?php } elseif ($sn->type == 'Twitter') { ?>
-                            <img src="<?php echo base_url('public/assets/media/svg/brand-logos/twitter.svg'); ?>" class="w-30px me-6" alt="logo">
-                        <?php } elseif ($sn->type == 'LinkedIn') { ?>
-                            <img src="<?php echo base_url('public/assets/media/svg/brand-logos/linkedin-1.svg'); ?>" class="w-30px me-6" alt="logo">
-                        <?php } ?>
+                        <?php echo socialNetworkIcon($sn->type); ?>
                         <div class="d-flex flex-column">
-                            <a href="<?php echo $sn->url; ?>" class="fs-5 text-dark text-hover-primary fw-bold" target="_blank"><?php echo $sn->type; ?></a>
-                            <p class="cursor-pointer social-action fs-9" data-action="edit" data-socialNetwork-id="<?php echo $sn->id; ?>" title="<?php echo lang('Text.edit'); ?>"><?php echo $sn->url; ?></p>
-                            <div class="fs-6 fw-semibold text-muted" hidden>Plan properly your workflow</div>
+                            <a href="<?php echo $sn->url; ?>" class="fs-5 text-dark text-hover-primary fw-bold"><?php echo $sn->type; ?></a>
+                            <div class="fs-6 fw-semibold text-muted"></div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
                         <label class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                            <input class="form-check-input cursor-pointer social-action" data-action="changeStatus" data-socialNetwork-id="<?php echo $sn->id; ?>" name="google" type="checkbox" value="1" id="kt_modal_connected_accounts_google" <?php if ($sn->status == 1) echo "data-status='0' checked=''";
-                                                                                                                                                                                                                                                    else echo "data-status='1'"; ?>>
-                            <span class="form-check-label fw-semibold text-muted" for="kt_modal_connected_accounts_google"></span>
+                            <input data-social-network-id="<?php echo $sn->id; ?>" class="form-check-input change-social-network-status" name="google" type="checkbox" value="<?php echo $sn->status; ?>" <?php if($sn->status == 1) echo "checked"; ?>>
+                            <span class="form-check-label fw-semibold text-muted" for=""></span>
                         </label>
                     </div>
                 </div>
@@ -43,22 +33,29 @@
             </div>
         <?php } ?>
     </div>
+    <!-- Add Social Network -->
     <div class="card-footer border-0 d-flex justify-content-center pt-0">
-        <button class="btn btn-sm btn-primary btn-addSocialNetwork"><?php echo lang('Text.btn_add'); ?></button>
+        <button id="add-social-network<?php echo $uniqid; ?>" class="btn btn-sm btn-primary"><?php echo lang('Text.btn_add'); ?></button>
     </div>
 </div>
 
 <script>
-    $('.btn-addSocialNetwork').on('click', function(e) {
+    $('#add-social-network<?php echo $uniqid; ?>').on('click', function() {
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('ControlPanel/addSocialNetwork'); ?>",
+            url: "<?php echo base_url('ControlPanel/modalSocialNetwork'); ?>",
+            data: {
+                'action': 'create'
+            },
             dataType: "html",
             success: function(response) {
                 $('#app-modal').html(response);
+            },
+            error: function(error) {
+                globalError();
             }
         });
-    });
+    }); // ok
 
     $('.social-action').on('click', function(e) {
         let url = '';

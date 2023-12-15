@@ -8,18 +8,20 @@
             <div class="modal-body">
                 <div class="row">
                     <!-- Name -->
-                    <div class="col-12 col-md-6 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.name'); ?> <span class="text-danger">*</span></label>
+                    <div class="col-12 col-lg-6 mb-5">
+                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_select_social_network'); ?> <span class="text-danger">*</span></label>
                         <select id="txt-name<?php echo $uniqid; ?>" class="form-control">
                             <option value="" hidden></option>
-                            <option value="Google" <?php if (@$socialNetwork[0]->type == 'Google') echo "selected hidden"; ?>> <?php echo lang('Text.google'); ?></option>
-                            <option value="Facebook" <?php if (@$socialNetwork[0]->type == 'Facebook') echo "selected hidden"; ?>> <?php echo lang('Text.facebook'); ?></option>
-                            <option value="Twitter" <?php if (@$socialNetwork[0]->type == 'Twitter') echo "selected hidden"; ?>> <?php echo lang('Text.twitter'); ?></option>
-                            <option value="LinkedIn" <?php if (@$socialNetwork[0]->type == 'LinkedIn') echo "selected hidden"; ?>> <?php echo lang('Text.linkedIn'); ?></option>
+                            <option value="Google" <?php if (@$socialNetwork[0]->type == 'Google') echo "selected"; ?>> <?php echo lang('Text.google'); ?></option>
+                            <option value="Facebook" <?php if (@$socialNetwork[0]->type == 'Facebook') echo "selected"; ?>> <?php echo lang('Text.facebook'); ?></option>
+                            <option value="Twitter" <?php if (@$socialNetwork[0]->type == 'Twitter') echo "selected"; ?>> <?php echo lang('Text.twitter'); ?></option>
+                            <option value="LinkedIn" <?php if (@$socialNetwork[0]->type == 'LinkedIn') echo "selected"; ?>> <?php echo lang('Text.linkedIn'); ?></option>
                         </select>
                     </div>
+                </div>
+                <div class="row">
                     <!-- URL -->
-                    <div class="col-12 col-md-6 col-lg-6 mt-5">
+                    <div class="col-12">
                         <label class="fs-6 fw-semibold" for="txt-url<?php echo $uniqid; ?>"><?php echo lang('Text.url'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-url<?php echo $uniqid; ?>" class="form-control url<?php echo $uniqid; ?> required<?php echo $uniqid; ?>" value="<?php echo @$socialNetwork[0]->url; ?>" />
                     </div>
@@ -27,11 +29,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo lang("Text.btn_cancel"); ?></button>
-                <?php if (@$socialNetwork) { ?>
-                    <button id="update-socialNetwork<?php echo $uniqid; ?>" type="button" class="btn btn-primary"><?php echo lang("Text.btn_update"); ?></button>
-                <?php } else { ?>
-                    <button id="save-socialNetwork<?php echo $uniqid; ?>" type="button" class="btn btn-primary"><?php echo lang("Text.btn_save"); ?></button>
-                <?php } ?>
+                <button id="save-socialNetwork<?php echo $uniqid; ?>" type="button" class="btn btn-primary"><?php echo lang("Text.btn_save"); ?></button>
             </div>
         </div>
     </div>
@@ -43,88 +41,51 @@
         $('#app-modal').html('');
     });
 
-    //CASE CREATE
     $('#save-socialNetwork<?php echo $uniqid; ?>').on('click', function() { // Submit
         let result = checkRequiredValues();
         if (result == 0) {
             let resultURL = checkUrlFormat();
             if (resultURL == 0) {
-                $('#save-employee<?php echo $uniqid; ?>').attr('disabled', true);
+                $('#save-socialNetwork<?php echo $uniqid; ?>').attr('disabled', true);
+                let action = "<?php echo $action; ?>";
+                let url = "";
+                let msg = "";
+                if(action == "create") {
+                    url = "<?php echo base_url('ControlPanel/addSocialNetwork'); ?>"
+                }
                 $.ajax({
                     type: "post",
-                    url: "<?php echo base_url('ControlPanel/addSocialNetworkProcess'); ?>",
+                    url: url,
                     data: {
                         'name': $('#txt-name<?php echo $uniqid; ?>').val(),
                         'url': $('#txt-url<?php echo $uniqid; ?>').val(),
-                        'action': 'create'
+                        'action': action
                     },
                     dataType: "json",
                     success: function(response) {
                         if (response.error == 0) {
                             simpleSuccessAlert("<?php echo lang('Text.cp_profile_social_network_success_created'); ?>");
-                            $('.form-control').val('');
                             getSocialNetworks();
-                        } else {
-                            if (response.msg == "SESSION_EXPIRED") {
-                                window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                            } else
-                                globalError();
-                        }
-                        $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
-                    },
-                    error: function(e) {
-                        globalError();
-                        $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
-                    }
-                });
-            } else
-                simpleAlert("<?php echo lang('Text.invalid_url_format'); ?>", 'warning');
-
-        } else
-            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
-    });
-
-    //CASE UPDATE
-    $('#update-socialNetwork<?php echo $uniqid; ?>').on('click', function() { // Submit
-        let result = checkRequiredValues();
-        if (result == 0) {
-            let resultURL = checkUrlFormat();
-            if (resultURL == 0) {
-                $('#update-employee<?php echo $uniqid; ?>').attr('disabled', true);
-                $.ajax({
-                    type: "post",
-                    url: "<?php echo base_url('ControlPanel/addSocialNetworkProcess'); ?>",
-                    data: {
-                        'id': "<?php echo @$socialNetwork[0]->id; ?>",
-                        'name': $('#txt-name<?php echo $uniqid; ?>').val(),
-                        'url': $('#txt-url<?php echo $uniqid; ?>').val(),
-                        'action': 'update'
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.error == 0) {
-                            simpleSuccessAlert("<?php echo lang('Text.cp_profile_social_network_success_updated'); ?>");
                             $('#modal').modal('hide');
-                            getSocialNetworks();
                         } else {
                             if (response.msg == "SESSION_EXPIRED") {
                                 window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
                             } else
                                 globalError();
                         }
-                        $('#update-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
+                        $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
                     },
                     error: function(e) {
                         globalError();
-                        $('#update-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
+                        $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
                     }
                 });
             } else
                 simpleAlert("<?php echo lang('Text.invalid_url_format'); ?>", 'warning');
-
         } else
             simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
     });
+
 
     function checkRequiredValues() {
         let result = 0;
@@ -145,7 +106,6 @@
         let inputValue = '';
         let response = 0;
         let regex = /^(http[s]?:\/\/)(([a-zA-Z0-9-])+\.)+([a-zA-Z]{2,})(\/([-a-zA-Z0-9@:%_\+.~#?&//=]*))?$/;
-
         $('.url<?php echo $uniqid; ?>').each(function() {
             inputValue = $(this).val();
             if (!regex.test(inputValue)) {
@@ -153,7 +113,6 @@
                 response = 1;
             }
         });
-
         return response;
     }
 

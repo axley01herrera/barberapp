@@ -76,7 +76,7 @@ $lang['important'] = "Importante";
 $lang['social_network'] = "Red Social";
 $lang['url'] = "URL";
 $lang['social_networks'] = "Redes Sociales";
-$lang['add_social_network'] = "Agregue sus Redes Sociales";
+$lang['add_social_network'] = "Nueva Red Social";
 $lang['social_network_msg'] = 'Conectar con tus redes sociales es una excelente forma de mejorar la interacción con los clientes.';
 $lang['thanks'] = "Gracias";
 $lang['success_verified_email'] = "Su cuenta de correo electrónico ha quedado verficada";
@@ -285,8 +285,9 @@ $lang['cp_profile_data_updated'] = "Descripción del Negocio Actualizada";
 $lang['cp_profile_access_key_updated'] = "Clave de Acceso Actualizada";
 $lang['cp_profile_config_updated'] = "Datos de Configuración Actualizados";
 $lang['cp_profile_public_info_msg'] = "La información proporcionada en este formulario será compartida con todos tus clientes y empleados en otras partes del sistema. Por ende, se considera de carácter público.";
-$lang['cp_profile_social_network_success_created'] = "Red Social Añadida";
+$lang['cp_profile_social_network_success_created'] = "Red Social Creada";
 $lang['cp_profile_social_network_success_updated'] = "Red Social Actualizada";
+$lang['cp_profile_select_social_network'] = "Seleccione una red social";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";
