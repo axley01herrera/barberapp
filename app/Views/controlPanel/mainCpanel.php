@@ -12,7 +12,7 @@
     <link href="<?php echo base_url('public/assets/plugins/global/plugins.bundle.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url('public/assets/css/style.bundle.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url('public/assets/plugins/global/plugins.bundle.css'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url('assets/plugins/custom/datatables/datatables.bundle.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url('public/assets/plugins/custom/datatables/datatables.bundle.css'); ?>" rel="stylesheet" type="text/css" />
 
     <style>
         .dt-vertical-align {
@@ -29,10 +29,8 @@
     <script src="<?php echo base_url('public/assets/js/widgets.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/js/custom/widgets.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/plugins/global/plugins.bundle.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/plugins/custom/datatables/datatables.bundle.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/plugins/custom/draggable/draggable.bundle.js'); ?>"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
+    <script src="<?php echo base_url('public/assets/plugins/custom/datatables/datatables.bundle.js'); ?>"></script>
+    <script src="<?php echo base_url('public/assets/plugins/custom/draggable/draggable.bundle.js'); ?>"></script>
 
     <script>
         function simpleAlert(text, icon) {

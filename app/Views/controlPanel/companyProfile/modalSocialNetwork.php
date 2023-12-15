@@ -16,6 +16,7 @@
                             <option value="Facebook" <?php if (@$socialNetwork[0]->type == 'Facebook') echo "selected"; ?>> <?php echo lang('Text.facebook'); ?></option>
                             <option value="Twitter" <?php if (@$socialNetwork[0]->type == 'Twitter') echo "selected"; ?>> <?php echo lang('Text.twitter'); ?></option>
                             <option value="LinkedIn" <?php if (@$socialNetwork[0]->type == 'LinkedIn') echo "selected"; ?>> <?php echo lang('Text.linkedIn'); ?></option>
+                            <option value="Instagram" <?php if (@$socialNetwork[0]->type == 'Instagram') echo "selected"; ?>> <?php echo lang('Text.Instagram'); ?></option>
                         </select>
                     </div>
                 </div>
@@ -29,7 +30,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo lang("Text.btn_cancel"); ?></button>
-                <button id="save-socialNetwork<?php echo $uniqid; ?>" type="button" class="btn btn-primary"><?php echo lang("Text.btn_save"); ?></button>
+                <button id="save-socialNetwork<?php echo $uniqid; ?>" type="button" data-action="<?php echo $action; ?>" class="btn btn-primary"><?php echo lang("Text.btn_save"); ?></button>
             </div>
         </div>
     </div>
@@ -47,39 +48,62 @@
             let resultURL = checkUrlFormat();
             if (resultURL == 0) {
                 $('#save-socialNetwork<?php echo $uniqid; ?>').attr('disabled', true);
-                let action = "<?php echo $action; ?>";
-                let url = "";
-                let msg = "";
-                if(action == "create") {
-                    url = "<?php echo base_url('ControlPanel/addSocialNetwork'); ?>"
-                }
-                $.ajax({
-                    type: "post",
-                    url: url,
-                    data: {
-                        'name': $('#txt-name<?php echo $uniqid; ?>').val(),
-                        'url': $('#txt-url<?php echo $uniqid; ?>').val(),
-                        'action': action
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.error == 0) {
-                            simpleSuccessAlert("<?php echo lang('Text.cp_profile_social_network_success_created'); ?>");
-                            getSocialNetworks();
-                            $('#modal').modal('hide');
-                        } else {
-                            if (response.msg == "SESSION_EXPIRED") {
-                                window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                            } else
-                                globalError();
+                if ($(this).attr('data-action') == 'create') { //ACTION CREATE
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url('ControlPanel/createSocialNetwork'); ?>",
+                        data: {
+                            'name': $('#txt-name<?php echo $uniqid; ?>').val(),
+                            'url': $('#txt-url<?php echo $uniqid; ?>').val(),
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.error == 0) {
+                                simpleSuccessAlert("<?php echo lang('Text.cp_profile_social_network_success_created'); ?>");
+                                getSocialNetworks();
+                                $('#modal').modal('hide');
+                            } else {
+                                if (response.msg == "SESSION_EXPIRED") {
+                                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                                } else
+                                    globalError();
+                            }
+                            $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
+                        },
+                        error: function(e) {
+                            globalError();
+                            $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
                         }
-                        $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
-                    },
-                    error: function(e) {
-                        globalError();
-                        $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
-                    }
-                });
+                    });
+                } else { //ACTION UPDATE
+                    $.ajax({
+                        type: "post",
+                        url: "<?php echo base_url('ControlPanel/updateSocialNetwork'); ?>",
+                        data: {
+                            'id': "<?php echo @$socialNetwork[0]->id; ?>",
+                            'name': $('#txt-name<?php echo $uniqid; ?>').val(),
+                            'url': $('#txt-url<?php echo $uniqid; ?>').val(),
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.error == 0) {
+                                simpleSuccessAlert("<?php echo lang('Text.cp_profile_social_network_success_updated'); ?>");
+                                getSocialNetworks();
+                                $('#modal').modal('hide');
+                            } else {
+                                if (response.msg == "SESSION_EXPIRED") {
+                                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                                } else
+                                    globalError();
+                            }
+                            $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
+                        },
+                        error: function(e) {
+                            globalError();
+                            $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
+                        }
+                    });
+                }
             } else
                 simpleAlert("<?php echo lang('Text.invalid_url_format'); ?>", 'warning');
         } else

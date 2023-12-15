@@ -23,24 +23,46 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <label class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                            <input data-social-network-id="<?php echo $sn->id; ?>" class="form-check-input change-social-network-status" name="google" type="checkbox" value="<?php echo $sn->status; ?>" <?php if($sn->status == 1) echo "checked"; ?>>
-                            <span class="form-check-label fw-semibold text-muted" for=""></span>
-                        </label>
+                        <div id="carousel-actions-social-networks" class="text-center carousel carousel-custom carousel-stretch slide" style="max-width: 95px;" data-bs-ride="carousel" data-bs-interval="1000">
+                            <div>
+                                <ol class="p-0 m-0 carousel-indicators carousel-indicators-bullet carousel-indicators-active-primary">
+                                    <li data-bs-target="#carousel-actions-social-networks" data-bs-slide-to="0" class="ms-1 active"></li>
+                                    <li data-bs-target="#carousel-actions-social-networks" data-bs-slide-to="1" class="ms-1"></li>
+                                    <li data-bs-target="#carousel-actions-social-networks" data-bs-slide-to="2" class="ms-1"></li>
+                                </ol>
+
+                            </div>
+                            <div class="card-body py-6">
+                                <div class="carousel-inner mt-n5">
+                                    <div class="carousel-item active">
+                                        <span data-social-network-id="<?php echo $sn->id; ?>" class="cursor-pointer edit-social-network<?php echo $uniqid; ?>"><i class="bi bi-pencil-fill text-warning"></i></span>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <span data-social-network-id="<?php echo $sn->id; ?>" class="cursor-pointer delete-social-network<?php echo $uniqid; ?>"><i class="bi bi-trash-fill text-danger"></i></span>
+                                    </div>
+                                    <div class="carousel-item ">
+                                        <label class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
+                                            <input data-social-network-id="<?php echo $sn->id; ?>" class="cursor-pointer form-check-input change-social-network-status<?php echo $uniqid; ?>" type="checkbox" value="<?php echo $sn->status; ?>" <?php if ($sn->status == 1) echo "checked"; ?>>
+                                            <span class="form-check-label fw-semibold text-muted" for=""></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="separator separator-dashed my-5"></div>
             </div>
         <?php } ?>
     </div>
-    <!-- Add Social Network -->
+    <!-- Create Social Network -->
     <div class="card-footer border-0 d-flex justify-content-center pt-0">
-        <button id="add-social-network<?php echo $uniqid; ?>" class="btn btn-sm btn-primary"><?php echo lang('Text.btn_add'); ?></button>
+        <button id="create-social-network<?php echo $uniqid; ?>" class="btn btn-sm btn-primary"><?php echo lang('Text.btn_add'); ?></button>
     </div>
 </div>
 
 <script>
-    $('#add-social-network<?php echo $uniqid; ?>').on('click', function() {
+    $('#create-social-network<?php echo $uniqid; ?>').on('click', function() { //CREATE MODAL SOCIAL NETWORK
         $.ajax({
             type: "POST",
             url: "<?php echo base_url('ControlPanel/modalSocialNetwork'); ?>",
@@ -57,34 +79,77 @@
         });
     }); // ok
 
-    $('.social-action').on('click', function(e) {
-        let url = '';
-        let datatype = '';
-        if ($(this).attr('data-action') == 'edit') {
-            url = "<?php echo base_url('ControlPanel/addSocialNetwork'); ?>";
-            datatype = "html";
-        } else if ($(this).attr('data-action') == 'changeStatus') {
-            url = "<?php echo base_url('ControlPanel/addSocialNetworkProcess'); ?>";
-            datatype = "json";
-        }
+    $('.edit-social-network<?php echo $uniqid; ?>').on('click', function() { //EDIT MODAL SOCIAL NETWORK
         $.ajax({
             type: "POST",
-            url: url,
+            url: "<?php echo base_url('ControlPanel/modalSocialNetwork'); ?>",
             data: {
-                'id': $(this).attr('data-socialNetwork-id'),
-                'action': $(this).attr('data-action'),
-                'status': $(this).attr('data-status'),
+                'id': $(this).attr('data-social-network-id'),
+                'action': 'edit',
             },
-            dataType: datatype,
+            dataType: "html",
             success: function(response) {
-                if (datatype == 'html')
-                    $('#app-modal').html(response);
-                else {
-                    if (response.error == 0)
-                        getSocialNetworks();
-                    else
+                $('#app-modal').html(response);
+            },
+            error: function(error) {
+                globalError();
+            }
+        });
+    }); // ok
+
+    $('.delete-social-network<?php echo $uniqid; ?>').on('click', function() { //DELETE SOCIAL NETWORK
+        Swal.fire({
+            title: '<?php echo lang('Text.are_you_sure'); ?>',
+            text: "<?php echo lang('Text.not_revert_this'); ?>",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '<?php echo lang('Text.yes_remove'); ?>',
+            cancelButtonText: '<?php echo lang('Text.no_cancel'); ?>'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url('ControlPanel/deleteSocialNetwork'); ?>",
+                    data: {
+                        'id': $(this).attr('data-social-network-id'),
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.error == 0) {
+                            getSocialNetworks();
+                        } else {
+                            if (response.msg == "SESSION_EXPIRED") {
+                                window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                            } else
+                                globalError();
+                        }
+                    },
+                    error: function(error) {
                         globalError();
-                }
+                    }
+                });
+            }
+        });
+    });
+
+    $('.change-social-network-status<?php echo $uniqid; ?>').on('click', function() { //CHANGE STATUS SOCIAL NETWORK
+        if ($(this).val() == 1)
+            $(this).val(0);
+        else
+            $(this).val(1);
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('ControlPanel/changeStatusSocialNetwork'); ?>",
+            data: {
+                'id': $(this).attr('data-social-network-id'),
+                'status': $(this).val(),
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.error != 0)
+                    globalError();
             },
             error: function(error) {
                 globalError();

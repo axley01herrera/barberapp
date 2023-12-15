@@ -114,7 +114,7 @@ class ControlPanel extends BaseController
             $this->objMainModel->objUpdate('service', $data, $id);
             $i++;
         }
-        
+
         $result['error'] = 0;
 
         return json_encode($result);
@@ -172,7 +172,7 @@ class ControlPanel extends BaseController
 
             $result = $this->objMainModel->objCreate('service', $data);
             $this->objMainModel->objUpdate('service', array('ordering' => $result['id']), $result['id']);
-          
+
             return json_encode($result);
         } else {
             $result = array();
@@ -1366,21 +1366,21 @@ class ControlPanel extends BaseController
         $data['action'] = $action;
         $data['uniqid'] = uniqid();
 
-        if($action == "create") {
+        if ($action == "create") {
             $data['modalTitle'] = lang('Text.add_social_network');
         }
         if (!empty($action == 'edit')) {
             $data['socialNetwork'] = $this->objMainModel->objData('company_social_network', 'id', $this->objRequest->getPost('id'));
             $data['modalTitle'] = lang('Text.editing') . ' ' . $data['socialNetwork'][0]->type;
-        } else
-        
+        }
+
         # page
         $view = 'controlPanel/companyProfile/modalSocialNetwork';
 
         return view($view, $data);
     }
 
-    public function addSocialNetwork()
+    public function createSocialNetwork()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
@@ -1393,14 +1393,69 @@ class ControlPanel extends BaseController
         # params
         $socialNetwork = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $url = htmlspecialchars(trim($this->objRequest->getPost('url')));
-        
+
         $data = array();
         $data['type'] = $socialNetwork;
         $data['url'] = $url;
 
         $result = $this->objMainModel->objCreate('company_social_network', $data);
-       
+
         return json_encode($result);
+    }
+
+    public function updateSocialNetwork()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        # params
+        $id = htmlspecialchars(trim($this->objRequest->getPost('id')));
+        $socialNetwork = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $url = htmlspecialchars(trim($this->objRequest->getPost('url')));
+
+        $data = array();
+        $data['type'] = $socialNetwork;
+        $data['url'] = $url;
+
+        return json_encode($this->objMainModel->objUpdate('company_social_network', $data, $id));
+    }
+
+    public function deleteSocialNetwork()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        # params
+        $id = htmlspecialchars(trim($this->objRequest->getPost('id')));
+
+        return json_encode($this->objMainModel->objDelete('company_social_network', $id));
+    }
+
+    public function changeStatusSocialNetwork()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        # params
+        $id = htmlspecialchars(trim($this->objRequest->getPost('id')));
+        $status = htmlspecialchars(trim($this->objRequest->getPost('status')));
+
+        return json_encode($this->objMainModel->objUpdate('company_social_network', array('status' => $status), $id));
     }
 
     public function getSocialNetworks()

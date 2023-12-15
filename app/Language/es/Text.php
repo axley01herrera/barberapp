@@ -116,6 +116,7 @@ $lang['facebook'] = "Facebook";
 $lang['google'] = "Google";
 $lang['twitter'] = "Twitter";
 $lang['linkedIn'] = "LinkedIn";
+$lang['Instagram'] = "Instagram";
 $lang['status'] = "Estado";
 $lang['visibility'] = "Público";
 $lang['not_services'] = "No hay Servicios";
