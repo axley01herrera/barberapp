@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <div id="carousel-actions-social-networks" class="text-center carousel carousel-custom carousel-stretch slide" style="max-width: 95px;" data-bs-ride="carousel" data-bs-interval="1000">
+                        <div id="carousel-actions-social-networks" class="text-center carousel carousel-custom carousel-stretch slide" style="max-width: 95px;" data-bs-ride="carousel" data-bs-interval="5000">
                             <div>
                                 <ol class="p-0 m-0 carousel-indicators carousel-indicators-bullet carousel-indicators-active-primary">
                                     <li data-bs-target="#carousel-actions-social-networks" data-bs-slide-to="0" class="ms-1 active"></li>
@@ -35,20 +35,21 @@
                             <div class="card-body py-6">
                                 <div class="carousel-inner mt-n5">
                                     <div class="carousel-item active">
-                                        <span data-social-network-id="<?php echo $sn->id; ?>" class="cursor-pointer edit-social-network<?php echo $uniqid; ?>"><i class="bi bi-pencil-fill text-warning"></i></span>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <span data-social-network-id="<?php echo $sn->id; ?>" class="cursor-pointer delete-social-network<?php echo $uniqid; ?>"><i class="bi bi-trash-fill text-danger"></i></span>
-                                    </div>
-                                    <div class="carousel-item ">
                                         <label class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
                                             <input data-social-network-id="<?php echo $sn->id; ?>" class="cursor-pointer form-check-input change-social-network-status<?php echo $uniqid; ?>" type="checkbox" value="<?php echo $sn->status; ?>" <?php if ($sn->status == 1) echo "checked"; ?>>
                                             <span class="form-check-label fw-semibold text-muted" for=""></span>
                                         </label>
                                     </div>
+                                    <div class="carousel-item">
+                                        <span data-social-network-id="<?php echo $sn->id; ?>" class="cursor-pointer edit-social-network<?php echo $uniqid; ?>"><i class="bi bi-pencil-fill text-warning"></i></span>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <span data-social-network-id="<?php echo $sn->id; ?>" class="cursor-pointer delete-social-network<?php echo $uniqid; ?>"><i class="bi bi-trash-fill text-danger"></i></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="separator separator-dashed my-5"></div>

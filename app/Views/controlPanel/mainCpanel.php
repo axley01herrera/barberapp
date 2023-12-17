@@ -13,6 +13,8 @@
     <link href="<?php echo base_url('public/assets/css/style.bundle.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url('public/assets/plugins/global/plugins.bundle.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url('public/assets/plugins/custom/datatables/datatables.bundle.css'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url('public/assets/sass/components/_carousel.scss'); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('public/assets/sass/components/_variables.scss'); ?>" rel="stylesheet" type="text/css">
 
     <style>
         .dt-vertical-align {
