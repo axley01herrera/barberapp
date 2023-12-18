@@ -138,10 +138,35 @@
         }
     });
 
-    dtEmployees.on('click', '.resend-verify-email', function() { // Resend Email 
+    dtEmployees.on('click', '.resend-verify-email', function() { // Resend Verify Email 
         $.ajax({
             type: "post",
             url: "<?php echo base_url('ControlPanel/resendVerifyEmail'); ?>",
+            data: {
+                'employeeID': $(this).attr('data-employee-id')
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.error == 0) {
+                    simpleSuccessAlert(response.msg);
+                } else {
+                    if (response.msg == "SESSION_EXPIRED") {
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    } else {
+                        globalError();
+                    }
+                }
+            },
+            error: function(e) {
+                globalError();
+            }
+        });
+    })
+
+    dtEmployees.on('click', '.resend-complete-account-email', function() { // Resend Complete Account Email 
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/resendCompleteAccount'); ?>",
             data: {
                 'employeeID': $(this).attr('data-employee-id')
             },
