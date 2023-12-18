@@ -64,6 +64,7 @@ $routes->post('ControlPanel/processingEmployee', 'ControlPanel::processingEmploy
 $routes->post('ControlPanel/deleteEmployee', 'ControlPanel::deleteEmployee');
 $routes->post('ControlPanel/changeEmployeeStatus', 'ControlPanel::changeEmployeeStatus');
 $routes->post('ControlPanel/employeeProfileTabContent', 'ControlPanel::employeeProfileTabContent');
+$routes->post('ControlPanel/resendVerifyEmail', 'ControlPanel::resendVerifyEmail');
 $routes->post('ControlPanel/employeeService', 'ControlPanel::employeeService');
 $routes->post('ControlPanel/updateEmployeeAccount', 'ControlPanel::updateEmployeeAccount');
 $routes->post('ControlPanel/updateEmployeeProfile', 'ControlPanel::updateEmployeeProfile');

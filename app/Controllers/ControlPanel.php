@@ -588,6 +588,7 @@ class ControlPanel extends BaseController
             if ($result[$i]->status == 1)
                 $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
+            $btnResendEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-at-fill"></i>' . '</button>';
             $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '" title="' . lang('Text.emp_profile_title') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
@@ -597,7 +598,7 @@ class ControlPanel extends BaseController
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
-            $col['action'] =  $btnProfile . $btnDelete;
+            $col['action'] = $btnResendEmail . $btnProfile . $btnDelete;
             $row[$i] =  $col;
         }
 
@@ -701,6 +702,45 @@ class ControlPanel extends BaseController
             return json_encode($result);
         }
     } // ok
+
+    public function resendVerifyEmail()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        $employee = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPost('employeeID'));
+        $token = md5(uniqid());
+
+        $result = $this->objMainModel->objUpdate('employee', array('token' => $token), $employee[0]->id);
+
+        $dataEmail = array();
+        $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
+        $dataEmail['person'] = $employee[0]->name . ' ' . $employee[0]->lastName;
+        $dataEmail['url'] = base_url('Home/employeeCreatePassword?token=') . $token;
+        $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
+        $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
+
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
+        $this->objEmail->setTo($employee[0]->email);
+        $this->objEmail->setSubject(lang('Text.emp_complete_your_account'));
+        $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
+
+        if ($this->objEmail->send(false)) {
+            $response['error'] = 0;
+            $response['msg'] = lang('Text.emp_success_resend_verify_email');
+        } else {
+            $response['error'] = 1;
+            $response['msg'] = 'ERROR_SEND_EMAIL';
+        }
+
+        return json_encode($response);
+    }
 
     public function updateEmployee()
     {

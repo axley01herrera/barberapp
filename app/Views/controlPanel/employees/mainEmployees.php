@@ -138,6 +138,35 @@
         }
     });
 
+    dtEmployees.on('click', '.resend-verify-email', function() {
+        $('.resend-verify-email').attr('disabled', true);
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/resendVerifyEmail'); ?>",
+            data: {
+                'employeeID': $(this).attr('data-employee-id')
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.error == 0) {
+                    simpleSuccessAlert(response.msg);
+                    $('.resend-verify-email').removeAttr('disabled');
+                } else {
+                    if (response.msg == "SESSION_EXPIRED") {
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    } else {
+                        globalError();
+                        $('.resend-verify-email').removeAttr('disabled');
+                    }
+                }
+            },
+            error: function(e) {
+                globalError();
+                $('.resend-verify-email').removeAttr('disabled');
+            }
+        });
+    })
+
     dtEmployees.on('click', '.change-status', function() {
         let employeeID = $(this).attr('data-employee-id');
         let status = $(this).attr('data-status');
@@ -147,8 +176,7 @@
         if (status == 0) {
             newStatus = 1;
             msg = "<?php echo lang('Text.emp_activated'); ?>";
-        }
-        else if (status == 1) {
+        } else if (status == 1) {
             newStatus = 0;
             msg = "<?php echo lang('Text.emp_deactivated'); ?>";
         }
