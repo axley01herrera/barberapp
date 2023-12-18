@@ -269,8 +269,8 @@ class ControlPanelModel extends Model
             $price = 0;
 
             foreach ($data as $d) {
-                $time = $time - $d->time;
-                $price = $price - $d->price;
+                $time = $time + $d->time;
+                $price = $price + $d->price;
             }
 
             $return = array();

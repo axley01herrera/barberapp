@@ -326,22 +326,40 @@ class Customer extends BaseController
         # params
         $employeeID = $this->objRequest->getPost('employeeID');
         $date = date('Y-m-d', strtotime($this->objRequest->getPost('date'))); 
+        $serviceTime = $this->objRequest->getPost('serviceTime');
 
         $objDate = new \DateTime($date);
         $day = strtolower($objDate->format('l'));
-        $employeeBussinesDay = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+        $employeeBussinesDay = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);  // Get  Employye All Bussiness Day
         $dayTimes = array();
+        $rangeTimes = array();
 
-        if($employeeBussinesDay[0]->$day == 1) {
-            $employeeTimes = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
-            foreach ($employeeTimes as $time) {
+        if($employeeBussinesDay[0]->$day == 1) { 
+            $employeeTimes = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID); // Get Eployee All Times Day
+
+            foreach ($employeeTimes as $time) { // Set Times Day
                 if($time->day == $day) 
                     $dayTimes[] = $time;
+            }
+
+            foreach ($dayTimes as $index => $t) {
+                $start = new \DateTime($t->start);
+                $end = new \DateTime($t->end);
+
+                if($index == 0)
+                    $h = $start;
+                    
+                while ($h <= $end) {
+                    $s = $h->format('g:i a');
+                    $h->add(new \DateInterval('PT'.$serviceTime.'M'));
+                    $e = $h->format('g:i a');
+                    $rangeTimes[] = $s.' - '.$e;
+                }
             }
         }
 
         $data = array();
-        $data['availability'] = $dayTimes;
+        $data['availability'] = $rangeTimes;
 
         # page
         $view = 'customer/createAppointment/availability';

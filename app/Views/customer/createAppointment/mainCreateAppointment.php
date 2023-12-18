@@ -64,6 +64,7 @@
                 </div>
             </div>
             <div class="row">
+                <!-- Main Employees -->
                 <div class="col-12 mb-5 text-center">
                     <div id="employee<?php echo $uniqid; ?>" class="text-center"></div>
                 </div>
@@ -129,19 +130,30 @@
 <script>
     var step = 1;
     var services = [];
+    var serviceTime = 0;
+    var servicePrice = 0;
     var date = "<?php echo date('Y-m-d'); ?>";
     var lang = "<?php echo $config[0]->lang; ?>";
     var dateLabel = "";
     var locale = "";
     var employeeID = "";
+    var timeSelected = "";
 
     $('#next<?php echo $uniqid; ?>').on('click', function() { // Next
         if (services.length > 0) {
             step = Number(step) + 1;
-            showStep();
-        } else {
-            simpleAlert('<?php echo lang('Text.cust_new_appointment_step1_sub'); ?>', 'warning')
-        }
+            if (step == 3) {
+                if (timeSelected != "")
+                    showStep();
+                else {
+                    step = step - 1;
+                    simpleAlert('<?php echo lang('Text.cust_new_appointment_required_time_selected'); ?>', 'warning')
+                }
+            } else
+                showStep();
+        } else
+            simpleAlert('<?php echo lang('Text.cust_new_appointment_step1_sub'); ?>', 'warning');
+
     });
 
     $('#back<?php echo $uniqid; ?>').on('click', function() { // Back
@@ -195,7 +207,7 @@
     }
 </script>
 
-<!-- Employyees -->
+<!-- Employyees And Availability -->
 <script>
     function renderEmployee() {
         $.ajax({
@@ -220,7 +232,8 @@
             url: "<?php echo base_url('Customer/employeeAvailability'); ?>",
             data: {
                 'employeeID': employeeID,
-                'date': date
+                'date': date,
+                'serviceTime': serviceTime
             },
             dataType: "html",
             success: function(response) {
@@ -261,6 +274,6 @@
 
     $('#sel-date<?php echo $uniqid; ?>').on('change input', function() {
         date = $(this).val();
-        console.log(date);
+        getEmployeeAvailability();
     });
 </script>
