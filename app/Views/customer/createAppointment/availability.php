@@ -1,7 +1,12 @@
 <div class="row">
     <?php foreach ($availability as $a) { ?>
         <div class="col-12 col-lg-6 text-center">
-            <a href="#" class="btn btn-sm btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary mt-2 w-100 time-selected" data-value="<?php echo $a; ?>"><?php echo $a; ?></a>
+            <div class="form-check form-check-custom form-check-solid mt-5">
+                <input class="form-check-input time-selected" type="radio" name="radio-time" data-value="<?php echo $a; ?>" id="<?php echo $a; ?>" >
+                <label class="ms-2 fs-7" for="<?php echo $a; ?>">
+                    <?php echo $a; ?>
+                </label>
+            </div>
         </div>
     <?php } ?>
 </div>
@@ -18,8 +23,11 @@
 <?php } ?>
 
 <script>
-    $('.time-selected').on('click', function (e) {
-        e.preventDefault();
+    dateReview = "<?php echo $dateReview; ?>";
+    $('#review-date').html(dateReview);
+    
+    $('.time-selected').on('click', function() {
         timeSelected = $(this).attr('data-value');
+        $('#review-time').html(timeSelected);
     });
 </script>

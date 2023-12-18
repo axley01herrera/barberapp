@@ -45,7 +45,7 @@
                                     <th class="p-2"><?php echo lang('Text.dt_employee_last_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_employee_email'); ?></th>
                                     <th class="text-center p-2"><?php echo lang('Text.dt_employee_status'); ?></th>
-                                    <th class="text-center p-2"></th>
+                                    <th class="text-end p-2"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -127,7 +127,7 @@
             },
             {
                 data: 'action',
-                class: 'dt-vertical-align text-center p-2',
+                class: 'dt-vertical-align text-end p-2',
                 orderable: false,
                 searchable: false
             },
@@ -138,8 +138,7 @@
         }
     });
 
-    dtEmployees.on('click', '.resend-verify-email', function() {
-        $('.resend-verify-email').attr('disabled', true);
+    dtEmployees.on('click', '.resend-verify-email', function() { // Resend Email 
         $.ajax({
             type: "post",
             url: "<?php echo base_url('ControlPanel/resendVerifyEmail'); ?>",
@@ -150,19 +149,16 @@
             success: function(response) {
                 if (response.error == 0) {
                     simpleSuccessAlert(response.msg);
-                    $('.resend-verify-email').removeAttr('disabled');
                 } else {
                     if (response.msg == "SESSION_EXPIRED") {
                         window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
                     } else {
                         globalError();
-                        $('.resend-verify-email').removeAttr('disabled');
                     }
                 }
             },
             error: function(e) {
                 globalError();
-                $('.resend-verify-email').removeAttr('disabled');
             }
         });
     })

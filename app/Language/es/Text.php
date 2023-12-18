@@ -208,9 +208,10 @@ $lang['cust_new_appointment_step2'] = 'Paso 2';
 $lang['cust_new_appointment_step2_sub'] = 'Seleccione un empleado y una fecha en el calendario para ver los turnos disponibles';
 $lang['cust_new_appointment_invalid_date'] = 'No se pueden reservar citas en la fecha seleccionada';
 $lang['cust_new_appointment_step3'] = 'Paso 3';
-$lang['cust_new_appointment_step3_sub'] = 'Selecciona un empleado para ver su disponibilidad';
+$lang['cust_new_appointment_step3_sub'] = 'Detalle de tu cita';
 $lang['cust_new_appointment_available_shifts'] = 'Turnos Disponibles';
 $lang['cust_no_appointment_available'] = 'No hay turnos disponibles para el empleado y la fecha seleccionada.';
+$lang['cust_time'] = 'Turno';
 
 # Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";

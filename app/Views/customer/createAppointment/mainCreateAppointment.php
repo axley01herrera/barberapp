@@ -68,9 +68,10 @@
                 <div class="col-12 mb-5 text-center">
                     <div id="employee<?php echo $uniqid; ?>" class="text-center"></div>
                 </div>
-                <div class="col-12 col-lg-6 mb-5">
+                <div class="col-12 col-lg-6 mb-5 mt-5">
                     <input id="sel-date<?php echo $uniqid; ?>" class="flatpickr form-control required<?php echo $uniqid; ?>" value="<?php echo date($dateLabel, strtotime($currentDate)); ?>" hidden />
                 </div>
+
                 <div class="col-12 col-lg-6 mb-5">
                     <?php echo lang('Text.cust_new_appointment_available_shifts'); ?>
                     <div id="main-availability"></div>
@@ -92,6 +93,22 @@
                         <div class="fs-6 text-gray-700"><?php echo lang('Text.cust_new_appointment_step3_sub'); ?>.</div>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex align-items-center mb-6">
+                <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
+                <div class="flex-grow-1 me-5">
+                    <!-- Date -->
+                    <div class="text-gray-800 fw-semibold fs-2">
+                        <span><?php echo lang('Text.date'); ?></span>: 
+                        <span id="review-date" class="text-muted"></span>
+                    </div>
+                    <!-- Time -->
+                    <div class="text-gray-800 fw-semibold fs-2">
+                        <span><?php echo lang('Text.cust_time'); ?></span>:
+                        <span id="review-time" class="text-muted"></span>
+                    </div>
+                </div>
+                <div id="review-employee-img" class="symbol symbol-40px symbol-circle"></div>
             </div>
 
         </div>
@@ -137,7 +154,9 @@
     var dateLabel = "";
     var locale = "";
     var employeeID = "";
+    var employeeAvatar = "";
     var timeSelected = "";
+    var dateReview = "";
 
     $('#next<?php echo $uniqid; ?>').on('click', function() { // Next
         if (services.length > 0) {
@@ -227,6 +246,12 @@
     }
 
     function getEmployeeAvailability() {
+        timeSelected = "";
+        employeeAvatar = $('#employee-img' + employeeID).html();
+
+        $('#review-time').html(timeSelected);
+        $('#review-employee-img').html(employeeAvatar);
+
         $.ajax({
             type: "post",
             url: "<?php echo base_url('Customer/employeeAvailability'); ?>",

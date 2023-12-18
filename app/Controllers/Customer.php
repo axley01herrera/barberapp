@@ -328,6 +328,11 @@ class Customer extends BaseController
         $date = date('Y-m-d', strtotime($this->objRequest->getPost('date'))); 
         $serviceTime = $this->objRequest->getPost('serviceTime');
 
+        if ($this->config[0]->lang == 'es')
+            $dateLabel = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $dateLabel = "m-d-Y";
+
         $objDate = new \DateTime($date);
         $day = strtolower($objDate->format('l'));
         $employeeBussinesDay = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);  // Get  Employye All Bussiness Day
@@ -345,6 +350,7 @@ class Customer extends BaseController
             foreach ($dayTimes as $index => $t) {
                 $start = new \DateTime($t->start);
                 $end = new \DateTime($t->end);
+                $end->sub(new \DateInterval('PT'.$serviceTime.'M'));
 
                 if($index == 0)
                     $h = $start;
@@ -360,6 +366,7 @@ class Customer extends BaseController
 
         $data = array();
         $data['availability'] = $rangeTimes;
+        $data['dateReview'] = date($dateLabel, strtotime($date));
 
         # page
         $view = 'customer/createAppointment/availability';

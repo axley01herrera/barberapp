@@ -4,7 +4,7 @@
         <!-- Employee -->
         <li class="nav-item" role="presentation">
             <a class="nav-link btn d-flex flex-column flex-center rounded-pill btn-active-primary <?php if ($index == 0) echo "active"; ?> exployee-list" data-employee-id="<?php echo $e->employeeID; ?>" href="#" role="tab">
-                <div class="symbol symbol-40px symbol-circle">
+                <div id="employee-img<?php echo $e->employeeID; ?>" class="symbol symbol-40px symbol-circle">
                     <?php if (empty($e->avatar)) { ?>
                         <img src="<?php echo base_url('public/assets/media/avatars/blank.png'); ?>" alt="Avatar">
                     <?php } else { ?>
@@ -20,7 +20,7 @@
 
 <script>
     var countEmp = "<?php echo sizeof($employees); ?>";
-    var serviceTime = "<?php echo $serviceTime; ?>"
+    var serviceTime = "<?php echo $serviceTime; ?>";
 
     if (Number(countEmp) > 0) {
         employeeID = "<?php echo @$employees[0]->employeeID; ?>";
