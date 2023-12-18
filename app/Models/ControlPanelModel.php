@@ -181,7 +181,8 @@ class ControlPanelModel extends Model
     public function getActiveServices()
     {
         $query = $this->db->table('service')
-            ->where('status', 1);
+            ->where('status', 1)
+            ->orderBy('ordering');
 
         $data = $query->get()->getResult();
 

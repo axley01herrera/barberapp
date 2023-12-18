@@ -588,7 +588,7 @@ class ControlPanel extends BaseController
             if ($result[$i]->status == 1)
                 $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
-            $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
+            $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '" title="' . lang('Text.emp_profile_title') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
@@ -671,6 +671,7 @@ class ControlPanel extends BaseController
             $data['token'] = md5(uniqid());
 
             $result = $this->objMainModel->objCreate('employee', $data);
+            $this->objMainModel->objCreate('employee_bussines_day', ['employeeID' => $result['id']]);
 
             $dataEmail = array();
             $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
@@ -681,7 +682,7 @@ class ControlPanel extends BaseController
 
             $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
             $this->objEmail->setTo($email);
-            $this->objEmail->setSubject('Complete Your Account');
+            $this->objEmail->setSubject(lang('Text.emp_complete_your_account'));
             $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
 
             if ($this->objEmail->send(false))
@@ -844,10 +845,6 @@ class ControlPanel extends BaseController
                 break;
             case 'tab-schedule':
                 $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
-                if (empty($data['employeeBussinesDay'])) {
-                    $this->objMainModel->objCreate('employee_bussines_day', ['employeeID' => $employeeID]);
-                    $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
-                }
                 $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabSchedule";
                 break;
@@ -1368,17 +1365,16 @@ class ControlPanel extends BaseController
 
         if ($action == "create") {
             $data['modalTitle'] = lang('Text.add_social_network');
-        }
-        if (!empty($action == 'edit')) {
+        } else if (!empty($action == 'update')) {
             $data['socialNetwork'] = $this->objMainModel->objData('company_social_network', 'id', $this->objRequest->getPost('id'));
-            $data['modalTitle'] = lang('Text.editing') . ' ' . $data['socialNetwork'][0]->type;
+            $data['modalTitle'] = lang('Text.edit_social_network');
         }
 
         # page
         $view = 'controlPanel/companyProfile/modalSocialNetwork';
 
         return view($view, $data);
-    }
+    } // ok
 
     public function createSocialNetwork()
     {
@@ -1414,7 +1410,7 @@ class ControlPanel extends BaseController
         }
 
         # params
-        $id = htmlspecialchars(trim($this->objRequest->getPost('id')));
+        $id = $this->objRequest->getPost('id');
         $socialNetwork = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $url = htmlspecialchars(trim($this->objRequest->getPost('url')));
 
@@ -1422,8 +1418,10 @@ class ControlPanel extends BaseController
         $data['type'] = $socialNetwork;
         $data['url'] = $url;
 
-        return json_encode($this->objMainModel->objUpdate('company_social_network', $data, $id));
-    }
+        $result = $this->objMainModel->objUpdate('company_social_network', $data, $id);
+
+        return json_encode($result);
+    } // ok
 
     public function deleteSocialNetwork()
     {
@@ -1436,10 +1434,10 @@ class ControlPanel extends BaseController
         }
 
         # params
-        $id = htmlspecialchars(trim($this->objRequest->getPost('id')));
+        $id = $this->objRequest->getPost('id');
 
         return json_encode($this->objMainModel->objDelete('company_social_network', $id));
-    }
+    } // ok
 
     public function changeStatusSocialNetwork()
     {
@@ -1452,11 +1450,16 @@ class ControlPanel extends BaseController
         }
 
         # params
-        $id = htmlspecialchars(trim($this->objRequest->getPost('id')));
-        $status = htmlspecialchars(trim($this->objRequest->getPost('status')));
+        $socialNetworkID = $this->objRequest->getPost('socialNetworkID');
+        $status = $this->objRequest->getPost('status');
 
-        return json_encode($this->objMainModel->objUpdate('company_social_network', array('status' => $status), $id));
-    }
+        $data = array();
+        $data['status'] = $status;
+
+        $result = $this->objMainModel->objUpdate('company_social_network', $data, $socialNetworkID);
+
+        return json_encode($result);
+    } // ok
 
     public function getSocialNetworks()
     {

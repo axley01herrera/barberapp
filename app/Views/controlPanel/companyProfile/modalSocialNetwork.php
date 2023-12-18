@@ -48,7 +48,7 @@
             let resultURL = checkUrlFormat();
             if (resultURL == 0) {
                 $('#save-socialNetwork<?php echo $uniqid; ?>').attr('disabled', true);
-                if ($(this).attr('data-action') == 'create') { //ACTION CREATE
+                if ($(this).attr('data-action') == 'create') { // ACTION CREATE
                     $.ajax({
                         type: "post",
                         url: "<?php echo base_url('ControlPanel/createSocialNetwork'); ?>",
@@ -75,7 +75,7 @@
                             $('#save-socialNetwork<?php echo $uniqid; ?>').removeAttr('disabled');
                         }
                     });
-                } else { //ACTION UPDATE
+                } else { // ACTION UPDATE
                     $.ajax({
                         type: "post",
                         url: "<?php echo base_url('ControlPanel/updateSocialNetwork'); ?>",
@@ -110,11 +110,9 @@
             simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
     });
 
-
     function checkRequiredValues() {
         let result = 0;
         let value = "";
-
         $('.required<?php echo $uniqid; ?>').each(function() {
             value = $(this).val();
             if (value == "") {
@@ -122,7 +120,6 @@
                 result = 1;
             }
         });
-
         return result;
     }
 

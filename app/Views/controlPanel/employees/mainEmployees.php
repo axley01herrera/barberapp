@@ -140,23 +140,32 @@
 
     dtEmployees.on('click', '.change-status', function() {
         let employeeID = $(this).attr('data-employee-id');
-        if ($(this).attr('data-status') == 1)
-            $(this).attr('data-status', 0);
-        else
-            $(this).attr('data-status', 1);
+        let status = $(this).attr('data-status');
+        let newStatus = "";
+        let msg = "";
+
+        if (status == 0) {
+            newStatus = 1;
+            msg = "<?php echo lang('Text.emp_activated'); ?>";
+        }
+        else if (status == 1) {
+            newStatus = 0;
+            msg = "<?php echo lang('Text.emp_deactivated'); ?>";
+        }
+
+        $(this).attr('data-status', newStatus);
 
         $.ajax({
             type: "post",
             url: "<?php echo base_url('ControlPanel/changeEmployeeStatus'); ?>",
             data: {
                 'employeeID': employeeID,
-                'status': $(this).attr('data-status')
+                'status': newStatus
             },
             dataType: "json",
             success: function(response) {
                 if (response.error == 0) {
-                    simpleSuccessAlert('<?php echo lang('Text.success_change_status'); ?>');
-                    dtEmployees.draw();
+                    simpleSuccessAlert(msg);
                 } else {
                     if (response.msg == "SESSION_EXPIRED") {
                         window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
@@ -168,7 +177,7 @@
                 globalError();
             }
         });
-    })
+    }) // ok
 
     dtEmployees.on('click', '.edit-employee', function() { // Edit
         let employeeID = $(this).attr('data-employee-id');

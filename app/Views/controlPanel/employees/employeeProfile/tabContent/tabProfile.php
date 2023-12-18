@@ -33,7 +33,7 @@
                         <div class="image-input-wrapper w-125px h-125px" style="background-image: url(data:image/png;base64,<?php echo base64_encode($employee[0]->avatar); ?>)"></div>
                     <?php } ?>
                     <!-- Edit Button -->
-                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cambiar Avatar">
+                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.emp_change_avatar'); ?>">
                         <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
                         <!-- Inputs -->
                         <input id="avatar<?php echo $uniqid; ?>" type="file" name="avatar" accept=".png, .jpg, .jpeg">
@@ -41,12 +41,12 @@
 
                     </label>
                     <!-- Cancel button -->
-                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Cancelar Avatar">
+                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="">
                         <i class="ki-outline ki-cross fs-3"></i>
                     </span>
                     <!-- Remove button -->
                     <?php if (!empty($employee[0]->avatar)) { ?>
-                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.remove_avatar'); ?>">
+                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.emp_remove_avatar'); ?>">
                             <i class="ki-outline ki-cross fs-3"></i>
                         </span>
                     <?php } ?>
@@ -133,12 +133,23 @@
     var dateLabel = "";
     var employeeID = "<?php echo $employeeID; ?>";
 
-    if (lang == 'es')
+    if (lang == 'es') {
         dateLabel = "d-m-Y";
-    else if (lang == 'en')
+        locale = {
+            weekdays: {
+                shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+            },
+            months: {
+                shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+                longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            },
+        }
+    } else if (lang == 'en')
         dateLabel = "m-d-Y";
 
     $(".flatpickr").flatpickr({
+        locale: locale,
         dateFormat: dateLabel
     });
 
@@ -163,29 +174,7 @@
                 if (response.error === 0) {
                     reloadEmployeeInfo();
                     employeeProfileTabContent();
-                } else if (response.error === 1)
-                    globalError();
-                else
-                    window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-            },
-            error: function(error) {
-                globalError();
-            }
-        });
-    });
-
-    imageInput.on("kt.imageinput.cancel", function() { // Remove On Cancel
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url('ControlPanel/removeEmployeeAvatarProfile'); ?>",
-            data: {
-                'employeeID': employeeID
-            },
-            dataType: "json",
-            success: function(response) {
-                if (response.error === 0) {
-                    reloadEmployeeInfo();
-                    employeeProfileTabContent();
+                    simpleSuccessAlert("<?php echo lang("Text.emp_success_change_avatar"); ?>");
                 } else if (response.error === 1)
                     globalError();
                 else
@@ -209,6 +198,7 @@
                 if (response.error === 0) {
                     reloadEmployeeInfo();
                     employeeProfileTabContent();
+                    simpleSuccessAlert("<?php echo lang("Text.emp_success_remove_avatar"); ?>");
                 } else if (response.error === 1)
                     globalError();
                 else
@@ -259,7 +249,7 @@
                 dataType: "json",
                 success: function(response) {
                     if (response.error == 0) {
-                        simpleSuccessAlert("<?php echo lang("Text.profile_data_updated"); ?>");
+                        simpleSuccessAlert("<?php echo lang("Text.emp_success_update_profile"); ?>");
                         reloadEmployeeInfo();
                         employeeProfileTabContent();
                     } else if (response.error == 1)

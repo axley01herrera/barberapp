@@ -118,7 +118,7 @@
                     if (response.error == 0) {
                         simpleSuccessAlert(msg);
                         employeeProfileTabContent();
-                        $('input').val('');
+                        $('#sel-day<?php echo $uniqid; ?>').val('');
                         $('select').val('');
                         if (action == 'update')
                             $('#modal').modal('hide');

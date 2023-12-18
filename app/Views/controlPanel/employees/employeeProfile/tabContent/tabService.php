@@ -44,6 +44,13 @@
         $('.form-check-input').on('click', function() {
             let checked = $(this).attr('data-checked');
             let serviceID = $(this).attr('data-service-id');
+            let msg = "";
+
+            if(checked == 0) {
+                msg = "<?php echo lang('Text.emp_assigned_service'); ?>";
+            } else
+                msg = "<?php echo lang('Text.emp_unassigned_service'); ?>";
+
             $.ajax({
                 type: "post",
                 url: "<?php echo base_url('ControlPanel/employeeService'); ?>",
@@ -54,7 +61,9 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    if (response.error == 1 && response.msg == "SESSION_EXPIRED")
+                    if(response.error == 0)
+                        simpleSuccessAlert(msg);
+                    else if (response.error == 1 && response.msg == "SESSION_EXPIRED")
                         window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
                 },
                 error: function(error) {
