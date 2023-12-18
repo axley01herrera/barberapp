@@ -84,13 +84,11 @@ $routes->post('ControlPanel/removeAvatarProfile', 'ControlPanel::removeAvatarPro
 $routes->post('ControlPanel/updateProfile', 'ControlPanel::updateProfile');
 $routes->post('ControlPanel/changeAccessKey', 'ControlPanel::changeAccessKey');
 $routes->post('ControlPanel/updateConfig', 'ControlPanel::updateConfig');
-//CRUD SOCIAL NETWORK
 $routes->post('ControlPanel/modalSocialNetwork', 'ControlPanel::modalSocialNetwork');
 $routes->post('ControlPanel/createSocialNetwork', 'ControlPanel::createSocialNetwork');
 $routes->post('ControlPanel/updateSocialNetwork', 'ControlPanel::updateSocialNetwork');
 $routes->post('ControlPanel/deleteSocialNetwork', 'ControlPanel::deleteSocialNetwork');
 $routes->post('ControlPanel/changeStatusSocialNetwork', 'ControlPanel::changeStatusSocialNetwork');
-//END CRUD SOCIAL NETWORK
 $routes->post('ControlPanel/getSocialNetworks', 'ControlPanel::getSocialNetworks');
 
 ############################## 
@@ -106,6 +104,7 @@ $routes->post('Customer/removeAvatarProfile', 'Customer::removeAvatarProfile');
 $routes->post('Customer/reloadCustomerInfo', 'Customer::reloadCustomerInfo');
 $routes->post('Customer/createAppointment', 'Customer::createAppointment');
 $routes->post('Customer/employeesByServices', 'Customer::employeesByServices');
+$routes->post('Customer/employeeAvailability', 'Customer::employeeAvailability');
 
 ############################## 
 ## Employee Routes

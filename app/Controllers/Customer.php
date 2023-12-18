@@ -308,12 +308,43 @@ class Customer extends BaseController
 
         # params
         $services = $this->objRequest->getPost('services');
+        $serviceCalc = $this->objControlPanelModel->getServiceTimeAndPrice($services);
 
         $data = array();
         # data
         $data['employees'] = $this->objControlPanelModel->getEmployeesByServices($services);
+        $data['serviceTime'] = $serviceCalc['time'];
+        $data['servicePrice'] = $serviceCalc['price'];
         # page
         $view = 'customer/createAppointment/employees';
+
+        return view($view, $data);
+    }
+
+    public function employeeAvailability()
+    {
+        # params
+        $employeeID = $this->objRequest->getPost('employeeID');
+        $date = date('Y-m-d', strtotime($this->objRequest->getPost('date'))); 
+
+        $objDate = new \DateTime($date);
+        $day = strtolower($objDate->format('l'));
+        $employeeBussinesDay = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+        $dayTimes = array();
+
+        if($employeeBussinesDay[0]->$day == 1) {
+            $employeeTimes = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
+            foreach ($employeeTimes as $time) {
+                if($time->day == $day) 
+                    $dayTimes[] = $time;
+            }
+        }
+
+        $data = array();
+        $data['availability'] = $dayTimes;
+
+        # page
+        $view = 'customer/createAppointment/availability';
 
         return view($view, $data);
     }

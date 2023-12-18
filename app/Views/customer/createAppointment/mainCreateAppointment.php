@@ -27,22 +27,25 @@
                     </div>
                 </div>
             </div>
+            <!-- Main Services -->
             <div class="row">
                 <?php foreach ($services as $s) { ?>
-                    <div class="separator separator-dashed my-6"></div>
-                    <div class="col-12">
+                    <div class="col-12 col-lg-6">
+                        <div class="separator separator-dashed my-6"></div>
                         <label class="form-check form-check-custom form-check-solid align-items-start">
                             <input class="form-check-input me-3 cbx-service<?php echo $uniqid; ?>" type="checkbox" data-service-id="<?php echo $s->id; ?>" data-value="0">
                             <span class="form-check-label d-flex flex-column align-items-start">
                                 <span class="fw-bold fs-5 mb-0 text-dark"><?php echo $s->title; ?></span>
                                 <span class="text-muted fs-6"><?php echo $s->description; ?></span>
+                                <span><?php echo lang('Text.dt_serv_time_label'); ?> <?php echo $s->time; ?> <?php echo lang('Text.dt_serv_minutes_label'); ?></span>
                                 <span class="text-muted fs-6"><?php echo getMoneyFormat($config[0]->currency, $s->price); ?></span>
                             </span>
                         </label>
+                        <div class="separator separator-dashed my-6"></div>
                     </div>
-                    <div class="separator separator-dashed my-6"></div>
                 <?php } ?>
             </div>
+            <!-- End Main Services -->
         </div>
 
         <!-- Step 2 -->
@@ -69,6 +72,7 @@
                 </div>
                 <div class="col-12 col-lg-6 mb-5">
                     <?php echo lang('Text.cust_new_appointment_available_shifts'); ?>
+                    <div id="main-availability"></div>
                 </div>
             </div>
         </div>
@@ -125,10 +129,11 @@
 <script>
     var step = 1;
     var services = [];
-    var date = "<?php echo date('Y-m-d'); ?>"
+    var date = "<?php echo date('Y-m-d'); ?>";
     var lang = "<?php echo $config[0]->lang; ?>";
     var dateLabel = "";
     var locale = "";
+    var employeeID = "";
 
     $('#next<?php echo $uniqid; ?>').on('click', function() { // Next
         if (services.length > 0) {
@@ -139,7 +144,7 @@
         }
     });
 
-    $('#back<?php echo $uniqid; ?>').on('click', function() { // Next
+    $('#back<?php echo $uniqid; ?>').on('click', function() { // Back
         step = Number(step) - 1;
         showStep();
     });
@@ -190,7 +195,7 @@
     }
 </script>
 
-<!-- Function Employyees Availables -->
+<!-- Employyees -->
 <script>
     function renderEmployee() {
         $.ajax({
@@ -204,6 +209,24 @@
                 $('#employee<?php echo $uniqid; ?>').html(response);
             },
             error: function(error) {
+                globalError();
+            }
+        });
+    }
+
+    function getEmployeeAvailability() {
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('Customer/employeeAvailability'); ?>",
+            data: {
+                'employeeID': employeeID,
+                'date': date
+            },
+            dataType: "html",
+            success: function(response) {
+                $('#main-availability').html(response);
+            },
+            error: function(e) {
                 globalError();
             }
         });

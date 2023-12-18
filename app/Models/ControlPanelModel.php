@@ -193,7 +193,8 @@ class ControlPanelModel extends Model
     {
         $query = $this->db->table('service')
             ->where('status', 1)
-            ->where('visibility', 1);
+            ->where('visibility', 1)
+            ->orderBy('ordering');
 
         $data = $query->get()->getResult();
 
@@ -244,10 +245,39 @@ class ControlPanelModel extends Model
     public function getServices()
     {
         $query = $this->db->table('service')
-        ->orderBy('ordering');
+            ->orderBy('ordering');
 
         $data = $query->get()->getResult();
 
         return $data;
+    } // ok
+
+    public function getServiceTimeAndPrice($services)
+    {
+        $return = array();
+        $return['time'] = 0;
+        $return['price'] = 0;
+
+        if (!empty($services)) {
+            $query = $this->db->table('service')
+                ->select('time, price')
+                ->whereIn('id', $services);
+
+            $data = $query->get()->getResult();
+
+            $time = 0;
+            $price = 0;
+
+            foreach ($data as $d) {
+                $time = $time - $d->time;
+                $price = $price - $d->price;
+            }
+
+            $return = array();
+            $return['time'] = $time;
+            $return['price'] = $price;
+        }
+
+        return $return;
     } // ok
 }
