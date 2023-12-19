@@ -19,7 +19,6 @@ $lang['confirm_key'] = "Confirme la Nueva Clave";
 $lang['name'] = "Nombre";
 $lang['last_name'] = "Apellidos";
 $lang['gender'] = "Género";
-$lang['select_gender'] = "Seleccione su género";
 $lang['male'] = "Masculino";
 $lang['female'] = "Femenino";
 $lang['other'] = "Otro";

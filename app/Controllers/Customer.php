@@ -68,12 +68,11 @@ class Customer extends BaseController
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->profile;
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-        $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
         # page
         $data['page'] = 'customer/index';
 
         return view('customer/mainCustomer', $data);
-    }
+    } // ok
 
     public function reloadCustomerInfo()
     {
@@ -114,13 +113,11 @@ class Customer extends BaseController
                 break;
             case 'tab-account':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-                $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
                 # page
                 $view = "customer/tabContent/tabAccount";
                 break;
             case 'tab-profile':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-                $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
                 # page
                 $view = "customer/tabContent/tabProfile";
                 break;
@@ -205,36 +202,23 @@ class Customer extends BaseController
             return json_encode($result);
         }
 
-        $dataProfile = array();
-        $dataProfile['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
-        $dataProfile['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
-        $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
-        $dataProfile['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
-        $dataProfile['emailNotification'] = htmlspecialchars(trim($this->objRequest->getPost('status')));
+        # params
+        $customerID = $this->objSession->get('user')['customerID'];
+        $data = array();
+        $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $data['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
+        $data['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
+        $data['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
+        $data['address1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
+        $data['address2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
+        $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
+        $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
+        $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
+        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
 
-        $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataProfile, $this->objSession->get('user')['customerID']);
-        if ($resultUpdateCustomer['error'] == 0) {
-            $dataAddress = array();
-            $dataAddress['line1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
-            $dataAddress['line2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
-            $dataAddress['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
-            $dataAddress['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
-            $dataAddress['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
-            $dataAddress['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
+        $result = $this->objMainModel->objUpdate('customer', $data, $customerID);
 
-            $updateAddress = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
-            if (!empty($updateAddress))
-                $this->objMainModel->objUpdate('address', $dataAddress, $updateAddress[0]->id);
-            else {
-                $dataAddress['customerID'] = $this->objSession->get('user')['customerID'];
-                $this->objMainModel->objCreate('address', $dataAddress);
-            }
-            $result['error'] = 0;
-        } else {
-            $result['error'] = 1;
-            $result['msg'] = 'ERROR_ON_UPDATE_CUSTOMER';
-        }
         return json_encode($result);
     } // ok
 
