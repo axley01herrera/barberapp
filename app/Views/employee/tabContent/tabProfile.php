@@ -23,7 +23,6 @@
                         background-image: url('svg/avatars/blank-dark.svg');
                     }
                 </style>
-
                 <!-- Image Input -->
                 <div id="kt_image_input_profile<?php echo $uniqid; ?>" class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(http://barberapp/public/assets/media/svg/avatars/blank.svg)">
                     <!-- Image Preview -->
@@ -90,39 +89,39 @@
             </div>
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Line 1 -->
-                <label class="fs-6 fw-semibold" for="txt-address1<?php echo $uniqid; ?>"><?php echo lang('Text.address1'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-address1<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="150" value="<?php echo @$address[0]->line1; ?>" disabled="">
+                <label class="fs-6 fw-semibold" for="txt-address1<?php echo $uniqid; ?>"><?php echo lang('Text.address1'); ?></label>
+                <input type="text" id="txt-address1<?php echo $uniqid; ?>" class="form-control" maxlength="150" value="<?php echo $employee[0]->address1; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Line 2 -->
                 <label class="fs-6 fw-semibold" for="txt-address2<?php echo $uniqid; ?>"><?php echo lang('Text.address2'); ?></label>
-                <input type="text" id="txt-address2<?php echo $uniqid; ?>" class="form-control" maxlength="150" value="<?php echo @$address[0]->line2; ?>" disabled="">
+                <input type="text" id="txt-address2<?php echo $uniqid; ?>" class="form-control" maxlength="150" value="<?php echo $employee[0]->address2; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- City -->
-                <label class="fs-6 fw-semibold" for="txt-city<?php echo $uniqid; ?>"><?php echo lang('Text.city'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-city<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->city; ?>" disabled="">
+                <label class="fs-6 fw-semibold" for="txt-city<?php echo $uniqid; ?>"><?php echo lang('Text.city'); ?></label>
+                <input type="text" id="txt-city<?php echo $uniqid; ?>" class="form-control" maxlength="45" value="<?php echo $employee[0]->city; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- State -->
-                <label class="fs-6 fw-semibold" for="txt-state<?php echo $uniqid; ?>"><?php echo lang('Text.state'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-state<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->state; ?>" disabled="">
+                <label class="fs-6 fw-semibold" for="txt-state<?php echo $uniqid; ?>"><?php echo lang('Text.state'); ?></label>
+                <input type="text" id="txt-state<?php echo $uniqid; ?>" class="form-control" maxlength="45" value="<?php echo $employee[0]->state; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- Zip -->
-                <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>"><?php echo lang('Text.zip'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> number<?php echo $uniqid; ?>" maxlength="5" value="<?php echo @$address[0]->zip; ?>" disabled="">
+                <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>"><?php echo lang('Text.zip'); ?></label>
+                <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control number<?php echo $uniqid; ?>" maxlength="5" value="<?php echo $employee[0]->zip; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- Country -->
-                <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->country; ?>" disabled="">
+                <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?></label>
+                <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control" maxlength="45" value="<?php echo $employee[0]->country; ?>" disabled="">
             </div>
         </div>
         <div class="row">
             <div class="col-12 text-end mt-5">
-                <button hidden="" type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
-                <button hidden="" type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_update'); ?></button>
+                <button hidden type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
+                <button hidden type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_update'); ?></button>
             </div>
         </div>
     </div>

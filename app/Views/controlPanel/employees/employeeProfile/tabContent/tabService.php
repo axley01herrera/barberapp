@@ -17,7 +17,7 @@
                 <!-- Service Title -->
                 <h3 class="card-title"><?php echo $service->title; ?></h3>
                 <div class="card-toolbar">
-                    <div class="form-check form-switch form-check-custom form-check-solid me-10">
+                    <div class="form-check form-switch form-check-custom me-10">
                         <input type="checkbox" class="form-check-input h-30px w-50px" <?php if (in_array($service->id, array_column($employeeServices, 'serviceID'))) echo 'checked'; ?> data-checked="<?php if (in_array($service->id, array_column($employeeServices, 'serviceID'))) echo '1';
                                                                                                                                                                                                         else echo '0'; ?>" data-service-id="<?php echo $service->id; ?>" />
                         <label class="form-check-label"></label>

@@ -1,17 +1,25 @@
-ALTER TABLE `profile` CHANGE `company_name` `companyName` VARCHAR(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL; 
-ALTER TABLE `profile` CHANGE `company_type` `companyType` VARCHAR(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NULL DEFAULT NULL; 
-
-DROP TABLE IF EXISTS `company_social_network`;
-CREATE TABLE IF NOT EXISTS `company_social_network` (
-  `id` int NOT NULL,
-  `type` varchar(90) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `url` varchar(999) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `status` int NOT NULL DEFAULT '1'
+DROP TABLE IF EXISTS `appointment`;
+CREATE TABLE IF NOT EXISTS `appointment` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `customerID` int NOT NULL,
+  `employeeID` int NOT NULL,
+  `date` date NOT NULL,
+  `start` time NOT NULL,
+  `end` time NOT NULL,
+  `services` json NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `profile`
-  DROP `facebook`,
-  DROP `instagram`;
+ALTER TABLE `employee` ADD `address1` VARCHAR(250) NULL AFTER `deleted`; 
+ALTER TABLE `employee` ADD `address2` VARCHAR(250) NULL AFTER `address1`; 
+ALTER TABLE `employee` ADD `city` VARCHAR(250) NULL AFTER `address2`; 
+ALTER TABLE `employee` ADD `state` VARCHAR(250) NULL AFTER `city`; 
+ALTER TABLE `employee` ADD `zip` INT NULL AFTER `state`; 
+ALTER TABLE `employee` ADD `country` VARCHAR(250) NULL AFTER `zip`; 
 
-ALTER TABLE `service` ADD ` ` INT NOT NULL DEFAULT '1' AFTER `status`; 
-RENAME TABLE `barber_dev`.`profile` TO `barber_dev`.`company_profile`; 
+ALTER TABLE `customer` ADD `address1` VARCHAR(250) NULL AFTER `deleted`; 
+ALTER TABLE `customer` ADD `address2` VARCHAR(250) NULL AFTER `address1`; 
+ALTER TABLE `customer` ADD `city` VARCHAR(250) NULL AFTER `address2`; 
+ALTER TABLE `customer` ADD `state` VARCHAR(250) NULL AFTER `city`; 
+ALTER TABLE `customer` ADD `zip` INT NULL AFTER `state`; 
+ALTER TABLE `customer` ADD `country` VARCHAR(250) NULL AFTER `zip`; 

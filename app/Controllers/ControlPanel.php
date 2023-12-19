@@ -783,13 +783,13 @@ class ControlPanel extends BaseController
             $btnResendVerifyEmail = "";
 
             $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
-            $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+            $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if (!empty($result[$i]->avatar))
                 $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
 
             if ($result[$i]->status == 1)
-                $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+                $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if (empty($result[$i]->password))
                 $btnResendCompleteAccountEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
@@ -1093,9 +1093,8 @@ class ControlPanel extends BaseController
         $data['activeEmployees'] = "active";
         # data
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPostGet('id'));
-        $data['address'] = $this->objMainModel->objData('address', 'employeeID', $this->objRequest->getPostGet('id'));
         # page
-        $data['page'] = 'controlPanel/employees/employeeProfile/main';
+        $data['page'] = 'controlPanel/employees/employeeProfile/mainEmployeeProfile';
 
         return view('ControlPanel/mainCpanel', $data);
     } // ok
@@ -1150,7 +1149,6 @@ class ControlPanel extends BaseController
                 break;
             case 'tab-profile':
                 $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
-                $data['address'] = $this->objMainModel->objData('address', 'employeeID', $employeeID);
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabProfile";
                 break;
         }
@@ -1270,14 +1268,18 @@ class ControlPanel extends BaseController
 
     public function reloadEmployeeInfo()
     {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
+
         # params
         $employeeID = $this->objRequest->getPost('employeeID');
         # data
         $data = array();
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
-        $data['address'] = $this->objMainModel->objData('address', 'employeeID', $employeeID);
         # page
-        $page = 'controlPanel/employees/employeeProfile/employeeInfo';
+        $page = 'controlPanel/employees/employeeProfile/sectionEmployeeInfo';
+
         return view($page, $data);
     } // ok
 
@@ -1356,46 +1358,26 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
-
             return json_encode($result);
         }
 
-        # employeeID
+        # params
         $employeeID = $this->objRequest->getPost('employeeID');
+        $data = array();
+        $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $data['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
+        $data['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
+        $data['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
+        $data['address1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
+        $data['address2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
+        $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
+        $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
+        $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
+        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
 
-        $dataProfile = array();
-        # Profile
-        $dataProfile['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
-        $dataProfile['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
-        $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
-        $dataProfile['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
+        $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
 
-        $resultUpdateCustomer = $this->objMainModel->objUpdate('employee', $dataProfile, $employeeID);
-        if ($resultUpdateCustomer['error'] == 0) {
-
-            $dataAddress = array();
-            # Address
-            $dataAddress['line1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
-            $dataAddress['line2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
-            $dataAddress['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
-            $dataAddress['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
-            $dataAddress['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
-            $dataAddress['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
-
-            $updateAddress = $this->objMainModel->objData('address', 'employeeID', $employeeID);
-
-            if (!empty($updateAddress))
-                $this->objMainModel->objUpdate('address', $dataAddress, $updateAddress[0]->id);
-            else {
-                $dataAddress['employeeID'] = $employeeID;
-                $this->objMainModel->objCreate('address', $dataAddress);
-            }
-            $result['error'] = 0;
-        } else {
-            $result['error'] = 1;
-            $result['msg'] = 'ERROR_ON_UPDATE_CUSTOMER';
-        }
         return json_encode($result);
     } // ok
 

@@ -23,24 +23,29 @@
         </div>
         <!-- Phone-->
         <?php if (!empty($employee[0]->phone)) { ?>
-            <div class="fw-bold mt-5"><?php echo lang('Text.phone'); ?></div>
-            <div class="text-gray-600">
-                <span class="text-gray-600">
-                    <?php echo $employee[0]->phone; ?>
-                </span>
-            </div>
-            <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
-            <div class="text-gray-600">
-                <?php echo @$address[0]->line1; ?>
-                <?php if (@$address[0]->line2) echo ", " . $address[0]->line2; ?>
-                <br>
-                <?php echo @$address[0]->city; ?>
-                <?php if (@$address[0]->state) echo ", " .  $address[0]->state; ?>
-                <br>
-                <?php echo @$address[0]->zip; ?> <?php echo @$address[0]->country; ?>
-            </div>
+            <section>
+                <div class="fw-bold mt-5"><?php echo lang('Text.phone'); ?></div>
+                <div class="text-gray-600">
+                    <span class="text-gray-600">
+                        <?php echo $employee[0]->phone; ?>
+                    </span>
+                </div>
+            </section>
         <?php } ?>
-
+        <?php if (!empty($employee[0]->address1) && !empty($employee[0]->city) && !empty($employee[0]->state) && !empty($employee[0]->zip) && !empty($employee[0]->country)) { ?>
+            <section>
+                <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
+                <div class="text-gray-600">
+                    <?php echo @$employee[0]->address1; ?>
+                    <?php if (@$employee[0]->address2) echo ", " . $employee[0]->address2; ?>
+                    <br>
+                    <?php echo @$employee[0]->city; ?>
+                    <?php if (@$employee[0]->state) echo ", " .  $employee[0]->state; ?>
+                    <br>
+                    <?php echo @$employee[0]->zip; ?> <?php echo @$employee[0]->country; ?>
+                </div>
+            </section>
+        <?php } ?>
         <?php if (empty($employee[0]->phone)) { ?>
             <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10 mt-10">
                 <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
