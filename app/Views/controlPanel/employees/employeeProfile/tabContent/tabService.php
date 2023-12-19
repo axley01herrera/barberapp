@@ -45,11 +45,17 @@
             let checked = $(this).attr('data-checked');
             let serviceID = $(this).attr('data-service-id');
             let msg = "";
+            let value = ""
 
             if(checked == 0) {
                 msg = "<?php echo lang('Text.emp_assigned_service'); ?>";
-            } else
+                value = 1
+            } else {
                 msg = "<?php echo lang('Text.emp_unassigned_service'); ?>";
+                value = 0;
+            }
+
+            $(this).attr('data-checked', value);
 
             $.ajax({
                 type: "post",
@@ -71,5 +77,5 @@
                 }
             });
         });
-    });
+    }); // ok
 </script>

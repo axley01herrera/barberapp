@@ -779,6 +779,9 @@ class ControlPanel extends BaseController
 
         for ($i = 0; $i < $totalRows; $i++) {
 
+            $btnResendCompleteAccountEmail = "";
+            $btnResendVerifyEmail = "";
+
             $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
             $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
@@ -789,14 +792,10 @@ class ControlPanel extends BaseController
                 $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if (empty($result[$i]->password))
-                $btnResendCompleteAccountEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-person-up"></i>' . '</button>';
-            else
-                $btnResendCompleteAccountEmail = '';
+                $btnResendCompleteAccountEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
-            if ($result[$i]->emailVerified == 0 && !empty($result[$i]->password))
+            if (!empty($result[$i]->password) && $result[$i]->emailVerified == 0)
                 $btnResendVerifyEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
-            else
-                $btnResendVerifyEmail = '';
 
             $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '" title="' . lang('Text.emp_profile_title') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
@@ -807,7 +806,7 @@ class ControlPanel extends BaseController
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
-            $col['action'] = $btnResendCompleteAccountEmail . @$btnResendVerifyEmail . $btnProfile . $btnDelete;
+            $col['action'] = @$btnResendCompleteAccountEmail . @$btnResendVerifyEmail . $btnProfile . $btnDelete;
             $row[$i] =  $col;
         }
 
@@ -962,7 +961,6 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "SESSION_EXPIRED";
-
             return json_encode($result);
         }
 
@@ -997,7 +995,7 @@ class ControlPanel extends BaseController
         }
 
         return json_encode($response);
-    }
+    } // ok
 
 
     public function updateEmployee()
