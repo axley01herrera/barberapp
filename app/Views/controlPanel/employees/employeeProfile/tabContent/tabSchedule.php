@@ -62,8 +62,10 @@
                                         <?php if (empty($flagMonday)) { ?>
                                             <tr>
                                                 <td colspan="3" class="dt-vertical-align p-2">
-                                                    <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                    <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
+                                                        <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                         <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                            <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                                                             <span><?php echo lang('Text.no_times_alert'); ?></span>
                                                         </div>
                                                     </div>
@@ -124,8 +126,10 @@
                                             <?php if (empty($flagTuesday)) { ?>
                                                 <tr>
                                                     <td colspan="3" class="dt-vertical-align p-2">
-                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                        <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
+                                                            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                                                                 <span><?php echo lang('Text.no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -187,8 +191,10 @@
                                             <?php if (empty($flagWednesday)) { ?>
                                                 <tr>
                                                     <td colspan="3" class="dt-vertical-align p-2">
-                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                        <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
+                                                            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                                                                 <span><?php echo lang('Text.no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -250,8 +256,10 @@
                                             <?php if (empty($flagThursday)) { ?>
                                                 <tr>
                                                     <td colspan="3" class="dt-vertical-align p-2">
-                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                        <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
+                                                            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                                                                 <span><?php echo lang('Text.no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -313,8 +321,10 @@
                                             <?php if (empty($flagFriday)) { ?>
                                                 <tr>
                                                     <td colspan="3" class="dt-vertical-align p-2">
-                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                        <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
+                                                            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                                                                 <span><?php echo lang('Text.no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -376,8 +386,10 @@
                                             <?php if (empty($flagSaturday)) { ?>
                                                 <tr>
                                                     <td colspan="3" class="dt-vertical-align p-2">
-                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                        <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
+                                                            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                                                                 <span><?php echo lang('Text.no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -439,8 +451,10 @@
                                             <?php if (empty($flagSunday)) { ?>
                                                 <tr>
                                                     <td colspan="3" class="dt-vertical-align p-2">
-                                                        <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                                                        <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
+                                                            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
+                                                                <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                                                                 <span><?php echo lang('Text.no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -464,11 +478,15 @@
         let field = $(this).attr('id');
         let value = $(this).attr('data-value');
         let newValue = "";
+        let msg = "";
 
-        if (value == 0)
+        if (value == 0) {
             newValue = 1;
-        else
+            msg = "<?php echo lang('Text.emp_bussiness_day_active'); ?>";
+        } else {
             newValue = 0;
+            msg = "<?php echo lang('Text.emp_bussiness_day_inactive'); ?>";
+        }
 
         $('.' + field).each(function() {
             if (newValue == 1)
@@ -489,6 +507,8 @@
             },
             dataType: "json",
             success: function(response) {
+                if (response.error == 0)
+                    simpleSuccessAlert(msg);
                 if (response.error == 1 && response.msg == "SESSION_EXPIRED")
                     window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
             },
@@ -535,7 +555,7 @@
                 globalError();
             }
         });
-    });
+    }); // ok
 
     $('.delete-time').on('click', function() { // Delete Time
         let timeID = $(this).attr('data-time-id');
@@ -569,5 +589,5 @@
                     }
                 });
         })
-    });
+    }); // ok
 </script>

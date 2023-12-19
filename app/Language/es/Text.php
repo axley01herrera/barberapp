@@ -270,6 +270,8 @@ $lang['emp_success_update_profile'] = 'Perfil del Empleado Actualizado';
 $lang['emp_success_update_account'] = 'Cuenta del Empleado Actualizada';
 $lang['emp_assigned_service'] = 'Servicio Asignado al Empleado';
 $lang['emp_unassigned_service'] = 'Servicio Desasignado al Empleado';
+$lang['emp_bussiness_day_active'] = 'Día asignado como laborable';
+$lang['emp_bussiness_day_inactive'] = 'Día asignado como no laborable';
 
 # Services
 $lang['serv_new'] = "Nuevo Servicio";
