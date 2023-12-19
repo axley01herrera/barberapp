@@ -37,8 +37,8 @@
         <div class="row">
             <div class="col-12 mt-5">
                 <!-- Status Employee-->
-                <div class="form-check form-switch form-check-custom form-check-solid mt-2">
-                    <input type="checkbox" id="cb-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.change_status'); ?>" disabled="" <?php if ($employee[0]->status == 1) echo 'checked=""'; ?> data-status="<?php echo $employee[0]->status; ?>">
+                <div class="form-check form-switch form-check-custom form-check mt-2">
+                    <input type="checkbox" id="cb-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.change_status'); ?>" disabled="" <?php if ($employee[0]->status == 1) echo 'checked'; ?> data-status="<?php echo $employee[0]->status; ?>">
                     <label class="fs-6 fw-semibold ms-5"> <?php echo lang('Text.active_inactive'); ?></label>
                 </div>
             </div>
@@ -66,11 +66,46 @@
         employeeProfileTabContent();
     });
 
-    $('#cb-status<?php echo $uniqid; ?>').on('click', function() {
-        if ($(this).attr('data-status') == 1)
-            $(this).attr('data-status', 0);
-        else
-            $(this).attr('data-status', 1);
+    $('#cb-status<?php echo $uniqid; ?>').on('click', function() { // Change Status
+        let employeeID = '<?php echo $employeeID; ?>';
+        let status = $(this).attr('data-status');
+        let newStatus = "";
+        let msg = "";
+
+        if (status == 0) {
+            newStatus = 1;
+            msg = "<?php echo lang('Text.emp_activated'); ?>";
+        } else if (status == 1) {
+            newStatus = 0;
+            msg = "<?php echo lang('Text.emp_deactivated'); ?>";
+        }
+
+        $(this).attr('data-status', newStatus);
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/changeEmployeeStatus'); ?>",
+            data: {
+                'employeeID': employeeID,
+                'status': newStatus
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.error == 0) {
+                    simpleSuccessAlert(msg);
+                    reloadEmployeeInfo();
+                    $('#btn-cancel<?php echo $uniqid; ?>').trigger('click');
+                } else {
+                    if (response.msg == "SESSION_EXPIRED") {
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    } else
+                        globalError();
+                }
+            },
+            error: function(e) {
+                globalError();
+            }
+        });
     });
 
     $('#btn-update<?php echo $uniqid; ?>').on('click', function() {
@@ -99,8 +134,7 @@
                             'employeeID': <?php echo $employeeID; ?>,
                             'email': $('#txt-email<?php echo $uniqid; ?>').val(),
                             'password': $('#txt-newPassword<?php echo $uniqid; ?>').val(),
-                            'currentPassword': $('#txt-password<?php echo $uniqid; ?>').val(),
-                            'status': $('#cb-status<?php echo $uniqid; ?>').attr('data-status')
+                            'currentPassword': $('#txt-password<?php echo $uniqid; ?>').val()
                         },
                         dataType: "json",
                         success: function(response) {
