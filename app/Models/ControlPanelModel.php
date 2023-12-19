@@ -204,7 +204,8 @@ class ControlPanelModel extends Model
     public function getActiveEmployees()
     {
         $query = $this->db->table('employee')
-            ->where('status', 1);
+            ->where('status', 1)
+            ->where('deleted', 0);
 
         $data = $query->get()->getResult();
 

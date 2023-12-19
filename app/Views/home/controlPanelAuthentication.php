@@ -9,31 +9,35 @@
         }
     </style>
     <div class="d-flex flex-column flex-column-fluid flex-lg-row">
-
         <div class="d-flex flex-column-fluid justify-content-center justify-content-center p-12 p-lg-20">
             <div class="bg-body d-flex flex-column align-items-stretch flex-center rounded-4 w-md-600px p-20">
                 <div class="d-flex flex-center flex-column flex-column-fluid px-lg-10 pb-15 pb-lg-20">
                     <div class="form w-100">
                         <div class="text-center mb-11">
                             <!-- Logo -->
-                            <span class="mb-7">
+                            <span>
                                 <img alt="Logo" src="<?php echo base_url('public/assets/media/img/settings.png') ?>" class="w-25" />
                             </span>
-                            <h1 class="text-dark fw-bolder mb-3"><?php echo lang('Text.cp_auth_title'); ?></h1>
-                            <div class="text-gray-500 fw-semibold fs-6"><?php echo lang('Text.cp_auth_subtitle'); ?></div>
+                            <h1 class="text-dark fw-bolder mb-3 mt-5"><?php echo lang('Text.cp_auth_title'); ?></h1>
+                            <div class="text-gray-500 fw-semibold fs-6"></div>
                         </div>
-                        <!-- Input Access Key -->
-                        <div class="fv-row mb-8">
-                            <!--Input Key-->
-                            <input type="password" id="txt-pass<?php echo $uniqid; ?>" class="form-control bg-transparent" />
-                        </div>
-                        <!-- Button Sig In Admin -->
-                        <div class="d-grid mb-10">
-                            <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_signing'); ?></button>
-                        </div>
-                        <div class="d-grid mb-10 text-center">
-                            <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
-                        </div>
+                        <form class="form" id="kt_login">
+                            <!-- Access Key -->
+                            <div class="fv-row mb-8">
+                                <!--Input Key-->
+                                <input type="password" id="txt-pass<?php echo $uniqid; ?>" class="form-control bg-transparent" placeholder="<?php echo lang('Text.cp_auth_subtitle'); ?>" autofocus />
+                            </div>
+                            <!-- Sig In -->
+                            <div class="d-grid mb-10">
+                                <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_signing'); ?></button>
+                            </div>
+                            <!-- Home -->
+                            <div class="row">
+                                <div class="col-12 text-center mb-10">
+                                    <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -42,6 +46,8 @@
 </div>
 
 <script>
+    var session = "<?php echo $session; ?>";
+
     $('#btn-login<?php echo $uniqid; ?>').on('click', function() { // Submit
         let key = $('#txt-pass<?php echo $uniqid; ?>').val();
         if (key === "") {
@@ -81,9 +87,19 @@
             $(this).removeClass('is-invalid');
     });
 
-    var session = "<?php echo $session; ?>";
-
     if (session == "expired") {
         simpleAlert("<?php echo lang('Text.session_expired'); ?>", "error");
     }
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let form = document.getElementById("kt_login");
+        form.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                $('#btn-login<?php echo $uniqid; ?>').trigger('click');
+            }
+        });
+    });
 </script>

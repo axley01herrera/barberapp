@@ -62,6 +62,9 @@ class Home extends BaseController
         # config
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
+        # data
+        $data['services'] = $this->objControlPanelModel->getServices();
+        $data['team'] = $this->objControlPanelModel->getActiveEmployees();
         # page
         $view = 'home/landing';
 

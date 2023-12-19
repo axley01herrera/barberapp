@@ -2,6 +2,7 @@
 $lang = array();
 
 # Global Labels
+$lang['c_panel'] = "Panel de Control";
 $lang['system_info'] = "Información del Sistema";
 $lang['company_name'] = "Nombre del Negocio";
 $lang['bussines_type'] = "Tipo de Negocio";
@@ -139,6 +140,7 @@ $lang['btn_next'] = "Siguiente";
 $lang['btn_back'] = "Atrás";
 $lang['btn_save_ordering'] = "Guardar Orden";
 $lang['btn_sign_in'] = "Iniciar Sesión";
+$lang['btn_signup'] = "Regístrate";
 
 # Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
@@ -160,8 +162,8 @@ $lang['recover_success_send_email'] = 'Correo Electrónico de Recuperación Envi
 $lang['recover_email_not_found'] = 'Correo Electrónico no Registrado';
 
 # Control Panel Authentication
-$lang['cp_auth_title'] = "Espacio Reservado para el Administrador";
-$lang['cp_auth_subtitle'] = "Introduzca su Clave de Acceso";
+$lang['cp_auth_title'] = "Panel de Control";
+$lang['cp_auth_subtitle'] = "Clave de Acceso";
 $lang['cp_auth_required_password'] = "La clave de acceso es requerida";
 $lang['cp_auth_invalid_password'] = "Rectifique su clave de acceso";
 
@@ -355,7 +357,11 @@ $lang['e_rv_create_account'] = "Verificar mi Correo Electrónico";
 $lang['e_rv_complete_account_info'] = "La verificación de su correo electrónico es fundamental para enviarle notificaciones importantes, actualizaciones sobre la política de privacidad y otros avisos relevantes. En su perfil, tiene la opción de activar o desactivar estas notificaciones según su preferencia. Agradecemos su colaboración.";
 
 # Landing Page
-$lang['lp_welcome'] = "Bienvenido a nuestro Portal Web";
-$lang['lp_welcome_the'] = "de";
+$lang['lp_welcome'] = "Bienvenido, Portal Web";
+$lang['lp_welcome_to'] = "para";
 $lang['lp_welcome_a_online'] = "Reserva de Citas en Línea";
+$lang['lp_menu_home'] = "Inicio";
+$lang['lp_menu_services'] = "Servicios";
+$lang['lp_menu_team'] = "Equipo";
+$lang['lp_menu_galery'] = "Galería";
 return $lang;
