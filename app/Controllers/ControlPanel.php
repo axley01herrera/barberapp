@@ -315,7 +315,7 @@ class ControlPanel extends BaseController
                 $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
 
-            $btnProfile = '<a href="' . base_url('ControlPanel/customerProfile?id=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
+            $btnProfile = '<a href="' . base_url('ControlPanel/customerProfile?customerID=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
@@ -328,7 +328,7 @@ class ControlPanel extends BaseController
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
-            $col['action'] = $btnProfile . $btnEdit . $btnDelete;
+            $col['action'] = $btnProfile . $btnDelete;
 
             $row[$i] =  $col;
         }
@@ -358,15 +358,215 @@ class ControlPanel extends BaseController
         $data = array();
         # config
         $data['config'] = $this->config;
-        $data['customerProfile'] = $this->customerProfile();
+        $data['companyProfile'] = $this->companyProfile;
         # menu
         $data['activeCustomers'] = "active";
         # data
-        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPostGet('id'));
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getGet('customerID'));
+        $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objRequest->getGet('customerID'));
         # page
-        $data['page'] = 'controlPanel/customers/principalCustomerProfile';
+        $data['page'] = 'controlPanel/customers/index';
 
         return view('ControlPanel/mainCpanel', $data);
+    }
+
+    public function reloadCustomerInfo()
+    {
+        # data
+        $data = array();
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPost('customerID'));
+        $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objRequest->getPost('customerID'));
+
+        return view('controlPanel/customers/customerInfo', $data);
+    }
+
+    public function customerTabContent()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
+
+        # params
+        $tab = $this->objRequest->getPost('tab');
+        $customerID = $this->objRequest->getPost('customerID');
+
+        $data = array();
+        # data
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
+        $data['uniqid'] = uniqid();
+
+        if ($this->config[0]->lang == 'es')
+            $data['dateLabel'] = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $data['dateLabel'] = "m-d-Y";
+
+        $view = "";
+
+        switch ($tab) {
+            case 'tab-account':
+                $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
+                $data['address'] = $this->objMainModel->objData('address', 'customerID', $customerID);
+                # page
+                $view = "controlPanel/customers/tabContent/tabAccount";
+                break;
+            case 'tab-profile':
+                $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
+                $data['address'] = $this->objMainModel->objData('address', 'customerID', $customerID);
+                # page
+                $view = "controlPanel/customers/tabContent/tabProfile";
+                break;
+        }
+
+        return view($view, $data);
+    }
+
+    public function updateCustomerAccount()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
+        $currentPassword = htmlspecialchars(trim($this->objRequest->getPost('currentPassword')));
+        $newPassword = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
+        $customerID = $this->objRequest->getPost('customerID');
+
+        if (!empty($currentPassword)) {
+            if ($this->objConfigModel->loginCustomer($currentPassword, $customerID)['error'] == 1) {
+                $result = array();
+                $result['error'] = 1;
+                $result['msg'] = "INVALID_CURRENT_KEY";
+                return json_encode($result);
+            }
+        }
+
+        $dataAccount = array();
+        if (!empty($this->objRequest->getPost('password')))
+            $dataAccount['password'] = $newPassword;
+
+        if ($this->objMainModel->objData('customer', 'id', $customerID)[0]->email !== $email) {
+            $dataAccount['email'] = $email;
+            $dataAccount['token'] = md5(uniqid());
+            $dataAccount['emailVerified'] = 0;
+        }
+
+        if (empty($dataAccount)) {
+            $response = array();
+            $response['error'] = 0;
+            return json_encode($response);
+        }
+
+        $this->objMainModel->objUpdate('customer', $dataAccount, $customerID);
+        $customer = $this->objMainModel->objData('customer', 'id', $customerID);
+
+        if (!empty($dataAccount['email'])) {
+            $dataEmail = array();
+            $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
+            $dataEmail['person'] = $customer[0]->name . ' ' . $customer[0]->lastName;
+            $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $dataAccount['token'] . '&type=customer';
+            $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
+            $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
+
+            $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
+            $this->objEmail->setTo($dataAccount['email']);
+            $this->objEmail->setSubject($this->companyProfile[0]->companyName);
+            $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
+
+            $this->objEmail->send(false);
+        }
+        $response = array();
+        $response['error'] = 0;
+
+        return json_encode($response);
+    }
+
+    public function updateCustomerProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $customerID = $this->objRequest->getPost('customerID');
+
+        $dataProfile = array();
+        $dataProfile['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $dataProfile['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
+        $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
+        $dataProfile['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
+        $dataProfile['emailNotification'] = htmlspecialchars(trim($this->objRequest->getPost('status')));
+
+        $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataProfile, $customerID);
+        if ($resultUpdateCustomer['error'] == 0) {
+            $dataAddress = array();
+            $dataAddress['line1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
+            $dataAddress['line2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
+            $dataAddress['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
+            $dataAddress['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
+            $dataAddress['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
+            $dataAddress['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
+
+            $updateAddress = $this->objMainModel->objData('address', 'customerID', $customerID);
+            if (!empty($updateAddress))
+                $this->objMainModel->objUpdate('address', $dataAddress, $updateAddress[0]->id);
+            else {
+                $dataAddress['customerID'] = $customerID;
+                $this->objMainModel->objCreate('address', $dataAddress);
+            }
+            $result['error'] = 0;
+        } else {
+            $result['error'] = 1;
+            $result['msg'] = 'ERROR_ON_UPDATE_CUSTOMER';
+        }
+        return json_encode($result);
+    }
+
+    public function uploadCustomerAvatarProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        # params
+        $customerID = $this->objRequest->getPost('customerID');
+
+        return json_encode($this->objMainModel->uploadFile('customer', $customerID, 'avatar', $_FILES['file']));
+    }
+
+    public function removeCustomerAvatarProfile()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        # params
+        $customerID = $this->objRequest->getPost('customerID');
+
+        $data = array();
+        $data['avatar'] = '';
+
+        return json_encode($this->objMainModel->objUpdate('customer', $data, $customerID));
     }
 
     public function showModalCustomer()

@@ -53,6 +53,12 @@ $routes->post('ControlPanel/processingCustomer', 'ControlPanel::processingCustom
 $routes->post('ControlPanel/deleteCustomer', 'ControlPanel::deleteCustomer');
 $routes->post('ControlPanel/changeCustomerStatus', 'ControlPanel::changeCustomerStatus');
 $routes->get('ControlPanel/customerProfile', 'ControlPanel::customerProfile');
+$routes->post('ControlPanel/customerTabContent', 'ControlPanel::customerTabContent');
+$routes->post('ControlPanel/reloadCustomerInfo', 'ControlPanel::reloadCustomerInfo');
+$routes->post('ControlPanel/updateCustomerAccount', 'ControlPanel::updateCustomerAccount');
+$routes->post('ControlPanel/updateCustomerProfile', 'ControlPanel::updateCustomerProfile');
+$routes->post('ControlPanel/uploadCustomerAvatarProfile', 'ControlPanel::uploadCustomerAvatarProfile');
+$routes->post('ControlPanel/removeCustomerAvatarProfile', 'ControlPanel::removeCustomerAvatarProfile');
 
 # ControlPanel -> Employees
 $routes->get('ControlPanel/employees', 'ControlPanel::employees');

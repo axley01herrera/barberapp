@@ -61,4 +61,24 @@ class ConfigModel extends Model
             return $result;
         }
     }
+
+    public function loginCustomer($password, $id)
+    {
+        $query = $this->db->table('customer')
+            ->where('id', $id);
+
+        $data = $query->get()->getResult();
+
+        if (password_verify($password, $data[0]->password)) {
+            $result = array();
+            $result['error'] = 0;
+            return $result;
+        } else {
+            $result = array();
+            $result['error'] = 1;
+            $result['code'] = "invalid access key";
+            $result['msg'] = lang('Text.cp_auth_invalid_password');
+            return $result;
+        }
+    }
 }
