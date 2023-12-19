@@ -1,6 +1,6 @@
 <div class="row">
     <?php foreach ($availability as $a) { ?>
-        <div class="col-12 col-lg-6 text-center">
+        <div class="col-6 text-center">
             <div class="form-check form-check-custom form-check-solid mt-5">
                 <input class="form-check-input time-selected" type="radio" name="radio-time" data-value="<?php echo $a; ?>" id="<?php echo $a; ?>" >
                 <label class="ms-2 fs-7" for="<?php echo $a; ?>">
@@ -25,9 +25,10 @@
 <script>
     dateReview = "<?php echo $dateReview; ?>";
     $('#review-date').html(dateReview);
-    
+
     $('.time-selected').on('click', function() {
         timeSelected = $(this).attr('data-value');
         $('#review-time').html(timeSelected);
+        console.log(timeSelected);
     });
 </script>

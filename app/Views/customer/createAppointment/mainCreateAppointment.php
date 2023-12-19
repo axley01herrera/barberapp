@@ -68,49 +68,22 @@
                 <div class="col-12 mb-5 text-center">
                     <div id="employee<?php echo $uniqid; ?>" class="text-center"></div>
                 </div>
-                <div class="col-12 col-lg-6 mb-5 mt-5">
-                    <input id="sel-date<?php echo $uniqid; ?>" class="flatpickr form-control required<?php echo $uniqid; ?>" value="<?php echo date($dateLabel, strtotime($currentDate)); ?>" hidden />
+                <div class="col-12 col-md-6 col-lg-6 mb-5 text-center">
+                    <p><i class="bi bi-calendar"></i> <?php echo lang('Text.date'); ?></p>
+                    <div class="mt-5">
+                        <div class="d-flex justify-content-center">
+                            <input id="sel-date<?php echo $uniqid; ?>" class="flatpickr form-control required<?php echo $uniqid; ?>" value="<?php echo date($dateLabel, strtotime($currentDate)); ?>" hidden />
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-12 col-lg-6 mb-5">
-                    <?php echo lang('Text.cust_new_appointment_available_shifts'); ?>
-                    <div id="main-availability"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div id="step-3<?php echo $uniqid; ?>" hidden>
-            <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
-                <i class="ki-duotone ki-information fs-2tx text-primary me-4">
-                    <span class="path1"></span>
-                    <span class="path2"></span>
-                    <span class="path3"></span>
-                </i>
-                <div class="d-flex flex-stack flex-grow-1">
-                    <div class="fw-semibold">
-                        <h4 class="text-gray-900 fw-bold"><?php echo lang('Text.cust_new_appointment_step3'); ?></h4>
-                        <div class="fs-6 text-gray-700"><?php echo lang('Text.cust_new_appointment_step3_sub'); ?>.</div>
+                <div class="col-12 col-md-6 col-lg-6 mb-5 text-center">
+                    <p><i class="bi bi-clock-history"></i> <?php echo lang('Text.cust_new_appointment_available_shifts'); ?></p>
+                    <div class="d-flex justify-content-center">
+                        <div id="main-availability"></div>
                     </div>
                 </div>
             </div>
-            <div class="d-flex align-items-center mb-6">
-                <span data-kt-element="bullet" class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
-                <div class="flex-grow-1 me-5">
-                    <!-- Date -->
-                    <div class="text-gray-800 fw-semibold fs-2">
-                        <span><?php echo lang('Text.date'); ?></span>: 
-                        <span id="review-date" class="text-muted"></span>
-                    </div>
-                    <!-- Time -->
-                    <div class="text-gray-800 fw-semibold fs-2">
-                        <span><?php echo lang('Text.cust_time'); ?></span>:
-                        <span id="review-time" class="text-muted"></span>
-                    </div>
-                </div>
-                <div id="review-employee-img" class="symbol symbol-40px symbol-circle"></div>
-            </div>
-
         </div>
 
         <!-- Buttons -->
@@ -126,11 +99,7 @@
             <div>
                 <!-- Submit -->
                 <button type="button" id="submit<?php echo $uniqid; ?>" class="btn btn-lg btn-primary me-3" hidden>
-                    <span class="indicator-label">Submit
-                        <i class="ki-duotone ki-arrow-right fs-3 ms-2 me-0">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i></span>
+                    <span class="indicator-label"><?php echo lang('Text.btn_save'); ?></span>
                 </button>
                 <!-- Next -->
                 <button type="button" id="next<?php echo $uniqid; ?>" class="btn btn-lg btn-primary"><?php echo lang('Text.btn_next'); ?>
@@ -161,15 +130,7 @@
     $('#next<?php echo $uniqid; ?>').on('click', function() { // Next
         if (services.length > 0) {
             step = Number(step) + 1;
-            if (step == 3) {
-                if (timeSelected != "")
-                    showStep();
-                else {
-                    step = step - 1;
-                    simpleAlert('<?php echo lang('Text.cust_new_appointment_required_time_selected'); ?>', 'warning')
-                }
-            } else
-                showStep();
+            showStep();
         } else
             simpleAlert('<?php echo lang('Text.cust_new_appointment_step1_sub'); ?>', 'warning');
 
@@ -181,7 +142,37 @@
     });
 
     $('#submit<?php echo $uniqid; ?>').on('click', function() { // Next
-
+        if (timeSelected == "")
+            simpleAlert('<?php echo lang('Text.cust_new_appointment_required_time_selected'); ?>', 'warning');
+        else {
+            $.ajax({
+                type: "post",
+                url: "<?php echo base_url('Customer/saveAppointment'); ?>",
+                data: {
+                    'date': date,
+                    'time': timeSelected,
+                    'employeeID': employeeID,
+                    'services': services
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.error == 0) { // Success
+                        simpleSuccessAlert('<?php echo lang('Text.cust_success_create_appointment'); ?>');
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, "2000");
+                    } else if (response.error == 2) { // Session Expired
+                        window.location.href = "<?php echo base_url('Home/signInCustomer?session=expired'); ?>";
+                    } else { // Error
+                        simpleAlert(response.msg, 'warning');
+                        getEmployeeAvailability();
+                    }
+                },
+                error: function(e) {
+                    globalError();
+                }
+            });
+        }
     });
 </script>
 
@@ -214,14 +205,14 @@
             $('#step-2<?php echo $uniqid; ?>').attr('hidden', true);
             $('#step-1<?php echo $uniqid; ?>').removeAttr('hidden');
             $('#back<?php echo $uniqid; ?>').attr('hidden', true);
+            $('#next<?php echo $uniqid; ?>').removeAttr('hidden');
+            $('#submit<?php echo $uniqid; ?>').attr('hidden', true);
         } else if (step == 2) {
             $('#step-1<?php echo $uniqid; ?>').attr('hidden', true);
-            $('#step-3<?php echo $uniqid; ?>').attr('hidden', true);
             $('#step-2<?php echo $uniqid; ?>').removeAttr('hidden');
             $('#back<?php echo $uniqid; ?>').removeAttr('hidden');
-        } else if (step == 3) {
-            $('#step-2<?php echo $uniqid; ?>').attr('hidden', true);
-            $('#step-3<?php echo $uniqid; ?>').removeAttr('hidden');
+            $('#next<?php echo $uniqid; ?>').attr('hidden', true);
+            $('#submit<?php echo $uniqid; ?>').removeAttr('hidden');
         }
     }
 </script>

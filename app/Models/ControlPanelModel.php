@@ -280,4 +280,15 @@ class ControlPanelModel extends Model
 
         return $return;
     } // ok
+
+    public function getEmployeeAppointmentDay($empID, $date)
+    {
+        $query = $this->db->table('appointment')
+        ->where('employeeID', $empID)
+        ->where('date', $date);
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    }
 }

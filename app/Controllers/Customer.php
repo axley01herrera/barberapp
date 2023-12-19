@@ -323,9 +323,13 @@ class Customer extends BaseController
 
     public function employeeAvailability()
     {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
+            return view('customerLogout');
+
         # params
         $employeeID = $this->objRequest->getPost('employeeID');
-        $date = date('Y-m-d', strtotime($this->objRequest->getPost('date'))); 
+        $date = date('Y-m-d', strtotime($this->objRequest->getPost('date')));
         $serviceTime = $this->objRequest->getPost('serviceTime');
 
         if ($this->config[0]->lang == 'es')
@@ -333,33 +337,59 @@ class Customer extends BaseController
         else if ($this->config[0]->lang == 'en')
             $dateLabel = "m-d-Y";
 
+        $currentDate = date("Y-m-d H:i:s");
+        $currentTimestamp = strtotime($currentDate);
+
         $objDate = new \DateTime($date);
         $day = strtolower($objDate->format('l'));
-        $employeeBussinesDay = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);  // Get  Employye All Bussiness Day
+        $empBussinesDay = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+        $empAppointment = $this->objControlPanelModel->getEmployeeAppointmentDay($employeeID, $date);
         $dayTimes = array();
         $rangeTimes = array();
 
-        if($employeeBussinesDay[0]->$day == 1) { 
-            $employeeTimes = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID); // Get Eployee All Times Day
+        if ($empBussinesDay[0]->$day == 1) {
+            $empTimes = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
 
-            foreach ($employeeTimes as $time) { // Set Times Day
-                if($time->day == $day) 
+            foreach ($empTimes as $time) {
+                if ($time->day == $day) {
                     $dayTimes[] = $time;
+                }
             }
 
             foreach ($dayTimes as $index => $t) {
                 $start = new \DateTime($t->start);
                 $end = new \DateTime($t->end);
-                $end->sub(new \DateInterval('PT'.$serviceTime.'M'));
+                $end->sub(new \DateInterval('PT' . $serviceTime . 'M'));
 
-                if($index == 0)
+                if ($index == 0)
                     $h = $start;
-                    
+
                 while ($h <= $end) {
                     $s = $h->format('g:i a');
-                    $h->add(new \DateInterval('PT'.$serviceTime.'M'));
+                    $h->add(new \DateInterval('PT' . $serviceTime . 'M'));
                     $e = $h->format('g:i a');
-                    $rangeTimes[] = $s.' - '.$e;
+
+                    $auxDate = date("Y-m-d H:i:s", strtotime($date . ' ' . $s));
+                    $auxTimestamp = strtotime($auxDate);
+
+                    if ($auxTimestamp > $currentTimestamp) {
+                        $flag = 0;
+                        foreach ($empAppointment as $ea) {
+                            $eaS = new \DateTime($ea->start);
+                            $eaE = new \DateTime($ea->end);
+
+                            $sT = new \DateTime($s);
+                            $eT = new \DateTime($e);
+
+                            if ($sT >= $eaS && $eT <= $eaE) {
+                                $flag = 1;
+                                break;
+                            }
+                        }
+
+                        if ($flag == 0)
+                            $rangeTimes[] = $s . ' - ' . $e;
+                    }
                 }
             }
         }
@@ -372,5 +402,60 @@ class Customer extends BaseController
         $view = 'customer/createAppointment/availability';
 
         return view($view, $data);
+    }
+
+    public function saveAppointment()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $date = $this->objRequest->getPost('date');
+        $time = $this->objRequest->getPost('time');
+        $employeeID = $this->objRequest->getPost('employeeID');
+        $services = $this->objRequest->getPost('services');
+        $empAppointment = $this->objControlPanelModel->getEmployeeAppointmentDay($employeeID, $date);
+
+        $aux = explode(" - ", $time);
+        $s = $aux[0];
+        $e = $aux[1];
+
+        $flag = 0;
+        foreach ($empAppointment as $ea) {
+            $eaS = new \DateTime($ea->start);
+            $eaE = new \DateTime($ea->end);
+
+            $sT = new \DateTime($s);
+            $eT = new \DateTime($e);
+
+            if ($sT >= $eaS && $eT <= $eaE) {
+                $flag = 1;
+                break;
+            }
+        }
+
+        if($flag == 0) {
+            $data = array();
+            $data['customerID'] = $this->objSession->get('user')['customerID'];
+            $data['employeeID'] = $employeeID;
+            $data['date'] = date('Y-m-d', strtotime($date));
+            $data['start'] = date('H:i:s', strtotime($s));
+            $data['end'] = date('H:i:s', strtotime($e));
+            $data['services'] = json_encode($services);
+    
+            $result = $this->objMainModel->objCreate('appointment', $data);
+        } else {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = lang('Text.cust_error_create_appointment');
+        }
+
+        return json_encode($result);
     }
 }

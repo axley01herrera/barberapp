@@ -113,6 +113,7 @@ $routes->post('Customer/reloadCustomerInfo', 'Customer::reloadCustomerInfo');
 $routes->post('Customer/createAppointment', 'Customer::createAppointment');
 $routes->post('Customer/employeesByServices', 'Customer::employeesByServices');
 $routes->post('Customer/employeeAvailability', 'Customer::employeeAvailability');
+$routes->post('Customer/saveAppointment', 'Customer::saveAppointment');
 
 ############################## 
 ## Employee Routes

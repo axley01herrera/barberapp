@@ -201,10 +201,10 @@ $lang['cust_appointment_title'] = 'Citas del Cliente';
 $lang['cust_appointment_subtitle'] = 'Administración de Citas.';
 $lang['cust_new_appointment'] = 'Nueva Cita';
 $lang['cust_new_appointment_subtitle'] = 'Crea tu Cita';
-$lang['cust_new_appointment_step1'] = 'Paso 1';
+$lang['cust_new_appointment_step1'] = 'Servicios';
 $lang['cust_new_appointment_step1_sub'] = 'Selecciona uno o más servicios';
 $lang['cust_new_appointment_required_time_selected'] = 'Selecciona un turno disponible.';
-$lang['cust_new_appointment_step2'] = 'Paso 2';
+$lang['cust_new_appointment_step2'] = 'Empleados, Fecha y Turnos Disponibles';
 $lang['cust_new_appointment_step2_sub'] = 'Seleccione un empleado y una fecha en el calendario para ver los turnos disponibles';
 $lang['cust_new_appointment_invalid_date'] = 'No se pueden reservar citas en la fecha seleccionada';
 $lang['cust_new_appointment_step3'] = 'Paso 3';
@@ -212,6 +212,8 @@ $lang['cust_new_appointment_step3_sub'] = 'Detalle de tu cita';
 $lang['cust_new_appointment_available_shifts'] = 'Turnos Disponibles';
 $lang['cust_no_appointment_available'] = 'No hay turnos disponibles para el empleado y la fecha seleccionada.';
 $lang['cust_time'] = 'Turno';
+$lang['cust_success_create_appointment'] = 'Cita Creada';
+$lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.';
 
 # Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";
