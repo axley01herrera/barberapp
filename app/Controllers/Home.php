@@ -63,9 +63,9 @@ class Home extends BaseController
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
         # page
-        $data['page'] = 'home/landing';
+        $view = 'home/landing';
 
-        return view('home/mainHome', $data);
+        return view($view, $data);
     }
 
     public function controlPanelAuth()

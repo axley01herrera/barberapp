@@ -139,6 +139,7 @@ $lang['btn_create_appointment'] = "Crear Cita";
 $lang['btn_next'] = "Siguiente";
 $lang['btn_back'] = "Atrás";
 $lang['btn_save_ordering'] = "Guardar Orden";
+$lang['btn_sign_in'] = "Iniciar Sesión";
 
 # Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
@@ -354,4 +355,8 @@ $lang['e_rv_complete_account_msg'] = "Si estás recibiendo este mensaje, es impo
 $lang['e_rv_create_account'] = "Verificar mi Correo Electrónico";
 $lang['e_rv_complete_account_info'] = "La verificación de su correo electrónico es fundamental para enviarle notificaciones importantes, actualizaciones sobre la política de privacidad y otros avisos relevantes. En su perfil, tiene la opción de activar o desactivar estas notificaciones según su preferencia. Agradecemos su colaboración.";
 
+# Landing Page
+$lang['lp_welcome'] = "Bienvenido a nuestro Portal Web";
+$lang['lp_welcome_the'] = "de";
+$lang['lp_welcome_a_online'] = "Reserva de Citas en Línea";
 return $lang;

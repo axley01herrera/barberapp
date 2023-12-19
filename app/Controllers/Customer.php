@@ -342,13 +342,15 @@ class Customer extends BaseController
 
         $objDate = new \DateTime($date);
         $day = strtolower($objDate->format('l'));
-        $empBussinesDay = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
-        $empAppointment = $this->objControlPanelModel->getEmployeeAppointmentDay($employeeID, $date);
+
+        $empBussinesDay = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID); // Employee Bussiness Day
+        $empAppointment = $this->objControlPanelModel->getEmployeeAppointmentDay($employeeID, $date); // Employee Appointment Date Selected
+
         $dayTimes = array();
         $rangeTimes = array();
 
         if ($empBussinesDay[0]->$day == 1) {
-            $empTimes = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
+            $empTimes = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID); // Employee Times
 
             foreach ($empTimes as $time) {
                 if ($time->day == $day) {
@@ -362,33 +364,39 @@ class Customer extends BaseController
                 $end->sub(new \DateInterval('PT' . $serviceTime . 'M'));
 
                 if ($index == 0)
-                    $h = $start;
+                    $slotStartTimestamp = $start;
 
-                while ($h <= $end) {
-                    $s = $h->format('g:i a');
-                    $h->add(new \DateInterval('PT' . $serviceTime . 'M'));
-                    $e = $h->format('g:i a');
+                while ($slotStartTimestamp <= $end) {
 
-                    $auxDate = date("Y-m-d H:i:s", strtotime($date . ' ' . $s));
+                    $slotStart = $slotStartTimestamp->format('g:i a');
+                    $slotStartTimestamp->add(new \DateInterval('PT' . $serviceTime . 'M')); // Iterator
+                    $slotEnd = $slotStartTimestamp->format('g:i a');
+
+                    $auxDate = date("Y-m-d H:i:s", strtotime($date . ' ' . $slotStart));
                     $auxTimestamp = strtotime($auxDate);
 
                     if ($auxTimestamp > $currentTimestamp) {
                         $flag = 0;
+
                         foreach ($empAppointment as $ea) {
-                            $eaS = new \DateTime($ea->start);
-                            $eaE = new \DateTime($ea->end);
+                            $eaS = strtotime($ea->start);
+                            $eaE = strtotime($ea->end);
 
-                            $sT = new \DateTime($s);
-                            $eT = new \DateTime($e);
+                            $sT = strtotime($slotStart);
+                            $eT = strtotime($slotEnd);
 
-                            if ($sT >= $eaS && $eT <= $eaE) {
+                            if ($eaS >= $sT && $eaE <= $eT) {
                                 $flag = 1;
+                                $aptTime = ($eaE - $eaS) / 60;
+                                $slotStartTimestamp->sub(new \DateInterval('PT' . $serviceTime . 'M')); // Back To Previous Slot
+                                $slotStartTimestamp->add(new \DateInterval('PT' . $aptTime . 'M')); // Add Appointment Time 
                                 break;
                             }
                         }
 
-                        if ($flag == 0)
-                            $rangeTimes[] = $s . ' - ' . $e;
+                        if ($flag == 0) {
+                            $rangeTimes[] = $slotStart . ' - ' . $slotEnd;
+                        }
                     }
                 }
             }
@@ -416,7 +424,7 @@ class Customer extends BaseController
         }
 
         # params
-        $date = $this->objRequest->getPost('date');
+        $date = date('Y-m-d', strtotime($this->objRequest->getPost('date')));
         $time = $this->objRequest->getPost('time');
         $employeeID = $this->objRequest->getPost('employeeID');
         $services = $this->objRequest->getPost('services');
@@ -434,21 +442,21 @@ class Customer extends BaseController
             $sT = new \DateTime($s);
             $eT = new \DateTime($e);
 
-            if ($sT >= $eaS && $eT <= $eaE) {
+            if ($eaS >= $sT &&  $eaE <= $eT) {
                 $flag = 1;
                 break;
             }
         }
 
-        if($flag == 0) {
+        if ($flag == 0) {
             $data = array();
             $data['customerID'] = $this->objSession->get('user')['customerID'];
             $data['employeeID'] = $employeeID;
-            $data['date'] = date('Y-m-d', strtotime($date));
+            $data['date'] = $date;
             $data['start'] = date('H:i:s', strtotime($s));
             $data['end'] = date('H:i:s', strtotime($e));
             $data['services'] = json_encode($services);
-    
+
             $result = $this->objMainModel->objCreate('appointment', $data);
         } else {
             $result = array();
