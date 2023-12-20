@@ -120,6 +120,10 @@ $lang['Instagram'] = "Instagram";
 $lang['status'] = "Estado";
 $lang['visibility'] = "Público";
 $lang['not_services'] = "No hay Servicios";
+$lang['yes_are_sure'] = "Sí, estoy seguro";
+$lang['success_cancel_turn'] = "Su cita ha sido cancelada";
+$lang['employee'] = "Empleado";
+$lang['employee'] = "Empleado";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -215,7 +219,8 @@ $lang['cust_new_appointment_available_shifts'] = 'Turnos Disponibles';
 $lang['cust_no_appointment_available'] = 'No hay turnos disponibles para el empleado y la fecha seleccionada.';
 $lang['cust_time'] = 'Turno';
 $lang['cust_success_create_appointment'] = 'Cita Creada';
-$lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.';
+$lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.'; 
+$lang['cust_not_have_turns'] = "Usted no tiene citas planificadas.";
 
 # Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";

@@ -68,6 +68,7 @@ class Customer extends BaseController
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->profile;
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+        $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
         # page
         $data['page'] = 'customer/index';
 
@@ -108,8 +109,31 @@ class Customer extends BaseController
 
         switch ($tab) {
             case 'tab-appointments':
+                $appointments = $this->objMainModel->objData('appointment', 'customerID', $this->objSession->get('user')['customerID']);
+                $row = array();
+                for ($i = 0; $i < count($appointments); $i++) {
+                    $col['appointmentID'] = $appointments[$i]->id;
+                    $col['appointmentDate'] = $appointments[$i]->date;
+                    $col['appointmentStart'] = $appointments[$i]->start;
+                    $col['appointmentEnd'] = $appointments[$i]->end;
+                    preg_match_all('/"(\d+)"/', $appointments[$i]->services, $matches);
+                    $col['servicesID'] = array_map('intval', $matches[1]);
+
+                    if (!empty($appointments)) {
+                        $result = $this->objMainModel->objData('employee', 'id', $appointments[$i]->employeeID);
+                        $col['employeeAvatar'] = $result[0]->avatar;
+                        $col['employeeName'] = $result[0]->name;
+                        $col['employeeLastName'] = $result[0]->lastName;
+                        $col['services'] = $this->objMainModel->getServicesByIdArray($col['servicesID']);
+                    }
+
+                    $row[$i] = $col;
+                }
+
+                #data
+                $data['appointments'] = $row;
                 # page
-                $view = "customer/tabContent/tabappointments";
+                $view = "customer/tabContent/tabAppointments";
                 break;
             case 'tab-account':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
@@ -125,6 +149,22 @@ class Customer extends BaseController
 
         return view($view, $data);
     } // ok
+
+    public function cancelTurn()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+
+        #params
+        $appointmentID = $this->objRequest->getPost('appointmentID');
+
+        return json_encode($this->objMainModel->objDelete('appointment', $appointmentID));
+    }
 
     public function updateAccount()
     {

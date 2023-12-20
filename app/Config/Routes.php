@@ -114,6 +114,7 @@ $routes->post('Customer/createAppointment', 'Customer::createAppointment');
 $routes->post('Customer/employeesByServices', 'Customer::employeesByServices');
 $routes->post('Customer/employeeAvailability', 'Customer::employeeAvailability');
 $routes->post('Customer/saveAppointment', 'Customer::saveAppointment');
+$routes->post('Customer/cancelTurn', 'Customer::cancelTurn');
 
 ############################## 
 ## Employee Routes
