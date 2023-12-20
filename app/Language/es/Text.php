@@ -311,6 +311,7 @@ $lang['cp_profile_menu_change_key'] = "Clave";
 $lang['cp_profile_change_key_title'] = "Acceso al Panel de Control";
 $lang['cp_profile_change_key_subtitle'] = "Clave de Acceso.";
 $lang['cp_profile_menu_config'] = "Configuración";
+$lang['cp_profile_menu_privacy_police'] = "Política de Privacidad";
 $lang['cp_profile_config_title'] = "Ajustes del Sistema";
 $lang['cp_profile_config_subtitle'] = "Preferencias y Personalización.";
 $lang['cp_profile_data_updated'] = "Descripción del Negocio Actualizada";

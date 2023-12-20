@@ -490,4 +490,12 @@ class Home extends BaseController
 
         return view('email/recoverPassword', $dataEmail);
     }
+
+    public function aboutUsModal()
+    {
+        $data = array();
+        $data['about'] = $this->objMainModel->objData('company_profile')[0]->about;
+
+        return view('home/aboutUsModal', $data);
+    }
 }

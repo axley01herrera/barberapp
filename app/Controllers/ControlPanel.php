@@ -1512,6 +1512,11 @@ class ControlPanel extends BaseController
                 $data = array();
                 $data['config'] = $this->config;
                 break;
+            case 'privacyPolice':
+                $view = "controlPanel/companyProfile/tabs/privacyPolice";
+                $data = array();
+                $data['config'] = $this->config;
+                break;
         }
 
         $data['uniqid'] = uniqid();

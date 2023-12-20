@@ -25,6 +25,7 @@ ALTER TABLE `customer` ADD `zip` INT NULL AFTER `state`;
 ALTER TABLE `customer` ADD `country` VARCHAR(250) NULL AFTER `zip`; 
 
 ALTER TABLE `company_profile` ADD `about` LONGTEXT NULL AFTER `country`; 
+ALTER TABLE `company_profile` ADD `privacyPolice` LONGTEXT NULL AFTER `about`; 
 
 DROP TABLE IF EXISTS `company_img`;
 CREATE TABLE IF NOT EXISTS `company_img` (
