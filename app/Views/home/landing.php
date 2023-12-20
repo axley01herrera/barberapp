@@ -29,6 +29,7 @@
         var themeMode = "<?php echo $config[0]->theme; ?>";
         document.documentElement.setAttribute("data-bs-theme", themeMode);
     </script>
+    <div id="landing-modal"></div>
     <div class="d-flex flex-column flex-root" id="kt_app_root">
 
         <!-- Home -->
@@ -555,3 +556,20 @@
 </body>
 
 </html>
+
+<script>
+    $('#about').on('click', function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "<?php echo base_url('Home/aboutUsModal') ?>",
+            dataType: "html",
+            success: function(response) {
+                $('#landing-modal').html(response);
+            },
+            error: function(error) {
+                globalError();
+            }
+        });
+    });
+</script>

@@ -121,6 +121,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "config") echo "active"; ?>" data-tab-profile="config" href="#"><?php echo lang('Text.cp_profile_menu_config'); ?></a>
                         </li>
+                        <!-- Privacy Police -->
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "privacyPolice") echo "active"; ?>" data-tab-profile="privacyPolice" href="#"><?php echo lang('Text.cp_profile_menu_privacy_police'); ?></a>
+                        </li>
                     </ul>
                     <div id="profile-tab-content" class="container mt-10 mb-10"></div>
                 </div>

@@ -26,7 +26,8 @@ $routes->post('Home/signUpCustomerProcess', 'Home::signUpCustomerProcess');
 $routes->get('Home/verifiedEmail', 'Home::verifiedEmail');
 $routes->get('Home/forgotPassword', 'Home::forgotPassword');
 $routes->post('Home/sendForgotPasswordEmail', 'Home::sendForgotPasswordEmail');
-$routes->get('Home/emailView', 'Home::emailView');
+$routes->get('Home/emailView', 'Home::emailView'); 
+$routes->get('Home/aboutUsModal', 'Home::aboutUsModal'); 
 
 ############################## 
 ## ControlPanel Routes
@@ -103,6 +104,7 @@ $routes->post('ControlPanel/getSocialNetworks', 'ControlPanel::getSocialNetworks
 ## Customer Routes
 ##############################
 
+$routes->get('Customer/index', 'Customer::index');
 $routes->get('Customer/appointment', 'Customer::appointment');
 $routes->get('Customer/createAppointment', 'Customer::createAppointment');
 $routes->get('Customer/account', 'Customer::account');
