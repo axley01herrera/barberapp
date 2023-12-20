@@ -116,10 +116,15 @@
                 <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->country; ?>" disabled />
             </div>
+            <div class="col-12 mt-5">
+                <!-- About -->
+                <label class="fs-6 fw-semibold" for="txt-about<?php echo $uniqid; ?>"><?php echo lang('Text.about_bussiness'); ?></label>
+                <textarea id="txt-about<?php echo $uniqid; ?>" class="form-control" rows="10" disabled><?php echo $profile[0]->about; ?></textarea>
+            </div>
         </div>
         <!-- Alert Public Info -->
-        <div class="alert alert-dismissible bg-light-primary border border-primary border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10 mt-10">
-            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+        <div class="alert alert-dismissible bg-light-primary border border-primary border-dashed d-flex flex-column flex-sm-row w-100 p-5 mt-10">
+            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
             <div class="d-flex flex-column pe-0 pe-sm-10">
                 <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                 <span><?php echo lang('Text.cp_profile_public_info_msg'); ?></span>
@@ -242,7 +247,8 @@
                         'city': $('#txt-city<?php echo $uniqid; ?>').val(),
                         'state': $('#txt-state<?php echo $uniqid; ?>').val(),
                         'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
-                        'country': $('#txt-country<?php echo $uniqid; ?>').val()
+                        'country': $('#txt-country<?php echo $uniqid; ?>').val(),
+                        'about': $('#txt-about<?php echo $uniqid; ?>').val()
                     },
                     dataType: "json",
                     success: function(response) {

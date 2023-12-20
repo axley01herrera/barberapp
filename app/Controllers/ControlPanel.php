@@ -1555,7 +1555,6 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
-
             return json_encode($result);
         }
 
@@ -1574,8 +1573,11 @@ class ControlPanel extends BaseController
         $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
         $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
         $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
+        $data['about'] = htmlspecialchars(trim($this->objRequest->getPost('about')));
 
-        return json_encode($this->objMainModel->objUpdate('company_profile', $data, 1));
+        $result = $this->objMainModel->objUpdate('company_profile', $data, 1);
+
+        return json_encode($result);
     } // ok
 
     public function changeAccessKey()

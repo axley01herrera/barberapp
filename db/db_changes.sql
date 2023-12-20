@@ -23,3 +23,5 @@ ALTER TABLE `customer` ADD `city` VARCHAR(250) NULL AFTER `address2`;
 ALTER TABLE `customer` ADD `state` VARCHAR(250) NULL AFTER `city`; 
 ALTER TABLE `customer` ADD `zip` INT NULL AFTER `state`; 
 ALTER TABLE `customer` ADD `country` VARCHAR(250) NULL AFTER `zip`; 
+
+ALTER TABLE `company_profile` ADD `about` LONGTEXT NULL AFTER `country`; 

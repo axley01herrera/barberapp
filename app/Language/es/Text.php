@@ -2,6 +2,7 @@
 $lang = array();
 
 # Global Labels
+$lang['about_bussiness'] = "Cuéntanos más sobre tu negocio";
 $lang['c_panel'] = "Panel de Control";
 $lang['system_info'] = "Información del Sistema";
 $lang['company_name'] = "Nombre del Negocio";
