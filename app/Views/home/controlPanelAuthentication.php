@@ -34,7 +34,7 @@
                             <!-- Home -->
                             <div class="row">
                                 <div class="col-12 text-center mb-10">
-                                    <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
+                                    <a href="<?php echo base_url('/'); ?>" class="link-primary"><i class="bi bi-house-up link-primary"></i> <?php echo lang("Text.btn_home") ?></a>
                                 </div>
                             </div>
                         </form>

@@ -68,7 +68,6 @@ class Customer extends BaseController
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->profile;
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-        $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
         # page
         $data['page'] = 'customer/index';
 
@@ -80,7 +79,7 @@ class Customer extends BaseController
         # data
         $data = array();
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-        $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objSession->get('user')['customerID']);
+        
 
         return view('customer/customerInfo', $data);
     } // ok
