@@ -221,7 +221,7 @@ $lang['cust_new_appointment_available_shifts'] = 'Turnos Disponibles';
 $lang['cust_no_appointment_available'] = 'No hay turnos disponibles para el empleado y la fecha seleccionada.';
 $lang['cust_time'] = 'Turno';
 $lang['cust_success_create_appointment'] = 'Cita Creada';
-$lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.'; 
+$lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.';
 $lang['cust_not_have_turns'] = "Usted no tiene citas planificadas.";
 
 # Employees
@@ -322,6 +322,8 @@ $lang['cp_profile_social_network_success_created'] = "Red Social Creada";
 $lang['cp_profile_social_network_success_updated'] = "Red Social Actualizada";
 $lang['cp_profile_select_social_network'] = "Seleccione una red social";
 $lang['cp_profile_sn_change_v'] = "Cambiar Visibilad";
+$lang['cp_success_update_privacy_police'] = "Política de Privacidad Actualizada";
+$lang['cp_empty_privacy_police'] = "Debe de introducir la Política de Privacidad";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";

@@ -1516,6 +1516,7 @@ class ControlPanel extends BaseController
                 $view = "controlPanel/companyProfile/tabs/privacyPolice";
                 $data = array();
                 $data['config'] = $this->config;
+                $data['privacyPolice'] = $this->objMainModel->objData('company_profile')[0]->privacyPolice;
                 break;
         }
 
@@ -1523,6 +1524,24 @@ class ControlPanel extends BaseController
 
         return view($view, $data);
     } // ok
+
+    public function savePrivacyPolice()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
+        }
+        #params
+        $privacyPolice = $this->objRequest->getPost('privacyPolice');
+
+        $data = array();
+        $data['privacyPolice'] = $privacyPolice;
+
+        return json_encode($this->objMainModel->objUpdate('company_profile', $data, 1));
+    }
 
     public function uploadAvatarProfile()
     {

@@ -320,9 +320,11 @@ class Home extends BaseController
         return view('home/mainHome', $data);
     } // ok
 
-    public function policyPrivacyModal()
+    public function privacyPoliceModal()
     {
-        return view('home/policyPrivacyModal');
+        $data = array();
+        $data['privacyPolice'] = $this->objMainModel->objData('company_profile')[0]->privacyPolice;
+        return view('home/privacyPoliceModal', $data);
     } // ok
 
     public function signUpCustomerProcess()

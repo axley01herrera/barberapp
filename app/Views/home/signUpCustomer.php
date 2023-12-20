@@ -88,7 +88,7 @@
         e.preventDefault();
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('Home/policyPrivacyModal'); ?>",
+            url: "<?php echo base_url('Home/privacyPoliceModal'); ?>",
             dataType: "html",
             success: function(response) {
                 $('#app-modal').html(response);
