@@ -56,7 +56,7 @@ class Customer extends BaseController
         helper('Site');
     }
 
-    public function index()
+    public function appointment()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
@@ -64,15 +64,29 @@ class Customer extends BaseController
 
         # data
         $data = array();
-        $data['uniqid'] = uniqid();
+        # menu 
+        $data['activeAppointment'] = "active";
+        # config
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->profile;
+        # data
+        $data['uniqid'] = uniqid();
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
         # page
-        $data['page'] = 'customer/index';
+        $data['page'] = 'customer/appointment/mainAppointment';
 
         return view('customer/mainCustomer', $data);
     } // ok
+
+    public function account()
+    {
+
+    }
+
+    public function profile()
+    {
+
+    }
 
     public function reloadCustomerInfo()
     {
@@ -307,6 +321,11 @@ class Customer extends BaseController
         $maxDate = $dateTime->format('Y-m-d');
 
         $data = array();
+        # menu 
+        $data['activeAppointment'] = "active";
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->profile;
         # data
         $data['services'] = $this->objControlPanelModel->getActiveAndPublicServices();
         $data['employees'] = $this->objControlPanelModel->getActiveEmployees();
@@ -315,12 +334,10 @@ class Customer extends BaseController
         $data['minDate'] = $currentDate;
         $data['maxDate'] = $maxDate;
         $data['uniqid'] = uniqid();
-        # config
-        $data['config'] = $this->config;
         # page
-        $view = 'customer/createAppointment/mainCreateAppointment';
+        $data['page'] = 'customer/appointment/mainCreateAppointment';
 
-        return view($view, $data);
+        return view('customer/mainCustomer', $data);
     }
 
     public function employeesByServices()
@@ -339,7 +356,7 @@ class Customer extends BaseController
         $data['serviceTime'] = $serviceCalc['time'];
         $data['servicePrice'] = $serviceCalc['price'];
         # page
-        $view = 'customer/createAppointment/employees';
+        $view = 'customer/appointment/employees';
 
         return view($view, $data);
     }
@@ -430,7 +447,7 @@ class Customer extends BaseController
         $data['dateReview'] = date($dateLabel, strtotime($date));
 
         # page
-        $view = 'customer/createAppointment/availability';
+        $view = 'customer/appointment/availability';
 
         return view($view, $data);
     }

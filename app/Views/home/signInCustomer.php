@@ -67,7 +67,7 @@
                     dataType: "json",
                     success: function(response) {
                         if (response.error == 0) {
-                            window.location.href = "<?php echo base_url('Customer/index'); ?>";
+                            window.location.href = "<?php echo base_url('Customer/appointment'); ?>";
                         } else if (response.error == 1) {
                             if (response.msg == 'EMAIL_NOT_FOUND') {
                                 simpleAlert('<?php echo lang('Text.invalid_credentials') ?>', 'warning');

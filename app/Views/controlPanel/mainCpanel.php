@@ -78,7 +78,6 @@
         document.documentElement.setAttribute("data-bs-theme", themeMode);
     </script>
     <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
-        <!-- Page -->
         <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
             <!-- Header -->
             <div id="kt_app_header" class="app-header" data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}" data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '0'}" data-kt-sticky-animation="false">
@@ -146,6 +145,7 @@
             <div id="app-modal"></div>
             <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                    <!-- Page -->
                     <?php echo view($page); ?>
                 </div>
             </div>

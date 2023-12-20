@@ -68,11 +68,23 @@
         document.documentElement.setAttribute("data-bs-theme", themeMode);
     </script>
     <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
-        <!-- Page -->
         <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+            <!-- Header -->
+            <div id="kt_app_header" class="app-header" data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}" data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '0'}" data-kt-sticky-animation="false">
+                <!-- Header container -->
+                <div class="app-container container-xxl d-flex align-items-stretch justify-content-between" id="kt_app_header_container">
+                    <!--Logo-->
+                    <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
+                        <img alt="Logo" src="<?php echo base_url('public/assets/media/logos/default-dark.svg'); ?>" class="h-20px h-lg-30px app-sidebar-logo-default" />
+                    </div>
+                    <!-- Menu -->
+                    <?php echo view('customer/customerMenu'); ?>
+                </div>
+            </div>
             <div id="app-modal"></div>
             <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                    <!-- Page -->
                     <?php echo view($page); ?>
                 </div>
             </div>
