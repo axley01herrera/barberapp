@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\AuthenticationModel;
 use App\Models\ConfigModel;
-use App\Models\ControlPanelModel;
 use App\Models\HomeModel;
 use App\Models\MainModel;
 
@@ -13,7 +12,6 @@ class Home extends BaseController
     protected $objSession;
     protected $objRequest;
     protected $objConfigModel;
-    protected $objControlPanelModel;
     protected $objAuthenticationModel;
     protected $objMainModel;
     protected $objHomeModel;
@@ -29,14 +27,13 @@ class Home extends BaseController
 
         # Models
         $this->objConfigModel = new ConfigModel;
-        $this->objControlPanelModel = new ControlPanelModel;
         $this->objAuthenticationModel = new AuthenticationModel;
         $this->objMainModel = new MainModel;
         $this->objHomeModel = new HomeModel;
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
-        $this->companyProfile = $this->objControlPanelModel->getCompanyProfile(1);
+        $this->companyProfile = $this->objHomeModel->getCompanyProfileSettings();
 
         # Email Settings
         $emailConfig = array();
@@ -66,9 +63,9 @@ class Home extends BaseController
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
         # data
-        $data['services'] = $this->objControlPanelModel->getServices();
-        $data['team'] = $this->objControlPanelModel->getActiveEmployees();
-        $data['socialNetworks'] = $this->objControlPanelModel->getActiveSocialNetworks();
+        $data['services'] = $this->objHomeModel->getServices();
+        $data['team'] = $this->objHomeModel->getActiveEmployees();
+        $data['socialNetworks'] = $this->objHomeModel->getActiveSocialNetworks();
         # page
         $view = 'home/landing';
 
@@ -500,5 +497,5 @@ class Home extends BaseController
         $data['about'] = $this->objHomeModel->getCompanyProfileAbout()[0]->about;
 
         return view('home/aboutUsModal', $data);
-    }
+    } // ok
 }

@@ -201,27 +201,6 @@ class ControlPanelModel extends Model
         return $data;
     } // ok
 
-    public function getActiveEmployees()
-    {
-        $query = $this->db->table('employee')
-            ->where('status', 1)
-            ->where('deleted', 0);
-
-        $data = $query->get()->getResult();
-
-        return $data;
-    } // ok
-
-    public function getActiveSocialNetworks()
-    {
-        $query = $this->db->table('company_social_network')
-        ->where('status', 1);
-
-        $data = $query->get()->getResult();
-
-        return $data;
-    } // ok
-
     public function getEmployeesByServices($services)
     {
         $data = array();
