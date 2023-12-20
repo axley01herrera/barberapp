@@ -32,3 +32,32 @@ function socialNetworkIcon($type)
 
     return $icon;
 }
+
+function labelEmployeeName($employeeID)
+{
+    $db = \Config\Database::connect();
+
+    $query = $db->table('employee')
+        ->select('name')
+        ->where('id', $employeeID);
+
+    $data = $query->get()->getResult();
+
+    return $data[0]->name;
+}
+
+function imgEmployee($employeeID)
+{
+    $db = \Config\Database::connect();
+
+    $query = $db->table('employee')
+        ->select('avatar')
+        ->where('id', $employeeID);
+
+    $data = $query->get()->getResult();
+
+    if (empty($data[0]->avatar))
+        return base_url('public/assets/media/avatars/blank.png');
+    else
+        return "data:image/png;base64," . base64_encode($data[0]->avatar);
+}

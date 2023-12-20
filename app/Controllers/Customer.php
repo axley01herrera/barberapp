@@ -62,6 +62,13 @@ class Customer extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
             return view('customerLogout');
 
+        $customerID = $this->objSession->get('user')['customerID'];
+
+        if ($this->config[0]->lang == 'es')
+            $dateLabel = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $dateLabel = "m-d-Y";
+
         $data = array();
         # menu 
         $data['activeAppointment'] = "active";
@@ -70,7 +77,9 @@ class Customer extends BaseController
         $data['companyProfile'] = $this->profile;
         # data
         $data['uniqid'] = uniqid();
-        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+        $data['dateLabel'] = $dateLabel;
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
+        $data['upcomingAppointments'] = $this->objCustomerModel->upcomingAppointments($customerID);
         # page
         $data['page'] = 'customer/appointment/mainAppointment';
 
@@ -125,81 +134,6 @@ class Customer extends BaseController
         return view('customer/mainCustomer', $data);
     } // ok
 
-    public function customerTabContent() // To Remove
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
-            return view('customerLogout');
-
-        # params
-        $tab = $this->objRequest->getPost('tab');
-
-        $data = array();
-        # data
-        $data['config'] = $this->config;
-        $data['profile'] = $this->profile;
-        $data['uniqid'] = uniqid();
-
-
-
-        $view = "";
-
-        switch ($tab) {
-            case 'tab-appointments':
-                $appointments = $this->objMainModel->objData('appointment', 'customerID', $this->objSession->get('user')['customerID']);
-                $row = array();
-                for ($i = 0; $i < count($appointments); $i++) {
-                    $col['appointmentID'] = $appointments[$i]->id;
-                    $col['appointmentDate'] = $appointments[$i]->date;
-                    $col['appointmentStart'] = $appointments[$i]->start;
-                    $col['appointmentEnd'] = $appointments[$i]->end;
-                    preg_match_all('/"(\d+)"/', $appointments[$i]->services, $matches);
-                    $col['servicesID'] = array_map('intval', $matches[1]);
-
-                    if (!empty($appointments)) {
-                        $result = $this->objMainModel->objData('employee', 'id', $appointments[$i]->employeeID);
-                        $col['employeeAvatar'] = $result[0]->avatar;
-                        $col['employeeName'] = $result[0]->name;
-                        $col['employeeLastName'] = $result[0]->lastName;
-                        $col['services'] = $this->objMainModel->getServicesByIdArray($col['servicesID']);
-                    }
-
-                    $row[$i] = $col;
-                }
-
-                #data
-                $data['appointments'] = $row;
-                # page
-                $view = "customer/tabContent/tabAppointments";
-                break;
-            case 'tab-account':
-                break;
-            case 'tab-profile':
-                $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-                # page
-                $view = "customer/tabContent/tabProfile";
-                break;
-        }
-
-        return view($view, $data);
-    } 
-
-    public function cancelTurn()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer") {
-            $result = array();
-            $result['error'] = 2;
-            $result['msg'] = "SESSION_EXPIRED";
-            return json_encode($result);
-        }
-
-        #params
-        $appointmentID = $this->objRequest->getPost('appointmentID');
-
-        return json_encode($this->objMainModel->objDelete('appointment', $appointmentID));
-    }
-
     public function updateAccount()
     {
         # Verify Session 
@@ -207,7 +141,7 @@ class Customer extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
-            
+
             return json_encode($result);
         }
 

@@ -14,6 +14,16 @@ class CustomerModel extends Model
         $this->db = \Config\Database::connect();
     }
 
+    public function upcomingAppointments($customerID)
+    {
+        $query = $this->db->table('appointment')
+        ->where('date >=', date('Y-m-d'));
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    }
+
     public function getCompanyProfileSettings()
     {
         $query = $this->db->table('company_profile')
