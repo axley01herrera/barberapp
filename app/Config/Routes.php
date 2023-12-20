@@ -104,16 +104,16 @@ $routes->post('ControlPanel/getSocialNetworks', 'ControlPanel::getSocialNetworks
 ##############################
 
 $routes->get('Customer/appointment', 'Customer::appointment');
-$routes->post('Customer/customerTabContent', 'Customer::customerTabContent');
+$routes->get('Customer/createAppointment', 'Customer::createAppointment');
+$routes->get('Customer/account', 'Customer::account');
+$routes->get('Customer/profile', 'Customer::profile');
+$routes->post('Customer/employeeAvailability', 'Customer::employeeAvailability');
+$routes->post('Customer/employeesByServices', 'Customer::employeesByServices');
+$routes->post('Customer/saveAppointment', 'Customer::saveAppointment');
 $routes->post('Customer/updateAccount', 'Customer::updateAccount');
 $routes->post('Customer/updateProfile', 'Customer::updateProfile');
 $routes->post('Customer/uploadAvatarProfile', 'Customer::uploadAvatarProfile');
 $routes->post('Customer/removeAvatarProfile', 'Customer::removeAvatarProfile');
-$routes->post('Customer/reloadCustomerInfo', 'Customer::reloadCustomerInfo');
-$routes->get('Customer/createAppointment', 'Customer::createAppointment');
-$routes->post('Customer/employeesByServices', 'Customer::employeesByServices');
-$routes->post('Customer/employeeAvailability', 'Customer::employeeAvailability');
-$routes->post('Customer/saveAppointment', 'Customer::saveAppointment');
 $routes->post('Customer/cancelTurn', 'Customer::cancelTurn');
 
 ############################## 

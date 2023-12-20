@@ -132,6 +132,7 @@
     var lang = "<?php echo $config[0]->lang; ?>";
     var dateLabel = "";
     var employeeID = "<?php echo $employeeID; ?>";
+    var locale = "";
 
     if (lang == 'es') {
         dateLabel = "d-m-Y";

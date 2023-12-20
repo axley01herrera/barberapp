@@ -79,17 +79,4 @@
         customerTabContent();
     });
 
-    function reloadCustomerInfo() {
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url('Customer/reloadCustomerInfo'); ?>",
-            dataType: "html",
-            success: function(response) {
-                $('#customer-info').html(response);
-            },
-            error: function() {
-                globalError();
-            }
-        });
-    }
 </script>

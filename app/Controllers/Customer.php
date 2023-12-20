@@ -62,7 +62,6 @@ class Customer extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
             return view('customerLogout');
 
-        # data
         $data = array();
         # menu 
         $data['activeAppointment'] = "active";
@@ -80,12 +79,50 @@ class Customer extends BaseController
 
     public function account()
     {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
+            return view('customerLogout');
 
-    }
+        $data = array();
+        # menu 
+        $data['activeAccount'] = "active";
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->profile;
+        # data
+        $data['uniqid'] = uniqid();
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+        # page
+        $data['page'] = 'customer/account/mainAccount';
+
+        return view('customer/mainCustomer', $data);
+    } // ok
 
     public function profile()
     {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
+            return view('customerLogout');
 
+        if ($this->config[0]->lang == 'es')
+            $dateLabel = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $dateLabel = "m-d-Y";
+
+        $data = array();
+        # menu 
+        $data['activeProfile'] = "active";
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->profile;
+        # data
+        $data['uniqid'] = uniqid();
+        $data['dateLabel'] = $dateLabel;
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+        # page
+        $data['page'] = 'customer/profile/mainProfile';
+
+        return view('customer/mainCustomer', $data);
     }
 
     public function reloadCustomerInfo()
@@ -93,12 +130,12 @@ class Customer extends BaseController
         # data
         $data = array();
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-        
+
 
         return view('customer/customerInfo', $data);
     } // ok
 
-    public function customerTabContent()
+    public function customerTabContent() // To Remove
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
@@ -113,10 +150,7 @@ class Customer extends BaseController
         $data['profile'] = $this->profile;
         $data['uniqid'] = uniqid();
 
-        if ($this->config[0]->lang == 'es')
-            $data['dateLabel'] = "d-m-Y";
-        else if ($this->config[0]->lang == 'en')
-            $data['dateLabel'] = "m-d-Y";
+
 
         $view = "";
 
@@ -149,9 +183,6 @@ class Customer extends BaseController
                 $view = "customer/tabContent/tabAppointments";
                 break;
             case 'tab-account':
-                $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-                # page
-                $view = "customer/tabContent/tabAccount";
                 break;
             case 'tab-profile':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
@@ -161,7 +192,7 @@ class Customer extends BaseController
         }
 
         return view($view, $data);
-    } // ok
+    } 
 
     public function cancelTurn()
     {
@@ -257,6 +288,7 @@ class Customer extends BaseController
 
         # params
         $customerID = $this->objSession->get('user')['customerID'];
+
         $data = array();
         $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
@@ -338,7 +370,7 @@ class Customer extends BaseController
         $data['page'] = 'customer/appointment/mainCreateAppointment';
 
         return view('customer/mainCustomer', $data);
-    }
+    } // ok
 
     public function employeesByServices()
     {
@@ -359,7 +391,7 @@ class Customer extends BaseController
         $view = 'customer/appointment/employees';
 
         return view($view, $data);
-    }
+    } // ok
 
     public function employeeAvailability()
     {
@@ -450,7 +482,7 @@ class Customer extends BaseController
         $view = 'customer/appointment/availability';
 
         return view($view, $data);
-    }
+    } // ok
 
     public function saveAppointment()
     {
@@ -505,5 +537,5 @@ class Customer extends BaseController
         }
 
         return json_encode($result);
-    }
+    } // ok
 }

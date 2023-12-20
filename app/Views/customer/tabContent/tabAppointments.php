@@ -54,19 +54,7 @@
     <?php } ?>
 </div>
 <script>
-    $('#btn-<?php echo $uniqid; ?>').on('click', function() { // Create Appointment
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url('Customer/createAppointment'); ?>",
-            dataType: "html",
-            success: function(response) {
-                $('#tabContent').html(response);
-            },
-            error: function() {
-                globalError();
-            }
-        });
-    });
+    
 
     $('.cancel-turn<?php echo $uniqid; ?>').on('click', function() {
         Swal.fire({
