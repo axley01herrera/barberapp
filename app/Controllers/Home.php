@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\AuthenticationModel;
 use App\Models\ConfigModel;
 use App\Models\ControlPanelModel;
+use App\Models\HomeModel;
 use App\Models\MainModel;
 
 class Home extends BaseController
@@ -15,6 +16,7 @@ class Home extends BaseController
     protected $objControlPanelModel;
     protected $objAuthenticationModel;
     protected $objMainModel;
+    protected $objHomeModel;
     protected $config;
     protected $companyProfile;
     protected $objEmail;
@@ -30,6 +32,7 @@ class Home extends BaseController
         $this->objControlPanelModel = new ControlPanelModel;
         $this->objAuthenticationModel = new AuthenticationModel;
         $this->objMainModel = new MainModel;
+        $this->objHomeModel = new HomeModel;
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
@@ -494,7 +497,7 @@ class Home extends BaseController
     public function aboutUsModal()
     {
         $data = array();
-        $data['about'] = $this->objMainModel->objData('company_profile')[0]->about;
+        $data['about'] = $this->objHomeModel->getCompanyProfileAbout()[0]->about;
 
         return view('home/aboutUsModal', $data);
     }
