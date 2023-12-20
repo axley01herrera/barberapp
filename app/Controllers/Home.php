@@ -66,6 +66,7 @@ class Home extends BaseController
         $data['services'] = $this->objHomeModel->getServices();
         $data['team'] = $this->objHomeModel->getActiveEmployees();
         $data['socialNetworks'] = $this->objHomeModel->getActiveSocialNetworks();
+        $data['images'] = $this->objMainModel->objData('company_img');
         # page
         $view = 'home/landing';
 
@@ -323,7 +324,7 @@ class Home extends BaseController
     public function privacyPoliceModal()
     {
         $data = array();
-        $data['privacyPolice'] = $this->objMainModel->objData('company_profile')[0]->privacyPolice;
+        $data['privacyPolice'] = $this->objHomeModel->getCompanyProfilePrivacyPolice()[0]->privacyPolice;
         return view('home/privacyPoliceModal', $data);
     } // ok
 

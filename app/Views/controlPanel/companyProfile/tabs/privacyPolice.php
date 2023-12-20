@@ -1,6 +1,18 @@
-<textarea id="privacyPolice" class="tox-target"><?php echo $privacyPolice ?></textarea>
+<div class="card card-flush py-4 mb-4" data-select2-id="select2-data-131-50oa">
+    <div class="card-header">
+        <div class="card-title flex-column">
+            <h2 class="mb-1">Title</h2>
+            <div class="fs-6 fw-semibold text-muted">Subtitle</div>
+        </div>
+    </div>
+    <div class="card-body pt-0">
+        <textarea id="privacyPolice" class="tox-target"><?php echo $privacyPolice ?></textarea>
+        <div class="text-end">
+            <button type="button" id="btn-save<?php echo $uniqid; ?>" class="btn btn-primary mt-6"><?php echo lang('Text.btn_save'); ?></button>
+        </div>
+    </div>
+</div>
 
-<button type="button" id="btn-save<?php echo $uniqid; ?>" class="btn btn-primary mt-5">Guardar</button>
 <script>
     var options = {
         selector: "#privacyPolice",

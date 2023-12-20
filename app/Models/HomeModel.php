@@ -36,6 +36,17 @@ class HomeModel extends Model
         return $data;
     } // ok
 
+    public function getCompanyProfilePrivacyPolice()
+    {
+        $query = $this->db->table('company_profile')
+        ->select('privacyPolice')
+        ->where('id', 1);
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    } 
+
     public function getServices()
     {
         $query = $this->db->table('service')

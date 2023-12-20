@@ -330,6 +330,7 @@ $lang['cp_profile_success_update_privacy_police'] = "Política de Privacidad Act
 $lang['cp_profile_empty_privacy_police'] = "Debe de introducir la Política de Privacidad";
 $lang['cp_profile_not_images'] = "No hay imágenes";
 $lang['cp_profile_success_upload_imgs'] = "Imágenes Subidas";
+$lang['cp_profile_success_delete_img'] = "Imágen Eliminada";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";

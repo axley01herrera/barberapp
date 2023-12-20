@@ -1176,6 +1176,14 @@ class ControlPanel extends BaseController
         return json_encode($result);
     }
 
+    public function deleteCompanyImages()
+    {
+        # params
+        $imageID = $this->objRequest->getPost('imageID');
+        $result = $this->objMainModel->objDelete('company_img', $imageID);
+        return json_encode($result);
+    }
+
     public function modalTime()
     {
         # Verify Session 

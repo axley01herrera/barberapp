@@ -101,6 +101,7 @@ $routes->post('ControlPanel/changeStatusSocialNetwork', 'ControlPanel::changeSta
 $routes->post('ControlPanel/getSocialNetworks', 'ControlPanel::getSocialNetworks');
 $routes->post('ControlPanel/savePrivacyPolice', 'ControlPanel::savePrivacyPolice');
 $routes->post('ControlPanel/uploadCompanyImages', 'ControlPanel::uploadCompanyImages');
+$routes->post('ControlPanel/deleteCompanyImages', 'ControlPanel::deleteCompanyImages');
 
 ############################## 
 ## Customer Routes
