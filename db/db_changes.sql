@@ -25,3 +25,10 @@ ALTER TABLE `customer` ADD `zip` INT NULL AFTER `state`;
 ALTER TABLE `customer` ADD `country` VARCHAR(250) NULL AFTER `zip`; 
 
 ALTER TABLE `company_profile` ADD `about` LONGTEXT NULL AFTER `country`; 
+
+DROP TABLE IF EXISTS `company_img`;
+CREATE TABLE IF NOT EXISTS `company_img` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `img` longblob NOT NULL,
+  PRIMARY KEY (`id`)
+);

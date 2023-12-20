@@ -2,6 +2,7 @@
 $lang = array();
 
 # Global Labels
+$lang['about'] = "Sobre Nosotros";
 $lang['about_bussiness'] = "Cuéntanos más sobre tu negocio";
 $lang['c_panel'] = "Panel de Control";
 $lang['system_info'] = "Información del Sistema";
@@ -370,6 +371,7 @@ $lang['lp_menu_home'] = "Inicio";
 $lang['lp_menu_services'] = "Servicios";
 $lang['lp_menu_team'] = "Equipo";
 $lang['lp_menu_galery'] = "Galería";
+$lang['lp_menu_contact'] = "Información de Contacto";
 $lang['lp_contact_email'] = "Correo Electrónico de Contacto";
 $lang['lp_contact_phone'] = "Teléfono de Contacto";
 $lang['lp_portal_online'] = "en línea";

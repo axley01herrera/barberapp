@@ -84,6 +84,13 @@
                                             </a>
                                         </div>
 
+                                        <!-- Contact -->
+                                        <div class="menu-item">
+                                            <a class="menu-link nav-link  py-3 px-4 px-xxl-6" href="#kt_contact" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">
+                                                <?php echo lang('Text.lp_menu_contact'); ?>
+                                            </a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -328,7 +335,6 @@
             </div>
         </div>
 
-
         <div class="mt-20 mb-n20 position-relative z-index-2">
             <div class="container">
                 <div class="text-center mb-17">
@@ -449,7 +455,8 @@
                 </div>
             </div>
         </div>
-        <div class="mb-0 mt-20">
+
+        <div id="kt_contact" class="mb-0 mt-20">
             <div class="landing-dark-bg pt-20">
                 <div class="container">
                     <div class="row py-10 py-lg-20">
@@ -517,11 +524,11 @@
                         </div>
                         <ul class="menu menu-gray-600 menu-hover-primary fw-semibold fs-6 fs-md-5 order-1 mb-5 mb-md-0">
                             <li class="menu-item">
-                                <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+                                <a id="about" href="#" class="menu-link px-2"><?php echo lang('Text.about'); ?></a>
                             </li>
                             <!-- Employee Sign In -->
                             <li class="menu-item mx-5">
-                                <a href="<?php echo base_url('Home/signInEmployee'); ?>" target="_blank" class="menu-link px-2"><?php echo lang('Text.top_bar_employees'); ?></a>
+                                <a href="<?php echo base_url('Home/signInEmployee'); ?>" class="menu-link px-2"><?php echo lang('Text.top_bar_employees'); ?></a>
                             </li>
                             <!-- Control Panel Sign In -->
                             <li class="menu-item">
