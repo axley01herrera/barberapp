@@ -47,8 +47,8 @@
                                 </button>
                                 <!-- Logo -->
                                 <a href="#">
-                                    <img alt="Logo" src="<?php echo base_url('public/assets/media/logos/landing.svg'); ?>" class="logo-default h-25px h-lg-30px" />
-                                    <img alt="Logo" src="<?php echo base_url('public/assets/media/logos/landing-dark.svg'); ?>" class="logo-sticky h-20px h-lg-25px" />
+                                    <img alt="Logo" src="<?php echo base_url('public/assets/media/logos/logoWhite.png'); ?>" class="logo-default h-25px h-lg-30px" />
+                                    <img alt="Logo" src="<?php echo base_url('public/assets/media/logos/logoDark.png'); ?>" class="logo-sticky h-20px h-lg-25px" />
                                 </a>
                             </div>
                             <!-- Menu -->
