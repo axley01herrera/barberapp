@@ -25,14 +25,14 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    simpleSuccessAlert('<?php echo lang('Text.cp_success_update_privacy_police'); ?>');
+                    simpleSuccessAlert('<?php echo lang('Text.cp_profile_success_update_privacy_police'); ?>');
                 },
                 error: function(error) {
                     globalError();
                 }
             });
         } else {
-            simpleAlert('<?php echo lang('Text.cp_empty_privacy_police'); ?>', 'warning');
+            simpleAlert('<?php echo lang('Text.cp_profile_empty_privacy_police'); ?>', 'warning');
         }
     });
 </script>

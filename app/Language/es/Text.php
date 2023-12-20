@@ -125,7 +125,8 @@ $lang['not_services'] = "No hay Servicios";
 $lang['yes_are_sure'] = "Sí, estoy seguro";
 $lang['success_cancel_turn'] = "Su cita ha sido cancelada";
 $lang['employee'] = "Empleado";
-$lang['employee'] = "Empleado";
+$lang['photo'] = "Fotos";
+$lang['click_to_select'] = "Click para seleccionar";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -312,6 +313,7 @@ $lang['cp_profile_change_key_title'] = "Acceso al Panel de Control";
 $lang['cp_profile_change_key_subtitle'] = "Clave de Acceso.";
 $lang['cp_profile_menu_config'] = "Configuración";
 $lang['cp_profile_menu_privacy_police'] = "Política de Privacidad";
+$lang['cp_profile_menu_images'] = "Imágenes";
 $lang['cp_profile_config_title'] = "Ajustes del Sistema";
 $lang['cp_profile_config_subtitle'] = "Preferencias y Personalización.";
 $lang['cp_profile_data_updated'] = "Descripción del Negocio Actualizada";
@@ -322,8 +324,11 @@ $lang['cp_profile_social_network_success_created'] = "Red Social Creada";
 $lang['cp_profile_social_network_success_updated'] = "Red Social Actualizada";
 $lang['cp_profile_select_social_network'] = "Seleccione una red social";
 $lang['cp_profile_sn_change_v'] = "Cambiar Visibilad";
-$lang['cp_success_update_privacy_police'] = "Política de Privacidad Actualizada";
-$lang['cp_empty_privacy_police'] = "Debe de introducir la Política de Privacidad";
+$lang['cp_profile_images_upload_header'] = "Sube imágenes del negocio";
+$lang['cp_profile_businness_images'] = "Imágenes del negocio";
+$lang['cp_profile_success_update_privacy_police'] = "Política de Privacidad Actualizada";
+$lang['cp_profile_empty_privacy_police'] = "Debe de introducir la Política de Privacidad";
+$lang['cp_profile_not_images'] = "No hay imagenes";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";

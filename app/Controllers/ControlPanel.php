@@ -1156,6 +1156,21 @@ class ControlPanel extends BaseController
         return view($view, $data);
     }
 
+    public function uploadCompanyImages()
+    {
+        # params
+        $files = $_FILES['files'];
+
+        var_dump($files);exit();
+
+        $data = array();
+        $data['img'] = $files;
+
+        $result = $this->objMainModel->uploadBusinessImages($data);
+
+        return json_encode($result);
+    }
+
     public function modalTime()
     {
         # Verify Session 
@@ -1517,6 +1532,12 @@ class ControlPanel extends BaseController
                 $data = array();
                 $data['config'] = $this->config;
                 $data['privacyPolice'] = $this->objMainModel->objData('company_profile')[0]->privacyPolice;
+                break;
+            case 'images':
+                $view = "controlPanel/companyProfile/tabs/images";
+                $data = array();
+                $data['config'] = $this->config;
+                $data['images'] = $this->objMainModel->objData('company_img');
                 break;
         }
 

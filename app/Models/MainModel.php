@@ -94,6 +94,23 @@ class MainModel extends Model
         return $query->get()->getResult();
     } // ok
 
+    public function uploadBusinessImages($data)
+    {
+        $query = $this->db->table('company_img')
+            ->insert($data);
+
+        $result = array();
+
+        if ($query == true) {
+            $result['error'] = 0;
+        } else {
+            $result['error'] = 1;
+            $result['msg'] = 'FAIL_UPLOAD_FILE';
+        }
+
+        return $result;
+    }
+
     public function uploadFile($table, $id, $field, $file)
     {
         $fileContent = file_get_contents($file['tmp_name']);
