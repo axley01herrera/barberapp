@@ -45,7 +45,7 @@
                                                 <span class="text-gray-400 fs-7 fw-bold me-2 d-block lh-1 pb-1"><?php echo date($dateLabel, strtotime($a->date)); ?></span>
                                                 <span class="text-gray-800 fs-1 fw-bold"><?php echo date('g:i a', strtotime($a->start)); ?> - <?php echo date('g:i a', strtotime($a->end)); ?></span>
                                             </div>
-                                            
+
 
                                             <div class="mb-7">
                                                 <div class="d-flex align-items-center flex-wrap d-grid gap-2">
@@ -78,11 +78,16 @@
                                             </div>
 
                                             <div class="d-flex flex-stack mt-auto bd-highlight">
-                                                <a href="#" class="btn btn-sm btn-danger cancel-appointment"><?php echo lang('Text.btn_cancel')?></a>
+                                                <a href="#" class="btn btn-sm btn-danger cancel-appointment"><?php echo lang('Text.btn_cancel') ?></a>
                                             </div>
 
                                         </div>
                                     </div>
+                                    <?php foreach (json_decode($a->services) as $s) { ?>
+                                        <div class="col-12">
+                                            <p></p>
+                                        </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

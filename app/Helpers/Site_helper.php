@@ -61,3 +61,16 @@ function imgEmployee($employeeID)
     else
         return "data:image/png;base64," . base64_encode($data[0]->avatar);
 }
+
+function labelService($serviceID)
+{
+    $db = \Config\Database::connect();
+
+    $query = $db->table('service')
+        ->select('title')
+        ->where('id', $serviceID);
+
+    $data = $query->get()->getResult();
+
+    return $data[0]->title;
+}
