@@ -85,7 +85,7 @@
                                     </div>
                                     <?php foreach (json_decode($a->services) as $s) { ?>
                                         <div class="col-12">
-                                            <p></p>
+                                            <p><?php echo labelService($s); ?></p>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -97,5 +97,3 @@
         </div>
     </div>
 </div>
-
-<?php var_dump($upcomingAppointments); ?>

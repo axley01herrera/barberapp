@@ -1161,12 +1161,17 @@ class ControlPanel extends BaseController
         # params
         $files = $_FILES['files'];
 
-        var_dump($files);exit();
+        foreach ($files['name'] as $index => $fileName) {
+            $file = array(
+                'name' => $fileName,
+                'type' => $files['type'][$index],
+                'tmp_name' => $files['tmp_name'][$index],
+                'error' => $files['error'][$index],
+                'size' => $files['size'][$index]
+            );
 
-        $data = array();
-        $data['img'] = $files;
-
-        $result = $this->objMainModel->uploadBusinessImages($data);
+            $result = $this->objMainModel->uploadBusinessImages($file);
+        }
 
         return json_encode($result);
     }

@@ -24,9 +24,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 text-start">
-                                    <span class="fs-7 fw-semibold text-gray-500">Se recomienda que tengan alta calidad.</span>
-                                </div>
                                 <div class="col-12 text-end">
                                     <button id="upload-<?php echo $uniqid; ?>" type="button" class="btn btn-primary"><?php echo lang('Text.btn_save'); ?></button>
                                 </div>
@@ -88,9 +85,7 @@
         uploadMultiple: true,
         init: function() {
             dropzone = this;
-            this.on("sending", function(file, xhr, formData) {
-
-            });
+            this.on("sending", function(file, xhr, formData) {});
         }
     });
 
@@ -98,11 +93,11 @@
         if (myDropzone.files.length > 0) {
             myDropzone.processQueue();
             myDropzone.on("complete", function(response) {
-                simpleSuccessAlert('Archivos subidos');
+                simpleSuccessAlert('<?php echo lang('Text.cp_profile_success_upload_imgs'); ?>');
 
             });
         } else
-            simpleAlert('No hay archivos que subir', 'warning');
+            simpleAlert('<?php echo lang('Text.cp_profile_not_images'); ?>', 'warning');
     });
 </script>
 

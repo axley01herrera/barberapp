@@ -126,7 +126,7 @@ $lang['yes_are_sure'] = "Sí, estoy seguro";
 $lang['success_cancel_turn'] = "Su cita ha sido cancelada";
 $lang['employee'] = "Empleado";
 $lang['photo'] = "Fotos";
-$lang['click_to_select'] = "Click para seleccionar";
+$lang['click_to_select'] = "Examine o arrastre";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -328,7 +328,8 @@ $lang['cp_profile_images_upload_header'] = "Sube imágenes del negocio";
 $lang['cp_profile_businness_images'] = "Imágenes del negocio";
 $lang['cp_profile_success_update_privacy_police'] = "Política de Privacidad Actualizada";
 $lang['cp_profile_empty_privacy_police'] = "Debe de introducir la Política de Privacidad";
-$lang['cp_profile_not_images'] = "No hay imagenes";
+$lang['cp_profile_not_images'] = "No hay imágenes";
+$lang['cp_profile_success_upload_imgs'] = "Imágenes Subidas";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";
