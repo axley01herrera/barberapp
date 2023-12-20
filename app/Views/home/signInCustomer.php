@@ -22,23 +22,27 @@
                             <h1 class="text-dark fw-bolder mb-3"><?php echo lang('Text.sign_title'); ?></h1>
                             <div class="text-gray-500 fw-semibold fs-6"><?php echo lang('Text.sign_subtitle'); ?></div>
                         </div>
+                        <form class="form" id="kt_login">
+                            <div class="fv-row mb-4">
+                                <input type="text" id="txt-email<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.email'); ?>" autocomplete="off" class="form-control email bg-transparent mb-5 required<?php echo $uniqid; ?>" autofocus />
+                                <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                            </div>
 
-                        <div class="fv-row mb-4">
-                            <input type="text" id="txt-email<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.email'); ?>" autocomplete="off" class="form-control email bg-transparent mb-5 required<?php echo $uniqid; ?>" />
-                            <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
-                        </div>
+                            <div class="d-grid mb-5 text-end">
+                                <a href="<?php echo base_url('Home/forgotPassword'); ?>"><?php echo lang('Text.sign_forgot_pass'); ?></a>
+                            </div>
 
-                        <div class="d-grid mb-5 text-end">
-                            <a href="<?php echo base_url('Home/forgotPassword'); ?>"><?php echo lang('Text.sign_forgot_pass'); ?></a>
-                        </div>
+                            <div class="d-grid mb-10">
+                                <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_signing'); ?></button>
+                            </div>
 
-                        <div class="d-grid mb-10">
-                            <button type="button" id="btn-login<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_signing'); ?></button>
-                        </div>
-
-                        <div class="d-grid mb-10 text-center">
-                            <a href="<?php echo base_url('/'); ?>" class="link-primary"><?php echo lang("Text.btn_home") ?></a>
-                        </div>
+                            <!-- Home -->
+                            <div class="row">
+                                <div class="col-12 text-center mb-10">
+                                    <a href="<?php echo base_url('/'); ?>" class="link-primary"><i class="bi bi-house-up link-primary"></i> <?php echo lang("Text.btn_home") ?></a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -129,4 +133,16 @@
     if (session == "expired") {
         simpleAlert("<?php echo lang('Text.session_expired'); ?>", "error");
     }
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let form = document.getElementById("kt_login");
+        form.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                $('#btn-login<?php echo $uniqid; ?>').trigger('click');
+            }
+        });
+    });
 </script>
