@@ -364,9 +364,13 @@ $lang['e_rv_complete_account_info'] = "La verificación de su correo electrónic
 # Landing Page
 $lang['lp_welcome'] = "Bienvenido, Portal Web";
 $lang['lp_welcome_to'] = "para";
-$lang['lp_welcome_a_online'] = "Reserva de Citas en Línea";
+$lang['lp_welcome_a_online'] = "Reserva de Citas";
 $lang['lp_menu_home'] = "Inicio";
 $lang['lp_menu_services'] = "Servicios";
 $lang['lp_menu_team'] = "Equipo";
 $lang['lp_menu_galery'] = "Galería";
+$lang['lp_contact_email'] = "Correo Electrónico de Contacto";
+$lang['lp_contact_phone'] = "Teléfono de Contacto";
+$lang['lp_portal_online'] = "en línea";
+$lang['lp_invite'] = "Si eres cliente y no tienes cuenta te invitamos a registrarte.";
 return $lang;
