@@ -5,14 +5,14 @@ namespace App\Controllers;
 use App\Models\ConfigModel;
 use App\Models\MainModel;
 use App\Models\ControlPanelModel;
-
+use App\Models\CustomerModel;
 
 class Customer extends BaseController
 {
     protected $objSession;
     protected $objRequest;
     protected $objConfigModel;
-    protected $objControlPanelModel;
+    protected $objCustomerModel;
     protected $objMainModel;
     protected $config;
     protected $profile;
@@ -25,12 +25,12 @@ class Customer extends BaseController
 
         # Models
         $this->objConfigModel = new ConfigModel;
-        $this->objControlPanelModel = new ControlPanelModel;
+        $this->objCustomerModel = new CustomerModel;
         $this->objMainModel = new MainModel;
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
-        $this->profile = $this->objControlPanelModel->getCompanyProfile(1);
+        $this->profile = $this->objCustomerModel->getCompanyProfileSettings();
 
         # Email Settings
         $emailConfig = array();
@@ -123,16 +123,6 @@ class Customer extends BaseController
         $data['page'] = 'customer/profile/mainProfile';
 
         return view('customer/mainCustomer', $data);
-    }
-
-    public function reloadCustomerInfo()
-    {
-        # data
-        $data = array();
-        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-
-
-        return view('customer/customerInfo', $data);
     } // ok
 
     public function customerTabContent() // To Remove
@@ -217,7 +207,7 @@ class Customer extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
-
+            
             return json_encode($result);
         }
 
@@ -231,6 +221,7 @@ class Customer extends BaseController
                 $result = array();
                 $result['error'] = 1;
                 $result['msg'] = "INVALID_CURRENT_KEY";
+
                 return json_encode($result);
             }
         }
@@ -248,6 +239,7 @@ class Customer extends BaseController
         if (empty($dataAccount)) {
             $response = array();
             $response['error'] = 0;
+
             return json_encode($response);
         }
 
@@ -269,6 +261,7 @@ class Customer extends BaseController
 
             $this->objEmail->send(false);
         }
+
         $response = array();
         $response['error'] = 0;
 
@@ -314,10 +307,13 @@ class Customer extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
-        return json_encode($this->objMainModel->uploadFile('customer', $this->objSession->get('user')['customerID'], 'avatar', $_FILES['file']));
+        $result = $this->objMainModel->uploadFile('customer', $this->objSession->get('user')['customerID'], 'avatar', $_FILES['file']);
+
+        return json_encode($result);
     } // ok
 
     public function removeAvatarProfile()
@@ -330,10 +326,15 @@ class Customer extends BaseController
             return json_encode($result);
         }
 
+        # params
+        $customerID = $this->objSession->get('user')['customerID'];
+
         $data = array();
         $data['avatar'] = '';
 
-        return json_encode($this->objMainModel->objUpdate('customer', $data, $this->objSession->get('user')['customerID']));
+        $result = $this->objMainModel->objUpdate('customer', $data, $customerID);
+
+        return json_encode($result);
     } // ok
 
     public function createAppointment()
@@ -359,8 +360,8 @@ class Customer extends BaseController
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->profile;
         # data
-        $data['services'] = $this->objControlPanelModel->getActiveAndPublicServices();
-        $data['employees'] = $this->objControlPanelModel->getActiveEmployees();
+        $data['services'] = $this->objCustomerModel->getActiveAndPublicServices();
+        $data['employees'] = $this->objCustomerModel->getActiveEmployees();
         $data['dateLabel'] = $dateLabel;
         $data['currentDate'] = $currentDate;
         $data['minDate'] = $currentDate;
@@ -380,11 +381,11 @@ class Customer extends BaseController
 
         # params
         $services = $this->objRequest->getPost('services');
-        $serviceCalc = $this->objControlPanelModel->getServiceTimeAndPrice($services);
+        $serviceCalc = $this->objCustomerModel->getServiceTimeAndPrice($services);
 
         $data = array();
         # data
-        $data['employees'] = $this->objControlPanelModel->getEmployeesByServices($services);
+        $data['employees'] = $this->objCustomerModel->getEmployeesByServices($services);
         $data['serviceTime'] = $serviceCalc['time'];
         $data['servicePrice'] = $serviceCalc['price'];
         # page
@@ -416,7 +417,7 @@ class Customer extends BaseController
         $day = strtolower($objDate->format('l'));
 
         $empBussinesDay = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID); // Employee Bussiness Day
-        $empAppointment = $this->objControlPanelModel->getEmployeeAppointmentDay($employeeID, $date); // Employee Appointment Date Selected
+        $empAppointment = $this->objCustomerModel->getEmployeeAppointmentDay($employeeID, $date); // Employee Appointment Date Selected
 
         $dayTimes = array();
         $rangeTimes = array();
@@ -500,7 +501,7 @@ class Customer extends BaseController
         $time = $this->objRequest->getPost('time');
         $employeeID = $this->objRequest->getPost('employeeID');
         $services = $this->objRequest->getPost('services');
-        $empAppointment = $this->objControlPanelModel->getEmployeeAppointmentDay($employeeID, $date);
+        $empAppointment = $this->objCustomerModel->getEmployeeAppointmentDay($employeeID, $date);
 
         $aux = explode(" - ", $time);
         $s = $aux[0];

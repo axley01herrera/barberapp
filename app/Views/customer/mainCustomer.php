@@ -75,7 +75,7 @@
                 <div class="app-container container-xxl d-flex align-items-stretch justify-content-between" id="kt_app_header_container">
                     <!--Logo-->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
-                        <img alt="Logo" src="<?php echo base_url('public/assets/media/logos/default-dark.svg'); ?>" class="h-20px h-lg-30px app-sidebar-logo-default" />
+                        <img alt="Logo" src="<?php echo base_url('public/assets/media/logos/logoWhite.png'); ?>" class="h-20px h-lg-30px app-sidebar-logo-default" />
                     </div>
                     <!-- Menu -->
                     <?php echo view('customer/customerMenu'); ?>
