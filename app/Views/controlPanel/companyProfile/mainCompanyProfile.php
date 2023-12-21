@@ -113,6 +113,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "profile") echo "active"; ?> " data-tab-profile="profile" href="#"><?php echo lang('Text.cp_profile_menu_bussiness_data'); ?></a>
                         </li>
+                        <!-- Privacy Police -->
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "privacyPolice") echo "active"; ?>" data-tab-profile="privacyPolice" href="#"><?php echo lang('Text.cp_profile_menu_privacy_police'); ?></a>
+                        </li>
+                        <!-- Images -->
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "images") echo "active"; ?>" data-tab-profile="images" href="#"><?php echo lang('Text.cp_profile_menu_images'); ?></a>
+                        </li>
                         <!-- Acess Key -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "key") echo "active"; ?>" data-tab-profile="key" href="#"><?php echo lang('Text.cp_profile_menu_change_key'); ?></a>
@@ -120,14 +128,6 @@
                         <!-- Config -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "config") echo "active"; ?>" data-tab-profile="config" href="#"><?php echo lang('Text.cp_profile_menu_config'); ?></a>
-                        </li>
-                        <!-- Images -->
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "images") echo "active"; ?>" data-tab-profile="images" href="#"><?php echo lang('Text.cp_profile_menu_images'); ?></a>
-                        </li>
-                        <!-- Privacy Police -->
-                        <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "privacyPolice") echo "active"; ?>" data-tab-profile="privacyPolice" href="#"><?php echo lang('Text.cp_profile_menu_privacy_police'); ?></a>
                         </li>
                     </ul>
                     <div id="profile-tab-content" class="container mt-10 mb-10"></div>

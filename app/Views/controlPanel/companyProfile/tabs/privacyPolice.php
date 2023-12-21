@@ -1,30 +1,46 @@
-<div class="card card-flush py-4 mb-4" data-select2-id="select2-data-131-50oa">
-    <div class="card-header">
+<div class="card card-flush mb-6 mb-xl-9">
+    <!-- Card header -->
+    <div class="card-header mt-6">
+        <!-- Card title -->
         <div class="card-title flex-column">
-            <h2 class="mb-1">Title</h2>
-            <div class="fs-6 fw-semibold text-muted">Subtitle</div>
+            <h2 class="mb-1"><?php echo lang('Text.cp_profile_menu_privacy_police'); ?></h2>
+            <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.cp_profile_privacy_police_subtitle'); ?></div>
+        </div>
+        <!-- Card toolbar -->
+        <div class="card-toolbar">
         </div>
     </div>
-    <div class="card-body pt-0">
-        <textarea id="privacyPolice" class="tox-target"><?php echo $privacyPolice ?></textarea>
-        <div class="text-end">
-            <button type="button" id="btn-save<?php echo $uniqid; ?>" class="btn btn-primary mt-6"><?php echo lang('Text.btn_save'); ?></button>
+    <!-- Card body -->
+    <div class="card-body p-9 pt-4">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <textarea id="privacyPolice" class="tox-target"><?php echo $privacyPolice ?></textarea>
+            </div>
+            <div class="col-12 text-end mt-5">
+                <button type="button" id="btn-save<?php echo $uniqid; ?>" class="btn btn-primary mt-5"><?php echo lang('Text.btn_save'); ?></button>
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    var options = {
+    var lang = "<?php echo $config[0]->lang; ?>";
+    tinymce.init({
         selector: "#privacyPolice",
-        height: "480"
-    };
-
-    if (KTThemeMode.getMode() === "dark") {
-        options["skin"] = "oxide-dark";
-        options["content_css"] = "dark";
-    }
-
-    tinymce.init(options);
+        height: 500,
+        menubar: false,
+        language: lang,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | ' +
+            'bold italic backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+    });
 
     $('#btn-save<?php echo $uniqid; ?>').on('click', function() {
         let privacyPolice = tinymce.get('privacyPolice').getContent();
