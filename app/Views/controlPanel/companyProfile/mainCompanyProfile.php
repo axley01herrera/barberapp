@@ -119,7 +119,7 @@
                         </li>
                         <!-- Images -->
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "images") echo "active"; ?>" data-tab-profile="images" href="#"><?php echo lang('Text.cp_profile_menu_images'); ?></a>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "images") echo "active"; ?>" data-tab-profile="images" href="#"><?php echo lang('Text.cp_profile_menu_photo'); ?></a>
                         </li>
                         <!-- Acess Key -->
                         <li class="nav-item">
