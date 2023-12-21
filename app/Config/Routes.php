@@ -119,7 +119,7 @@ $routes->post('Customer/updateAccount', 'Customer::updateAccount');
 $routes->post('Customer/updateProfile', 'Customer::updateProfile');
 $routes->post('Customer/uploadAvatarProfile', 'Customer::uploadAvatarProfile');
 $routes->post('Customer/removeAvatarProfile', 'Customer::removeAvatarProfile');
-$routes->post('Customer/cancelTurn', 'Customer::cancelTurn');
+$routes->post('Customer/cancelAppointment', 'Customer::cancelAppointment');
 
 ############################## 
 ## Employee Routes

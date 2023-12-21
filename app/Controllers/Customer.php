@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\ConfigModel;
 use App\Models\MainModel;
-use App\Models\ControlPanelModel;
 use App\Models\CustomerModel;
 
 class Customer extends BaseController
@@ -257,6 +256,7 @@ class Customer extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+            
             return json_encode($result);
         }
 
@@ -470,6 +470,25 @@ class Customer extends BaseController
             $result['error'] = 1;
             $result['msg'] = lang('Text.cust_error_create_appointment');
         }
+
+        return json_encode($result);
+    } // ok
+
+    public function cancelAppointment()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $appointmentID = $this->objRequest->getPost('appointmentID');
+
+        $result = $this->objMainModel->objDelete('appointment', $appointmentID);
 
         return json_encode($result);
     } // ok
