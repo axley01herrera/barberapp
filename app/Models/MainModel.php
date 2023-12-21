@@ -75,6 +75,14 @@ class MainModel extends Model
         return $query->get()->getResult();
     } // ok
 
+    public function getCompanyImages()
+    {
+        $query = $this->db->table('company_img')
+            ->orderBy('position');
+
+        return $query->get()->getResult();
+    }
+
     public function getServicesByIdArray($arrayID)
     {
         $query = $this->db->table('service')
