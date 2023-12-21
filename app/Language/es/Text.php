@@ -223,7 +223,8 @@ $lang['cust_no_appointment_available'] = 'No hay turnos disponibles para el empl
 $lang['cust_time'] = 'Turno';
 $lang['cust_success_create_appointment'] = 'Cita Creada';
 $lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.';
-$lang['cust_no_future_appointments'] = "Sin próximas citas.";
+$lang['cust_no_future_appointments'] = "Sin próximas citas."; 
+$lang['cust_future_appointments'] = "Próximas citas.";
 
 # Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";

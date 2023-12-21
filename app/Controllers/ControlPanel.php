@@ -5,13 +5,14 @@ namespace App\Controllers;
 use App\Models\ConfigModel;
 use App\Models\MainModel;
 use App\Models\ControlPanelModel;
-
+use App\Models\CustomerModel;
 class ControlPanel extends BaseController
 {
     protected $objSession;
     protected $objRequest;
     protected $objConfigModel;
     protected $objControlPanelModel;
+    protected $objCustomerModel;
     protected $objMainModel;
     protected $config;
     protected $companyProfile;
@@ -25,6 +26,7 @@ class ControlPanel extends BaseController
         # Models
         $this->objConfigModel = new ConfigModel;
         $this->objControlPanelModel = new ControlPanelModel;
+        $this->objCustomerModel = new CustomerModel;
         $this->objMainModel = new MainModel;
 
         # Config
@@ -363,7 +365,6 @@ class ControlPanel extends BaseController
         $data['activeCustomers'] = "active";
         # data
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getGet('customerID'));
-        $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objRequest->getGet('customerID'));
         # page
         $data['page'] = 'controlPanel/customers/index';
 
@@ -375,7 +376,6 @@ class ControlPanel extends BaseController
         # data
         $data = array();
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPost('customerID'));
-        $data['address'] = $this->objMainModel->objData('address', 'customerID', $this->objRequest->getPost('customerID'));
 
         return view('controlPanel/customers/customerInfo', $data);
     }
@@ -404,15 +404,19 @@ class ControlPanel extends BaseController
         $view = "";
 
         switch ($tab) {
+            case 'tab-overview':
+                $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
+                $data['appointments'] = $this->objCustomerModel->upcomingAppointments($customerID);
+                # page
+                $view = "controlPanel/customers/tabContent/tabOverview";
+                break;
             case 'tab-account':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
-                $data['address'] = $this->objMainModel->objData('address', 'customerID', $customerID);
                 # page
                 $view = "controlPanel/customers/tabContent/tabAccount";
                 break;
             case 'tab-profile':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
-                $data['address'] = $this->objMainModel->objData('address', 'customerID', $customerID);
                 # page
                 $view = "controlPanel/customers/tabContent/tabProfile";
                 break;
@@ -501,36 +505,22 @@ class ControlPanel extends BaseController
         # params
         $customerID = $this->objRequest->getPost('customerID');
 
-        $dataProfile = array();
-        $dataProfile['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
-        $dataProfile['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
-        $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
-        $dataProfile['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
-        $dataProfile['emailNotification'] = htmlspecialchars(trim($this->objRequest->getPost('status')));
+        $data = array();
+        $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $data['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
+        $data['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
+        $data['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
+        $data['emailNotification'] = htmlspecialchars(trim($this->objRequest->getPost('status')));
+        $data['address1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
+        $data['address2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
+        $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
+        $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
+        $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
+        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
 
-        $resultUpdateCustomer = $this->objMainModel->objUpdate('customer', $dataProfile, $customerID);
-        if ($resultUpdateCustomer['error'] == 0) {
-            $dataAddress = array();
-            $dataAddress['line1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
-            $dataAddress['line2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
-            $dataAddress['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
-            $dataAddress['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
-            $dataAddress['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
-            $dataAddress['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
+        $result = $this->objMainModel->objUpdate('customer', $data, $customerID);
 
-            $updateAddress = $this->objMainModel->objData('address', 'customerID', $customerID);
-            if (!empty($updateAddress))
-                $this->objMainModel->objUpdate('address', $dataAddress, $updateAddress[0]->id);
-            else {
-                $dataAddress['customerID'] = $customerID;
-                $this->objMainModel->objCreate('address', $dataAddress);
-            }
-            $result['error'] = 0;
-        } else {
-            $result['error'] = 1;
-            $result['msg'] = 'ERROR_ON_UPDATE_CUSTOMER';
-        }
         return json_encode($result);
     }
 

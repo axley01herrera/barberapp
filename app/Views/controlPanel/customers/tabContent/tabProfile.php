@@ -91,32 +91,32 @@
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Line 1 -->
                 <label class="fs-6 fw-semibold" for="txt-address1<?php echo $uniqid; ?>"><?php echo lang('Text.address1'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-address1<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="150" value="<?php echo @$address[0]->line1; ?>" disabled="">
+                <input type="text" id="txt-address1<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="150" value="<?php echo @$customer[0]->address1; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Line 2 -->
                 <label class="fs-6 fw-semibold" for="txt-address2<?php echo $uniqid; ?>"><?php echo lang('Text.address2'); ?></label>
-                <input type="text" id="txt-address2<?php echo $uniqid; ?>" class="form-control" maxlength="150" value="<?php echo @$address[0]->line2; ?>" disabled="">
+                <input type="text" id="txt-address2<?php echo $uniqid; ?>" class="form-control" maxlength="150" value="<?php echo @$customer[0]->address2; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- City -->
                 <label class="fs-6 fw-semibold" for="txt-city<?php echo $uniqid; ?>"><?php echo lang('Text.city'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-city<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->city; ?>" disabled="">
+                <input type="text" id="txt-city<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$customer[0]->city; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- State -->
                 <label class="fs-6 fw-semibold" for="txt-state<?php echo $uniqid; ?>"><?php echo lang('Text.state'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-state<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->state; ?>" disabled="">
+                <input type="text" id="txt-state<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$customer[0]->state; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- Zip -->
                 <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>"><?php echo lang('Text.zip'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> number<?php echo $uniqid; ?>" maxlength="5" value="<?php echo @$address[0]->zip; ?>" disabled="">
+                <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> number<?php echo $uniqid; ?>" maxlength="5" value="<?php echo @$customer[0]->zip; ?>" disabled="">
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- Country -->
                 <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$address[0]->country; ?>" disabled="">
+                <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo @$customer[0]->country; ?>" disabled="">
             </div>
             <div class="col-12 mt-5">
                 <!-- Email Notification -->
