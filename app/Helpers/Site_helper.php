@@ -67,10 +67,10 @@ function labelService($serviceID)
     $db = \Config\Database::connect();
 
     $query = $db->table('service')
-        ->select('title')
+        ->select('title, price')
         ->where('id', $serviceID);
 
     $data = $query->get()->getResult();
 
-    return $data[0]->title;
+    return $data;
 }

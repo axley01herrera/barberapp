@@ -17,6 +17,7 @@ class CustomerModel extends Model
     public function upcomingAppointments($customerID)
     {
         $query = $this->db->table('appointment')
+        ->where('customerID', $customerID)
         ->where('date >=', date('Y-m-d'));
 
         $data = $query->get()->getResult();
