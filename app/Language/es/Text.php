@@ -127,6 +127,7 @@ $lang['success_cancel_turn'] = "Su cita ha sido cancelada";
 $lang['employee'] = "Empleado";
 $lang['photo'] = "Fotos";
 $lang['click_to_select'] = "Examine o arrastre";
+$lang['upload_photo'] = "Subir Foto";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -223,7 +224,7 @@ $lang['cust_no_appointment_available'] = 'No hay turnos disponibles para el empl
 $lang['cust_time'] = 'Turno';
 $lang['cust_success_create_appointment'] = 'Cita Creada';
 $lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.';
-$lang['cust_no_future_appointments'] = "Sin próximas citas."; 
+$lang['cust_no_future_appointments'] = "Sin próximas citas.";
 $lang['cust_future_appointments'] = "Próximas citas.";
 
 # Employees
@@ -334,6 +335,7 @@ $lang['cp_profile_empty_privacy_police'] = "Debe de introducir la Política de P
 $lang['cp_profile_not_images'] = "No hay imágenes";
 $lang['cp_profile_success_upload_imgs'] = "Imágenes Subidas";
 $lang['cp_profile_success_delete_img'] = "Imágen Eliminada";
+$lang['cp_profile_select_image'] = "Seleccione una Imagen";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";

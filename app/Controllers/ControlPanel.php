@@ -6,6 +6,7 @@ use App\Models\ConfigModel;
 use App\Models\MainModel;
 use App\Models\ControlPanelModel;
 use App\Models\CustomerModel;
+
 class ControlPanel extends BaseController
 {
     protected $objSession;
@@ -1146,24 +1147,39 @@ class ControlPanel extends BaseController
         return view($view, $data);
     }
 
+    // public function uploadCompanyImages()
+    // {
+    //     # params
+    //     $files = $_FILES['files'];
+    //     $position = $this->objRequest->getPost('');
+
+    //     foreach ($files['name'] as $index => $fileName) {
+    //         $file = array(
+    //             'name' => $fileName,
+    //             'type' => $files['type'][$index],
+    //             'tmp_name' => $files['tmp_name'][$index],
+    //             'error' => $files['error'][$index],
+    //             'size' => $files['size'][$index]
+    //         );
+
+    //         $result = $this->objMainModel->uploadBusinessImages($file, $position);
+    //     }
+
+    //     return json_encode($result);
+    // }
+
+
     public function uploadCompanyImages()
     {
-        # params
-        $files = $_FILES['files'];
-
-        foreach ($files['name'] as $index => $fileName) {
-            $file = array(
-                'name' => $fileName,
-                'type' => $files['type'][$index],
-                'tmp_name' => $files['tmp_name'][$index],
-                'error' => $files['error'][$index],
-                'size' => $files['size'][$index]
-            );
-
-            $result = $this->objMainModel->uploadBusinessImages($file);
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+            return json_encode($result);
         }
 
-        return json_encode($result);
+        return json_encode($this->objMainModel->uploadBusinessImages($_FILES['file'], $this->objRequest->getPost('position')));
     }
 
     public function deleteCompanyImages()
@@ -1521,6 +1537,7 @@ class ControlPanel extends BaseController
                 $view = "controlPanel/companyProfile/tabs/profileInfo";
                 $data = array();
                 $data['profile'] = $this->companyProfile;
+                $data['config'] = $this->config;
                 break;
             case 'key':
                 $view = "controlPanel/companyProfile/tabs/key";
@@ -1540,7 +1557,11 @@ class ControlPanel extends BaseController
                 $view = "controlPanel/companyProfile/tabs/images";
                 $data = array();
                 $data['config'] = $this->config;
-                $data['images'] = $this->objMainModel->objData('company_img');
+                $data['images'] = $this->objMainModel->getCompanyImages();
+                $data['image1'] = $this->objMainModel->getCompanyImagesByPosition('1');
+                $data['image2'] = $this->objMainModel->getCompanyImagesByPosition('2');
+                $data['image3'] = $this->objMainModel->getCompanyImagesByPosition('3');
+                $data['image4'] = $this->objMainModel->getCompanyImagesByPosition('4');
                 break;
         }
 
@@ -1621,7 +1642,7 @@ class ControlPanel extends BaseController
         $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
         $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
         $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
-        $data['about'] = htmlspecialchars(trim($this->objRequest->getPost('about')));
+        $data['about'] = $this->objRequest->getPost('about');
 
         $result = $this->objMainModel->objUpdate('company_profile', $data, 1);
 

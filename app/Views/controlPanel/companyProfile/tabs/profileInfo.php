@@ -119,7 +119,8 @@
             <div class="col-12 mt-5">
                 <!-- About -->
                 <label class="fs-6 fw-semibold" for="txt-about<?php echo $uniqid; ?>"><?php echo lang('Text.about_bussiness'); ?></label>
-                <textarea id="txt-about<?php echo $uniqid; ?>" class="form-control" rows="10" disabled><?php echo $profile[0]->about; ?></textarea>
+                <textarea id="txt-about<?php echo $uniqid; ?>" class="tox-target" disabled><?php echo $profile[0]->about ?></textarea>
+
             </div>
         </div>
         <!-- Alert Public Info -->
@@ -141,6 +142,24 @@
 
 <!-- Avatar Procedure -->
 <script>
+    var lang = "<?php echo $config[0]->lang; ?>";
+    tinymce.init({
+        selector: "#txt-about<?php echo $uniqid; ?>",
+        height: 500,
+        menubar: false,
+        language: lang,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | ' +
+            'bold italic backcolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+    });
+
     var avatarProfile = new KTImageInput.createInstances();
     var imageInputElement = document.querySelector("#kt_image_input_profile<?php echo $uniqid; ?>");
     var imageInput = KTImageInput.getInstance(imageInputElement);
@@ -248,7 +267,7 @@
                         'state': $('#txt-state<?php echo $uniqid; ?>').val(),
                         'zip': $('#txt-zip<?php echo $uniqid; ?>').val(),
                         'country': $('#txt-country<?php echo $uniqid; ?>').val(),
-                        'about': $('#txt-about<?php echo $uniqid; ?>').val()
+                        'about': tinymce.get('txt-about<?php echo $uniqid; ?>').getContent()
                     },
                     dataType: "json",
                     success: function(response) {
