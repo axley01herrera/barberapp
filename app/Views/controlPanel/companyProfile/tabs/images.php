@@ -38,13 +38,13 @@
                                                         <input id="image1" type="file" class="col-12" name="image" accept=".png, .jpg, .jpeg" />
                                                     </div>
                                                     <div class="col-12 mt-5 text-center">
-                                                        <i class="bi bi-cloud-upload-fill fs-3x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="1" data-file="#image1"></i>
+                                                        <i class="bi bi-cloud-upload-fill fs-4x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="1" data-file="#image1"></i>
                                                     </div>
                                                 </div>
                                             </div>
                                         <?php } else { ?>
                                             <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                <i class="ki-duotone bi bi-trash-fill fs-3x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
+                                                <i class="ki-duotone bi bi-trash-fill fs-4x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
                                                     <span class="path3"></span>
@@ -80,13 +80,13 @@
                                                                 <input id="image2" type="file" class="col-12" name="image" accept=".png, .jpg, .jpeg" />
                                                             </div>
                                                             <div class="col-12 mt-5 text-center">
-                                                                <i class="bi bi-cloud-upload-fill fs-3x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="2" data-file="#image2"></i>
+                                                                <i class="bi bi-cloud-upload-fill fs-4x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="2" data-file="#image2"></i>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                        <i class="ki-duotone bi bi-trash-fill fs-3x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
+                                                        <i class="ki-duotone bi bi-trash-fill fs-4x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
                                                             <span class="path3"></span>
@@ -118,13 +118,13 @@
                                                                 <input id="image3" class="col-12" type="file" name="image" accept=".png, .jpg, .jpeg" />
                                                             </div>
                                                             <div class="col-12 mt-5 text-center">
-                                                                <i class="bi bi-cloud-upload-fill fs-3x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="3" data-file="#image3"></i>
+                                                                <i class="bi bi-cloud-upload-fill fs-4x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="3" data-file="#image3"></i>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                        <i class="ki-duotone bi bi-trash-fill fs-3x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
+                                                        <i class="ki-duotone bi bi-trash-fill fs-4x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
                                                             <span class="path3"></span>
@@ -157,13 +157,13 @@
                                                         <input id="image4" type="file" class="col-12" name="image" accept=".png, .jpg, .jpeg" />
                                                     </div>
                                                     <div class="col-12 mt-5 text-center">
-                                                        <i class="bi bi-cloud-upload-fill fs-3x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="4" data-file="#image4"></i>
+                                                        <i class="bi bi-cloud-upload-fill fs-4x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="4" data-file="#image4"></i>
                                                     </div>
                                                 </div>
                                             </div>
                                         <?php } else { ?>
                                             <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                <i class="ki-duotone bi bi-trash-fill fs-3x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
+                                                <i class="ki-duotone bi bi-trash-fill fs-4x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
                                                     <span class="path3"></span>
@@ -261,7 +261,7 @@
             <!-- Dropzone -->
             <div class="dropzone mb-5" id="dropzone">
                 <div class="dz-message needsclick">
-                    <i class="ki-duotone ki-file-up fs-3x text-primary"><span class="path1"></span><span class="path2"></span></i>
+                    <i class="ki-duotone ki-file-up fs-4x text-primary"><span class="path1"></span><span class="path2"></span></i>
                     <div class="ms-4">
                         <h3 class="fs-5 fw-bold text-gray-900 mb-1"><?php echo lang('Text.photo'); ?></h3>
                         <span class="fs-7 fw-semibold text-gray-500"><?php echo lang('Text.click_to_select'); ?></span>
