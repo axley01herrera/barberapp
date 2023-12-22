@@ -144,6 +144,8 @@
 <script>
     var lang = "<?php echo $config[0]->lang; ?>";
     tinymce.init({
+        mode: "none",
+        readonly: true,
         selector: "#txt-about<?php echo $uniqid; ?>",
         height: 500,
         menubar: false,
@@ -234,6 +236,7 @@
     $('#btn-<?php echo $uniqid; ?>').on('click', function() { // Enable Edit
         $('.form-control').each(function() {
             $(this).removeAttr('disabled');
+            tinymce.activeEditor.setMode('design');
         });
         $(this).attr('hidden', true);
         $('#btn-cancel<?php echo $uniqid; ?>').removeAttr('hidden');
