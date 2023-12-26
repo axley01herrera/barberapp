@@ -1156,49 +1156,6 @@ class ControlPanel extends BaseController
         return view($view, $data);
     }
 
-    // public function uploadCompanyImages()
-    // {
-    //     # params
-    //     $files = $_FILES['files'];
-    //     $position = $this->objRequest->getPost('');
-
-    //     foreach ($files['name'] as $index => $fileName) {
-    //         $file = array(
-    //             'name' => $fileName,
-    //             'type' => $files['type'][$index],
-    //             'tmp_name' => $files['tmp_name'][$index],
-    //             'error' => $files['error'][$index],
-    //             'size' => $files['size'][$index]
-    //         );
-
-    //         $result = $this->objMainModel->uploadBusinessImages($file, $position);
-    //     }
-
-    //     return json_encode($result);
-    // }
-
-
-    public function uploadCompanyImages()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
-            $result = array();
-            $result['error'] = 2;
-            $result['msg'] = "SESSION_EXPIRED";
-            return json_encode($result);
-        }
-
-        return json_encode($this->objMainModel->uploadBusinessImages($_FILES['file'], $this->objRequest->getPost('position')));
-    }
-
-    public function deleteCompanyImages()
-    {
-        # params
-        $imageID = $this->objRequest->getPost('imageID');
-        $result = $this->objMainModel->objDelete('company_img', $imageID);
-        return json_encode($result);
-    }
-
     public function modalTime()
     {
         # Verify Session 
@@ -1567,10 +1524,6 @@ class ControlPanel extends BaseController
                 $data = array();
                 $data['config'] = $this->config;
                 $data['images'] = $this->objMainModel->getCompanyImages();
-                $data['image1'] = $this->objMainModel->getCompanyImagesByPosition('1');
-                $data['image2'] = $this->objMainModel->getCompanyImagesByPosition('2');
-                $data['image3'] = $this->objMainModel->getCompanyImagesByPosition('3');
-                $data['image4'] = $this->objMainModel->getCompanyImagesByPosition('4');
                 break;
         }
 
@@ -1578,6 +1531,34 @@ class ControlPanel extends BaseController
 
         return view($view, $data);
     } // ok
+
+    public function uploadCompanyImages()
+    {
+        # params
+        $files = $_FILES['files'];
+
+        foreach ($files['name'] as $index => $fileName) {
+            $file = array(
+                'name' => $fileName,
+                'type' => $files['type'][$index],
+                'tmp_name' => $files['tmp_name'][$index],
+                'error' => $files['error'][$index],
+                'size' => $files['size'][$index]
+            );
+
+            $result = $this->objMainModel->uploadBusinessImages($file);
+        }
+
+        return json_encode($result);
+    }
+
+    public function deleteCompanyImages()
+    {
+        # params
+        $imageID = $this->objRequest->getPost('imageID');
+        $result = $this->objMainModel->objDelete('company_img', $imageID);
+        return json_encode($result);
+    }
 
     public function savePrivacyPolice()
     {

@@ -77,16 +77,7 @@ class MainModel extends Model
 
     public function getCompanyImages()
     {
-        $query = $this->db->table('company_img')
-            ->orderBy('position');
-
-        return $query->get()->getResult();
-    }
-
-    public function getCompanyImagesByPosition($position)
-    {
-        $query = $this->db->table('company_img')
-            ->where('position', $position);
+        $query = $this->db->table('company_img');
 
         return $query->get()->getResult();
     }
@@ -110,13 +101,12 @@ class MainModel extends Model
         return $query->get()->getResult();
     } // ok
 
-    public function uploadBusinessImages($file, $position)
+    public function uploadBusinessImages($file)
     {
         $fileContent = file_get_contents($file['tmp_name']);
 
         $data = array(
-            'img' => $fileContent,
-            'position' => $position
+            'img' => $fileContent
         );
 
         $this->db->table('company_img')

@@ -10,212 +10,21 @@
         <div class="card-toolbar"></div>
     </div>
     <!-- Card body -->
-    <div class="position-relative z-index-2 m-3">
-        <div class="container">
-            <div class="" style="filter: drop-shadow(0px 0px 40px rgba(68, 81, 96, 0.08))">
-                <div class="tab-content">
-                    <!-- HERE IMGS-->
-                    <div class="tab-pane fade show active" id="kt_landing_projects_latest">
-                        <!--begin::Row-->
-                        <div class="row g-10">
-                            <!--begin::Col-->
-                            <div class="col-lg-6">
-                                <!--begin::Item-->
-                                <?php if (empty($image1)) { ?>
-                                    <a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="#">
-                                    <?php } else { ?>
-                                        <a class="d-block card-rounded overlay h-lg-100 del-image<?php echo $uniqid; ?>" data-fslightbox="lightbox-projects" href="#" data-image-id="<?php echo @$image1[0]->id; ?>">
-                                        <?php } ?>
-                                        <!--begin::Image-->
-                                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('<?php if (!empty($image1[0]->img)) echo "data:image/png;base64," . base64_encode($image1[0]->img) . "";
-                                                                                                                                                                                        else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"></div>
-                                        <!--end::Image-->
-                                        <!--begin::Action-->
-                                        <?php if (empty($image1)) { ?>
-                                            <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <input id="image1" type="file" class="col-12" name="image" accept=".png, .jpg, .jpeg" />
-                                                    </div>
-                                                    <div class="col-12 mt-5 text-center">
-                                                        <i class="bi bi-cloud-upload-fill fs-4x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="1" data-file="#image1"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php } else { ?>
-                                            <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                <i class="ki-duotone bi bi-trash-fill fs-4x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </div>
-                                        <?php } ?>
-                                        <!--end::Action-->
-                                        </a>
-                                        <!--end::Item-->
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-lg-6">
-                                <!--begin::Row-->
-                                <div class="row g-10 mb-10">
-                                    <!--begin::Col-->
-                                    <div class="col-lg-6">
-                                        <!--begin::Item-->
-                                        <?php if (empty($image2)) { ?>
-                                            <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="#">
-                                            <?php } else { ?>
-                                                <a class="d-block card-rounded overlay del-image<?php echo $uniqid; ?>" data-fslightbox="lightbox-projects" href="#" data-image-id="<?php echo @$image2[0]->id; ?>">
-                                                <?php } ?>
-                                                <!--begin::Image-->
-                                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($image2[0]->img)) echo "data:image/png;base64," . base64_encode($image2[0]->img) . "";
-                                                                                                                                                                                else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"> </div>
-                                                <!--end::Image-->
-                                                <!--begin::Action-->
-                                                <?php if (empty($image2)) { ?>
-                                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <input id="image2" type="file" class="col-12" name="image" accept=".png, .jpg, .jpeg" />
-                                                            </div>
-                                                            <div class="col-12 mt-5 text-center">
-                                                                <i class="bi bi-cloud-upload-fill fs-4x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="2" data-file="#image2"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php } else { ?>
-                                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                        <i class="ki-duotone bi bi-trash-fill fs-4x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                            <span class="path3"></span>
-                                                        </i>
-                                                    </div>
-                                                <?php } ?>
-                                                <!--end::Action-->
-                                                </a>
-                                                <!--end::Item-->
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-lg-6">
-                                        <!--begin::Item-->
-                                        <?php if (empty($image3)) { ?>
-                                            <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="#">
-                                            <?php } else { ?>
-                                                <a class="d-block card-rounded overlay del-image<?php echo $uniqid; ?>" data-fslightbox="lightbox-projects" href="#" data-image-id="<?php echo @$image3[0]->id; ?>">
-                                                <?php } ?>
-                                                <!--begin::Image-->
-                                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($image3[0]->img)) echo "data:image/png;base64," . base64_encode($image3[0]->img) . "";
-                                                                                                                                                                                else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"></div>
-                                                <!--end::Image-->
-                                                <!--begin::Action-->
-                                                <?php if (empty($image3)) { ?>
-                                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <input id="image3" class="col-12" type="file" name="image" accept=".png, .jpg, .jpeg" />
-                                                            </div>
-                                                            <div class="col-12 mt-5 text-center">
-                                                                <i class="bi bi-cloud-upload-fill fs-4x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="3" data-file="#image3"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php } else { ?>
-                                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                        <i class="ki-duotone bi bi-trash-fill fs-4x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                            <span class="path3"></span>
-                                                        </i>
-                                                    </div>
-                                                <?php } ?>
-
-                                                <!--end::Action-->
-                                                </a>
-                                                <!--end::Item-->
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Item-->
-                                <?php if (empty($image4)) { ?>
-                                    <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="#">
-                                    <?php } else { ?>
-                                        <a class="d-block card-rounded overlay del-image<?php echo $uniqid; ?>" data-fslightbox="lightbox-projects" href="#" data-image-id="<?php echo @$image4[0]->id; ?>">
-                                        <?php } ?>
-                                        <!--begin::Image-->
-                                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($image4[0]->img)) echo "data:image/png;base64," . base64_encode($image4[0]->img) . "";
-                                                                                                                                                                        else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"></div>
-                                        <!--end::Image-->
-                                        <!--begin::Action-->
-                                        <?php if (empty($image4)) { ?>
-                                            <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <input id="image4" type="file" class="col-12" name="image" accept=".png, .jpg, .jpeg" />
-                                                    </div>
-                                                    <div class="col-12 mt-5 text-center">
-                                                        <i class="bi bi-cloud-upload-fill fs-4x text-primary upload-image" title="<?php echo lang('Text.upload_photo'); ?>" data-position="4" data-file="#image4"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php } else { ?>
-                                            <div class="overlay-layer card-rounded bg-dark bg-opacity-75">
-                                                <i class="ki-duotone bi bi-trash-fill fs-4x text-danger" title="<?php echo lang('Text.btn_delete'); ?>">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </div>
-                                        <?php } ?>
-                                        <!--end::Action-->
-                                        </a>
-                                        <!--end::Item-->
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <!--end::Row-->
-                    </div>
+    <div class="row justify-content-around">
+        <?php foreach ($images as $i) { ?>
+            <div class="d-flex flex-center flex-column py-5 col-3">
+                <!-- Image -->
+                <div class="symbol symbol-100px mb-7">
+                    <img src="data:image/png;base64,<?php echo base64_encode($i->img); ?>" class="w-125px h-125px" alt="Image">
                 </div>
+                <!-- Action -->
+                <button type="button" class="btn btn-sm btn-danger del-image<?php echo $uniqid; ?>" data-image-id="<?php echo $i->id; ?>"><?php echo lang('Text.btn_delete') ?></button>
             </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
 
 <script>
-    //UPLOAD IMAGE
-    $('.upload-image').on("click", function() {
-        let formData = new FormData();
-        formData.append('file', $($(this).attr('data-file'))[0].files[0]);
-        formData.append('position', $(this).attr('data-position'));
-        if ($($(this).attr('data-file')).val() == '') {
-            simpleAlert('<?php echo lang('Text.cp_profile_select_image') ?>', 'warning');
-        } else {
-            $.ajax({
-                type: "post",
-                url: "<?php echo base_url('ControlPanel/uploadCompanyImages'); ?>",
-                data: formData,
-                dataType: "json",
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    if (response.error === 0)
-                        getProfileTabContent();
-                    else if (response.error === 1)
-                        globalError();
-                    else
-                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                },
-                error: function(error) {
-                    globalError();
-                }
-            });
-        }
-    });
-
     //DELETE IMAGE
     $('.del-image<?php echo $uniqid; ?>').on('click', function(e) {
         e.preventDefault();
@@ -255,8 +64,7 @@
 </script>
 
 <?php if (sizeof($images) < 4) { ?>
-
-    <div class="card card-flush mb-6 mb-xl-9" hidden>
+    <div class="card card-flush mb-6 mb-xl-9">
         <div class="card-body p-9 pt-4">
             <!-- Dropzone -->
             <div class="dropzone mb-5" id="dropzone">
