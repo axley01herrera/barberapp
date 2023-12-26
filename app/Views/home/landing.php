@@ -246,10 +246,10 @@
                                     <!--begin::Col-->
                                     <div class="col-lg-6">
                                         <!--begin::Item-->
-                                        <a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($image1[0]->img)) echo "data:image/png;base64," . base64_encode($image1[0]->img) . "";
+                                        <a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($images[0]->img)) echo "data:image/png;base64," . base64_encode($images[0]->img) . "";
                                                                                                                                                     else echo "" . base_url('public/assets/media/img/img.png') . ""; ?>">
                                             <!--begin::Image-->
-                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('<?php if (!empty($image1[0]->img)) echo "data:image/png;base64," . base64_encode($image1[0]->img) . "";
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('<?php if (!empty($images[0]->img)) echo "data:image/png;base64," . base64_encode($images[0]->img) . "";
                                                                                                                                                                                             else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"></div>
                                             <!--end::Image-->
                                             <!--begin::Action-->
@@ -272,10 +272,10 @@
                                             <!--begin::Col-->
                                             <div class="col-lg-6">
                                                 <!--begin::Item-->
-                                                <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($image2[0]->img)) echo "data:image/png;base64," . base64_encode($image2[0]->img) . "";
+                                                <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($images[1]->img)) echo "data:image/png;base64," . base64_encode($images[1]->img) . "";
                                                                                                                                                     else echo "" . base_url('public/assets/media/img/img.png') . ""; ?>">
                                                     <!--begin::Image-->
-                                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($image2[0]->img)) echo "data:image/png;base64," . base64_encode($image2[0]->img) . "";
+                                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($images[1]->img)) echo "data:image/png;base64," . base64_encode($images[1]->img) . "";
                                                                                                                                                                                     else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"> </div>
                                                     <!--end::Image-->
                                                     <!--begin::Action-->
@@ -294,10 +294,10 @@
                                             <!--begin::Col-->
                                             <div class="col-lg-6">
                                                 <!--begin::Item-->
-                                                <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($image3[0]->img)) echo "data:image/png;base64," . base64_encode($image3[0]->img) . "";
+                                                <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($images[2]->img)) echo "data:image/png;base64," . base64_encode($images[2]->img) . "";
                                                                                                                                                     else echo "" . base_url('public/assets/media/img/img.png') . ""; ?>">
                                                     <!--begin::Image-->
-                                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($image3[0]->img)) echo "data:image/png;base64," . base64_encode($image3[0]->img) . "";
+                                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($images[2]->img)) echo "data:image/png;base64," . base64_encode($images[2]->img) . "";
                                                                                                                                                                                     else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"></div>
                                                     <!--end::Image-->
                                                     <!--begin::Action-->
@@ -316,10 +316,10 @@
                                         </div>
                                         <!--end::Row-->
                                         <!--begin::Item-->
-                                        <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($image4[0]->img)) echo "data:image/png;base64," . base64_encode($image4[0]->img) . "";
+                                        <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($images[3]->img)) echo "data:image/png;base64," . base64_encode($images[3]->img) . "";
                                                                                                                                             else echo "" . base_url('public/assets/media/img/img.png') . ""; ?>">
                                             <!--begin::Image-->
-                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($image4[0]->img)) echo "data:image/png;base64," . base64_encode($image4[0]->img) . "";
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($images[3]->img)) echo "data:image/png;base64," . base64_encode($images[3]->img) . "";
                                                                                                                                                                             else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"></div>
                                             <!--end::Image-->
                                             <!--begin::Action-->
