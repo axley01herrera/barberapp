@@ -82,14 +82,6 @@ class MainModel extends Model
         return $query->get()->getResult();
     }
 
-    public function getServicesByIdArray($arrayID)
-    {
-        $query = $this->db->table('service')
-            ->whereIn('id', $arrayID);
-
-        return $query->get()->getResult();
-    }
-
     public function objCheckDuplicate($table, $field, $value, $id = null)
     {
         $query = $this->db->table($table)

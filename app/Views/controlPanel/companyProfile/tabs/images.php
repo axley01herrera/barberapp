@@ -75,8 +75,8 @@
 </script>
 
 <?php if (sizeof($images) < 4) { ?>
-    <div class="card card-flush mb-6 mb-xl-9">
-        <div class="card-body p-9 pt-4">
+    <div class="row">
+        <div class="col-12">
             <!-- Dropzone -->
             <div class="dropzone mb-5" id="dropzone">
                 <div class="dz-message needsclick">
@@ -100,7 +100,7 @@
         var myDropzone = new Dropzone("#dropzone", {
             url: '<?php echo base_url('ControlPanel/uploadCompanyImages'); ?>',
             method: 'post',
-            acceptedFiles: '.jpg,.png',
+            acceptedFiles: '.jpeg,.jpg,.png',
             maxFiles: 5,
             addRemoveLinks: true,
             autoProcessQueue: false,

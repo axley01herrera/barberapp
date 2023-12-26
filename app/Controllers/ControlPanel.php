@@ -1575,15 +1575,16 @@ class ControlPanel extends BaseController
         }
 
         return json_encode($result);
-    }
+    } // ok
 
     public function deleteCompanyImages()
     {
         # params
         $imageID = $this->objRequest->getPost('imageID');
         $result = $this->objMainModel->objDelete('company_img', $imageID);
+
         return json_encode($result);
-    }
+    } // ok
 
     public function savePrivacyPolice()
     {
@@ -1594,14 +1595,17 @@ class ControlPanel extends BaseController
             $result['msg'] = "SESSION_EXPIRED";
             return json_encode($result);
         }
+
         #params
         $privacyPolice = $this->objRequest->getPost('privacyPolice');
 
         $data = array();
         $data['privacyPolice'] = $privacyPolice;
 
-        return json_encode($this->objMainModel->objUpdate('company_profile', $data, 1));
-    }
+        $result = $this->objMainModel->objUpdate('company_profile', $data, 1);
+
+        return json_encode($result);
+    } // ok
 
     public function uploadAvatarProfile()
     {
