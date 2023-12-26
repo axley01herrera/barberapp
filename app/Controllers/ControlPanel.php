@@ -1590,7 +1590,7 @@ class ControlPanel extends BaseController
                 'size' => $files['size'][$index]
             );
 
-            $result = $this->objMainModel->uploadBusinessImages($file);
+            $result = $this->objControlPanelModel->uploadBusinessImages($file);
         }
 
         return json_encode($result);
@@ -1612,7 +1612,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
-            
+
             return json_encode($result);
         }
 

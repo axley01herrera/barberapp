@@ -66,7 +66,7 @@ class Home extends BaseController
         $data['services'] = $this->objHomeModel->getServices();
         $data['team'] = $this->objHomeModel->getActiveEmployees();
         $data['socialNetworks'] = $this->objHomeModel->getActiveSocialNetworks();
-        $data['images'] = $this->objMainModel->getCompanyImages();
+        $data['images'] = $this->objHomeModel->getCompanyImages();
         # page
         $view = 'home/landing';
 

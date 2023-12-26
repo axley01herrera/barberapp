@@ -199,7 +199,26 @@ class ControlPanelModel extends Model
         return $data;
     } // ok
 
-    
+    public function uploadBusinessImages($file)
+    {
+        $fileContent = file_get_contents($file['tmp_name']);
 
-    
+        $data = array(
+            'img' => $fileContent
+        );
+
+        $this->db->table('company_img')
+            ->insert($data);
+
+        if ($this->db->resultID !== null) {
+            $result = array();
+            $result['error'] = 0;
+            $result['id'] = $this->db->connID->insert_id;
+        } else {
+            $result = array();
+            $result['error'] = 1;
+        }
+
+        return $result;
+    } // ok
 }

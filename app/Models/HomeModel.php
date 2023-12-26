@@ -17,8 +17,8 @@ class HomeModel extends Model
     public function getCompanyProfileSettings()
     {
         $query = $this->db->table('company_profile')
-        ->select('companyID, avatar, companyName, companyType, email, phone1, address1, address2, city, state, zip, country')
-        ->where('id', 1);
+            ->select('companyID, avatar, companyName, companyType, email, phone1, address1, address2, city, state, zip, country')
+            ->where('id', 1);
 
         $data = $query->get()->getResult();
 
@@ -28,8 +28,8 @@ class HomeModel extends Model
     public function getCompanyProfileAbout()
     {
         $query = $this->db->table('company_profile')
-        ->select('about')
-        ->where('id', 1);
+            ->select('about')
+            ->where('id', 1);
 
         $data = $query->get()->getResult();
 
@@ -39,13 +39,13 @@ class HomeModel extends Model
     public function getCompanyProfilePrivacyPolice()
     {
         $query = $this->db->table('company_profile')
-        ->select('privacyPolice')
-        ->where('id', 1);
+            ->select('privacyPolice')
+            ->where('id', 1);
 
         $data = $query->get()->getResult();
 
         return $data;
-    } 
+    }
 
     public function getServices()
     {
@@ -71,10 +71,16 @@ class HomeModel extends Model
     public function getActiveSocialNetworks()
     {
         $query = $this->db->table('company_social_network')
-        ->where('status', 1);
+            ->where('status', 1);
 
         $data = $query->get()->getResult();
 
         return $data;
+    } // ok
+
+    public function getCompanyImages()
+    {
+        $query = $this->db->table('company_img');
+        return $query->get()->getResult();
     } // ok
 }

@@ -75,13 +75,6 @@ class MainModel extends Model
         return $query->get()->getResult();
     } // ok
 
-    public function getCompanyImages()
-    {
-        $query = $this->db->table('company_img');
-
-        return $query->get()->getResult();
-    }
-
     public function objCheckDuplicate($table, $field, $value, $id = null)
     {
         $query = $this->db->table($table)
@@ -92,29 +85,6 @@ class MainModel extends Model
 
         return $query->get()->getResult();
     } // ok
-
-    public function uploadBusinessImages($file)
-    {
-        $fileContent = file_get_contents($file['tmp_name']);
-
-        $data = array(
-            'img' => $fileContent
-        );
-
-        $this->db->table('company_img')
-            ->insert($data);
-
-        if ($this->db->resultID !== null) {
-            $result = array();
-            $result['error'] = 0;
-            $result['id'] = $this->db->connID->insert_id;
-        } else {
-            $result = array();
-            $result['error'] = 1;
-        }
-
-        return $result;
-    }
 
     public function uploadFile($table, $id, $field, $file)
     {
