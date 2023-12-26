@@ -16,7 +16,7 @@
                 </section>
                 <!-- Upcoming Appointments -->
                 <div class="flex-lg-row-fluid ms-lg-20">
-                    <div class="col-12 col-md-5 col-lg-5">
+                    <div class="col-12 col-md-8 col-lg-8">
                         <?php echo view('customer/appointment/sectionUpcomingAppointment'); ?>
                     </div>
                 </div>
