@@ -156,6 +156,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "session expired";
+
             return json_encode($result);
         }
 
@@ -193,6 +194,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "session expired";
+
             return json_encode($result);
         }
 
@@ -213,6 +215,7 @@ class ControlPanel extends BaseController
             $data['description'] = $description;
 
             $result = $this->objMainModel->objUpdate('service', $data, $serviceID);
+
             return json_encode($result);
         } else {
             $result = array();
@@ -319,7 +322,6 @@ class ControlPanel extends BaseController
 
 
             $btnProfile = '<a href="' . base_url('ControlPanel/customerProfile?customerID=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
-            $btnEdit = '<button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_edit') . '"><span class="bi bi-pencil-square"></span></button>';
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
@@ -388,7 +390,7 @@ class ControlPanel extends BaseController
         $view = 'controlPanel/customers/customerProfile/sectionCustomerInfo';
 
         return view($view, $data);
-    }
+    } // ok
 
     public function customerTabContent()
     {
@@ -457,6 +459,7 @@ class ControlPanel extends BaseController
                 $result = array();
                 $result['error'] = 1;
                 $result['msg'] = "INVALID_CURRENT_KEY";
+
                 return json_encode($result);
             }
         }
@@ -474,6 +477,7 @@ class ControlPanel extends BaseController
         if (empty($dataAccount)) {
             $response = array();
             $response['error'] = 0;
+
             return json_encode($response);
         }
 
@@ -532,7 +536,7 @@ class ControlPanel extends BaseController
         $result = $this->objMainModel->objUpdate('customer', $data, $customerID);
 
         return json_encode($result);
-    }
+    } // ok
 
     public function uploadCustomerAvatarProfile()
     {
@@ -541,6 +545,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -548,7 +553,7 @@ class ControlPanel extends BaseController
         $customerID = $this->objRequest->getPost('customerID');
 
         return json_encode($this->objMainModel->uploadFile('customer', $customerID, 'avatar', $_FILES['file']));
-    }
+    } // ok
 
     public function removeCustomerAvatarProfile()
     {
@@ -557,6 +562,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -567,7 +573,7 @@ class ControlPanel extends BaseController
         $data['avatar'] = '';
 
         return json_encode($this->objMainModel->objUpdate('customer', $data, $customerID));
-    }
+    } // ok
 
     public function showModalCustomer()
     {
@@ -918,6 +924,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -961,6 +968,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1024,6 +1032,7 @@ class ControlPanel extends BaseController
             $data['token'] = md5(uniqid());
 
             $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
+
             return json_encode($result);
         } else {
             $result = array();
@@ -1064,6 +1073,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1263,6 +1273,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1327,6 +1338,7 @@ class ControlPanel extends BaseController
         if (empty($dataAccount)) {
             $response = array();
             $response['error'] = 0;
+
             return json_encode($response);
         }
 
@@ -1361,6 +1373,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1391,6 +1404,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1404,6 +1418,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1420,6 +1435,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1432,10 +1448,13 @@ class ControlPanel extends BaseController
             $data = array();
             $data['serviceID'] = $serviceID;
             $data['employeeID'] = $employeeID;
+
             $result = $this->objMainModel->objCreate('employee_service', $data);
+
             return json_encode($result);
         } else if ($checked == 1) { // Remove Service To Employee
             $result = $this->objControlPanelModel->removeEmployeeService($employeeID, $serviceID);
+
             return json_encode($result);
         }
     } // ok
@@ -1482,7 +1501,7 @@ class ControlPanel extends BaseController
         $view = 'controlPanel/employees/employeeProfile/chartEmployeeTimes';
 
         return view($view, $data);
-    }
+    } // ok
 
     ##############################
     # Section Profile
@@ -1593,6 +1612,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+            
             return json_encode($result);
         }
 
@@ -1614,6 +1634,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1627,6 +1648,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1643,6 +1665,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1675,6 +1698,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "session expired";
+
             return json_encode($result);
         }
 
@@ -1684,6 +1708,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "INVALID_CURRENT_KEY";
+
             return json_encode($result);
         }
 
@@ -1747,6 +1772,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1770,6 +1796,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1794,6 +1821,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
@@ -1810,6 +1838,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
