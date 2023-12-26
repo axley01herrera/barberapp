@@ -7,48 +7,50 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <!-- Days -->
-                    <div class="col-12">
-                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.day'); ?> <span class="text-danger">*</span></label>
-                        <select id="sel-day<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>">
-                            <option value="" hidden></option>
-                            <?php if ($employeeBussinesDay[0]->monday == 1) { ?>
-                                <option value="monday" <?php if (!empty($time)) {
-                                                            if ($time[0]->day == 'monday') echo "selected";
-                                                        } ?>><?php echo lang('Text.monday'); ?></option>
-                            <?php }
-                            if ($employeeBussinesDay[0]->tuesday == 1) { ?>
-                                <option value="tuesday" <?php if (!empty($time)) {
-                                                            if ($time[0]->day == 'tuesday') echo "selected";
-                                                        } ?>><?php echo lang('Text.tuesday'); ?></option>
-                            <?php }
-                            if ($employeeBussinesDay[0]->wednesday == 1) { ?>
-                                <option value="wednesday" <?php if (!empty($time)) {
-                                                                if ($time[0]->day == 'wednesday') echo "selected";
-                                                            } ?>><?php echo lang('Text.wednesday'); ?></option>
-                            <?php }
-                            if ($employeeBussinesDay[0]->thursday == 1) { ?>
-                                <option value="thursday" <?php if (!empty($time)) {
-                                                                if ($time[0]->day == 'thursday') echo "selected";
-                                                            } ?>><?php echo lang('Text.thursday'); ?></option>
-                            <?php }
-                            if ($employeeBussinesDay[0]->friday == 1) { ?>
-                                <option value="friday" <?php if (!empty($time)) {
-                                                            if ($time[0]->day == 'friday') echo "selected";
-                                                        } ?>><?php echo lang('Text.friday'); ?></option>
-                            <?php }
-                            if ($employeeBussinesDay[0]->saturday == 1) { ?>
-                                <option value="saturday" <?php if (!empty($time)) {
-                                                                if ($time[0]->day == 'saturday') echo "selected";
-                                                            } ?>><?php echo lang('Text.saturday'); ?></option>
-                            <?php }
-                            if ($employeeBussinesDay[0]->sunday == 1) { ?>
-                                <option value="sunday" <?php if (!empty($time)) {
-                                                            if ($time[0]->day == 'sunday') echo "selected";
-                                                        } ?>><?php echo lang('Text.sunday'); ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
+                    <?php if ($action == 'update') { ?>
+                        <!-- Day -->
+                        <div class="col-12">
+                            <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.day'); ?> <span class="text-danger">*</span></label>
+                            <select id="sel-day<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>">
+                                <option value="" hidden></option>
+                                <?php if ($employeeBussinesDay[0]->monday == 1) { ?>
+                                    <option value="monday" <?php if (!empty($time)) {
+                                                                if ($time[0]->day == 'monday') echo "selected";
+                                                            } ?>><?php echo lang('Text.monday'); ?></option>
+                                <?php }
+                                if ($employeeBussinesDay[0]->tuesday == 1) { ?>
+                                    <option value="tuesday" <?php if (!empty($time)) {
+                                                                if ($time[0]->day == 'tuesday') echo "selected";
+                                                            } ?>><?php echo lang('Text.tuesday'); ?></option>
+                                <?php }
+                                if ($employeeBussinesDay[0]->wednesday == 1) { ?>
+                                    <option value="wednesday" <?php if (!empty($time)) {
+                                                                    if ($time[0]->day == 'wednesday') echo "selected";
+                                                                } ?>><?php echo lang('Text.wednesday'); ?></option>
+                                <?php }
+                                if ($employeeBussinesDay[0]->thursday == 1) { ?>
+                                    <option value="thursday" <?php if (!empty($time)) {
+                                                                    if ($time[0]->day == 'thursday') echo "selected";
+                                                                } ?>><?php echo lang('Text.thursday'); ?></option>
+                                <?php }
+                                if ($employeeBussinesDay[0]->friday == 1) { ?>
+                                    <option value="friday" <?php if (!empty($time)) {
+                                                                if ($time[0]->day == 'friday') echo "selected";
+                                                            } ?>><?php echo lang('Text.friday'); ?></option>
+                                <?php }
+                                if ($employeeBussinesDay[0]->saturday == 1) { ?>
+                                    <option value="saturday" <?php if (!empty($time)) {
+                                                                    if ($time[0]->day == 'saturday') echo "selected";
+                                                                } ?>><?php echo lang('Text.saturday'); ?></option>
+                                <?php }
+                                if ($employeeBussinesDay[0]->sunday == 1) { ?>
+                                    <option value="sunday" <?php if (!empty($time)) {
+                                                                if ($time[0]->day == 'sunday') echo "selected";
+                                                            } ?>><?php echo lang('Text.sunday'); ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    <?php } ?>
                     <!-- Start Time -->
                     <div class="col-12 col-md-6 col-lg-6 mt-5">
                         <label class="fs-6 fw-semibold" for="txt-last-name<?php echo $uniqid; ?>"><?php echo lang('Text.start_time'); ?> <span class="text-danger">*</span></label>
@@ -63,74 +65,91 @@
                                                                                                                                                                         echo date('g:i A', strtotime($time[0]->end));
                                                                                                                                                                     } ?>" />
                     </div>
+                    <?php if ($action == 'create') { ?>
+                        <!-- Days of week -->
+                        <div class="col-12 mt-5">
+                            <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.day'); ?> <span class="text-danger">*</span></label>
+                            <div class="row">
 
-                    <!-- Days of week -->
-                    <div class="col-12">
-                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.day'); ?> <span class="text-danger">*</span></label>
-                        <div class="row">
-
-                            <?php if ($employeeBussinesDay[0]->monday == 1) { ?>
-                                <div class="col-4 mt-5">
-                                    <div class="form-check">
-                                        <input id="cbx-sunday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
-                                        <label class="form-check-label" for="cbx-sunday">
-                                            Sunday
-                                        </label>
+                                <?php if ($employeeBussinesDay[0]->monday == 1) { ?>
+                                    <div class="col-4 mt-5">
+                                        <div class="form-check">
+                                            <input id="monday" class="form-check-input cbx-time-day" type="checkbox" checked data-value="1" />
+                                            <label class="form-check-label" for="monday">
+                                                <?php echo lang('Text.monday'); ?>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php } ?>
-                            
-                            <div class="col-4 mt-5">
-                                <div class="form-check">
-                                    <input id="cbx-monday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
-                                    <label class="form-check-label" for="cbx-monday">
-                                        Monday
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4 mt-5">
-                                <div class="form-check">
-                                    <input id="cbx-tuesday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
-                                    <label class="form-check-label" for="cbx-tuesday">
-                                        Tuesday
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4 mt-5">
-                                <div class="form-check">
-                                    <input id="cbx-wednesday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
-                                    <label class="form-check-label" for="cbx-wednesday">
-                                        Wednesday
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4 mt-5">
-                                <div class="form-check">
-                                    <input id="cbx-thursday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
-                                    <label class="form-check-label" for="cbx-thursday">
-                                        Thursday
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4 mt-5">
-                                <div class="form-check">
-                                    <input id="cbx-friday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
-                                    <label class="form-check-label" for="cbx-friday">
-                                        Friday
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-4 mt-5">
-                                <div class="form-check">
-                                    <input id="cbx-saturday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
-                                    <label class="form-check-label" for="cbx-saturday">
-                                        Saturday
-                                    </label>
-                                </div>
+                                <?php } ?>
+
+                                <?php if ($employeeBussinesDay[0]->tuesday == 1) { ?>
+                                    <div class="col-4 mt-5">
+                                        <div class="form-check">
+                                            <input id="tuesday" class="form-check-input cbx-time-day" type="checkbox" checked data-value="1" />
+                                            <label class="form-check-label" for="tuesday">
+                                                <?php echo lang('Text.tuesday'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($employeeBussinesDay[0]->wednesday == 1) { ?>
+                                    <div class="col-4 mt-5">
+                                        <div class="form-check">
+                                            <input id="wednesday" class="form-check-input cbx-time-day" type="checkbox" checked data-value="1" />
+                                            <label class="form-check-label" for="wednesday">
+                                                <?php echo lang('Text.wednesday'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($employeeBussinesDay[0]->thursday == 1) { ?>
+                                    <div class="col-4 mt-5">
+                                        <div class="form-check">
+                                            <input id="thursday" class="form-check-input cbx-time-day" type="checkbox" checked data-value="1" />
+                                            <label class="form-check-label" for="thursday">
+                                                <?php echo lang('Text.thursday'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($employeeBussinesDay[0]->friday == 1) { ?>
+                                    <div class="col-4 mt-5">
+                                        <div class="form-check">
+                                            <input id="friday" class="form-check-input cbx-time-day" type="checkbox" checked data-value="1" />
+                                            <label class="form-check-label" for="friday">
+                                                <?php echo lang('Text.friday'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($employeeBussinesDay[0]->saturday == 1) { ?>
+                                    <div class="col-4 mt-5">
+                                        <div class="form-check">
+                                            <input id="saturday" class="form-check-input cbx-time-day" type="checkbox" checked data-value="1" />
+                                            <label class="form-check-label" for="saturday">
+                                                <?php echo lang('Text.saturday'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+                                <?php if ($employeeBussinesDay[0]->sunday == 1) { ?>
+                                    <div class="col-4 mt-5">
+                                        <div class="form-check">
+                                            <input id="sunday" class="form-check-input cbx-time-day" type="checkbox" checked data-value="1" />
+                                            <label class="form-check-label" for="sunday">
+                                                <?php echo lang('Text.sunday'); ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
-
-                    </div>
+                    <?php } ?>
                 </div>
                 <div id="chart-employee-time" class="mt-10"></div>
             </div>
@@ -146,6 +165,8 @@
     var employeeID = "<?php echo @$employeeID; ?>";
     var action = "<?php echo $action; ?>";
     var callModalFrom = $('#page').attr('data-page');
+    var timeID = "<?php echo $timeID; ?>";
+
     chartEmployeeTime();
 
     $('#modal').modal('show');
@@ -161,39 +182,44 @@
     });
 
     $('#save-turn<?php echo $uniqid; ?>').on('click', function() { // Submit
-        let result = checkRequiredValues();
-        if (result == 0) {
-            let url = "";
-            let msg = "";
+        if (action == "create")
+            createEmployeeTimes();
+        else if (action == "update")
+            updateEmployeeTimes();
+    }); // ok
 
-            if (action == "create") {
-                url = "<?php echo base_url('ControlPanel/createTime'); ?>";
-                msg = "<?php echo lang("Text.emp_success_created_time"); ?>";
-            } else if (action == "update") {
-                url = "<?php echo base_url('ControlPanel/updateTime'); ?>"
-                msg = "<?php echo lang("Text.emp_success_updated_time"); ?>";
+    function createEmployeeTimes() {
+        let url = "<?php echo base_url('ControlPanel/createTime'); ?>";
+        let msg = "<?php echo lang("Text.emp_success_created_time"); ?>";
+
+        let days = [];
+
+        $('.cbx-time-day').each(function() {
+            let value = $(this).attr('data-value');
+            if (value == 1) {
+                let day = $(this).attr('id');
+                days.push(day);
             }
+        });
 
+        let result = checkRequiredValues();
+
+        if (result == 0 && days.length > 0) {
             $.ajax({
                 type: "post",
                 url: url,
                 data: {
-                    'employeeID': "<?php echo @$employeeID; ?>",
-                    'day': $('#sel-day<?php echo $uniqid; ?>').val(),
+                    'employeeID': employeeID,
+                    'days': days,
                     'startTime': $('#sel-startTime<?php echo $uniqid; ?>').val(),
                     'endTime': $('#sel-endTime<?php echo $uniqid; ?>').val(),
-                    'timeID': "<?php echo @$timeID; ?>"
                 },
                 dataType: "json",
                 success: function(response) {
                     if (response.error == 0) {
                         simpleSuccessAlert(msg);
                         employeeProfileTabContent();
-                        chartEmployeeTime();
-                        $('#sel-day<?php echo $uniqid; ?>').val('');
-                        $('select').val('');
-                        if (action == 'update')
-                            $('#modal').modal('hide');
+                        $('#modal').modal('hide');
                     } else
                         globalError();
                 },
@@ -201,9 +227,45 @@
                     globalError();
                 }
             });
+
         } else
             simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
-    }); // ok
+    }
+
+    function updateEmployeeTimes() {
+        let url = "<?php echo base_url('ControlPanel/updateTime'); ?>";
+        let msg = "<?php echo lang("Text.emp_success_updated_time"); ?>";
+
+        let result = checkRequiredValues();
+
+        if (result == 0) {
+            $.ajax({
+                type: "post",
+                url: url,
+                data: {
+                    'employeeID': employeeID,
+                    'day': $('#sel-day<?php echo $uniqid; ?>').val(),
+                    'startTime': $('#sel-startTime<?php echo $uniqid; ?>').val(),
+                    'endTime': $('#sel-endTime<?php echo $uniqid; ?>').val(),
+                    'timeID': timeID
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.error == 0) {
+                        simpleSuccessAlert(msg);
+                        employeeProfileTabContent();
+                        $('#modal').modal('hide');
+                    } else
+                        globalError();
+                },
+                error: function(error) {
+                    globalError();
+                }
+            });
+
+        } else
+            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+    }
 
     function checkRequiredValues() {
         let result = 0;
@@ -239,4 +301,13 @@
             }
         });
     }
+
+    $('.cbx-time-day').on('click', function() {
+        let value = $(this).attr('data-value');
+
+        if (value == 0)
+            $(this).attr('data-value', 1);
+        else if (value == 1)
+            $(this).attr('data-value', 0);
+    });
 </script>

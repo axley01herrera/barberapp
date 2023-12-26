@@ -1194,12 +1194,13 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
 
         # params
         $employeeID = $this->objRequest->getPost('employeeID');
-        $day = $this->objRequest->getPost('day');
+        $days = $this->objRequest->getPost('days');
         $startPost = $this->objRequest->getPost('startTime');
         $endPost = $this->objRequest->getPost('endTime');
 
@@ -1209,13 +1210,15 @@ class ControlPanel extends BaseController
         $timeSqlS = date('H:i:s', $tiempoUnixS);
         $timeSqlE = date('H:i:s', $tiempoUnixE);
 
-        $data = array();
-        $data['employeeID'] = $employeeID;
-        $data['day'] = $day;
-        $data['start'] = $timeSqlS;
-        $data['end'] = $timeSqlE;
+        foreach($days as $day) {
+            $data = array();
+            $data['employeeID'] = $employeeID;
+            $data['day'] = $day;
+            $data['start'] = $timeSqlS;
+            $data['end'] = $timeSqlE;
 
-        $result = $this->objMainModel->objCreate('employee_shift_day', $data);
+            $result = $this->objMainModel->objCreate('employee_shift_day', $data);
+        }
 
         return json_encode($result);
     } // ok
@@ -1227,6 +1230,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
+            
             return json_encode($result);
         }
 
