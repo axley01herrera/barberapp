@@ -8,16 +8,18 @@
         </div>
         <!-- Card toolbar -->
         <div class="card-toolbar">
+            <button type="button" id="btn-<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_edit'); ?></button>
         </div>
     </div>
     <!-- Card body -->
     <div class="card-body p-9 pt-4">
         <div class="row">
             <div class="col-12 mt-5">
-                <textarea id="privacyPolice" class="tox-target"><?php echo $privacyPolice ?></textarea>
+                <textarea id="privacyPolice<?php echo $uniqid; ?>" class="tox-target" disabled><?php echo $privacyPolice ?></textarea>
             </div>
             <div class="col-12 text-end mt-5">
-                <button type="button" id="btn-save<?php echo $uniqid; ?>" class="btn btn-primary mt-5"><?php echo lang('Text.btn_save'); ?></button>
+                <button hidden type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
+                <button hidden type="button" id="btn-update<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang('Text.btn_update'); ?></button>
             </div>
         </div>
     </div>
@@ -26,7 +28,9 @@
 <script>
     var lang = "<?php echo $config[0]->lang; ?>";
     tinymce.init({
-        selector: "#privacyPolice",
+        mode: "none",
+        readonly: true,
+        selector: "#privacyPolice<?php echo $uniqid; ?>",
         height: 500,
         menubar: false,
         language: lang,
@@ -42,8 +46,19 @@
         content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
     });
 
-    $('#btn-save<?php echo $uniqid; ?>').on('click', function() {
-        let privacyPolice = tinymce.get('privacyPolice').getContent();
+    $('#btn-<?php echo $uniqid; ?>').on('click', function() { // Enable Edit
+        tinymce.activeEditor.setMode('design');
+        $(this).attr('hidden', true);
+        $('#btn-cancel<?php echo $uniqid; ?>').removeAttr('hidden');
+        $('#btn-update<?php echo $uniqid; ?>').removeAttr('hidden');
+    });
+
+    $('#btn-cancel<?php echo $uniqid; ?>').on('click', function() { // Cancel Edit
+        getProfileTabContent();
+    });
+
+    $('#btn-update<?php echo $uniqid; ?>').on('click', function() {
+        let privacyPolice = tinymce.get('privacyPolice<?php echo $uniqid; ?>').getContent();
         if (privacyPolice != '') {
             $.ajax({
                 type: "POST",
@@ -54,6 +69,7 @@
                 dataType: "json",
                 success: function(response) {
                     simpleSuccessAlert('<?php echo lang('Text.cp_profile_success_update_privacy_police'); ?>');
+                    getProfileTabContent();
                 },
                 error: function(error) {
                     globalError();
