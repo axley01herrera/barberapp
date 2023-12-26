@@ -631,7 +631,7 @@ class ControlPanel extends BaseController
 
             $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
             $this->objEmail->setTo($email);
-            $this->objEmail->setSubject('Complete Your Account');
+            $this->objEmail->setSubject($this->companyProfile[0]->companyName);
             $this->objEmail->setMessage(view('email/createCustomerByAdmin', $dataEmail), []);
 
             if ($this->objEmail->send(false))

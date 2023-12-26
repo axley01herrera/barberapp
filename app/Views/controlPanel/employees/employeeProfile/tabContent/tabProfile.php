@@ -111,7 +111,7 @@
             <div class="col-12 col-lg-3 mt-5">
                 <!-- Zip -->
                 <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>"><?php echo lang('Text.zip'); ?></label>
-                <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control number<?php echo $uniqid; ?>" maxlength="5" value="<?php echo $employee[0]->zip; ?>" disabled />
+                <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control number<?php echo $uniqid; ?>" maxlength="5" value="<?php if(!empty($employee[0]->zip)) echo $employee[0]->zip; ?>" disabled />
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- Country -->
