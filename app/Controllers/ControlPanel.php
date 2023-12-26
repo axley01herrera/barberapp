@@ -997,7 +997,6 @@ class ControlPanel extends BaseController
         return json_encode($response);
     } // ok
 
-
     public function updateEmployee()
     {
         # Verify Session 
@@ -1154,7 +1153,7 @@ class ControlPanel extends BaseController
         }
 
         return view($view, $data);
-    }
+    } // ok
 
     public function modalTime()
     {
@@ -1444,8 +1443,10 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "SESSION_EXPIRED";
+
             return json_encode($result);
         }
+
         # params
         $field = $this->objRequest->getPost('field');
         $value = $this->objRequest->getPost('value');
@@ -1457,6 +1458,26 @@ class ControlPanel extends BaseController
         $result = $this->objMainModel->objUpdate('employee_bussines_day', $data, $employeeBussinesDayID);
 
         return json_encode($result);
+    } // ok
+
+    public function chartEmployeeTime()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
+
+        # params
+        $employeeID = $this->objRequest->getPost('employeeID');
+
+        $data = array();
+        # data
+        $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+        $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
+
+        # page
+        $view = 'controlPanel/employees/employeeProfile/chartEmployeeTimes';
+
+        return view($view, $data);
     }
 
     ##############################

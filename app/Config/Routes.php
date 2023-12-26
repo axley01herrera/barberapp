@@ -81,6 +81,7 @@ $routes->post('ControlPanel/removeEmployeeAvatarProfile', 'ControlPanel::removeE
 $routes->post('ControlPanel/uploadEmployeeAvatarProfile', 'ControlPanel::uploadEmployeeAvatarProfile');
 $routes->post('ControlPanel/updateBussinessDay', 'ControlPanel::updateBussinessDay');
 $routes->post('ControlPanel/modalTime', 'ControlPanel::modalTime');
+$routes->post('ControlPanel/chartEmployeeTime', 'ControlPanel::chartEmployeeTime');
 $routes->post('ControlPanel/createTime', 'ControlPanel::createTime');
 $routes->post('ControlPanel/updateTime', 'ControlPanel::updateTime');
 $routes->post('ControlPanel/deleteTime', 'ControlPanel::deleteTime');
