@@ -16,13 +16,8 @@
             <div class="col-12 col-md-6 col-lg-6 mb-5">
                 <div class="bg-light-primary bg-opacity-70 rounded-2 px-6 py-5">
                     <div class="m-0">
-                        <?php if (sizeof($appointments) > 0) { ?>
-                            <span class="text-gray-700 fw-bolder d-block fs-2qx lh-1 ls-n1 mb-1"><?php echo sizeof($appointments); ?></span>
-                            <span class="text-gray-500 fw-semibold fs-6"><?php echo lang('Text.cust_future_appointments'); ?></span>
-                        <?php } else { ?>
-                            <span class="text-gray-700 fw-bolder d-block fs-2qx lh-1 ls-n1"><i class="bi bi-exclamation-diamond-fill text-warning"></i></span>
-                            <span class="text-gray-500 fw-semibold fs-3"><?php echo lang('Text.cust_no_future_appointments'); ?></span>
-                        <?php } ?>
+                        <span class="text-gray-700 fw-bolder d-block fs-2qx lh-1 ls-n1 mb-1"><i class="bi bi-calendar fs-2qx text-gray-700 fw-bolder"></i></span>
+                        <span class="text-gray-500 fw-semibold fs-6"><?php echo sizeof($appointments).' '. lang('Text.cust_future_appointments'); ?></span>
                     </div>
                 </div>
             </div>

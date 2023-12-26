@@ -136,7 +136,7 @@
             $('#search-employees').html('');
             $('#dt-employees_filter').appendTo('#search-employees');
         }
-    });
+    }); // ok
 
     dtEmployees.on('click', '.resend-verify-email', function() { // Resend Verify Email 
         $.ajax({
@@ -161,7 +161,7 @@
                 globalError();
             }
         });
-    })
+    }); // ok
 
     dtEmployees.on('click', '.resend-complete-account-email', function() { // Resend Complete Account Email 
         $.ajax({
@@ -186,7 +186,7 @@
                 globalError();
             }
         });
-    })
+    }); // ok
 
     dtEmployees.on('click', '.change-status', function() {
         let employeeID = $(this).attr('data-employee-id');
@@ -226,7 +226,7 @@
                 globalError();
             }
         });
-    }) // ok
+    }); // ok
 
     dtEmployees.on('click', '.edit-employee', function() { // Edit
         let employeeID = $(this).attr('data-employee-id');
@@ -246,7 +246,7 @@
                 globalError();
             }
         });
-    }) // ok
+    }); // ok
 
     dtEmployees.on('click', '.delete-employee', function() { // Delete
         let employeeID = $(this).attr('data-employee-id');
@@ -285,5 +285,5 @@
                 });
             }
         })
-    }) // ok
+    }); // ok
 </script>

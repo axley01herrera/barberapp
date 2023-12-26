@@ -312,10 +312,10 @@ class ControlPanel extends BaseController
         $totalRows = sizeof($result);
 
         for ($i = 0; $i < $totalRows; $i++) {
-            $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+            $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if ($result[$i]->status == 1)
-                $status = '<div class="form-check form-switch form-check-solid" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+                $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
 
             $btnProfile = '<a href="' . base_url('ControlPanel/customerProfile?customerID=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
@@ -358,6 +358,9 @@ class ControlPanel extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
             return view('controlPanelLogout');
 
+        # params
+        $customerID = $this->objRequest->getPostGet('customerID');
+
         $data = array();
         # config
         $data['config'] = $this->config;
@@ -365,20 +368,26 @@ class ControlPanel extends BaseController
         # menu
         $data['activeCustomers'] = "active";
         # data
-        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getGet('customerID'));
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
         # page
-        $data['page'] = 'controlPanel/customers/index';
+        $data['page'] = 'controlPanel/customers/customerProfile/mainCustomerProfile';
 
         return view('ControlPanel/mainCpanel', $data);
-    }
+    } // ok
 
     public function reloadCustomerInfo()
     {
+        # params
+        $customerID = $this->objRequest->getPostGet('customerID');
+
         # data
         $data = array();
-        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objRequest->getPost('customerID'));
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
 
-        return view('controlPanel/customers/customerInfo', $data);
+        # page
+        $view = 'controlPanel/customers/customerProfile/sectionCustomerInfo';
+
+        return view($view, $data);
     }
 
     public function customerTabContent()
@@ -409,22 +418,22 @@ class ControlPanel extends BaseController
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
                 $data['appointments'] = $this->objCustomerModel->upcomingAppointments($customerID);
                 # page
-                $view = "controlPanel/customers/tabContent/tabOverview";
+                $view = "controlPanel/customers/customerProfile/tabContent/tabOverview";
                 break;
             case 'tab-account':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
                 # page
-                $view = "controlPanel/customers/tabContent/tabAccount";
+                $view = "controlPanel/customers/customerProfile/tabContent/tabAccount";
                 break;
             case 'tab-profile':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
                 # page
-                $view = "controlPanel/customers/tabContent/tabProfile";
+                $view = "controlPanel/customers/customerProfile/tabContent/tabProfile";
                 break;
         }
 
         return view($view, $data);
-    }
+    } // ok
 
     public function updateCustomerAccount()
     {
@@ -490,7 +499,7 @@ class ControlPanel extends BaseController
         $response['error'] = 0;
 
         return json_encode($response);
-    }
+    } // ok
 
     public function updateCustomerProfile()
     {

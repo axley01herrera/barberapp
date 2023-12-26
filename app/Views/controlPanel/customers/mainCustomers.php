@@ -45,7 +45,7 @@
                                     <th class="p-2"><?php echo lang('Text.dt_customer_last_name'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.dt_customer_email'); ?></th>
                                     <th class="text-center p-2"><?php echo lang('Text.dt_customer_status'); ?></th>
-                                    <th class="text-center p-2"></th>
+                                    <th class="text-end p-2"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -127,7 +127,7 @@
             },
             {
                 data: 'action',
-                class: 'dt-vertical-align text-center p-2',
+                class: 'dt-vertical-align text-end p-2',
                 orderable: false,
                 searchable: false
             },
@@ -140,24 +140,32 @@
 
     dtCustomers.on('click', '.change-status', function() {
         let customerID = $(this).attr('data-customer-id');
-        if ($(this).attr('data-status') == 1)
-            $(this).attr('data-status', 0);
-        else
-            $(this).attr('data-status', 1);
+        let status = $(this).attr('data-status');
+        let newStatus = "";
+        let msg = "";
+
+        if (status == 0) {
+            newStatus = 1;
+            msg = "<?php echo lang('Text.cust_activated'); ?>";
+        } else if (status == 1) {
+            newStatus = 0;
+            msg = "<?php echo lang('Text.cust_deactivated'); ?>";
+        }
+
+        $(this).attr('data-status', newStatus);
 
         $.ajax({
             type: "post",
             url: "<?php echo base_url('ControlPanel/changeCustomerStatus'); ?>",
             data: {
                 'customerID': customerID,
-                'status': $(this).attr('data-status')
+                'status': newStatus
             },
             dataType: "json",
             success: function(response) {
-                if (response.error == 0) {
-                    simpleSuccessAlert('<?php echo lang('Text.success_change_status'); ?>');
-                    dtCustomers.draw();
-                } else {
+                if (response.error == 0)
+                    simpleSuccessAlert(msg);
+                else {
                     if (response.msg == "SESSION_EXPIRED") {
                         window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
                     } else

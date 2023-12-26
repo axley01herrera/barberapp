@@ -23,7 +23,7 @@ class CustomerModel extends Model
         $data = $query->get()->getResult();
 
         return $data;
-    }
+    } // ok
 
     public function getCompanyProfileSettings()
     {
