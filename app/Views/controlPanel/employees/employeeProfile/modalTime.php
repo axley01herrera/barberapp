@@ -1,5 +1,5 @@
 <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5"><?php echo $modalTitle; ?></h1>
@@ -63,7 +63,76 @@
                                                                                                                                                                         echo date('g:i A', strtotime($time[0]->end));
                                                                                                                                                                     } ?>" />
                     </div>
+
+                    <!-- Days of week -->
+                    <div class="col-12">
+                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.day'); ?> <span class="text-danger">*</span></label>
+                        <div class="row">
+
+                            <?php if ($employeeBussinesDay[0]->monday == 1) { ?>
+                                <div class="col-4 mt-5">
+                                    <div class="form-check">
+                                        <input id="cbx-sunday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
+                                        <label class="form-check-label" for="cbx-sunday">
+                                            Sunday
+                                        </label>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            
+                            <div class="col-4 mt-5">
+                                <div class="form-check">
+                                    <input id="cbx-monday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
+                                    <label class="form-check-label" for="cbx-monday">
+                                        Monday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-5">
+                                <div class="form-check">
+                                    <input id="cbx-tuesday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
+                                    <label class="form-check-label" for="cbx-tuesday">
+                                        Tuesday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-5">
+                                <div class="form-check">
+                                    <input id="cbx-wednesday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
+                                    <label class="form-check-label" for="cbx-wednesday">
+                                        Wednesday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-5">
+                                <div class="form-check">
+                                    <input id="cbx-thursday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
+                                    <label class="form-check-label" for="cbx-thursday">
+                                        Thursday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-5">
+                                <div class="form-check">
+                                    <input id="cbx-friday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
+                                    <label class="form-check-label" for="cbx-friday">
+                                        Friday
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4 mt-5">
+                                <div class="form-check">
+                                    <input id="cbx-saturday" class="form-check-input cbx" type="checkbox" checked data-value="1" />
+                                    <label class="form-check-label" for="cbx-saturday">
+                                        Saturday
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
+                <div id="chart-employee-time" class="mt-10"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo lang("Text.btn_cancel"); ?></button>
@@ -74,8 +143,10 @@
 </div>
 
 <script>
+    var employeeID = "<?php echo @$employeeID; ?>";
     var action = "<?php echo $action; ?>";
     var callModalFrom = $('#page').attr('data-page');
+    chartEmployeeTime();
 
     $('#modal').modal('show');
 
@@ -118,6 +189,7 @@
                     if (response.error == 0) {
                         simpleSuccessAlert(msg);
                         employeeProfileTabContent();
+                        chartEmployeeTime();
                         $('#sel-day<?php echo $uniqid; ?>').val('');
                         $('select').val('');
                         if (action == 'update')
@@ -150,4 +222,21 @@
     $('.required<?php echo $uniqid; ?>').on('focus', function() {
         $(this).removeClass('is-invalid');
     });
+
+    function chartEmployeeTime() {
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/chartEmployeeTime'); ?>",
+            data: {
+                'employeeID': employeeID,
+            },
+            dataType: "html",
+            success: function(response) {
+                $('#chart-employee-time').html(response);
+            },
+            error: function(e) {
+                globalError();
+            }
+        });
+    }
 </script>
