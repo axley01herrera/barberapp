@@ -128,6 +128,7 @@ $lang['employee'] = "Empleado";
 $lang['photo'] = "Fotos";
 $lang['click_to_select'] = "Examine o arrastre";
 $lang['upload_photo'] = "Subir Foto";
+$lang['dashboard'] = "Tablero";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";

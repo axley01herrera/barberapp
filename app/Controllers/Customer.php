@@ -55,6 +55,34 @@ class Customer extends BaseController
         helper('Site');
     }
 
+    public function dashboard()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
+            return view('customerLogout');
+
+        if ($this->config[0]->lang == 'es')
+            $dateLabel = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $dateLabel = "m-d-Y";
+
+        $data = array();
+        # menu 
+        $data['activeDashboard'] = "active";
+        # config
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->profile;
+        # data
+        $data['uniqid'] = uniqid();
+        $data['dateLabel'] = $dateLabel;
+        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+        $data['upcomingAppointments'] = $this->objCustomerModel->upcomingAppointments($this->objSession->get('user')['customerID']);
+        # page
+        $data['page'] = 'customer/dashboard/mainDashboard';
+
+        return view('customer/mainCustomer', $data);
+    }
+
     public function appointment()
     {
         # Verify Session 
@@ -256,7 +284,7 @@ class Customer extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
-            
+
             return json_encode($result);
         }
 

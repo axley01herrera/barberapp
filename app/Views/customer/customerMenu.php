@@ -4,6 +4,13 @@
 
         <div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
 
+            <!-- Dashboard -->
+            <a href="<?php echo base_url('Customer/dashboard'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                <span class="menu-link <?php echo @$activeDashboard; ?>">
+                    <span class="menu-title"><?php echo lang('Text.dashboard'); ?></span>
+                </span>
+            </a>
+
             <!-- Appointments -->
             <a href="<?php echo base_url('Customer/appointment'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeAppointment; ?>">
@@ -31,7 +38,7 @@
     <!-- Navbar -->
     <div class="app-navbar flex-shrink-0">
         <div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle">
-            <a href="<?php echo base_url('Home/controlPanelAuth'); ?>" class="btn btn-sm btn-danger"><?php echo lang('Text.top_bar_logout'); ?></a>
+            <a href="<?php echo base_url('/'); ?>" class="btn btn-sm btn-danger"><?php echo lang('Text.top_bar_logout'); ?></a>
         </div>
         <div class="app-navbar-item d-lg-none ms-2 me-n2" title="Show header menu">
             <div class="btn btn-flex btn-icon btn-active-color-primary w-30px h-30px" id="kt_app_header_menu_toggle">

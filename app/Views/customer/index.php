@@ -45,7 +45,7 @@
 </div>
 
 <script>
-    var tab = "tab-appointments";
+    var tab = "tab-dashboard";
     customerTabContent();
 
     function customerTabContent() {
