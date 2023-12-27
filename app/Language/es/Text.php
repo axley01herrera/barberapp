@@ -314,6 +314,7 @@ $lang['serv_order_msg_sub1'] = "Mueve las tarjetas desde la ezquina superior der
 $lang['serv_order_msg_sub2'] = "para guardar";
 
 # Control Panel Profile
+$lang['cp_profile_page_title'] = "Perfil de Empresa";
 $lang['cp_profile_menu_bussiness_data'] = "Descripción";
 $lang['cp_profile_bussiness_data_title'] = "Descripción General";
 $lang['cp_profile_bussiness_data_subtitle'] = "Información del Negocio.";
