@@ -1542,36 +1542,34 @@ class ControlPanel extends BaseController
 
         $tab = $this->objRequest->getPost('tab');
 
+        $data = array();
+        $data['config'] = $this->config;
+        $data['uniqid'] = uniqid();
+
         switch ($tab) {
             case 'profile':
                 $view = "controlPanel/companyProfile/tabs/profileInfo";
-                $data = array();
                 $data['profile'] = $this->companyProfile;
-                $data['config'] = $this->config;
                 break;
             case 'key':
                 $view = "controlPanel/companyProfile/tabs/key";
                 break;
             case 'config':
                 $view = "controlPanel/companyProfile/tabs/config";
-                $data = array();
-                $data['config'] = $this->config;
                 break;
             case 'privacyPolice':
                 $view = "controlPanel/companyProfile/tabs/privacyPolice";
-                $data = array();
-                $data['config'] = $this->config;
-                $data['privacyPolice'] = $this->objMainModel->objData('company_profile')[0]->privacyPolice;
+                $data['privacyPolice'] = $this->companyProfile[0]->privacyPolice;
                 break;
             case 'images':
                 $view = "controlPanel/companyProfile/tabs/images";
-                $data = array();
-                $data['config'] = $this->config;
-                $data['images'] = $this->objMainModel->getCompanyImages();
+                $data['images'] = $this->objMainModel->objData('company_img');
+                break;
+            case 'modules':
+                $view = "controlPanel/companyProfile/tabs/modules";
+                $data['modules'] = $this->objMainModel->objData('modules');
                 break;
         }
-
-        $data['uniqid'] = uniqid();
 
         return view($view, $data);
     } // ok

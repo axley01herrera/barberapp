@@ -125,6 +125,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "key") echo "active"; ?>" data-tab-profile="key" href="#"><?php echo lang('Text.cp_profile_menu_change_key'); ?></a>
                         </li>
+                        <!-- Modules -->
+                        <li class="nav-item">
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "modules") echo "active"; ?>" data-tab-profile="modules" href="#"><?php echo lang('Text.cp_profile_menu_modules'); ?></a>
+                        </li>
                         <!-- Config -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "config") echo "active"; ?>" data-tab-profile="config" href="#"><?php echo lang('Text.cp_profile_menu_config'); ?></a>

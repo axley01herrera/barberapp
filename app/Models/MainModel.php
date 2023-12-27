@@ -141,10 +141,4 @@ class MainModel extends Model
 
         return $result;
     } // ok
-
-    public function getCompanyImages()
-    {
-        $query = $this->db->table('company_img');
-        return $query->get()->getResult();
-    } // ok
 }

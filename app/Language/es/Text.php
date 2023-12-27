@@ -129,6 +129,10 @@ $lang['photo'] = "Fotos";
 $lang['click_to_select'] = "Examine o arrastre";
 $lang['upload_photo'] = "Subir Foto";
 $lang['dashboard'] = "Tablero";
+$lang['customer'] = "Cliente";
+$lang['requested'] = "Solicitado";
+$lang['no_requested'] = "No Solicitado";
+$lang['send_requested'] = "Enviar Solicitud";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -317,6 +321,9 @@ $lang['cp_profile_menu_change_key'] = "Clave";
 $lang['cp_profile_change_key_title'] = "Acceso al Panel de Control";
 $lang['cp_profile_change_key_subtitle'] = "Clave de Acceso.";
 $lang['cp_profile_menu_config'] = "Configuración";
+$lang['cp_profile_menu_modules'] = "Módulos";
+$lang['cp_profile_aditionals_modules'] = "Módulos Adicionales";
+$lang['cp_profile_functionality_expansions'] ="Expansiones de Funcionalidad";
 $lang['cp_profile_menu_privacy_police'] = "Política de Privacidad";
 $lang['cp_profile_privacy_police_subtitle'] = "Desarrolla la Política de Privacidad de tu Negocio";
 $lang['cp_profile_menu_photo'] = "Fotos del Negocio";
@@ -339,6 +346,10 @@ $lang['cp_profile_not_images'] = "No hay imágenes";
 $lang['cp_profile_success_upload_imgs'] = "Imágenes Subidas";
 $lang['cp_profile_success_delete_img'] = "Imágen Eliminada";
 $lang['cp_profile_select_image'] = "Seleccione una Imagen";
+$lang['cp_dt_module_name'] = "Módulo";
+$lang['cp_dt_module_type'] = "Tipo";
+$lang['cp_dt_module_status'] = "Estado";
+$lang['cp_dt_module_request'] = "Solicitud";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";
