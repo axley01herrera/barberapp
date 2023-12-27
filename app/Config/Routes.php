@@ -27,7 +27,6 @@ $routes->get('Home/verifiedEmail', 'Home::verifiedEmail');
 $routes->get('Home/forgotPassword', 'Home::forgotPassword');
 $routes->post('Home/sendForgotPasswordEmail', 'Home::sendForgotPasswordEmail');
 $routes->get('Home/emailView', 'Home::emailView');
-$routes->get('Home/aboutUsModal', 'Home::aboutUsModal');
 
 ############################## 
 ## ControlPanel Routes

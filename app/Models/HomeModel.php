@@ -17,7 +17,7 @@ class HomeModel extends Model
     public function getCompanyProfileSettings()
     {
         $query = $this->db->table('company_profile')
-            ->select('companyID, avatar, companyName, companyType, email, phone1, address1, address2, city, state, zip, country')
+            ->select('companyID, avatar, companyName, companyType, email, phone1, address1, address2, city, state, zip, country, about')
             ->where('id', 1);
 
         $data = $query->get()->getResult();
@@ -76,11 +76,5 @@ class HomeModel extends Model
         $data = $query->get()->getResult();
 
         return $data;
-    } // ok
-
-    public function getCompanyImages()
-    {
-        $query = $this->db->table('company_img');
-        return $query->get()->getResult();
     } // ok
 }

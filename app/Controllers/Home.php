@@ -66,7 +66,7 @@ class Home extends BaseController
         $data['services'] = $this->objHomeModel->getServices();
         $data['team'] = $this->objHomeModel->getActiveEmployees();
         $data['socialNetworks'] = $this->objHomeModel->getActiveSocialNetworks();
-        $data['images'] = $this->objHomeModel->getCompanyImages();
+        $data['images'] = $this->objMainModel->objData('company_img');
         # page
         $view = 'home/landing';
 
@@ -493,12 +493,4 @@ class Home extends BaseController
 
         return view('email/recoverPassword', $dataEmail);
     }
-
-    public function aboutUsModal()
-    {
-        $data = array();
-        $data['about'] = $this->objHomeModel->getCompanyProfileAbout()[0]->about;
-
-        return view('home/aboutUsModal', $data);
-    } // ok
 }

@@ -85,6 +85,13 @@
                                             </a>
                                         </div>
 
+                                        <!-- About -->
+                                        <div class="menu-item">
+                                            <a class="menu-link nav-link  py-3 px-4 px-xxl-6" href="#kt_about" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">
+                                                <?php echo lang('Text.lp_menu_about'); ?>
+                                            </a>
+                                        </div>
+
                                         <!-- Contact -->
                                         <div class="menu-item">
                                             <a class="menu-link nav-link  py-3 px-4 px-xxl-6" href="#kt_contact" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">
@@ -134,7 +141,7 @@
         </div>
 
         <!-- Services -->
-        <div class="mb-n10 mb-lg-n20 z-index-2">
+        <div class="mt-20 mb-20">
             <div class="container">
                 <div class="text-center mb-17">
                     <h3 class="fs-2hx text-dark mb-5" id="kt_serv" data-kt-scroll-offset="{default: 100, lg: 150}">
@@ -190,7 +197,7 @@
         </div>
 
         <!-- Team -->
-        <div class="mt-10">
+        <div class="mt-20 mb-20">
             <div class="pb-15 pt-18 landing-dark-bg">
                 <div class="container">
                     <div class="text-center mt-15 mb-18" id="kt_team" data-kt-scroll-offset="{default: 100, lg: 150}">
@@ -229,7 +236,7 @@
         </div>
 
         <!-- Galery -->
-        <div class="position-relative z-index-2 mt-10">
+        <div class="position-relative z-index-2 mt-20 mb-20">
             <div class="container">
                 <div class="card" style="filter: drop-shadow(0px 0px 40px rgba(68, 81, 96, 0.08))">
                     <div class="card-body p-lg-20">
@@ -239,20 +246,13 @@
                             </h3>
                         </div>
                         <div class="tab-content">
-                            <!-- HERE IMGS-->
                             <div class="tab-pane fade show active" id="kt_landing_projects_latest">
-                                <!--begin::Row-->
                                 <div class="row g-10">
-                                    <!--begin::Col-->
                                     <div class="col-lg-6">
-                                        <!--begin::Item-->
                                         <a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($images[0]->img)) echo "data:image/png;base64," . base64_encode($images[0]->img) . "";
                                                                                                                                                     else echo "" . base_url('public/assets/media/img/img.png') . ""; ?>">
-                                            <!--begin::Image-->
                                             <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('<?php if (!empty($images[0]->img)) echo "data:image/png;base64," . base64_encode($images[0]->img) . "";
                                                                                                                                                                                             else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"></div>
-                                            <!--end::Image-->
-                                            <!--begin::Action-->
                                             <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
                                                 <i class="ki-duotone ki-eye fs-3x text-white">
                                                     <span class="path1"></span>
@@ -260,25 +260,15 @@
                                                     <span class="path3"></span>
                                                 </i>
                                             </div>
-                                            <!--end::Action-->
                                         </a>
-                                        <!--end::Item-->
                                     </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
                                     <div class="col-lg-6">
-                                        <!--begin::Row-->
                                         <div class="row g-10 mb-10">
-                                            <!--begin::Col-->
                                             <div class="col-lg-6">
-                                                <!--begin::Item-->
                                                 <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($images[1]->img)) echo "data:image/png;base64," . base64_encode($images[1]->img) . "";
                                                                                                                                                     else echo "" . base_url('public/assets/media/img/img.png') . ""; ?>">
-                                                    <!--begin::Image-->
                                                     <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($images[1]->img)) echo "data:image/png;base64," . base64_encode($images[1]->img) . "";
                                                                                                                                                                                     else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"> </div>
-                                                    <!--end::Image-->
-                                                    <!--begin::Action-->
                                                     <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
                                                         <i class="ki-duotone ki-eye fs-3x text-white">
                                                             <span class="path1"></span>
@@ -286,21 +276,13 @@
                                                             <span class="path3"></span>
                                                         </i>
                                                     </div>
-                                                    <!--end::Action-->
                                                 </a>
-                                                <!--end::Item-->
                                             </div>
-                                            <!--end::Col-->
-                                            <!--begin::Col-->
                                             <div class="col-lg-6">
-                                                <!--begin::Item-->
                                                 <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($images[2]->img)) echo "data:image/png;base64," . base64_encode($images[2]->img) . "";
                                                                                                                                                     else echo "" . base_url('public/assets/media/img/img.png') . ""; ?>">
-                                                    <!--begin::Image-->
                                                     <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($images[2]->img)) echo "data:image/png;base64," . base64_encode($images[2]->img) . "";
                                                                                                                                                                                     else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"></div>
-                                                    <!--end::Image-->
-                                                    <!--begin::Action-->
                                                     <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
                                                         <i class="ki-duotone ki-eye fs-3x text-white">
                                                             <span class="path1"></span>
@@ -308,21 +290,13 @@
                                                             <span class="path3"></span>
                                                         </i>
                                                     </div>
-                                                    <!--end::Action-->
                                                 </a>
-                                                <!--end::Item-->
                                             </div>
-                                            <!--end::Col-->
                                         </div>
-                                        <!--end::Row-->
-                                        <!--begin::Item-->
                                         <a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" target="blank" href="<?php if (!empty($images[3]->img)) echo "data:image/png;base64," . base64_encode($images[3]->img) . "";
                                                                                                                                             else echo "" . base_url('public/assets/media/img/img.png') . ""; ?>">
-                                            <!--begin::Image-->
                                             <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('<?php if (!empty($images[3]->img)) echo "data:image/png;base64," . base64_encode($images[3]->img) . "";
                                                                                                                                                                             else echo "" . base_url("public/assets/media/img/img.png") . ""; ?>')"></div>
-                                            <!--end::Image-->
-                                            <!--begin::Action-->
                                             <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
                                                 <i class="ki-duotone ki-eye fs-3x text-white">
                                                     <span class="path1"></span>
@@ -330,13 +304,9 @@
                                                     <span class="path3"></span>
                                                 </i>
                                             </div>
-                                            <!--end::Action-->
                                         </a>
-                                        <!--end::Item-->
                                     </div>
-                                    <!--end::Col-->
                                 </div>
-                                <!--end::Row-->
                             </div>
                         </div>
                     </div>
@@ -344,120 +314,17 @@
             </div>
         </div>
 
-        <div class="mt-20 mb-n20 position-relative z-index-2">
+        <!-- About -->
+        <div id="kt_about" class="mt-20 mb-20">
             <div class="container">
                 <div class="text-center mb-17">
-                    <h3 class="fs-2hx text-dark mb-5" id="clients" data-kt-scroll-offset="{default: 125, lg: 150}">What Our Clients Say</h3>
-                    <div class="fs-5 text-muted fw-bold">Save thousands to millions of bucks by using single tool
-                        <br />for different amazing and great useful admin
-                    </div>
+                    <h3 class="fs-2hx text-dark mb-5" id="clients" data-kt-scroll-offset="{default: 125, lg: 150}"><?php echo lang('Text.lp_menu_about') ?></h3>
                 </div>
                 <div class="row g-lg-10 mb-10 mb-lg-20">
-                    <div class="col-lg-4">
+                    <div class="col-12">
                         <div class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
                             <div class="mb-7">
-                                <div class="rating mb-6">
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                </div>
-                                <div class="fs-2 fw-bold text-dark mb-3">This is by far the cleanest template
-                                    <br />and the most well structured
-                                </div>
-                                <div class="text-gray-500 fw-semibold fs-4">The most well thought out design theme I have ever used. The codes are up to tandard. The css styles are very clean. In fact the cleanest and the most up to standard I have ever seen.</div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <div class="symbol symbol-circle symbol-50px me-5">
-                                    <img src="assets/media/avatars/300-1.jpg" class="" alt="" />
-                                </div>
-                                <div class="flex-grow-1">
-                                    <a href="#" class="text-dark fw-bold text-hover-primary fs-6">Paul Miles</a>
-                                    <span class="text-muted d-block fw-bold">Development Lead</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
-                            <div class="mb-7">
-                                <div class="rating mb-6">
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                </div>
-                                <div class="fs-2 fw-bold text-dark mb-3">This is by far the cleanest template
-                                    <br />and the most well structured
-                                </div>
-                                <div class="text-gray-500 fw-semibold fs-4">The most well thought out design theme I have ever used. The codes are up to tandard. The css styles are very clean. In fact the cleanest and the most up to standard I have ever seen.</div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <div class="symbol symbol-circle symbol-50px me-5">
-                                    <img src="assets/media/avatars/300-2.jpg" class="" alt="" />
-                                </div>
-                                <div class="flex-grow-1">
-                                    <a href="#" class="text-dark fw-bold text-hover-primary fs-6">Janya Clebert</a>
-                                    <span class="text-muted d-block fw-bold">Development Lead</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
-                            <div class="mb-7">
-                                <div class="rating mb-6">
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                    <div class="rating-label me-2 checked">
-                                        <i class="ki-duotone ki-star fs-5"></i>
-                                    </div>
-                                </div>
-                                <div class="fs-2 fw-bold text-dark mb-3">This is by far the cleanest template
-                                    <br />and the most well structured
-                                </div>
-                                <div class="text-gray-500 fw-semibold fs-4">The most well thought out design theme I have ever used. The codes are up to tandard. The css styles are very clean. In fact the cleanest and the most up to standard I have ever seen.</div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <div class="symbol symbol-circle symbol-50px me-5">
-                                    <img src="assets/media/avatars/300-16.jpg" class="" alt="" />
-                                </div>
-                                <div class="flex-grow-1">
-                                    <a href="#" class="text-dark fw-bold text-hover-primary fs-6">Steave Brown</a>
-                                    <span class="text-muted d-block fw-bold">Development Lead</span>
-                                </div>
+                                <div class="text-gray-500 fw-semibold fs-4"><?php echo $companyProfile[0]->about; ?></div>
                             </div>
                         </div>
                     </div>
@@ -465,54 +332,32 @@
             </div>
         </div>
 
+        <!-- Contact -->
         <div id="kt_contact" class="mb-0 mt-20">
             <div class="landing-dark-bg pt-20">
                 <div class="container">
                     <div class="row py-10 py-lg-20">
                         <div class="col-lg-6 pe-lg-16 mb-10 mb-lg-0">
-                            <div class="rounded landing-dark-border p-9 mb-10">
-                                <!--Contact Email-->
-                                <h2 class="text-white"><?php echo lang('Text.lp_contact_email') ?></h2>
-                                <span class="fw-normal fs-4 text-gray-700">
-                                    <span class="text-white opacity-50">
-                                        <?php echo $companyProfile[0]->email; ?>
-                                    </span>
-                                </span>
-                            </div>
-                            <div class="rounded landing-dark-border p-9">
-                                <h2 class="text-white"><?php echo lang('Text.lp_contact_phone'); ?></h2>
-                                <span class="fw-normal fs-4 text-gray-700">
-                                    <span class="text-white opacity-50">
-                                        <?php echo $companyProfile[0]->phone1; ?>
-                                    </span>
-                                </span>
-                            </div>
+                            <h2 class="text-white"><?php echo $companyProfile[0]->companyType . ' ' . $companyProfile[0]->companyName; ?></h2>
+                            <br>
+                            <p class="text-white opacity-50 fs-5 mb-6"><i class="bi bi-envelope-at fs-5"></i> <?php echo $companyProfile[0]->email; ?></p>
+                            <p class="text-white opacity-50 fs-5 mb-6"><i class="bi bi-telephone fs-5"></i> <?php echo $companyProfile[0]->phone1; ?></p>
+
+                            <p class="text-white opacity-50 fs-5 mb-6">
+                                <i class="bi bi-geo-alt fs-5"></i>
+                                <?php echo @$companyProfile[0]->address1; ?>
+                                <?php if (@$companyProfile[0]->address2) echo ", " . $companyProfile[0]->address2; ?>
+                                <br>
+                                <?php echo @$companyProfile[0]->city; ?>
+                                <?php if (@$companyProfile[0]->state) echo ", " .  $companyProfile[0]->state; ?>
+                                <br>
+                                <?php echo @$companyProfile[0]->zip; ?> <?php echo @$companyProfile[0]->country; ?>
+                            </p>
                         </div>
                         <div class="col-lg-6 ps-lg-16">
                             <div class="d-flex justify-content-center">
-                                <!-- Company Info -->
-                                <div class="d-flex fw-semibold flex-column me-20">
-                                    <!-- Company Name -->
-                                    <h4 class="fw-bold text-gray-400 mb-6"><?php echo $companyProfile[0]->companyType . ' ' . $companyProfile[0]->companyName; ?></h4>
-                                    <!-- Company Email -->
-                                    <span class="text-white opacity-50 fs-5 mb-6"><i class="bi bi-envelope-at fs-5"></i> <?php echo $companyProfile[0]->email; ?></span>
-                                    <!-- Company Primary Phone   -->
-                                    <span class="text-white opacity-50 fs-5 mb-6"><i class="bi bi-telephone fs-5"></i> <?php echo $companyProfile[0]->phone1; ?></span>
-                                    <!-- Company Address -->
-                                    <span class="text-white opacity-50 fs-5 mb-6">
-                                        <i class="bi bi-geo-alt fs-5"></i>
-                                        <?php echo @$companyProfile[0]->address1; ?>
-                                        <?php if (@$companyProfile[0]->address2) echo ", " . $companyProfile[0]->address2; ?>
-                                        <br>
-                                        <?php echo @$companyProfile[0]->city; ?>
-                                        <?php if (@$companyProfile[0]->state) echo ", " .  $companyProfile[0]->state; ?>
-                                        <br>
-                                        <?php echo @$companyProfile[0]->zip; ?> <?php echo @$companyProfile[0]->country; ?>
-                                    </span>
-                                </div>
                                 <!-- Company Social Networks -->
                                 <div class="d-flex fw-semibold flex-column ms-lg-20">
-                                    <h4 class="fw-bold text-gray-400 mb-6"><?php echo lang('Text.social_networks'); ?></h4>
                                     <?php foreach ($socialNetworks as $sn) { ?>
                                         <a href="<?php echo $sn->url; ?>" class="mb-6">
                                             <?php echo socialNetworkIcon($sn->type); ?>
@@ -532,9 +377,6 @@
                             <a class="mx-5 fs-6 fw-semibold text-gray-600 pt-1" href="<?php echo DEVELOPER_URL; ?>">&copy; <?php echo DEVELOPER; ?></a>
                         </div>
                         <ul class="menu menu-gray-600 menu-hover-primary fw-semibold fs-6 fs-md-5 order-1 mb-5 mb-md-0">
-                            <li class="menu-item">
-                                <a id="about" href="#" class="menu-link px-2"><?php echo lang('Text.about'); ?></a>
-                            </li>
                             <!-- Employee Sign In -->
                             <li class="menu-item mx-5">
                                 <a href="<?php echo base_url('Home/signInEmployee'); ?>" class="menu-link px-2"><?php echo lang('Text.top_bar_employees'); ?></a>
@@ -548,6 +390,7 @@
                 </div>
             </div>
         </div>
+
         <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
             <i class="ki-duotone ki-arrow-up">
                 <span class="path1"></span>
@@ -564,20 +407,3 @@
 </body>
 
 </html>
-
-<script>
-    $('#about').on('click', function(e) {
-        e.preventDefault();
-        $.ajax({
-            type: "GET",
-            url: "<?php echo base_url('Home/aboutUsModal') ?>",
-            dataType: "html",
-            success: function(response) {
-                $('#landing-modal').html(response);
-            },
-            error: function(error) {
-                globalError();
-            }
-        });
-    });
-</script>

@@ -401,6 +401,7 @@ $lang['lp_menu_home'] = "Inicio";
 $lang['lp_menu_services'] = "Servicios";
 $lang['lp_menu_team'] = "Equipo";
 $lang['lp_menu_galery'] = "Galería";
+$lang['lp_menu_about'] = "Sobre Nosotros";
 $lang['lp_menu_contact'] = "Información de Contacto";
 $lang['lp_contact_email'] = "Correo Electrónico de Contacto";
 $lang['lp_contact_phone'] = "Teléfono de Contacto";
