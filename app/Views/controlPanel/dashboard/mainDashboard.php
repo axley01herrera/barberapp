@@ -11,114 +11,114 @@
                     <img class="w-75" src="<?php echo base_url('public/assets/media/img/uscis.png') ?>" alt="Image">
                 </div>
                 <div class="col-12 col-lg-8 text-center mt-5">
-                    <h1>Employment Eligibility Verification</h1>
-                    <h5 class="mt-5">Department of Homeland Security</h5>
-                    <p>U.S. Citizenship and Immigration Services</p>
+                    <h1><?php echo lang('Text.form1_title'); ?></h1>
+                    <h5 class="mt-5"><?php echo lang('Text.form1_subtitle1'); ?></h5>
+                    <p><?php echo lang('Text.form1_subtitle2'); ?></p>
                 </div>
                 <div class="col-12 col-lg-2 text-center">
-                    <p class="fw-bold fs-4">USCIS</p>
-                    <p class="fw-bold fs-4">Form I-9</p>
+                    <p class="fw-bold fs-4"><?php echo lang('Text.USCIS'); ?></p>
+                    <p class="fw-bold fs-4"><?php echo lang('Text.form_i9'); ?></p>
                     <p>OMB No. 1615-0047</p>
-                    <p>Expires 07/31/2026</p>
+                    <p><?php echo lang('Text.form_expires'); ?></p>
                 </div>
             </div>
             <hr>
             <div class="mt-5">
-                <p>► <span class="fw-bold">START HERE</span>. Read instructions carefully before completing this form. The instructions must be available during completion of this form.</p>
-                <p><span class="fw-bold">ANTI-DISCRIMINATION NOTICE:</span>It is illegal to discriminate against work-authorized individuals. Employers <span class="fw-bold">CANNOT</span> specify which document(s) they will accept from an employee. The refusal to hire an individual because the documentation presented has a future expiration date may also constitute illegal discrimination.</p>
+                <p class="fw-bold"><?php echo lang('Text.form1_start_here'); ?></p>
+                <p><span class="fw-bold"><?php echo lang('Text.form1_adn_title'); ?></span><?php echo lang('Text.form1_adn_msg'); ?></p>
                 <div class="border border-4">
-                    <p class="bg-gray-200 p-2"><span class="fw-bold">Section 1. Employee Information and Attestation</span> <span class="fst-italic">(Employees must complete and sign Section 1 of Form I-9 no later than the <span class="fw-bold">first day of employment</span>, but not before accepting a job offer.)</span></p>
+                    <p class="bg-gray-200 p-2"><span class="fw-bold"><?php echo lang('Text.form1_section1_title'); ?></span><?php echo lang('Text.form1_section1_msg'); ?></p>
                     <div class="row p-2">
                         <div class="col-12 col-lg-3 ">
-                            <label class="col-form-label fw-semibold fs-6">Last Name (Family Name)</label>
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?></label>
                             <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                         </div>
                         <div class="col-12 col-lg-3">
-                            <label class="col-form-label fw-semibold fs-6">First Name (Given Name)</label>
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?></label>
                             <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                         </div>
                         <div class="col-12 col-lg-3">
-                            <label class="col-form-label fw-semibold fs-6">Middle Initial</label>
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?></label>
                             <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  ">
                         </div>
                         <div class="col-12 col-lg-3">
-                            <label class="col-form-label fw-semibold fs-6">Other Names Used <span class="fst-italic">(if any)</span></label>
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.other_names_used_if_any'); ?></label>
                             <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  ">
                         </div>
                         <div class="col-12 col-lg-4">
-                            <label class="col-form-label fw-semibold fs-6">Address <span class="fst-italic">(Street Number and Name)</span></label>
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.address_street_name'); ?></label>
                             <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                         </div>
                         <div class="col-12 col-lg-2">
-                            <label class="col-form-label fw-semibold fs-6">Apt. Number</label>
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.apt_number'); ?></label>
                             <input type="text" id="txt-" class="form-control form-control-sm number mb-3 mb-lg-0 required">
                         </div>
                         <div class="col-12 col-lg-3">
-                            <label class="col-form-label fw-semibold fs-6">City or Town</label>
-                            <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0 required">
-                        </div>
-                        <div class="col-12 col-lg-2">
-                            <label class="col-form-label fw-semibold fs-6">State</label>
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.city_or_town'); ?></label>
                             <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0 required">
                         </div>
                         <div class="col-12 col-lg-1">
-                            <label class="col-form-label fw-semibold fs-6">Zip</label>
-                            <input type="text" id="txt-" class="form-control form-control-sm number zip-mask mb-3 mb-lg-0 required" inputmode="text">
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.state'); ?></label>
+                            <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0 required">
+                        </div>
+                        <div class="col-12 col-lg-2">
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.zip'); ?></label>
+                            <input type="text" id="txt-" class="form-control form-control-sm number zip-mask mb-3 mb-lg-0 required">
                         </div>
                         <div class="col-12 col-lg-3">
-                            <label class="col-form-label fw-semibold fs-6">Date of Birth (mm/dd/yyyy)</label>
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.date_of_birth'); ?></label>
                             <input type="text" id="txt-" class="form-control form-control-sm datepicker mb-3 mb-lg-0 required">
                         </div>
                         <div class="col-12 col-lg-3">
-                            <label class="col-form-label fw-semibold fs-6">U.S. Social Security Number</label>
-                            <input type="text" id="txt-" class="form-control form-control-sm ssn-mask number mb-3 mb-lg-0 required" inputmode="text">
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.ssn'); ?></label>
+                            <input type="text" id="txt-" class="form-control form-control-sm ssn-mask number mb-3 mb-lg-0 required">
                         </div>
                         <div class="col-12 col-lg-3">
-                            <label class="col-form-label fw-semibold fs-6">Employee's E-mail Address</label>
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.emp_email_address'); ?></label>
                             <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0 email required">
                         </div>
                         <div class="col-12 col-lg-3">
-                            <label class="col-form-label fw-semibold fs-6">Employee's Phone Number</label>
-                            <input type="text" id="txt-" class="form-control form-control-sm phone-mask mb-3 mb-lg-0 required" inputmode="text">
+                            <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.emp_phone_number'); ?></label>
+                            <input type="text" id="txt-" class="form-control form-control-sm phone-mask mb-3 mb-lg-0 required">
                         </div>
                         <div class="mt-6 row ms-1" style="border-top: 1px solid gray;">
                             <div class="col-12 col-lg-3 ">
-                                <p class="m-2"><strong>I am aware that federal law provides for imprisonment and/or fines for false statements, or the use of false documents, in connection with the completion of this form. I attest, under penalty of perjury, that this information, including my selection of the box attesting to my citizenship or immigration status, is true and correct. </strong></p>
+                                <p class="m-2"><strong><?php echo lang('Text.form1_text1'); ?></strong></p>
                             </div>
                             <div class="col-12 col-lg-9 mt-2 row">
-                                <p>Check one of the following boxes to attest to your citizenship or immigration status (See page 2 and 3 of the instructions.): </p>
+                                <p><?php echo lang('Text.form1_text2'); ?></p>
                                 <div class="col-12 mt-2">
-                                    <input type="checkbox" id="cb-1" class="cbx"> <label for="cb-1">1. A citizen of the United States </label>
+                                    <input type="checkbox" id="cb-1" class="cbx"> <label for="cb-1"><?php echo lang('Text.form1_cbx1'); ?> </label>
                                 </div>
                                 <div class="col-12 mt-2">
-                                    <input type="checkbox" id="cb-2" class="cbx"> <label for="cb-2">2. A noncitizen national of the United States (See Instructions.) </label>
+                                    <input type="checkbox" id="cb-2" class="cbx"> <label for="cb-2"><?php echo lang('Text.form1_cbx2'); ?> </label>
                                 </div>
                                 <div class="col-12 row">
                                     <div class="col-6 mt-2">
-                                        <input type="checkbox" id="cb-3" class="cbx"> <label for="cb-3">3. A lawful permanent resident (Enter USCIS or A-Number.) </label>
+                                        <input type="checkbox" id="cb-3" class="cbx"> <label for="cb-3"><?php echo lang('Text.form1_cbx3'); ?> </label>
                                     </div>
                                     <div class="col-6">
                                         <input type="text" id="txt-" class="form-control form-control-sm ">
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <input type="checkbox" id="cb-4" class="cbx"> <label for="cb-4">4. A noncitizen (other than Item Numbers 2. and 3. above) authorized to work until (exp. date, if any) </label>
+                                    <input type="checkbox" id="cb-4" class="cbx"><label for="cb-4"><?php echo lang('Text.form1_cbx4'); ?> </label>
                                 </div>
                                 <div class="mt-6">
-                                    <p>If you check <strong>Item Numbers 4</strong>., enter one of these:</p>
+                                    <p><?php echo lang('Text.form1_if_check4');?></p>
                                     <div class="row">
                                         <div class="col-2 text-lg-center">
-                                            <p><strong>USCIS A-Number</strong></p>
+                                            <p><strong><?php echo lang('Text.uscis_anumber');?></strong></p>
                                             <input type="text" class="form-control form-control-sm ">
                                         </div>
-                                        <div class="col-1 mt-5 text-center">OR</div>
+                                        <div class="col-1 mt-5 text-center"><?php echo lang('Text.or');?></div>
                                         <div class="col-3">
-                                            <p><strong>Form I-94 Admission Number</strong></p>
+                                            <p><strong><?php echo lang('Text.admission_number');?></strong></p>
                                             <input type="text" class="form-control form-control-sm">
                                         </div>
-                                        <div class="col-1 mt-5 text-center">OR</div>
+                                        <div class="col-1 mt-5 text-center"><?php echo lang('Text.or');?></div>
                                         <div class="col-5">
-                                            <p><strong>Foreign Passport Number adn Country of Issuance</strong></p>
+                                            <p><strong><?php echo lang('Text.passport_number');?></strong></p>
                                             <input type="text" class="form-control form-control-sm">
                                         </div>
                                     </div>
@@ -126,12 +126,12 @@
                             </div>
                             <div class="mt-6 row" style="border-top: 1px solid gray;">
                                 <div class="col-8 mt-4">
-                                    <p>Signature Of Employee</p>
+                                    <p><?php echo lang('Text.employee_sign');?></p>
                                     <input type="text" id="txt-" class="form-control form-control-sm">
                                 </div>
                                 <div class="col-4 mt-4">
-                                    <p>Today's Date (mm/dd/yyyy)</p>
-                                    <input type="text" class="form-control form-control-sm ">
+                                    <p><?php echo lang('Text.today_date');?></p>
+                                    <input type="text" class="form-control form-control-sm " value="<?php echo date('d/m/Y')?>">
                                 </div>
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                         </div>
                         <div class="text-center col-6 row">
                             <div class="col-1 bg-gray-200 p-2">
-                                <p class="fw-bold ">OR</p>
+                                <p class="fw-bold "><?php echo lang('Text.or');?></p>
                             </div>
                             <div class="col-5 h-75px">
                                 <p class="fw-bold">List B </p>
@@ -309,7 +309,7 @@
                     </div>
                 </div>
                 <div class="col-1 text-center">
-                    <h6 class="mb-9 mt-9">OR</h6>
+                    <h6 class="mb-9 mt-9"><?php echo lang('Text.or');?></h6>
                     <hr>
                 </div>
                 <div class="col-7 text-center">
@@ -357,7 +357,7 @@
                         </div>
                     </div>
                 </div>
-              <div class="mb-2 mt-2" style="border-top: 6px solid gray;"></div>
+                <div class="mb-2 mt-2" style="border-top: 6px solid gray;"></div>
                 <div class="text-center">
                     <h1>Acceptable Receipts </h1>
                     <p>May be presented in lieu of a document listed above for a temporary period.</p>
@@ -372,7 +372,7 @@
                         <p>● Form I-94 with “RE” notation or refugee stamp issued to a refugee.</p>
                     </div>
                     <div class="col-1 text-center">
-                        <h6>OR</h6>
+                        <h6><?php echo lang('Text.or');?></h6>
                     </div>
                     <div class="col-7 text-start">
                         <div class="row">
