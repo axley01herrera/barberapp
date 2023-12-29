@@ -148,6 +148,12 @@ class Customer extends BaseController
         else if ($this->config[0]->lang == 'en')
             $dateLabel = "m-d-Y";
 
+        # params
+        $tab = $this->objRequest->getPostGet('tab');
+
+        if (empty($tab))
+            $tab = "profile";
+
         $data = array();
         # menu 
         $data['activeProfile'] = "active";
@@ -157,12 +163,37 @@ class Customer extends BaseController
         # data
         $data['uniqid'] = uniqid();
         $data['dateLabel'] = $dateLabel;
-        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+        $data['tab'] = $tab;
         # page
         $data['page'] = 'customer/profile/mainProfile';
 
         return view('customer/mainCustomer', $data);
     } // ok
+
+    public function profileTab()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
+            return view('customerLogout');
+
+        # params
+        $tab = $this->objRequest->getPost('tab');
+
+        $data = array();
+        $data['config'] = $this->config;
+        $data['uniqid'] = uniqid();
+
+        switch ($tab) {
+            case 'profile':
+                # page
+                $view = 'customer/profile/tabContent/customerProfile';
+                # data
+                $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+                break;
+        }
+
+        return view($view, $data);
+    }
 
     public function updateAccount()
     {
