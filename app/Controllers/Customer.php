@@ -66,6 +66,8 @@ class Customer extends BaseController
         else if ($this->config[0]->lang == 'en')
             $dateLabel = "m-d-Y";
 
+        $customerID = $this->objSession->get('user')['customerID'];
+
         $data = array();
         # menu 
         $data['activeDashboard'] = "active";
@@ -76,7 +78,7 @@ class Customer extends BaseController
         $data['uniqid'] = uniqid();
         $data['dateLabel'] = $dateLabel;
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-        $data['upcomingAppointments'] = $this->objCustomerModel->upcomingAppointments($this->objSession->get('user')['customerID']);
+        $data['upcomingAppointments'] = $this->objCustomerModel->upcomingAppointments($customerID);
         # page
         $data['page'] = 'customer/dashboard/mainDashboard';
 
