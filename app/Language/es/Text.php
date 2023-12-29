@@ -207,6 +207,7 @@ $lang['top_bar_logout'] = "Salir";
 
 # Customers
 $lang['cust_dash_page_title'] = 'Tablero';
+$lang['cust_profile_page_title'] = "Perfil del Cliente";
 $lang['cust_dash_page_subtitle'] = 'Visión General';
 $lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
 $lang['cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
@@ -224,8 +225,6 @@ $lang['dt_customer_last_name'] = "Apellidos";
 $lang['dt_customer_email'] = "Correo Electrónico";
 $lang['dt_customer_phone'] = "Teléfono";
 $lang['dt_customer_status'] = "Estado";
-$lang['cust_profile_title'] = "Perfil del Cliente";
-$lang['cust_profile_subtitle'] = 'Datos del Perfil.';
 $lang['cust_profile_success_updated'] = "Perfil Actualizado";
 $lang['cust_account_title'] = 'Cuenta del Cliente';
 $lang['cust_account_subtitle'] = 'Administración de Cuenta.';
