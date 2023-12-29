@@ -105,20 +105,20 @@
                                     <input type="checkbox" id="cb-4" class="cbx"><label for="cb-4"><?php echo lang('Text.form1_cbx4'); ?> </label>
                                 </div>
                                 <div class="mt-6">
-                                    <p><?php echo lang('Text.form1_if_check4');?></p>
+                                    <p><?php echo lang('Text.form1_if_check4'); ?></p>
                                     <div class="row">
                                         <div class="col-2 text-lg-center">
-                                            <p><strong><?php echo lang('Text.uscis_anumber');?></strong></p>
+                                            <p><strong><?php echo lang('Text.uscis_anumber'); ?></strong></p>
                                             <input type="text" class="form-control form-control-sm ">
                                         </div>
-                                        <div class="col-1 mt-5 text-center"><?php echo lang('Text.or');?></div>
+                                        <div class="col-1 mt-5 text-center"><?php echo lang('Text.or'); ?></div>
                                         <div class="col-3">
-                                            <p><strong><?php echo lang('Text.admission_number');?></strong></p>
+                                            <p><strong><?php echo lang('Text.admission_number'); ?></strong></p>
                                             <input type="text" class="form-control form-control-sm">
                                         </div>
-                                        <div class="col-1 mt-5 text-center"><?php echo lang('Text.or');?></div>
+                                        <div class="col-1 mt-5 text-center"><?php echo lang('Text.or'); ?></div>
                                         <div class="col-5">
-                                            <p><strong><?php echo lang('Text.passport_number');?></strong></p>
+                                            <p><strong><?php echo lang('Text.passport_number'); ?></strong></p>
                                             <input type="text" class="form-control form-control-sm">
                                         </div>
                                     </div>
@@ -126,23 +126,21 @@
                             </div>
                             <div class="mt-6 row" style="border-top: 1px solid gray;">
                                 <div class="col-8 mt-4">
-                                    <p><?php echo lang('Text.employee_sign');?></p>
+                                    <p><?php echo lang('Text.employee_sign'); ?></p>
                                     <input type="text" id="txt-" class="form-control form-control-sm">
                                 </div>
                                 <div class="col-4 mt-4">
-                                    <p><?php echo lang('Text.today_date');?></p>
-                                    <input type="text" class="form-control form-control-sm " value="<?php echo date('d/m/Y')?>">
+                                    <p><?php echo lang('Text.today_date'); ?></p>
+                                    <input type="text" class="form-control form-control-sm " value="<?php echo date('d/m/Y') ?>">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-6" style="border-top: 6px solid gray;"> </div>
-                    <p class="bg-gray-200 p-2"><span class="fw-bold">Section 2. Employer Review and Verification: Employnt, aners d mor their authorized representative must complete anust physically examine, or examine consistent with an alternative procedure d sign Section 2 within three business days after the employee's first day of employme
-                            authorized by the Secretary of DHS, documentation from List A OR a combination of documentation from List B and List C. Enter any additional documentation in the Additional Information box; see Instructions.
-                    </p>
+                    <p class="bg-gray-200 p-2"><span class="fw-bold"><?php echo lang('Text.form1_section2_title'); ?></p>
                     <div class="row">
                         <div class="text-center col-6">
-                            <p class="fw-bold">List A</p>
+                            <p class="fw-bold"><?php echo lang('Text.list_a');?></p>
                             <div class="row">
                                 <div class="col-6">
                                     <p class="bg-gray-200 p-2 fw-bold">Document Title 1</p>
@@ -220,20 +218,20 @@
                         </div>
                         <div class="text-center col-6 row">
                             <div class="col-1 bg-gray-200 p-2">
-                                <p class="fw-bold "><?php echo lang('Text.or');?></p>
+                                <p class="fw-bold "><?php echo lang('Text.or'); ?></p>
                             </div>
                             <div class="col-5 h-75px">
-                                <p class="fw-bold">List B </p>
+                                <p class="fw-bold"><?php echo lang('Text.list_b');?></p>
                                 <input type="text" class="form-control form-control-sm ">
                                 <input type="text" class="form-control form-control-sm mt-3">
                                 <input type="text" class="form-control form-control-sm mt-3">
                                 <input type="text" class="form-control form-control-sm mt-3">
                             </div>
                             <div class="col-1 h-75px">
-                                <p class="fw-bold">AND</p>
+                                <p class="fw-bold"><?php echo lang('Text.and');?></p>
                             </div>
                             <div class="col-5 h-75px">
-                                <p class="fw-bold">List C</p>
+                                <p class="fw-bold"><?php echo lang('Text.list_c');?></p>
                                 <input type="text" class="form-control form-control-sm ">
                                 <input type="text" class="form-control form-control-sm mt-3">
                                 <input type="text" class="form-control form-control-sm mt-3">
@@ -309,7 +307,7 @@
                     </div>
                 </div>
                 <div class="col-1 text-center">
-                    <h6 class="mb-9 mt-9"><?php echo lang('Text.or');?></h6>
+                    <h6 class="mb-9 mt-9"><?php echo lang('Text.or'); ?></h6>
                     <hr>
                 </div>
                 <div class="col-7 text-center">
@@ -372,7 +370,7 @@
                         <p>● Form I-94 with “RE” notation or refugee stamp issued to a refugee.</p>
                     </div>
                     <div class="col-1 text-center">
-                        <h6><?php echo lang('Text.or');?></h6>
+                        <h6><?php echo lang('Text.or'); ?></h6>
                     </div>
                     <div class="col-7 text-start">
                         <div class="row">
@@ -417,15 +415,15 @@
             <div class="mt-2">
                 <div class="row p-2">
                     <div class="col-12 col-lg-6 ">
-                        <label class="col-form-label fw-semibold fs-6">Last Name (Family Name) from Section 1</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?> <?php echo lang('Text.from_section1'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-3">
-                        <label class="col-form-label fw-semibold fs-6">First Name (Given Name) from Section 1. </label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?> <?php echo lang('Text.from_section1'); ?> </label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-3">
-                        <label class="col-form-label fw-semibold fs-6">Middle initial (if any) from Section 1. </label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?> <?php echo lang('Text.from_section1'); ?> </label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  ">
                     </div>
                 </div>
@@ -441,31 +439,31 @@
                         <input type="text" id="txt-" class="form-control form-control-sm datepicker mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-5 ">
-                        <label class="col-form-label fw-semibold fs-6">Last Name (Family Name)</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-5">
-                        <label class="col-form-label fw-semibold fs-6">First Name (Given Name)</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-2">
-                        <label class="col-form-label fw-semibold fs-6">Middle Initial (if any) </label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  ">
                     </div>
                     <div class="col-12 col-lg-5">
-                        <label class="col-form-label fw-semibold fs-6">Address <span class="fst-italic">(Street Number and Name)</span></label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.address_street_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-4">
-                        <label class="col-form-label fw-semibold fs-6">City or Town</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.city_or_town'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-2">
-                        <label class="col-form-label fw-semibold fs-6">State</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.state'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required" max>
                     </div>
                     <div class="col-12 col-lg-1">
-                        <label class="col-form-label fw-semibold fs-6">Zip Code</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.zip'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm number mb-3 mb-lg-0  required" maxlength="5">
                     </div>
                 </div>
@@ -480,31 +478,31 @@
                         <input type="text" id="txt-" class="form-control form-control-sm datepicker mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-5 ">
-                        <label class="col-form-label fw-semibold fs-6">Last Name (Family Name)</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-5">
-                        <label class="col-form-label fw-semibold fs-6">First Name (Given Name)</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-2">
-                        <label class="col-form-label fw-semibold fs-6">Middle Initial (if any) </label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  ">
                     </div>
                     <div class="col-12 col-lg-5">
-                        <label class="col-form-label fw-semibold fs-6">Address <span class="fst-italic">(Street Number and Name)</span></label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.address_street_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-4">
-                        <label class="col-form-label fw-semibold fs-6">City or Town</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.city_or_town'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-2">
-                        <label class="col-form-label fw-semibold fs-6">State</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.state'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required" max>
                     </div>
                     <div class="col-12 col-lg-1">
-                        <label class="col-form-label fw-semibold fs-6">Zip Code</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.zip'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm number mb-3 mb-lg-0  required" maxlength="5">
                     </div>
                 </div>
@@ -519,31 +517,31 @@
                         <input type="text" id="txt-" class="form-control form-control-sm datepicker mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-5 ">
-                        <label class="col-form-label fw-semibold fs-6">Last Name (Family Name)</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-5">
-                        <label class="col-form-label fw-semibold fs-6">First Name (Given Name)</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-2">
-                        <label class="col-form-label fw-semibold fs-6">Middle Initial (if any) </label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  ">
                     </div>
                     <div class="col-12 col-lg-5">
-                        <label class="col-form-label fw-semibold fs-6">Address <span class="fst-italic">(Street Number and Name)</span></label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.address_street_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-4">
-                        <label class="col-form-label fw-semibold fs-6">City or Town</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.city_or_town'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-2">
-                        <label class="col-form-label fw-semibold fs-6">State</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.state'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required" max>
                     </div>
                     <div class="col-12 col-lg-1">
-                        <label class="col-form-label fw-semibold fs-6">Zip Code</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.zip'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm number mb-3 mb-lg-0  required" maxlength="5">
                     </div>
                 </div>
@@ -558,31 +556,31 @@
                         <input type="text" id="txt-" class="form-control form-control-sm datepicker mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-5 ">
-                        <label class="col-form-label fw-semibold fs-6">Last Name (Family Name)</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-5">
-                        <label class="col-form-label fw-semibold fs-6">First Name (Given Name)</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-2">
-                        <label class="col-form-label fw-semibold fs-6">Middle Initial (if any) </label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  ">
                     </div>
                     <div class="col-12 col-lg-5">
-                        <label class="col-form-label fw-semibold fs-6">Address <span class="fst-italic">(Street Number and Name)</span></label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.address_street_name'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-4">
-                        <label class="col-form-label fw-semibold fs-6">City or Town</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.city_or_town'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-2">
-                        <label class="col-form-label fw-semibold fs-6">State</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.state'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required" max>
                     </div>
                     <div class="col-12 col-lg-1">
-                        <label class="col-form-label fw-semibold fs-6">Zip Code</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.zip'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm number mb-3 mb-lg-0  required" maxlength="5">
                     </div>
                 </div>
@@ -617,15 +615,15 @@
             <div class="mt-2">
                 <div class="row">
                     <div class="col-12 col-lg-6 ">
-                        <label class="col-form-label fw-semibold fs-6">Last Name (Family Name) from Section 1</label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?> <?php echo lang('Text.from_section1'); ?></label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-3">
-                        <label class="col-form-label fw-semibold fs-6">First Name (Given Name) from Section 1. </label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?> <?php echo lang('Text.from_section1'); ?> </label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  required">
                     </div>
                     <div class="col-12 col-lg-3">
-                        <label class="col-form-label fw-semibold fs-6">Middle initial (if any) from Section 1. </label>
+                        <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?> <?php echo lang('Text.from_section1'); ?> </label>
                         <input type="text" id="txt-" class="form-control form-control-sm  mb-3 mb-lg-0  ">
                     </div>
                 </div>
@@ -641,15 +639,15 @@
                             <p class="bg-gray-200 p-2">New Name (if applicable)</p>
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="col-form-label fw-semibold fs-6">Last Name (Family Name) </label>
+                                    <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?> </label>
                                     <input type="text" id="txt-" class="form-control form-control-sm mb-3 mb-lg-0  required">
                                 </div>
                                 <div class="col-4">
-                                    <label class="col-form-label fw-semibold fs-6">First Name (Given Name) </label>
+                                    <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?> </label>
                                     <input type="text" id="txt-" class="form-control form-control-sm mb-3 mb-lg-0  required">
                                 </div>
                                 <div class="col-2">
-                                    <label class="col-form-label fw-semibold fs-6">Middle Initial </label>
+                                    <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?></label>
                                     <input type="text" id="txt-" class="form-control form-control-sm mb-3 mb-lg-0  required">
                                 </div>
                             </div>
@@ -701,15 +699,15 @@
                             <p class="bg-gray-200 p-2">New Name (if applicable)</p>
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="col-form-label fw-semibold fs-6">Last Name (Family Name) </label>
+                                    <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?></label>
                                     <input type="text" id="txt-" class="form-control form-control-sm mb-3 mb-lg-0  required">
                                 </div>
                                 <div class="col-4">
-                                    <label class="col-form-label fw-semibold fs-6">First Name (Given Name) </label>
+                                    <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?> </label>
                                     <input type="text" id="txt-" class="form-control form-control-sm mb-3 mb-lg-0  required">
                                 </div>
                                 <div class="col-2">
-                                    <label class="col-form-label fw-semibold fs-6">Middle Initial </label>
+                                    <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?></label>
                                     <input type="text" id="txt-" class="form-control form-control-sm mb-3 mb-lg-0  required">
                                 </div>
                             </div>
@@ -761,15 +759,15 @@
                             <p class="bg-gray-200 p-2">New Name (if applicable)</p>
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="col-form-label fw-semibold fs-6">Last Name (Family Name) </label>
+                                    <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.last_name_family_name'); ?></label>
                                     <input type="text" id="txt-" class="form-control form-control-sm mb-3 mb-lg-0  required">
                                 </div>
                                 <div class="col-4">
-                                    <label class="col-form-label fw-semibold fs-6">First Name (Given Name) </label>
+                                    <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.first_name_given_name'); ?> </label>
                                     <input type="text" id="txt-" class="form-control form-control-sm mb-3 mb-lg-0  required">
                                 </div>
                                 <div class="col-2">
-                                    <label class="col-form-label fw-semibold fs-6">Middle Initial </label>
+                                    <label class="col-form-label fw-semibold fs-6"><?php echo lang('Text.middle_initial'); ?> </label>
                                     <input type="text" id="txt-" class="form-control form-control-sm mb-3 mb-lg-0  required">
                                 </div>
                             </div>

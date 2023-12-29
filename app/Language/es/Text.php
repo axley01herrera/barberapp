@@ -445,5 +445,12 @@ $lang['admission_number'] = "Número de admisión del I-94";
 $lang['passport_number'] = "Número de pasaporte extranjero y país de emisión";
 $lang['employee_sign'] = "Firma del empleado";
 $lang['today_date'] = "Fecha de hoy";
+$lang['from_section1'] = "de la sección 1";
+$lang['form1_section2_title'] = "Sección 2. Revisión y verificación del empleador: El empleador, más o menos su representante autorizado debe completar un examen físico o examinar de manera consistente con un procedimiento alternativo y firmar la Sección 2 dentro de los tres días hábiles posteriores al primer día de empleo del empleado autorizado por el Secretario del DHS. , documentación de la Lista A O una combinación de documentación de la Lista B y la Lista C. Ingrese cualquier documentación adicional en el cuadro Información adicional; vea las instrucciones.";
+$lang['list_a'] = "Lista A";
+$lang['list_b'] = "Lista B";
+$lang['list_c'] = "Lista C";
+$lang['and'] = "Y";
 $lang['or'] = "O";
+//SECTION 2
 return $lang;
