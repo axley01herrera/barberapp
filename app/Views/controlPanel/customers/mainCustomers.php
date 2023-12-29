@@ -138,6 +138,57 @@
         }
     }); // ok
 
+    dtCustomers.on('click', '.resend-verify-email', function() { // Resend Verify Email 
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/resendVerifyEmail'); ?>",
+            data: {
+                'customerID': $(this).attr('data-customer-id'),
+                'type': 'customer'
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.error == 0) {
+                    simpleSuccessAlert(response.msg);
+                } else {
+                    if (response.msg == "SESSION_EXPIRED") {
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    } else {
+                        globalError();
+                    }
+                }
+            },
+            error: function(e) {
+                globalError();
+            }
+        });
+    }); // ok
+
+    dtCustomers.on('click', '.resend-complete-account-email', function() { // Resend Complete Account Email 
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/resendCompleteAccount'); ?>",
+            data: {
+                'customerID': $(this).attr('data-customer-id')
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.error == 0) {
+                    simpleSuccessAlert(response.msg);
+                } else {
+                    if (response.msg == "SESSION_EXPIRED") {
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    } else {
+                        globalError();
+                    }
+                }
+            },
+            error: function(e) {
+                globalError();
+            }
+        });
+    }); // ok
+
     dtCustomers.on('click', '.change-status', function() {
         let customerID = $(this).attr('data-customer-id');
         let status = $(this).attr('data-status');

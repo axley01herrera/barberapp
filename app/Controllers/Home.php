@@ -305,7 +305,7 @@ class Home extends BaseController
         $response['msg'] = @$result['msg'];
 
         return json_encode($response);
-    } 
+    }
 
     public function signUpCustomer()
     {

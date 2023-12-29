@@ -315,10 +315,20 @@ class ControlPanel extends BaseController
         $totalRows = sizeof($result);
 
         for ($i = 0; $i < $totalRows; $i++) {
+
+            $btnResendCompleteAccountEmail = "";
+            $btnResendVerifyEmail = "";
+
             $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if ($result[$i]->status == 1)
                 $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+
+            if (empty($result[$i]->password))
+                $btnResendCompleteAccountEmail = '<button type="button" data-customer-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
+
+            if (!empty($result[$i]->password) && $result[$i]->emailVerified == 0)
+                $btnResendVerifyEmail = '<button type="button" data-customer-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
 
             $btnProfile = '<a href="' . base_url('ControlPanel/customerProfile?customerID=') . $result[$i]->id . '" title="' . lang('Text.btn_profile') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
@@ -333,7 +343,7 @@ class ControlPanel extends BaseController
             $col['lastName'] = $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
-            $col['action'] = $btnProfile . $btnDelete;
+            $col['action'] = @$btnResendCompleteAccountEmail . @$btnResendVerifyEmail . $btnProfile . $btnDelete;
 
             $row[$i] =  $col;
         }
@@ -930,23 +940,33 @@ class ControlPanel extends BaseController
 
         # params
         $employeeID = $this->objRequest->getPost('employeeID');
+        $customerID = $this->objRequest->getPost('customerID');
+        $type = $this->objRequest->getPost('type');
         $token = md5(uniqid());
 
-        # Get Employee
-        $employee = $this->objMainModel->objData('employee', 'id', $employeeID);
+        if (!empty($employeeID)) {
+            # Get Employee
+            $user = $this->objMainModel->objData('employee', 'id', $employeeID);
 
-        # Set Employee Token
-        $result = $this->objMainModel->objUpdate('employee', array('token' => $token), $employee[0]->id);
+            # Set Employee Token
+            $result = $this->objMainModel->objUpdate('employee', array('token' => $token), $user[0]->id);
+        } else {
+            # Get Customer
+            $user = $this->objMainModel->objData('customer', 'id', $customerID);
+
+            # Set Customer Token
+            $result = $this->objMainModel->objUpdate('customer', array('token' => $token), $user[0]->id);
+        }
 
         $dataEmail = array();
         $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
-        $dataEmail['person'] = $employee[0]->name . ' ' . $employee[0]->lastName;
-        $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&type=employee';
+        $dataEmail['person'] = $user[0]->name . ' ' . $user[0]->lastName;
+        $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&type=' . $type . '';
         $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
         $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
 
         $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
-        $this->objEmail->setTo($employee[0]->email);
+        $this->objEmail->setTo($user[0]->email);
         $this->objEmail->setSubject($this->companyProfile[0]->companyName);
         $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
 
@@ -974,23 +994,34 @@ class ControlPanel extends BaseController
 
         # params
         $employeeID = $this->objRequest->getPost('employeeID');
+        $customerID = $this->objRequest->getPost('customerID');
         $token = md5(uniqid());
 
-        # Get Employee
-        $employee = $this->objMainModel->objData('employee', 'id', $employeeID);
-
-        # Set Employee Token
-        $result = $this->objMainModel->objUpdate('employee', array('token' => $token), $employeeID);
+        if (!empty($employeeID)) {
+            # Get Employee
+            $user = $this->objMainModel->objData('employee', 'id', $employeeID);
+            # Set Employee Token
+            $result = $this->objMainModel->objUpdate('employee', array('token' => $token), $user[0]->id);
+            # Set URL
+            $url = base_url('Home/employeeCreatePassword?token=') . $token;
+        } else {
+            # Get Customer
+            $user = $this->objMainModel->objData('customer', 'id', $customerID);
+            # Set Customer Token
+            $result = $this->objMainModel->objUpdate('customer', array('token' => $token), $user[0]->id);
+            # Set URL
+            $url = base_url('Home/customerCreatePassword?token=') . $token;
+        }
 
         $dataEmail = array();
         $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
-        $dataEmail['person'] = $employee[0]->name . ' ' . $employee[0]->lastName;
-        $dataEmail['url'] = base_url('Home/employeeCreatePassword?token=') . $token;
+        $dataEmail['person'] = $user[0]->name . ' ' . $user[0]->lastName;
+        $dataEmail['url'] = $url;
         $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
         $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
 
         $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
-        $this->objEmail->setTo($employee[0]->email);
+        $this->objEmail->setTo($user[0]->email);
         $this->objEmail->setSubject(lang('Text.emp_complete_your_account'));
         $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
 
@@ -1220,7 +1251,7 @@ class ControlPanel extends BaseController
         $timeSqlS = date('H:i:s', $tiempoUnixS);
         $timeSqlE = date('H:i:s', $tiempoUnixE);
 
-        foreach($days as $day) {
+        foreach ($days as $day) {
             $data = array();
             $data['employeeID'] = $employeeID;
             $data['day'] = $day;
@@ -1240,7 +1271,7 @@ class ControlPanel extends BaseController
             $result = array();
             $result['error'] = 2;
             $result['msg'] = "SESSION_EXPIRED";
-            
+
             return json_encode($result);
         }
 

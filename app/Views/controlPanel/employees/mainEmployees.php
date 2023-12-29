@@ -143,7 +143,8 @@
             type: "post",
             url: "<?php echo base_url('ControlPanel/resendVerifyEmail'); ?>",
             data: {
-                'employeeID': $(this).attr('data-employee-id')
+                'employeeID': $(this).attr('data-employee-id'),
+                'type': 'employee'
             },
             dataType: "json",
             success: function(response) {
