@@ -11,3 +11,64 @@ CREATE TABLE IF NOT EXISTS `modules` (
 
 INSERT INTO `modules` (`id`, `name_en`, `name_es`, `type`, `status`, `request`, `response`) VALUES
 (0, 'I9 Form', 'Formulario I9', 1, 0, 0, 0);
+
+SELECT
+    `appointment`.`id` AS `appointmentID`,
+    `appointment`.`customerID` AS `customerID`,
+    `appointment`.`employeeID` AS `employeeID`,
+    `appointment`.`date` AS `date`,
+    `appointment`.`start` AS `start`,
+    `employee`.`name` AS `employeeName`,
+    `employee`.`lastName` AS `employeeLastName`,
+    `customer`.`name` AS `customerName`,
+    `customer`.`lastName` AS `customerLastName`,
+    json_arrayagg(
+        JSON_OBJECT(
+            'serviceID',
+            `service`.`id`,
+            'serviceTitle',
+            `service`.`title`,
+            'servicePrice',
+            `service`.`price`,
+            'serviceTime',
+            `service`.`time`
+        )
+    ) AS `servicesJSON`,
+    SUM(`service`.`price`) AS `totalPrice`,
+    SUM(`service`.`time`) AS `totalTime`
+FROM
+    (
+        (
+            (
+                (
+                    `appointment`
+                JOIN `employee` ON
+                    (
+                        (
+                            `employee`.`id` = `appointment`.`employeeID`
+                        )
+                    )
+                )
+            JOIN `customer` ON
+                (
+                    (
+                        `customer`.`id` = `appointment`.`customerID`
+                    )
+                )
+            )
+        JOIN json_table(
+                `appointment`.`services`,
+                '$[*]' COLUMNS(
+                    `service_id` VARCHAR(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci path '$'
+                )
+            ) `json_services`
+        )
+    JOIN `service` ON
+        (
+            (
+                `service`.`id` = `json_services`.`service_id`
+            )
+        )
+    )
+GROUP BY
+    `appointment`.`id`;
