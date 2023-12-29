@@ -207,8 +207,8 @@ $lang['top_bar_logout'] = "Salir";
 
 # Customers
 $lang['cust_dash_page_title'] = 'Tablero';
+$lang['cust_appointment_page_title'] = 'Administración de Citas';
 $lang['cust_profile_page_title'] = "Perfil del Cliente";
-$lang['cust_dash_page_subtitle'] = 'Visión General';
 $lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
 $lang['cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
 $lang['cust_success_resend_verify_email'] = 'Correo de Verificación Enviado';
@@ -227,7 +227,6 @@ $lang['dt_customer_phone'] = "Teléfono";
 $lang['dt_customer_status'] = "Estado";
 $lang['cust_profile_success_updated'] = "Perfil Actualizado";
 $lang['cust_account_success_updated'] = "Cuenta Actualizada";
-$lang['cust_appointment_title'] = 'Citas del Cliente';
 $lang['cust_appointment_subtitle'] = 'Administración de Citas.';
 $lang['cust_new_appointment'] = 'Nueva Cita';
 $lang['cust_new_appointment_subtitle'] = 'Crea tu Cita';
