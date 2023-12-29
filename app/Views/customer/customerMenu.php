@@ -18,20 +18,12 @@
                 </span>
             </a>
 
-            <!-- Account -->
-            <a href="<?php echo base_url('Customer/account'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
-                <span class="menu-link <?php echo @$activeAccount; ?>">
-                    <span class="menu-title"><?php echo lang('Text.account'); ?></span>
-                </span>
-            </a>
-
             <!-- Profile -->
             <a href="<?php echo base_url('Customer/profile'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeProfile; ?>">
                     <span class="menu-title"><?php echo lang('Text.profile'); ?></span>
                 </span>
             </a>
-
 
         </div>
     </div>

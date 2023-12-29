@@ -25,7 +25,7 @@
                 </li>
                 <!-- Account -->
                 <li class="nav-item">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile<?php echo $uniqid; ?> <?php if ($tab == "account") echo "active"; ?>" data-tab="privacyPolice" href="#"><?php echo lang('Text.account'); ?></a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile<?php echo $uniqid; ?> <?php if ($tab == "account") echo "active"; ?>" data-tab="account" href="#"><?php echo lang('Text.account'); ?></a>
                 </li>
             </ul>
             <div id="customer-tab-content"></div>

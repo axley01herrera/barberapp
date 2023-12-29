@@ -251,7 +251,7 @@ $lang['cust_deactivated'] = 'Cliente Desactivado';
 $lang['cust_tab_profile_title'] = "Descripción General";
 $lang['cust_tab_profile_subtitle'] = "Información Requerida.";
 $lang['cust_tab_account_title'] = 'Cuenta del Cliente';
-$lang['cust_tab_account_subtitle'] = 'Administración de Cuenta.';
+$lang['cust_tab_account_subtitle'] = 'Administración de Cuenta';
 
 # Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";

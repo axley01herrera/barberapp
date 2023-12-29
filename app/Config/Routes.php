@@ -111,7 +111,6 @@ $routes->get('Customer/index', 'Customer::index');
 $routes->get('Customer/dashboard', 'Customer::dashboard');
 $routes->get('Customer/appointment', 'Customer::appointment');
 $routes->get('Customer/createAppointment', 'Customer::createAppointment');
-$routes->get('Customer/account', 'Customer::account');
 $routes->get('Customer/profile', 'Customer::profile');
 $routes->post('Customer/profileTab', 'Customer::profileTab');
 $routes->post('Customer/employeeAvailability', 'Customer::employeeAvailability');

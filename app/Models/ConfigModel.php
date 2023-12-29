@@ -80,5 +80,5 @@ class ConfigModel extends Model
             $result['msg'] = lang('Text.cp_auth_invalid_password');
             return $result;
         }
-    }
+    } // ok
 }

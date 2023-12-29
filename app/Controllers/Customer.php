@@ -116,27 +116,6 @@ class Customer extends BaseController
         return view('customer/mainCustomer', $data);
     } // ok
 
-    public function account()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
-            return view('customerLogout');
-
-        $data = array();
-        # menu 
-        $data['activeAccount'] = "active";
-        # config
-        $data['config'] = $this->config;
-        $data['companyProfile'] = $this->profile;
-        # data
-        $data['uniqid'] = uniqid();
-        $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
-        # page
-        $data['page'] = 'customer/account/mainAccount';
-
-        return view('customer/mainCustomer', $data);
-    } // ok
-
     public function profile()
     {
         # Verify Session 
@@ -176,6 +155,8 @@ class Customer extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
             return view('customerLogout');
 
+        $customerID = $this->objSession->get('user')['customerID'];
+
         # params
         $tab = $this->objRequest->getPost('tab');
 
@@ -188,7 +169,12 @@ class Customer extends BaseController
                 # page
                 $view = 'customer/profile/tabContent/customerProfile';
                 # data
-                $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+                $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
+                break;
+            case 'account':
+                # page
+                $view = 'customer/profile/tabContent/customerAccount';
+                $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
                 break;
         }
 
@@ -206,13 +192,15 @@ class Customer extends BaseController
             return json_encode($result);
         }
 
+        $customerID = $this->objSession->get('user')['customerID'];
+
         # params
         $email = strtolower(htmlspecialchars(trim($this->objRequest->getPost('email'))));
         $currentPassword = htmlspecialchars(trim($this->objRequest->getPost('currentPassword')));
         $newPassword = password_hash(htmlspecialchars(trim($this->objRequest->getPost('password'))), PASSWORD_DEFAULT);
 
         if (!empty($currentPassword)) {
-            if ($this->objConfigModel->login($currentPassword)['error'] == 1) {
+            if ($this->objConfigModel->loginCustomer($currentPassword, $customerID)['error'] == 1) {
                 $result = array();
                 $result['error'] = 1;
                 $result['msg'] = "INVALID_CURRENT_KEY";
@@ -222,10 +210,11 @@ class Customer extends BaseController
         }
 
         $dataAccount = array();
+
         if (!empty($this->objRequest->getPost('password')))
             $dataAccount['password'] = $newPassword;
 
-        if ($this->objSession->get('user')['email'] !== $email) {
+        if ($this->objSession->get('user')['email'] != $email) {
             $dataAccount['email'] = $email;
             $dataAccount['token'] = md5(uniqid());
             $dataAccount['emailVerified'] = 0;
@@ -238,10 +227,11 @@ class Customer extends BaseController
             return json_encode($response);
         }
 
-        $this->objMainModel->objUpdate('customer', $dataAccount, $this->objSession->get('user')['customerID']);
-        $customer = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+        $this->objMainModel->objUpdate('customer', $dataAccount, $customerID);
 
         if (!empty($dataAccount['email'])) {
+            $customer = $this->objMainModel->objData('customer', 'id', $customerID);
+
             $dataEmail = array();
             $dataEmail['pageTitle'] = $this->profile[0]->companyName;
             $dataEmail['person'] = $customer[0]->name . ' ' . $customer[0]->lastName;
