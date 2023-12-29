@@ -62,10 +62,34 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <button type="button" class="btn btn-sm btn-light btn-active-color-primary"><i class="bi bi-envelope-check"></i> <?php echo lang('Text.cust_resend_verify_email'); ?></button>
+                    <button type="button" id="btn-resendEmail<?php echo $uniqid; ?>" class="btn btn-sm btn-light btn-active-color-primary"><i class="bi bi-envelope-check"></i> <?php echo lang('Text.cust_resend_verify_email'); ?></button>
                 </div>
             </div>
         <?php } ?>
 
     </div>
 </div>
+
+<script>
+    $('#btn-resendEmail<?php echo $uniqid; ?>').on('click', function() {
+        $(this).attr('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('Customer/resendVerifyEmail') ?>",
+            dataType: "json",
+            success: function(response) {
+                if (response.error == 0) {
+                    simpleSuccessAlert(response.msg);
+                    $('#btn-resendEmail<?php echo $uniqid; ?>').removeAttr('disabled');
+                } else {
+                    globalError();
+                    $('#btn-resendEmail<?php echo $uniqid; ?>').removeAttr('disabled');
+                }
+            },
+            error: function(error) {
+                globalError();
+                $('#btn-resendEmail<?php echo $uniqid; ?>').removeAttr('disabled');
+            }
+        });
+    });
+</script>

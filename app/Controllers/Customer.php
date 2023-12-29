@@ -523,4 +523,47 @@ class Customer extends BaseController
 
         return json_encode($result);
     } // ok
+
+    public function resendVerifyEmail()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $token = md5(uniqid());
+
+        # Get Customer
+        $customer = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+
+        # Set Customer Token
+        $result = $this->objMainModel->objUpdate('customer', array('token' => $token), $this->objSession->get('user')['customerID']);
+
+        $dataEmail = array();
+        $dataEmail['pageTitle'] = $this->profile[0]->companyName;
+        $dataEmail['person'] = $customer[0]->name . ' ' . $customer[0]->lastName;
+        $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&type=customer';
+        $dataEmail['companyPhone'] = $this->profile[0]->phone1;
+        $dataEmail['companyEmail'] = $this->profile[0]->email;
+
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->profile[0]->companyName);
+        $this->objEmail->setTo($customer[0]->email);
+        $this->objEmail->setSubject($this->profile[0]->companyName);
+        $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
+
+        if ($this->objEmail->send(false)) {
+            $response['error'] = 0;
+            $response['msg'] = lang('Text.emp_success_resend_verify_email');
+        } else {
+            $response['error'] = 1;
+            $response['msg'] = 'ERROR_SEND_EMAIL';
+        }
+
+        return json_encode($response);
+    } // ok
 }

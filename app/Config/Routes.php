@@ -121,6 +121,7 @@ $routes->post('Customer/updateProfile', 'Customer::updateProfile');
 $routes->post('Customer/uploadAvatarProfile', 'Customer::uploadAvatarProfile');
 $routes->post('Customer/removeAvatarProfile', 'Customer::removeAvatarProfile');
 $routes->post('Customer/cancelAppointment', 'Customer::cancelAppointment');
+$routes->post('Customer/resendVerifyEmail', 'Customer::resendVerifyEmail');
 
 ############################## 
 ## Employee Routes
