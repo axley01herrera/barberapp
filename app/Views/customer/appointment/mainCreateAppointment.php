@@ -22,37 +22,55 @@
             <!-- Card -->
             <div class="card mb-5 mb-xl-10 mt-5">
                 <div class="card-body pb-0">
-
                     <!-- Step 1 -->
                     <div id="step-1<?php echo $uniqid; ?>">
-                        <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
-                            <i class="ki-duotone ki-information fs-2tx text-primary me-4">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                                <span class="path3"></span>
-                            </i>
-                            <div class="d-flex flex-stack flex-grow-1">
-                                <div class="fw-semibold">
-                                    <h4 class="text-gray-900 fw-bold"><?php echo lang('Text.cust_new_appointment_step1'); ?></h4>
-                                    <div class="fs-6 text-gray-700"><?php echo lang('Text.cust_new_appointment_step1_sub'); ?>.</div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- Main Services -->
                         <div class="row">
                             <?php foreach ($services as $s) { ?>
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="separator separator-dashed my-6"></div>
-                                    <label class="form-check form-check-custom form-check-solid align-items-start">
+                                    <label class="form-check form-check-custom align-items-start" style="cursor: pointer;">
                                         <input class="form-check-input me-3 cbx-service<?php echo $uniqid; ?>" type="checkbox" data-service-id="<?php echo $s->id; ?>" data-value="0">
-                                        <span class="form-check-label d-flex flex-column align-items-start">
-                                            <span class="fw-bold fs-5 mb-0 text-dark"><?php echo $s->title; ?></span>
-                                            <span class="text-muted fs-6"><?php echo $s->description; ?></span>
-                                            <span><?php echo lang('Text.dt_serv_time_label'); ?> <?php echo $s->time; ?> <?php echo lang('Text.dt_serv_minutes_label'); ?></span>
-                                            <span class="text-muted fs-6"><?php echo getMoneyFormat($config[0]->currency, $s->price); ?></span>
-                                        </span>
+                                        <div class="d-flex flex-column h-100">
+                                            <div class="mb-7">
+                                                <div class="d-flex flex-stack mb-6">
+                                                    <!-- Service Title-->
+                                                    <div class="flex-shrink-0 me-5">
+                                                        <span class="text-gray-800 fs-5 fw-bold"><?php echo $s->title; ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-center flex-wrap d-grid gap-2">
+                                                    <div class="d-flex align-items-center me-5 me-xl-13">
+                                                        <div class="symbol symbol-30px symbol-circle me-3">
+                                                            <img src="<?php echo base_url('public/assets/media/icons/duotune/abstract/abs019.svg'); ?>" />
+                                                        </div>
+                                                        <div class="m-0">
+                                                            <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.time_minutes'); ?></span>
+                                                            <span class="fw-bold text-gray-800 text-hover-primary fs-7"><?php echo $s->time; ?> m</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="symbol symbol-30px symbol-circle me-3">
+                                                            <img src="<?php echo base_url('public/assets/media/icons/duotune/finance/fin003.svg'); ?>" />
+                                                        </div>
+                                                        <div class="m-0">
+                                                            <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.price'); ?></span>
+                                                            <span class="fw-bold text-gray-800 fs-7"><?php echo getMoneyFormat($config[0]->currency, $s->price); ?></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- 
+                                                <div class="mb-6">
+                                                    Service Description 
+                                                    <span class="fw-semibold text-gray-600 fs-6 mb-8 d-block"><?php // echo $s->description; 
+                                                                                                                ?></span>
+                                                </div>-->
+                                        </div>
+
+
                                     </label>
                                     <div class="separator separator-dashed my-6"></div>
+
                                 </div>
                             <?php } ?>
                         </div>
@@ -61,38 +79,21 @@
 
                     <!-- Step 2 -->
                     <div id="step-2<?php echo $uniqid; ?>" hidden>
-                        <div class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
-                            <i class="ki-duotone ki-information fs-2tx text-primary me-4">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                                <span class="path3"></span>
-                            </i>
-                            <div class="d-flex flex-stack flex-grow-1">
-                                <div class="fw-semibold">
-                                    <h4 class="text-gray-900 fw-bold"><?php echo lang('Text.cust_new_appointment_step2'); ?></h4>
-                                    <div class="fs-6 text-gray-700"><?php echo lang('Text.cust_new_appointment_step2_sub'); ?>.</div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <!-- Main Employees -->
                             <div class="col-12 mb-5 text-center">
                                 <div id="employee<?php echo $uniqid; ?>" class="text-center"></div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-6 mb-5">
-                                
                                 <div class="mt-5">
                                     <div class="d-flex justify-content-center">
                                         <input id="sel-date<?php echo $uniqid; ?>" class="flatpickr form-control required<?php echo $uniqid; ?>" value="<?php echo date($dateLabel, strtotime($currentDate)); ?>" hidden />
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-12 col-md-6 col-lg-6 mb-5 justify-content-center">
+                            <div class="col-12 col-md-6 col-lg-6 mb-5">
                                 <p><i class="bi bi-clock-history"></i> <?php echo lang('Text.cust_new_appointment_available_shifts'); ?></p>
-                                <div class="d-flex justify-content-center">
-                                    <div id="main-availability"></div>
-                                </div>
+                                <div id="main-availability"></div>
                             </div>
                         </div>
                     </div>
