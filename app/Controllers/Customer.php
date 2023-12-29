@@ -179,7 +179,7 @@ class Customer extends BaseController
         }
 
         return view($view, $data);
-    }
+    } // ok
 
     public function updateAccount()
     {

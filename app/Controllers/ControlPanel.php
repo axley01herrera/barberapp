@@ -927,115 +927,6 @@ class ControlPanel extends BaseController
         }
     } // ok
 
-    public function resendVerifyEmail()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
-            $result = array();
-            $result['error'] = 1;
-            $result['msg'] = "SESSION_EXPIRED";
-
-            return json_encode($result);
-        }
-
-        # params
-        $employeeID = $this->objRequest->getPost('employeeID');
-        $customerID = $this->objRequest->getPost('customerID');
-        $type = $this->objRequest->getPost('type');
-        $token = md5(uniqid());
-
-        if (!empty($employeeID)) {
-            # Get Employee
-            $user = $this->objMainModel->objData('employee', 'id', $employeeID);
-
-            # Set Employee Token
-            $result = $this->objMainModel->objUpdate('employee', array('token' => $token), $user[0]->id);
-        } else {
-            # Get Customer
-            $user = $this->objMainModel->objData('customer', 'id', $customerID);
-
-            # Set Customer Token
-            $result = $this->objMainModel->objUpdate('customer', array('token' => $token), $user[0]->id);
-        }
-
-        $dataEmail = array();
-        $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
-        $dataEmail['person'] = $user[0]->name . ' ' . $user[0]->lastName;
-        $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&type=' . $type . '';
-        $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
-        $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
-
-        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
-        $this->objEmail->setTo($user[0]->email);
-        $this->objEmail->setSubject($this->companyProfile[0]->companyName);
-        $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
-
-        if ($this->objEmail->send(false)) {
-            $response['error'] = 0;
-            $response['msg'] = lang('Text.emp_success_resend_verify_email');
-        } else {
-            $response['error'] = 1;
-            $response['msg'] = 'ERROR_SEND_EMAIL';
-        }
-
-        return json_encode($response);
-    } // ok
-
-    public function resendCompleteAccount()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
-            $result = array();
-            $result['error'] = 1;
-            $result['msg'] = "SESSION_EXPIRED";
-
-            return json_encode($result);
-        }
-
-        # params
-        $employeeID = $this->objRequest->getPost('employeeID');
-        $customerID = $this->objRequest->getPost('customerID');
-        $token = md5(uniqid());
-
-        if (!empty($employeeID)) {
-            # Get Employee
-            $user = $this->objMainModel->objData('employee', 'id', $employeeID);
-            # Set Employee Token
-            $result = $this->objMainModel->objUpdate('employee', array('token' => $token), $user[0]->id);
-            # Set URL
-            $url = base_url('Home/employeeCreatePassword?token=') . $token;
-        } else {
-            # Get Customer
-            $user = $this->objMainModel->objData('customer', 'id', $customerID);
-            # Set Customer Token
-            $result = $this->objMainModel->objUpdate('customer', array('token' => $token), $user[0]->id);
-            # Set URL
-            $url = base_url('Home/customerCreatePassword?token=') . $token;
-        }
-
-        $dataEmail = array();
-        $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
-        $dataEmail['person'] = $user[0]->name . ' ' . $user[0]->lastName;
-        $dataEmail['url'] = $url;
-        $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
-        $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
-
-        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
-        $this->objEmail->setTo($user[0]->email);
-        $this->objEmail->setSubject(lang('Text.emp_complete_your_account'));
-        $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
-
-        if ($this->objEmail->send(false)) {
-            $response['error'] = 0;
-            $response['msg'] = lang('Text.emp_success_resend_complete_account');
-        } else {
-            $response['error'] = 1;
-            $response['msg'] = 'ERROR_SEND_EMAIL';
-        }
-
-        return json_encode($response);
-    } // ok
-
     public function updateEmployee()
     {
         # Verify Session 
@@ -1921,4 +1812,109 @@ class ControlPanel extends BaseController
 
         return view('ControlPanel/mainCpanel', $data);
     }
+
+    ##############################
+    # Resend Verify Email And Resend Complete Account
+    ##############################
+
+    public function resendVerifyEmail()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $employeeID = $this->objRequest->getPost('employeeID');
+        $customerID = $this->objRequest->getPost('customerID');
+        $type = $this->objRequest->getPost('type');
+        $token = md5(uniqid());
+
+        if (!empty($employeeID)) {
+            $user = $this->objMainModel->objData('employee', 'id', $employeeID);
+            $this->objMainModel->objUpdate('employee', array('token' => $token), $user[0]->id);
+        }
+
+        if (!empty($customerID)) {
+            $user = $this->objMainModel->objData('customer', 'id', $customerID);
+            $this->objMainModel->objUpdate('customer', array('token' => $token), $user[0]->id);
+        }
+
+        $dataEmail = array();
+        $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
+        $dataEmail['person'] = $user[0]->name . ' ' . $user[0]->lastName;
+        $dataEmail['url'] = base_url('Home/verifiedEmail') . '?token=' . $token . '&type=' . $type . '';
+        $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
+        $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
+
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
+        $this->objEmail->setTo($user[0]->email);
+        $this->objEmail->setSubject($this->companyProfile[0]->companyName);
+        $this->objEmail->setMessage(view('email/verifyNewEmail', $dataEmail), []);
+
+        if ($this->objEmail->send(false)) {
+            $response['error'] = 0;
+            $response['msg'] = lang('Text.emp_success_resend_verify_email');
+        } else {
+            $response['error'] = 1;
+            $response['msg'] = 'ERROR_SEND_EMAIL';
+        }
+
+        return json_encode($response);
+    } // ok
+
+    public function resendCompleteAccount()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin") {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $employeeID = $this->objRequest->getPost('employeeID');
+        $customerID = $this->objRequest->getPost('customerID');
+        $token = md5(uniqid());
+
+        if (!empty($employeeID)) {
+            $user = $this->objMainModel->objData('employee', 'id', $employeeID);
+            $result = $this->objMainModel->objUpdate('employee', array('token' => $token), $user[0]->id);
+            $url = base_url('Home/employeeCreatePassword?token=') . $token;
+        }
+
+        if (!empty($customerID)) {
+            $user = $this->objMainModel->objData('customer', 'id', $customerID);
+            $result = $this->objMainModel->objUpdate('customer', array('token' => $token), $user[0]->id);
+            $url = base_url('Home/customerCreatePassword?token=') . $token;
+        }
+
+        $dataEmail = array();
+        $dataEmail['pageTitle'] = $this->companyProfile[0]->companyName;
+        $dataEmail['person'] = $user[0]->name . ' ' . $user[0]->lastName;
+        $dataEmail['url'] = $url;
+        $dataEmail['companyPhone'] = $this->companyProfile[0]->phone1;
+        $dataEmail['companyEmail'] = $this->companyProfile[0]->email;
+
+        $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
+        $this->objEmail->setTo($user[0]->email);
+        $this->objEmail->setSubject(lang('Text.emp_complete_your_account'));
+        $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
+
+        if ($this->objEmail->send(false)) {
+            $response['error'] = 0;
+            $response['msg'] = lang('Text.emp_success_resend_complete_account');
+        } else {
+            $response['error'] = 1;
+            $response['msg'] = 'ERROR_SEND_EMAIL';
+        }
+
+        return json_encode($response);
+    } // ok
 }
