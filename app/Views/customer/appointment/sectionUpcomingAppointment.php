@@ -8,8 +8,17 @@
 
                             <!-- Date -->
                             <div class="flex-shrink-0 me-5 mb-5">
-                                <span class="text-gray-400 fs-7 fw-bold me-2 d-block lh-1 pb-1"><?php echo date($dateLabel, strtotime($a->date)); ?></span>
-                                <span class="text-gray-800 fs-1 fw-bold"><?php echo date('g:i a', strtotime($a->start)); ?> - <?php echo date('g:i a', strtotime($a->end)); ?></span>
+                                <span class="text-gray-800 fs-4 fw-bold me-2 d-block lh-1 pb-1">
+                                    <?php
+                                        if($config[0]->lang == 'en')
+                                            echo date('F j, Y', strtotime($a->date)); 
+                                        else {
+                                            $mont =  date('F', strtotime($a->date)); 
+                                            echo lang('Text.'.$mont).' '.date('j, Y', strtotime($a->date)); 
+                                        }
+                                    ?>
+                                </span>
+                                <span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> <?php echo date('g:i a', strtotime($a->start)); ?> - <?php echo date('g:i a', strtotime($a->end)); ?></span>
                             </div>
 
                             <!-- Services -->
