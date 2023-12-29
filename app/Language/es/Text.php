@@ -250,6 +250,8 @@ $lang['cust_no_future_appointments'] = "Sin próximas citas";
 $lang['cust_future_appointments'] = "Próximas Citas";
 $lang['cust_activated'] = 'Cliente Activado';
 $lang['cust_deactivated'] = 'Cliente Desactivado';
+$lang['cust_tab_profile_title'] = "Descripción General";
+$lang['cust_tab_profile_subtitle'] = "Información Requerida.";
 
 # Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";
