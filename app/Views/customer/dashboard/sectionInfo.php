@@ -36,22 +36,6 @@
             </div>
         <?php } ?>
 
-        <!-- Address -->
-        <?php if (!empty($customer[0]->address1) && !empty($customer[0]->city) && !empty($customer[0]->state) && !empty($customer[0]->zip) && !empty($customer[0]->country)) { ?>
-            <section>
-                <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
-                <div class="text-gray-600">
-                    <?php echo @$customer[0]->address1; ?>
-                    <?php if (@$customer[0]->address2) echo ", " . $customer[0]->address2; ?>
-                    <br>
-                    <?php echo @$customer[0]->city; ?>
-                    <?php if (@$customer[0]->state) echo ", " .  $customer[0]->state; ?>
-                    <br>
-                    <?php echo @$customer[0]->zip; ?> <?php echo @$customer[0]->country; ?>
-                </div>
-            </section>
-        <?php } ?>
-
         <?php if (empty($customer[0]->emailVerified)) { ?>
             <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 mt-10">
                 <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
