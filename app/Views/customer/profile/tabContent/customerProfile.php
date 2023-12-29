@@ -16,6 +16,7 @@
             <div class="col-12 col-lg-4"></div>
             <div class="col-12 col-lg-4">
                 <div class="row">
+                    <!-- Avatar -->
                     <div class="col-12 mt-5">
                         <style>
                             .image-input-placeholder {
@@ -54,7 +55,6 @@
                             <?php } ?>
                         </div>
                     </div>
-
                     <!-- Name-->
                     <div class="col-12 mt-5">
                         <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.name'); ?> <span class="text-danger">*</span></label>

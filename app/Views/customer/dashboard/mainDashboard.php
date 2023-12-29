@@ -34,7 +34,9 @@
                     <!-- Upcoming Appointments -->
                     <section>
                         <h5><?php echo lang('Text.cust_dash_upcoming_appointment_title'); ?></h5>
-                        <?php echo view('customer/appointment/sectionUpcomingAppointment'); ?>
+                        <div class="row">
+                            <?php echo view('customer/appointment/sectionUpcomingAppointment'); ?>
+                        </div>
                     </section>
                 </div>
             </div>

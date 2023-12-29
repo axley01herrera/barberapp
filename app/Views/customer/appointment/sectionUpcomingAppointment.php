@@ -1,5 +1,11 @@
+<style>
+    .scroll-container {
+        height: 50px;
+        overflow: auto;
+    }
+</style>
 <?php foreach ($upcomingAppointments as $a) { ?>
-    <div class="<?php echo @$col; ?>">
+    <div class="<?php echo @$col; ?> mt-5">
         <div class="card">
             <div class="card-body">
                 <div class="row gx-9 h-100">
@@ -10,19 +16,19 @@
                             <div class="flex-shrink-0 me-5 mb-5">
                                 <span class="text-gray-800 fs-4 fw-bold me-2 d-block lh-1 pb-1">
                                     <?php
-                                        if($config[0]->lang == 'en')
-                                            echo date('F j, Y', strtotime($a->date)); 
-                                        else {
-                                            $mont =  date('F', strtotime($a->date)); 
-                                            echo lang('Text.'.$mont).' '.date('j, Y', strtotime($a->date)); 
-                                        }
+                                    if ($config[0]->lang == 'en')
+                                        echo date('F j, Y', strtotime($a->date));
+                                    else {
+                                        $mont =  date('F', strtotime($a->date));
+                                        echo lang('Text.' . $mont) . ' ' . date('j, Y', strtotime($a->date));
+                                    }
                                     ?>
                                 </span>
                                 <span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> <?php echo date('g:i a', strtotime($a->start)); ?> - <?php echo date('g:i a', strtotime($a->end)); ?></span>
                             </div>
 
                             <!-- Services -->
-                            <div class="mb-7">
+                            <div class="mb-7 scroll-container">
                                 <div class=" align-items-center  d-grid gap-2">
                                     <div class=" align-items-center me-5 me-xl-13">
                                         <?php

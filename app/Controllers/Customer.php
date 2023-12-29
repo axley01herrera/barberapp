@@ -566,14 +566,14 @@ class Customer extends BaseController
             return json_encode($result);
         }
 
-        # params
         $token = md5(uniqid());
+        $customerID = $this->objSession->get('user')['customerID'];
 
         # Get Customer
-        $customer = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
+        $customer = $this->objMainModel->objData('customer', 'id', $customerID);
 
         # Set Customer Token
-        $result = $this->objMainModel->objUpdate('customer', array('token' => $token), $this->objSession->get('user')['customerID']);
+        $result = $this->objMainModel->objUpdate('customer', array('token' => $token), $customerID);
 
         $dataEmail = array();
         $dataEmail['pageTitle'] = $this->profile[0]->companyName;
