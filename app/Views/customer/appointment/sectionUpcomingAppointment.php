@@ -1,5 +1,5 @@
 <?php foreach ($upcomingAppointments as $a) { ?>
-    <div class="col-12 mt-5">
+    <div class="<?php echo @$col; ?>">
         <div class="card">
             <div class="card-body">
                 <div class="row gx-9 h-100">

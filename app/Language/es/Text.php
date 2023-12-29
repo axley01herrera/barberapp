@@ -133,6 +133,7 @@ $lang['customer'] = "Cliente";
 $lang['requested'] = "Solicitado";
 $lang['no_requested'] = "No Solicitado";
 $lang['send_requested'] = "Enviar Solicitud";
+$lang['no_registered'] = "No Registrado";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -193,6 +194,11 @@ $lang['top_bar_profile'] = "Perfil";
 $lang['top_bar_logout'] = "Salir";
 
 # Customers
+$lang['cust_dash_page_title'] = 'Tablero';
+$lang['cust_dash_page_subtitle'] = 'Visión General';
+$lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
+$lang['cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
+$lang['cust_success_resend_verify_email'] = 'Correo de Verificación Enviado';
 $lang['cust_btn_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_update'] = "Actualizando Cliente";

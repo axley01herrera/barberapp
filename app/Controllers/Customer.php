@@ -79,6 +79,7 @@ class Customer extends BaseController
         $data['dateLabel'] = $dateLabel;
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $this->objSession->get('user')['customerID']);
         $data['upcomingAppointments'] = $this->objCustomerModel->upcomingAppointments($customerID);
+        $data['col'] = "col-12 col-md-12 col-lg-6";
         # page
         $data['page'] = 'customer/dashboard/mainDashboard';
 
