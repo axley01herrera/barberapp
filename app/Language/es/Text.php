@@ -256,9 +256,6 @@ $lang['emp_success_updated'] = "Empleado Actualizado";
 $lang['emp_success_deleted'] = "Empleado Eliminado";
 $lang['emp_duplicate'] = "Ya existe el correo electrónico";
 $lang['emp_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al Empleado";
-$lang['emp_account_title'] = 'Cuenta del Empleado';
-$lang['emp_account_subtitle'] = 'Administración de Cuenta.';
-$lang['emp_profile_subtitle'] = 'Datos del Perfil.';
 $lang['emp_label_switch_bussiness_day'] = 'No Laborable / Laborable';
 $lang['emp_label_switch_time_day'] = 'Inactivo / Activo';
 $lang['emp_times'] = 'Turnos';
@@ -336,6 +333,16 @@ $lang['cp_emp_profile_tab_serv_subtitle'] = 'Designe los servicios a realizar';
 $lang['cp_emp_profile_tab_schedule'] = "Turnos";
 $lang['cp_emp_profile_tab_schedule_title'] = 'Turnos del Empleado';
 $lang['cp_emp_profile_tab_schedule_subtitle'] = 'Configure los días laborables y cree turnos de trabajo';
+$lang['cp_emp_profile_tab_account'] = "Cuenta";
+$lang['cp_emp_profile_tab_account_title'] = 'Cuenta del Empleado';
+$lang['cp_emp_profile_tab_account_subtitle'] = 'Administración de Cuenta';
+$lang['cp_emp_profile_tab_info'] = "Información";
+$lang['cp_emp_profile_tab_info_title'] = 'Descripción General';
+$lang['cp_emp_profile_tab_info_subtitle'] = 'Información Requerida';
+
+
+
+
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
