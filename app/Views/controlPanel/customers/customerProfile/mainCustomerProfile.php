@@ -5,7 +5,7 @@
             <!-- Page Title -->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                 <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                    <?php echo lang('Text.cp_cust_profile_page_title'); ?>
+                    <?php echo lang('Text.cp_customer_detail'); ?>
                 </h1>
             </div>
             <!-- Page Button Action -->
@@ -36,11 +36,11 @@
                         </li>
                         <!-- Tab Account -->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-account" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.account'); ?></a>
+                            <a id="tab-account" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.cp_cust_profile_tab_account'); ?></a>
                         </li>
                         <!-- Tab Profile-->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-profile" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.profile'); ?></a>
+                            <a id="tab-profile" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.cp_cust_profile_tab_info'); ?></a>
                         </li>
                     </ul>
                     <!-- Tab Content -->

@@ -3,8 +3,8 @@
     <div class="card-header mt-6">
         <!-- Card title -->
         <div class="card-title flex-column">
-            <h2 class="mb-1"><?php echo lang('Text.cust_tab_account_title'); ?></h2>
-            <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.cust_tab_account_subtitle'); ?>.</div>
+            <h2 class="mb-1"><?php echo lang('Text.cp_cust_profile_tab_account_title'); ?></h2>
+            <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.cp_cust_profile_tab_account_subtitle'); ?></div>
         </div>
         <!-- Card toolbar -->
         <div class="card-toolbar">
@@ -99,6 +99,7 @@
                         success: function(response) {
                             if (response.error == 0) {
                                 simpleSuccessAlert("<?php echo lang("Text.cust_account_success_updated"); ?>");
+                                reloadCustomerInfo();
                                 customerTabContent();
                             } else if (response.error == 1) {
                                 $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');

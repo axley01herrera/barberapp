@@ -212,7 +212,7 @@ $lang['top_bar_logout'] = "Salir";
 # Customers
 $lang['cust_dash_page_title'] = 'Tablero';
 $lang['cust_appointment_page_title'] = 'Historial de Citas';
-$lang['cust_profile_page_title'] = "Perfil del Cliente";
+$lang['cust_account_page_title'] = "Cuenta del Cliente";
 $lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
 $lang['cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
 $lang['cust_success_resend_verify_email'] = 'Correo de Verificación Enviado';
@@ -326,11 +326,16 @@ $lang['cp_dash_today_appointents'] = "Citas Hoy";
 # Control Panel Customer
 $lang['cp_cust_page_title'] = "Listado de Clientes";
 $lang['cp_cust_btn_new'] = "Nuevo Cliente";
-$lang['cp_cust_profile_page_title'] = "Perfil del Cliente";
+$lang['cp_customer_detail'] = "Detalle del Cliente";
 $lang['cp_cust_profile_tab_overview'] = "General";
 $lang['cp_cust_profile_tab_overview_title'] = 'Visión General';
 $lang['cp_cust_profile_tab_overview_subtitle'] = 'Perspectiva Completa';
-$lang['cp_customer_detail'] = "Perfil del Cliente";
+$lang['cp_cust_profile_tab_account'] = "Cuenta";
+$lang['cp_cust_profile_tab_account_title'] = 'Cuenta del Cliente';
+$lang['cp_cust_profile_tab_account_subtitle'] = 'Administración de Cuenta';
+$lang['cp_cust_profile_tab_info'] = "Información";
+$lang['cp_cust_profile_tab_info_title'] = 'Descripción General';
+$lang['cp_cust_profile_tab_info_subtitle'] = 'Información Requerida';
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
