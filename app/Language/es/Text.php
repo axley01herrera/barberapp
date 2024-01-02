@@ -147,6 +147,9 @@ $lang['no_requested'] = "No Solicitado";
 $lang['send_requested'] = "Enviar Solicitud";
 $lang['no_registered'] = "No Registrado";
 $lang['minutes'] = "minutos";
+$lang['pending'] = "Pendiente";
+$lang['in_progress'] = "En Progreso";
+$lang['finish'] = "Finalizada";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -326,6 +329,7 @@ $lang['serv_order_msg_sub2'] = "para guardar";
 
 # Control Panel Dashboard
 $lang['cp_dash_page_title'] = "Tablero";
+$lang['cp_dash_today_appointents'] = "Citas Hoy";
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";

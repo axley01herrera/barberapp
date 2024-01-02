@@ -15,24 +15,52 @@
     <div id="kt_app_content" class="app-content flex-column-fluid mt-6">
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <div id="dtTodayAppointments"></div>
+            <div class="row">
+                <div class="col-12 col-lg-4 mb-5">
+                    <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-center border-0 h-md-50 mb-5 mb-xl-10" style="background-color: #080655; min-height: 200px;">
+                        <div class="card-header pt-5">
+                            <div class="card-title d-flex flex-column">
+                                <span id="total-today-appointment" class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2"></span>
+                                <span class="text-white opacity-50 pt-1 fw-semibold fs-6"><?php echo lang('Text.cp_dash_today_appointents'); ?></span>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex align-items-end pt-0">
+                            <div class="d-flex align-items-center flex-column mt-3 w-100">
+                                <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-50 w-100 mt-auto mb-2">
+                                    <span><span id="pending-appointment"></span> <?php echo lang('Text.pending'); ?></span>
+                                    <span><span id="pecent-appointment"></span>%</span> 
+                                </div>
+                                <div class="h-8px mx-3 w-100 bg-light-success rounded">
+                                    <div id="pecent-appointment-bar" class="bg-success rounded h-8px" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- Data Table -->
+                <div class="col-12 mb-5">
+                    <div id="dtTodayAppointments"></div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    dtTodayAppointments ();
+    dtTodayAppointments();
 
-    function dtTodayAppointments () {
+    function dtTodayAppointments() {
         $.ajax({
             type: "post",
             url: "<?php echo base_url('ControlPanel/dtTodayAppointments'); ?>",
             data: "",
             dataType: "html",
-            success: function (response) {
+            success: function(response) {
                 $('#dtTodayAppointments').html(response);
             },
-            error: function (e) {
+            error: function(e) {
                 globalError();
             }
         });

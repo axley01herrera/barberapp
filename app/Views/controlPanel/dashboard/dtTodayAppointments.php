@@ -1,3 +1,6 @@
+<?php
+$pendingAppointments = 0;
+?>
 <!-- Card -->
 <div class="card mb-5 mb-xl-10 mt-5">
     <!-- Card Header -->
@@ -36,6 +39,7 @@
                         <th class="p-2"><?php echo lang('Text.today_appointment_col_time'); ?></th>
                         <th class="p-2"><?php echo lang('Text.today_appointment_col_price'); ?></th>
                         <th class="p-2"><?php echo lang('Text.today_appointment_col_cust'); ?></th>
+                        <th class="p-2"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +76,23 @@
                             <td class="dt-vertical-align p-2">
                                 <?php echo '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . imgCustomer($ta->customerID) . '" class="" alt=""></div>' . ' ' . $ta->customerName . ' ' . $ta->customerLastName; ?>
                             </td>
+
+                            <td class="dt-vertical-align p-2">
+                                <?php
+                                $currentDateTime = strtotime(date('Y-m-d g:ia'));
+                                $appointmentDateTimeStart = strtotime($ta->date . ' ' . $ta->start);
+                                $appointmentDateTimeEnd = strtotime($ta->date . ' ' . $ta->end);
+
+                                if ($currentDateTime < $appointmentDateTimeStart) {
+                                    echo '<span class="badge badge-light-warning">' . lang('Text.pending') . '</span>';
+                                    $pendingAppointments = $pendingAppointments + 1;
+                                } else if ($currentDateTime >= $appointmentDateTimeStart && $currentDateTime <= $appointmentDateTimeEnd) {
+                                    echo '<span class="badge badge-light-primary">' . lang('Text.in_progress') . '</span>';
+                                } else if ($currentDateTime > $appointmentDateTimeEnd) {
+                                    echo '<span class="badge badge-light-success">' . lang('Text.finish') . '</span>';
+                                }
+                                ?>
+                            </td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -79,3 +100,37 @@
         </div>
     </div>
 </div>
+
+<script>
+    var lang = "<?php echo $config[0]->lang; ?>";
+    var dtLang = "";
+
+    if (lang == "es")
+        dtLang = "<?php echo base_url('assets/js/dataTable/es.json'); ?>";
+    else if (lang == "en")
+        dtLang = "<?php echo base_url('assets/js/dataTable/en.json'); ?>";
+
+    var dtTodayAppointments = $('#dt-todayAppointments').DataTable({ // Data Table
+        dom: 'RfrtlpiB',
+        processing: true,
+        serverSide: false,
+        stateSave: true,
+        pageLength: 10,
+        language: {
+            url: dtLang
+        },
+        buttons: [],
+        order: [
+            [1, 'asc']
+        ],
+        initComplete: function(settings, json) {
+            $('#search-todayAppointments').html('');
+            $('#dt-todayAppointments_filter').appendTo('#search-todayAppointments');
+        }
+    }); // ok
+
+    $('#total-today-appointment').html('<?php echo sizeof($todayAppointments); ?>');
+    $('#pending-appointment').html('<?php echo $pendingAppointments; ?>');
+    $('#pecent-appointment').html('<?php echo ((sizeof($todayAppointments) - $pendingAppointments)  * 100) / sizeof($todayAppointments); ?>');
+    $('#pecent-appointment-bar').css('width', '<?php echo ((sizeof($todayAppointments) - $pendingAppointments)  * 100) / sizeof($todayAppointments); ?>%');
+</script>
