@@ -29,6 +29,5 @@
     $('.time-selected').on('click', function() {
         timeSelected = $(this).attr('data-value');
         $('#review-time').html(timeSelected);
-        console.log(timeSelected);
     });
 </script>
