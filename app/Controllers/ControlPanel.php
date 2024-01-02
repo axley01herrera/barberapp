@@ -559,15 +559,6 @@ class ControlPanel extends BaseController
         $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
         $data['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
-        $data['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
-        $data['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
-        $data['emailNotification'] = htmlspecialchars(trim($this->objRequest->getPost('status')));
-        $data['address1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
-        $data['address2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
-        $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
-        $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
-        $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
-        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
 
         $result = $this->objMainModel->objUpdate('customer', $data, $customerID);
 
