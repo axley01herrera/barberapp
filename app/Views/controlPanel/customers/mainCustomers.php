@@ -10,7 +10,7 @@
             </div>
             <!-- Page Button Action -->
             <div class="d-flex align-items-center gap-2 gap-lg-3">
-                <button id="btn-new-customer<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang("Text.cust_btn_new"); ?></button>
+                <button id="btn-new-customer<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang("Text.cp_cust_btn_new"); ?></button>
             </div>
         </div>
     </div>
@@ -40,9 +40,7 @@
                         <table id="dt-customers" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
                             <thead>
                                 <tr class="fs-6 fw-bold">
-                                    <th class="p-2"></th>
-                                    <th class="p-2"><?php echo lang('Text.customer_col_name'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.customer_col_last_name'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.customer_col_customer'); ?></th>
                                     <th class="p-2"><?php echo lang('Text.customer_col_email'); ?></th>
                                     <th class="text-center p-2"><?php echo lang('Text.customer_col_status'); ?></th>
                                     <th class="text-end p-2"></th>
@@ -100,21 +98,11 @@
             type: "POST"
         },
         order: [
-            [1, 'asc']
+            [0, 'asc']
         ],
         columns: [{
                 data: 'avatar',
                 class: 'dt-vertical-align p-2',
-                searchable: false,
-                orderable: false
-            },
-            {
-                data: 'name',
-                class: 'dt-vertical-align p-2'
-            },
-            {
-                data: 'lastName',
-                class: 'dt-vertical-align p-2'
             },
             {
                 data: 'email',

@@ -5,7 +5,7 @@
             <!-- Page Title -->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                 <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                    <?php echo lang('Text.cust_profile_title'); ?>
+                    <?php echo lang('Text.cp_cust_profile_page_title'); ?>
                 </h1>
             </div>
             <!-- Page Button Action -->
@@ -22,7 +22,7 @@
                     <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
                         <div class="card mb-5 mb-xl-8">
                             <div id="customer-info" class="card-body">
-                                <?php echo view('controlPanel/customers/customerProfile/sectionCustomerInfo'); ?>
+                                <?php echo view('customer/dashboard/sectionInfo'); ?>
                             </div>
                         </div>
                     </div>

@@ -216,7 +216,6 @@ $lang['cust_profile_page_title'] = "Perfil del Cliente";
 $lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
 $lang['cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
 $lang['cust_success_resend_verify_email'] = 'Correo de Verificación Enviado';
-$lang['cust_btn_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_update'] = "Actualizando Cliente";
 $lang['cust_success_created'] = "Cliente Creado";
@@ -328,6 +327,8 @@ $lang['cp_dash_today_appointents'] = "Citas Hoy";
 
 # Control Panel Customer
 $lang['cp_cust_page_title'] = "Listado de Clientes";
+$lang['cp_cust_btn_new'] = "Nuevo Cliente";
+$lang['cp_cust_profile_page_title'] = "Perfil del Cliente";
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
@@ -440,8 +441,7 @@ $lang['today_appointment_col_time'] = 'Tiempo';
 $lang['today_appointment_col_price'] = 'Precio';
 $lang['today_appointment_col_cust'] = 'Cliente';
 
-$lang['customer_col_name'] = "Nombre";
-$lang['customer_col_last_name'] = "Apellidos";
+$lang['customer_col_customer'] = "Cliente";
 $lang['customer_col_email'] = "Correo Electrónico";
 $lang['customer_col_phone'] = "Teléfono";
 $lang['customer_col_status'] = "Estado";

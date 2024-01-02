@@ -337,8 +337,14 @@ class ControlPanel extends BaseController
 
         for ($i = 0; $i < $totalRows; $i++) {
 
+            $avatar = "";
             $btnResendCompleteAccountEmail = "";
             $btnResendVerifyEmail = "";
+
+            if (empty($result[$i]->avatar))
+                $avatar =  '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . base_url("public/assets/media/avatars/blank.png") . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
+            else
+                $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
 
             $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
@@ -356,12 +362,7 @@ class ControlPanel extends BaseController
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
-            if (empty($result[$i]->avatar))
-                $col['avatar'] =  '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . base_url("public/assets/media/avatars/blank.png") . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
-            else
-                $col['avatar'] = '<div class="symbol symbol-30px symbol-circle me-3"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
-            $col['name'] = $result[$i]->name;
-            $col['lastName'] = $result[$i]->lastName;
+            $col['avatar'] = $avatar.' '.$result[$i]->name. ' '.$result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
             $col['action'] = @$btnResendCompleteAccountEmail . @$btnResendVerifyEmail . $btnProfile . $btnDelete;
@@ -401,6 +402,7 @@ class ControlPanel extends BaseController
         # menu
         $data['activeCustomers'] = "active";
         # data
+        $data['uniqid'] = uniqid();
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
         # page
         $data['page'] = 'controlPanel/customers/customerProfile/mainCustomerProfile';
