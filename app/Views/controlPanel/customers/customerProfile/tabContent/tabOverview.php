@@ -1,4 +1,4 @@
-<div class="card card-flush mb-6 mb-xl-9">
+<div class="card card-flush mb-5 mb-xl-9">
     <!-- Card header -->
     <div class="card-header mt-6">
         <!-- Card title -->
@@ -44,7 +44,7 @@
 </div>
 
 <!-- DT History Appointments -->
-<div class="card card-flush mb-6 mb-xl-9">
+<div class="card card-flush mb-5 mb-xl-9">
     <!-- Card header -->
     <div class="card-header mt-6">
         <!-- Card title -->

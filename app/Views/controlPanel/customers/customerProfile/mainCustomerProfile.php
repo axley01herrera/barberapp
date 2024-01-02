@@ -17,16 +17,15 @@
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
             <div class="d-flex flex-column flex-lg-row">
-                <!-- Section Customer Info -->
-                <section>
-                    <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
-                        <div class="card mb-5 mb-xl-8">
-                            <div id="customer-info" class="card-body">
-                                <?php echo view('customer/dashboard/sectionInfo'); ?>
-                            </div>
+                <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
+                    <div class="card mb-5 mb-xl-8">
+                        <div id="customer-info" class="card-body">
+                            <!-- Customer Info -->
+                            <?php echo view('customer/dashboard/sectionInfo'); ?>
                         </div>
                     </div>
-                </section>
+                    <?php echo view('customer/dashboard/upcomingAppointment'); ?>
+                </div>
                 <!-- Tabs -->
                 <div class="flex-lg-row-fluid ms-lg-15">
                     <!-- Tabs Header -->

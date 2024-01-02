@@ -593,15 +593,6 @@ class Customer extends BaseController
 
     public function cancelAppointment()
     {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer") {
-            $result = array();
-            $result['error'] = 2;
-            $result['msg'] = "SESSION_EXPIRED";
-
-            return json_encode($result);
-        }
-
         # params
         $appointmentID = $this->objRequest->getPost('appointmentID');
 

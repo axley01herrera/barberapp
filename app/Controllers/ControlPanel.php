@@ -404,6 +404,8 @@ class ControlPanel extends BaseController
         # data
         $data['uniqid'] = uniqid();
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
+        $data['upcomingAppointments'] = $this->objCustomerModel->upcomingAppointments($customerID);
+        $data['col'] = "col-12";
         # page
         $data['page'] = 'controlPanel/customers/customerProfile/mainCustomerProfile';
 
