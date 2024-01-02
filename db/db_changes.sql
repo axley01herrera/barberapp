@@ -13,4 +13,74 @@ INSERT INTO `modules` (`id`, `name_en`, `name_es`, `type`, `status`, `request`, 
 (0, 'I9 Form', 'Formulario I9', 1, 0, 0, 0);
 
 DROP VIEW IF EXISTS `view_appointment`;
-CREATE VIEW `view_appointment` AS SELECT `appointment`.`id` AS `appointmentID`, `appointment`.`customerID` AS `customerID`, `appointment`.`employeeID` AS `employeeID`, `appointment`.`date` AS `date`, `appointment`.`start` AS `start`, `appointment`.`end` AS `end`, `employee`.`name` AS `employeeName`, `employee`.`lastName` AS `employeeLastName`, `customer`.`name` AS `customerName`, `customer`.`lastName` AS `customerLastName`, json_arrayagg(json_object('serviceID',`service`.`id`,'serviceTitle',`service`.`title`,'servicePrice',`service`.`price`,'serviceTime',`service`.`time`)) AS `servicesJSON`, unix_timestamp(concat(`appointment`.`date`,' ',`appointment`.`start`)) AS `appointmentTimestamp`, sum(`service`.`price`) AS `totalPrice`, sum(`service`.`time`) AS `totalTime` FROM ((((`appointment` join `employee` on((`employee`.`id` = `appointment`.`employeeID`))) join `customer` on((`customer`.`id` = `appointment`.`customerID`))) join json_table(`appointment`.`services`, '$[*]' columns (`service_id` varchar(10) character set utf8mb4 collate utf8mb4_unicode_ci path '$')) `json_services`) join `service` on((`service`.`id` = `json_services`.`service_id`))) GROUP BY `appointment`.`id` ORDER BY `appointmentTimestamp` AS `DESCdesc` ASC  ;
+CREATE VIEW `view_appointment` AS SELECT
+    `barber_dev`.`appointment`.`id` AS `appointmentID`,
+    `barber_dev`.`appointment`.`customerID` AS `customerID`,
+    `barber_dev`.`appointment`.`employeeID` AS `employeeID`,
+    `barber_dev`.`appointment`.`date` AS `date`,
+    `barber_dev`.`appointment`.`start` AS `start`,
+    `barber_dev`.`appointment`.`end` AS `end`,
+    `barber_dev`.`employee`.`name` AS `employeeName`,
+    `barber_dev`.`employee`.`lastName` AS `employeeLastName`,
+    `barber_dev`.`customer`.`name` AS `customerName`,
+    `barber_dev`.`customer`.`lastName` AS `customerLastName`,
+    json_arrayagg(
+        JSON_OBJECT(
+            'serviceID',
+            `barber_dev`.`service`.`id`,
+            'serviceTitle',
+            `barber_dev`.`service`.`title`,
+            'servicePrice',
+            `barber_dev`.`service`.`price`,
+            'serviceTime',
+            `barber_dev`.`service`.`time`
+        )
+    ) AS `servicesJSON`,
+    UNIX_TIMESTAMP(
+        CONCAT(
+            `barber_dev`.`appointment`.`date`,
+            ' ',
+            `barber_dev`.`appointment`.`start`
+        )
+    ) AS `appointmentTimestamp`,
+    SUM(`barber_dev`.`service`.`price`) AS `totalPrice`,
+    SUM(`barber_dev`.`service`.`time`) AS `totalTime`
+FROM
+    (
+        (
+            (
+                (
+                    `barber_dev`.`appointment`
+                JOIN `barber_dev`.`employee` ON
+                    (
+                        (
+                            `barber_dev`.`employee`.`id` = `barber_dev`.`appointment`.`employeeID`
+                        )
+                    )
+                )
+            JOIN `barber_dev`.`customer` ON
+                (
+                    (
+                        `barber_dev`.`customer`.`id` = `barber_dev`.`appointment`.`customerID`
+                    )
+                )
+            )
+        JOIN json_table(
+                `barber_dev`.`appointment`.`services`,
+                '$[*]' COLUMNS(
+                    `service_id` VARCHAR(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci path '$'
+                )
+            ) `json_services`
+        )
+    JOIN `barber_dev`.`service` ON
+        (
+            (
+                `barber_dev`.`service`.`id` = `json_services`.`service_id`
+            )
+        )
+    )
+GROUP BY
+    `barber_dev`.`appointment`.`id`
+ORDER BY
+    `appointmentTimestamp`
+DESC;
