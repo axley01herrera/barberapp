@@ -208,7 +208,7 @@ $lang['top_bar_logout'] = "Salir";
 
 # Customers
 $lang['cust_dash_page_title'] = 'Tablero';
-$lang['cust_appointment_page_title'] = 'Administración de Citas';
+$lang['cust_appointment_page_title'] = 'Historial de Citas';
 $lang['cust_profile_page_title'] = "Perfil del Cliente";
 $lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
 $lang['cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
@@ -428,7 +428,6 @@ $lang['lp_portal_online'] = "en línea";
 $lang['lp_invite'] = "Si eres cliente y no tienes cuenta te invitamos a registrarte.";
 
 # Data Tables
-$lang['dt_appointment_title'] = 'Historial de Citas';
 $lang['appointment_col_emp'] = 'Empleado';
 $lang['appointment_col_date'] = 'Fecha';
 $lang['appointment_col_schedule'] = 'Horario';

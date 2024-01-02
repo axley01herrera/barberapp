@@ -20,48 +20,37 @@
     <div id="kt_app_content" class="app-content flex-column-fluid mt-6">
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
-            <div class="row">
-                <!-- Upcoming Appointments -->
-                <div class="col-12 col-md-4 col-lg-4 mb-5">
-                    <h5><?php echo lang('Text.cust_dash_upcoming_appointment_title'); ?></h5>
-                    <?php echo view('customer/appointment/sectionUpcomingAppointment'); ?>
+            <!-- Card -->
+            <div class="card mb-5 mb-xl-10 mt-5">
+                <!-- Card Header -->
+                <div class="card-header border-0">
+                    <!-- Card Title -->
+                    <div class="card-title">
+                        <div class="d-flex align-items-center position-relative ">
+                            <h5></h5>
+                        </div>
+                    </div>
+                    <!-- Card Toolbar -->
+                    <div class="card-toolbar">
+                        <div id="search-customer-appointments"></div>
+                    </div>
                 </div>
-                <!-- DT Appointments -->
-                <div class="col-12 col-md-8 col-lg-8">
-                    <h5><?php echo lang('Text.dt_appointment_title'); ?></h5>
-                    <!-- Card -->
-                    <div class="card mb-5 mb-xl-10 mt-5">
-                        <!-- Card Header -->
-                        <div class="card-header border-0">
-                            <!-- Card Title -->
-                            <div class="card-title">
-                                <div class="d-flex align-items-center position-relative ">
-                                    <h5></h5>
-                                </div>
-                            </div>
-                            <!-- Card Toolbar -->
-                            <div class="card-toolbar">
-                                <div id="search-customer-appointments"></div>
-                            </div>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body pb-0">
-                            <!-- Data Table -->
-                            <div class="table-responsive">
-                                <table id="dt-customer-appointments" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
-                                    <thead>
-                                        <tr class="fs-6 fw-bold">
-                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_emp'); ?></th>
-                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_date'); ?></th>
-                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_schedule'); ?></th>
-                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_services'); ?></th>
-                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_time'); ?></th>
-                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_price'); ?></th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
+                <!-- Card Body -->
+                <div class="card-body pb-0">
+                    <!-- Data Table -->
+                    <div class="table-responsive">
+                        <table id="dt-customer-appointments" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                            <thead>
+                                <tr class="fs-6 fw-bold">
+                                    <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_emp'); ?></th>
+                                    <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_date'); ?></th>
+                                    <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_schedule'); ?></th>
+                                    <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_services'); ?></th>
+                                    <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_time'); ?></th>
+                                    <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_price'); ?></th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>

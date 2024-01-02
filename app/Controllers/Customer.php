@@ -112,7 +112,6 @@ class Customer extends BaseController
         $data['uniqid'] = uniqid();
         $data['dateLabel'] = $dateLabel;
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
-        $data['upcomingAppointments'] = $this->objCustomerModel->upcomingAppointments($customerID);
         # page
         $data['page'] = 'customer/appointment/mainAppointment';
 
