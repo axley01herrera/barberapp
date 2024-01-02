@@ -84,9 +84,9 @@
             <div id="kt_app_header" class="app-header" data-kt-sticky="true" data-kt-sticky-activate="{default: true, lg: true}" data-kt-sticky-name="app-header-minimize" data-kt-sticky-offset="{default: '200px', lg: '0'}" data-kt-sticky-animation="false">
                 <!-- Header container -->
                 <div class="app-container container-xxl d-flex align-items-stretch justify-content-between" id="kt_app_header_container">
-                    <!--Logo-->
+                    <!-- Logo -->
                     <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
-                        <img alt="Logo" src="<?php echo base_url('public/assets/media/logos/default-dark.svg'); ?>" class="h-20px h-lg-30px app-sidebar-logo-default" />
+                        <img alt="Logo" src="<?php echo base_url('public/assets/media/logos/logoWhite.png'); ?>" class="h-20px h-lg-30px app-sidebar-logo-default" />
                     </div>
                     <!-- Header wrapper -->
                     <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
