@@ -420,9 +420,9 @@ class ControlPanel extends BaseController
         # data
         $data = array();
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
-
+        $data['uniqid'] = uniqid();
         # page
-        $view = 'controlPanel/customers/customerProfile/sectionCustomerInfo';
+        $view = 'customer/dashboard/sectionInfo';
 
         return view($view, $data);
     } // ok

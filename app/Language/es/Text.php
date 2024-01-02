@@ -121,6 +121,7 @@ $lang['email_check'] = "Verificado";
 $lang['active_inactive'] = "Desactivar / Activar";
 $lang['edit'] = "Editar";
 $lang['appointments'] = "Citas";
+$lang['full_name'] = "Nombre Completo";
 $lang['remove_avatar'] = "Remover";
 $lang['change_avatar'] = 'Cambiar';
 $lang['profile_data_updated'] = 'Perfil Actualizado';

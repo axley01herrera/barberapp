@@ -1,5 +1,4 @@
 <div class="d-flex flex-center flex-column py-5">
-
     <!-- Avatar -->
     <div class="symbol symbol-100px symbol-circle mb-7">
         <?php if (empty($customer[0]->avatar)) { ?>
@@ -8,15 +7,16 @@
             <img src="data:image/png;base64,<?php echo base64_encode($customer[0]->avatar); ?>" class="border border-1 border-secondary" alt="Avatar">
         <?php } ?>
     </div>
-
-    <!-- Name -->
-    <p class="fs-3 text-gray-800 fw-bold mb-3"><?php echo $customer[0]->name . ' ' . $customer[0]->lastName; ?></p>
-    <span class="badge badge-light-primary"><?php echo lang('Text.profile'); ?></span>
-
 </div>
 
 <div id="kt_user_view_details" class="collapse show">
     <div class="pb-5 fs-6">
+
+        <!-- Full Name -->
+        <div class="fw-bold mt-5"><?php echo lang('Text.full_name'); ?></div>
+        <div class="text-gray-600">
+            <span class="text-gray-600"><?php echo $customer[0]->name . ' ' . $customer[0]->lastName; ?></span>
+        </div>
 
         <!-- Email -->
         <div class="fw-bold mt-5"><?php echo lang('Text.email'); ?></div>
