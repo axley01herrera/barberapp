@@ -24,6 +24,8 @@
                             <?php echo view('customer/dashboard/sectionInfo'); ?>
                         </div>
                     </div>
+                    <!-- Upcoming Appointments -->
+                    <h5><?php echo lang('Text.cust_dash_upcoming_appointment_title'); ?></h5>
                     <?php echo view('customer/dashboard/upcomingAppointment'); ?>
                 </div>
                 <!-- Tabs -->
