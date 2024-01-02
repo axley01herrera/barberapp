@@ -17,18 +17,18 @@ class CustomerModel extends Model
     public function upcomingAppointments($customerID)
     {
         $query = $this->db->table('appointment')
-        ->where('customerID', $customerID)
-        ->where('date >=', date('Y-m-d'))
-        ->orderBy('date ASC');
+            ->where('customerID', $customerID)
+            ->where('date >=', date('Y-m-d'))
+            ->orderBy('date ASC');
 
         $data = $query->get()->getResult();
         $return = array();
 
         foreach ($data as $d) {
             $currentDateTime = strtotime(date('Y-m-d g:ia'));
-            $appointmentDateTime = strtotime($d->date.' '.$d->start);
+            $appointmentDateTime = strtotime($d->date . ' ' . $d->start);
 
-            if($currentDateTime <= $appointmentDateTime)
+            if ($currentDateTime <= $appointmentDateTime)
                 $return[] = $d;
         }
 
@@ -38,8 +38,8 @@ class CustomerModel extends Model
     public function getCompanyProfileSettings()
     {
         $query = $this->db->table('company_profile')
-        ->select('companyID, avatar, companyName, companyType, email, phone1, address1, address2, city, state, zip, country')
-        ->where('id', 1);
+            ->select('companyID, avatar, companyName, companyType, email, phone1, address1, address2, city, state, zip, country')
+            ->where('id', 1);
 
         $data = $query->get()->getResult();
 
@@ -53,11 +53,12 @@ class CustomerModel extends Model
         if (!empty($services)) {
             $query = $this->db->table('employee_service es');
             $query->select('
-                e.id AS employeeID,
-                e.avatar AS avatar,
-                e.name AS name,
-                e.lastName AS lastName
-            ');
+            e.id AS employeeID,
+            e.avatar AS avatar,
+            e.name AS name,
+            e.lastName AS lastName,
+            e.status AS status
+        ');
             $query->whereIn('serviceID', $services);
             $query->join('employee e', 'e.id = es.employeeID');
             $query->join('service s', 's.id = es.serviceID');
@@ -70,6 +71,7 @@ class CustomerModel extends Model
 
             $query->whereIn('es.employeeID', $subquery);
             $query->groupBy('es.employeeID');
+            $query->where('e.status', 1); // Adding the condition for status = 1
 
             $data = $query->get()->getResult();
         }
@@ -109,8 +111,8 @@ class CustomerModel extends Model
     public function getEmployeeAppointmentDay($empID, $date)
     {
         $query = $this->db->table('appointment')
-        ->where('employeeID', $empID)
-        ->where('date', $date);
+            ->where('employeeID', $empID)
+            ->where('date', $date);
 
         $data = $query->get()->getResult();
 
