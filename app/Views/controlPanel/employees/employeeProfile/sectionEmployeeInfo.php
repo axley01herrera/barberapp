@@ -7,16 +7,18 @@
             <img src="data:image/png;base64,<?php echo base64_encode($employee[0]->avatar); ?>" class="border border-1 border-secondary" alt="Avatar">
         <?php } ?>
     </div>
-    <!-- Name -->
-    <p class="fs-3 text-gray-800 fw-bold mb-3"><?php echo $employee[0]->name . ' ' . $employee[0]->lastName; ?></p>
-    <?php if ($employee[0]->status == 1) { ?>
-        <span class="badge badge-light-success"><?php echo lang('Text.active'); ?></span>
-    <?php } else { ?>
-        <span class="badge badge-light-danger"><?php echo lang('Text.inactive'); ?></span>
-    <?php } ?>
+    
+    <p class="fs-3 text-gray-800 fw-bold mb-3"></p>
+
 </div>
 <div id="kt_user_view_details" class="collapse show">
     <div class="pb-5 fs-6">
+        <!-- Name -->
+        <div class="fw-bold mt-5"><?php echo lang('Text.full_name'); ?></div>
+        <div class="text-gray-600">
+            <span class="text-gray-600"><?php echo $employee[0]->name . ' ' . $employee[0]->lastName; ?></span>
+        </div>
+        <!-- Email -->
         <div class="fw-bold mt-5"><?php echo lang('Text.email'); ?></div>
         <div class="text-gray-600">
             <span class="text-gray-600"><?php echo $employee[0]->email; ?></span>
