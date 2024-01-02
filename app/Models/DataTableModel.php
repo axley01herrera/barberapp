@@ -15,7 +15,7 @@ class DataTableModel extends Model
     }
 
     ####################
-    #### DT Appointments
+    #### DT Customer Appointments
     ####################
 
     public function getAppointmentProcessingData($params)
@@ -26,8 +26,6 @@ class DataTableModel extends Model
             $query->groupStart();
             $query->like('employeeName', $params['search']);
             $query->orLike('employeeLastName', $params['search']);
-            $query->orLike('customerName', $params['search']);
-            $query->orLike('customerLastName', $params['search']);
             $query->orLike('totalTime', $params['search']);
             $query->orLike('totalPrice', $params['search']);
             $query->orLike('date', $params['search']);
@@ -47,7 +45,23 @@ class DataTableModel extends Model
         return $query->get()->getResult();
     }
 
+    public function getTotalAppointments($params)
+    {
+        $query = $this->db->table('view_appointment')
+            ->select('appointmentID');
+
+        if (!empty($params['customerID'])) {
+            $query->groupStart();
+            $query->where('customerID', $params['customerID']);
+            $query->groupEnd();
+        }
+
+        $data = $query->get()->getResult();
+
+        return sizeof($data);
+    }
+
     ####################
-    #### End DT Appointments
+    #### End DT Customer Appointments
     ####################
 }

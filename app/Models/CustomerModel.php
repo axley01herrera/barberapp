@@ -22,8 +22,17 @@ class CustomerModel extends Model
         ->orderBy('date ASC');
 
         $data = $query->get()->getResult();
+        $return = array();
 
-        return $data;
+        foreach ($data as $d) {
+            $currentDateTime = strtotime(date('Y-m-d g:ia'));
+            $appointmentDateTime = strtotime($d->date.' '.$d->start);
+
+            if($currentDateTime <= $appointmentDateTime)
+                $return[] = $d;
+        }
+
+        return $return;
     } // ok
 
     public function getCompanyProfileSettings()

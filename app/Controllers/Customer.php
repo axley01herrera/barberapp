@@ -148,14 +148,14 @@ class Customer extends BaseController
                 $date = lang('Text.' . $mont) . ' ' . date('j, Y', strtotime($result[$i]->date));
             }
 
-            $schedule = '<span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> '. date('g:ia', strtotime($result[$i]->start)) .' - ' .date('g:ia', strtotime($result[$i]->end)) . '</span>';
+            $schedule = '<span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> ' . date('g:ia', strtotime($result[$i]->start)) . ' - ' . date('g:ia', strtotime($result[$i]->end)) . '</span>';
             $aux = json_decode($result[$i]->servicesJSON);
             $serv = "";
-            
+
             foreach ($aux as $s) {
-                $serv = $serv. '<div class="fw-semibold"><span class="bullet bullet-dot bg-primary me-2 h-10px w-10px"></span>'. $s->serviceTitle. '</div>';
+                $serv = $serv . '<div class="fw-semibold"><span class="bullet bullet-dot bg-primary me-2 h-10px w-10px"></span>' . $s->serviceTitle . '</div>';
             }
-           
+
             $col = array();
             $col['emp'] = $empAvatar . ' ' . $result[$i]->employeeName . ' ' . $result[$i]->employeeLastName;
             $col['date'] = $date;
@@ -168,8 +168,8 @@ class Customer extends BaseController
 
         if ($totalRows > 0) {
             if (empty($params['search']))
-                //$totalRecords = $this->objControlPanelModel->getTotalCustomers();
-                //else
+                $totalRecords = $this->objDataTableModel->getTotalAppointments($params);
+            else
                 $totalRecords = $totalRows;
         }
 
