@@ -6,6 +6,7 @@ use App\Models\ConfigModel;
 use App\Models\MainModel;
 use App\Models\ControlPanelModel;
 use App\Models\CustomerModel;
+use App\Models\DataTableModel;
 
 class ControlPanel extends BaseController
 {
@@ -15,6 +16,7 @@ class ControlPanel extends BaseController
     protected $objControlPanelModel;
     protected $objCustomerModel;
     protected $objMainModel;
+    protected $objDataTableModel;
     protected $config;
     protected $companyProfile;
     protected $objEmail;
@@ -29,6 +31,7 @@ class ControlPanel extends BaseController
         $this->objControlPanelModel = new ControlPanelModel;
         $this->objCustomerModel = new CustomerModel;
         $this->objMainModel = new MainModel;
+        $this->objDataTableModel = new DataTableModel;
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
@@ -311,7 +314,7 @@ class ControlPanel extends BaseController
         $row = array();
         $totalRecords = 0;
 
-        $result = $this->objControlPanelModel->getCustomersProcessingData($params);
+        $result = $this->objDataTableModel->getCustomersProcessingData($params);
         $totalRows = sizeof($result);
 
         for ($i = 0; $i < $totalRows; $i++) {
@@ -350,7 +353,7 @@ class ControlPanel extends BaseController
 
         if ($totalRows > 0) {
             if (empty($params['search']))
-                $totalRecords = $this->objControlPanelModel->getTotalCustomers();
+                $totalRecords = $this->objDataTableModel->getTotalCustomers();
             else
                 $totalRecords = $totalRows;
         }
@@ -790,7 +793,7 @@ class ControlPanel extends BaseController
         $row = array();
         $totalRecords = 0;
 
-        $result = $this->objControlPanelModel->getEmployeesProcessingData($params);
+        $result = $this->objDataTableModel->getEmployeesProcessingData($params);
         $totalRows = sizeof($result);
 
         for ($i = 0; $i < $totalRows; $i++) {
@@ -828,7 +831,7 @@ class ControlPanel extends BaseController
 
         if ($totalRows > 0) {
             if (empty($params['search']))
-                $totalRecords = $this->objControlPanelModel->getTotalEmployees();
+                $totalRecords = $this->objDataTableModel->getTotalEmployees();
             else
                 $totalRecords = $totalRows;
         }
