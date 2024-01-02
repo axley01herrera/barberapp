@@ -177,7 +177,7 @@
         });
     }); // ok
 
-    dtCustomers.on('click', '.change-status', function() {
+    dtCustomers.on('click', '.change-status', function() { // Change Status
         let customerID = $(this).attr('data-customer-id');
         let status = $(this).attr('data-status');
         let newStatus = "";

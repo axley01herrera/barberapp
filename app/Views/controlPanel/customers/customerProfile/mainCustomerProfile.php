@@ -9,7 +9,12 @@
                 </h1>
             </div>
             <!-- Page Button Action -->
-            <div class="d-flex align-items-center gap-2 gap-lg-3"></div>
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <div class="form-check form-switch form-check-custom form-check mt-2">
+                    <input type="checkbox" id="cbx-customer-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.change_status'); ?>" data-status="<?php echo $customer[0]->status; ?>" <?php if ($customer[0]->status == 1) echo "checked"; ?> />
+                    <label class="fs-6 fw-semibold ms-5"></label>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Page Content -->
@@ -106,4 +111,43 @@
             }
         });
     }
+
+    $('#cbx-customer-status<?php echo $uniqid; ?>').on('click', function() { // Change Status
+        let status = $(this).attr('data-status');
+        let newStatus = "";
+        let msg = "";
+
+        if (status == 0) {
+            newStatus = 1;
+            msg = "<?php echo lang('Text.cust_activated'); ?>";
+        } else if (status == 1) {
+            newStatus = 0;
+            msg = "<?php echo lang('Text.cust_deactivated'); ?>";
+        }
+
+        $(this).attr('data-status', newStatus);
+
+        $.ajax({
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/changeCustomerStatus'); ?>",
+            data: {
+                'customerID': customerID,
+                'status': newStatus
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.error == 0)
+                    simpleSuccessAlert(msg);
+                else {
+                    if (response.msg == "SESSION_EXPIRED") {
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    } else
+                        globalError();
+                }
+            },
+            error: function(e) {
+                globalError();
+            }
+        });
+    }) // ok
 </script>
