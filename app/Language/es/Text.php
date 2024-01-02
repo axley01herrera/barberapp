@@ -249,27 +249,15 @@ $lang['cust_tab_credential_title'] = 'Credenciales de Cuenta';
 $lang['cust_tab_credential_subtitle'] = 'Administración de Credenciales';
 
 # Employees
-$lang['emp_btn_new'] = "Nuevo Empleado";
 $lang['emp_modal_title_new'] = "Nuevo Empleado";
 $lang['emp_modal_title_update'] = "Actualizando Empleado";
-$lang['dt_employee_name'] = "Nombre";
-$lang['dt_employee_last_name'] = "Apellidos";
-$lang['dt_employee_email'] = "Correo Electrónico";
-$lang['dt_employee_phone'] = "Teléfono";
-$lang['dt_employee_status'] = "Estado";
 $lang['emp_success_created'] = "Empleado Creado";
 $lang['emp_success_updated'] = "Empleado Actualizado";
 $lang['emp_success_deleted'] = "Empleado Eliminado";
 $lang['emp_duplicate'] = "Ya existe el correo electrónico";
 $lang['emp_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al Empleado";
-$lang['emp_profile_title'] = "Perfil del Empleado";
-$lang['emp_service_title'] = "Servicios del Empleado";
-$lang['emp_sercice_subtitle'] = 'Designe los servicios a realizar.';
-$lang['emp_time_title'] = "Turnos del Empleado";
-$lang['emp_schedule_subtitle'] = 'Configure los días laborables y cree turnos de trabajo.';
 $lang['emp_account_title'] = 'Cuenta del Empleado';
 $lang['emp_account_subtitle'] = 'Administración de Cuenta.';
-$lang['emp_profile_title'] = 'Perfil del Empleado';
 $lang['emp_profile_subtitle'] = 'Datos del Perfil.';
 $lang['emp_label_switch_bussiness_day'] = 'No Laborable / Laborable';
 $lang['emp_label_switch_time_day'] = 'Inactivo / Activo';
@@ -334,6 +322,20 @@ $lang['cp_cust_profile_tab_account_subtitle'] = 'Administración de Cuenta';
 $lang['cp_cust_profile_tab_info'] = "Información";
 $lang['cp_cust_profile_tab_info_title'] = 'Descripción General';
 $lang['cp_cust_profile_tab_info_subtitle'] = 'Información Requerida';
+
+# Control Panel Employee
+$lang['cp_emp_page_title'] = "Listado de Empleados";
+$lang['cp_emp_btn_new'] = "Nuevo Empleado";
+$lang['cp_emp_detail'] = "Detalle del Empleado";
+$lang['cp_emp_profile_tab_overview'] = "General";
+$lang['cp_emp_profile_tab_overview_title'] = 'Visión General';
+$lang['cp_emp_profile_tab_overview_subtitle'] = 'Perspectiva Completa';
+$lang['cp_emp_profile_tab_serv'] = "Servicios";
+$lang['cp_emp_profile_tab_serv_title'] = 'Servicios del Empleado';
+$lang['cp_emp_profile_tab_serv_subtitle'] = 'Designe los servicios a realizar'; 
+$lang['cp_emp_profile_tab_schedule'] = "Turnos";
+$lang['cp_emp_profile_tab_schedule_title'] = 'Turnos del Empleado';
+$lang['cp_emp_profile_tab_schedule_subtitle'] = 'Configure los días laborables y cree turnos de trabajo';
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
@@ -450,6 +452,11 @@ $lang['customer_col_customer'] = "Cliente";
 $lang['customer_col_email'] = "Correo Electrónico";
 $lang['customer_col_phone'] = "Teléfono";
 $lang['customer_col_status'] = "Estado";
+
+$lang['employee_col_emp'] = "Empleado";
+$lang['employee_col_email'] = "Correo Electrónico";
+$lang['employee_col_phone'] = "Teléfono";
+$lang['employee_col_status'] = "Estado";
 
 # Forms I-9
 $lang['form1_title'] = "Verificación de elegibilidad laboral";

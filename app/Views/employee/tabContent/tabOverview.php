@@ -196,7 +196,7 @@
                     type: 'datetime'
                 },
                 title: {
-                    text: '<?php echo lang('Text.emp_time_title'); ?>',
+                    text: '<?php echo lang('Text.cp_emp_profile_tab_schedule_title'); ?>',
                     align: 'left',
                     margin: 10,
                     offsetX: 0,

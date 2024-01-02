@@ -5,12 +5,12 @@
             <!-- Page Title -->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                 <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                    <?php echo lang('Text.top_bar_employees'); ?>
+                    <?php echo lang('Text.cp_emp_page_title'); ?>
                 </h1>
             </div>
             <!-- Page Button Action -->
             <div class="d-flex align-items-center gap-2 gap-lg-3">
-                <button id="btn-new-employee<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang("Text.emp_btn_new"); ?></button>
+                <button id="btn-new-employee<?php echo $uniqid; ?>" class="btn btn-primary"><?php echo lang("Text.cp_emp_btn_new"); ?></button>
             </div>
         </div>
     </div>
@@ -40,11 +40,9 @@
                         <table id="dt-employees" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
                             <thead>
                                 <tr class="fs-6 fw-bold">
-                                    <th class="p-2"></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_employee_name'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_employee_last_name'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_employee_email'); ?></th>
-                                    <th class="text-center p-2"><?php echo lang('Text.dt_employee_status'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.employee_col_emp'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.employee_col_email'); ?></th>
+                                    <th class="text-center p-2"><?php echo lang('Text.employee_col_status'); ?></th>
                                     <th class="text-end p-2"></th>
                                 </tr>
                             </thead>
@@ -100,20 +98,10 @@
             type: "POST"
         },
         order: [
-            [1, 'asc']
+            [0, 'asc']
         ],
         columns: [{
                 data: 'avatar',
-                class: 'dt-vertical-align p-2',
-                searchable: false,
-                orderable: false
-            },
-            {
-                data: 'name',
-                class: 'dt-vertical-align p-2'
-            },
-            {
-                data: 'lastName',
                 class: 'dt-vertical-align p-2'
             },
             {
