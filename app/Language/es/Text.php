@@ -329,6 +329,7 @@ $lang['cp_cust_profile_page_title'] = "Perfil del Cliente";
 $lang['cp_cust_profile_tab_overview'] = "General";
 $lang['cp_cust_profile_tab_overview_title'] = 'Visión General';
 $lang['cp_cust_profile_tab_overview_subtitle'] = 'Perspectiva Completa';
+$lang['cp_customer_detail'] = "Perfil del Cliente";
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
