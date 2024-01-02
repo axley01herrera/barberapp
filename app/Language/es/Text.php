@@ -245,6 +245,7 @@ $lang['cust_no_future_appointments'] = "Sin próximas citas";
 $lang['cust_future_appointments'] = "Próximas Citas";
 $lang['cust_activated'] = 'Cliente Activado';
 $lang['cust_deactivated'] = 'Cliente Desactivado';
+$lang['cust_tab_credential'] = 'Credenciales';
 $lang['cust_tab_credential_title'] = 'Credenciales de Cuenta';
 $lang['cust_tab_credential_subtitle'] = 'Administración de Credenciales';
 

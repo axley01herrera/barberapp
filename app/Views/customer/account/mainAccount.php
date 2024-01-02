@@ -25,7 +25,7 @@
                 </li>
                 <!-- Credentials -->
                 <li class="nav-item">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-customer-account<?php echo $uniqid; ?> <?php if ($tab == "credentials") echo "active"; ?>" data-tab="credentials" href="#"><?php echo lang('Text.account'); ?></a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-customer-account<?php echo $uniqid; ?> <?php if ($tab == "credentials") echo "active"; ?>" data-tab="credentials" href="#"><?php echo lang('Text.cust_tab_credential'); ?></a>
                 </li>
             </ul>
             <div id="customer-tab-content"></div>
