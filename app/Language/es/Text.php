@@ -59,7 +59,6 @@ $lang['facebook_link'] = "Enlace de Facebook";
 $lang['instagram_link'] = "Enlace de Instagram";
 $lang['profile'] = "Perfil";
 $lang['account'] = "Cuenta";
-$lang['overview'] = "General";
 $lang['monday'] = "Lunes";
 $lang['tuesday'] = "Martes";
 $lang['wednesday'] = "Miércoles";
@@ -269,8 +268,6 @@ $lang['emp_service_title'] = "Servicios del Empleado";
 $lang['emp_sercice_subtitle'] = 'Designe los servicios a realizar.';
 $lang['emp_time_title'] = "Turnos del Empleado";
 $lang['emp_schedule_subtitle'] = 'Configure los días laborables y cree turnos de trabajo.';
-$lang['emp_overview_title'] = 'Visión General';
-$lang['emp_overview_subtitle'] = 'Perspectiva Completa.';
 $lang['emp_account_title'] = 'Cuenta del Empleado';
 $lang['emp_account_subtitle'] = 'Administración de Cuenta.';
 $lang['emp_profile_title'] = 'Perfil del Empleado';
@@ -329,6 +326,9 @@ $lang['cp_dash_today_appointents'] = "Citas Hoy";
 $lang['cp_cust_page_title'] = "Listado de Clientes";
 $lang['cp_cust_btn_new'] = "Nuevo Cliente";
 $lang['cp_cust_profile_page_title'] = "Perfil del Cliente";
+$lang['cp_cust_profile_tab_overview'] = "General";
+$lang['cp_cust_profile_tab_overview_title'] = 'Visión General';
+$lang['cp_cust_profile_tab_overview_subtitle'] = 'Perspectiva Completa';
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";

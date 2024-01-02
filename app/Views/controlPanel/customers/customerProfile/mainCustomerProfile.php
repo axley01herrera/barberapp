@@ -33,7 +33,7 @@
                     <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8" role="tablist">
                         <!-- Tab Overview -->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-overview" class="nav-link text-active-primary pb-4 active tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.overview'); ?></a>
+                            <a id="tab-overview" class="nav-link text-active-primary pb-4 active tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.cp_cust_profile_tab_overview'); ?></a>
                         </li>
                         <!-- Tab Account -->
                         <li class="nav-item" role="presentation">
