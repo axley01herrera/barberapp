@@ -42,7 +42,6 @@
                 <div class="col-12 mb-5">
                     <div id="dtTodayAppointments"></div>
                 </div>
-
             </div>
         </div>
     </div>

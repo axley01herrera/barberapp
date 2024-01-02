@@ -440,6 +440,7 @@ class ControlPanel extends BaseController
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
         $data['uniqid'] = uniqid();
+        $data['customerID'] = $customerID;
 
         if ($this->config[0]->lang == 'es')
             $data['dateLabel'] = "d-m-Y";
@@ -772,6 +773,69 @@ class ControlPanel extends BaseController
         $result = $this->objMainModel->objUpdate('customer', $data, $customerID);
 
         return json_encode($result);
+    } // ok
+
+    public function processingCustomerAppointment()
+    {
+        $dataTableRequest = $_REQUEST;
+
+        $params = array();
+        $params['draw'] = $dataTableRequest['draw'];
+        $params['start'] = $dataTableRequest['start'];
+        $params['length'] = $dataTableRequest['length'];
+        $params['search'] = $dataTableRequest['search']['value'];
+        $params['customerID'] = $dataTableRequest['customerID'];
+
+        $row = array();
+        $totalRecords = 0;
+
+        $result = $this->objDataTableModel->getCustomerAppointmentProcessingData($params);
+        $totalRows = sizeof($result);
+
+        for ($i = 0; $i < $totalRows; $i++) {
+
+            $empAvatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . imgEmployee($result[$i]->employeeID) . '" class="" alt=""></div>';
+
+            $date = "";
+            if ($this->config[0]->lang == 'en')
+                $date = date('F j, Y', strtotime($result[$i]->date));
+            else {
+                $mont =  date('F', strtotime($result[$i]->date));
+                $date = lang('Text.' . $mont) . ' ' . date('j, Y', strtotime($result[$i]->date));
+            }
+
+            $schedule = '<span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> ' . date('g:ia', strtotime($result[$i]->start)) . ' - ' . date('g:ia', strtotime($result[$i]->end)) . '</span>';
+            $aux = json_decode($result[$i]->servicesJSON);
+            $serv = "";
+
+            foreach ($aux as $s) {
+                $serv = $serv . '<div class="fw-semibold"><span class="bullet bullet-dot bg-primary me-2 h-10px w-10px"></span>' . $s->serviceTitle . '</div>';
+            }
+
+            $col = array();
+            $col['emp'] = $empAvatar . ' ' . $result[$i]->employeeName . ' ' . $result[$i]->employeeLastName;
+            $col['date'] = $date;
+            $col['schedule'] = $schedule;
+            $col['serv'] = $serv;
+            $col['time'] = $result[$i]->totalTime . ' ' . lang('Text.minutes');
+            $col['price'] = getMoneyFormat($this->config[0]->currency, $result[$i]->totalPrice);
+            $row[$i] =  $col;
+        }
+
+        if ($totalRows > 0) {
+            if (empty($params['search']))
+                $totalRecords = $this->objDataTableModel->getTotalCustomerAppointments($params);
+            else
+                $totalRecords = $totalRows;
+        }
+
+        $data = array();
+        $data['draw'] = $dataTableRequest['draw'];
+        $data['recordsTotal'] = intval($totalRecords);
+        $data['recordsFiltered'] = intval($totalRecords);
+        $data['data'] = $row;
+
+        return json_encode($data);
     } // ok
 
     ##############################

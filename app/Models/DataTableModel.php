@@ -179,6 +179,7 @@ class DataTableModel extends Model
             $query->orLike('totalTime', $params['search']);
             $query->orLike('totalPrice', $params['search']);
             $query->orLike('date', $params['search']);
+            $query->orLike('servicesJSON', $params['search']);
             $query->groupEnd();
         }
 

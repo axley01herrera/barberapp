@@ -60,6 +60,7 @@ $routes->post('ControlPanel/updateCustomerAccount', 'ControlPanel::updateCustome
 $routes->post('ControlPanel/updateCustomerProfile', 'ControlPanel::updateCustomerProfile');
 $routes->post('ControlPanel/uploadCustomerAvatarProfile', 'ControlPanel::uploadCustomerAvatarProfile');
 $routes->post('ControlPanel/removeCustomerAvatarProfile', 'ControlPanel::removeCustomerAvatarProfile');
+$routes->post('ControlPanel/processingCustomerAppointment', 'ControlPanel::processingCustomerAppointment');
 
 # ControlPanel -> Employees
 $routes->get('ControlPanel/employees', 'ControlPanel::employees');
