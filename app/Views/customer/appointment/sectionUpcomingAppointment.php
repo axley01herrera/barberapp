@@ -24,7 +24,7 @@
                                     }
                                     ?>
                                 </span>
-                                <span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> <?php echo date('g:i a', strtotime($a->start)); ?> - <?php echo date('g:i a', strtotime($a->end)); ?></span>
+                                <span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> <?php echo date('g:ia', strtotime($a->start)); ?> - <?php echo date('g:ia', strtotime($a->end)); ?></span>
                             </div>
 
                             <!-- Services -->

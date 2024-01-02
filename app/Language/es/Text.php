@@ -146,6 +146,7 @@ $lang['requested'] = "Solicitado";
 $lang['no_requested'] = "No Solicitado";
 $lang['send_requested'] = "Enviar Solicitud";
 $lang['no_registered'] = "No Registrado";
+$lang['minutes'] = "minutos";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -426,7 +427,14 @@ $lang['lp_contact_phone'] = "Teléfono de Contacto";
 $lang['lp_portal_online'] = "en línea";
 $lang['lp_invite'] = "Si eres cliente y no tienes cuenta te invitamos a registrarte.";
 
-
+# Data Tables
+$lang['dt_appointment_title'] = 'Historial de Citas';
+$lang['appointment_col_emp'] = 'Empleado';
+$lang['appointment_col_date'] = 'Fecha';
+$lang['appointment_col_schedule'] = 'Horario';
+$lang['appointment_col_services'] = 'Servicios';
+$lang['appointment_col_time'] = 'Tiempo Estimado';
+$lang['appointment_col_price'] = 'Precio';
 
 # Forms I-9
 $lang['form1_title'] = "Verificación de elegibilidad laboral";

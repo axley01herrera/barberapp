@@ -46,8 +46,8 @@
                                             <?php if ($time->day == "monday") { ?>
                                                 <?php $flagMonday = 1; ?>
                                                 <tr id="row<?php echo $time->id; ?>">
-                                                    <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
-                                                    <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                    <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->start)); ?></td>
+                                                    <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->end)); ?></td>
                                                     <td class="text-center">
                                                         <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time monday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->monday == 0) echo "disabled"; ?>>
                                                             <span class="bi bi-pencil-square"></span>
@@ -110,8 +110,8 @@
                                                 <?php if ($time->day == "tuesday") { ?>
                                                     <?php $flagTuesday = 1; ?>
                                                     <tr id="row<?php echo $time->id; ?>">
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
                                                             <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time tuesday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->tuesday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
@@ -175,8 +175,8 @@
                                                 <?php if ($time->day == "wednesday") { ?>
                                                     <?php $flagWednesday = 1; ?>
                                                     <tr id="row<?php echo $time->id; ?>">
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
                                                             <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time wednesday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->wednesday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
@@ -240,8 +240,8 @@
                                                 <?php if ($time->day == "thursday") { ?>
                                                     <?php $flagThursday = 1; ?>
                                                     <tr id="row<?php echo $time->id; ?>">
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
                                                             <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time thursday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->thursday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
@@ -305,8 +305,8 @@
                                                 <?php if ($time->day == "friday") { ?>
                                                     <?php $flagFriday = 1; ?>
                                                     <tr id="row<?php echo $time->id; ?>">
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
                                                             <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time friday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->friday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
@@ -370,8 +370,8 @@
                                                 <?php if ($time->day == "saturday") { ?>
                                                     <?php $flagSaturday = 1; ?>
                                                     <tr id="row<?php echo $time->id; ?>">
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
                                                             <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time saturday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->saturday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>
@@ -435,8 +435,8 @@
                                                 <?php if ($time->day == "sunday") { ?>
                                                     <?php $flagSunday = 1; ?>
                                                     <tr id="row<?php echo $time->id; ?>">
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->start)); ?></td>
-                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:i A', strtotime($time->end)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->start)); ?></td>
+                                                        <td class="dt-vertical-align p-2"><i class="bi bi-clock"></i> <?php echo date('g:ia', strtotime($time->end)); ?></td>
                                                         <td class="text-center">
                                                             <button class="btn btn-sm btn-light btn-active-color-warning m-1 edit-time sunday" data-time-id="<?php echo $time->id; ?>" title="<?php echo lang('Text.btn_edit'); ?>" <?php if ($employeeBussinesDay[0]->sunday == 0) echo "disabled"; ?>>
                                                                 <span class="bi bi-pencil-square"></span>

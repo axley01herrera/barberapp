@@ -35,9 +35,6 @@
     <script src="<?php echo base_url('public/assets/plugins/custom/draggable/draggable.bundle.js'); ?>"></script>
     <script src="<?php echo base_url('public/assets/plugins/custom/tinymce/tinymce.bundle.js'); ?>"></script>
     
-
-
-
     <script>
         function simpleAlert(text, icon) {
             Swal.fire({

@@ -7,7 +7,7 @@
                 <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
                     <?php echo lang('Text.cust_appointment_page_title'); ?>
                 </h1>
-                 <!-- Page Sub Title -->
+                <!-- Page Sub Title -->
                 <div class="fs-6 fw-semibold text-muted"></div>
             </div>
             <!-- Page Button Action -->
@@ -22,10 +22,116 @@
         <div id="kt_app_content_container" class="app-container container-xxl">
             <div class="row">
                 <!-- Upcoming Appointments -->
-                <div class="col-12 col-md-4 col-lg-4">
+                <div class="col-12 col-md-4 col-lg-4 mb-5">
+                    <h5><?php echo lang('Text.cust_dash_upcoming_appointment_title'); ?></h5>
                     <?php echo view('customer/appointment/sectionUpcomingAppointment'); ?>
+                </div>
+                <!-- DT Appointments -->
+                <div class="col-12 col-md-8 col-lg-8">
+                    <h5><?php echo lang('Text.dt_appointment_title'); ?></h5>
+                    <!-- Card -->
+                    <div class="card mb-5 mb-xl-10 mt-5">
+                        <!-- Card Header -->
+                        <div class="card-header border-0">
+                            <!-- Card Title -->
+                            <div class="card-title">
+                                <div class="d-flex align-items-center position-relative ">
+                                    <h5></h5>
+                                </div>
+                            </div>
+                            <!-- Card Toolbar -->
+                            <div class="card-toolbar">
+                                <div id="search-appointments"></div>
+                            </div>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body pb-0">
+                            <!-- Data Table -->
+                            <div class="table-responsive">
+                                <table id="dt-appointments" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                                    <thead>
+                                        <tr class="fs-6 fw-bold">
+                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_emp'); ?></th>
+                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_date'); ?></th>
+                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_schedule'); ?></th>
+                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_services'); ?></th>
+                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_time'); ?></th>
+                                            <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_price'); ?></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    var lang = "<?php echo $config[0]->lang; ?>";
+    var dtLang = "";
+
+    if (lang == "es")
+        dtLang = "<?php echo base_url('assets/js/dataTable/es.json'); ?>";
+    else if (lang == "en")
+        dtLang = "<?php echo base_url('assets/js/dataTable/en.json'); ?>";
+
+    var dtAppointment = $('#dt-appointments').DataTable({ // Data Table
+        dom: 'RfrtlpiB',
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        pageLength: 10,
+        ordering: false,
+        language: {
+            url: dtLang
+        },
+        buttons: [],
+        ajax: {
+            url: "<?php echo base_url('Customer/processingAppointment'); ?>",
+            type: "POST"
+        },
+        order: [
+            [1, 'desc']
+        ],
+        columns: [{
+                data: 'emp',
+                class: 'dt-vertical-align p-2',
+            },
+            {
+                data: 'date',
+                class: 'dt-vertical-align p-2',
+            },
+            {
+                data: 'schedule',
+                class: 'dt-vertical-align p-2',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'serv',
+                class: 'dt-vertical-align p-2',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'time',
+                class: 'dt-vertical-align p-2',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'price',
+                class: 'dt-vertical-align p-2',
+                searchable: false,
+                orderable: false
+            },
+        ],
+        initComplete: function(settings, json) {
+            $('#search-appointments').html('');
+            $('#dt-appointments_filter').appendTo('#search-appointments');
+        }
+    }); // ok
+</script>

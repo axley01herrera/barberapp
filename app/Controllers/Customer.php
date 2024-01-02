@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\ConfigModel;
 use App\Models\MainModel;
 use App\Models\CustomerModel;
+use App\Models\DataTableModel;
 
 class Customer extends BaseController
 {
@@ -13,6 +14,7 @@ class Customer extends BaseController
     protected $objConfigModel;
     protected $objCustomerModel;
     protected $objMainModel;
+    protected $objDataTableModel;
     protected $config;
     protected $profile;
     protected $objEmail;
@@ -26,6 +28,7 @@ class Customer extends BaseController
         $this->objConfigModel = new ConfigModel;
         $this->objCustomerModel = new CustomerModel;
         $this->objMainModel = new MainModel;
+        $this->objDataTableModel = new DataTableModel;
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
@@ -115,6 +118,69 @@ class Customer extends BaseController
 
         return view('customer/mainCustomer', $data);
     } // ok
+
+    public function processingAppointment()
+    {
+        $dataTableRequest = $_REQUEST;
+
+        $params = array();
+        $params['draw'] = $dataTableRequest['draw'];
+        $params['start'] = $dataTableRequest['start'];
+        $params['length'] = $dataTableRequest['length'];
+        $params['search'] = $dataTableRequest['search']['value'];
+        $params['customerID'] = $this->objSession->get('user')['customerID'];
+
+        $row = array();
+        $totalRecords = 0;
+
+        $result = $this->objDataTableModel->getAppointmentProcessingData($params);
+        $totalRows = sizeof($result);
+
+        for ($i = 0; $i < $totalRows; $i++) {
+
+            $empAvatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . imgEmployee($result[$i]->employeeID) . '" class="" alt=""></div>';
+
+            $date = "";
+            if ($this->config[0]->lang == 'en')
+                $date = date('F j, Y', strtotime($result[$i]->date));
+            else {
+                $mont =  date('F', strtotime($result[$i]->date));
+                $date = lang('Text.' . $mont) . ' ' . date('j, Y', strtotime($result[$i]->date));
+            }
+
+            $schedule = '<span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> '. date('g:ia', strtotime($result[$i]->start)) .' - ' .date('g:ia', strtotime($result[$i]->end)) . '</span>';
+            $aux = json_decode($result[$i]->servicesJSON);
+            $serv = "";
+            
+            foreach ($aux as $s) {
+                $serv = $serv. '<div class="fw-semibold"><span class="bullet bullet-dot bg-primary me-2 h-10px w-10px"></span>'. $s->serviceTitle. '</div>';
+            }
+           
+            $col = array();
+            $col['emp'] = $empAvatar . ' ' . $result[$i]->employeeName . ' ' . $result[$i]->employeeLastName;
+            $col['date'] = $date;
+            $col['schedule'] = $schedule;
+            $col['serv'] = $serv;
+            $col['time'] = $result[$i]->totalTime . ' ' . lang('Text.minutes');
+            $col['price'] = getMoneyFormat($this->config[0]->currency, $result[$i]->totalPrice);
+            $row[$i] =  $col;
+        }
+
+        if ($totalRows > 0) {
+            if (empty($params['search']))
+                //$totalRecords = $this->objControlPanelModel->getTotalCustomers();
+                //else
+                $totalRecords = $totalRows;
+        }
+
+        $data = array();
+        $data['draw'] = $dataTableRequest['draw'];
+        $data['recordsTotal'] = intval($totalRecords);
+        $data['recordsFiltered'] = intval($totalRecords);
+        $data['data'] = $row;
+
+        return json_encode($data);
+    }
 
     public function profile()
     {
@@ -427,9 +493,9 @@ class Customer extends BaseController
 
                 while ($slotStartTimestamp <= $end) {
 
-                    $slotStart = $slotStartTimestamp->format('g:i a');
+                    $slotStart = $slotStartTimestamp->format('g:ia');
                     $slotStartTimestamp->add(new \DateInterval('PT' . $serviceTime . 'M')); // Iterator
-                    $slotEnd = $slotStartTimestamp->format('g:i a');
+                    $slotEnd = $slotStartTimestamp->format('g:ia');
 
                     $auxDate = date("Y-m-d H:i:s", strtotime($date . ' ' . $slotStart));
                     $auxTimestamp = strtotime($auxDate);

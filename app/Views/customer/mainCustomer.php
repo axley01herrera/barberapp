@@ -13,6 +13,12 @@
     <link href="<?php echo base_url('public/assets/css/style.bundle.css'); ?>" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url('public/assets/plugins/global/plugins.bundle.css'); ?>" rel="stylesheet" type="text/css" />
 
+    <style>
+        .dt-vertical-align {
+            vertical-align: middle;
+        }
+    </style>
+
     <script>
         var hostUrl = "<?php echo base_url('public/assets/'); ?>";
     </script>
