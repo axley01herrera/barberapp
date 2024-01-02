@@ -433,7 +433,7 @@ $lang['appointment_col_emp'] = 'Empleado';
 $lang['appointment_col_date'] = 'Fecha';
 $lang['appointment_col_schedule'] = 'Horario';
 $lang['appointment_col_services'] = 'Servicios';
-$lang['appointment_col_time'] = 'Tiempo Estimado';
+$lang['appointment_col_time'] = 'Tiempo';
 $lang['appointment_col_price'] = 'Precio';
 
 # Forms I-9
