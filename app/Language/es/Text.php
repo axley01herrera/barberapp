@@ -319,18 +319,13 @@ $lang['serv_success_created'] = "Servicio Creado";
 $lang['serv_success_updated'] = "Servicio Actualizado";
 $lang['serv_duplicate'] = "Ya existe el servicio";
 $lang['serv_no_desc'] = "Servicio sin descripción";
-$lang['dt_serv_title'] = "Título";
-$lang['dt_serv_price'] = "Price";
-$lang['dt_serv_time'] = "Tiempo (minutos)";
-$lang['dt_serv_status'] = "Estado";
-$lang['dt_serv_visibility'] = "Público";
-$lang['dt_serv_dec'] = "Descripción";
-$lang['dt_serv_time_label'] = "Tiempo estimado de duración";
-$lang['dt_serv_minutes_label'] = "Minutos";
 $lang['serv_success_order'] = "Orden de los servicios actualizados";
 $lang['serv_order_msg'] = "Ordena tus servicios";
 $lang['serv_order_msg_sub1'] = "Mueve las tarjetas desde la ezquina superior derecha y arrastra para organizarlas según tus preferencias, luego haz click en botón";
 $lang['serv_order_msg_sub2'] = "para guardar";
+
+# Control Panel Dashboard
+$lang['cp_dash_page_title'] = "Tablero";
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
@@ -434,6 +429,14 @@ $lang['appointment_col_schedule'] = 'Horario';
 $lang['appointment_col_services'] = 'Servicios';
 $lang['appointment_col_time'] = 'Tiempo';
 $lang['appointment_col_price'] = 'Precio';
+
+$lang['today_appointment_col_emp'] = 'Empleado';
+$lang['today_appointment_col_date'] = 'Fecha';
+$lang['today_appointment_col_schedule'] = 'Horario';
+$lang['today_appointment_col_services'] = 'Servicios';
+$lang['today_appointment_col_time'] = 'Tiempo';
+$lang['today_appointment_col_price'] = 'Precio';
+$lang['today_appointment_col_cust'] = 'Cliente';
 
 # Forms I-9
 $lang['form1_title'] = "Verificación de elegibilidad laboral";

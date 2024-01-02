@@ -212,4 +212,21 @@ class DataTableModel extends Model
     ####################
     #### End DT Customer Appointments
     ####################
+
+    ####################
+    #### DT Today Appointments
+    ####################
+
+    public function todayAppointments () {
+        $query = $this->db->table('view_appointment')
+        ->where('date', date('Y-m-d'));
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    }
+    
+    ####################
+    #### DT Today Appointments
+    ####################
 }

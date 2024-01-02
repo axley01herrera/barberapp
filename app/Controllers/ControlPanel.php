@@ -83,6 +83,24 @@ class ControlPanel extends BaseController
         return view('ControlPanel/mainCpanel', $data);
     }
 
+    public function dtTodayAppointments()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
+            return view('controlPanelLogout');
+
+        $data = array();
+        # data
+        $data['todayAppointments'] = $this->objDataTableModel->todayAppointments();
+        # config
+        $data['config'] = $this->config;
+
+        # page
+        $view = 'controlPanel/dashboard/dtTodayAppointments';
+
+        return view($view, $data);
+    }
+
     ##############################
     # Section Services
     ##############################

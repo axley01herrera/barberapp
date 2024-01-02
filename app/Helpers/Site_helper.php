@@ -62,6 +62,22 @@ function imgEmployee($employeeID)
         return "data:image/png;base64," . base64_encode($data[0]->avatar);
 }
 
+function imgCustomer($employeeID)
+{
+    $db = \Config\Database::connect();
+
+    $query = $db->table('customer')
+        ->select('avatar')
+        ->where('id', $employeeID);
+
+    $data = $query->get()->getResult();
+
+    if (empty($data[0]->avatar))
+        return base_url('public/assets/media/avatars/blank.png');
+    else
+        return "data:image/png;base64," . base64_encode($data[0]->avatar);
+}
+
 function labelService($serviceID)
 {
     $db = \Config\Database::connect();

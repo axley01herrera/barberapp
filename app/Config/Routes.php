@@ -34,6 +34,7 @@ $routes->get('Home/emailView', 'Home::emailView');
 
 # ControlPanel -> Dashboard
 $routes->get('ControlPanel/dashboard', 'ControlPanel::dashboard');
+$routes->post('ControlPanel/dtTodayAppointments', 'ControlPanel::dtTodayAppointments');
 
 # ControlPanel -> Services
 $routes->get('ControlPanel/services', 'ControlPanel::services');
