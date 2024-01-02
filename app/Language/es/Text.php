@@ -224,11 +224,6 @@ $lang['cust_success_updated'] = "Cliente Actualizado";
 $lang['cust_success_deleted'] = "Cliente Eliminado";
 $lang['cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
-$lang['dt_customer_name'] = "Nombre";
-$lang['dt_customer_last_name'] = "Apellidos";
-$lang['dt_customer_email'] = "Correo Electrónico";
-$lang['dt_customer_phone'] = "Teléfono";
-$lang['dt_customer_status'] = "Estado";
 $lang['cust_profile_success_updated'] = "Perfil Actualizado";
 $lang['cust_account_success_updated'] = "Cuenta Actualizada";
 $lang['cust_appointment_subtitle'] = 'Administración de Citas.';
@@ -330,6 +325,9 @@ $lang['serv_order_msg_sub2'] = "para guardar";
 # Control Panel Dashboard
 $lang['cp_dash_page_title'] = "Tablero";
 $lang['cp_dash_today_appointents'] = "Citas Hoy";
+
+# Control Panel Customer
+$lang['cp_cust_page_title'] = "Listado de Clientes";
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
@@ -441,6 +439,12 @@ $lang['today_appointment_col_services'] = 'Servicios';
 $lang['today_appointment_col_time'] = 'Tiempo';
 $lang['today_appointment_col_price'] = 'Precio';
 $lang['today_appointment_col_cust'] = 'Cliente';
+
+$lang['customer_col_name'] = "Nombre";
+$lang['customer_col_last_name'] = "Apellidos";
+$lang['customer_col_email'] = "Correo Electrónico";
+$lang['customer_col_phone'] = "Teléfono";
+$lang['customer_col_status'] = "Estado";
 
 # Forms I-9
 $lang['form1_title'] = "Verificación de elegibilidad laboral";

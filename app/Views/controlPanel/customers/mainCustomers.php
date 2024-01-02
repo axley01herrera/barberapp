@@ -5,7 +5,7 @@
             <!-- Page Title -->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                 <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                    <?php echo lang('Text.top_bar_customers'); ?>
+                    <?php echo lang('Text.cp_cust_page_title'); ?>
                 </h1>
             </div>
             <!-- Page Button Action -->
@@ -41,10 +41,10 @@
                             <thead>
                                 <tr class="fs-6 fw-bold">
                                     <th class="p-2"></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_customer_name'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_customer_last_name'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.dt_customer_email'); ?></th>
-                                    <th class="text-center p-2"><?php echo lang('Text.dt_customer_status'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.customer_col_name'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.customer_col_last_name'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.customer_col_email'); ?></th>
+                                    <th class="text-center p-2"><?php echo lang('Text.customer_col_status'); ?></th>
                                     <th class="text-end p-2"></th>
                                 </tr>
                             </thead>
