@@ -18,7 +18,8 @@ class CustomerModel extends Model
     {
         $query = $this->db->table('appointment')
         ->where('customerID', $customerID)
-        ->where('date >=', date('Y-m-d'));
+        ->where('date >=', date('Y-m-d'))
+        ->orderBy('date ASC');
 
         $data = $query->get()->getResult();
 
