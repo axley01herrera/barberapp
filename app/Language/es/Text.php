@@ -212,7 +212,7 @@ $lang['top_bar_logout'] = "Salir";
 # Customers
 $lang['cust_dash_page_title'] = 'Tablero';
 $lang['cust_appointment_page_title'] = 'Historial de Citas';
-$lang['cust_account_page_title'] = "Cuenta del Cliente";
+$lang['cust_account_page_title'] = "Detalle de Cuenta";
 $lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
 $lang['cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
 $lang['cust_success_resend_verify_email'] = 'Correo de Verificación Enviado';
@@ -245,10 +245,8 @@ $lang['cust_no_future_appointments'] = "Sin próximas citas";
 $lang['cust_future_appointments'] = "Próximas Citas";
 $lang['cust_activated'] = 'Cliente Activado';
 $lang['cust_deactivated'] = 'Cliente Desactivado';
-$lang['cust_tab_profile_title'] = "Descripción General";
-$lang['cust_tab_profile_subtitle'] = "Información Requerida.";
-$lang['cust_tab_account_title'] = 'Cuenta del Cliente';
-$lang['cust_tab_account_subtitle'] = 'Administración de Cuenta';
+$lang['cust_tab_credential_title'] = 'Credenciales de Cuenta';
+$lang['cust_tab_credential_subtitle'] = 'Administración de Credenciales';
 
 # Employees
 $lang['emp_btn_new'] = "Nuevo Empleado";

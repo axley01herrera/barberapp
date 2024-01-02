@@ -19,13 +19,13 @@
         <div id="kt_app_content_container" class="app-container container-xxl">
             <!-- Tabs Header -->
             <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8" role="tablist">
-                <!-- Profile -->
+                <!-- Info -->
                 <li class="nav-item">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile<?php echo $uniqid; ?> <?php if ($tab == "profile") echo "active"; ?> " data-tab="profile" href="#"><?php echo lang('Text.profile'); ?></a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-customer-account<?php echo $uniqid; ?> <?php if ($tab == "info") echo "active"; ?> " data-tab="info" href="#"><?php echo lang('Text.cp_cust_profile_tab_info'); ?></a>
                 </li>
-                <!-- Account -->
+                <!-- Credentials -->
                 <li class="nav-item">
-                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile<?php echo $uniqid; ?> <?php if ($tab == "account") echo "active"; ?>" data-tab="account" href="#"><?php echo lang('Text.account'); ?></a>
+                    <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-customer-account<?php echo $uniqid; ?> <?php if ($tab == "credentials") echo "active"; ?>" data-tab="credentials" href="#"><?php echo lang('Text.account'); ?></a>
                 </li>
             </ul>
             <div id="customer-tab-content"></div>
@@ -40,7 +40,7 @@
     function getTabContent() {
         $.ajax({
             type: "post",
-            url: "<?php echo base_url('Customer/profileTab'); ?>",
+            url: "<?php echo base_url('Customer/accountTab'); ?>",
             data: {
                 'tab': tab
             },
@@ -54,10 +54,10 @@
         });
     }
 
-    $('.tab-profile<?php echo $uniqid; ?>').on('click', function(e) {
+    $('.tab-customer-account<?php echo $uniqid; ?>').on('click', function(e) {
         e.preventDefault();
         tab = $(this).attr('data-tab');
-        window.location.href = "<?php echo base_url('Customer/profile?tab='); ?>" + tab;
+        window.location.href = "<?php echo base_url('Customer/account?tab='); ?>" + tab;
     });
 
 </script>

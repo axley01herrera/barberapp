@@ -181,7 +181,7 @@ class Customer extends BaseController
         return json_encode($data);
     } // ok
 
-    public function profile()
+    public function account()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
@@ -196,11 +196,11 @@ class Customer extends BaseController
         $tab = $this->objRequest->getPostGet('tab');
 
         if (empty($tab))
-            $tab = "profile";
+            $tab = "info";
 
         $data = array();
         # menu 
-        $data['activeProfile'] = "active";
+        $data['activeAccount'] = "active";
         # config
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->profile;
@@ -209,12 +209,12 @@ class Customer extends BaseController
         $data['dateLabel'] = $dateLabel;
         $data['tab'] = $tab;
         # page
-        $data['page'] = 'customer/profile/mainProfile';
+        $data['page'] = 'customer/account/mainAccount';
 
         return view('customer/mainCustomer', $data);
     } // ok
 
-    public function profileTab()
+    public function accountTab()
     {
         # Verify Session 
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer")
@@ -230,15 +230,15 @@ class Customer extends BaseController
         $data['uniqid'] = uniqid();
 
         switch ($tab) {
-            case 'profile':
+            case 'info':
                 # page
-                $view = 'customer/profile/tabContent/customerProfile';
+                $view = 'customer/account/tabContent/info';
                 # data
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
                 break;
-            case 'account':
+            case 'credentials':
                 # page
-                $view = 'customer/profile/tabContent/customerAccount';
+                $view = 'customer/account/tabContent/credentials';
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
                 break;
         }
