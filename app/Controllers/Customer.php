@@ -87,7 +87,7 @@ class Customer extends BaseController
         $data['page'] = 'customer/dashboard/mainDashboard';
 
         return view('customer/mainCustomer', $data);
-    }
+    } // ok
 
     public function appointment()
     {
@@ -133,7 +133,7 @@ class Customer extends BaseController
         $row = array();
         $totalRecords = 0;
 
-        $result = $this->objDataTableModel->getAppointmentProcessingData($params);
+        $result = $this->objDataTableModel->getCustomerAppointmentProcessingData($params);
         $totalRows = sizeof($result);
 
         for ($i = 0; $i < $totalRows; $i++) {
@@ -168,7 +168,7 @@ class Customer extends BaseController
 
         if ($totalRows > 0) {
             if (empty($params['search']))
-                $totalRecords = $this->objDataTableModel->getTotalAppointments($params);
+                $totalRecords = $this->objDataTableModel->getTotalCustomerAppointments($params);
             else
                 $totalRecords = $totalRows;
         }
@@ -180,7 +180,7 @@ class Customer extends BaseController
         $data['data'] = $row;
 
         return json_encode($data);
-    }
+    } // ok
 
     public function profile()
     {

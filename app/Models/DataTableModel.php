@@ -18,7 +18,7 @@ class DataTableModel extends Model
     #### DT Customer Appointments
     ####################
 
-    public function getAppointmentProcessingData($params)
+    public function getCustomerAppointmentProcessingData($params)
     {
         $query = $this->db->table('view_appointment');
 
@@ -45,16 +45,14 @@ class DataTableModel extends Model
         return $query->get()->getResult();
     }
 
-    public function getTotalAppointments($params)
+    public function getTotalCustomerAppointments($params)
     {
         $query = $this->db->table('view_appointment')
             ->select('appointmentID');
 
-        if (!empty($params['customerID'])) {
-            $query->groupStart();
-            $query->where('customerID', $params['customerID']);
-            $query->groupEnd();
-        }
+        $query->groupStart();
+        $query->where('customerID', $params['customerID']);
+        $query->groupEnd();
 
         $data = $query->get()->getResult();
 

@@ -41,14 +41,14 @@
                             </div>
                             <!-- Card Toolbar -->
                             <div class="card-toolbar">
-                                <div id="search-appointments"></div>
+                                <div id="search-customer-appointments"></div>
                             </div>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body pb-0">
                             <!-- Data Table -->
                             <div class="table-responsive">
-                                <table id="dt-appointments" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                                <table id="dt-customer-appointments" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
                                     <thead>
                                         <tr class="fs-6 fw-bold">
                                             <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_emp'); ?></th>
@@ -78,7 +78,7 @@
     else if (lang == "en")
         dtLang = "<?php echo base_url('assets/js/dataTable/en.json'); ?>";
 
-    var dtAppointment = $('#dt-appointments').DataTable({ // Data Table
+    var dtCustomerAppointment = $('#dt-customer-appointments').DataTable({ // Data Table
         dom: 'RfrtlpiB',
         processing: true,
         serverSide: true,
@@ -130,8 +130,8 @@
             },
         ],
         initComplete: function(settings, json) {
-            $('#search-appointments').html('');
-            $('#dt-appointments_filter').appendTo('#search-appointments');
+            $('#search-customer-appointments').html('');
+            $('#dt-customer-appointments_filter').appendTo('#search-customer-appointments');
         }
     }); // ok
 </script>
