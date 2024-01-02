@@ -32,7 +32,7 @@
                             <div class="d-flex flex-column">
                                 <h4 class="mb-1 text-dark"><?php echo lang("Text.description"); ?></h4>
                                 <span><?php echo $service->description; ?></span>
-                                <span><?php echo lang('Text.dt_serv_time_label'); ?> <?php echo $service->time; ?> <?php echo lang('Text.dt_serv_minutes_label'); ?></span>
+                                <span><?php echo lang('Text.appointment_col_time'); ?> <?php echo $service->time; ?> <?php echo lang('Text.minutes'); ?></span>
                             </div>
                         </div>
                     </div>
