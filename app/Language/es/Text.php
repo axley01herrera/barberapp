@@ -249,7 +249,6 @@ $lang['cust_tab_credential_title'] = 'Credenciales de Cuenta';
 $lang['cust_tab_credential_subtitle'] = 'Administración de Credenciales';
 
 # Employees
-$lang['emp_modal_title_new'] = "Nuevo Empleado";
 $lang['emp_modal_title_update'] = "Actualizando Empleado";
 $lang['emp_success_created'] = "Empleado Creado";
 $lang['emp_success_updated'] = "Empleado Actualizado";
@@ -319,6 +318,7 @@ $lang['cp_cust_profile_tab_account_subtitle'] = 'Administración de Cuenta';
 $lang['cp_cust_profile_tab_info'] = "Información";
 $lang['cp_cust_profile_tab_info_title'] = 'Descripción General';
 $lang['cp_cust_profile_tab_info_subtitle'] = 'Información Requerida';
+$lang['cp_emp_modal_title_new'] = "Nuevo Empleado";
 
 # Control Panel Employee
 $lang['cp_emp_page_title'] = "Listado de Empleados";
@@ -339,10 +339,6 @@ $lang['cp_emp_profile_tab_account_subtitle'] = 'Administración de Cuenta';
 $lang['cp_emp_profile_tab_info'] = "Información";
 $lang['cp_emp_profile_tab_info_title'] = 'Descripción General';
 $lang['cp_emp_profile_tab_info_subtitle'] = 'Información Requerida';
-
-
-
-
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";

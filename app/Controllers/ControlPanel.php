@@ -938,7 +938,7 @@ class ControlPanel extends BaseController
         $data['uniqid'] = uniqid();
 
         if ($action == "create")
-            $data['modalTitle'] = lang("Text.emp_modal_title_new");
+            $data['modalTitle'] = lang("Text.cp_emp_modal_title_new");
         else if ($action == "update") {
             $data['modalTitle'] = lang("Text.emp_modal_title_update");
             $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID)[0];
