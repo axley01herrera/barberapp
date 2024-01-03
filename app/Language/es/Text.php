@@ -297,6 +297,14 @@ $lang['cp_emp_profile_tab_info'] = "Información";
 $lang['cp_emp_profile_tab_info_title'] = 'Descripción General';
 $lang['cp_emp_profile_tab_info_subtitle'] = 'Información Requerida';
 $lang['cp_emp_modal_title_new'] = "Nuevo Empleado";
+$lang['cp_emp_change_status'] = "Cambiar Estado";
+$lang['cp_emp_resend_verify_email'] = 'Reenviar Correo de Verificación';
+$lang['cp_emp_resend_complete_account'] = 'Reenviar Correo Crear Cuenta';
+$lang['cp_emp_success_resend_verify_email'] = 'Correo de Verificación Enviado al Empleado';
+$lang['cp_emp_success_resend_complete_account'] = 'Correo Reenviado al Empleado';
+$lang['cp_emp_activated'] = 'Empleado Activado';
+$lang['cp_emp_deactivated'] = 'Empleado Desactivado';
+$lang['cp_emp_complete_account'] = 'Completa tu Cuenta';
 
 # Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";

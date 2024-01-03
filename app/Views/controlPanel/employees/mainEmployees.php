@@ -137,13 +137,12 @@
             dataType: "json",
             success: function(response) {
                 if (response.error == 0) {
-                    simpleSuccessAlert(response.msg);
+                    simpleSuccessAlert('<?php echo lang('Text.cp_emp_success_resend_verify_email'); ?>');
                 } else {
-                    if (response.msg == "SESSION_EXPIRED") {
+                    if (response.msg == "SESSION_EXPIRED") 
                         window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                    } else {
+                    else 
                         globalError();
-                    }
                 }
             },
             error: function(e) {
@@ -162,7 +161,7 @@
             dataType: "json",
             success: function(response) {
                 if (response.error == 0) {
-                    simpleSuccessAlert(response.msg);
+                    simpleSuccessAlert('<?php echo lang('Text.cp_emp_success_resend_complete_account'); ?>');
                 } else {
                     if (response.msg == "SESSION_EXPIRED") {
                         window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
@@ -185,10 +184,10 @@
 
         if (status == 0) {
             newStatus = 1;
-            msg = "<?php echo lang('Text.emp_activated'); ?>";
+            msg = "<?php echo lang('Text.cp_emp_activated'); ?>";
         } else if (status == 1) {
             newStatus = 0;
-            msg = "<?php echo lang('Text.emp_deactivated'); ?>";
+            msg = "<?php echo lang('Text.cp_emp_deactivated'); ?>";
         }
 
         $(this).attr('data-status', newStatus);

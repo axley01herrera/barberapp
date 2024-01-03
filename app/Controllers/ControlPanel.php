@@ -890,19 +890,19 @@ class ControlPanel extends BaseController
             $resendVerifyEmail = "";
 
             $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
-            $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+            $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.cp_emp_change_status') . '" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if (!empty($result[$i]->avatar))
                 $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
 
             if ($result[$i]->status == 1)
-                $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+                $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.cp_emp_change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if (empty($result[$i]->password))
-                $resendCompleteAccountEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
+                $resendCompleteAccountEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.cp_emp_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
             if (!empty($result[$i]->password) && $result[$i]->emailVerified == 0)
-                $resendVerifyEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
+                $resendVerifyEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.cp_emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
             $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?employeeID=') . $result[$i]->id . '" title="' . lang('Text.cp_emp_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
@@ -996,7 +996,7 @@ class ControlPanel extends BaseController
 
             $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
             $this->objEmail->setTo($email);
-            $this->objEmail->setSubject(lang('Text.emp_complete_your_account'));
+            $this->objEmail->setSubject(lang('Text.cp_emp_complete_account'));
             $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
 
             if ($this->objEmail->send(false))
@@ -2061,7 +2061,7 @@ class ControlPanel extends BaseController
 
         $this->objEmail->setFrom(EMAIL_SMTP_USER, $this->companyProfile[0]->companyName);
         $this->objEmail->setTo($user[0]->email);
-        $this->objEmail->setSubject(lang('Text.emp_complete_your_account'));
+        $this->objEmail->setSubject(lang('Text.cp_emp_complete_account'));
         $this->objEmail->setMessage(view('email/createEmployeeByAdmin', $dataEmail), []);
 
         if ($this->objEmail->send(false)) {
