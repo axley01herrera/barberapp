@@ -101,6 +101,29 @@ class Employee extends BaseController
         return view('employee/mainEmployee', $data);
     }
 
+    public function appointment()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee")
+            return view('employeeLogout');
+
+        # params
+        $employeeID =  $this->objSession->get('user')['employeeID'];
+
+        # data
+        $data = array();
+        $data['uniqid'] = uniqid();
+        $data['activeAppointment'] = 'active';
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
+
+        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
+        # page
+        $data['page'] = 'employee/appointments/mainAppointments';
+
+        return view('employee/mainEmployee', $data);
+    }
+
     public function services()
     {
         # Verify Session 
@@ -118,8 +141,6 @@ class Employee extends BaseController
         $data['employeeServices'] = $this->objMainModel->objData('employee_service', 'employeeID', $employeeID);
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
-        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
-        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
         # page
         $data['page'] = 'employee/services/mainServices';
 
@@ -147,8 +168,6 @@ class Employee extends BaseController
         $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
-        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
-        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
         # page
         $data['page'] = 'employee/times/mainTimes';
 
