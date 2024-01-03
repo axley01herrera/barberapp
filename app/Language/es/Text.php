@@ -143,9 +143,6 @@ $lang['no_requested'] = "No Solicitado";
 $lang['send_requested'] = "Enviar Solicitud";
 $lang['no_registered'] = "No Registrado";
 $lang['minutes'] = "minutos";
-$lang['pending'] = "Pendiente";
-$lang['in_progress'] = "En Progreso";
-$lang['finish'] = "Finalizada";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -307,6 +304,7 @@ $lang['cp_dash_active_emp'] = "Empleados Activos";
 $lang['cp_dash_active_cust'] = "Clientes Activos";
 $lang['cp_dash_serv'] = "Servicios";
 $lang['cp_dash_active'] = "Activos";
+$lang['cp_dash_pending'] = "Pendiente";
 
 # Control Panel Services
 $lang['cp_serv_page_title'] = "Tarjetas de Servicio";

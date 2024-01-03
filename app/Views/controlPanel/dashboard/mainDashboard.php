@@ -22,14 +22,14 @@
                         <div class="card-header pt-5">
                             <div class="card-title d-flex flex-column">
                                 <span id="total-today-appointment" class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2"></span>
-                                <span class="text-white opacity-50 pt-1 fw-semibold fs-6"><?php echo lang('Text.cp_dash_today_appointents'); ?></span>
+                                <span class="text-white  pt-1 fw-semibold fs-6"><?php echo lang('Text.cp_dash_today_appointents'); ?></span>
                             </div>
                         </div>
                         <div class="card-body d-flex align-items-end pt-0">
                             <div class="d-flex align-items-center flex-column mt-3 w-100">
-                                <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-50 w-100 mt-auto mb-2">
-                                    <span><span id="pending-appointment"></span> <?php echo lang('Text.pending'); ?></span>
-                                    <span><span id="pecent-appointment"></span>%</span>
+                                <div class="d-flex justify-content-between fw-bold fs-6 text-white w-100 mt-auto mb-2">
+                                    <span class="text-white"><span id="pending-appointment"></span> <?php echo lang('Text.cp_dash_pending'); ?></span>
+                                    <span class="text-white"><span id="pecent-appointment"></span>%</span>
                                 </div>
                                 <div class="h-8px mx-3 w-100 bg-light-success rounded">
                                     <div id="pecent-appointment-bar" class="bg-success rounded h-8px" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
