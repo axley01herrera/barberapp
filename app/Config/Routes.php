@@ -86,6 +86,7 @@ $routes->post('ControlPanel/chartEmployeeTime', 'ControlPanel::chartEmployeeTime
 $routes->post('ControlPanel/createTime', 'ControlPanel::createTime');
 $routes->post('ControlPanel/updateTime', 'ControlPanel::updateTime');
 $routes->post('ControlPanel/deleteTime', 'ControlPanel::deleteTime');
+$routes->post('ControlPanel/processingEmployeeAppointment', 'ControlPanel::processingEmployeeAppointment');
 
 # ControlPanel -> Company Profile
 $routes->get('ControlPanel/profile', 'ControlPanel::profile');
@@ -146,3 +147,4 @@ $routes->post('Employee/modalTime', 'Employee::modalTime');
 $routes->post('Employee/createTime', 'Employee::createTime');
 $routes->post('Employee/updateTime', 'Employee::updateTime');
 $routes->post('Employee/deleteTime', 'Employee::deleteTime');
+$routes->post('Employee/cancelAppointment', 'Employee::cancelAppointment');
