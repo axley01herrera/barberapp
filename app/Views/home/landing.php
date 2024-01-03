@@ -166,19 +166,19 @@
                                         <div class="d-flex align-items-center flex-wrap d-grid gap-2">
                                             <div class="d-flex align-items-center me-5 me-xl-13">
                                                 <div class="symbol symbol-30px symbol-circle me-3">
-                                                    <img src="assets/media/icons/duotune/abstract/abs019.svg" />
+                                                    <img src="<?php echo base_url('public/assets/media/icons/duotune/abstract/abs019.svg'); ?>" />
                                                 </div>
                                                 <div class="m-0">
-                                                    <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.time_minutes'); ?></span>
+                                                    <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.cp_serv_time_minutes'); ?></span>
                                                     <span class="fw-bold text-gray-800 text-hover-primary fs-7"><?php echo $s->time; ?> m</span>
                                                 </div>
                                             </div>
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-30px symbol-circle me-3">
-                                                    <img src="assets/media/icons/duotune/finance/fin003.svg" />
+                                                    <img src="<?php echo base_url('public/assets/media/icons/duotune/finance/fin003.svg'); ?>" />
                                                 </div>
                                                 <div class="m-0">
-                                                    <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.price'); ?></span>
+                                                    <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.cp_serv_price'); ?></span>
                                                     <span class="fw-bold text-gray-800 fs-7"><?php echo getMoneyFormat($config[0]->currency, $s->price); ?></span>
                                                 </div>
                                             </div>

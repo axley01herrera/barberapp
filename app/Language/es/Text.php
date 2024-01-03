@@ -168,6 +168,21 @@ $lang['btn_save_ordering'] = "Guardar Orden";
 $lang['btn_sign_in'] = "Iniciar Sesión";
 $lang['btn_signup'] = "Regístrate";
 
+# Home -> Landing Page
+$lang['lp_welcome'] = "Bienvenido, Portal Web";
+$lang['lp_welcome_to'] = "para";
+$lang['lp_welcome_a_online'] = "Reserva de Citas";
+$lang['lp_menu_home'] = "Inicio";
+$lang['lp_menu_services'] = "Servicios";
+$lang['lp_menu_team'] = "Equipo";
+$lang['lp_menu_galery'] = "Galería";
+$lang['lp_menu_about'] = "Sobre Nosotros";
+$lang['lp_menu_contact'] = "Información de Contacto";
+$lang['lp_contact_email'] = "Correo Electrónico de Contacto";
+$lang['lp_contact_phone'] = "Teléfono de Contacto";
+$lang['lp_portal_online'] = "en línea";
+$lang['lp_invite'] = "Si eres cliente y no tienes cuenta te invitamos a registrarte.";
+
 # Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
 $lang['registration_subtitle'] = 'Introduzca sus Datos';
@@ -431,21 +446,6 @@ $lang['e_rv_complete_account'] = "Verifica tu cuenta de correo electrónico";
 $lang['e_rv_complete_account_msg'] = "Si estás recibiendo este mensaje, es importante que verifiques tu correo electrónico. Te pedimos que hagas clic en el botón que se encuentra a continuación para completar el proceso de verificación.";
 $lang['e_rv_create_account'] = "Verificar mi Correo Electrónico";
 $lang['e_rv_complete_account_info'] = "La verificación de su correo electrónico es fundamental para enviarle notificaciones importantes, actualizaciones sobre la política de privacidad y otros avisos relevantes. En su perfil, tiene la opción de activar o desactivar estas notificaciones según su preferencia. Agradecemos su colaboración.";
-
-# Landing Page
-$lang['lp_welcome'] = "Bienvenido, Portal Web";
-$lang['lp_welcome_to'] = "para";
-$lang['lp_welcome_a_online'] = "Reserva de Citas";
-$lang['lp_menu_home'] = "Inicio";
-$lang['lp_menu_services'] = "Servicios";
-$lang['lp_menu_team'] = "Equipo";
-$lang['lp_menu_galery'] = "Galería";
-$lang['lp_menu_about'] = "Sobre Nosotros";
-$lang['lp_menu_contact'] = "Información de Contacto";
-$lang['lp_contact_email'] = "Correo Electrónico de Contacto";
-$lang['lp_contact_phone'] = "Teléfono de Contacto";
-$lang['lp_portal_online'] = "en línea";
-$lang['lp_invite'] = "Si eres cliente y no tienes cuenta te invitamos a registrarte.";
 
 # Data Tables
 $lang['appointment_col_emp'] = 'Empleado';
