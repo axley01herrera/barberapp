@@ -3,8 +3,6 @@ $lang = array();
 
 # Global Labels
 $lang['about'] = "Sobre Nosotros";
-$lang['about_bussiness'] = "Cuéntanos más sobre tu negocio";
-$lang['c_panel'] = "Panel de Control";
 $lang['languaje'] = "Idioma";
 $lang['theme'] = "Tema";
 $lang['theme_light'] = "Claro";
@@ -131,6 +129,7 @@ $lang['lp_contact_email'] = "Correo Electrónico de Contacto";
 $lang['lp_contact_phone'] = "Teléfono de Contacto";
 $lang['lp_portal_online'] = "en línea";
 $lang['lp_invite'] = "Si eres cliente y no tienes cuenta te invitamos a registrarte.";
+$lang['lp_c_panel'] = "Panel de Control";
 
 # Home -> Registration
 $lang['form_registration'] = 'Formulario de Registro';
@@ -339,7 +338,7 @@ $lang['cp_profile_zip'] = "Código Postal";
 $lang['cp_profile_country'] = "País";
 $lang['cp_profile_menu_bussiness_data'] = "Descripción";
 $lang['cp_profile_bussiness_data_title'] = "Descripción General";
-$lang['cp_profile_bussiness_data_subtitle'] = "Información del Negocio.";
+$lang['cp_profile_bussiness_data_subtitle'] = "Información del Negocio";
 $lang['cp_profile_menu_change_key'] = "Clave";
 $lang['cp_profile_change_key_title'] = "Acceso al Panel de Control";
 $lang['cp_profile_change_key_subtitle'] = "Clave de Acceso.";
@@ -374,6 +373,9 @@ $lang['cp_profile_social_networks'] = "Redes Sociales";
 $lang['cp_profile_social_network_msg'] = 'Conectar con tus redes sociales es una excelente forma de mejorar la interacción con los clientes.';
 $lang['cp_profile_add_social_network'] = "Nueva Red Social";
 $lang['cp_profile_edit_social_network'] = "Editando Red Social";
+$lang['cp_profile_about_bussiness'] = "Cuéntanos más sobre tu negocio";
+$lang['cp_profile_change_avatar'] = "Nuevo Logo";
+$lang['cp_profile_remove_avatar'] = "Remover Logo";
 
 $lang['cp_dt_module_name'] = "Módulo";
 $lang['cp_dt_module_type'] = "Tipo";

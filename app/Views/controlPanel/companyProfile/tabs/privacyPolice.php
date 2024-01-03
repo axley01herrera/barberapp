@@ -4,7 +4,7 @@
         <!-- Card title -->
         <div class="card-title flex-column">
             <h2 class="mb-1"><?php echo lang('Text.cp_profile_menu_privacy_police'); ?></h2>
-            <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.cp_profile_privacy_police_subtitle'); ?>.</div>
+            <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.cp_profile_privacy_police_subtitle'); ?></div>
         </div>
         <!-- Card toolbar -->
         <div class="card-toolbar">
@@ -27,6 +27,7 @@
 
 <script>
     var lang = "<?php echo $config[0]->lang; ?>";
+
     tinymce.init({
         mode: "none",
         readonly: true,

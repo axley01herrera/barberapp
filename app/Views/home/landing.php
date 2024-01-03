@@ -383,7 +383,7 @@
                             </li>
                             <!-- Control Panel Sign In -->
                             <li class="menu-item">
-                                <a href="<?php echo base_url('Home/controlPanelAuth'); ?>" class="menu-link px-2"><?php echo lang('Text.c_panel'); ?></a>
+                                <a href="<?php echo base_url('Home/controlPanelAuth'); ?>" class="menu-link px-2"><?php echo lang('Text.lp_c_panel'); ?></a>
                             </li>
                         </ul>
                     </div>

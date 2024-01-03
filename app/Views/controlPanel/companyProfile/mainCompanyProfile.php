@@ -17,39 +17,50 @@
         <div id="kt_app_content_container" class="app-container container-xxl">
             <div class="d-flex flex-column flex-lg-row">
                 <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
+
                     <!-- Company Info -->
                     <?php echo view('controlPanel/companyProfile/companyInfo'); ?>
+
                     <!-- Social Network -->
                     <div id="social-networks"></div>
+
                 </div>
+
                 <!-- Tabs -->
                 <div class="flex-lg-row-fluid ms-lg-15">
                     <!-- Tabs Header -->
                     <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8" role="tablist">
+
                         <!-- Profile Info -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "profile") echo "active"; ?> " data-tab-profile="profile" href="#"><?php echo lang('Text.cp_profile_menu_bussiness_data'); ?></a>
                         </li>
+
                         <!-- Privacy Police -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "privacyPolice") echo "active"; ?>" data-tab-profile="privacyPolice" href="#"><?php echo lang('Text.cp_profile_menu_privacy_police'); ?></a>
                         </li>
+
                         <!-- Images -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "images") echo "active"; ?>" data-tab-profile="images" href="#"><?php echo lang('Text.cp_profile_menu_photo'); ?></a>
                         </li>
+
                         <!-- Acess Key -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "key") echo "active"; ?>" data-tab-profile="key" href="#"><?php echo lang('Text.cp_profile_menu_change_key'); ?></a>
                         </li>
-                        <!-- Modules -->
+
+                        <!-- Modules 
                         <li class="nav-item">
-                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "modules") echo "active"; ?>" data-tab-profile="modules" href="#"><?php echo lang('Text.cp_profile_menu_modules'); ?></a>
-                        </li>
+                            <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php // if ($tab == "modules") echo "active"; ?>" data-tab-profile="modules" href="#"><?php // echo lang('Text.cp_profile_menu_modules'); ?></a>
+                        </li> -->
+
                         <!-- Config -->
                         <li class="nav-item">
                             <a class="nav-link text-active-primary ms-0 me-10 py-5 tab-profile <?php if ($tab == "config") echo "active"; ?>" data-tab-profile="config" href="#"><?php echo lang('Text.cp_profile_menu_config'); ?></a>
                         </li>
+
                     </ul>
                     <div id="profile-tab-content" class="container mt-10 mb-10"></div>
                 </div>

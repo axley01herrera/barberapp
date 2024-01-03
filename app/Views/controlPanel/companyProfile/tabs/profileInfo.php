@@ -33,96 +33,110 @@
                         <div class="image-input-wrapper w-125px h-125px" style="background-image: url(data:image/png;base64,<?php echo base64_encode($profile[0]->avatar); ?>)"></div>
                     <?php } ?>
                     <!-- Edit Button -->
-                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.change_avatar'); ?>">
+                    <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cp_profile_change_avatar'); ?>">
                         <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span class="path2"></span></i>
                         <!-- Inputs -->
                         <input id="avatar<?php echo $uniqid; ?>" type="file" name="avatar" accept=".png, .jpg, .jpeg" />
                         <input type="hidden" name="avatar_remove" />
                     </label>
                     <!-- Cancel button -->
-                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cancel_avatar'); ?>">
+                    <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cp_profile_remove_avatar'); ?>">
                         <i class="ki-outline ki-cross fs-3"></i>
                     </span>
                     <!-- Remove button -->
                     <?php if (!empty($profile[0]->avatar)) { ?>
-                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.remove_avatar'); ?>">
+                        <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="<?php echo lang('Text.cp_profile_remove_avatar'); ?>">
                             <i class="ki-outline ki-cross fs-3"></i>
                         </span>
                     <?php } ?>
                 </div>
             </div>
-            <!-- Company Name-->
+
+            <!-- Company Name -->
             <div class="col-12 col-lg-6 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-company<?php echo $uniqid; ?>"><?php echo lang('Text.company_name'); ?> <span class="text-danger">*</span></label>
+                <label class="fs-6 fw-semibold" for="txt-company<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_company_name'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-company<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $profile[0]->companyName; ?>" disabled />
             </div>
+
             <!-- Company Type -->
             <div class="col-12 col-lg-6 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-type<?php echo $uniqid; ?>"><?php echo lang('Text.bussines_type'); ?> <span class="text-danger">*</span></label>
+                <label class="fs-6 fw-semibold" for="txt-type<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_company_type'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-type<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo $profile[0]->companyType; ?>" disabled />
             </div>
+
             <!-- Company ID -->
             <div class="col-12 col-lg-6 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-company-id<?php echo $uniqid; ?>"><?php echo lang('Text.tax_identifier'); ?> <span class="text-danger"></span></label>
+                <label class="fs-6 fw-semibold" for="txt-company-id<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_tax_identifier'); ?> <span class="text-danger"></span></label>
                 <input type="text" id="txt-company-id<?php echo $uniqid; ?>" class="form-control" value="<?php echo $profile[0]->companyID; ?>" disabled />
             </div>
+
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Email -->
-                <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
+                <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_email'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $profile[0]->email; ?>" disabled />
             </div>
+
             <div class="col-12 col-lg-4 mt-5">
                 <!-- Primary Phone -->
-                <label class="fs-6 fw-semibold" for="txt-phone1<?php echo $uniqid; ?>"><?php echo lang('Text.primary_phone'); ?> <span class="text-danger">*</span></label>
+                <label class="fs-6 fw-semibold" for="txt-phone1<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_primary_phone'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-phone1<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->phone1; ?>" disabled />
             </div>
+
             <div class="col-12 col-lg-4 mt-5">
                 <!-- Secondary Phone -->
-                <label class="fs-6 fw-semibold" for="txt-phone2<?php echo $uniqid; ?>"><?php echo lang('Text.secondary_phone'); ?></label>
+                <label class="fs-6 fw-semibold" for="txt-phone2<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_secondary_phone'); ?></label>
                 <input type="text" id="txt-phone2<?php echo $uniqid; ?>" class="form-control" maxlength="45" value="<?php echo $profile[0]->phone2; ?>" disabled />
             </div>
+
             <div class="col-12 col-lg-4 mt-5">
                 <!-- Phone Ext -->
-                <label class="fs-6 fw-semibold" for="txt-ext<?php echo $uniqid; ?>"><?php echo lang('Text.phone_ext'); ?></label>
+                <label class="fs-6 fw-semibold" for="txt-ext<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_phone_ext'); ?></label>
                 <input type="text" id="txt-ext<?php echo $uniqid; ?>" class="form-control" maxlength="45" value="<?php echo $profile[0]->phoneExt; ?>" disabled />
             </div>
+
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Line 1 -->
-                <label class="fs-6 fw-semibold" for="txt-address1<?php echo $uniqid; ?>"><?php echo lang('Text.address1'); ?> <span class="text-danger">*</span></label>
+                <label class="fs-6 fw-semibold" for="txt-address1<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_address1'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-address1<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $profile[0]->address1; ?>" disabled />
             </div>
+
             <div class="col-12 col-lg-6 mt-5">
                 <!-- Line 2 -->
-                <label class="fs-6 fw-semibold" for="txt-address2<?php echo $uniqid; ?>"><?php echo lang('Text.address2'); ?></label>
+                <label class="fs-6 fw-semibold" for="txt-address2<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_address2'); ?></label>
                 <input type="text" id="txt-address2<?php echo $uniqid; ?>" class="form-control" maxlength="150" value="<?php echo $profile[0]->address2; ?>" disabled />
             </div>
+
             <div class="col-12 col-lg-3 mt-5">
                 <!-- City -->
-                <label class="fs-6 fw-semibold" for="txt-city<?php echo $uniqid; ?>"><?php echo lang('Text.city'); ?> <span class="text-danger">*</span></label>
+                <label class="fs-6 fw-semibold" for="txt-city<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_city'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-city<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->city; ?>" disabled />
             </div>
+
             <div class="col-12 col-lg-3 mt-5">
                 <!-- State -->
-                <label class="fs-6 fw-semibold" for="txt-state<?php echo $uniqid; ?>"><?php echo lang('Text.state'); ?> <span class="text-danger">*</span></label>
+                <label class="fs-6 fw-semibold" for="txt-state<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_state'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-state<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->state; ?>" disabled />
             </div>
             <div class="col-12 col-lg-3 mt-5">
                 <!-- Zip -->
-                <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>"><?php echo lang('Text.zip'); ?> <span class="text-danger">*</span></label>
+                <label class="fs-6 fw-semibold" for="txt-zip<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_zip'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-zip<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> number<?php echo $uniqid; ?>" maxlength="5" value="<?php if (!empty($profile[0]->zip)) echo $profile[0]->zip; ?>" disabled />
             </div>
+
             <div class="col-12 col-lg-3 mt-5">
                 <!-- Country -->
-                <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.country'); ?> <span class="text-danger">*</span></label>
+                <label class="fs-6 fw-semibold" for="txt-country<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_country'); ?> <span class="text-danger">*</span></label>
                 <input type="text" id="txt-country<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $profile[0]->country; ?>" disabled />
             </div>
+
             <div class="col-12 mt-5">
                 <!-- About -->
-                <label class="fs-6 fw-semibold" for="txt-about<?php echo $uniqid; ?>"><?php echo lang('Text.about_bussiness'); ?></label>
+                <label class="fs-6 fw-semibold" for="txt-about<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_about_bussiness'); ?></label>
                 <textarea id="txt-about<?php echo $uniqid; ?>" class="tox-target" disabled><?php echo $profile[0]->about ?></textarea>
 
             </div>
         </div>
+
         <!-- Alert Public Info -->
         <div class="alert alert-dismissible bg-light-primary border border-primary border-dashed d-flex flex-column flex-sm-row w-100 p-5 mt-10">
             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
@@ -131,6 +145,7 @@
                 <span><?php echo lang('Text.cp_profile_public_info_msg'); ?></span>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12 text-end mt-5">
                 <button hidden type="button" id="btn-cancel<?php echo $uniqid; ?>" class="btn btn-secondary"><?php echo lang('Text.btn_cancel'); ?></button>
@@ -143,6 +158,7 @@
 <!-- Avatar Procedure -->
 <script>
     var lang = "<?php echo $config[0]->lang; ?>";
+    
     tinymce.init({
         mode: "none",
         readonly: true,
