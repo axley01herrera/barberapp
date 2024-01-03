@@ -1176,9 +1176,9 @@ class ControlPanel extends BaseController
                 $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabAccount";
                 break;
-            case 'tab-profile':
+            case 'tab-info':
                 $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
-                $view = "controlPanel/employees/employeeProfile/tabContent/tabProfile";
+                $view = "controlPanel/employees/employeeProfile/tabContent/tabInfo";
                 break;
         }
 
