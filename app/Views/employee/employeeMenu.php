@@ -18,7 +18,21 @@
                 </span>
             </a>
 
-            <!-- Profile -->
+            <!-- Services -->
+            <a href="<?php echo base_url('Employee/services'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                <span class="menu-link <?php echo @$activeServices; ?>">
+                    <span class="menu-title"><?php echo lang('Text.top_bar_services'); ?></span>
+                </span>
+            </a>
+
+            <!-- Times -->
+            <a href="<?php echo base_url('Employee/times'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+                <span class="menu-link <?php echo @$activeTimes; ?>">
+                    <span class="menu-title"><?php echo lang('Text.top_bar_times'); ?></span>
+                </span>
+            </a>
+
+            <!-- Account -->
             <a href="<?php echo base_url('Employee/account'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeAccount; ?>">
                     <span class="menu-title"><?php echo lang('Text.account'); ?></span>

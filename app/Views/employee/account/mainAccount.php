@@ -21,7 +21,7 @@
                 <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
                     <div class="card mb-5 mb-xl-8">
                         <div id="employee-info" class="card-body">
-                            <?php echo view('employee/employeeProfileInfo'); ?>
+                            <?php echo view('employee/account/employeeProfileInfo'); ?>
                         </div>
                     </div>
                     <!-- Upcoming Appointments -->
@@ -35,14 +35,6 @@
                         <!-- Tab item -->
                         <li class="nav-item" role="presentation">
                             <a id="tab-overview" class="nav-link text-active-primary pb-4 tab-profile active" data-bs-toggle="tab" href="#" aria-selected="true" role="tab"><?php echo lang('Text.cp_emp_profile_tab_overview_title'); ?></a>
-                        </li>
-                        <!-- Tab Services -->
-                        <li class="nav-item" role="presentation">
-                            <a id="tab-services" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.top_bar_services'); ?></a>
-                        </li>
-                        <!-- Tab Horario -->
-                        <li class="nav-item" role="presentation">
-                            <a id="tab-schedule" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.top_bar_times'); ?></a>
                         </li>
                         <!-- Tab item -->
                         <li class="nav-item" role="presentation">

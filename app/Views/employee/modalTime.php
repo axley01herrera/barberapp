@@ -116,11 +116,14 @@
                 success: function(response) {
                     if (response.error == 0) {
                         simpleSuccessAlert(msg);
-                        employeeProfileTabContent();
                         $('input').val('');
                         $('select').val('');
-                        if (action == 'update')
+                        if (action == 'update') {
                             $('#modal').modal('hide');
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, "2000");
+                        }
                     } else
                         globalError();
                 },

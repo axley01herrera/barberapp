@@ -78,6 +78,106 @@ class Employee extends BaseController
         return view('employee/mainEmployee', $data);
     }
 
+    public function dashboard()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee")
+            return view('employeeLogout');
+
+        # params
+        $employeeID =  $this->objSession->get('user')['employeeID'];
+
+        # data
+        $data = array();
+        $data['uniqid'] = uniqid();
+        $data['activeDashboard'] = 'active';
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
+        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
+        # page
+        $data['page'] = 'employee/dashboard/mainDashboard';
+
+        return view('employee/mainEmployee', $data);
+    }
+
+    public function services()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee")
+            return view('employeeLogout');
+
+        # params
+        $employeeID =  $this->objSession->get('user')['employeeID'];
+
+        # data
+        $data = array();
+        $data['uniqid'] = uniqid();
+        $data['activeServices'] = 'active';
+        $data['services'] = $this->objControlPanelModel->getActiveServices();
+        $data['employeeServices'] = $this->objMainModel->objData('employee_service', 'employeeID', $employeeID);
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
+        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
+        # page
+        $data['page'] = 'employee/services/mainServices';
+
+        return view('employee/mainEmployee', $data);
+    }
+
+    public function times()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee")
+            return view('employeeLogout');
+
+        # params
+        $employeeID =  $this->objSession->get('user')['employeeID'];
+
+        # data
+        $data = array();
+        $data['uniqid'] = uniqid();
+        $data['activeTimes'] = 'active';
+        $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+        if (empty($data['employeeBussinesDay'])) {
+            $this->objMainModel->objCreate('employee_bussines_day', ['employeeID' => $employeeID]);
+            $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+        }
+        $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
+        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
+        # page
+        $data['page'] = 'employee/times/mainTimes';
+
+        return view('employee/mainEmployee', $data);
+    }
+
+    public function account()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee")
+            return view('employeeLogout');
+
+        # params
+        $employeeID =  $this->objSession->get('user')['employeeID'];
+
+        # data
+        $data = array();
+        $data['uniqid'] = uniqid();
+        $data['activeAccount'] = 'active';
+        $data['config'] = $this->config;
+        $data['companyProfile'] = $this->companyProfile;
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
+        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
+        # page
+        $data['page'] = 'employee/account/mainAccount';
+
+        return view('employee/mainEmployee', $data);
+    }
+
     public function updateEmployee()
     {
         # Verify Session 
@@ -210,30 +310,15 @@ class Employee extends BaseController
                 $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
                 $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
                 # page
-                $view = "employee/tabContent/tabOverview";
-                break;
-            case 'tab-services':
-                $data['services'] = $this->objControlPanelModel->getActiveServices();
-                $data['employeeServices'] = $this->objMainModel->objData('employee_service', 'employeeID', $employeeID);
-                # page
-                $view = "employee/tabContent/tabService";
-                break;
-            case 'tab-schedule':
-                $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
-                if (empty($data['employeeBussinesDay'])) {
-                    $this->objMainModel->objCreate('employee_bussines_day', ['employeeID' => $employeeID]);
-                    $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
-                }
-                $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
-                $view = "employee/tabContent/tabSchedule";
+                $view = "employee/account/tabContent/tabOverview";
                 break;
             case 'tab-account':
                 $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
-                $view = "employee/tabContent/tabAccount";
+                $view = "employee/account/tabContent/tabAccount";
                 break;
             case 'tab-profile':
                 $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
-                $view = "employee/tabContent/tabProfile";
+                $view = "employee/account/tabContent/tabProfile";
                 break;
         }
 
@@ -358,7 +443,7 @@ class Employee extends BaseController
         $data = array();
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
         # page
-        $page = 'employee/employeeProfileInfo';
+        $page = 'employee/account/employeeProfileInfo';
         return view($page, $data);
     }
 
