@@ -25,23 +25,26 @@
                     <?php echo $employee[0]->phone; ?>
                 </span>
             </div>
-            <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
-            <div class="text-gray-600">
-                <?php echo @$address[0]->line1; ?>
-                <?php if (@$address[0]->line2) echo ", " . $address[0]->line2; ?>
-                <br>
-                <?php echo @$address[0]->city; ?>
-                <?php if (@$address[0]->state) echo ", " .  $address[0]->state; ?>
-                <br>
-                <?php echo @$address[0]->zip; ?> <?php echo @$address[0]->country; ?>
-            </div>
         <?php } ?>
-
+        <?php if (!empty($employee[0]->address1) && !empty($employee[0]->city) && !empty($employee[0]->state) && !empty($employee[0]->zip) && !empty($employee[0]->country)) { ?>
+            <section>
+                <div class="fw-bold mt-5"><?php echo lang('Text.address'); ?></div>
+                <div class="text-gray-600">
+                    <?php echo @$employee[0]->address1; ?>
+                    <?php if (@$employee[0]->address2) echo ", " . $employee[0]->address2; ?>
+                    <br>
+                    <?php echo @$employee[0]->city; ?>
+                    <?php if (@$employee[0]->state) echo ", " .  $employee[0]->state; ?>
+                    <br>
+                    <?php echo @$employee[0]->zip; ?> <?php echo @$employee[0]->country; ?>
+                </div>
+            </section>
+        <?php } ?>
         <?php if (empty($employee[0]->phone)) { ?>
-            <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10 mt-10">
+            <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 mt-10">
                 <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                 <div class="d-flex flex-column pe-0 pe-sm-10">
-                    <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                    <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
                     <span><?php echo lang('Text.emp_incomplete_profile_msg'); ?></span>
                 </div>
             </div>
