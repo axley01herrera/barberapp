@@ -1343,7 +1343,7 @@ class ControlPanel extends BaseController
         $employee = $this->objMainModel->objData('employee', 'id', $employeeID);
 
         if (!empty($currentPassword)) {
-            if ($this->objConfigModel->login($currentPassword)['error'] == 1) {
+            if ($this->objConfigModel->loginEmployee($currentPassword, $employeeID)['error'] == 1) {
                 $result = array();
                 $result['error'] = 1;
                 $result['msg'] = "INVALID_CURRENT_KEY";
@@ -1408,15 +1408,7 @@ class ControlPanel extends BaseController
         $data = array();
         $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
         $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $data['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
         $data['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
-        $data['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
-        $data['address1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
-        $data['address2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
-        $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
-        $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
-        $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
-        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
 
         $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
 

@@ -332,6 +332,14 @@ $lang['cp_emp_success_updated_time'] = "Turnos Actualizados";
 $lang['cp_emp_current_pass'] = "Contraseña Actual";
 $lang['cp_emp_new_pass'] = "Nueva Contraseña";
 $lang['cp_emp_new_pass_c'] = "Confirmar Nueva Contraseña";
+$lang['cp_emp_change_avatar'] = "Nueva Foto de Perfil";
+$lang['cp_emp_remove_avatar'] = "Remover Foto de Perfil";
+$lang['cp_emp_name'] = "Nombre";
+$lang['cp_emp_last_name'] = "Apellidos";
+$lang['cp_emp_info_upload_avatar'] = "Foto de Perfil del Empleado Agregada";
+$lang['cp_emp_info_remove_avatar'] = "Foto de Perfil del Empleado Eliminada";
+$lang['cp_emp_success_update_account'] = "Cuenta del Empleado Actualizada";
+$lang['cp_emp_success_update_info'] = "Información del Empleado Actualizada";
 
 # Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
