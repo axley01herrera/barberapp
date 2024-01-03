@@ -361,7 +361,7 @@ class ControlPanel extends BaseController
             if (!empty($result[$i]->password) && $result[$i]->emailVerified == 0)
                 $resendVerifyEmail = '<button type="button" data-customer-id=' . $result[$i]->id . ' " title="' . lang('Text.cp_cust_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
-            $detail = '<a href="' . base_url('controlPanel/customerProfile?customerID=') . $result[$i]->id . '" title="' . lang('Text.cp_customer_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
+            $detail = '<a href="' . base_url('ControlPanel/customerProfile?customerID=') . $result[$i]->id . '" title="' . lang('Text.cp_customer_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
