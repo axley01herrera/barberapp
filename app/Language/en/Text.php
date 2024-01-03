@@ -91,6 +91,7 @@ $lang['btn_signing'] = "Sign In";
 $lang['btn_sign_in'] = "Sign In";
 $lang['btn_signup'] = "Sign Up";
 $lang['btn_create_account'] = "Create Account";
+$lang['btn_save_ordering'] = "Save Order";
 
 # Home -> Landing Page
 $lang['lp_welcome'] = "Welcome to the Web Portal";
