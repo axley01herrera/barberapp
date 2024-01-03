@@ -21,7 +21,7 @@
                 <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
                     <div class="card mb-5 mb-xl-8">
                         <div id="employee-info" class="card-body">
-                            <?php echo view('employee/info'); ?>
+                            <?php echo view('employee/employeeProfileInfo'); ?>
                         </div>
                     </div>
                     <!-- Upcoming Appointments -->

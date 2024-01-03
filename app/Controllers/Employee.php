@@ -358,7 +358,7 @@ class Employee extends BaseController
         $data = array();
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
         # page
-        $page = 'employee/info';
+        $page = 'employee/employeeProfileInfo';
         return view($page, $data);
     }
 

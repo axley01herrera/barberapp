@@ -5,21 +5,21 @@
         <div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
 
             <!-- Dashboard -->
-            <a href="<?php echo base_url('Customer/dashboard'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+            <a href="<?php echo base_url('Employee/dashboard'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeDashboard; ?>">
                     <span class="menu-title"><?php echo lang('Text.dashboard'); ?></span>
                 </span>
             </a>
 
             <!-- Appointments -->
-            <a href="<?php echo base_url('Customer/appointment'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+            <a href="<?php echo base_url('Employee/appointment'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeAppointment; ?>">
                     <span class="menu-title"><?php echo lang('Text.appointments'); ?></span>
                 </span>
             </a>
 
             <!-- Profile -->
-            <a href="<?php echo base_url('Customer/account'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+            <a href="<?php echo base_url('Employee/account'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeAccount; ?>">
                     <span class="menu-title"><?php echo lang('Text.account'); ?></span>
                 </span>
