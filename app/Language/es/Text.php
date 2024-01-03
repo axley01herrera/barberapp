@@ -17,7 +17,7 @@ $lang['email_label'] = "Correo Electrónico";
 $lang['phone_label'] = "Teléfono";
 $lang['important_label'] = "Importante";
 $lang['thanks_label'] = "Gracias";
-$lang['ok'] = "Entendido";
+$lang['ok_label'] = "Entendido";
 $lang['error_label'] = "Error";
 $lang['ops_label'] = "Ups";
 $lang['appointments_label'] = "Citas";
@@ -85,6 +85,9 @@ $lang['btn_delete'] = "Eliminar";
 $lang['btn_add'] = "Agregar";
 $lang['btn_home'] = "Inicio";
 $lang['btn_back'] = "Atrás";
+$lang['btn_signing'] = "Entrar";
+$lang['btn_sign_in'] = "Iniciar Sesión";
+$lang['btn_signup'] = "Registrarme";
 
 # Home -> Landing Page
 $lang['lp_welcome'] = "Bienvenido, Portal Web";
