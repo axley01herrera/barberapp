@@ -115,7 +115,6 @@ $lang['appointments'] = "Citas";
 $lang['remove_avatar'] = "Remover";
 $lang['change_avatar'] = 'Cambiar';
 $lang['profile_data_updated'] = 'Perfil Actualizado';
-$lang['account_data_updated'] = 'Cuenta Actualizada';
 $lang['facebook'] = "Facebook";
 $lang['google'] = "Google";
 $lang['twitter'] = "Twitter";
@@ -215,8 +214,6 @@ $lang['top_bar_logout'] = "Salir";
 $lang['cust_dash_page_title'] = 'Tablero';
 $lang['cust_appointment_page_title'] = 'Historial de Citas';
 $lang['cust_account_page_title'] = "Detalle de Cuenta";
-$lang['cust_profile_success_updated'] = "Perfil Actualizado";
-$lang['cust_account_success_updated'] = "Cuenta Actualizada";
 $lang['cust_appointment_subtitle'] = 'Administración de Citas.';
 $lang['cust_new_appointment'] = 'Nueva Cita';
 $lang['cust_new_appointment_subtitle'] = 'Crea tu Cita';
@@ -351,6 +348,10 @@ $lang['cp_cust_future_appointments'] = "Próximas Citas";
 $lang['cp_cust_current_pass'] = "Contraseña Actual";
 $lang['cp_cust_new_pass'] = "Nueva Contraseña";
 $lang['cp_cust_new_pass_c'] = "Confirmar Nueva Contraseña";
+$lang['cp_cust_account_success_updated'] = "Cuenta del Cliente Actualizada";
+$lang['cust_info_success_updated'] = "Información del Cliente Actualizada";
+$lang['cust_info_upload_avatar'] = "Foto de Perfil del Cliente Agregada";
+$lang['cust_info_remove_avatar'] = "Foto de Perfil del Cliente Eliminada";
 
 # Control Panel -> Employee
 $lang['cp_emp_page_title'] = "Listado de Empleados";

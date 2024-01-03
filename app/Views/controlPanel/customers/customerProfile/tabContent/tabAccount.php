@@ -98,7 +98,7 @@
                         dataType: "json",
                         success: function(response) {
                             if (response.error == 0) {
-                                simpleSuccessAlert("<?php echo lang("Text.cust_account_success_updated"); ?>");
+                                simpleSuccessAlert("<?php echo lang("Text.cp_cust_account_success_updated"); ?>");
                                 reloadCustomerInfo();
                                 customerTabContent();
                             } else if (response.error == 1) {
