@@ -1308,7 +1308,7 @@ class ControlPanel extends BaseController
         $data = array();
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
         # page
-        $page = 'controlPanel/employees/employeeProfile/sectionEmployeeInfo';
+        $page = 'controlPanel/employees/employeeProfile/employeeInfo';
 
         return view($page, $data);
     } // ok

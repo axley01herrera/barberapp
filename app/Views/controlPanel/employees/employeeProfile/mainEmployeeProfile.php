@@ -17,19 +17,17 @@
         <!-- Page Container -->
         <div id="kt_app_content_container" class="app-container container-xxl">
             <div class="d-flex flex-column flex-lg-row">
-                <!-- Section Employee Info -->
-                <section>
-                    <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
-                        <div class="card mb-5 mb-xl-8">
-                            <div id="employee-info" class="card-body">
-                                <?php echo view('controlPanel/employees/employeeProfile/sectionEmployeeInfo'); ?>
-                            </div>
+                <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
+                    <div class="card mb-5 mb-xl-8">
+                        <!-- Employee Info -->
+                        <div id="employee-info" class="card-body">
+                            <?php echo view('controlPanel/employees/employeeProfile/employeeInfo'); ?>
                         </div>
-                        <!-- Upcoming Appointments -->
-                        <h5><?php echo lang('Text.cust_dash_upcoming_appointment_title'); ?></h5>
-                        <?php echo view('employee/dashboard/upcomingAppointment'); ?>
                     </div>
-                </section>
+                    <!-- Upcoming Appointments -->
+                    <h5><?php echo lang('Text.cust_dash_upcoming_appointment_title'); ?></h5>
+                    <?php echo view('employee/dashboard/upcomingAppointment'); ?>
+                </div>
                 <!-- Tabs -->
                 <div class="flex-lg-row-fluid ms-lg-15">
                     <!-- Tabs Header -->

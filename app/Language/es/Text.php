@@ -305,6 +305,9 @@ $lang['cp_emp_success_resend_complete_account'] = 'Correo Reenviado al Empleado'
 $lang['cp_emp_activated'] = 'Empleado Activado';
 $lang['cp_emp_deactivated'] = 'Empleado Desactivado';
 $lang['cp_emp_complete_account'] = 'Completa tu Cuenta';
+$lang['cp_emp_full_name'] = "Nombre Completo";
+$lang['cp_emp_email'] = "Correo Electrónico";
+$lang['cp_emp_phone'] = "Teléfono";
 
 # Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
