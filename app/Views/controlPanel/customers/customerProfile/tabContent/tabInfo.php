@@ -122,7 +122,7 @@
             processData: false,
             success: function(response) {
                 if (response.error === 0) {
-                    simpleSuccessAlert("<?php echo lang("Text.cust_info_upload_avatar"); ?>"); 
+                    simpleSuccessAlert("<?php echo lang("Text.cp_cust_info_upload_avatar"); ?>"); 
                     reloadCustomerInfo();
                     customerTabContent();
                 } else if (response.error === 1)
@@ -146,7 +146,7 @@
             dataType: "json",
             success: function(response) {
                 if (response.error === 0) {
-                    simpleSuccessAlert("<?php echo lang("Text.cust_info_upload_avatar"); ?>");
+                    simpleSuccessAlert("<?php echo lang("Text.cp_cust_info_upload_avatar"); ?>");
                     reloadCustomerInfo();
                     customerTabContent();
                 } else if (response.error === 1)
@@ -170,7 +170,7 @@
             dataType: "json",
             success: function(response) {
                 if (response.error === 0) {
-                    simpleSuccessAlert("<?php echo lang("Text.cust_info_remove_avatar"); ?>");
+                    simpleSuccessAlert("<?php echo lang("Text.cp_cust_info_remove_avatar"); ?>");
                     reloadCustomerInfo();
                     customerTabContent();
                 } else if (response.error === 1)
@@ -217,7 +217,7 @@
                     dataType: "json",
                     success: function(response) {
                         if (response.error == 0) {
-                            simpleSuccessAlert("<?php echo lang("Text.cust_info_success_updated"); ?>");
+                            simpleSuccessAlert("<?php echo lang("Text.cp_cust_info_success_updated"); ?>");
                             reloadCustomerInfo();
                             customerTabContent();
                         } else if (response.error == 1)

@@ -136,27 +136,13 @@ $lang['send_requested'] = "Enviar Solicitud";
 $lang['minutes'] = "minutos";
 $lang['price'] = "Precio";
 
-
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
 $lang['btn_update'] = "Actualizar";
 $lang['btn_cancel'] = "Cancelar";
 $lang['btn_save'] = "Guardar";
 $lang['btn_edit'] = "Editar";
-$lang['btn_profile'] = "Perfil";
 $lang['btn_delete'] = "Eliminar";
-$lang['btn_home'] = "Inicio";
-$lang['btn_signing'] = "Iniciar Sesión";
-$lang['btn_create_account'] = "Crear Cuenta";
-$lang['btn_send_recover_pass_email'] = "Enviar Correo de Recuperación";
-$lang['btn_create_time'] = "Crear Turno";
-$lang['btn_add'] = "Agregar";
-$lang['btn_create_appointment'] = "Crear Cita";
-$lang['btn_next'] = "Siguiente";
-$lang['btn_back'] = "Atrás";
-$lang['btn_save_ordering'] = "Guardar Orden";
-$lang['btn_sign_in'] = "Iniciar Sesión";
-$lang['btn_signup'] = "Regístrate";
 
 # Home -> Landing Page
 $lang['lp_welcome'] = "Bienvenido, Portal Web";
@@ -192,13 +178,13 @@ $lang['recover_subtitle'] = 'Introduzca su Correo Electrónico';
 $lang['recover_success_send_email'] = 'Correo Electrónico de Recuperación Enviado';
 $lang['recover_email_not_found'] = 'Correo Electrónico no Registrado';
 
-# Control Panel Authentication
+# Control Panel -> Authentication
 $lang['cp_auth_title'] = "Panel de Control";
 $lang['cp_auth_subtitle'] = "Clave de Acceso";
 $lang['cp_auth_required_password'] = "La clave de acceso es requerida";
 $lang['cp_auth_invalid_password'] = "Rectifique su clave de acceso";
 
-# Control Panel Top Bar
+# Control Panel -> Top Bar
 $lang['top_bar_dashboard'] = "Tablero";
 $lang['top_bar_tpv'] = "TPV";
 $lang['top_bar_calendar'] = "Calendario";
@@ -210,70 +196,7 @@ $lang['top_bar_times'] = "Turnos";
 $lang['top_bar_profile'] = "Perfil";
 $lang['top_bar_logout'] = "Salir";
 
-# Customers
-$lang['cust_dash_page_title'] = 'Tablero';
-$lang['cust_appointment_page_title'] = 'Historial de Citas';
-$lang['cust_account_page_title'] = "Detalle de Cuenta";
-$lang['cust_appointment_subtitle'] = 'Administración de Citas.';
-$lang['cust_new_appointment'] = 'Nueva Cita';
-$lang['cust_new_appointment_subtitle'] = 'Crea tu Cita';
-$lang['cust_new_appointment_step1'] = 'Servicios';
-$lang['cust_new_appointment_step1_sub'] = 'Selecciona uno o más servicios';
-$lang['cust_new_appointment_required_time_selected'] = 'Selecciona un turno disponible.';
-$lang['cust_new_appointment_step2'] = 'Empleados, Fecha y Turnos Disponibles';
-$lang['cust_new_appointment_step2_sub'] = 'Seleccione un empleado y una fecha en el calendario para ver los turnos disponibles';
-$lang['cust_new_appointment_invalid_date'] = 'No se pueden reservar citas en la fecha seleccionada';
-$lang['cust_new_appointment_step3'] = 'Paso 3';
-$lang['cust_new_appointment_step3_sub'] = 'Detalle de tu cita';
-$lang['cust_new_appointment_available_shifts'] = 'Turnos Disponibles';
-$lang['cust_no_appointment_available'] = 'No hay turnos disponibles para el empleado y la fecha seleccionada.';
-$lang['cust_time'] = 'Turno';
-$lang['cust_success_create_appointment'] = 'Cita Creada';
-$lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.';
-$lang['cust_no_future_appointments'] = "Sin próximas citas";
-$lang['cust_tab_credential'] = 'Credenciales';
-$lang['cust_tab_credential_title'] = 'Credenciales de Cuenta';
-$lang['cust_tab_credential_subtitle'] = 'Administración de Credenciales';
-
-# Employees
-$lang['emp_modal_title_update'] = "Actualizando Empleado";
-$lang['emp_success_created'] = "Empleado Creado";
-$lang['emp_success_updated'] = "Empleado Actualizado";
-$lang['emp_success_deleted'] = "Empleado Eliminado";
-$lang['emp_duplicate'] = "Ya existe el correo electrónico";
-$lang['emp_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al Empleado";
-$lang['emp_label_switch_bussiness_day'] = 'No Laborable / Laborable';
-$lang['emp_label_switch_time_day'] = 'Inactivo / Activo';
-$lang['emp_times'] = 'Turnos';
-$lang['emp_modal_title_create_time'] = 'Nuevo Turno';
-$lang['emp_modal_title_edit_time'] = 'Editar Turno';
-$lang['no_times_alert'] = 'El empleado no tiene turnos creados para este día de la semana.';
-$lang['emp_success_created_time'] = 'Turno del Empleado Creado';
-$lang['emp_success_updated_time'] = 'Turno del Empleado Actualizado';
-$lang['emp_success_deleted_time'] = 'Turno Eliminado';
-$lang['emp_asigned_services'] = 'Servicios Asignados';
-$lang['emp_no_active_bussiness_days_msg'] = 'El empleado no tiene días laborables activos.';
-$lang['emp_no_shift_days_msg'] = 'El empleado no tiene turnos de trabajos disponibles.';
-$lang['emp_incomplete_profile_msg'] = 'Complete su Perfil.';
-$lang['emp_activated'] = 'Empleado Activado';
-$lang['emp_deactivated'] = 'Empleado Desactivado';
-$lang['emp_complete_your_account'] = 'Completa tu Cuenta';
-$lang['emp_resend_verify_email'] = 'Reenviar Correo de Verificación';
-$lang['emp_success_resend_verify_email'] = 'Correo de Verificación Enviado';
-$lang['emp_resend_complete_account'] = 'Reenviar Correo Crear Cuenta';
-$lang['emp_success_resend_complete_account'] = 'Correo Reenviado';
-$lang['emp_change_avatar'] = 'Cambiar Foto de Perfil';
-$lang['emp_remove_avatar'] = 'Remover Foto de Perfil';
-$lang['emp_success_change_avatar'] = 'Foto de Perfil Actualizada';
-$lang['emp_success_remove_avatar'] = 'Foto de Perfil Eliminada';
-$lang['emp_success_update_profile'] = 'Perfil del Empleado Actualizado';
-$lang['emp_success_update_account'] = 'Cuenta del Empleado Actualizada';
-$lang['emp_assigned_service'] = 'Servicio Asignado al Empleado';
-$lang['emp_unassigned_service'] = 'Servicio Desasignado al Empleado';
-$lang['emp_bussiness_day_active'] = 'Día asignado como laborable';
-$lang['emp_bussiness_day_inactive'] = 'Día asignado como no laborable';
-
-# Control Panel Dashboard
+# Control Panel -> Dashboard
 $lang['cp_dash_page_title'] = "Tablero";
 $lang['cp_dash_today_appointents'] = "Citas Hoy";
 $lang['cp_dash_active_emp'] = "Empleados Activos";
@@ -282,7 +205,7 @@ $lang['cp_dash_serv'] = "Servicios";
 $lang['cp_dash_active'] = "Activos";
 $lang['cp_dash_pending'] = "Pendiente";
 
-# Control Panel Services
+# Control Panel -> Services
 $lang['cp_serv_page_title'] = "Tarjetas de Servicio";
 $lang['cp_serv_new'] = "Nuevo Servicio";
 $lang['cp_serv_edit'] = "Editar";
@@ -349,9 +272,10 @@ $lang['cp_cust_current_pass'] = "Contraseña Actual";
 $lang['cp_cust_new_pass'] = "Nueva Contraseña";
 $lang['cp_cust_new_pass_c'] = "Confirmar Nueva Contraseña";
 $lang['cp_cust_account_success_updated'] = "Cuenta del Cliente Actualizada";
-$lang['cust_info_success_updated'] = "Información del Cliente Actualizada";
-$lang['cust_info_upload_avatar'] = "Foto de Perfil del Cliente Agregada";
-$lang['cust_info_remove_avatar'] = "Foto de Perfil del Cliente Eliminada";
+$lang['cp_cust_info_success_updated'] = "Información del Cliente Actualizada";
+$lang['cp_cust_info_upload_avatar'] = "Foto de Perfil del Cliente Agregada";
+$lang['cp_cust_info_remove_avatar'] = "Foto de Perfil del Cliente Eliminada";
+$lang['cp_cust_appointment_history'] = "Historial de Citas del Cliente";
 
 # Control Panel -> Employee
 $lang['cp_emp_page_title'] = "Listado de Empleados";
