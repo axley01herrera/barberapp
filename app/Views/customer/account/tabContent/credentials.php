@@ -19,7 +19,7 @@
 
                     <div class="col-12">
                         <!-- Email -->
-                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email_label'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $customer[0]->email; ?>" disabled />
                     </div>
 
@@ -105,7 +105,7 @@
                                 $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
                                 if (response.msg == "INVALID_CURRENT_KEY") {
                                     $('#txt-password<?php echo $uniqid; ?>').addClass('is-invalid');
-                                    simpleAlert("<?php echo lang('Text.invalid_current_password'); ?>", 'warning')
+                                    simpleAlert("<?php echo lang('Text.invalid_current_password_msg'); ?>", 'warning')
                                 } else
                                     globalError();
 
@@ -120,13 +120,13 @@
                         }
                     });
                 } else {
-                    simpleAlert("<?php echo lang('Text.password_does_not_match'); ?>", 'warning');
+                    simpleAlert("<?php echo lang('Text.password_label_does_not_match'); ?>", 'warning');
                     $('#txt-confirmNewPassword<?php echo $uniqid; ?>').addClass('is-invalid');
                 }
             } else
-                simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+                simpleAlert("<?php echo lang('Text.invalid_email_format_msg'); ?>", 'warning');
         } else
-            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+            simpleAlert("<?php echo lang('Text.required_values_msg'); ?>", 'warning');
     });
 
     function checkRequiredValues() {

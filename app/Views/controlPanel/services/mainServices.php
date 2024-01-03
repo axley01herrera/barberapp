@@ -60,7 +60,7 @@
 
                                     <!-- Switch Status -->
                                     <div class="col-6">
-                                        <label class="mb-2"><?php echo lang('Text.status'); ?></label>
+                                        <label class="mb-2"><?php echo lang('Text.status_label'); ?></label>
                                         <div class=" form-check form-switch">
                                             <input type="checkbox" class="form-check-input form-control change-status" title="<?php echo lang('Text.cp_serv_change_status'); ?>" <?php if ($s->status == 1) echo 'checked=""'; ?> data-service-id="<?php echo $s->id; ?>" data-status="<?php echo $s->status ?>">
                                         </div>
@@ -68,7 +68,7 @@
 
                                     <!-- Switch Visibility -->
                                     <div class="col-6">
-                                        <label class="mb-2"><?php echo lang('Text.visibility'); ?></label>
+                                        <label class="mb-2"><?php echo lang('Text.public_label'); ?></label>
                                         <div class=" form-check form-switch">
                                             <input type="checkbox" class="form-check-input form-control change-visibility" title="<?php echo lang('Text.cp_serv_change_visibility'); ?>" <?php if ($s->visibility == 1) echo 'checked=""'; ?> data-service-id="<?php echo $s->id; ?>" data-visibility="<?php echo $s->visibility ?>">
                                         </div>

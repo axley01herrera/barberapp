@@ -19,13 +19,13 @@
         </div>
 
         <!-- Email -->
-        <div class="fw-bold mt-5"><?php echo lang('Text.email'); ?></div>
+        <div class="fw-bold mt-5"><?php echo lang('Text.email_label'); ?></div>
         <div class="text-gray-600">
             <span class="text-gray-600"><?php echo $customer[0]->email; ?></span>
         </div>
 
         <!-- Phone -->
-        <div class="fw-bold mt-5"><?php echo lang('Text.phone'); ?></div>
+        <div class="fw-bold mt-5"><?php echo lang('Text.phone_label'); ?></div>
         <?php if (!empty($customer[0]->phone)) { ?>
             <div class="text-gray-600">
                 <span class="text-gray-600"><?php echo $customer[0]->phone; ?></span>
@@ -40,8 +40,8 @@
             <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 mt-10">
                 <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                 <div class="d-flex flex-column pe-0 pe-sm-10">
-                    <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
-                    <span><?php echo lang('Text.email'); ?> <?php echo lang('Text.not_verified'); ?></span>
+                    <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
+                    <span><?php echo lang('Text.email_label'); ?> <?php echo lang('Text.not_verified'); ?></span>
                 </div>
             </div>
             <div class="row">

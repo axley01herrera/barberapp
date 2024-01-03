@@ -51,7 +51,7 @@
     <div class="card-header mt-6">
         <!-- Card title -->
         <div class="card-title flex-column">
-            <h2 class="mb-1"><?php echo lang('Text.appointments'); ?></h2>
+            <h2 class="mb-1"><?php echo lang('Text.appointments_label'); ?></h2>
             <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.cp_emp_appointment_history'); ?></div>
         </div>
         <!-- Card toolbar -->

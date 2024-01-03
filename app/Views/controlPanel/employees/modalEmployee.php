@@ -19,7 +19,7 @@
                     </div>
                     <!-- Email -->
                     <div class="col-12 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email_label'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" value="<?php echo @$employee->email; ?>" <?php if ($action == "update") echo "disabled"; ?> />
                     </div>
                 </div>
@@ -98,10 +98,10 @@
                     }
                 });
             } else
-                simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+                simpleAlert("<?php echo lang('Text.invalid_email_format_msg'); ?>", 'warning');
 
         } else
-            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+            simpleAlert("<?php echo lang('Text.required_values_msg'); ?>", 'warning');
     }); // ok
 
     function checkRequiredValues() {

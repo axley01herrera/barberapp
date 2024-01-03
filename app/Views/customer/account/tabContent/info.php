@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-12 mt-5">
                         <!-- Phone -->
-                        <label class="fs-6 fw-semibold" for="txt-phone<?php echo $uniqid; ?>"><?php echo lang('Text.phone'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-phone<?php echo $uniqid; ?>"><?php echo lang('Text.phone_label'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-phone<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" maxlength="45" value="<?php echo $customer[0]->phone; ?>" disabled="">
                     </div>
                 </div>
@@ -223,9 +223,9 @@
                     }
                 });
             } else
-                simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+                simpleAlert("<?php echo lang('Text.invalid_email_format_msg'); ?>", 'warning');
         } else
-            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+            simpleAlert("<?php echo lang('Text.required_values_msg'); ?>", 'warning');
     });
 
     $('.number<?php echo $uniqid; ?>').on('input', function() { // ONLY NUMBER

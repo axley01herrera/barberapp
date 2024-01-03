@@ -72,7 +72,7 @@
                     }
                 },
                 error: function(error) {
-                    simpleAlert("<?php echo lang('Text.error_msg'); ?>", "error");
+                    simpleAlert("<?php echo lang('Text.error_label_msg'); ?>", "error");
                     $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
                 }
             });
@@ -88,7 +88,7 @@
     });
 
     if (session == "expired") {
-        simpleAlert("<?php echo lang('Text.session_expired'); ?>", "error");
+        simpleAlert("<?php echo lang('Text.session_expired_msg'); ?>", "error");
     }
 </script>
 

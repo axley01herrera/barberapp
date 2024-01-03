@@ -98,10 +98,10 @@
                     }
                 });
             } else
-                simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+                simpleAlert("<?php echo lang('Text.invalid_email_format_msg'); ?>", 'warning');
 
         } else
-            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+            simpleAlert("<?php echo lang('Text.required_values_msg'); ?>", 'warning');
     });
 
     function checkRequiredValues() {

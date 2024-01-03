@@ -105,9 +105,9 @@
                     });
                 }
             } else
-                simpleAlert("<?php echo lang('Text.invalid_url_format'); ?>", 'warning');
+                simpleAlert("<?php echo lang('Text.invalid_url_format_msg'); ?>", 'warning');
         } else
-            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+            simpleAlert("<?php echo lang('Text.required_values_msg'); ?>", 'warning');
     });
 
     function checkRequiredValues() {

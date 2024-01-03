@@ -39,7 +39,7 @@ trait ResponseTrait
         'invalid_scope'             => 400,
         'temporarily_unavailable'   => 400,
         'invalid_grant'             => 400,
-        'invalid_credentials'       => 400,
+        'invalid_credentials_msg'       => 400,
         'invalid_refresh'           => 400,
         'no_data'                   => 400,
         'invalid_data'              => 400,

@@ -229,7 +229,7 @@
             });
 
         } else
-            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+            simpleAlert("<?php echo lang('Text.required_values_msg'); ?>", 'warning');
     }
 
     function updateEmployeeTimes() {
@@ -264,7 +264,7 @@
             });
 
         } else
-            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+            simpleAlert("<?php echo lang('Text.required_values_msg'); ?>", 'warning');
     }
 
     function checkRequiredValues() {

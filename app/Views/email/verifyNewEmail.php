@@ -68,10 +68,10 @@
                     <tr>
                         <td align="center" valign="center" style="font-size: 13px; text-align:center; padding: 0 10px 10px 10px; font-weight: 500; color: #A1A5B7; font-family:Arial,Helvetica,sans-serif">
                             <p style="color:#181C32; font-size: 16px; font-weight: 600; margin-bottom:9px">
-                                <?php echo lang("Text.contact_info"); ?>
+                                <?php echo lang("Text.contact_info_label"); ?>
                             </p>
-                            <p style="margin-bottom:2px"><?php echo lang("Text.phone") . ': ' . @$companyPhone; ?></p>
-                            <p style="margin-bottom:2px"><?php echo lang("Text.email") . ': ' . @$companyEmail; ?></p>
+                            <p style="margin-bottom:2px"><?php echo lang("Text.phone_label") . ': ' . @$companyPhone; ?></p>
+                            <p style="margin-bottom:2px"><?php echo lang("Text.email_label") . ': ' . @$companyEmail; ?></p>
                         </td>
                     </tr>
                 </tbody>

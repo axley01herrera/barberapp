@@ -14,7 +14,7 @@
             <!-- Appointments -->
             <a href="<?php echo base_url('Employee/appointment'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeAppointment; ?>">
-                    <span class="menu-title"><?php echo lang('Text.appointments'); ?></span>
+                    <span class="menu-title"><?php echo lang('Text.appointments_label'); ?></span>
                 </span>
             </a>
 

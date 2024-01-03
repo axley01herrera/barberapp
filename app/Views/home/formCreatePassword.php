@@ -19,13 +19,13 @@
                                     <img alt="Logo" src="<?php // echo base_url('assets/media/logos/logoDark.png'); 
                                                             ?>" class="w-50" />
                                 </span>-->
-                            <h1 class="text-dark fw-bolder mb-3"><?php echo lang('Text.create_pass'); ?></h1>
-                            <div class="text-gray-500 fw-semibold fs-6"><?php echo lang('Text.create_pass_subtitle') ?></div>
+                            <h1 class="text-dark fw-bolder mb-3"><?php echo lang('Text.create_pass_label'); ?></h1>
+                            <div class="text-gray-500 fw-semibold fs-6"><?php echo lang('Text.create_pass_subtitle_label') ?></div>
                         </div>
                         <!-- Input Access Key -->
                         <div class="fv-row mb-8">
-                            <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password'); ?>" autocomplete="off" class="form-control bg-transparent mb-5 required<?php echo $uniqid; ?>" />
-                            <input type="password" id="txt-confirmPass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_repeat'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                            <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_label'); ?>" autocomplete="off" class="form-control bg-transparent mb-5 required<?php echo $uniqid; ?>" />
+                            <input type="password" id="txt-confirmPass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_repeat_label'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                         </div>
                         <!-- Button Create Pass -->
                         <div class="d-grid mb-10">
@@ -55,22 +55,22 @@
                     dataType: "json",
                     success: function(response) {
                         if (response.error == 0) {
-                            simpleSuccessAlert('<?php echo lang('Text.success_create_password'); ?>');
+                            simpleSuccessAlert('<?php echo lang('Text.success_create_pass_labelword_msg'); ?>');
                             setTimeout(() => {
                                 window.location.href = "<?php echo base_url('/') ?>";
                             }, "2000");
                         } else {
-                            simpleAlert('<?php echo lang('Text.create_pass_customer_alert_errorCreatePass'); ?>', 'success');
+                            simpleAlert('<?php echo lang('Text.create_pass_label_customer_alert_errorCreatePass'); ?>', 'success');
                             $('#btn-createPass<?php echo $uniqid; ?>').removeAttr('disabled');
                         }
                     }
                 });
             } else {
-                simpleAlert('<?php echo lang('Text.password_not_match'); ?>', 'warning');
+                simpleAlert('<?php echo lang('Text.password_label_not_match'); ?>', 'warning');
                 $('#txt-confirmPass<?php echo $uniqid; ?>').addClass('required<?php echo $uniqid; ?> is-invalid');
             }
         } else
-            simpleAlert('<?php echo lang('Text.required_values'); ?>', 'warning');
+            simpleAlert('<?php echo lang('Text.required_values_msg'); ?>', 'warning');
     });
 
     function checkRequiredValues() {

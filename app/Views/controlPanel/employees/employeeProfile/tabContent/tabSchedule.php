@@ -65,7 +65,7 @@
                                                     <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
                                                         <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                         <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                            <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                                                            <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
                                                             <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                         </div>
                                                     </div>
@@ -129,7 +129,7 @@
                                                         <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                                                                <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
                                                                 <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -194,7 +194,7 @@
                                                         <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                                                                <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
                                                                 <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -259,7 +259,7 @@
                                                         <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                                                                <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
                                                                 <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -324,7 +324,7 @@
                                                         <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                                                                <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
                                                                 <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -389,7 +389,7 @@
                                                         <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                                                                <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
                                                                 <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -454,7 +454,7 @@
                                                         <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100">
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                                                                <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
                                                                 <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
@@ -560,14 +560,14 @@
     $('.delete-time').on('click', function() { // Delete Time
         let timeID = $(this).attr('data-time-id');
         Swal.fire({
-            title: "<?php echo lang('Text.are_you_sure'); ?>",
-            text: "<?php echo lang('Text.not_revert_this'); ?>",
+            title: "<?php echo lang('Text.are_you_sure_msg'); ?>",
+            text: "<?php echo lang('Text.not_revert_this_msg'); ?>",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: '<?php echo lang('Text.yes_remove'); ?>',
-            cancelButtonText: '<?php echo lang('Text.no_cancel'); ?>'
+            confirmButtonText: '<?php echo lang('Text.yes_remove_msg'); ?>',
+            cancelButtonText: '<?php echo lang('Text.no_cancel_msg'); ?>'
         }).then((result) => {
             if (result.isConfirmed)
                 $.ajax({

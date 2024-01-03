@@ -105,7 +105,7 @@
                                 $('#btn-update<?php echo $uniqid; ?>').removeAttr('disabled');
                                 if (response.msg == "INVALID_CURRENT_KEY") {
                                     $('#txt-password<?php echo $uniqid; ?>').addClass('is-invalid');
-                                    simpleAlert("<?php echo lang('Text.invalid_current_password'); ?>", 'warning')
+                                    simpleAlert("<?php echo lang('Text.invalid_current_password_msg'); ?>", 'warning')
                                 } else
                                     globalError();
 
@@ -120,13 +120,13 @@
                         }
                     });
                 } else {
-                    simpleAlert("<?php echo lang('Text.password_does_not_match'); ?>", 'warning');
+                    simpleAlert("<?php echo lang('Text.password_label_does_not_match'); ?>", 'warning');
                     $('#txt-confirmNewPassword<?php echo $uniqid; ?>').addClass('is-invalid');
                 }
             } else
-                simpleAlert("<?php echo lang('Text.invalid_email_format'); ?>", 'warning');
+                simpleAlert("<?php echo lang('Text.invalid_email_format_msg'); ?>", 'warning');
         } else
-            simpleAlert("<?php echo lang('Text.required_values'); ?>", 'warning');
+            simpleAlert("<?php echo lang('Text.required_values_msg'); ?>", 'warning');
     });
 
     function checkRequiredValues() {

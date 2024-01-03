@@ -27,7 +27,7 @@
                                 <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-5 mt-5">
                                     <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                     <div class="d-flex flex-column pe-0 pe-sm-10">
-                                        <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                                        <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
                                         <span><?php echo lang('Text.cp_emp_no_active_bussiness_days_msg'); ?></span>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                 <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-5 mt-5">
                                     <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                     <div class="d-flex flex-column pe-0 pe-sm-10">
-                                        <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+                                        <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
                                         <span><?php echo lang('Text.emp_no_shift_days_msg'); ?></span>
                                     </div>
                                 </div>

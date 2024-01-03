@@ -36,15 +36,15 @@
                                 </div>
 
                                 <div class="col-12 mb-5">
-                                    <input type="email" id="txt-email<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.email'); ?>" autocomplete="off" class="form-control bg-transparent email required<?php echo $uniqid; ?>" />
+                                    <input type="email" id="txt-email<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.email_label'); ?>" autocomplete="off" class="form-control bg-transparent email required<?php echo $uniqid; ?>" />
                                 </div>
 
                                 <div class="col-12 mb-5">
-                                    <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                                    <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_label'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                                 </div>
 
                                 <div class="col-12 mb-5">
-                                    <input type="password" id="txt-confirmPass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_repeat'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                                    <input type="password" id="txt-confirmPass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_repeat_label'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                                 </div>
 
                                 <div class="col-12">
@@ -142,12 +142,12 @@
                         simpleAlert('<?php echo lang('Text.registration_accept_msg'); ?>', 'warning');
                 } else {
                     $('#txt-confirmPass<?php echo $uniqid; ?>').addClass('is-invalid');
-                    simpleAlert('<?php echo lang('Text.password_does_not_match'); ?>', 'warning');
+                    simpleAlert('<?php echo lang('Text.password_label_does_not_match'); ?>', 'warning');
                 }
             } else
-                simpleAlert('<?php echo lang('Text.invalid_email_format'); ?>', 'warning');
+                simpleAlert('<?php echo lang('Text.invalid_email_format_msg'); ?>', 'warning');
         } else
-            simpleAlert('<?php echo lang('Text.required_values'); ?>', 'warning');
+            simpleAlert('<?php echo lang('Text.required_values_msg'); ?>', 'warning');
     }); // ok
 
     function checkRequiredValues() {

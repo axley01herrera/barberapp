@@ -29,7 +29,7 @@
                 text: text,
                 icon: icon,
                 buttonsStyling: false,
-                confirmButtonText: "<?php echo lang('Text.ok'); ?>",
+                confirmButtonText: "<?php echo lang('Text.ok_label'); ?>",
                 customClass: {
                     confirmButton: "btn btn-primary"
                 }
@@ -38,10 +38,10 @@
 
         function globalError() {
             Swal.fire({
-                text: "<?php echo lang('Text.error_msg'); ?>",
+                text: "<?php echo lang('Text.error_label_msg'); ?>",
                 icon: "error",
                 buttonsStyling: false,
-                confirmButtonText: "<?php echo lang('Text.ok'); ?>",
+                confirmButtonText: "<?php echo lang('Text.ok_label'); ?>",
                 customClass: {
                     confirmButton: "btn btn-primary"
                 }

@@ -2,51 +2,48 @@
 $lang = array();
 
 # Global Labels
-$lang['create_pass'] = 'Crear Contraseña';
-$lang['create_pass_subtitle'] = "Introduzca su contraseña";
-$lang['password'] = "Contraseña";
-$lang['password_repeat'] = "Repita su Contraseña";
-$lang['password_not_match'] = "Las contraseñas no coinciden";
-$lang['password_does_not_match'] = "Las contraseñas no coinciden";
-$lang['success_create_password'] = "Contraseña creada";
-$lang['invalid_current_password'] = "Clave actual incorrecta";
-$lang['invalid_credentials'] = 'Rectifique sus Credenciales';
-$lang['contact_info'] = "Información de Contacto";
-$lang['active'] = "Activo";
-$lang['inactive'] = "Inactivo";
-$lang['important'] = "Importante";
-$lang['thanks'] = "Gracias";
-$lang['ok'] = "Entendido";
-$lang['error'] = "Error";
-$lang['error_msg'] = "Ha ocurrido un error";
-$lang['session_expired'] = "Su sessión ha expirado";
-$lang['required_values'] = "Hay campos requeridos";
-$lang['success_verified_email'] = "Su cuenta de correo electrónico ha quedado verficada";
-$lang['invalid_email_format'] = "Rectifique el formato del correo electrónico";
-$lang['invalid_url_format'] = "La url es incorrecta";
-$lang['are_you_sure'] = "Está seguro de esta acción";
-$lang['not_revert_this'] = "Esta acción no es reversible";
-$lang['yes_remove'] = "Sí, eliminar";
-$lang['no_cancel'] = "No, cancelar";
-$lang['ops'] = "Ups";
-$lang['something_has_not_gone_well'] = "Algo ha salido mal";
-$lang['token_expired'] = "Token expirado";
-$lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
-$lang['invalid_password'] = "Contraseña Incorrecta";
-$lang['appointments'] = "Citas";
-$lang['status'] = "Estado";
-$lang['visibility'] = "Público";
-$lang['yes_are_sure'] = "Sí, estoy seguro";
-
-# Global Labels
+$lang['public_label'] = "Público";
+$lang['create_pass_label'] = 'Crear Contraseña';
+$lang['create_pass_subtitle_label'] = "Introduzca su contraseña";
+$lang['password_label'] = "Contraseña";
+$lang['password_repeat_label'] = "Repita su Contraseña";
 $lang['customer_label'] = "Cliente";
 $lang['employee_label'] = "Empleado";
 $lang['minutes_label'] = "minutos";
 $lang['price_label'] = "Precio";
 $lang['photo_label'] = "Fotos";
+$lang['contact_info_label'] = "Información de Contacto";
+$lang['email_label'] = "Correo Electrónico";
+$lang['phone_label'] = "Teléfono";
+$lang['important_label'] = "Importante";
+$lang['thanks_label'] = "Gracias";
+$lang['ok'] = "Entendido";
+$lang['error_label'] = "Error";
+$lang['ops_label'] = "Ups";
+$lang['appointments_label'] = "Citas";
+$lang['status_label'] = "Estado";
 
 # Global MSG
+$lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
+$lang['something_has_not_gone_well_msg'] = "Algo ha salido mal";
+$lang['token_expired_msg'] = "Token expirado";
+$lang['success_create_pass_labelword_msg'] = "Contraseña creada";
 $lang['success_cancel_appointment_msg'] = "Su cita ha sido cancelada";
+$lang['password_not_match_msg'] = "Las contraseñas no coinciden";
+$lang['invalid_current_password_msg'] = "Clave actual incorrecta";
+$lang['invalid_credentials_msg'] = 'Rectifique sus Credenciales';
+$lang['error_msg'] = "Ha ocurrido un error";
+$lang['session_expired_msg'] = "Su sesión ha expirado";
+$lang['required_values_msg'] = "Hay campos requeridos";
+$lang['success_verified_email_msg'] = "Su cuenta de correo electrónico ha quedado verficada";
+$lang['invalid_email_format_msg'] = "Rectifique el formato del correo electrónico";
+$lang['invalid_url_format_msg'] = "La url es incorrecta";
+$lang['are_you_sure_msg'] = "Está seguro de esta acción";
+$lang['not_revert_this_msg'] = "Esta acción no es reversible";
+$lang['yes_remove_msg'] = "Sí, eliminar";
+$lang['no_cancel_msg'] = "No, cancelar";
+$lang['invalid_password'] = "Contraseña Incorrecta";
+$lang['yes_are_sure_msg'] = "Sí, estoy seguro";
 
 # Days
 $lang['monday'] = "Lunes";
@@ -78,7 +75,7 @@ $lang['twitter'] = "Twitter";
 $lang['linkedIn'] = "LinkedIn";
 $lang['Instagram'] = "Instagram";
 
-# Global Text Buttons
+# Global Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
 $lang['btn_update'] = "Actualizar";
 $lang['btn_cancel'] = "Cancelar";
@@ -86,6 +83,8 @@ $lang['btn_save'] = "Guardar";
 $lang['btn_edit'] = "Editar";
 $lang['btn_delete'] = "Eliminar";
 $lang['btn_add'] = "Agregar";
+$lang['btn_home'] = "Inicio";
+$lang['btn_back'] = "Atrás";
 
 # Home -> Landing Page
 $lang['lp_welcome'] = "Bienvenido, Portal Web";

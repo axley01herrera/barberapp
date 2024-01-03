@@ -26,7 +26,7 @@
     <div class="alert alert-dismissible bg-light-primary border border-primary border-dashed d-flex flex-column flex-sm-row w-80 m-6 p-4">
         <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
         <div class="d-flex flex-column pe-0 pe-sm-10">
-            <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
+            <h5 class="mb-1"><?php echo lang('Text.important_label'); ?></h5>
             <span><?php echo lang('Text.cp_profile_images_alert'); ?></span>
         </div>
     </div>
@@ -42,14 +42,14 @@
         e.preventDefault();
         let imageID = $(this).attr('data-image-id');
         Swal.fire({
-            title: '<?php echo lang('Text.are_you_sure'); ?>',
-            text: "<?php echo lang('Text.not_revert_this'); ?>",
+            title: '<?php echo lang('Text.are_you_sure_msg'); ?>',
+            text: "<?php echo lang('Text.not_revert_this_msg'); ?>",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: '<?php echo lang('Text.yes_remove'); ?>',
-            cancelButtonText: '<?php echo lang('Text.no_cancel'); ?>'
+            confirmButtonText: '<?php echo lang('Text.yes_remove_msg'); ?>',
+            cancelButtonText: '<?php echo lang('Text.no_cancel_msg'); ?>'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({

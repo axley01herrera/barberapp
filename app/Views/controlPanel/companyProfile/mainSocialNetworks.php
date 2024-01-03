@@ -77,14 +77,14 @@
 
     $('.delete-social-network').on('click', function() { // DELETE SOCIAL NETWORK
         Swal.fire({
-            title: '<?php echo lang('Text.are_you_sure'); ?>',
-            text: "<?php echo lang('Text.not_revert_this'); ?>",
+            title: '<?php echo lang('Text.are_you_sure_msg'); ?>',
+            text: "<?php echo lang('Text.not_revert_this_msg'); ?>",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: '<?php echo lang('Text.yes_remove'); ?>',
-            cancelButtonText: '<?php echo lang('Text.no_cancel'); ?>'
+            confirmButtonText: '<?php echo lang('Text.yes_remove_msg'); ?>',
+            cancelButtonText: '<?php echo lang('Text.no_cancel_msg'); ?>'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({

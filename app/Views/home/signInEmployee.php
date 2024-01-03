@@ -24,8 +24,8 @@
                         </div>
 
                         <div class="fv-row mb-4">
-                            <input type="text" id="txt-email<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.email'); ?>" autocomplete="off" class="form-control email bg-transparent mb-5 required<?php echo $uniqid; ?>" />
-                            <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                            <input type="text" id="txt-email<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.email_label'); ?>" autocomplete="off" class="form-control email bg-transparent mb-5 required<?php echo $uniqid; ?>" />
+                            <input type="password" id="txt-pass<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.password_label'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                         </div>
 
                         <div class="d-grid mb-5 text-end">
@@ -66,13 +66,13 @@
                             window.location.href = "<?php echo base_url('Employee/dashboard'); ?>";
                         } else if (response.error == 1) {
                             if (response.msg == 'EMAIL_NOT_FOUND') {
-                                simpleAlert('<?php echo lang('Text.invalid_credentials') ?>', 'warning');
+                                simpleAlert('<?php echo lang('Text.invalid_credentials_msg') ?>', 'warning');
                                 $('#txt-email<?php echo $uniqid; ?>').addClass('required is-invalid');
                                 $('#txt-pass<?php echo $uniqid; ?>').addClass('required is-invalid');
                             } else if (response.msg == 'USER_INACTIVE') {
                                 simpleAlert('<?php echo lang('Text.user_inactive_msg'); ?>', 'warning');
                             } else if (response.msg == 'INVALID_PASSWORD') {
-                                simpleAlert('<?php echo lang('Text.invalid_password'); ?>', 'warning');
+                                simpleAlert('<?php echo lang('Text.invalid_password_msg'); ?>', 'warning');
                                 $('#txt-pass<?php echo $uniqid; ?>').addClass('is-invalid');
                                 $('#btn-login<?php echo $uniqid; ?>').removeAttr('disabled');
                             } else {
@@ -88,9 +88,9 @@
                     }
                 });
             } else
-                simpleAlert('<?php echo lang('Text.invalid_email_format'); ?>', 'warning');
+                simpleAlert('<?php echo lang('Text.invalid_email_format_msg'); ?>', 'warning');
         } else
-            simpleAlert('<?php echo lang("Text.required_values"); ?>', 'warning');
+            simpleAlert('<?php echo lang("Text.required_values_msg"); ?>', 'warning');
     });
 
     function checkRequiredValues() {
@@ -127,6 +127,6 @@
     var session = "<?php echo $session; ?>";
 
     if (session == "expired") {
-        simpleAlert("<?php echo lang('Text.session_expired'); ?>", "error");
+        simpleAlert("<?php echo lang('Text.session_expired_msg'); ?>", "error");
     }
 </script>

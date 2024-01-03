@@ -10,7 +10,7 @@ $pendingAppointments = 0;
             <div class="d-flex align-items-center position-relative ">
                 <h5>
                     <?php
-                    echo lang('Text.appointments') . ' ';
+                    echo lang('Text.appointments_label') . ' ';
                     if ($config[0]->lang == 'en')
                         echo date('F j, Y');
                     else {
