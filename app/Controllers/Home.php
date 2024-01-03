@@ -63,7 +63,7 @@ class Home extends BaseController
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
         # data
-        $data['services'] = $this->objHomeModel->getServices();
+        $data['services'] = $this->objHomeModel->getActiveAndPublicServices();
         $data['team'] = $this->objHomeModel->getActiveEmployees();
         $data['socialNetworks'] = $this->objHomeModel->getActiveSocialNetworks();
         $data['images'] = $this->objMainModel->objData('company_img');

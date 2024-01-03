@@ -47,9 +47,11 @@ class HomeModel extends Model
         return $data;
     }
 
-    public function getServices()
+    public function getActiveAndPublicServices()
     {
         $query = $this->db->table('service')
+            ->where('status', 1)
+            ->where('visibility', 1)
             ->orderBy('ordering');
 
         $data = $query->get()->getResult();
