@@ -46,6 +46,19 @@ function labelEmployeeName($employeeID)
     return $data[0]->name;
 }
 
+function labelCustomerName($customerID)
+{
+    $db = \Config\Database::connect();
+
+    $query = $db->table('customer')
+        ->select('name')
+        ->where('id', $customerID);
+
+    $data = $query->get()->getResult();
+
+    return $data[0]->name;
+}
+
 function imgEmployee($employeeID)
 {
     $db = \Config\Database::connect();

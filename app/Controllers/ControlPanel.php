@@ -893,7 +893,7 @@ class ControlPanel extends BaseController
             if (!empty($result[$i]->password) && $result[$i]->emailVerified == 0)
                 $btnResendVerifyEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
-            $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?id=') . $result[$i]->id . '" title="' . lang('Text.cp_emp_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
+            $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?employeeID=') . $result[$i]->id . '" title="' . lang('Text.cp_emp_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
@@ -1094,6 +1094,9 @@ class ControlPanel extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "admin")
             return view('controlPanelLogout');
 
+        # params
+        $employeeID = $this->objRequest->getPostGet('employeeID');
+
         $data = array();
         # config
         $data['companyProfile'] = $this->companyProfile;
@@ -1101,7 +1104,9 @@ class ControlPanel extends BaseController
         # menu
         $data['activeEmployees'] = "active";
         # data
-        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPostGet('id'));
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
+        $data['upcomingAppointments'] = $this->objCustomerModel->employeeUpcomingAppointments($employeeID);
+        $data['uniqid'] = uniqid();
         # page
         $data['page'] = 'controlPanel/employees/employeeProfile/mainEmployeeProfile';
 

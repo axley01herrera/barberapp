@@ -556,4 +556,14 @@ class Employee extends BaseController
 
         return json_encode($result);
     }
+
+    public function cancelAppointment()
+    {
+        # params
+        $appointmentID = $this->objRequest->getPost('appointmentID');
+
+        $result = $this->objMainModel->objDelete('appointment', $appointmentID);
+
+        return json_encode($result);
+    } // ok
 }
