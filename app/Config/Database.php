@@ -24,12 +24,13 @@ class Database extends Config
     /**
      * The default database connection.
      */
+
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
-        'username'     => 'root',
-        'password'     => '',
-        'database'     => 'barber_dev',
+        'username'     => 'u893179125_bam',
+        'password'     => '@BussAppManagerV1',
+        'database'     => 'u893179125_bam',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
