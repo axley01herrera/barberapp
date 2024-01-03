@@ -234,7 +234,6 @@ $lang['cust_time'] = 'Turno';
 $lang['cust_success_create_appointment'] = 'Cita Creada';
 $lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.';
 $lang['cust_no_future_appointments'] = "Sin próximas citas";
-$lang['cust_future_appointments'] = "Próximas Citas";
 $lang['cust_tab_credential'] = 'Credenciales';
 $lang['cust_tab_credential_title'] = 'Credenciales de Cuenta';
 $lang['cust_tab_credential_subtitle'] = 'Administración de Credenciales';
@@ -256,8 +255,6 @@ $lang['emp_success_created_time'] = 'Turno del Empleado Creado';
 $lang['emp_success_updated_time'] = 'Turno del Empleado Actualizado';
 $lang['emp_success_deleted_time'] = 'Turno Eliminado';
 $lang['emp_asigned_services'] = 'Servicios Asignados';
-$lang['emp_verified_email'] = 'Correo Electrónico Verificado';
-$lang['emp_unverified_email'] = 'Correo Electrónico No Verificado';
 $lang['emp_no_active_bussiness_days_msg'] = 'El empleado no tiene días laborables activos.';
 $lang['emp_no_shift_days_msg'] = 'El empleado no tiene turnos de trabajos disponibles.';
 $lang['emp_incomplete_profile_msg'] = 'Complete su Perfil.';
@@ -348,6 +345,9 @@ $lang['cp_cust_success_deleted'] = "Cliente Eliminado";
 $lang['cp_cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cp_cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
 $lang['cp_cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
+$lang['cp_cust_verified_email'] = 'Correo Electrónico Verificado';
+$lang['cp_cust_unverified_email'] = 'Correo Electrónico No Verificado';
+$lang['cp_cust_future_appointments'] = "Próximas Citas";
 
 # Control Panel -> Employee
 $lang['cp_emp_page_title'] = "Listado de Empleados";
