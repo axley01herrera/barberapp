@@ -90,6 +90,7 @@ $lang['btn_back'] = "Atrás";
 $lang['btn_signing'] = "Entrar";
 $lang['btn_sign_in'] = "Iniciar Sesión";
 $lang['btn_signup'] = "Registrarme";
+$lang['btn_create_account'] = "Crear Cuenta";
 
 # Home -> Landing Page
 $lang['lp_welcome'] = "Bienvenido, Portal Web";
