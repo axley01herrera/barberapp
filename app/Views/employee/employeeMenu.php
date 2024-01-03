@@ -44,7 +44,7 @@
     <!-- Navbar -->
     <div class="app-navbar flex-shrink-0">
         <div class="app-navbar-item ms-1 ms-md-4" id="kt_header_user_menu_toggle">
-            <a href="<?php echo base_url('/'); ?>" class="btn btn-sm btn-danger"><?php echo lang('Text.top_bar_logout'); ?></a>
+            <a href="<?php echo base_url('Home/signInEmployee'); ?>" class="btn btn-sm btn-danger"><?php echo lang('Text.top_bar_logout'); ?></a>
         </div>
         <div class="app-navbar-item d-lg-none ms-2 me-n2" title="Show header menu">
             <div class="btn btn-flex btn-icon btn-active-color-primary w-30px h-30px" id="kt_app_header_menu_toggle">

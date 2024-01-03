@@ -56,28 +56,6 @@ class Employee extends BaseController
         date_default_timezone_set($this->config[0]->timezone);
     }
 
-    public function index()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee")
-            return view('employeeLogout');
-
-        # params
-        $employeeID =  $this->objSession->get('user')['employeeID'];
-
-        # data
-        $data = array();
-        $data['uniqid'] = uniqid();
-        $data['config'] = $this->config;
-        $data['companyProfile'] = $this->companyProfile;
-        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
-        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
-        # page
-        $data['page'] = 'employee/main';
-
-        return view('employee/mainEmployee', $data);
-    }
-
     public function dashboard()
     {
         # Verify Session 
@@ -93,8 +71,10 @@ class Employee extends BaseController
         $data['activeDashboard'] = 'active';
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
-        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
-        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
+        $data['employeeServices'] = $this->objMainModel->objData('employee_service', 'employeeID', $employeeID);
+        $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+        $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
         # page
         $data['page'] = 'employee/dashboard/mainDashboard';
 
@@ -114,10 +94,9 @@ class Employee extends BaseController
         $data = array();
         $data['uniqid'] = uniqid();
         $data['activeAppointment'] = 'active';
+        $data['employeeID'] = $employeeID;
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
-
-        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
         # page
         $data['page'] = 'employee/appointments/mainAppointments';
 
@@ -189,7 +168,7 @@ class Employee extends BaseController
         $data['activeAccount'] = 'active';
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
-        $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
+        $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
         $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
         # page
         $data['page'] = 'employee/account/mainAccount';
