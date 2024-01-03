@@ -72,7 +72,6 @@ $lang['first_time'] = "Primer Turno";
 $lang['second_time'] = "Segundo Turno";
 $lang['date_start'] = 'Hora de Inicio';
 $lang['date_end'] = 'Hora de Finalización';
-
 $lang['important'] = "Importante";
 $lang['social_network'] = "Red Social";
 $lang['url'] = "URL";
@@ -330,6 +329,9 @@ $lang['cp_emp_start_time'] = "Inicio de Jornada";
 $lang['cp_emp_end_time'] = "Fin de la Jornada";
 $lang['cp_emp_success_created_time'] = "Turnos Creados";
 $lang['cp_emp_success_updated_time'] = "Turnos Actualizados";
+$lang['cp_emp_current_pass'] = "Contraseña Actual";
+$lang['cp_emp_new_pass'] = "Nueva Contraseña";
+$lang['cp_emp_new_pass_c'] = "Confirmar Nueva Contraseña";
 
 # Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";

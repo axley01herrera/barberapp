@@ -13,35 +13,32 @@
     </div>
     <div class="card-body p-9 pt-4">
         <div class="row">
-            <div class="col-12">
-                <!-- Email -->
-                <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
-                <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $employee[0]->email; ?>" disabled="">
-            </div>
-            <div class="col-12 col-lg-4 mt-5">
-                <!-- Current Password -->
-                <label class="fs-6 fw-semibold" for="txt-password<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?></label>
-                <input type="password" id="txt-password<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
-            </div>
-            <div class="col-12 col-lg-4 mt-5">
-                <!-- New Password -->
-                <label class="fs-6 fw-semibold" for="txt-newPassword<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?></label>
-                <input type="password" id="txt-newPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
-            </div>
-            <div class="col-12 col-lg-4 mt-5">
-                <!-- Confirm New Password -->
-                <label class="fs-6 fw-semibold" for="txt-confirmNewPassword<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?></label>
-                <input type="password" id="txt-confirmNewPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 mt-5">
-                <!-- Status Employee-->
-                <div class="form-check form-switch form-check-custom form-check mt-2">
-                    <input type="checkbox" id="cb-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.change_status'); ?>" disabled="" <?php if ($employee[0]->status == 1) echo 'checked'; ?> data-status="<?php echo $employee[0]->status; ?>">
-                    <label class="fs-6 fw-semibold ms-5"> <?php echo lang('Text.active_inactive'); ?></label>
+            <div class="col-12 col-lg-4"></div>
+            <div class="col-12 col-lg-4">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Email -->
+                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_email'); ?></label>
+                        <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $employee[0]->email; ?>" disabled="">
+                    </div>
+                    <div class="col-12 mt-5">
+                        <!-- Current Password -->
+                        <label class="fs-6 fw-semibold" for="txt-password<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_current_pass'); ?></label>
+                        <input type="password" id="txt-password<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
+                    </div>
+                    <div class="col-12 mt-5">
+                        <!-- New Password -->
+                        <label class="fs-6 fw-semibold" for="txt-newPassword<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_new_pass'); ?></label>
+                        <input type="password" id="txt-newPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
+                    </div>
+                    <div class="col-12 mt-5">
+                        <!-- Confirm New Password -->
+                        <label class="fs-6 fw-semibold" for="txt-confirmNewPassword<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_new_pass_c'); ?></label>
+                        <input type="password" id="txt-confirmNewPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled="" placeholder="***********" autocomplete="off" />
+                    </div>
                 </div>
             </div>
+            <div class="col-12 col-lg-4"></div>
         </div>
         <div class="row">
             <div class="col-12 text-end mt-5">
@@ -64,48 +61,6 @@
 
     $('#btn-cancel<?php echo $uniqid; ?>').on('click', function() { // Cancel Edit
         employeeProfileTabContent();
-    });
-
-    $('#cb-status<?php echo $uniqid; ?>').on('click', function() { // Change Status
-        let employeeID = '<?php echo $employeeID; ?>';
-        let status = $(this).attr('data-status');
-        let newStatus = "";
-        let msg = "";
-
-        if (status == 0) {
-            newStatus = 1;
-            msg = "<?php echo lang('Text.emp_activated'); ?>";
-        } else if (status == 1) {
-            newStatus = 0;
-            msg = "<?php echo lang('Text.emp_deactivated'); ?>";
-        }
-
-        $(this).attr('data-status', newStatus);
-
-        $.ajax({
-            type: "post",
-            url: "<?php echo base_url('ControlPanel/changeEmployeeStatus'); ?>",
-            data: {
-                'employeeID': employeeID,
-                'status': newStatus
-            },
-            dataType: "json",
-            success: function(response) {
-                if (response.error == 0) {
-                    simpleSuccessAlert(msg);
-                    reloadEmployeeInfo();
-                    $('#btn-cancel<?php echo $uniqid; ?>').trigger('click');
-                } else {
-                    if (response.msg == "SESSION_EXPIRED") {
-                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
-                    } else
-                        globalError();
-                }
-            },
-            error: function(e) {
-                globalError();
-            }
-        });
     });
 
     $('#btn-update<?php echo $uniqid; ?>').on('click', function() {
