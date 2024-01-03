@@ -474,10 +474,10 @@ class ControlPanel extends BaseController
                 # page
                 $view = "controlPanel/customers/customerProfile/tabContent/tabAccount";
                 break;
-            case 'tab-profile':
+            case 'tab-info':
                 $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
                 # page
-                $view = "controlPanel/customers/customerProfile/tabContent/tabProfile";
+                $view = "controlPanel/customers/customerProfile/tabContent/tabInfo";
                 break;
         }
 

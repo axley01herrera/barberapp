@@ -135,6 +135,8 @@ $lang['requested'] = "Solicitado";
 $lang['no_requested'] = "No Solicitado";
 $lang['send_requested'] = "Enviar Solicitud";
 $lang['minutes'] = "minutos";
+$lang['price'] = "Precio";
+
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -213,7 +215,6 @@ $lang['top_bar_logout'] = "Salir";
 $lang['cust_dash_page_title'] = 'Tablero';
 $lang['cust_appointment_page_title'] = 'Historial de Citas';
 $lang['cust_account_page_title'] = "Detalle de Cuenta";
-$lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
 $lang['cust_profile_success_updated'] = "Perfil Actualizado";
 $lang['cust_account_success_updated'] = "Cuenta Actualizada";
 $lang['cust_appointment_subtitle'] = 'Administración de Citas.';
@@ -346,6 +347,7 @@ $lang['cp_cust_success_updated'] = "Cliente Actualizado";
 $lang['cp_cust_success_deleted'] = "Cliente Eliminado";
 $lang['cp_cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cp_cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
+$lang['cp_cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
 
 # Control Panel -> Employee
 $lang['cp_emp_page_title'] = "Listado de Empleados";

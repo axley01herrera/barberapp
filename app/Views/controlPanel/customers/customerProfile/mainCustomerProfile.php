@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <!-- Upcoming Appointments -->
-                    <h5><?php echo lang('Text.cust_dash_upcoming_appointment_title'); ?></h5>
+                    <h5><?php echo lang('Text.cp_cust_dash_upcoming_appointment_title'); ?></h5>
                     <?php echo view('customer/dashboard/upcomingAppointment'); ?>
                 </div>
                 <!-- Tabs -->
@@ -45,9 +45,9 @@
                         <li class="nav-item" role="presentation">
                             <a id="tab-account" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.cp_cust_profile_tab_account'); ?></a>
                         </li>
-                        <!-- Tab Profile-->
+                        <!-- Tab Info -->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-profile" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.cp_cust_profile_tab_info'); ?></a>
+                            <a id="tab-info" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.cp_cust_profile_tab_info'); ?></a>
                         </li>
                     </ul>
                     <!-- Tab Content -->
