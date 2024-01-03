@@ -9,7 +9,6 @@
     </div>
     <!-- Name -->
     <p class="fs-3 text-gray-800 fw-bold mb-3"><?php echo $employee[0]->name . ' ' . $employee[0]->lastName; ?></p>
-    <a href="<?php echo base_url('Home/signInEmployee'); ?>" class="btn btn-sm btn-danger">Salir</a>
 </div>
 <div id="kt_user_view_details" class="collapse show">
     <div class="pb-5 fs-6">
