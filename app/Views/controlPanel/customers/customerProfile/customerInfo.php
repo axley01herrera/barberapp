@@ -37,11 +37,13 @@
         <?php } ?>
 
         <!-- Last Session -->
+        <?php if (!empty($customer[0]->lastSession)) { ?>
         <div class="fw-bold mt-5"><?php echo lang('Text.cp_cust_last_session'); ?></div>
-        <div class="text-gray-600">
-            <span class="text-gray-600"><?php echo date($dateLabel.' g:ia', strtotime($customer[0]->lastSession)); ?></span>
-        </div>
-
+            <div class="text-gray-600">
+                <span class="text-gray-600"><?php echo date($dateLabel . ' g:ia', strtotime($customer[0]->lastSession)); ?></span>
+            </div>
+        <?php } ?>
+        
         <!-- Condition Verify Email -->
         <?php if (empty($customer[0]->emailVerified)) { ?>
             <div class="alert alert-dismissible bg-light-danger border border-danger border-dashed d-flex flex-column flex-sm-row w-100 mt-10">

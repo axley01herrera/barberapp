@@ -9,17 +9,17 @@
                 <div class="row">
                     <!-- Name -->
                     <div class="col-12 col-md-6 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.name'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.cp_cust_name'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-name<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo @$customer->name; ?>" />
                     </div>
                     <!-- Last Name -->
                     <div class="col-12 col-md-6 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-last-name<?php echo $uniqid; ?>"><?php echo lang('Text.last_name'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-last-name<?php echo $uniqid; ?>"><?php echo lang('Text.cp_cust_last_name'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-last-name<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo @$customer->lastName; ?>" />
                     </div>
                     <!-- Email -->
                     <div class="col-12 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.cp_cust_email'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" value="<?php echo @$customer->email; ?>" <?php if ($action == "update") echo "disabled"; ?> />
                     </div>
                 </div>
@@ -52,10 +52,10 @@
 
                 if (action == "create") {
                     url = "<?php echo base_url('ControlPanel/createCustomer'); ?>";
-                    msg = "<?php echo lang("Text.cust_success_created"); ?>";
+                    msg = "<?php echo lang("Text.cp_cust_success_created"); ?>";
                 } else if (action == "update") {
                     url = "<?php echo base_url('ControlPanel/updateCustomer'); ?>"
-                    msg = "<?php echo lang("Text.cust_success_updated"); ?>";
+                    msg = "<?php echo lang("Text.cp_cust_success_updated"); ?>";
                 }
 
                 $.ajax({
@@ -79,10 +79,10 @@
                             if (response.msg == "SESSION_EXPIRED") {
                                 window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
                             } else if (response.msg == "ERROR_DUPLICATE_EMAIL") {
-                                simpleAlert("<?php echo lang('Text.cust_duplicate'); ?>", 'warning');
+                                simpleAlert("<?php echo lang('Text.cp_cust_duplicate'); ?>", 'warning');
                                 $('#txt-email<?php echo $uniqid; ?>').addClass('is-invalid');
                             } else if (response.msg == "ERROR_SEND_EMAIL") {
-                                simpleAlert("<?php echo lang('Text.cust_error_send_email'); ?>", 'warning');
+                                simpleAlert("<?php echo lang('Text.cp_cust_error_send_email'); ?>", 'warning');
                                 if (callModalFrom == "main-customers") {
                                     dtCustomers.draw();
                                     $('#modal').modal('hide');

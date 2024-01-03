@@ -342,34 +342,33 @@ class ControlPanel extends BaseController
         for ($i = 0; $i < $totalRows; $i++) {
 
             $avatar = "";
-            $btnResendCompleteAccountEmail = "";
-            $btnResendVerifyEmail = "";
+            $resendCompleteAccountEmail = "";
+            $resendVerifyEmail = "";
 
             if (empty($result[$i]->avatar))
                 $avatar =  '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . base_url("public/assets/media/avatars/blank.png") . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
             else
                 $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="data:image/png;base64,' . base64_encode($result[$i]->avatar) . '" class="border border-1 border-secondary"alt="Avatar"> </div>';
 
-            $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+            $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.cp_cust_change_status') . '" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if ($result[$i]->status == 1)
-                $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
+                $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.cp_cust_change_status') . '"checked="" data-customer-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if (empty($result[$i]->password))
-                $btnResendCompleteAccountEmail = '<button type="button" data-customer-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
+                $resendCompleteAccountEmail = '<button type="button" data-customer-id=' . $result[$i]->id . ' " title="' . lang('Text.cp_cust_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
             if (!empty($result[$i]->password) && $result[$i]->emailVerified == 0)
-                $btnResendVerifyEmail = '<button type="button" data-customer-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
-
+                $resendVerifyEmail = '<button type="button" data-customer-id=' . $result[$i]->id . ' " title="' . lang('Text.cp_cust_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
             $detail = '<a href="' . base_url('ControlPanel/customerProfile?customerID=') . $result[$i]->id . '" title="' . lang('Text.cp_customer_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
-            $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
+            $delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
             $col['avatar'] = $avatar . ' ' . $result[$i]->name . ' ' . $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
-            $col['action'] = @$btnResendCompleteAccountEmail . @$btnResendVerifyEmail . $detail . $btnDelete;
+            $col['action'] = @$resendCompleteAccountEmail . @$resendVerifyEmail . $detail . $delete;
 
             $row[$i] =  $col;
         }
@@ -630,9 +629,9 @@ class ControlPanel extends BaseController
         $data['uniqid'] = uniqid();
 
         if ($action == "create")
-            $data['modalTitle'] = lang("Text.cust_modal_title_new");
+            $data['modalTitle'] = lang("Text.cp_cust_modal_title_new");
         else if ($action == "update") {
-            $data['modalTitle'] = lang("Text.cust_modal_title_update");
+            $data['modalTitle'] = lang("Text.cp_cust_modal_title_update");
             $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID)[0];
             $data['customerID'] = $customerID;
         }
@@ -887,8 +886,8 @@ class ControlPanel extends BaseController
 
         for ($i = 0; $i < $totalRows; $i++) {
 
-            $btnResendCompleteAccountEmail = "";
-            $btnResendVerifyEmail = "";
+            $resendCompleteAccountEmail = "";
+            $resendVerifyEmail = "";
 
             $avatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . base_url("public/assets/media/avatars/blank.png") . '"class="border border-1 border-secondary" alt="Avatar"> </div>';
             $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
@@ -900,19 +899,19 @@ class ControlPanel extends BaseController
                 $status = '<div class="form-check form-switch" style="margin-left: 30%;"><input type="checkbox" class="form-check-input form-control h-10px w-30px change-status" title="' . lang('Text.change_status') . '"checked="" data-employee-id="' . $result[$i]->id . '" data-status="' . $result[$i]->status . '"></div>';
 
             if (empty($result[$i]->password))
-                $btnResendCompleteAccountEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
+                $resendCompleteAccountEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_complete_account') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-complete-account-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
             if (!empty($result[$i]->password) && $result[$i]->emailVerified == 0)
-                $btnResendVerifyEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
+                $resendVerifyEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
             $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?employeeID=') . $result[$i]->id . '" title="' . lang('Text.cp_emp_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
-            $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
+            $delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
             $col['avatar'] = $avatar . ' ' . $result[$i]->name . ' ' . $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
-            $col['action'] = @$btnResendCompleteAccountEmail . @$btnResendVerifyEmail . $btnProfile . $btnDelete;
+            $col['action'] = @$resendCompleteAccountEmail . @$resendVerifyEmail . $btnProfile . $delete;
             $row[$i] =  $col;
         }
 

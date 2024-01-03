@@ -19,8 +19,6 @@ $lang['password_not_match'] = "Las contraseñas no coinciden";
 $lang['current_key'] = "Clave Actual";
 $lang['new_key'] = "Nueva Clave";
 $lang['confirm_key'] = "Confirme la Nueva Clave";
-$lang['name'] = "Nombre";
-$lang['last_name'] = "Apellidos";
 $lang['gender'] = "Género";
 $lang['male'] = "Masculino";
 $lang['female'] = "Femenino";
@@ -45,7 +43,6 @@ $lang['contact_info'] = "Información de Contacto";
 $lang['active'] = "Activo";
 $lang['inactive'] = "Inactivo";
 $lang['verified'] = "Verificado";
-$lang['change_status'] = "Cambiar Estado";
 $lang['change_visibility'] = "Cambiar Visibilidad";
 $lang['create_pass'] = 'Crear Contraseña';
 $lang['create_pass_subtitle'] = "Introduzca su contraseña";
@@ -217,13 +214,6 @@ $lang['cust_dash_page_title'] = 'Tablero';
 $lang['cust_appointment_page_title'] = 'Historial de Citas';
 $lang['cust_account_page_title'] = "Detalle de Cuenta";
 $lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
-$lang['cust_success_resend_verify_email'] = 'Correo de Verificación Enviado';
-$lang['cust_modal_title_new'] = "Nuevo Cliente";
-$lang['cust_modal_title_update'] = "Actualizando Cliente";
-$lang['cust_success_created'] = "Cliente Creado";
-$lang['cust_success_updated'] = "Cliente Actualizado";
-$lang['cust_success_deleted'] = "Cliente Eliminado";
-$lang['cust_duplicate'] = "Ya existe el correo electrónico";
 $lang['cust_error_send_email'] = "No hemos podido enviar el correo electrónico de verificación al cliente";
 $lang['cust_profile_success_updated'] = "Perfil Actualizado";
 $lang['cust_account_success_updated'] = "Cuenta Actualizada";
@@ -245,8 +235,6 @@ $lang['cust_success_create_appointment'] = 'Cita Creada';
 $lang['cust_error_create_appointment'] = 'Alguien se te ha adelantado ya el turno no está disponible. Seleccione otro.';
 $lang['cust_no_future_appointments'] = "Sin próximas citas";
 $lang['cust_future_appointments'] = "Próximas Citas";
-$lang['cust_activated'] = 'Cliente Activado';
-$lang['cust_deactivated'] = 'Cliente Desactivado';
 $lang['cust_tab_credential'] = 'Credenciales';
 $lang['cust_tab_credential_title'] = 'Credenciales de Cuenta';
 $lang['cust_tab_credential_subtitle'] = 'Administración de Credenciales';
@@ -324,7 +312,7 @@ $lang['cp_serv_active_visibility'] = "Servicio Público";
 $lang['cp_serv_inactive_visibility'] = "Servicio Privado";
 $lang['cp_serv_title'] = "Título";
 
-# Control Panel Customer
+# Control Panel -> Customer
 $lang['cp_cust_page_title'] = "Listado de Clientes";
 $lang['cp_cust_btn_new'] = "Nuevo Cliente";
 $lang['cp_customer_detail'] = "Detalle del Cliente";
@@ -343,9 +331,23 @@ $lang['cp_cust_no_registered_phone'] = "No Registrado";
 $lang['cp_cust_phone'] = "Teléfono";
 $lang['cp_cust_not_verified_email'] = "No Verificado";
 $lang['cp_cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
+$lang['cp_cust_resend_complete_account'] = 'Reenviar Correo Crear Cuenta';
 $lang['cp_cust_last_session'] = 'Última Sesión';
+$lang['cp_cust_success_resend_verify_email'] = 'Correo de Verificación Enviado al Cliente';
+$lang['cp_cust_success_resend_complete_account'] = 'Correo Reenviado al Cliente';
+$lang['cp_cust_activated'] = 'Cliente Activado';
+$lang['cp_cust_deactivated'] = 'Cliente Desactivado';
+$lang['cp_cust_change_status'] = "Cambiar Estado";
+$lang['cp_cust_modal_title_new'] = "Nuevo Cliente";
+$lang['cp_cust_modal_title_update'] = "Actualizando Cliente";
+$lang['cp_cust_name'] = "Nombre";
+$lang['cp_cust_last_name'] = "Apellidos";
+$lang['cp_cust_success_created'] = "Cliente Creado";
+$lang['cp_cust_success_updated'] = "Cliente Actualizado";
+$lang['cp_cust_success_deleted'] = "Cliente Eliminado";
+$lang['cp_cust_duplicate'] = "Ya existe el correo electrónico";
 
-# Control Panel Employee
+# Control Panel -> Employee
 $lang['cp_emp_page_title'] = "Listado de Empleados";
 $lang['cp_emp_btn_new'] = "Nuevo Empleado";
 $lang['cp_emp_detail'] = "Detalle del Empleado";
@@ -366,7 +368,7 @@ $lang['cp_emp_profile_tab_info_title'] = 'Descripción General';
 $lang['cp_emp_profile_tab_info_subtitle'] = 'Información Requerida';
 $lang['cp_emp_modal_title_new'] = "Nuevo Empleado";
 
-# Control Panel Profile
+# Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
 $lang['cp_profile_menu_bussiness_data'] = "Descripción";
 $lang['cp_profile_bussiness_data_title'] = "Descripción General";
