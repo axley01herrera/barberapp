@@ -67,22 +67,29 @@
     $('#btn-resendEmail<?php echo $uniqid; ?>').on('click', function() {
         $(this).attr('disabled', true);
         $.ajax({
-            type: "POST",
-            url: "<?php echo base_url('Customer/resendVerifyEmail') ?>",
+            type: "post",
+            url: "<?php echo base_url('ControlPanel/resendVerifyEmail'); ?>",
+            data: {
+                'customerID': "<?php echo $customer[0]->id; ?>",
+                'type': 'customer'
+            },
             dataType: "json",
             success: function(response) {
                 if (response.error == 0) {
-                    simpleSuccessAlert(response.msg);
-                    $('#btn-resendEmail<?php echo $uniqid; ?>').removeAttr('disabled');
+                    simpleSuccessAlert('<?php echo lang('Text.cp_cust_success_resend_verify_email'); ?>');
                 } else {
-                    globalError();
-                    $('#btn-resendEmail<?php echo $uniqid; ?>').removeAttr('disabled');
+                    if (response.msg == "SESSION_EXPIRED") {
+                        window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
+                    } else {
+                        globalError();
+                    }
                 }
+                $('#btn-resendEmail<?php echo $uniqid; ?>').removeAttr('disabled');
             },
-            error: function(error) {
+            error: function(e) {
                 globalError();
                 $('#btn-resendEmail<?php echo $uniqid; ?>').removeAttr('disabled');
             }
         });
-    });
+    }); // ok
 </script>
