@@ -84,7 +84,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/dashboard/mainDashboard';
 
-        return view('ControlPanel/mainCpanel', $data);
+        return view('controlPanel/mainCpanel', $data);
     }
 
     public function dtTodayAppointments()
@@ -127,7 +127,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/services/mainServices';
 
-        return view('ControlPanel/mainCpanel', $data);
+        return view('controlPanel/mainCpanel', $data);
     } // ok
 
     public function updateServicesOrder()
@@ -169,7 +169,7 @@ class ControlPanel extends BaseController
         }
 
         # page
-        $view = 'ControlPanel/services/modalService';
+        $view = 'controlPanel/services/modalService';
 
         return view($view, $data);
     } // ok
@@ -318,7 +318,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/customers/mainCustomers';
 
-        return view('ControlPanel/mainCpanel', $data);
+        return view('controlPanel/mainCpanel', $data);
     } // ok
 
     public function processingCustomer()
@@ -361,7 +361,7 @@ class ControlPanel extends BaseController
             if (!empty($result[$i]->password) && $result[$i]->emailVerified == 0)
                 $resendVerifyEmail = '<button type="button" data-customer-id=' . $result[$i]->id . ' " title="' . lang('Text.cp_cust_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
-            $detail = '<a href="' . base_url('ControlPanel/customerProfile?customerID=') . $result[$i]->id . '" title="' . lang('Text.cp_customer_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
+            $detail = '<a href="' . base_url('controlPanel/customerProfile?customerID=') . $result[$i]->id . '" title="' . lang('Text.cp_customer_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
@@ -416,7 +416,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/customers/customerProfile/mainCustomerProfile';
 
-        return view('ControlPanel/mainCpanel', $data);
+        return view('controlPanel/mainCpanel', $data);
     } // ok
 
     public function reloadCustomerInfo()
@@ -636,7 +636,7 @@ class ControlPanel extends BaseController
             $data['customerID'] = $customerID;
         }
 
-        return view('ControlPanel/customers/modalCustomer', $data);
+        return view('controlPanel/customers/modalCustomer', $data);
     } // ok
 
     public function createCustomer()
@@ -863,7 +863,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/employees/mainEmployees';
 
-        return view('ControlPanel/mainCpanel', $data);
+        return view('controlPanel/mainCpanel', $data);
     } // ok
 
     public function processingEmployee()
@@ -904,7 +904,7 @@ class ControlPanel extends BaseController
             if (!empty($result[$i]->password) && $result[$i]->emailVerified == 0)
                 $resendVerifyEmail = '<button type="button" data-employee-id=' . $result[$i]->id . ' " title="' . lang('Text.cp_emp_resend_verify_email') . '" class="btn btn-sm btn-light btn-active-color-primary m-1 resend-verify-email">' . '<i class="bi bi-envelope-check"></i>' . '</button>';
 
-            $btnProfile = '<a href="' . base_url('ControlPanel/employeeProfile?employeeID=') . $result[$i]->id . '" title="' . lang('Text.cp_emp_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
+            $btnProfile = '<a href="' . base_url('controlPanel/employeeProfile?employeeID=') . $result[$i]->id . '" title="' . lang('Text.cp_emp_detail') . '"" class="btn btn-sm btn-light btn-active-color-primary m-1">' . '<i class="bi bi-person-gear"></i>' . '</a>';
             $delete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
@@ -956,7 +956,7 @@ class ControlPanel extends BaseController
             $data['employeeID'] = $employeeID;
         }
 
-        return view('ControlPanel/employees/modalEmployee', $data);
+        return view('controlPanel/employees/modalEmployee', $data);
     } // ok
 
     public function createEmployee()
@@ -1125,7 +1125,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/employees/employeeProfile/mainEmployeeProfile';
 
-        return view('ControlPanel/mainCpanel', $data);
+        return view('controlPanel/mainCpanel', $data);
     } // ok
 
     public function employeeProfileTabContent()
@@ -1612,7 +1612,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/companyProfile/mainCompanyProfile';
 
-        return view('ControlPanel/mainCpanel', $data);
+        return view('controlPanel/mainCpanel', $data);
     } // ok
 
     public function profileTab()
@@ -1969,7 +1969,7 @@ class ControlPanel extends BaseController
         # page
         $data['page'] = 'controlPanel/template/mainTemplate';
 
-        return view('ControlPanel/mainCpanel', $data);
+        return view('controlPanel/mainCpanel', $data);
     }
 
     ##############################
