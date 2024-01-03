@@ -1206,11 +1206,12 @@ class ControlPanel extends BaseController
         $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $data['employeeID']);
 
         if ($action == 'create')
-            $data['modalTitle'] = lang('Text.emp_modal_title_create_time');
+            $data['modalTitle'] = lang('Text.cp_emp_modal_title_create_time');
         else if ($action == 'update') {
-            $data['modalTitle'] = lang('Text.emp_modal_title_edit_time');
+            $data['modalTitle'] = lang('Text.cp_emp_modal_title_edit_time');
             $data['time'] = $this->objMainModel->objData('employee_shift_day', 'id', $timeID);
         }
+
         # page
         $page = 'controlPanel/employees/employeeProfile/modalTime';
 

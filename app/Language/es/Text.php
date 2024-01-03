@@ -5,7 +5,6 @@ $lang = array();
 $lang['about'] = "Sobre Nosotros";
 $lang['about_bussiness'] = "Cuéntanos más sobre tu negocio";
 $lang['c_panel'] = "Panel de Control";
-$lang['system_info'] = "Información del Sistema";
 $lang['company_name'] = "Nombre del Negocio";
 $lang['bussines_type'] = "Tipo de Negocio";
 $lang['tax_identifier'] = "Identificador Fiscal";
@@ -73,9 +72,7 @@ $lang['first_time'] = "Primer Turno";
 $lang['second_time'] = "Segundo Turno";
 $lang['date_start'] = 'Hora de Inicio';
 $lang['date_end'] = 'Hora de Finalización';
-$lang['day'] = "Día Laboral";
-$lang['start_time'] = "Inicio de Jornada";
-$lang['end_time'] = "Fin de la Jornada";
+
 $lang['important'] = "Importante";
 $lang['social_network'] = "Red Social";
 $lang['url'] = "URL";
@@ -324,7 +321,15 @@ $lang['cp_emp_bussiness_day_inactive'] = "Día no Laborable";
 $lang['cp_emp_no_times_alert'] = "No hay Turnos";
 $lang['cp_emp_success_deleted_time'] = "Turno Eliminado";
 $lang['cp_emp_no_shift_days_msg'] = "No hay turnos de trabajo configurados";
+$lang['cp_emp_no_active_bussiness_days_msg'] = "No hay días laborables";
 $lang['cp_emp_no_registered_phone'] = "No Resgistrado";
+$lang['cp_emp_modal_title_create_time'] = "Creando Turnos";
+$lang['cp_emp_modal_title_edit_time'] = "Actualizando Turno";
+$lang['cp_emp_bussiness_day'] = "Día Laboral";
+$lang['cp_emp_start_time'] = "Inicio de Jornada";
+$lang['cp_emp_end_time'] = "Fin de la Jornada";
+$lang['cp_emp_success_created_time'] = "Turnos Creados";
+$lang['cp_emp_success_updated_time'] = "Turnos Actualizados";
 
 # Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";

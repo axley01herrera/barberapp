@@ -10,7 +10,7 @@
                     <?php if ($action == 'update') { ?>
                         <!-- Day -->
                         <div class="col-12">
-                            <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.day'); ?> <span class="text-danger">*</span></label>
+                            <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_bussiness_day'); ?> <span class="text-danger">*</span></label>
                             <select id="sel-day<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>">
                                 <option value="" hidden></option>
                                 <?php if ($employeeBussinesDay[0]->monday == 1) { ?>
@@ -53,14 +53,14 @@
                     <?php } ?>
                     <!-- Start Time -->
                     <div class="col-12 col-md-6 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-last-name<?php echo $uniqid; ?>"><?php echo lang('Text.start_time'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-last-name<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_start_time'); ?> <span class="text-danger">*</span></label>
                         <input class="form-control flatpickr-input time required<?php echo $uniqid; ?>" id="sel-startTime<?php echo $uniqid; ?>" type="text" value="<?php if (!empty($time[0]->start)) {
                                                                                                                                                                         echo date('g:ia', strtotime($time[0]->start));
                                                                                                                                                                     } ?>" />
                     </div>
                     <!-- End Time -->
                     <div class="col-12 col-md-6 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.end_time'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_end_time'); ?> <span class="text-danger">*</span></label>
                         <input class="form-control flatpickr-input time required<?php echo $uniqid; ?>" id="sel-endTime<?php echo $uniqid; ?>" type="text" value="<?php if (!empty($time[0]->start)) {
                                                                                                                                                                         echo date('g:ia', strtotime($time[0]->end));
                                                                                                                                                                     } ?>" />
@@ -68,7 +68,7 @@
                     <?php if ($action == 'create') { ?>
                         <!-- Days of week -->
                         <div class="col-12 mt-5">
-                            <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.day'); ?> <span class="text-danger">*</span></label>
+                            <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_bussiness_day'); ?> <span class="text-danger">*</span></label>
                             <div class="row">
 
                                 <?php if ($employeeBussinesDay[0]->monday == 1) { ?>
@@ -190,7 +190,7 @@
 
     function createEmployeeTimes() {
         let url = "<?php echo base_url('ControlPanel/createTime'); ?>";
-        let msg = "<?php echo lang("Text.emp_success_created_time"); ?>";
+        let msg = "<?php echo lang("Text.cp_emp_success_created_time"); ?>";
 
         let days = [];
 
@@ -234,7 +234,7 @@
 
     function updateEmployeeTimes() {
         let url = "<?php echo base_url('ControlPanel/updateTime'); ?>";
-        let msg = "<?php echo lang("Text.emp_success_updated_time"); ?>";
+        let msg = "<?php echo lang("Text.cp_emp_success_updated_time"); ?>";
 
         let result = checkRequiredValues();
 
