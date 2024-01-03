@@ -40,7 +40,6 @@ $lang['city'] = "Ciudad";
 $lang['state'] = "Provincia";
 $lang['zip'] = "Código Postal";
 $lang['country'] = "País";
-$lang['title'] = "Título";
 $lang['description'] = "Descripción";
 $lang['currency'] = "Moneda";
 $lang['timezone'] = "Zona Horaria";
@@ -316,6 +315,7 @@ $lang['cp_serv_active'] = "Servicio Activado";
 $lang['cp_serv_inactive'] = "Servicio Desactivado";
 $lang['cp_serv_active_visibility'] = "Servicio Público";
 $lang['cp_serv_inactive_visibility'] = "Servicio Privado";
+$lang['cp_serv_title'] = "Título";
 
 # Control Panel Customer
 $lang['cp_cust_page_title'] = "Listado de Clientes";

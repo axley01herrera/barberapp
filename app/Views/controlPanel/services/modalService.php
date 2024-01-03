@@ -9,26 +9,26 @@
                 <!-- Title -->
                 <div class="row">
                     <div class="col-12">
-                        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.title'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.cp_serv_title'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-title<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo @$service->title; ?>" />
                     </div>
                 </div>
                 <div class="row">
                     <!-- Price -->
                     <div class="col-12 col-md-6 col-lg-g mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.price'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.cp_serv_price'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-price<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> decimal<?php echo $uniqid; ?>" value="<?php if (!empty($service->price)) echo $service->price; ?>" />
                     </div>
                     <!-- Price -->
                     <div class="col-12 col-md-6 col-lg-g mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.time_minutes'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.cp_serv_time_minutes'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-time<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> decimal<?php echo $uniqid; ?>" value="<?php if (!empty($service->time)) echo $service->time; ?>" />
                     </div>
                 </div>
                 <!-- Description -->
                 <div class="row">
                     <div class="col-12 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.description'); ?></label>
+                        <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.cp_serv_description'); ?></label>
                         <textarea id="txt-description<?php echo $uniqid; ?>" class="form-control" rows="3"><?php echo @$service->description; ?></textarea>
                     </div>
                 </div>
