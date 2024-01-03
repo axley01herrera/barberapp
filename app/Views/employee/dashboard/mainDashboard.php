@@ -20,7 +20,7 @@
             <div class="d-flex flex-column flex-lg-row">
                 <!-- Times -->
                 <div class="container">
-                    <div class="row mt-6 card">
+                    <div class="card">
                         <div id="chart-time"></div>
                         <?php if ($employeeBussinesDay[0]->monday == 0 && $employeeBussinesDay[0]->tuesday == 0 && $employeeBussinesDay[0]->wednesday == 0 && $employeeBussinesDay[0]->thursday == 0 && $employeeBussinesDay[0]->friday == 0 && $employeeBussinesDay[0]->saturday == 0 && $employeeBussinesDay[0]->sunday == 0) { ?>
                             <div class="col-12">
