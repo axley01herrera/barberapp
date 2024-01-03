@@ -317,6 +317,14 @@ $lang['cp_emp_verified_email'] = 'Correo Electrónico Verificado';
 $lang['cp_emp_appointment_history'] = "Historial de Citas del Empleado";
 $lang['cp_emp_assigned_service'] = "Servicio Asignado";
 $lang['cp_emp_unassigned_service'] = "Servicio Desasignado";
+$lang['cp_emp_create_time'] = "Crear Turno";
+$lang['cp_emp_label_switch_bussiness_day'] = "Laborable";
+$lang['cp_emp_bussiness_day_active'] = "Día Laborable";
+$lang['cp_emp_bussiness_day_inactive'] = "Día no Laborable";
+$lang['cp_emp_no_times_alert'] = "No hay Turnos";
+$lang['cp_emp_success_deleted_time'] = "Turno Eliminado";
+$lang['cp_emp_no_shift_days_msg'] = "No hay turnos de trabajo configurados";
+$lang['cp_emp_no_registered_phone'] = "No Resgistrado";
 
 # Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
