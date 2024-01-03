@@ -215,18 +215,68 @@ class DataTableModel extends Model
     ####################
 
     ####################
+    #### DT Employee Appointments
+    ####################
+
+    public function getEmployeeAppointmentProcessingData($params)
+    {
+        $query = $this->db->table('view_appointment');
+
+        if (!empty($params['search'])) {
+            $query->groupStart();
+            $query->like('employeeName', $params['search']);
+            $query->orLike('employeeLastName', $params['search']);
+            $query->orLike('totalTime', $params['search']);
+            $query->orLike('totalPrice', $params['search']);
+            $query->orLike('date', $params['search']);
+            $query->orLike('servicesJSON', $params['search']);
+            $query->groupEnd();
+        }
+
+        if (!empty($params['employeeID'])) {
+            $query->groupStart();
+            $query->where('employeeID', $params['employeeID']);
+            $query->groupEnd();
+        }
+
+        $query->offset($params['start']);
+        $query->limit($params['length']);
+        $query->orderBy('date DESC');
+
+        return $query->get()->getResult();
+    }
+
+    public function getTotalEmployeeAppointments($params)
+    {
+        $query = $this->db->table('view_appointment')
+            ->select('appointmentID');
+
+        $query->groupStart();
+        $query->where('employeeID', $params['employeeID']);
+        $query->groupEnd();
+
+        $data = $query->get()->getResult();
+
+        return sizeof($data);
+    }
+    ####################
+    #### End DT Employee Appointments
+    ####################
+
+    ####################
     #### DT Today Appointments
     ####################
 
-    public function todayAppointments () {
+    public function todayAppointments()
+    {
         $query = $this->db->table('view_appointment')
-        ->where('date', date('Y-m-d'));
+            ->where('date', date('Y-m-d'));
 
         $data = $query->get()->getResult();
 
         return $data;
     }
-    
+
     ####################
     #### DT Today Appointments
     ####################

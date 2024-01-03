@@ -362,7 +362,7 @@ class ControlPanel extends BaseController
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-customer" data-customer-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
-            $col['avatar'] = $avatar.' '.$result[$i]->name. ' '.$result[$i]->lastName;
+            $col['avatar'] = $avatar . ' ' . $result[$i]->name . ' ' . $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
             $col['action'] = @$btnResendCompleteAccountEmail . @$btnResendVerifyEmail . $detail . $btnDelete;
@@ -897,7 +897,7 @@ class ControlPanel extends BaseController
             $btnDelete = '<button class="btn btn-sm btn-light btn-active-color-danger m-1 delete-employee" data-employee-id="' . $result[$i]->id . '" title="' . lang('Text.btn_delete') . '"><span class="bi bi-trash-fill"></span></button>';
 
             $col = array();
-            $col['avatar'] = $avatar.' '.$result[$i]->name.' '.$result[$i]->lastName;
+            $col['avatar'] = $avatar . ' ' . $result[$i]->name . ' ' . $result[$i]->lastName;
             $col['email'] = $result[$i]->email;
             $col['status'] = $status;
             $col['action'] = @$btnResendCompleteAccountEmail . @$btnResendVerifyEmail . $btnProfile . $btnDelete;
@@ -1502,6 +1502,69 @@ class ControlPanel extends BaseController
 
         return view($view, $data);
     } // ok
+
+    public function processingEmployeeAppointment()
+    {
+        $dataTableRequest = $_REQUEST;
+
+        $params = array();
+        $params['draw'] = $dataTableRequest['draw'];
+        $params['start'] = $dataTableRequest['start'];
+        $params['length'] = $dataTableRequest['length'];
+        $params['search'] = $dataTableRequest['search']['value'];
+        $params['employeeID'] = $dataTableRequest['employeeID'];
+
+        $row = array();
+        $totalRecords = 0;
+
+        $result = $this->objDataTableModel->getEmployeeAppointmentProcessingData($params);
+        $totalRows = sizeof($result);
+
+        for ($i = 0; $i < $totalRows; $i++) {
+
+            $custAvatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . imgCustomer($result[$i]->customerID) . '" class="" alt=""></div>';
+
+            $date = "";
+            if ($this->config[0]->lang == 'en')
+                $date = date('F j, Y', strtotime($result[$i]->date));
+            else {
+                $mont =  date('F', strtotime($result[$i]->date));
+                $date = lang('Text.' . $mont) . ' ' . date('j, Y', strtotime($result[$i]->date));
+            }
+
+            $schedule = '<span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> ' . date('g:ia', strtotime($result[$i]->start)) . ' - ' . date('g:ia', strtotime($result[$i]->end)) . '</span>';
+            $aux = json_decode($result[$i]->servicesJSON);
+            $serv = "";
+
+            foreach ($aux as $s) {
+                $serv = $serv . '<div class="fw-semibold"><span class="bullet bullet-dot bg-primary me-2 h-10px w-10px"></span>' . $s->serviceTitle . '</div>';
+            }
+
+            $col = array();
+            $col['customer'] = $custAvatar . ' ' . $result[$i]->customerName . ' ' . $result[$i]->customerLastName;
+            $col['date'] = $date;
+            $col['schedule'] = $schedule;
+            $col['serv'] = $serv;
+            $col['time'] = $result[$i]->totalTime . ' ' . lang('Text.minutes');
+            $col['price'] = getMoneyFormat($this->config[0]->currency, $result[$i]->totalPrice);
+            $row[$i] =  $col;
+        }
+
+        if ($totalRows > 0) {
+            if (empty($params['search']))
+                $totalRecords = $this->objDataTableModel->getTotalEmployeeAppointments($params);
+            else
+                $totalRecords = $totalRows;
+        }
+
+        $data = array();
+        $data['draw'] = $dataTableRequest['draw'];
+        $data['recordsTotal'] = intval($totalRecords);
+        $data['recordsFiltered'] = intval($totalRecords);
+        $data['data'] = $row;
+
+        return json_encode($data);
+    }
 
     ##############################
     # Section Profile

@@ -438,6 +438,7 @@ $lang['lp_invite'] = "Si eres cliente y no tienes cuenta te invitamos a registra
 
 # Data Tables
 $lang['appointment_col_emp'] = 'Empleado';
+$lang['appointment_col_cust'] = 'Cliente';
 $lang['appointment_col_date'] = 'Fecha';
 $lang['appointment_col_schedule'] = 'Horario';
 $lang['appointment_col_services'] = 'Servicios';
