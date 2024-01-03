@@ -462,6 +462,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $('.cbx-bussines-day').on('click', function() { // Change Bussiness Day Status
         let field = $(this).attr('id');
