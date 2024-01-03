@@ -593,6 +593,15 @@ class Customer extends BaseController
 
     public function cancelAppointment()
     {
+        # Verify Session 
+        if (empty($this->objSession->get('user'))) {
+            $result = array();
+            $result['error'] = 1;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+        
         # params
         $appointmentID = $this->objRequest->getPost('appointmentID');
 
@@ -604,7 +613,7 @@ class Customer extends BaseController
     public function resendVerifyEmail()
     {
         # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "customer") {
+        if (empty($this->objSession->get('user'))) {
             $result = array();
             $result['error'] = 1;
             $result['msg'] = "SESSION_EXPIRED";

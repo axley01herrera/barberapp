@@ -26,12 +26,10 @@ $lang['male'] = "Masculino";
 $lang['female'] = "Femenino";
 $lang['other'] = "Otro";
 $lang['primary_phone'] = "Teléfono Principal";
-$lang['phone'] = "Teléfono";
 $lang['dob'] = "Fecha de Nacimiento";
 $lang['date'] = "Fecha";
 $lang['secondary_phone'] = "Teléfono Segundario";
 $lang['phone_ext'] = "Extensión";
-$lang['email'] = "Correo Electrónico";
 $lang['email_notification'] = "Recibir Notificaciones por Email";
 $lang['address'] = "Dirección";
 $lang['address1'] = "Linea 1 de Dirección";
@@ -47,7 +45,6 @@ $lang['contact_info'] = "Información de Contacto";
 $lang['active'] = "Activo";
 $lang['inactive'] = "Inactivo";
 $lang['verified'] = "Verificado";
-$lang['not_verified'] = "No Verificado";
 $lang['change_status'] = "Cambiar Estado";
 $lang['change_visibility'] = "Cambiar Visibilidad";
 $lang['create_pass'] = 'Crear Contraseña';
@@ -118,7 +115,6 @@ $lang['email_check'] = "Verificado";
 $lang['active_inactive'] = "Desactivar / Activar";
 $lang['edit'] = "Editar";
 $lang['appointments'] = "Citas";
-$lang['full_name'] = "Nombre Completo";
 $lang['remove_avatar'] = "Remover";
 $lang['change_avatar'] = 'Cambiar';
 $lang['profile_data_updated'] = 'Perfil Actualizado';
@@ -141,7 +137,6 @@ $lang['customer'] = "Cliente";
 $lang['requested'] = "Solicitado";
 $lang['no_requested'] = "No Solicitado";
 $lang['send_requested'] = "Enviar Solicitud";
-$lang['no_registered'] = "No Registrado";
 $lang['minutes'] = "minutos";
 
 # Global Text Buttons
@@ -222,7 +217,6 @@ $lang['cust_dash_page_title'] = 'Tablero';
 $lang['cust_appointment_page_title'] = 'Historial de Citas';
 $lang['cust_account_page_title'] = "Detalle de Cuenta";
 $lang['cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
-$lang['cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
 $lang['cust_success_resend_verify_email'] = 'Correo de Verificación Enviado';
 $lang['cust_modal_title_new'] = "Nuevo Cliente";
 $lang['cust_modal_title_update'] = "Actualizando Cliente";
@@ -343,7 +337,13 @@ $lang['cp_cust_profile_tab_account_subtitle'] = 'Administración de Cuenta';
 $lang['cp_cust_profile_tab_info'] = "Información";
 $lang['cp_cust_profile_tab_info_title'] = 'Descripción General';
 $lang['cp_cust_profile_tab_info_subtitle'] = 'Información Requerida';
-$lang['cp_emp_modal_title_new'] = "Nuevo Empleado";
+$lang['cp_cust_full_name'] = "Nombre Completo";
+$lang['cp_cust_email'] = "Correo Electrónico";
+$lang['cp_cust_no_registered_phone'] = "No Registrado";
+$lang['cp_cust_phone'] = "Teléfono";
+$lang['cp_cust_not_verified_email'] = "No Verificado";
+$lang['cp_cust_resend_verify_email'] = 'Reenviar Correo de Verificación';
+$lang['cp_cust_last_session'] = 'Última Sesión';
 
 # Control Panel Employee
 $lang['cp_emp_page_title'] = "Listado de Empleados";
@@ -364,6 +364,7 @@ $lang['cp_emp_profile_tab_account_subtitle'] = 'Administración de Cuenta';
 $lang['cp_emp_profile_tab_info'] = "Información";
 $lang['cp_emp_profile_tab_info_title'] = 'Descripción General';
 $lang['cp_emp_profile_tab_info_subtitle'] = 'Información Requerida';
+$lang['cp_emp_modal_title_new'] = "Nuevo Empleado";
 
 # Control Panel Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";

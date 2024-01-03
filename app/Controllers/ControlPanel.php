@@ -410,6 +410,10 @@ class ControlPanel extends BaseController
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
         $data['upcomingAppointments'] = $this->objCustomerModel->upcomingAppointments($customerID);
         $data['col'] = "col-12";
+        if ($this->config[0]->lang == 'es')
+            $data['dateLabel'] = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $data['dateLabel'] = "m-d-Y";
         # page
         $data['page'] = 'controlPanel/customers/customerProfile/mainCustomerProfile';
 
@@ -425,8 +429,12 @@ class ControlPanel extends BaseController
         $data = array();
         $data['customer'] = $this->objMainModel->objData('customer', 'id', $customerID);
         $data['uniqid'] = uniqid();
+        if ($this->config[0]->lang == 'es')
+            $data['dateLabel'] = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $data['dateLabel'] = "m-d-Y";
         # page
-        $view = 'customer/dashboard/sectionInfo';
+        $view = 'controlPanel/customers/customerProfile/customerInfo';
 
         return view($view, $data);
     } // ok
@@ -810,7 +818,7 @@ class ControlPanel extends BaseController
             }
 
             $col = array();
-            $col['emp'] = $empAvatar . ' ' . $result[$i]->employeeName . ' ' . $result[$i]->employeeLastName;
+            $col['emp'] = $empAvatar . ' ' . $result[$i]->employeeName;
             $col['date'] = $date;
             $col['schedule'] = $schedule;
             $col['serv'] = $serv;

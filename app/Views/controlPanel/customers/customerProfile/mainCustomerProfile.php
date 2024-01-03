@@ -26,7 +26,7 @@
                     <div class="card mb-5 mb-xl-8">
                         <div id="customer-info" class="card-body">
                             <!-- Customer Info -->
-                            <?php echo view('customer/dashboard/sectionInfo'); ?>
+                            <?php echo view('controlPanel/customers/customerProfile/customerInfo'); ?>
                         </div>
                     </div>
                     <!-- Upcoming Appointments -->
