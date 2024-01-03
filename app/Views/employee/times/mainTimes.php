@@ -65,7 +65,7 @@
                                                     <td colspan="3" class="dt-vertical-align p-2">
                                                         <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -127,7 +127,7 @@
                                                         <td colspan="3" class="dt-vertical-align p-2">
                                                             <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
                                                                 <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                    <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                    <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -190,7 +190,7 @@
                                                         <td colspan="3" class="dt-vertical-align p-2">
                                                             <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
                                                                 <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                    <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                    <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -253,7 +253,7 @@
                                                         <td colspan="3" class="dt-vertical-align p-2">
                                                             <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
                                                                 <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                    <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                    <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -316,7 +316,7 @@
                                                         <td colspan="3" class="dt-vertical-align p-2">
                                                             <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
                                                                 <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                    <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                    <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -379,7 +379,7 @@
                                                         <td colspan="3" class="dt-vertical-align p-2">
                                                             <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
                                                                 <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                    <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                    <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -442,7 +442,7 @@
                                                         <td colspan="3" class="dt-vertical-align p-2">
                                                             <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
                                                                 <div class="d-flex flex-column pe-0 pe-sm-10">
-                                                                    <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                    <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                                 </div>
                                                             </div>
                                                         </td>

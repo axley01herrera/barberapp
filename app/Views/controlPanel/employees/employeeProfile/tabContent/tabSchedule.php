@@ -9,7 +9,7 @@
         <!-- Card toolbar -->
         <div class="card-toolbar">
             <button type="button" id="btn-createTime<?php echo $uniqid; ?>" class="btn btn-primary">
-                <?php echo lang('Text.btn_create_time'); ?>
+                <?php echo lang('Text.cp_emp_create_time'); ?>
             </button>
         </div>
     </div>
@@ -29,7 +29,7 @@
                             <div class="col-12">
                                 <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                     <input type="checkbox" id="monday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->monday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->monday; ?>" />
-                                    <label class="form-check-label"><?php echo lang('text.emp_label_switch_bussiness_day'); ?></label>
+                                    <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                                         <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                         <div class="d-flex flex-column pe-0 pe-sm-10">
                                                             <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
-                                                            <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                            <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -93,7 +93,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="tuesday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->tuesday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->tuesday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
                                                                 <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
-                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -158,7 +158,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="wednesday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->wednesday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->wednesday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
                                                                 <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
-                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -223,7 +223,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="thursday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->thursday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->thursday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +260,7 @@
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
                                                                 <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
-                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -288,7 +288,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="friday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->friday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->friday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -325,7 +325,7 @@
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
                                                                 <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
-                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -353,7 +353,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="saturday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->saturday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->saturday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -390,7 +390,7 @@
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
                                                                 <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
-                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -418,7 +418,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="sunday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->sunday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->sunday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -455,7 +455,7 @@
                                                             <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                                                             <div class="d-flex flex-column pe-0 pe-sm-10">
                                                                 <h5 class="mb-1"><?php echo lang('Text.system_info'); ?></h5>
-                                                                <span><?php echo lang('Text.no_times_alert'); ?></span>
+                                                                <span><?php echo lang('Text.cp_emp_no_times_alert'); ?></span>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -482,10 +482,10 @@
 
         if (value == 0) {
             newValue = 1;
-            msg = "<?php echo lang('Text.emp_bussiness_day_active'); ?>";
+            msg = "<?php echo lang('Text.cp_emp_bussiness_day_active'); ?>";
         } else {
             newValue = 0;
-            msg = "<?php echo lang('Text.emp_bussiness_day_inactive'); ?>";
+            msg = "<?php echo lang('Text.cp_emp_bussiness_day_inactive'); ?>";
         }
 
         $('.' + field).each(function() {
@@ -579,7 +579,7 @@
                     dataType: "json",
                     success: function(response) {
                         if (response.error == 0) {
-                            simpleSuccessAlert('<?php echo lang('Text.emp_success_deleted_time'); ?>');
+                            simpleSuccessAlert('<?php echo lang('Text.cp_emp_success_deleted_time'); ?>');
                             $('#row' + timeID).remove();
                         } else
                             globalError();
