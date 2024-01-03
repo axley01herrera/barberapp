@@ -1832,10 +1832,10 @@ class ControlPanel extends BaseController
         $data['uniqid'] = uniqid();
 
         if ($action == "create") {
-            $data['modalTitle'] = lang('Text.add_social_network');
+            $data['modalTitle'] = lang('Text.cp_profile_add_social_network');
         } else if (!empty($action == 'update')) {
             $data['socialNetwork'] = $this->objMainModel->objData('company_social_network', 'id', $this->objRequest->getPost('id'));
-            $data['modalTitle'] = lang('Text.edit_social_network');
+            $data['modalTitle'] = lang('Text.cp_profile_edit_social_network');
         }
 
         # page

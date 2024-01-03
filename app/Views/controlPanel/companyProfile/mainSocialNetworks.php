@@ -1,17 +1,10 @@
 <div class="card mb-5 mb-xl-8">
     <div class="card-header border-0">
         <div class="card-title">
-            <h3 class="fw-bold m-0"><?php echo lang('Text.social_networks'); ?></h3>
+            <h3 class="fw-bold m-0"><?php echo lang('Text.cp_profile_social_networks'); ?></h3>
         </div>
     </div>
     <div class="card-body pt-2">
-        <div class="alert alert-dismissible bg-light-primary border border-primary border-dashed d-flex flex-column flex-sm-row w-100 p-5 mb-10">
-            <i class="ki-duotone ki-message-text-2 fs-2hx text-dark me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-            <div class="d-flex flex-column pe-0 pe-sm-10">
-                <h5 class="mb-1"><?php echo lang('Text.important'); ?></h5>
-                <span><?php echo lang('Text.social_network_msg'); ?></span>
-            </div>
-        </div>
         <?php foreach ($socialNetworks as $sn) { ?>
             <div class="py-2">
                 <div class="d-flex flex-stack">
@@ -34,10 +27,15 @@
             </div>
             <div class="separator separator-dashed my-5"></div>
         <?php } ?>
-    </div>
-    <!-- Create Social Network -->
-    <div class="card-footer border-0 d-flex justify-content-center pt-0">
-        <button id="create-social-network<?php echo $uniqid; ?>" class="btn btn-sm btn-primary"><?php echo lang('Text.btn_add'); ?></button>
+        <!-- Create Social Network -->
+        <div class="card-footer border-0 d-flex justify-content-center pt-0">
+            <button id="create-social-network<?php echo $uniqid; ?>" class="btn btn-sm btn-primary"><?php echo lang('Text.btn_add'); ?></button>
+        </div>
+        <div class="alert alert-dismissible bg-light-primary border border-primary border-dashed d-flex flex-column flex-sm-row w-100 p-5">
+            <div class="d-flex flex-column pe-0 pe-sm-10">
+                <span><?php echo lang('Text.cp_profile_social_network_msg'); ?></span>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -119,9 +117,9 @@
         let value = $(this).attr('data-value');
         let newValue = "";
 
-        if(value == 0)
+        if (value == 0)
             newValue = 1;
-        else if(value == 1)
+        else if (value == 1)
             newValue = 0;
 
         $(this).attr('data-value', newValue);
@@ -135,11 +133,11 @@
             },
             dataType: "json",
             success: function(response) {
-                if(response.error == 0) 
+                if (response.error == 0)
                     simpleSuccessAlert("<?php echo lang('Text.success_change_status'); ?>");
                 else if (response.error == 1)
                     globalError();
-                else if (response.error == 2) 
+                else if (response.error == 2)
                     window.location.href = "<?php echo base_url('Home/controlPanelAuth?session=expired'); ?>";
             },
             error: function(error) {
