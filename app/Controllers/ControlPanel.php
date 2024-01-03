@@ -1118,6 +1118,10 @@ class ControlPanel extends BaseController
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
         $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
         $data['uniqid'] = uniqid();
+        if ($this->config[0]->lang == 'es')
+            $data['dateLabel'] = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $data['dateLabel'] = "m-d-Y";
         # page
         $data['page'] = 'controlPanel/employees/employeeProfile/mainEmployeeProfile';
 
@@ -1307,6 +1311,11 @@ class ControlPanel extends BaseController
         # data
         $data = array();
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
+        $data['uniqid'] = uniqid();
+        if ($this->config[0]->lang == 'es')
+            $data['dateLabel'] = "d-m-Y";
+        else if ($this->config[0]->lang == 'en')
+            $data['dateLabel'] = "m-d-Y";
         # page
         $page = 'controlPanel/employees/employeeProfile/employeeInfo';
 

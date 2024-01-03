@@ -308,6 +308,12 @@ $lang['cp_emp_complete_account'] = 'Completa tu Cuenta';
 $lang['cp_emp_full_name'] = "Nombre Completo";
 $lang['cp_emp_email'] = "Correo Electrónico";
 $lang['cp_emp_phone'] = "Teléfono";
+$lang['cp_emp_not_verified_email'] = "No Verificado";
+$lang['cp_emp_last_session'] = 'Última Sesión';
+$lang['cp_emp_dash_upcoming_appointment_title'] = 'Próximas Citas';
+$lang['cp_emp_asigned_services'] = 'Servicios Asignados';
+$lang['cp_emp_unverified_email'] = 'Correo Electrónico No Verificado';
+$lang['cp_emp_verified_email'] = 'Correo Electrónico Verificado';
 
 # Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";

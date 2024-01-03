@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <!-- Upcoming Appointments -->
-                    <h5><?php echo lang('Text.cust_dash_upcoming_appointment_title'); ?></h5>
+                    <h5><?php echo lang('Text.cp_emp_dash_upcoming_appointment_title'); ?></h5>
                     <?php echo view('employee/dashboard/upcomingAppointment'); ?>
                 </div>
                 <!-- Tabs -->

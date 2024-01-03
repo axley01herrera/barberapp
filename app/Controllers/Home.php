@@ -289,7 +289,7 @@ class Home extends BaseController
 
         if ($result['error'] == 0) {
             $data = array();
-            $data['lastSession'] = date('Y-m-d');
+            $data['lastSession'] = date('Y-m-d H:i:s');
             $this->objMainModel->objUpdate('employee', $data, $result['data']->id);
 
             # Create Session
