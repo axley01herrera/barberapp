@@ -14,18 +14,22 @@
     <!-- Card body -->
     <div class="card-body p-9 pt-4">
         <div class="row">
-            <div class="col-12 col-lg-4 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?> <span class="text-danger">*</span></label>
-                <input type="password" id="txt-current<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled placeholder="**********" />
+            <div class="col-12 col-lg-4"></div>
+            <div class="col-12 col-lg-4">
+                <div class="col-12">
+                    <label class="fs-6 fw-semibold" for="txt-current<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_current_key'); ?> <span class="text-danger">*</span></label>
+                    <input type="password" id="txt-current<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled placeholder="**********" />
+                </div>
+                <div class="col-12 mt-5">
+                    <label class="fs-6 fw-semibold" for="txt-new<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_new_key'); ?> <span class="text-danger">*</span></label>
+                    <input type="password" id="txt-new<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled disabled placeholder="**********" />
+                </div>
+                <div class="col-12 mt-5">
+                    <label class="fs-6 fw-semibold" for="txt-confirm<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_confirm_key'); ?> <span class="text-danger">*</span></label>
+                    <input type="password" id="txt-confirm<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled disabled placeholder="**********" />
+                </div>
             </div>
-            <div class="col-12 col-lg-4 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-new<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?> <span class="text-danger">*</span></label>
-                <input type="password" id="txt-new<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled disabled placeholder="**********" />
-            </div>
-            <div class="col-12 col-lg-4 mt-5">
-                <label class="fs-6 fw-semibold" for="txt-confirm<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?> <span class="text-danger">*</span></label>
-                <input type="password" id="txt-confirm<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled disabled placeholder="**********" />
-            </div>
+            <div class="col-12 col-lg-4"></div>
         </div>
         <div class="row">
             <div class="col-12 text-end mt-5">
