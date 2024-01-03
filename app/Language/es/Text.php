@@ -433,9 +433,4 @@ $lang['employee_col_emp'] = "Empleado";
 $lang['employee_col_email'] = "Correo Electrónico";
 $lang['employee_col_status'] = "Estado";
 
-$lang['cp_dt_module_name'] = "Módulo";
-$lang['cp_dt_module_type'] = "Tipo";
-$lang['cp_dt_module_status'] = "Estado";
-$lang['cp_dt_module_request'] = "Solicitud";
-
 return $lang;
