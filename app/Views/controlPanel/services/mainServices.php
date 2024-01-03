@@ -78,6 +78,7 @@
                                     <div class="col-12 mt-5">
                                         <button class="btn btn-sm btn-secondary edit-service" data-service-id="<?php echo $s->id; ?>" title="<?php echo lang('Text.cp_serv_edit'); ?>"><span class="bi bi-pencil-square"></span> <?php echo lang('Text.cp_serv_edit'); ?></button>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>

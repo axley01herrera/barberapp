@@ -244,7 +244,7 @@ class DataTableModel extends Model
         $query->orderBy('date DESC');
 
         return $query->get()->getResult();
-    }
+    } // ok
 
     public function getTotalEmployeeAppointments($params)
     {
@@ -258,7 +258,8 @@ class DataTableModel extends Model
         $data = $query->get()->getResult();
 
         return sizeof($data);
-    }
+    } // ok
+
     ####################
     #### End DT Employee Appointments
     ####################
