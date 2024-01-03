@@ -29,10 +29,10 @@
                             <div class="d-flex align-items-center flex-column mt-3 w-100">
                                 <div class="d-flex justify-content-between fw-bold fs-6 text-white w-100 mt-auto mb-2">
                                     <span class="text-white"><span id="pending-appointment"></span> <?php echo lang('Text.cp_dash_pending'); ?></span>
-                                    <span class="text-white"><span id="pecent-appointment"></span>%</span>
+                                    <span class="text-white"><span id="percent-appointment"></span>%</span>
                                 </div>
                                 <div class="h-8px mx-3 w-100 bg-light-success rounded">
-                                    <div id="pecent-appointment-bar" class="bg-success rounded h-8px" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div id="percent-appointment-bar" class="bg-success rounded h-8px" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>

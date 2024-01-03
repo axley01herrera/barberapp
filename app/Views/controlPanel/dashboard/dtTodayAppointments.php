@@ -1,5 +1,9 @@
 <?php
 $pendingAppointments = 0;
+$percentAppointments = 0;
+
+if (sizeof($todayAppointments) > 0)
+    $percentAppointments = ((sizeof($todayAppointments) - $pendingAppointments)  * 100) / sizeof($todayAppointments);
 ?>
 <!-- Card -->
 <div class="card mb-5 mb-xl-10">
@@ -131,6 +135,6 @@ $pendingAppointments = 0;
 
     $('#total-today-appointment').html('<?php echo sizeof($todayAppointments); ?>');
     $('#pending-appointment').html('<?php echo $pendingAppointments; ?>');
-    $('#pecent-appointment').html('<?php echo ((sizeof($todayAppointments) - $pendingAppointments)  * 100) / sizeof($todayAppointments); ?>');
-    $('#pecent-appointment-bar').css('width', '<?php echo ((sizeof($todayAppointments) - $pendingAppointments)  * 100) / sizeof($todayAppointments); ?>%');
+    $('#percent-appointment').html('<?php echo $percentAppointments; ?>');
+    $('#percent-appointment-bar').css('width', '<?php echo $percentAppointments; ?>%');
 </script>
