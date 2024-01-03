@@ -147,7 +147,7 @@ $lang['top_bar_logout'] = "Salir";
 
 # Control Panel -> Dashboard
 $lang['cp_dash_page_title'] = "Tablero";
-$lang['cp_dash_today_appointents'] = "Citas Hoy";
+$lang['cp_dash_today_appointments'] = "Citas Hoy";
 $lang['cp_dash_active_emp'] = "Empleados Activos";
 $lang['cp_dash_active_cust'] = "Clientes Activos";
 $lang['cp_dash_serv'] = "Servicios";
