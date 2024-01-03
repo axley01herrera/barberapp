@@ -19,25 +19,25 @@
 
                     <div class="col-12">
                         <!-- Email -->
-                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.email'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-email<?php echo $uniqid; ?>"><?php echo lang('Text.cp_cust_email'); ?></label>
                         <input type="text" id="txt-email<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?> email<?php echo $uniqid; ?>" maxlength="150" value="<?php echo $customer[0]->email; ?>" disabled />
                     </div>
 
                     <div class="col-12 mt-5">
                         <!-- Current Password -->
-                        <label class="fs-6 fw-semibold" for="txt-password<?php echo $uniqid; ?>"><?php echo lang('Text.current_key'); ?></label>
+                        <label class="fs-6 fw-semibold" for="txt-password<?php echo $uniqid; ?>"><?php echo lang('Text.cp_cust_current_pass'); ?></label>
                         <input type="password" id="txt-password<?php echo $uniqid; ?>" class="form-control password focus" disabled placeholder="**********" />
                     </div>
 
                     <div class="col-12 mt-5">
                         <!-- New Password -->
-                        <label class="fs-6 fw-semibold" for="txt-newPassword<?php echo $uniqid; ?>"><?php echo lang('Text.new_key'); ?></label>
+                        <label class="fs-6 fw-semibold" for="txt-newPassword<?php echo $uniqid; ?>"><?php echo lang('Text.cp_cust_new_pass'); ?></label>
                         <input type="password" id="txt-newPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled placeholder="**********" />
                     </div>
 
                     <div class="col-12 mt-5">
                         <!-- Confirm New Password -->
-                        <label class="fs-6 fw-semibold" for="txt-confirmNewPassword<?php echo $uniqid; ?>"><?php echo lang('Text.confirm_key'); ?></label>
+                        <label class="fs-6 fw-semibold" for="txt-confirmNewPassword<?php echo $uniqid; ?>"><?php echo lang('Text.cp_cust_new_pass_c'); ?></label>
                         <input type="password" id="txt-confirmNewPassword<?php echo $uniqid; ?>" class="form-control password focus" disabled placeholder="**********" />
                     </div>
 

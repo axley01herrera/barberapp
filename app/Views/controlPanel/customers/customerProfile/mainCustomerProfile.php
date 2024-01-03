@@ -8,10 +8,10 @@
                     <?php echo lang('Text.cp_customer_detail'); ?>
                 </h1>
             </div>
-            <!-- Page Button Action -->
+            <!-- Change Customer Status -->
             <div class="d-flex align-items-center gap-2 gap-lg-3">
                 <div class="form-check form-switch form-check-custom form-check mt-2">
-                    <input type="checkbox" id="cbx-customer-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.change_status'); ?>" data-status="<?php echo $customer[0]->status; ?>" <?php if ($customer[0]->status == 1) echo "checked"; ?> />
+                    <input type="checkbox" id="cbx-customer-status<?php echo $uniqid; ?>" class="form-check-input form-control h-30px w-50px" title="<?php echo lang('Text.cp_cust_change_status'); ?>" data-status="<?php echo $customer[0]->status; ?>" <?php if ($customer[0]->status == 1) echo "checked"; ?> />
                     <label class="fs-6 fw-semibold ms-5"></label>
                 </div>
             </div>
@@ -119,10 +119,10 @@
 
         if (status == 0) {
             newStatus = 1;
-            msg = "<?php echo lang('Text.cust_activated'); ?>";
+            msg = "<?php echo lang('Text.cp_cust_activated'); ?>";
         } else if (status == 1) {
             newStatus = 0;
-            msg = "<?php echo lang('Text.cust_deactivated'); ?>";
+            msg = "<?php echo lang('Text.cp_cust_deactivated'); ?>";
         }
 
         $(this).attr('data-status', newStatus);

@@ -348,6 +348,9 @@ $lang['cp_cust_dash_upcoming_appointment_title'] = 'Próximas Citas';
 $lang['cp_cust_verified_email'] = 'Correo Electrónico Verificado';
 $lang['cp_cust_unverified_email'] = 'Correo Electrónico No Verificado';
 $lang['cp_cust_future_appointments'] = "Próximas Citas";
+$lang['cp_cust_current_pass'] = "Contraseña Actual";
+$lang['cp_cust_new_pass'] = "Nueva Contraseña";
+$lang['cp_cust_new_pass_c'] = "Confirmar Nueva Contraseña";
 
 # Control Panel -> Employee
 $lang['cp_emp_page_title'] = "Listado de Empleados";
