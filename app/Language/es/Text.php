@@ -108,8 +108,6 @@ $lang['email_check'] = "Verificado";
 $lang['active_inactive'] = "Desactivar / Activar";
 $lang['edit'] = "Editar";
 $lang['appointments'] = "Citas";
-$lang['remove_avatar'] = "Remover";
-$lang['change_avatar'] = 'Cambiar';
 $lang['profile_data_updated'] = 'Perfil Actualizado';
 $lang['facebook'] = "Facebook";
 $lang['google'] = "Google";
@@ -272,6 +270,9 @@ $lang['cp_cust_info_success_updated'] = "Información del Cliente Actualizada";
 $lang['cp_cust_info_upload_avatar'] = "Foto de Perfil del Cliente Agregada";
 $lang['cp_cust_info_remove_avatar'] = "Foto de Perfil del Cliente Eliminada";
 $lang['cp_cust_appointment_history'] = "Historial de Citas del Cliente";
+$lang['cp_cust_change_avatar'] = "Nueva Foto de Perfil";
+$lang['cp_cust_remove_avatar'] = "Remover Foto de Perfil";
+$lang['cp_cust_no_future_appointments'] = "No hay próximas citas";
 
 # Control Panel -> Employee
 $lang['cp_emp_page_title'] = "Listado de Empleados";
