@@ -22,6 +22,8 @@ $lang['error_label'] = "Error";
 $lang['ops_label'] = "Ups";
 $lang['appointments_label'] = "Citas";
 $lang['status_label'] = "Estado";
+$lang['name_label'] = "Nombre";
+$lang['last_name_label'] = "Apellidos";
 
 # Global MSG
 $lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
@@ -435,47 +437,4 @@ $lang['cp_dt_module_type'] = "Tipo";
 $lang['cp_dt_module_status'] = "Estado";
 $lang['cp_dt_module_request'] = "Solicitud";
 
-# Forms I-9
-$lang['form1_title'] = "Verificación de elegibilidad laboral";
-$lang['form1_subtitle1'] = "Departamento de Seguridad Nacional";
-$lang['form1_subtitle2'] = "Servicios de Inmigración y Ciudadanía de los Estados Unidos";
-$lang['USCIS'] = "USCIS";
-$lang['form_i9'] = "Formulario I-9";
-$lang['form_expires'] = "Vence el 31/07/2026";
-$lang['form1_start_here'] = "COMIENCE AQUÍ: Los empleadores deben asegurarse de que las instrucciones del formulario estén disponibles para los empleados al completar este formulario. Los empleadores son responsables del incumplimiento de los requisitos para completar este formulario. Consulte a continuación las instrucciones.";
-$lang['form1_adn_title'] = "AVISO ANTIDISCRIMINACIÓN: ";
-$lang['form1_adn_msg'] = "Todos los empleados pueden elegir qué documentación aceptable presentar para el Formulario I-9. Los empleadores no pueden pedir a los empleados documentación para verificar la información de la Sección 1, ni especificar qué documentación aceptable deben presentar los empleados para la Sección 2 o el Suplemento B, Reverificación y Recontratación. Tratar a los empleados de manera diferente según su ciudadanía, estatus migratorio u origen nacional puede ser ilegal ";
-$lang['form1_section1_title'] = "Sección 1. Información y certificación del empleado:";
-$lang['form1_section1_msg'] = " Los empleados deben completar y firmar la Sección 1 del Formulario I-9 a más tardar el primer día de empleo, pero no antes de aceptar una oferta de trabajo.";
-$lang['last_name_family_name'] = "Apellidos (Apellido Familiar)";
-$lang['first_name_given_name'] = "Nombre (Nombre de pila)";
-$lang['middle_initial'] = "Inicial del segundo nombre";
-$lang['other_names_used_if_any'] = "Otros nombres utilizados (si los hay)";
-$lang['address_street_name'] = "Dirección (Número de calle y nombre)";
-$lang['apt_number'] = "Apto. Número";
-$lang['city_or_town'] = "Ciudad o pueblo";
-$lang['ssn'] = "Número de Seguro Social EE.UU";
-$lang['emp_email_address'] = "Correo electrónico del empleado";
-$lang['emp_phone_number'] = "Número de teléfono del empleado";
-$lang['date_of_birth'] = "Fecha de nacimiento";
-$lang['form1_text1'] = "Soy consciente de que la ley federal prevé penas de prisión y/o multas por declaraciones falsas o el uso de documentos falsos en relación con la cumplimentación de este formulario. Doy fe, bajo pena de perjurio, que esta información, incluida mi selección de la casilla que certifica mi ciudadanía o estatus migratorio, es verdadera y correcta.";
-$lang['form1_text2'] = "Marque una de las siguientes casillas para dar fe de su ciudadanía o estado migratorio (consulte las páginas 2 y 3 de las instrucciones):";
-$lang['form1_cbx1'] = "1. Ciudadano de los Estados Unidos";
-$lang['form1_cbx2'] = "2. Un ciudadano no ciudadano de los Estados Unidos (consulte las instrucciones).";
-$lang['form1_cbx3'] = "3. Un residente permanente legal (ingrese USCIS o A-Number).";
-$lang['form1_cbx4'] = "4. Un no ciudadano (que no sean los números de artículo 2. y 3. anteriores) autorizado para trabajar hasta (fecha de vencimiento, si corresponde)";
-$lang['form1_if_check4'] = "Si marca los Números de artículo 4., ingrese uno de estos:";
-$lang['uscis_anumber'] = "Número A de USCIS";
-$lang['admission_number'] = "Número de admisión del I-94";
-$lang['passport_number'] = "Número de pasaporte extranjero y país de emisión";
-$lang['employee_sign'] = "Firma del empleado";
-$lang['today_date'] = "Fecha de hoy";
-$lang['from_section1'] = "de la sección 1";
-$lang['form1_section2_title'] = "Sección 2. Revisión y verificación del empleador: El empleador, más o menos su representante autorizado debe completar un examen físico o examinar de manera consistente con un procedimiento alternativo y firmar la Sección 2 dentro de los tres días hábiles posteriores al primer día de empleo del empleado autorizado por el Secretario del DHS. , documentación de la Lista A O una combinación de documentación de la Lista B y la Lista C. Ingrese cualquier documentación adicional en el cuadro Información adicional; vea las instrucciones.";
-$lang['list_a'] = "Lista A";
-$lang['list_b'] = "Lista B";
-$lang['list_c'] = "Lista C";
-$lang['and'] = "Y";
-$lang['or'] = "O";
-//SECTION 2
 return $lang;

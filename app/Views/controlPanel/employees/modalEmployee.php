@@ -9,12 +9,12 @@
                 <div class="row">
                     <!-- Name -->
                     <div class="col-12 col-md-6 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.name'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.name_label'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-name<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo @$employee->name; ?>" />
                     </div>
                     <!-- Last Name -->
                     <div class="col-12 col-md-6 col-lg-6 mt-5">
-                        <label class="fs-6 fw-semibold" for="txt-last-name<?php echo $uniqid; ?>"><?php echo lang('Text.last_name'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-last-name<?php echo $uniqid; ?>"><?php echo lang('Text.last_name_label'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-last-name<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" value="<?php echo @$employee->lastName; ?>" />
                     </div>
                     <!-- Email -->

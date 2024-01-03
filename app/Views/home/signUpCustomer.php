@@ -28,11 +28,11 @@
                             <div class="row mb-8">
 
                                 <div class="col-12 mb-5">
-                                    <input type="text" id="txt-name<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.name'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" autofocus />
+                                    <input type="text" id="txt-name<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.name_label'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" autofocus />
                                 </div>
 
                                 <div class="col-12 mb-5">
-                                    <input type="text" id="txt-lastName<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.last_name'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
+                                    <input type="text" id="txt-lastName<?php echo $uniqid; ?>" placeholder="<?php echo lang('Text.last_name_label'); ?>" autocomplete="off" class="form-control bg-transparent required<?php echo $uniqid; ?>" />
                                 </div>
 
                                 <div class="col-12 mb-5">
