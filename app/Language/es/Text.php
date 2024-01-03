@@ -315,6 +315,8 @@ $lang['cp_emp_asigned_services'] = 'Servicios Asignados';
 $lang['cp_emp_unverified_email'] = 'Correo Electrónico No Verificado';
 $lang['cp_emp_verified_email'] = 'Correo Electrónico Verificado';
 $lang['cp_emp_appointment_history'] = "Historial de Citas del Empleado";
+$lang['cp_emp_assigned_service'] = "Servicio Asignado";
+$lang['cp_emp_unassigned_service'] = "Servicio Desasignado";
 
 # Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
