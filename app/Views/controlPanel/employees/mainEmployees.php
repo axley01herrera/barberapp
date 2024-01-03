@@ -40,9 +40,9 @@
                         <table id="dt-employees" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
                             <thead>
                                 <tr class="fs-6 fw-bold">
-                                    <th class="p-2"><?php echo lang('Text.employee_label_col_emp'); ?></th>
-                                    <th class="p-2"><?php echo lang('Text.employee_label_col_email'); ?></th>
-                                    <th class="text-center p-2"><?php echo lang('Text.employee_label_col_status'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.employee_col_emp'); ?></th>
+                                    <th class="p-2"><?php echo lang('Text.employee_col_email'); ?></th>
+                                    <th class="text-center p-2"><?php echo lang('Text.employee_col_status'); ?></th>
                                     <th class="text-end p-2"></th>
                                 </tr>
                             </thead>
