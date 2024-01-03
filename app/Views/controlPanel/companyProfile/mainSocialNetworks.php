@@ -116,11 +116,15 @@
         let socialNetworkID = $(this).attr('data-social-network-id');
         let value = $(this).attr('data-value');
         let newValue = "";
+        let msg = "";
 
-        if (value == 0)
+        if (value == 0) {
             newValue = 1;
-        else if (value == 1)
+            msg = "<?php echo lang('Text.cp_profile_active_visibility'); ?>";
+        } else if (value == 1) {
             newValue = 0;
+            msg = "<?php echo lang('Text.cp_profile_inactive_visibility'); ?>";
+        }
 
         $(this).attr('data-value', newValue);
 
@@ -134,7 +138,7 @@
             dataType: "json",
             success: function(response) {
                 if (response.error == 0)
-                    simpleSuccessAlert("<?php echo lang('Text.success_change_status'); ?>");
+                    simpleSuccessAlert(msg);
                 else if (response.error == 1)
                     globalError();
                 else if (response.error == 2)

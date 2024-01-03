@@ -54,7 +54,7 @@
                                                             <img src="<?php echo base_url('public/assets/media/icons/duotune/finance/fin003.svg'); ?>" />
                                                         </div>
                                                         <div class="m-0">
-                                                            <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.price'); ?></span>
+                                                            <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.price_label'); ?></span>
                                                             <span class="fw-bold text-gray-800 fs-7"><?php echo getMoneyFormat($config[0]->currency, $s->price); ?></span>
                                                         </div>
                                                     </div>

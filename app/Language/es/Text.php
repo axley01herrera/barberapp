@@ -2,27 +2,53 @@
 $lang = array();
 
 # Global Labels
-$lang['about'] = "Sobre Nosotros";
-$lang['languaje'] = "Idioma";
-$lang['theme'] = "Tema";
-$lang['theme_light'] = "Claro";
-$lang['theme_dark'] = "Oscuro";
+$lang['create_pass'] = 'Crear Contraseña';
+$lang['create_pass_subtitle'] = "Introduzca su contraseña";
 $lang['password'] = "Contraseña";
 $lang['password_repeat'] = "Repita su Contraseña";
 $lang['password_not_match'] = "Las contraseñas no coinciden";
-$lang['currency'] = "Moneda";
-$lang['timezone'] = "Zona Horaria";
+$lang['password_does_not_match'] = "Las contraseñas no coinciden";
+$lang['success_create_password'] = "Contraseña creada";
+$lang['invalid_current_password'] = "Clave actual incorrecta";
+$lang['invalid_credentials'] = 'Rectifique sus Credenciales';
 $lang['contact_info'] = "Información de Contacto";
 $lang['active'] = "Activo";
 $lang['inactive'] = "Inactivo";
-$lang['verified'] = "Verificado";
-$lang['change_visibility'] = "Cambiar Visibilidad";
-$lang['create_pass'] = 'Crear Contraseña';
-$lang['create_pass_subtitle'] = "Introduzca su contraseña";
-$lang['facebook_link'] = "Enlace de Facebook";
-$lang['instagram_link'] = "Enlace de Instagram";
-$lang['profile'] = "Perfil";
-$lang['account'] = "Cuenta";
+$lang['important'] = "Importante";
+$lang['thanks'] = "Gracias";
+$lang['ok'] = "Entendido";
+$lang['error'] = "Error";
+$lang['error_msg'] = "Ha ocurrido un error";
+$lang['session_expired'] = "Su sessión ha expirado";
+$lang['required_values'] = "Hay campos requeridos";
+$lang['success_verified_email'] = "Su cuenta de correo electrónico ha quedado verficada";
+$lang['invalid_email_format'] = "Rectifique el formato del correo electrónico";
+$lang['invalid_url_format'] = "La url es incorrecta";
+$lang['are_you_sure'] = "Está seguro de esta acción";
+$lang['not_revert_this'] = "Esta acción no es reversible";
+$lang['yes_remove'] = "Sí, eliminar";
+$lang['no_cancel'] = "No, cancelar";
+$lang['ops'] = "Ups";
+$lang['something_has_not_gone_well'] = "Algo ha salido mal";
+$lang['token_expired'] = "Token expirado";
+$lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
+$lang['invalid_password'] = "Contraseña Incorrecta";
+$lang['appointments'] = "Citas";
+$lang['status'] = "Estado";
+$lang['visibility'] = "Público";
+$lang['yes_are_sure'] = "Sí, estoy seguro";
+
+# Global Labels
+$lang['customer_label'] = "Cliente";
+$lang['employee_label'] = "Empleado";
+$lang['minutes_label'] = "minutos";
+$lang['price_label'] = "Precio";
+$lang['photo_label'] = "Fotos";
+
+# Global MSG
+$lang['success_cancel_appointment_msg'] = "Su cita ha sido cancelada";
+
+# Days
 $lang['monday'] = "Lunes";
 $lang['tuesday'] = "Martes";
 $lang['wednesday'] = "Miércoles";
@@ -30,6 +56,8 @@ $lang['thursday'] = "Jueves";
 $lang['friday'] = "Viernes";
 $lang['saturday'] = "Sábado";
 $lang['sunday'] = "Domingo";
+
+# Monts
 $lang['January'] = "Enero";
 $lang['February'] = "Febrero";
 $lang['March'] = "Marzo";
@@ -42,63 +70,13 @@ $lang['September'] = "Septiembre";
 $lang['October'] = "Octubre";
 $lang['November'] = "Noviembre";
 $lang['December'] = "Diciembre";
-$lang['first_time'] = "Primer Turno";
-$lang['second_time'] = "Segundo Turno";
-$lang['date_start'] = 'Hora de Inicio';
-$lang['date_end'] = 'Hora de Finalización';
-$lang['important'] = "Importante";
-$lang['social_network'] = "Red Social";
-$lang['url'] = "URL";
-$lang['thanks'] = "Gracias";
-$lang['success_verified_email'] = "Su cuenta de correo electrónico ha quedado verficada";
-$lang['ok'] = "Entendido";
-$lang['error'] = "Error";
-$lang['error_msg'] = "Ha ocurrido un error";
-$lang['session_expired'] = "Su sessión ha expirado";
-$lang['required_values'] = "Hay campos requeridos";
-$lang['password_does_not_match'] = "Las contraseñas no coinciden";
-$lang['invalid_current_password'] = "Clave actual incorrecta";
-$lang['invalid_email_format'] = "Rectifique el formato del correo electrónico";
-$lang['invalid_url_format'] = "La url es incorrecta";
-$lang['are_you_sure'] = "Está seguro de esta acción";
-$lang['not_revert_this'] = "Esta acción no es reversible";
-$lang['yes_remove'] = "Sí, eliminar";
-$lang['no_cancel'] = "No, cancelar";
-$lang['success_change_status'] = "Estado actualizado";
-$lang['success_change_visibility'] = "Visibilidad actualizada";
-$lang['ops'] = "Ups";
-$lang['something_has_not_gone_well'] = "Algo ha salido mal";
-$lang['token_expired'] = "Token expirado";
-$lang['success_create_password'] = "Contraseña creada";
-$lang['invalid_credentials'] = 'Rectifique sus Credenciales';
-$lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
-$lang['invalid_password'] = "Contraseña Incorrecta";
-$lang['email_not_check'] = "No Verificado";
-$lang['email_check'] = "Verificado";
-$lang['active_inactive'] = "Desactivar / Activar";
-$lang['edit'] = "Editar";
-$lang['appointments'] = "Citas";
-$lang['profile_data_updated'] = 'Perfil Actualizado';
+
+# Social Networks
 $lang['facebook'] = "Facebook";
 $lang['google'] = "Google";
 $lang['twitter'] = "Twitter";
 $lang['linkedIn'] = "LinkedIn";
 $lang['Instagram'] = "Instagram";
-$lang['status'] = "Estado";
-$lang['visibility'] = "Público";
-$lang['yes_are_sure'] = "Sí, estoy seguro";
-$lang['success_cancel_turn'] = "Su cita ha sido cancelada";
-$lang['employee'] = "Empleado";
-$lang['photo'] = "Fotos";
-$lang['click_to_select'] = "Examine o arrastre";
-$lang['upload_photo'] = "Subir Foto";
-$lang['dashboard'] = "Tablero";
-$lang['customer'] = "Cliente";
-$lang['requested'] = "Solicitado";
-$lang['no_requested'] = "No Solicitado";
-$lang['send_requested'] = "Enviar Solicitud";
-$lang['minutes'] = "minutos";
-$lang['price'] = "Precio";
 
 # Global Text Buttons
 $lang['btn_enable_edit'] = "Habilitar Edición";
@@ -373,11 +351,16 @@ $lang['cp_profile_remove_avatar'] = "Remover Logo";
 $lang['cp_profile_current_key'] = "Clave Actual";
 $lang['cp_profile_new_key'] = "Nueva Clave";
 $lang['cp_profile_confirm_key'] = "Confirme la Nueva Clave";
-
-$lang['cp_dt_module_name'] = "Módulo";
-$lang['cp_dt_module_type'] = "Tipo";
-$lang['cp_dt_module_status'] = "Estado";
-$lang['cp_dt_module_request'] = "Solicitud";
+$lang['cp_profile_languaje'] = "Idioma";
+$lang['cp_profile_theme'] = "Tema";
+$lang['cp_profile_theme_light'] = "Claro";
+$lang['cp_profile_theme_dark'] = "Oscuro";
+$lang['cp_profile_currency'] = "Moneda";
+$lang['cp_profile_timezone'] = "Zona Horaria";
+$lang['cp_profile_url'] = "URL";
+$lang['cp_profile_active_visibility'] = "Red Social Pública";
+$lang['cp_profile_inactive_visibility'] = "Red Social Privada";
+$lang['cp_profile_click_to_select'] = "Examine o arrastre";
 
 # Email Create Customer By Admin
 $lang['eccba_hi'] = "Hola";
@@ -444,6 +427,11 @@ $lang['customer_col_status'] = "Estado";
 $lang['employee_col_emp'] = "Empleado";
 $lang['employee_col_email'] = "Correo Electrónico";
 $lang['employee_col_status'] = "Estado";
+
+$lang['cp_dt_module_name'] = "Módulo";
+$lang['cp_dt_module_type'] = "Tipo";
+$lang['cp_dt_module_status'] = "Estado";
+$lang['cp_dt_module_request'] = "Solicitud";
 
 # Forms I-9
 $lang['form1_title'] = "Verificación de elegibilidad laboral";

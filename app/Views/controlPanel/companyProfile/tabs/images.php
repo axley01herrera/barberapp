@@ -83,8 +83,8 @@
                 <div class="dz-message needsclick">
                     <i class="ki-duotone ki-file-up fs-4x text-primary"><span class="path1"></span><span class="path2"></span></i>
                     <div class="ms-4">
-                        <h3 class="fs-5 fw-bold text-gray-900 mb-1"><?php echo lang('Text.photo'); ?></h3>
-                        <span class="fs-7 fw-semibold text-gray-500"><?php echo lang('Text.click_to_select'); ?></span>
+                        <h3 class="fs-5 fw-bold text-gray-900 mb-1"><?php echo lang('Text.photo_label'); ?></h3>
+                        <span class="fs-7 fw-semibold text-gray-500"><?php echo lang('Text.cp_profile_click_to_select'); ?></span>
                     </div>
                 </div>
             </div>

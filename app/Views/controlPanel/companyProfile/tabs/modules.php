@@ -32,8 +32,8 @@
                                     <?php if ($config[0]->lang == 'en') echo $m->name_en; ?>
                                 </td>
                                 <td class="dt-vertical-align p-2">
-                                    <?php if ($m->type == 1) echo lang('Text.employee'); ?>
-                                    <?php if ($m->type == 2) echo lang('Text.customer'); ?>
+                                    <?php if ($m->type == 1) echo lang('Text.employee_label'); ?>
+                                    <?php if ($m->type == 2) echo lang('Text.customer_label'); ?>
                                 </td>
                                 <td class="dt-vertical-align p-2">
                                     <?php if ($m->status == 0) { ?>

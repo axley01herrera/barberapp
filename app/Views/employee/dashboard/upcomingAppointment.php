@@ -51,7 +51,7 @@
                                             <img src="<?php echo imgCustomer($a->customerID); ?>" class="" alt="">
                                         </div>
                                         <div class="m-0">
-                                            <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.customer'); ?></span>
+                                            <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.customer_label'); ?></span>
                                             <span class="fw-bold text-gray-800 text-hover-primary fs-7"><?php echo labelCustomerName($a->customerID); ?></span>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                             </span>
                                         </div>
                                         <div class="m-0">
-                                            <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.price'); ?></span>
+                                            <span class="fw-semibold text-gray-400 d-block fs-8"><?php echo lang('Text.price_label'); ?></span>
                                             <span class="fw-bold text-gray-800 fs-7"><?php echo getMoneyFormat($config[0]->currency, $price); ?></span>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                     dataType: "json",
                     success: function(response) {
                         if (response.error == 0) { // Success
-                            simpleSuccessAlert("<?php echo lang('Text.success_cancel_turn'); ?>");
+                            simpleSuccessAlert("<?php echo lang('Text.success_cancel_appointment_msg'); ?>");
                             setTimeout(() => {
                                 window.location.reload();
                             }, "2000");

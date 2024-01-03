@@ -821,7 +821,7 @@ class ControlPanel extends BaseController
             $col['date'] = $date;
             $col['schedule'] = $schedule;
             $col['serv'] = $serv;
-            $col['time'] = $result[$i]->totalTime . ' ' . lang('Text.minutes');
+            $col['time'] = $result[$i]->totalTime . ' ' . lang('Text.minutes_label');
             $col['price'] = getMoneyFormat($this->config[0]->currency, $result[$i]->totalPrice);
             $row[$i] =  $col;
         }
@@ -1563,7 +1563,7 @@ class ControlPanel extends BaseController
             $col['date'] = $date;
             $col['schedule'] = $schedule;
             $col['serv'] = $serv;
-            $col['time'] = $result[$i]->totalTime . ' ' . lang('Text.minutes');
+            $col['time'] = $result[$i]->totalTime . ' ' . lang('Text.minutes_label');
             $col['price'] = getMoneyFormat($this->config[0]->currency, $result[$i]->totalPrice);
             $row[$i] =  $col;
         }

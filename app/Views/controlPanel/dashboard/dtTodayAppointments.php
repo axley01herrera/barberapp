@@ -66,7 +66,7 @@ $pendingAppointments = 0;
                             </td>
 
                             <td class="dt-vertical-align p-2">
-                                <?php echo $ta->totalTime . ' ' . lang('Text.minutes'); ?>
+                                <?php echo $ta->totalTime . ' ' . lang('Text.minutes_label'); ?>
                             </td>
 
                             <td class="dt-vertical-align p-2">

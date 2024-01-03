@@ -23,7 +23,7 @@
                 <div class="row">
                     <!-- URL -->
                     <div class="col-12">
-                        <label class="fs-6 fw-semibold" for="txt-url<?php echo $uniqid; ?>"><?php echo lang('Text.url'); ?> <span class="text-danger">*</span></label>
+                        <label class="fs-6 fw-semibold" for="txt-url<?php echo $uniqid; ?>"><?php echo lang('Text.cp_profile_url'); ?> <span class="text-danger">*</span></label>
                         <input type="text" id="txt-url<?php echo $uniqid; ?>" class="form-control url<?php echo $uniqid; ?> required<?php echo $uniqid; ?>" value="<?php echo @$socialNetwork[0]->url; ?>" />
                     </div>
                 </div>
