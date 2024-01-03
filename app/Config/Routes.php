@@ -148,3 +148,4 @@ $routes->post('Employee/createTime', 'Employee::createTime');
 $routes->post('Employee/updateTime', 'Employee::updateTime');
 $routes->post('Employee/deleteTime', 'Employee::deleteTime');
 $routes->post('Employee/cancelAppointment', 'Employee::cancelAppointment');
+$routes->post('Employee/processingAppointment', 'Employee::processingAppointment');

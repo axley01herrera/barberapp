@@ -3,8 +3,8 @@
     <div class="card-header mt-6">
         <!-- Card title -->
         <div class="card-title flex-column">
-            <h2 class="mb-1"><?php echo lang('Text.emp_overview_title'); ?></h2>
-            <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.emp_overview_subtitle'); ?></div>
+            <h2 class="mb-1"><?php echo lang('Text.cp_emp_profile_tab_overview_title'); ?></h2>
+            <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.cp_emp_profile_tab_overview_subtitle'); ?></div>
         </div>
         <!-- Card toolbar -->
         <div class="card-toolbar"></div>
@@ -65,6 +65,40 @@
                     </div>
                 </div>
             <?php } ?>
+        </div>
+    </div>
+</div>
+
+<!-- DT History Appointments -->
+<div class="card card-flush mb-5 mb-xl-9">
+    <!-- Card header -->
+    <div class="card-header mt-6">
+        <!-- Card title -->
+        <div class="card-title flex-column">
+            <h2 class="mb-1"><?php echo lang('Text.appointments'); ?></h2>
+            <div class="fs-6 fw-semibold text-muted"><?php echo lang('Text.cust_appointment_page_title'); ?></div>
+        </div>
+        <!-- Card toolbar -->
+        <div class="card-toolbar">
+            <div id="search-employee-appointments"></div>
+        </div>
+    </div>
+    <!-- Card body -->
+    <div class="card-body p-9 pt-4">
+        <!-- Data Table -->
+        <div class="table-responsive">
+            <table id="dt-employee-appointments" class="table table-row-bordered no-footer table-hover" style="width: 100%;">
+                <thead>
+                    <tr class="fs-6 fw-bold">
+                        <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_cust'); ?></th>
+                        <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_date'); ?></th>
+                        <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_schedule'); ?></th>
+                        <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_services'); ?></th>
+                        <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_time'); ?></th>
+                        <th class="p-2 dt-vertical-align"><?php echo lang('Text.appointment_col_price'); ?></th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>
@@ -216,4 +250,75 @@
             chart.render();
         }
     }
+</script>
+
+<!-- DT Appointments -->
+<script>
+    var lang = "<?php echo $config[0]->lang; ?>";
+    var dtLang = "";
+
+    if (lang == "es")
+        dtLang = "<?php echo base_url('assets/js/dataTable/es.json'); ?>";
+    else if (lang == "en")
+        dtLang = "<?php echo base_url('assets/js/dataTable/en.json'); ?>";
+
+    var dtEmployeeAppointment = $('#dt-employee-appointments').DataTable({ // Data Table
+        dom: 'RfrtlpiB',
+        processing: true,
+        serverSide: true,
+        stateSave: true,
+        pageLength: 10,
+        ordering: false,
+        language: {
+            url: dtLang
+        },
+        buttons: [],
+        ajax: {
+            url: "<?php echo base_url('Employee/processingAppointment'); ?>",
+            type: "POST",
+            data: function(d) {
+                d.employeeID = '<?php echo $employeeID; ?>'
+            }
+        },
+        order: [
+            [1, 'desc']
+        ],
+        columns: [{
+                data: 'customer',
+                class: 'dt-vertical-align p-2',
+            },
+            {
+                data: 'date',
+                class: 'dt-vertical-align p-2',
+            },
+            {
+                data: 'schedule',
+                class: 'dt-vertical-align p-2',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'serv',
+                class: 'dt-vertical-align p-2',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'time',
+                class: 'dt-vertical-align p-2',
+                searchable: false,
+                orderable: false
+            },
+            {
+                data: 'price',
+                class: 'dt-vertical-align p-2',
+                searchable: false,
+                orderable: false
+            },
+        ],
+        initComplete: function(settings, json) {
+            $('#search-employee-appointments').html('');
+            $('#dt-employee-appointments_filter').appendTo('#search-employee-appointments');
+        }
+    }); // ok
 </script>

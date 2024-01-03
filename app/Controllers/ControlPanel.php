@@ -1105,7 +1105,7 @@ class ControlPanel extends BaseController
         $data['activeEmployees'] = "active";
         # data
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
-        $data['upcomingAppointments'] = $this->objCustomerModel->employeeUpcomingAppointments($employeeID);
+        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
         $data['uniqid'] = uniqid();
         # page
         $data['page'] = 'controlPanel/employees/employeeProfile/mainEmployeeProfile';

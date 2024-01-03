@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\ConfigModel;
 use App\Models\MainModel;
 use App\Models\ControlPanelModel;
-
+use App\Models\DataTableModel;
 
 class Employee extends BaseController
 {
@@ -13,6 +13,7 @@ class Employee extends BaseController
     protected $objRequest;
     protected $objConfigModel;
     protected $objControlPanelModel;
+    protected $objDataTableModel;
     protected $objMainModel;
     protected $config;
     protected $profile;
@@ -28,6 +29,7 @@ class Employee extends BaseController
         $this->objConfigModel = new ConfigModel;
         $this->objControlPanelModel = new ControlPanelModel;
         $this->objMainModel = new MainModel;
+        $this->objDataTableModel = new DataTableModel;
 
         # Config
         $this->config = $this->objConfigModel->getConfig(1);
@@ -60,17 +62,20 @@ class Employee extends BaseController
         if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee")
             return view('employeeLogout');
 
+        # params
+        $employeeID =  $this->objSession->get('user')['employeeID'];
+
         # data
         $data = array();
         $data['uniqid'] = uniqid();
         $data['config'] = $this->config;
         $data['companyProfile'] = $this->companyProfile;
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objSession->get('user')['employeeID']);
-        $data['address'] = $this->objMainModel->objData('address', 'employeeID', $this->objSession->get('user')['employeeID']);
+        $data['upcomingAppointments'] = $this->objMainModel->employeeUpcomingAppointments($employeeID);
         # page
         $data['page'] = 'employee/main';
 
-        return view('employee/header', $data);
+        return view('employee/mainEmployee', $data);
     }
 
     public function updateEmployee()
@@ -168,11 +173,10 @@ class Employee extends BaseController
         $data['activeEmployees'] = "active";
         # data
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $this->objRequest->getPostGet('id'));
-        $data['address'] = $this->objMainModel->objData('address', 'employeeID', $this->objRequest->getPostGet('id'));
         # page
         $data['page'] = 'employee/main';
 
-        return view('employee/header', $data);
+        return view('employee/mainEmployee', $data);
     }
 
     public function employeeProfileTabContent()
@@ -229,7 +233,6 @@ class Employee extends BaseController
                 break;
             case 'tab-profile':
                 $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
-                $data['address'] = $this->objMainModel->objData('address', 'employeeID', $employeeID);
                 $view = "employee/tabContent/tabProfile";
                 break;
         }
@@ -354,7 +357,6 @@ class Employee extends BaseController
         # data
         $data = array();
         $data['employee'] = $this->objMainModel->objData('employee', 'id', $employeeID);
-        $data['address'] = $this->objMainModel->objData('address', 'employeeID', $employeeID);
         # page
         $page = 'employee/info';
         return view($page, $data);
@@ -443,39 +445,22 @@ class Employee extends BaseController
         # employeeID
         $employeeID =  $this->objSession->get('user')['employeeID'];
 
-        $dataProfile = array();
+        $data = array();
         # Profile
-        $dataProfile['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
-        $dataProfile['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
-        $dataProfile['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
-        $dataProfile['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
-        $dataProfile['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
+        $data['name'] = htmlspecialchars(trim($this->objRequest->getPost('name')));
+        $data['lastName'] = htmlspecialchars(trim($this->objRequest->getPost('lastName')));
+        $data['gender'] = htmlspecialchars(trim($this->objRequest->getPost('gender')));
+        $data['phone'] = htmlspecialchars(trim($this->objRequest->getPost('phone')));
+        $data['dob'] = date('Y-m-d', strtotime($this->objRequest->getPost('dob')));
+        $data['address1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
+        $data['address2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
+        $data['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
+        $data['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
+        $data['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
+        $data['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
 
-        $resultUpdateCustomer = $this->objMainModel->objUpdate('employee', $dataProfile, $employeeID);
-        if ($resultUpdateCustomer['error'] == 0) {
+        $result = $this->objMainModel->objUpdate('employee', $data, $employeeID);
 
-            $dataAddress = array();
-            # Address
-            $dataAddress['line1'] = htmlspecialchars(trim($this->objRequest->getPost('address1')));
-            $dataAddress['line2'] = htmlspecialchars(trim($this->objRequest->getPost('address2')));
-            $dataAddress['city'] = htmlspecialchars(trim($this->objRequest->getPost('city')));
-            $dataAddress['state'] = htmlspecialchars(trim($this->objRequest->getPost('state')));
-            $dataAddress['zip'] = htmlspecialchars(trim($this->objRequest->getPost('zip')));
-            $dataAddress['country'] = htmlspecialchars(trim($this->objRequest->getPost('country')));
-
-            $updateAddress = $this->objMainModel->objData('address', 'employeeID', $employeeID);
-
-            if (!empty($updateAddress))
-                $this->objMainModel->objUpdate('address', $dataAddress, $updateAddress[0]->id);
-            else {
-                $dataAddress['employeeID'] = $employeeID;
-                $this->objMainModel->objCreate('address', $dataAddress);
-            }
-            $result['error'] = 0;
-        } else {
-            $result['error'] = 1;
-            $result['msg'] = 'ERROR_ON_UPDATE_CUSTOMER';
-        }
         return json_encode($result);
     }
 
@@ -566,4 +551,67 @@ class Employee extends BaseController
 
         return json_encode($result);
     } // ok
+
+    public function processingAppointment()
+    {
+        $dataTableRequest = $_REQUEST;
+
+        $params = array();
+        $params['draw'] = $dataTableRequest['draw'];
+        $params['start'] = $dataTableRequest['start'];
+        $params['length'] = $dataTableRequest['length'];
+        $params['search'] = $dataTableRequest['search']['value'];
+        $params['employeeID'] = $dataTableRequest['employeeID'];
+
+        $row = array();
+        $totalRecords = 0;
+
+        $result = $this->objDataTableModel->getEmployeeAppointmentProcessingData($params);
+        $totalRows = sizeof($result);
+
+        for ($i = 0; $i < $totalRows; $i++) {
+
+            $custAvatar = '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . imgCustomer($result[$i]->customerID) . '" class="" alt=""></div>';
+
+            $date = "";
+            if ($this->config[0]->lang == 'en')
+                $date = date('F j, Y', strtotime($result[$i]->date));
+            else {
+                $mont =  date('F', strtotime($result[$i]->date));
+                $date = lang('Text.' . $mont) . ' ' . date('j, Y', strtotime($result[$i]->date));
+            }
+
+            $schedule = '<span class="text-gray-800 fs-7 fw-bold"><i class="bi bi-clock-history fs-7"></i> ' . date('g:ia', strtotime($result[$i]->start)) . ' - ' . date('g:ia', strtotime($result[$i]->end)) . '</span>';
+            $aux = json_decode($result[$i]->servicesJSON);
+            $serv = "";
+
+            foreach ($aux as $s) {
+                $serv = $serv . '<div class="fw-semibold"><span class="bullet bullet-dot bg-primary me-2 h-10px w-10px"></span>' . $s->serviceTitle . '</div>';
+            }
+
+            $col = array();
+            $col['customer'] = $custAvatar . ' ' . $result[$i]->customerName . ' ' . $result[$i]->customerLastName;
+            $col['date'] = $date;
+            $col['schedule'] = $schedule;
+            $col['serv'] = $serv;
+            $col['time'] = $result[$i]->totalTime . ' ' . lang('Text.minutes');
+            $col['price'] = getMoneyFormat($this->config[0]->currency, $result[$i]->totalPrice);
+            $row[$i] =  $col;
+        }
+
+        if ($totalRows > 0) {
+            if (empty($params['search']))
+                $totalRecords = $this->objDataTableModel->getTotalEmployeeAppointments($params);
+            else
+                $totalRecords = $totalRows;
+        }
+
+        $data = array();
+        $data['draw'] = $dataTableRequest['draw'];
+        $data['recordsTotal'] = intval($totalRecords);
+        $data['recordsFiltered'] = intval($totalRecords);
+        $data['data'] = $row;
+
+        return json_encode($data);
+    }
 }

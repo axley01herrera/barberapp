@@ -35,27 +35,6 @@ class CustomerModel extends Model
         return $return;
     } // ok
 
-    public function employeeUpcomingAppointments($employeeID)
-    {
-        $query = $this->db->table('appointment')
-            ->where('employeeID', $employeeID)
-            ->where('date >=', date('Y-m-d'))
-            ->orderBy('date ASC');
-
-        $data = $query->get()->getResult();
-        $return = array();
-
-        foreach ($data as $d) {
-            $currentDateTime = strtotime(date('Y-m-d g:ia'));
-            $appointmentDateTime = strtotime($d->date . ' ' . $d->start);
-
-            if ($currentDateTime <= $appointmentDateTime)
-                $return[] = $d;
-        }
-
-        return $return;
-    } 
-
     public function getCompanyProfileSettings()
     {
         $query = $this->db->table('company_profile')
