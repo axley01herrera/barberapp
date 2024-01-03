@@ -24,9 +24,6 @@
                             <?php echo view('controlPanel/employees/employeeProfile/employeeInfo'); ?>
                         </div>
                     </div>
-                    <!-- Upcoming Appointments -->
-                    <h5><?php echo lang('Text.cp_emp_dash_upcoming_appointment_title'); ?></h5>
-                    <?php echo view('employee/dashboard/upcomingAppointment'); ?>
                 </div>
                 <!-- Tabs -->
                 <div class="flex-lg-row-fluid ms-lg-15">

@@ -1566,7 +1566,7 @@ class ControlPanel extends BaseController
             }
 
             $col = array();
-            $col['customer'] = $custAvatar . ' ' . $result[$i]->customerName . ' ' . $result[$i]->customerLastName;
+            $col['customer'] = $custAvatar . ' ' . $result[$i]->customerName;
             $col['date'] = $date;
             $col['schedule'] = $schedule;
             $col['serv'] = $serv;
@@ -1589,7 +1589,7 @@ class ControlPanel extends BaseController
         $data['data'] = $row;
 
         return json_encode($data);
-    }
+    } // ok
 
     ##############################
     # Section Profile

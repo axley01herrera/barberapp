@@ -314,6 +314,7 @@ $lang['cp_emp_dash_upcoming_appointment_title'] = 'Próximas Citas';
 $lang['cp_emp_asigned_services'] = 'Servicios Asignados';
 $lang['cp_emp_unverified_email'] = 'Correo Electrónico No Verificado';
 $lang['cp_emp_verified_email'] = 'Correo Electrónico Verificado';
+$lang['cp_emp_appointment_history'] = "Historial de Citas del Empleado";
 
 # Control Panel -> Profile
 $lang['cp_profile_page_title'] = "Perfil de Empresa";
