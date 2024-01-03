@@ -41,8 +41,6 @@ $lang['state'] = "Provincia";
 $lang['zip'] = "Código Postal";
 $lang['country'] = "País";
 $lang['title'] = "Título";
-$lang['price'] = "Precio";
-$lang['time_minutes'] = "Tiempo (minutos)";
 $lang['description'] = "Descripción";
 $lang['currency'] = "Moneda";
 $lang['timezone'] = "Zona Horaria";
@@ -133,7 +131,6 @@ $lang['linkedIn'] = "LinkedIn";
 $lang['Instagram'] = "Instagram";
 $lang['status'] = "Estado";
 $lang['visibility'] = "Público";
-$lang['not_services'] = "No hay Servicios";
 $lang['yes_are_sure'] = "Sí, estoy seguro";
 $lang['success_cancel_turn'] = "Su cita ha sido cancelada";
 $lang['employee'] = "Empleado";
@@ -289,22 +286,36 @@ $lang['emp_unassigned_service'] = 'Servicio Desasignado al Empleado';
 $lang['emp_bussiness_day_active'] = 'Día asignado como laborable';
 $lang['emp_bussiness_day_inactive'] = 'Día asignado como no laborable';
 
-# Services
-$lang['serv_new'] = "Nuevo Servicio";
-$lang['serv_update'] = "Editando Servicio";
-$lang['serv_edit'] = "Editar Servicio";
-$lang['serv_success_created'] = "Servicio Creado";
-$lang['serv_success_updated'] = "Servicio Actualizado";
-$lang['serv_duplicate'] = "Ya existe el servicio";
-$lang['serv_no_desc'] = "Servicio sin descripción";
-$lang['serv_success_order'] = "Orden de los servicios actualizados";
-$lang['serv_order_msg'] = "Ordena tus servicios";
-$lang['serv_order_msg_sub1'] = "Mueve las tarjetas desde la ezquina superior derecha y arrastra para organizarlas según tus preferencias, luego haz click en botón";
-$lang['serv_order_msg_sub2'] = "para guardar";
-
 # Control Panel Dashboard
 $lang['cp_dash_page_title'] = "Tablero";
 $lang['cp_dash_today_appointents'] = "Citas Hoy";
+$lang['cp_dash_active_emp'] = "Empleados Activos";
+$lang['cp_dash_active_cust'] = "Clientes Activos";
+$lang['cp_dash_serv'] = "Servicios";
+$lang['cp_dash_active'] = "Activos";
+
+# Control Panel Services
+$lang['cp_serv_page_title'] = "Tarjetas de Servicio";
+$lang['cp_serv_new'] = "Nuevo Servicio";
+$lang['cp_serv_edit'] = "Editar";
+$lang['cp_serv_change_visibility'] = "Cambiar Visibilad";
+$lang['cp_serv_change_status'] = "Cambiar Estado";
+$lang['cp_serv_price'] = "Precio";
+$lang['cp_serv_time_minutes'] = "Tiempo (minutos)";
+$lang['cp_serv_description'] = "Descripción";
+$lang['cp_serv_not_services'] = "No hay Servicios";
+$lang['cp_serv_update'] = "Editando Servicio";
+$lang['cp_serv_success_created'] = "Servicio Creado";
+$lang['cp_serv_success_updated'] = "Servicio Actualizado";
+$lang['cp_serv_duplicate'] = "Ya existe el servicio";
+$lang['cp_serv_success_order'] = "Orden de los servicios actualizados";
+$lang['cp_serv_order_msg'] = "Ordena tus servicios";
+$lang['cp_serv_order_msg_sub1'] = "Mueve las tarjetas desde la ezquina superior derecha y arrastra para organizarlas según tus preferencias, luego haz click en botón";
+$lang['cp_serv_order_msg_sub2'] = "para guardar";
+$lang['cp_serv_active'] = "Servicio Activado";
+$lang['cp_serv_inactive'] = "Servicio Desactivado";
+$lang['cp_serv_active_visibility'] = "Servicio Público";
+$lang['cp_serv_inactive_visibility'] = "Servicio Privado";
 
 # Control Panel Customer
 $lang['cp_cust_page_title'] = "Listado de Clientes";

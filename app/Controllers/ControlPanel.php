@@ -77,6 +77,10 @@ class ControlPanel extends BaseController
         $data['companyProfile'] = $this->companyProfile;
         # menu
         $data['activeDashboard'] = "active";
+        # data 
+        $data['employees'] = $this->objControlPanelModel->dashCardActiveEmp();
+        $data['customers'] = $this->objControlPanelModel->dashCardActiveCust();
+        $data['services'] = $this->objControlPanelModel->dashCardActiveServ();
         # page
         $data['page'] = 'controlPanel/dashboard/mainDashboard';
 
@@ -158,9 +162,9 @@ class ControlPanel extends BaseController
         $data['uniqid'] = uniqid();
 
         if ($data['action'] == "create")
-            $data['modalTitle'] = lang("Text.serv_new");
+            $data['modalTitle'] = lang("Text.cp_serv_new");
         else {
-            $data['modalTitle'] = lang("Text.serv_update");
+            $data['modalTitle'] = lang("Text.cp_serv_update");
             $data['service'] = $this->objMainModel->objData('service', 'id', $this->objRequest->getPost('id'))[0];
         }
 

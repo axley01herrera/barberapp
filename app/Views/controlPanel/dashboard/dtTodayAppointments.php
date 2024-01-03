@@ -2,7 +2,7 @@
 $pendingAppointments = 0;
 ?>
 <!-- Card -->
-<div class="card mb-5 mb-xl-10 mt-5">
+<div class="card mb-5 mb-xl-10">
     <!-- Card Header -->
     <div class="card-header border-0">
         <!-- Card Title -->
@@ -46,7 +46,7 @@ $pendingAppointments = 0;
                     <?php foreach ($todayAppointments as $ta) { ?>
                         <tr>
                             <td class="dt-vertical-align p-2">
-                                <?php echo '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . imgEmployee($ta->employeeID) . '" class="" alt=""></div>' . ' ' . $ta->employeeName . ' ' . $ta->employeeLastName; ?>
+                                <?php echo '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . imgEmployee($ta->employeeID) . '" class="" alt=""></div>' . ' ' . $ta->employeeName; ?>
                             </td>
 
                             <td class="dt-vertical-align p-2">
@@ -74,7 +74,7 @@ $pendingAppointments = 0;
                             </td>
 
                             <td class="dt-vertical-align p-2">
-                                <?php echo '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . imgCustomer($ta->customerID) . '" class="" alt=""></div>' . ' ' . $ta->customerName . ' ' . $ta->customerLastName; ?>
+                                <?php echo '<div class="symbol symbol-30px symbol-circle me-3"><img src="' . imgCustomer($ta->customerID) . '" class="" alt=""></div>' . ' ' . $ta->customerName; ?>
                             </td>
 
                             <td class="dt-vertical-align p-2">

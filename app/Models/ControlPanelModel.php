@@ -83,4 +83,39 @@ class ControlPanelModel extends Model
 
         return $result;
     } // ok
+
+    public function dashCardActiveEmp()
+    {
+        $query = $this->db->table('employee')
+            ->select('id')
+            ->where('status', 1)
+            ->where('deleted', 0);
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    } // ok
+
+    public function dashCardActiveCust()
+    {
+        $query = $this->db->table('customer')
+            ->select('id')
+            ->where('status', 1)
+            ->where('deleted', 0);
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    } // ok
+
+    public function dashCardActiveServ()
+    {
+        $query = $this->db->table('service')
+            ->select('id')
+            ->where('status', 1);
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    } // ok
 }

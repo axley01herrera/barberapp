@@ -58,10 +58,10 @@
             let msg = "";
             if (action == "create") {
                 url = "<?php echo base_url('ControlPanel/createService'); ?>";
-                msg = "<?php echo lang("Text.serv_success_created"); ?>";
+                msg = "<?php echo lang("Text.cp_serv_success_created"); ?>";
             } else {
                 url = "<?php echo base_url('ControlPanel/updateService'); ?>"
-                msg = "<?php echo lang("Text.serv_success_updated"); ?>";
+                msg = "<?php echo lang("Text.cp_serv_success_updated"); ?>";
             }
             $.ajax({
                 type: "post",
@@ -84,7 +84,7 @@
                         }
                     } else if (response.error === 1) {
                         if (response.msg == "ERROR_DUPLICATE") {
-                            simpleAlert("<?php echo lang('Text.serv_duplicate'); ?>", 'warning');
+                            simpleAlert("<?php echo lang('Text.cp_serv_duplicate'); ?>", 'warning');
                             $('#txt-title<?php echo $uniqid; ?>').addClass('is-invalid');
                         } else
                             globalError();
