@@ -29,7 +29,7 @@
                             <div class="col-12">
                                 <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                     <input type="checkbox" id="monday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->monday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->monday; ?>" />
-                                    <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
+                                    <label class="form-check-label"><?php echo lang('Text.cp_emp_label_switch_bussiness_day'); ?></label>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="tuesday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->tuesday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->tuesday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('Text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="wednesday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->wednesday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->wednesday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('Text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="thursday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->thursday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->thursday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('Text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -288,7 +288,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="friday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->friday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->friday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('Text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -353,7 +353,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="saturday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->saturday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->saturday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('Text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
@@ -418,7 +418,7 @@
                                 <div class="col-12">
                                     <div class="form-check form-switch form-check-custom form-check-solid mt-2">
                                         <input type="checkbox" id="sunday" class="form-check-input cbx-bussines-day form-control h-30px w-50px" <?php if ($employeeBussinesDay[0]->sunday == 1) echo "checked"; ?> data-value="<?php echo $employeeBussinesDay[0]->sunday; ?>" />
-                                        <label class="form-check-label"><?php echo lang('text.cp_emp_label_switch_bussiness_day'); ?></label>
+                                        <label class="form-check-label"><?php echo lang('Text.cp_emp_label_switch_bussiness_day'); ?></label>
                                     </div>
                                 </div>
                             </div>
