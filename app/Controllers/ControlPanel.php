@@ -1169,7 +1169,7 @@ class ControlPanel extends BaseController
                 break;
             case 'tab-schedule':
                 $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
-                $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
+                $data['employeeTimes'] = $this->objControlPanelModel->getEmployeeShiftDay($employeeID);
                 $view = "controlPanel/employees/employeeProfile/tabContent/tabSchedule";
                 break;
             case 'tab-account':
@@ -1218,13 +1218,6 @@ class ControlPanel extends BaseController
         return view($page, $data);
     } // ok
 
-    public function getShiftDayEmployee($params)
-    {
-            $result = $this->objMainModel->getShiftDayEmployee($params[]);
-
-        return json_encode($result);
-    }
-
     public function createTime()
     {
         # Verify Session 
@@ -1238,34 +1231,68 @@ class ControlPanel extends BaseController
 
         # params
         $employeeID = $this->objRequest->getPost('employeeID');
-        $days = $this->objRequest->getPost('days');
+        $postDays = $this->objRequest->getPost('days');
         $startPost = $this->objRequest->getPost('startTime');
         $endPost = $this->objRequest->getPost('endTime');
 
+        # Post Timestamp
+        $postStart = strtotime($startPost);
+        $postEnd = strtotime($endPost);
+
         # Set time sql format
-        $timeUnixS = strtotime($startPost);
-        $timeUnixE = strtotime($endPost);
-        $timeSqlS = date('H:i:s', $timeUnixS);
-        $timeSqlE = date('H:i:s', $timeUnixE);
+        $timeSqlS = date('H:i:s', $postStart);
+        $timeSqlE = date('H:i:s', $postEnd);
 
-        $params = array();
-        $params['employeeID'] = $employeeID;
+        $empShiftDays = $this->objControlPanelModel->getEmployeeShiftDay($employeeID);
 
-        $verifyAvailableTime = $this->getShiftDayEmployee($params);
-
-        if (empty($verifyAvailableTime)) {
-            foreach ($days as $day) {
+        if (empty($empShiftDays)) { // Case no emp Shif tDays
+            foreach ($postDays as $pDay) {
                 $data = array();
                 $data['employeeID'] = $employeeID;
-                $data['day'] = $day;
+                $data['day'] = $pDay;
                 $data['start'] = $timeSqlS;
                 $data['end'] = $timeSqlE;
 
-                $result = $this->objMainModel->objCreate('employee_shift_day', $data);
+                $this->objMainModel->objCreate('employee_shift_day', $data);
             }
-        } else
-            $result['msg'] = 'DUPLICATE_TIME';
+        } else {
 
+            foreach ($postDays as $pDay) { // Loop By Post
+                $flag = 0;
+                foreach ($empShiftDays as $shift) { // Loop By Shift Days
+                    if ($flag == 0) {
+                        if ($shift->day == $pDay) {
+                            $flag = 1;
+                            # Sshift Timestamp
+                            $shiftStart = strtotime($shift->start);
+                            $shiftEnd = strtotime($shift->end);
+                            if (($postStart >= $shiftStart && $postStart <= $shiftEnd) || ($postEnd >= $shiftStart && $postEnd <= $shiftEnd)) {
+                            } else {
+                                $data = array();
+                                $data['employeeID'] = $employeeID;
+                                $data['day'] = $pDay;
+                                $data['start'] = $timeSqlS;
+                                $data['end'] = $timeSqlE;
+
+                                $this->objMainModel->objCreate('employee_shift_day', $data);
+                            }
+                        }
+                    }
+                }
+
+                if ($flag == 0) {
+                    $data = array();
+                    $data['employeeID'] = $employeeID;
+                    $data['day'] = $pDay;
+                    $data['start'] = $timeSqlS;
+                    $data['end'] = $timeSqlE;
+
+                    $this->objMainModel->objCreate('employee_shift_day', $data);
+                }
+            }
+        }
+
+        $result['error'] = 0;
         return json_encode($result);
     } // ok
 

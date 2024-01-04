@@ -11,7 +11,7 @@
                         <!-- Day -->
                         <div class="col-12">
                             <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_bussiness_day'); ?> <span class="text-danger">*</span></label>
-                            <select id="sel-day<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>">
+                            <select id="sel-day<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled >
                                 <option value="" hidden></option>
                                 <?php if ($employeeBussinesDay[0]->monday == 1) { ?>
                                     <option value="monday" <?php if (!empty($time)) {

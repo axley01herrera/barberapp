@@ -118,4 +118,16 @@ class ControlPanelModel extends Model
 
         return $data;
     } // ok
+
+
+    public function getEmployeeShiftDay($employeeID) {
+
+        $query = $this->db->table('employee_shift_day')
+        ->where('employeeID', $employeeID)
+        ->orderBy('start', 'ASC');
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    }
 }
