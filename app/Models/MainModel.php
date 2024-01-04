@@ -161,5 +161,15 @@ class MainModel extends Model
         }
 
         return $return;
-    } 
+    }
+
+    public function getShiftDayEmployee($employeeID)
+    {
+        $query = $this->db->table('employee_shift_day')
+            ->where('employeeID', $employeeID);
+
+        $data = $query->get()->getResult();
+
+        return $data;
+    }
 }

@@ -1218,6 +1218,13 @@ class ControlPanel extends BaseController
         return view($page, $data);
     } // ok
 
+    public function getShiftDayEmployee($params)
+    {
+            $result = $this->objMainModel->getShiftDayEmployee($params[]);
+
+        return json_encode($result);
+    }
+
     public function createTime()
     {
         # Verify Session 
@@ -1236,20 +1243,28 @@ class ControlPanel extends BaseController
         $endPost = $this->objRequest->getPost('endTime');
 
         # Set time sql format
-        $tiempoUnixS = strtotime($startPost);
-        $tiempoUnixE = strtotime($endPost);
-        $timeSqlS = date('H:i:s', $tiempoUnixS);
-        $timeSqlE = date('H:i:s', $tiempoUnixE);
+        $timeUnixS = strtotime($startPost);
+        $timeUnixE = strtotime($endPost);
+        $timeSqlS = date('H:i:s', $timeUnixS);
+        $timeSqlE = date('H:i:s', $timeUnixE);
 
-        foreach ($days as $day) {
-            $data = array();
-            $data['employeeID'] = $employeeID;
-            $data['day'] = $day;
-            $data['start'] = $timeSqlS;
-            $data['end'] = $timeSqlE;
+        $params = array();
+        $params['employeeID'] = $employeeID;
 
-            $result = $this->objMainModel->objCreate('employee_shift_day', $data);
-        }
+        $verifyAvailableTime = $this->getShiftDayEmployee($params);
+
+        if (empty($verifyAvailableTime)) {
+            foreach ($days as $day) {
+                $data = array();
+                $data['employeeID'] = $employeeID;
+                $data['day'] = $day;
+                $data['start'] = $timeSqlS;
+                $data['end'] = $timeSqlE;
+
+                $result = $this->objMainModel->objCreate('employee_shift_day', $data);
+            }
+        } else
+            $result['msg'] = 'DUPLICATE_TIME';
 
         return json_encode($result);
     } // ok
@@ -1272,10 +1287,10 @@ class ControlPanel extends BaseController
         $timeID = $this->objRequest->getPost('timeID');
 
         # Set time sql format
-        $tiempoUnixS = strtotime($startPost);
-        $tiempoUnixE = strtotime($endPost);
-        $timeSqlS = date('H:i:s', $tiempoUnixS);
-        $timeSqlE = date('H:i:s', $tiempoUnixE);
+        $timeUnixS = strtotime($startPost);
+        $timeUnixE = strtotime($endPost);
+        $timeSqlS = date('H:i:s', $timeUnixS);
+        $timeSqlE = date('H:i:s', $timeUnixE);
 
         $data = array();
         $data['day'] = $day;
