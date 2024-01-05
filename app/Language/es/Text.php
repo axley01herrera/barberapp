@@ -434,4 +434,6 @@ $lang['employee_col_emp'] = "Empleado";
 $lang['employee_col_email'] = "Correo Electrónico";
 $lang['employee_col_status'] = "Estado";
 
+# Customer
+$lang['cust_menu_da'] = "Empleado";
 return $lang;

@@ -166,6 +166,7 @@
     var action = "<?php echo $action; ?>";
     var callModalFrom = $('#page').attr('data-page');
     var timeID = "<?php echo $timeID; ?>";
+
     var startTime = document.getElementById('sel-startTime<?php echo $uniqid; ?>');
     var endTime = document.getElementById('sel-endTime<?php echo $uniqid; ?>');
 
@@ -216,6 +217,7 @@
         });
 
         let result = checkRequiredValues();
+        
 
         if (result == 0 && days.length > 0) {
             $.ajax({

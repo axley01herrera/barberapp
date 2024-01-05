@@ -1245,8 +1245,22 @@ class ControlPanel extends BaseController
 
         $empShiftDays = $this->objControlPanelModel->getEmployeeShiftDay($employeeID);
 
-        if (empty($empShiftDays)) { // Case no emp Shif tDays
-            foreach ($postDays as $pDay) {
+        foreach ($postDays as $pDay) {
+            $flag = 0;
+
+            foreach ($empShiftDays as $shift) {
+                if ($shift->day == $pDay) {
+
+                    # Sshift Timestamp
+                    $shiftStart = strtotime($shift->start);
+                    $shiftEnd = strtotime($shift->end);
+                    
+                    if (($postStart > $shiftStart && $postStart < $shiftEnd) || ($postEnd > $shiftStart && $postEnd < $shiftEnd))
+                        $flag = 1;
+                }
+            }
+
+            if ($flag == 0) {
                 $data = array();
                 $data['employeeID'] = $employeeID;
                 $data['day'] = $pDay;
@@ -1255,44 +1269,10 @@ class ControlPanel extends BaseController
 
                 $this->objMainModel->objCreate('employee_shift_day', $data);
             }
-        } else {
-
-            foreach ($postDays as $pDay) { // Loop By Post
-                $flag = 0;
-                foreach ($empShiftDays as $shift) { // Loop By Shift Days
-                    if ($flag == 0) {
-                        if ($shift->day == $pDay) {
-                            $flag = 1;
-                            # Sshift Timestamp
-                            $shiftStart = strtotime($shift->start);
-                            $shiftEnd = strtotime($shift->end);
-                            if (($postStart >= $shiftStart && $postStart <= $shiftEnd) || ($postEnd >= $shiftStart && $postEnd <= $shiftEnd)) {
-                            } else {
-                                $data = array();
-                                $data['employeeID'] = $employeeID;
-                                $data['day'] = $pDay;
-                                $data['start'] = $timeSqlS;
-                                $data['end'] = $timeSqlE;
-
-                                $this->objMainModel->objCreate('employee_shift_day', $data);
-                            }
-                        }
-                    }
-                }
-
-                if ($flag == 0) {
-                    $data = array();
-                    $data['employeeID'] = $employeeID;
-                    $data['day'] = $pDay;
-                    $data['start'] = $timeSqlS;
-                    $data['end'] = $timeSqlE;
-
-                    $this->objMainModel->objCreate('employee_shift_day', $data);
-                }
-            }
         }
 
         $result['error'] = 0;
+
         return json_encode($result);
     } // ok
 
