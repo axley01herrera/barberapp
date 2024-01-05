@@ -194,11 +194,32 @@
 
 
     $('#save-turn<?php echo $uniqid; ?>').on('click', function() { // Submit
-        if (action == "create")
-            createEmployeeTimes();
-        else if (action == "update")
-            updateEmployeeTimes();
+        if (hourConvert($(startTime).val()) >= hourConvert($(endTime).val())) {
+            $('#sel-endTime<?php echo $uniqid; ?>').addClass('required is-invalid');
+            simpleAlert("<?php echo lang("Text.cp_emp_error_invalid_time"); ?>", 'warning');
+        } else {
+            if (action == "create")
+                createEmployeeTimes();
+            else if (action == "update")
+                updateEmployeeTimes();
+        }
     }); // ok
+
+    function hourConvert(hour) {
+        let horaPartes = hour.split(' ');
+        let horasMinutos = horaPartes[0].split(':');
+        let hours = parseInt(horasMinutos[0]);
+        let minutes = parseInt(horasMinutos[1]);
+        let meridian = horaPartes[1];
+
+        if (meridian === 'PM' && hours !== 12)
+            hours += 12;
+
+        if (hours.toString().length == 1)
+            hours = '0' + hours;
+
+        return hours + ':' + (minutes < 10 ? '0' + minutes : minutes);
+    }
 
     function createEmployeeTimes() {
         let url = "<?php echo base_url('ControlPanel/createTime'); ?>";
@@ -232,9 +253,6 @@
                         simpleSuccessAlert(msg);
                         employeeProfileTabContent();
                         $('#modal').modal('hide');
-                    } else if (response == 'INVALID_TIME') {
-                        $('#sel-endTime<?php echo $uniqid; ?>').addClass('required is-invalid');
-                        simpleAlert("<?php echo lang("Text.cp_emp_error_invalid_time"); ?>", 'warning');
                     } else
                         globalError();
                 },
