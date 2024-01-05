@@ -76,6 +76,8 @@
 <script>
     var action = "<?php echo $action; ?>";
     var callModalFrom = $('#page').attr('data-page');
+    var startTime = document.getElementById('sel-startTime<?php echo $uniqid; ?>');
+    var endTime = document.getElementById('sel-endTime<?php echo $uniqid; ?>');
 
     $('#modal').modal('show');
 
@@ -83,7 +85,16 @@
         $('#app-modal').html('');
     });
 
-    $(".time").flatpickr({
+    startTime.flatpickr({
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "G:i K",
+        onChange: function(selectedDates, dateStr) {
+            endTime._flatpickr.set("minTime", $(startTime).val());
+        }
+    });
+
+    endTime.flatpickr({
         enableTime: true,
         noCalendar: true,
         dateFormat: "G:i K",
