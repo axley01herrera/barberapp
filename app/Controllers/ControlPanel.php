@@ -1250,13 +1250,17 @@ class ControlPanel extends BaseController
 
             foreach ($empShiftDays as $shift) {
                 if ($shift->day == $pDay) {
-
-                    # Sshift Timestamp
+                    # Shift Timestamp
                     $shiftStart = strtotime($shift->start);
                     $shiftEnd = strtotime($shift->end);
 
-                    if (($postStart > $shiftStart && $postStart < $shiftEnd) || ($postEnd > $shiftStart && $postEnd < $shiftEnd))
+                    if (
+                        ($postStart >= $shiftStart && $postEnd <= $shiftEnd) || // Submitted shift completely within existing shift
+                        ($postStart <= $shiftStart && $postEnd >= $shiftEnd) || // Existing shift completely within submitted shift
+                        ($postStart < $shiftEnd && $postEnd > $shiftStart) // Overlapping but not completely within each other
+                    ) {
                         $flag = 1;
+                    }
                 }
             }
 
