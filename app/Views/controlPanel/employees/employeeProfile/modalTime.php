@@ -11,7 +11,7 @@
                         <!-- Day -->
                         <div class="col-12">
                             <label class="fs-6 fw-semibold" for="txt-name<?php echo $uniqid; ?>"><?php echo lang('Text.cp_emp_bussiness_day'); ?> <span class="text-danger">*</span></label>
-                            <select id="sel-day<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled >
+                            <select id="sel-day<?php echo $uniqid; ?>" class="form-control required<?php echo $uniqid; ?>" disabled>
                                 <option value="" hidden></option>
                                 <?php if ($employeeBussinesDay[0]->monday == 1) { ?>
                                     <option value="monday" <?php if (!empty($time)) {
@@ -166,6 +166,8 @@
     var action = "<?php echo $action; ?>";
     var callModalFrom = $('#page').attr('data-page');
     var timeID = "<?php echo $timeID; ?>";
+    var startTime = document.getElementById('sel-startTime<?php echo $uniqid; ?>');
+    var endTime = document.getElementById('sel-endTime<?php echo $uniqid; ?>');
 
     chartEmployeeTime();
 
@@ -175,11 +177,22 @@
         $('#app-modal').html('');
     });
 
-    $(".time").flatpickr({
+    startTime.flatpickr({
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "G:i K",
+        onChange: function(selectedDates, dateStr) {
+            endTime._flatpickr.set("minTime", $(startTime).val());
+        }
+    });
+
+    endTime.flatpickr({
         enableTime: true,
         noCalendar: true,
         dateFormat: "G:i K",
     });
+
+
 
     $('#save-turn<?php echo $uniqid; ?>').on('click', function() { // Submit
         if (action == "create")
