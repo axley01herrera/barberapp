@@ -13,7 +13,6 @@ $lang['minutes_label'] = "minutos";
 $lang['price_label'] = "Precio";
 $lang['photo_label'] = "Fotos";
 $lang['contact_info_label'] = "Información de Contacto";
-$lang['full_name'] = "Nombre Completo";
 $lang['email_label'] = "Correo Electrónico";
 $lang['phone_label'] = "Teléfono";
 $lang['important_label'] = "Importante";
@@ -25,13 +24,6 @@ $lang['appointments_label'] = "Citas";
 $lang['status_label'] = "Estado";
 $lang['name_label'] = "Nombre";
 $lang['last_name_label'] = "Apellidos";
-$lang['time_minutes'] = "Tiempo (minutos)";
-$lang['current_key'] = "Contraseña Actual";
-$lang['new_key'] = "Nueva Contraseña";
-$lang['confirm_key'] = "Confirme su Nueva Contraseña";
-
-# Global Buttons
-$lang['btn_next'] = "Siguiente";
 
 # Global MSG
 $lang['user_inactive_msg'] = 'Su cuenta está desactivada, para más información póngase en contacto con nosotros. Gracias y disculpe las molestias';
@@ -294,7 +286,6 @@ $lang['cp_emp_start_time'] = "Inicio de Jornada";
 $lang['cp_emp_end_time'] = "Fin de la Jornada";
 $lang['cp_emp_success_created_time'] = "Turnos Creados";
 $lang['cp_emp_success_updated_time'] = "Turnos Actualizados";
-$lang['cp_emp_error_invalid_time'] = "Introduzca Correctamente el Horario";
 $lang['cp_emp_current_pass'] = "Contraseña Actual";
 $lang['cp_emp_new_pass'] = "Nueva Contraseña";
 $lang['cp_emp_new_pass_c'] = "Confirmar Nueva Contraseña";
@@ -443,26 +434,31 @@ $lang['employee_col_emp'] = "Empleado";
 $lang['employee_col_email'] = "Correo Electrónico";
 $lang['employee_col_status'] = "Estado";
 
-# Customer
-//CUSTOMER->DASHBOARD
+# CUSTOMER
 $lang['cust_menu_dash'] = "Tablero";
+$lang['cust_menu_appointments_label'] = "Citas";
+$lang['cust_menu_account'] = "Cuenta";
 $lang['btn_create_appointment'] = "Crear Cita";
 $lang['cust_dash_upcoming_appointment_title'] = "Próximas Citas";
-//CUSTOMER->APPOINTMENTS
-$lang['cust_menu_appointments_label'] = "Citas";
 $lang['cust_new_appointment'] = "Reserve su Cita";
 $lang['cust_new_appointment_subtitle'] = "Subtitle";
 $lang['cust_new_appointment_available_shifts'] = "Seleccione un Turno";
 $lang['cust_no_appointment_available'] = "No hay turnos disponibles para este día";
-#Alerts
+$lang['cust_tab_credential'] = "Credenciales";
+$lang['cust_tab_credential_subtitle'] = "Subtitle";
+$lang['cust_account_success_updated'] = "Credenciales Actualizadas";
+$lang['cust_profile_success_updated'] = "Perfil Actualizado";
 $lang['cust_alert_new_appointment_step1_sub'] = "Seleccione algún servicio";
 $lang['cust_new_appointment_required_time_selected'] = "Seleccione un turno";
 $lang['cust_success_create_appointment'] = "Su cita se ha reservado";
-//CUSTOMER->ACCOUNT
-$lang['cust_menu_account'] = "Cuenta";
-$lang['cust_tab_credential'] = "Credenciales";
-$lang['cust_tab_credential_subtitle'] = "Subtitle";
-#Alerts
 $lang['cust_account_success_updated'] = "Credenciales Actualizadas";
 $lang['cust_profile_success_updated'] = "Perfil Actualizado";
+$lang['time_minutes'] = "Tiempo (minutos)";
+$lang['current_key'] = "Contraseña Actual";
+$lang['new_key'] = "Nueva Contraseña";
+$lang['confirm_key'] = "Confirme su Nueva Contraseña";
+$lang['btn_next'] = "Siguiente";
+$lang['full_name'] = "Nombre Completo";
+$lang['cp_emp_error_invalid_time'] = "Introduzca Correctamente el Horario";
+
 return $lang;
