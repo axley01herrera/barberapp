@@ -1243,6 +1243,9 @@ class ControlPanel extends BaseController
         $timeSqlS = date('H:i:s', $postStart);
         $timeSqlE = date('H:i:s', $postEnd);
 
+        if ($timeSqlS >= $timeSqlE)
+            return json_encode('INVALID_TIME');
+
         $empShiftDays = $this->objControlPanelModel->getEmployeeShiftDay($employeeID);
 
         foreach ($postDays as $pDay) {
@@ -1254,7 +1257,7 @@ class ControlPanel extends BaseController
                     # Sshift Timestamp
                     $shiftStart = strtotime($shift->start);
                     $shiftEnd = strtotime($shift->end);
-                    
+
                     if (($postStart > $shiftStart && $postStart < $shiftEnd) || ($postEnd > $shiftStart && $postEnd < $shiftEnd))
                         $flag = 1;
                 }

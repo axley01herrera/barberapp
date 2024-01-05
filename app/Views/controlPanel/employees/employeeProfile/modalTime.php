@@ -166,7 +166,6 @@
     var action = "<?php echo $action; ?>";
     var callModalFrom = $('#page').attr('data-page');
     var timeID = "<?php echo $timeID; ?>";
-
     var startTime = document.getElementById('sel-startTime<?php echo $uniqid; ?>');
     var endTime = document.getElementById('sel-endTime<?php echo $uniqid; ?>');
 
@@ -194,7 +193,6 @@
     });
 
 
-
     $('#save-turn<?php echo $uniqid; ?>').on('click', function() { // Submit
         if (action == "create")
             createEmployeeTimes();
@@ -217,7 +215,6 @@
         });
 
         let result = checkRequiredValues();
-        
 
         if (result == 0 && days.length > 0) {
             $.ajax({
@@ -235,6 +232,9 @@
                         simpleSuccessAlert(msg);
                         employeeProfileTabContent();
                         $('#modal').modal('hide');
+                    } else if (response == 'INVALID_TIME') {
+                        $('#sel-endTime<?php echo $uniqid; ?>').addClass('required is-invalid');
+                        simpleAlert("<?php echo lang("Text.cp_emp_error_invalid_time"); ?>", 'warning');
                     } else
                         globalError();
                 },

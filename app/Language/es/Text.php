@@ -286,6 +286,7 @@ $lang['cp_emp_start_time'] = "Inicio de Jornada";
 $lang['cp_emp_end_time'] = "Fin de la Jornada";
 $lang['cp_emp_success_created_time'] = "Turnos Creados";
 $lang['cp_emp_success_updated_time'] = "Turnos Actualizados";
+$lang['cp_emp_error_invalid_time'] = "Introduzca Correctamente el Horario";
 $lang['cp_emp_current_pass'] = "Contraseña Actual";
 $lang['cp_emp_new_pass'] = "Nueva Contraseña";
 $lang['cp_emp_new_pass_c'] = "Confirmar Nueva Contraseña";
