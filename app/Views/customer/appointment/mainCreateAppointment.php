@@ -146,7 +146,7 @@
             step = Number(step) + 1;
             showStep();
         } else
-            simpleAlert('<?php echo lang('Text.cust_new_appointment_step1_sub'); ?>', 'warning');
+            simpleAlert('<?php echo lang('Text.cust_alert_new_appointment_step1_sub'); ?>', 'warning');
 
     });
 
