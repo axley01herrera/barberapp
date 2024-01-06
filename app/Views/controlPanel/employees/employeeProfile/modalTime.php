@@ -194,7 +194,7 @@
 
 
     $('#save-turn<?php echo $uniqid; ?>').on('click', function() { // Submit
-        if (hourConvert($(startTime).val()) >= hourConvert($(endTime).val())) {
+        if (hourConvert($(startTime).val()) >= hourConvert($(endTime).val()) && $(startTime).val() != '') {
             $('#sel-endTime<?php echo $uniqid; ?>').addClass('required is-invalid');
             simpleAlert("<?php echo lang("Text.cp_emp_error_invalid_time"); ?>", 'warning');
         } else {
