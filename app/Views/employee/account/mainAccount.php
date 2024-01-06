@@ -35,11 +35,11 @@
                         </li>
                         <!-- Tab item -->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-account" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.account'); ?></a>
+                            <a id="tab-account" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" data-kt-initialized="1" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.emp_tab_account'); ?></a>
                         </li>
                         <!-- Tab Profile-->
                         <li class="nav-item" role="presentation">
-                            <a id="tab-profile" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.profile'); ?></a>
+                            <a id="tab-profile" class="nav-link text-active-primary pb-4 tab-profile" data-bs-toggle="tab" href="#" aria-selected="false" tabindex="-1" role="tab"><?php echo lang('Text.emp_tab_profile'); ?></a>
                         </li>
                     </ul>
                     <!-- Tab Content -->

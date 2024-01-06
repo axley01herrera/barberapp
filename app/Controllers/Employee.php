@@ -355,71 +355,6 @@ class Employee extends BaseController
         return view($page, $data);
     }
 
-    public function createTime()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee") {
-            $result = array();
-            $result['error'] = 2;
-            $result['msg'] = "SESSION_EXPIRED";
-            return json_encode($result);
-        }
-
-        # params
-        $employeeID =  $this->objSession->get('user')['employeeID'];
-        $day = $this->objRequest->getPost('day');
-        $startPost = $this->objRequest->getPost('startTime');
-        $endPost = $this->objRequest->getPost('endTime');
-
-        # Set time sql format
-        $tiempoUnixS = strtotime($startPost);
-        $tiempoUnixE = strtotime($endPost);
-        $timeSqlS = date('H:i:s', $tiempoUnixS);
-        $timeSqlE = date('H:i:s', $tiempoUnixE);
-
-        $data = array();
-        $data['employeeID'] = $employeeID;
-        $data['day'] = $day;
-        $data['start'] = $timeSqlS;
-        $data['end'] = $timeSqlE;
-
-        $result = $this->objMainModel->objCreate('employee_shift_day', $data);
-
-        return json_encode($result);
-    }
-
-    public function updateTime()
-    {
-        # Verify Session 
-        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee") {
-            $result = array();
-            $result['error'] = 2;
-            $result['msg'] = "SESSION_EXPIRED";
-            return json_encode($result);
-        }
-
-        # params
-        $day = $this->objRequest->getPost('day');
-        $startPost = $this->objRequest->getPost('startTime');
-        $endPost = $this->objRequest->getPost('endTime');
-        $timeID = $this->objRequest->getPost('timeID');
-
-        # Set time sql format
-        $tiempoUnixS = strtotime($startPost);
-        $tiempoUnixE = strtotime($endPost);
-        $timeSqlS = date('H:i:s', $tiempoUnixS);
-        $timeSqlE = date('H:i:s', $tiempoUnixE);
-
-        $data = array();
-        $data['day'] = $day;
-        $data['start'] = $timeSqlS;
-        $data['end'] = $timeSqlE;
-
-        $result = $this->objMainModel->objUpdate('employee_shift_day', $data, $timeID);
-
-        return json_encode($result);
-    }
-
     public function deleteTime()
     {
         # Verify Session 
@@ -697,4 +632,119 @@ class Employee extends BaseController
 
         return json_encode($data);
     }
+
+    public function createTime()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $employeeID = $this->objSession->get('user')['employeeID'];
+        $postDays = $this->objRequest->getPost('days');
+        $startPost = $this->objRequest->getPost('startTime');
+        $endPost = $this->objRequest->getPost('endTime');
+
+        # Post Timestamp
+        $postStart = strtotime($startPost);
+        $postEnd = strtotime($endPost);
+
+        # Set time sql format
+        $timeSqlS = date('H:i:s', $postStart);
+        $timeSqlE = date('H:i:s', $postEnd);
+
+        $empShiftDays = $this->objControlPanelModel->getEmployeeShiftDay($employeeID);
+
+        foreach ($postDays as $pDay) {
+            $flag = 0;
+
+            foreach ($empShiftDays as $shift) {
+                if ($shift->day == $pDay) {
+                    # Shift Timestamp
+                    $shiftStart = strtotime($shift->start);
+                    $shiftEnd = strtotime($shift->end);
+
+                    if (
+                        ($postStart >= $shiftStart && $postEnd <= $shiftEnd) || // Submitted shift completely within existing shift
+                        ($postStart <= $shiftStart && $postEnd >= $shiftEnd) || // Existing shift completely within submitted shift
+                        ($postStart < $shiftEnd && $postEnd > $shiftStart) // Overlapping but not completely within each other
+                    ) {
+                        $flag = 1;
+                    }
+                }
+            }
+
+            if ($flag == 0) {
+                $data = array();
+                $data['employeeID'] = $employeeID;
+                $data['day'] = $pDay;
+                $data['start'] = $timeSqlS;
+                $data['end'] = $timeSqlE;
+
+                $this->objMainModel->objCreate('employee_shift_day', $data);
+            }
+        }
+
+        $result['error'] = 0;
+
+        return json_encode($result);
+    } // ok
+
+    public function updateTime()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee") {
+            $result = array();
+            $result['error'] = 2;
+            $result['msg'] = "SESSION_EXPIRED";
+
+            return json_encode($result);
+        }
+
+        # params
+        $day = $this->objRequest->getPost('day');
+        $startPost = $this->objRequest->getPost('startTime');
+        $endPost = $this->objRequest->getPost('endTime');
+        $timeID = $this->objRequest->getPost('timeID');
+
+        # Set time sql format
+        $timeUnixS = strtotime($startPost);
+        $timeUnixE = strtotime($endPost);
+        $timeSqlS = date('H:i:s', $timeUnixS);
+        $timeSqlE = date('H:i:s', $timeUnixE);
+
+        $data = array();
+        $data['day'] = $day;
+        $data['start'] = $timeSqlS;
+        $data['end'] = $timeSqlE;
+
+        $result = $this->objMainModel->objUpdate('employee_shift_day', $data, $timeID);
+
+        return json_encode($result);
+    } // ok
+
+    public function chartEmployeeTime()
+    {
+        # Verify Session 
+        if (empty($this->objSession->get('user')) || $this->objSession->get('user')['role'] != "employee")
+            return view('controlPanelLogout');
+
+        # params
+        $employeeID = $this->objSession->get('user')['employeeID'];
+
+        $data = array();
+        # data
+        $data['employeeBussinesDay'] = $this->objMainModel->objData('employee_bussines_day', 'employeeID', $employeeID);
+        $data['employeeTimes'] = $this->objMainModel->objData('employee_shift_day', 'employeeID', $employeeID);
+
+        # page
+        $view = 'controlPanel/employees/employeeProfile/chartEmployeeTimes';
+
+        return view($view, $data);
+    } // ok
 }

@@ -436,7 +436,7 @@ $lang['employee_col_status'] = "Status";
 
 # CUSTOMER
 $lang['cust_menu_dash'] = "Dashboard";
-$lang['cust_menu_appointments_label'] = "Appointments";
+$lang['cust_menu_appointments'] = "Appointments";
 $lang['cust_menu_account'] = "Account";
 $lang['btn_create_appointment'] = "Create Appointment";
 $lang['cust_dash_upcoming_appointment_title'] = "Upcoming Appointments";
@@ -460,5 +460,35 @@ $lang['confirm_key'] = "Confirm Your New Password";
 $lang['btn_next'] = "Next";
 $lang['full_name'] = "Full Name";
 $lang['cp_emp_error_invalid_time'] = "Enter the schedule correctly";
+
+# EMPLOYEE
+$lang['emp_menu_dash'] = "Tablero";
+$lang['emp_menu_appointments'] = "Citas";
+$lang['emp_menu_services'] = "Servicios";
+$lang['emp_menu_times'] = "Turnos";
+$lang['emp_menu_account'] = "Cuenta";
+$lang['emp_tab_account'] = "Cuenta";
+$lang['emp_tab_profile'] = "Perfil";
+
+$lang['gender'] = "Género";
+$lang['dob'] = "Fecha de Nacimiento";
+$lang['address'] = "Dirección";
+$lang['address1'] = "Línea 1";
+$lang['address2'] = "Línea 2";
+$lang['city'] = "Ciudad";
+$lang['state'] = "Estado";
+$lang['zip'] = "Código Postal";
+$lang['country'] = "País";
+$lang['profile_data_updated'] = "Perfil Actualizado";
+$lang['account_data_updated'] = "Cuenta Actualizada";
+$lang['emp_asigned_services'] = "Servicios Asignados";
+$lang['emp_verified_email'] = "Correo Electrónico Verificado";
+$lang['emp_unverified_email'] = "Correo Electrónico Sin Verificación";
+$lang['btn_create_time'] = "Crear Turno";
+$lang['emp_label_switch_bussiness_day'] = "No Laboral / Laboral";
+$lang['start_time'] = "Inicio de la Jornada";
+$lang['end_time'] = "Fin de la Jornada";
+$lang['description'] = "Descripción ";
+$lang['emp_success_deleted_time'] = "Turno Eliminado ";
 
 return $lang;

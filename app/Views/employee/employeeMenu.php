@@ -7,35 +7,35 @@
             <!-- Dashboard -->
             <a href="<?php echo base_url('Employee/dashboard'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeDashboard; ?>">
-                    <span class="menu-title"><?php echo lang('Text.dashboard'); ?></span>
+                    <span class="menu-title"><?php echo lang('Text.emp_menu_dash'); ?></span>
                 </span>
             </a>
 
             <!-- Appointments -->
             <a href="<?php echo base_url('Employee/appointment'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeAppointment; ?>">
-                    <span class="menu-title"><?php echo lang('Text.appointments_label'); ?></span>
+                    <span class="menu-title"><?php echo lang('Text.emp_menu_appointments'); ?></span>
                 </span>
             </a>
 
             <!-- Services -->
             <a href="<?php echo base_url('Employee/services'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeServices; ?>">
-                    <span class="menu-title"><?php echo lang('Text.top_bar_services'); ?></span>
+                    <span class="menu-title"><?php echo lang('Text.emp_menu_services'); ?></span>
                 </span>
             </a>
 
             <!-- Times -->
             <a href="<?php echo base_url('Employee/times'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeTimes; ?>">
-                    <span class="menu-title"><?php echo lang('Text.top_bar_times'); ?></span>
+                    <span class="menu-title"><?php echo lang('Text.emp_menu_times'); ?></span>
                 </span>
             </a>
 
             <!-- Account -->
             <a href="<?php echo base_url('Employee/account'); ?>" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <span class="menu-link <?php echo @$activeAccount; ?>">
-                    <span class="menu-title"><?php echo lang('Text.account'); ?></span>
+                    <span class="menu-title"><?php echo lang('Text.emp_menu_account'); ?></span>
                 </span>
             </a>
 

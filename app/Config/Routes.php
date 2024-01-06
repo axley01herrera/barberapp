@@ -155,3 +155,4 @@ $routes->get('Employee/times', 'Employee::times');
 $routes->get('Employee/account', 'Employee::account');
 $routes->get('Employee/appointments', 'Employee::appointments');
 $routes->post('Employee/processingAppointment', 'Employee::processingAppointment');
+$routes->post('Employee/chartEmployeeTime', 'Employee::chartEmployeeTime');
